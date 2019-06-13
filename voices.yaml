@@ -1,0 +1,29 @@
+GenericVoice:
+	Variants:
+		belarus: .r01,.r03
+
+VehicleVoice:
+	Variants:
+		belarus: .r00,.r02
+
+VolkovVoice:
+	DefaultVariant: .aud
+	Voices:
+		Select: sv2await,sv2ready,sv2report,sv2yessir
+		Move: sv2ackno,sv2affirm,sv2noprob,sv2overout,sv2ritaway,sv2roger,sv2ugotit
+		Action: sv2ackno,sv2affirm,sv2noprob,sv2overout,sv2ritaway,sv2roger,sv2ugotit
+		Attack: sv2ackno,sv2affirm,sv2noprob,sv2overout,sv2ritaway,sv2roger,sv2ugotit
+		Die: dedman1,dedman2,dedman3,dedman4,dedman5,dedman7,dedman8
+		Burned: dedman10
+		Zapped: dedman6
+		Build: sv2ready
+		Kill: sv2ugotit,sv2noprob
+		Demolish: sv2ritaway,sv2overout
+
+RoboticVoice:
+	DefaultVariant: .wav
+	Voices:
+		Attack: vsenmova, vsenmovb, vsenmovc
+		Select: vsensela, vsenselb, vsenselc, vsenseld
+		Move: vsenmova, vsenmovb, vsenmovc
+		Action: vsenmova, vsenmovb, vsenmovc

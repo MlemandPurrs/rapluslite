@@ -1,0 +1,770 @@
+Player:
+	ModularBot@aiplayer:
+		Name: AI Player
+		Type: normal
+	GrantConditionOnBotOwner@aiplayer:
+		Condition: enable-ai-player
+		Bots: normal
+	SupportPowerBotModule@england:
+		RequiresCondition: enable-ai-player && player.england
+		Decisions:
+			NuclearMissile:
+				OrderName: NukePowerInfoOrder
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			GpsScramblerPower:
+				OrderName: GPSScramblerPowerInfoOrder
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Ally
+					Types: Tank, Vehicle, Ship
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 2c0
+	SupportPowerBotModule@france:
+		RequiresCondition: enable-ai-player && player.france
+		Decisions:
+			NuclearMissile:
+				OrderName: NukePowerInfoOrder
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+	SupportPowerBotModule@germany:
+		RequiresCondition: enable-ai-player && player.germany
+		Decisions:
+			FieldRepairPower:
+				OrderName: FieldRepairPowerInfoOrder
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Ally
+					Types: Tank, Vehicle, Ship
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 2c0
+			NuclearMissile:
+				OrderName: NukePowerInfoOrder
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+	SupportPowerBotModule@russia:
+		RequiresCondition: enable-ai-player && player.russia
+		Decisions:
+			SovietSpyplane:
+				OrderName: SovietSpyPlanePowerInfoOrder
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			SovietParatroopers:
+				OrderName: SovietParatroopersPowerInfoOrder
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			NuclearMissile:
+				OrderName: NukePowerInfoOrder
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			IronCurtainPower:
+				OrderName: IronCurtainPowerInfoOrder
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Ally
+					Types: Tank, Vehicle, Ship
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 2c0
+			SovietEMPPower:
+				OrderName: SovietEMPPowerInfoOrder
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+	SupportPowerBotModule@ukraine:
+		RequiresCondition: enable-ai-player && player.ukraine
+		Decisions:
+			SovietSpyplane:
+				OrderName: SovietSpyPlanePowerInfoOrder
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			SovietParatroopers:
+				OrderName: SovietParatroopersPowerInfoOrder
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			SovietParabombs:
+				OrderName: SovietParabombsPowerInfoOrder
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			NuclearMissile:
+				OrderName: NukePowerInfoOrder
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			IronCurtainPower:
+				OrderName: IronCurtainPowerInfoOrder
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Ally
+					Types: Tank, Vehicle, Ship
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 2c0
+	SupportPowerBotModule@belarus:
+		RequiresCondition: enable-ai-player && player.belarus
+		Decisions:
+			SovietSpyplane:
+				OrderName: SovietSpyPlanePowerInfoOrder
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			SovietParatroopers:
+				OrderName: SovietParatroopersPowerInfoOrder
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			SovietParabombs:
+				OrderName: SovietParabombsPowerInfoOrder
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			NuclearMissile:
+				OrderName: NukePowerInfoOrder
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			IronCurtainPower:
+				OrderName: IronCurtainPowerInfoOrder
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Ally
+					Types: Tank, Vehicle, Ship
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 2c0
+	HarvesterBotModule@england:
+		RequiresCondition: enable-ai-player && player.england
+		HarvesterTypes: harv
+		RefineryTypes: proc
+	HarvesterBotModule@france:
+		RequiresCondition: enable-ai-player && player.france
+		HarvesterTypes: harv
+		RefineryTypes: proc
+	HarvesterBotModule@germany:
+		RequiresCondition: enable-ai-player && player.germany
+		HarvesterTypes: harv
+		RefineryTypes: proc
+	HarvesterBotModule@russia:
+		RequiresCondition: enable-ai-player && player.russia
+		HarvesterTypes: harv.soviet
+		RefineryTypes: proc.soviet
+	HarvesterBotModule@ukraine:
+		RequiresCondition: enable-ai-player && player.ukraine
+		HarvesterTypes: harv.soviet
+		RefineryTypes: proc.soviet
+	HarvesterBotModule@belarus:
+		RequiresCondition: enable-ai-player && player.belarus
+		HarvesterTypes: harv.belarus
+		RefineryTypes: proc.belarus        
+	BaseBuilderBotModule@england:
+		RequiresCondition: enable-ai-player && player.england
+		MinimumExcessPower: 60
+		MaximumExcessPower: 160
+		ExcessPowerIncrement: 40
+		ExcessPowerIncreaseThreshold: 4
+		CheckForWaterRadius: 4
+		ConstructionYardTypes: fact
+		RefineryTypes: proc
+		PowerTypes: powr,apwr
+		BarracksTypes: tent
+		VehiclesFactoryTypes: weap
+		ProductionTypes: tent,weap,hpad
+		NavalProductionTypes: syrd
+		SiloTypes: silo
+		BuildingLimits:
+			proc: 4
+			tent: 2
+            kenn: 4
+			dome: 1
+			weap: 3
+			syrd: 1
+			hpad: 4
+            atek.england: 1
+			fix: 1
+			pdox: 1
+		BuildingFractions:
+			proc: 15
+			tent: 2
+			kenn: 1
+			dome: 1
+			weap: 6
+			hpad: 4
+			syrd: 1
+			pbox: 7
+			hbox: 3
+			gun: 7
+			gap: 2
+			fix: 1
+			agun: 5
+            atek.england: 1
+			mslo: 1
+			pdox: 1
+	BaseBuilderBotModule@france:
+		RequiresCondition: enable-ai-player && player.france
+		MinimumExcessPower: 60
+		MaximumExcessPower: 160
+		ExcessPowerIncrement: 40
+		ExcessPowerIncreaseThreshold: 4
+		CheckForWaterRadius: 4
+		ConstructionYardTypes: fact
+		RefineryTypes: proc
+		PowerTypes: powr,apwr
+		BarracksTypes: tent
+		VehiclesFactoryTypes: weap
+		ProductionTypes: tent,weap,hpad
+		NavalProductionTypes: syrd
+		SiloTypes: silo
+		BuildingLimits:
+			proc: 4
+			tent: 2
+            kenn: 4
+			dome: 1
+			weap: 3
+			syrd: 1
+			hpad: 4
+            atek.france: 1
+			fix: 1
+			pdox: 1
+		BuildingFractions:
+			proc: 15
+			tent: 2
+			kenn: 1
+			dome: 1
+			weap: 6
+			hpad: 4
+			syrd: 1
+			pbox: 7
+			hbox: 3
+			gun: 7
+			gap: 2
+			fix: 1
+			agun: 5
+            atek.france: 1
+			mslo: 1
+			pdox: 1
+	BaseBuilderBotModule@germany:
+		RequiresCondition: enable-ai-player && player.germany
+		MinimumExcessPower: 60
+		MaximumExcessPower: 160
+		ExcessPowerIncrement: 40
+		ExcessPowerIncreaseThreshold: 4
+		CheckForWaterRadius: 4
+		ConstructionYardTypes: fact
+		RefineryTypes: proc
+		PowerTypes: powr,apwr
+		BarracksTypes: tent
+		VehiclesFactoryTypes: weap
+		ProductionTypes: tent,weap,hpad
+		NavalProductionTypes: syrd
+		SiloTypes: silo
+		BuildingLimits:
+			proc: 4
+			tent: 2
+            kenn: 4
+			dome: 1
+			weap: 3
+			syrd: 1
+			hpad: 4
+            atek.germany: 1
+			fix: 1
+			pdox: 1
+		BuildingFractions:
+			proc: 15
+			tent: 2
+			kenn: 1
+			dome: 1
+			weap: 6
+			hpad: 4
+			syrd: 1
+			pbox: 7
+			hbox: 3
+			gun: 7
+			gap: 2
+			fix: 1
+			agun: 5
+            atek.germany: 1
+			mslo: 1
+			pdox: 1
+	BaseBuilderBotModule@russia:
+		RequiresCondition: enable-ai-player && player.russia
+		MinimumExcessPower: 60
+		MaximumExcessPower: 200
+		ExcessPowerIncrement: 40
+		ExcessPowerIncreaseThreshold: 4
+		CheckForWaterRadius: 4
+		ConstructionYardTypes: fact
+		RefineryTypes: proc.soviet
+		PowerTypes: powr,apwr
+		BarracksTypes: barr
+		VehiclesFactoryTypes: weap
+		ProductionTypes: barr,weap,afld
+		NavalProductionTypes: spen
+		SiloTypes: silo
+		BuildingLimits:
+			proc.soviet: 4
+			barr: 2
+            kenn: 4
+            dome.soviet: 1
+			weap: 3
+			spen: 1
+			afld: 4
+            stek.russia: 1
+			fix: 1
+			iron: 1
+		BuildingFractions:
+			proc.soviet: 15
+			barr: 2
+			kenn: 1
+            dome.soviet: 1
+			weap: 6
+			spen: 1
+			afld: 4
+            hgun: 3
+			ftur: 10
+			tsla: 5
+			fix: 1
+			sam: 3
+			hsam: 1
+            stek.russia: 1
+			mslo: 1
+			iron: 1
+	BaseBuilderBotModule@ukraine:
+		RequiresCondition: enable-ai-player && player.ukraine
+		MinimumExcessPower: 60
+		MaximumExcessPower: 200
+		ExcessPowerIncrement: 40
+		ExcessPowerIncreaseThreshold: 4
+		CheckForWaterRadius: 4
+		ConstructionYardTypes: fact
+		RefineryTypes: proc.soviet
+		PowerTypes: powr,apwr
+		BarracksTypes: barr
+		VehiclesFactoryTypes: weap
+		ProductionTypes: barr,weap,afld
+		NavalProductionTypes: spen
+		SiloTypes: silo
+		BuildingLimits:
+			proc.soviet: 4
+			barr: 2
+            kenn: 4
+            dome.soviet: 1
+			weap: 3
+			spen: 1
+			afld: 4
+            stek.ukraine: 1
+			fix: 1
+			iron: 1
+		BuildingFractions:
+			proc.soviet: 15
+			barr: 2
+			kenn: 1
+            dome.soviet: 1
+			weap: 6
+			spen: 1
+			afld: 4
+            hgun: 3
+			ftur: 10
+			tsla: 5
+			fix: 1
+			sam: 3
+			hsam: 1
+            stek.ukraine: 1
+			mslo: 1
+			iron: 1
+	BaseBuilderBotModule@belarus:
+		RequiresCondition: enable-ai-player && player.belarus
+		MinimumExcessPower: 60
+		MaximumExcessPower: 200
+		ExcessPowerIncrement: 40
+		ExcessPowerIncreaseThreshold: 4
+		CheckForWaterRadius: 4
+		ConstructionYardTypes: fact
+		RefineryTypes: proc.belarus
+		PowerTypes: powr,apwr
+		BarracksTypes: barr
+		VehiclesFactoryTypes: weap
+		ProductionTypes: barr,weap,afld
+		NavalProductionTypes: spen
+		SiloTypes: silo
+		BuildingLimits:
+			proc.belarus: 4
+			barr: 2
+            kenn: 4
+            dome.soviet: 1
+			weap: 3
+			spen: 1
+			afld: 4
+            stek.belarus: 1
+			fix: 1
+			iron: 1
+		BuildingFractions:
+			proc.belarus: 15
+			barr: 2
+			kenn: 1
+            dome.soviet: 1
+			weap: 6
+			spen: 1
+			afld: 4
+            hgun: 3
+			ftur: 10
+			tsla: 5
+			fix: 1
+			sam: 3
+			hsam: 1
+            stek.belarus: 1
+			mslo: 1
+			iron: 1
+	BuildingRepairBotModule@aiplayer:
+		RequiresCondition: enable-ai-player
+	McvManagerBotModule@aiplayer:
+		RequiresCondition: enable-ai-player
+		McvTypes: mcv
+		ConstructionYardTypes: fact
+		McvFactoryTypes: weap
+	SquadManagerBotModule@england:
+		RequiresCondition: enable-ai-player && player.england
+		SquadSize: 16
+		SquadSizeRandomBonus: 16
+		RushInterval: 400
+		AttackScanRadius: 16
+		ExcludeFromSquadsTypes: harv, mcv, dog
+		NavalUnitsTypes: pt,dd,ca,lst
+		ConstructionYardTypes: fact
+		NavalProductionTypes: syrd
+	SquadManagerBotModule@france:
+		RequiresCondition: enable-ai-player && player.france
+		SquadSize: 16
+		SquadSizeRandomBonus: 16
+		RushInterval: 400
+		AttackScanRadius: 16
+		ExcludeFromSquadsTypes: harv, mcv, dog
+		NavalUnitsTypes: pt,dd,ca,lst
+		ConstructionYardTypes: fact
+		NavalProductionTypes: syrd
+	SquadManagerBotModule@germany:
+		RequiresCondition: enable-ai-player && player.germany
+		SquadSize: 16
+		SquadSizeRandomBonus: 16
+		RushInterval: 400
+		AttackScanRadius: 16
+		ExcludeFromSquadsTypes: harv, mcv, dog
+		NavalUnitsTypes: pt,dd.germany,ca,lst
+		ConstructionYardTypes: fact
+		NavalProductionTypes: syrd
+	SquadManagerBotModule@russia:
+		RequiresCondition: enable-ai-player && player.russia
+		SquadSize: 16
+		SquadSizeRandomBonus: 16
+		RushInterval: 400
+		AttackScanRadius: 16
+		ExcludeFromSquadsTypes: harv.soviet, mcv, dog
+		NavalUnitsTypes: ss,ss.ag,msub,msub.aa,lst,tbt
+		ConstructionYardTypes: fact
+		NavalProductionTypes: spen
+	SquadManagerBotModule@ukraine:
+		RequiresCondition: enable-ai-player && player.ukraine
+		SquadSize: 16
+		SquadSizeRandomBonus: 16
+		RushInterval: 400
+		AttackScanRadius: 16
+		ExcludeFromSquadsTypes: harv.soviet, mcv, dog
+		NavalUnitsTypes: ss,ss.ag,msub,msub.aa,lst,fsub
+		ConstructionYardTypes: fact
+		NavalProductionTypes: spen
+	SquadManagerBotModule@belarus:
+		RequiresCondition: enable-ai-player && player.belarus
+		SquadSize: 16
+		SquadSizeRandomBonus: 16
+		RushInterval: 400
+		AttackScanRadius: 16
+		ExcludeFromSquadsTypes: harv.belarus, mcv, dog
+		NavalUnitsTypes: ss,ss.ag,msub,msub.aa,lst
+		ConstructionYardTypes: fact
+		NavalProductionTypes: spen
+	UnitBuilderBotModule@england:
+		RequiresCondition: enable-ai-player && player.england
+		UnitsToBuild:
+			e1: 65
+			e3: 30
+			dog: 15
+			snip: 5
+			harv: 15
+			jeep: 20
+			apc: 30
+			1tnk.england: 40
+			2tnk.england: 50
+			arty: 15
+            atnk: 5
+			iroq: 15
+			heli: 30
+			pt: 10
+			dd: 10
+			ca: 10
+			e7: 1
+		UnitLimits:
+			dog: 4
+			harv: 8
+			jeep: 4
+			e7: 1
+	UnitBuilderBotModule@france:
+		RequiresCondition: enable-ai-player && player.france
+		UnitsToBuild:
+			e1: 65
+			gren: 20
+			e3: 30
+			dog: 15
+			harv: 15
+			jeep: 20
+			apc: 30
+			1tnk.france: 40
+			2tnk.france: 50
+			arty.france: 15
+			stnk: 5
+            atnk: 5
+			iroq: 15
+			heli: 30
+			pt: 10
+			dd: 10
+			ca: 10
+			e7: 1
+		UnitLimits:
+			dog: 4
+			harv: 8
+			jeep: 4
+			e7: 1
+	UnitBuilderBotModule@germany:
+		RequiresCondition: enable-ai-player && player.germany
+		UnitsToBuild:
+			e1: 65
+			e3: 30
+			dog: 15
+			mgi: 25
+			harv: 15
+			jeep: 20
+			apc: 30
+			1tnk.germany: 40
+			2tnk.germany: 50
+			arty: 15
+            atnk: 5
+			ctnk: 10
+			iroq: 15
+			heli: 30
+			pt: 10
+			dd.germany: 10
+			ca: 10
+			e7: 1
+		UnitLimits:
+			dog: 4
+			harv: 8
+			jeep: 4
+			e7: 1
+	UnitBuilderBotModule@russia:
+		RequiresCondition: enable-ai-player && player.russia
+		UnitsToBuild:
+			e1: 65
+			e2: 15
+			e3: 30
+			e4: 15
+			dog: 15
+			shok: 15
+			harv.soviet: 15
+			ftrk: 30
+			btr.russia: 15
+			2tnk.russia: 45
+			3tnk.russia: 35
+			v2rl: 40
+			4tnk.russia: 25
+			ttnk: 25
+			mig: 30
+			yak: 30
+			ss: 10
+            ss.ag: 10
+			msub: 10
+            msub.aa: 10
+			tbt: 5
+			volk: 1
+		UnitLimits:
+			dog: 4
+            harv.soviet: 8
+			ftrk: 6
+			volk: 1
+	UnitBuilderBotModule@ukraine:
+		RequiresCondition: enable-ai-player && player.ukraine
+		UnitsToBuild:
+			e1: 65
+			e2: 15
+			e3: 30
+			e4.ukraine: 15
+			dog: 15
+			harv.soviet: 15
+			ftrk: 30
+			btr: 15
+			2tnk.ukraine: 45
+			3tnk.ukraine: 35
+			v2rl.ukraine: 40
+			4tnk.ukraine: 25
+			mig: 30
+			yak: 30
+			ss: 10
+            ss.ag: 10
+			msub: 10
+            msub.aa: 10
+			fsub: 5
+			volk: 1
+		UnitLimits:
+			dog: 4
+            harv.soviet: 8
+			ftrk: 6
+			volk: 1
+	UnitBuilderBotModule@belarus:
+		RequiresCondition: enable-ai-player && player.belarus
+		UnitsToBuild:
+			e1: 65
+			e2: 15
+			e3: 30
+			e4: 15
+			dog: 15
+			harv.belarus: 15
+			ftrk: 30
+			btr: 15
+			2tnk.belarus: 45
+			3tnk.belarus: 35
+			v2rl: 40
+			4tnk.belarus: 25
+			mig: 30
+			yak.belarus: 30
+			ss: 10
+            ss.ag: 10
+			msub: 10
+            msub.aa: 10
+			volk: 1
+		UnitLimits:
+			dog: 4
+            harv.belarus: 8
+			ftrk: 6
+			volk: 1

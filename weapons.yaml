@@ -1,0 +1,766 @@
+25mm:
+    Range: 4c768
+
+25mm.elite:
+    Inherits: 25mm
+    Burst: 3
+	BurstDelays: 6
+
+25mm.britain:
+	Inherits: 25mm
+	Warhead@1Dam: SpreadDamage
+		Damage: 2750
+
+25mm.britain.elite:
+    Inherits: 25mm.britain
+    Burst: 3
+	BurstDelays: 6
+
+25mm.france:
+	Inherits: 25mm
+	ReloadDelay: 18
+	Warhead@1Dam: SpreadDamage
+		Damage: 2250
+
+25mm.france.elite:
+    Inherits: 25mm.france
+    Burst: 3
+	BurstDelays: 6
+
+90mm.elite:
+	Inherits: 90mm
+	Burst: 2
+	BurstDelays: 8
+
+90mm.britain:
+	Inherits: 90mm
+	Warhead@1Dam: SpreadDamage
+		Damage: 4500
+
+90mm.britain.elite:
+	Inherits: 90mm.britain
+	Burst: 2
+	BurstDelays: 8
+
+90mm.france:
+	Inherits: 90mm
+	ReloadDelay: 45
+	Warhead@1Dam: SpreadDamage
+		Damage: 3500
+
+90mm.france.elite:
+	Inherits: 90mm.france
+	Burst: 2
+	BurstDelays: 8
+
+105mm.Singular:
+	Inherits: 105mm
+	ReloadDelay: 60
+	-Burst:
+	-BurstDelays:
+	Warhead@1Dam: SpreadDamage
+		Versus:
+			Heavy: 115
+
+105mm.Singular.elite:
+	Inherits: 105mm.Singular
+    Range: 6c768
+
+105mm.Singular.ukraine:
+	Inherits: 105mm.ukraine
+	ReloadDelay: 65
+	-Burst:
+	-BurstDelays:
+	Warhead@1Dam: SpreadDamage
+		Versus:
+			Heavy: 115
+
+105mm.Singular.ukraine.elite:
+	Inherits: 105mm.Singular.ukraine
+    Range: 7c768
+
+105mm.elite:
+	Inherits: 105mm
+    Range: 6c768
+ 
+105mm.ukraine:
+	Inherits: ^Cannon
+	Range: 5c768
+	ReloadDelay: 78
+	Burst: 2
+	BurstDelays: 4
+	Warhead@1Dam: SpreadDamage
+		Versus:
+			Heavy: 115
+
+105mm.ukraine.elite:
+	Inherits: 105mm.ukraine
+    Range: 7c768
+ 
+120mm.ukraine:
+	Inherits: 120mm
+	Range: 5c768
+	ReloadDelay: 100
+
+LtnkRockets:
+	Inherits: ^AntiGroundMissile
+	ReloadDelay: 300
+	ValidTargets: Ground, Water
+	Warhead@1Dam: SpreadDamage
+		Damage: 2500
+		ValidTargets: Ground, Water
+		Versus:
+            Wood: 100
+			Light: 85
+            Heavy: 120
+	Projectile: Missile
+		TrailImage: smokey
+		Inaccuracy: 128
+
+LtnkRockets.elite:
+    Inherits: LtnkRockets
+    Burst: 2
+    BurstDelays: 4
+
+M1CTank:
+	Inherits: M1Carbine
+	Range: 4c512
+	ReloadDelay: 20
+	ValidTargets: Infantry
+
+M1CTank.elite:
+    Inherits: M1CTank
+    Range: 6c0
+
+155mm.elite:
+    Inherits: 155mm
+    Burst: 2
+    BurstDelays: 12
+
+APTusk:
+	Burst: 2
+
+SCUD.elite:
+    Inherits: SCUD
+    -Projectile:
+	Projectile: Bullet
+		Speed: 340
+		Blockable: false
+		TrailImage: smokey
+		TrailDelay: 5
+		Inaccuracy: 213
+		Image: V2
+		Shadow: True
+		LaunchAngle: 62
+
+SCUD.ukraine:
+	Inherits: SCUD
+	ReloadDelay: 216
+
+SCUD.ukraine.elite:
+    Inherits: SCUD.ukraine
+    -Projectile:
+	Projectile: Bullet
+		Speed: 340
+		Blockable: false
+		TrailImage: smokey
+		TrailDelay: 5
+		Inaccuracy: 213
+		Image: V2
+		Shadow: True
+		LaunchAngle: 62
+
+TeslaZap.russia:
+	Inherits: TeslaZap
+	Range: 9c512
+
+FireballLauncher.Sub:
+	Inherits: FireballLauncher
+	ReloadDelay: 65
+
+M60mg.Inf:
+	Inherits: M60mg
+	BurstDelays: 5
+	Warhead@1Dam: SpreadDamage
+		Damage: 2500
+	FirstBurstTargetOffset: -64,0,0
+	FollowingBurstTargetOffset: 256,0,0
+	Projectile: Bullet
+		Inaccuracy: 256
+
+Chemspray:
+	Inherits: ^FireWeapon
+	ReloadDelay: 65
+	Range: 2c512
+	InvalidTargets: Wall
+	Report: flamer2.aud
+	Projectile: Bullet
+		Speed: 1c682
+	Warhead@1Dam: SpreadDamage
+		Spread: 256
+		Damage: 8000
+		ValidTargets: Ground, Water, Trees
+		InvalidTargets: Wall
+		Versus:
+			None: 70
+			Wood: 35
+			Light: 75
+			Heavy: 75
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath
+	-Warhead@3Eff: CreateEffect
+
+UnitExplodeChemSmall:
+	Warhead@1Dam: SpreadDamage
+		Spread: 426
+		Damage: 1000
+		ValidTargets: Ground, Trees
+		InvalidTargets: Air
+		Versus:
+			None: 90
+			Wood: 75
+			Light: 60
+			Heavy: 25
+		DamageTypes: Prone50Percent, TriggerProne, PoisonDeath
+	Warhead@2Eff: CreateEffect
+		Explosions: small_chem
+		ImpactSounds: firebl3.aud
+		ValidTargets: Ground, Air, Ship, Trees
+	Warhead@3EffWater: CreateEffect
+		Explosions: large_splash
+		ImpactSounds: splashl1.aud, splashl2.aud
+		ValidTargets: Water, Underwater
+		InvalidTargets: Ship, Structure, Bridge
+	Warhead@4Smu: LeaveSmudge
+		SmudgeType: Scorch
+		InvalidTargets: Structure, Wall, Trees
+
+Flamer.elite:
+    Inherits: Flamer
+    Burst: 30
+
+Repair.germany:
+	Inherits: Repair
+	Range: 4c0
+
+Repair.truk:
+    Inherits: Repair
+	Warhead@1Dam: SpreadDamage
+		Damage: -3500
+
+FLAK-23-AA:
+    Range: 7c0
+
+VolkovGun:
+	Inherits: ^SnipeWeapon
+    ReloadDelay: 30
+    Range: 7c0
+	Report: silppk.aud
+	ValidTargets: Ground, Water, Infantry, Barrel
+    InvalidTargets: Air, Bridge, Structure
+    Warhead@1Dam: SpreadDamage
+        Spread: 128
+		Damage: 10500
+        Versus:
+            None: 90
+            Wood: 75
+            Light: 80
+            Heavy: 60
+            Concrete: 50
+		ValidTargets: Ground, Water, Infantry, Barrel
+        DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
+    Warhead@2Smu: LeaveSmudge
+        SmudgeType: Scorch
+    Warhead@3Eff: CreateEffect
+        Explosions: artillery_explosion
+        ImpactSounds: kaboom12.aud
+		ValidTargets: Ground, Ship, Trees
+    Warhead@4EffWater: CreateEffect
+        Explosions: small_splash
+        ImpactSounds: splash9.aud
+        ValidTargets: Water, Underwater
+        InvalidTargets: Ship, Structure, Bridge
+
+TorpTube.elite:
+    Inherits: TorpTube
+ 	Projectile: Missile   
+ 		Speed: 170
+
+SubMissile.elite:
+    Inherits: SubMissile
+    Burst: 4
+
+SubMissileAA:
+	TargetActorCenter: false
+	Warhead@3Eff: CreateEffect
+		Explosions: med_explosion_air
+		ImpactSounds: kaboom25.aud
+
+SubMissileAA.elite:
+    Inherits: SubMissileAA
+	-Projectile:
+	Projectile: Bullet
+		Speed: 324
+		Blockable: false
+		LaunchAngle: 120
+		Inaccuracy: 0c614
+		Image: MISSILE
+		Shadow: True
+		TrailImage: smokey
+		ContrailLength: 30    
+
+# hybrid of 25mm and FLAK-23
+SubCannon:
+	Inherits: FLAK-23-AG
+	ReloadDelay: 25
+	Range: 6c512
+	Warhead@1Dam: SpreadDamage
+		Damage: 2500
+		Versus:
+			None: 40
+			Wood: 45
+			Light: 65
+			Heavy: 55
+			Concrete: 35
+
+SubCannonAA:
+	Inherits: FLAK-23-AA
+	ReloadDelay: 25
+	Range: 7c0
+	Warhead@1Dam: SpreadDamage
+		Damage: 2500
+		Versus:
+			None: 40
+			Wood: 45
+			Light: 65
+			Heavy: 20
+			Concrete: 35
+
+DepthCharge:
+	Projectile: Bullet
+		Speed: 150
+
+DepthChargeDual:
+	Inherits: DepthCharge
+	Burst: 2
+	BurstDelays: 4
+
+25mm.decoy:
+	Inherits: 25mm
+	-Report:
+	-Projectile: Bullet
+	Projectile: InstantHit
+	Warhead@1Dam: SpreadDamage
+		Damage: 0
+	-Warhead@3Eff: CreateEffect
+	-Warhead@4EffWater: CreateEffect
+
+90mm.decoy:
+	Inherits: 90mm
+	-Report:
+	-Projectile: Bullet
+	Projectile: InstantHit
+	Warhead@1Dam: SpreadDamage
+		Damage: 0
+	-Warhead@2Smu: LeaveSmudge
+	-Warhead@3Eff: CreateEffect
+	-Warhead@4EffWater: CreateEffect
+
+90mm.decoy.zero:
+    Inherits: 90mm.decoy
+    ReloadDelay: 1
+
+155mm.decoy:
+	Inherits: 155mm
+	-Report:
+	-Projectile: Bullet
+	Projectile: InstantHit
+	Warhead@1Dam: SpreadDamage
+		Damage: 0
+	-Warhead@2Smu: LeaveSmudge
+	-Warhead@3Eff: CreateEffect
+	-Warhead@4EffWater: CreateEffect
+
+EmpBomb:
+	ReloadDelay: 10
+	Range: 0c512
+	Report: chute1.aud
+	Projectile: GravityBomb
+		Image: PARABOMB
+		OpenSequence: open
+		Velocity: 0, 0, -86
+		Acceleration: 0, 0, 0
+		Shadow: False
+	Warhead@1Dam: SpreadDamage
+		Spread: 3c512
+		Damage: 3600
+		Versus:
+			None: 100
+			Wood: 70
+			Light: 30
+			Heavy: 65
+			Concrete: 25
+		DamageTypes: Prone50Percent, TriggerProne
+	Warhead@2Eff: CreateEffect
+		ExplosionPalette: tseffect
+		Explosions: pulse_explosion
+		ImpactSounds: ion1.aud
+	Warhead@emp: GrantExternalCondition
+		Range: 3c512
+		Duration: 500
+		Condition: empdisable
+		ValidTargets: Vehicle, Ship, Submarine
+	Warhead@empbuilding: GrantExternalCondition
+		Range: 3c512
+		Duration: 500
+		Condition: empdisable
+		ValidTargets: Structure
+	Warhead@3Smu_impact: LeaveSmudge
+		SmudgeType: Scorch
+		InvalidTargets: Vehicle, Structure, Wall
+		Size: 1
+
+TurretGun.dual:
+	Inherits: TurretGun
+	ReloadDelay: 40
+	Burst: 2
+	BurstDelays: 4
+
+Heal:
+    Range: 2c0
+
+MaverickHind:
+	Inherits: Maverick
+	Range: 5c0
+	InvalidTargets: Infantry
+
+DropDummy:
+	ValidTargets: Ground
+	InvalidTargets: Infantry, Ship, Tank, Structure, Air
+	ReloadDelay: 50
+	Range: 4c0
+	Projectile: Bullet
+		Speed: 200
+	Warhead: SpreadDamage
+		Spread: 56
+		Damage: 1
+
+GrenadeLauncher:
+	Inherits: Grenade
+	Range: 6c256
+	Projectile:
+		LaunchAngle: 42
+		ContrailLength: 10
+		ContrailZOffset: 0
+		ContrailDelay: 0
+		ContrailWidth: 0c064
+	Report: aacanon3.aud
+
+ZSU-23:
+    Range: 9c0
+    Projectile: Bullet
+        Inaccuracy: 1c938
+
+DogJaw.Bomber:
+    Inherits: DogJaw
+    ValidTargets: Vehicle
+    Warhead@1Dam: SpreadDamage
+        Spread: 1c0
+        Damage: 4000
+		Versus:
+			None: 90
+			Wood: 75
+			Light: 60
+			Heavy: 25
+			Concrete: 100
+        ValidTargets: Vehicle
+        DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+        AffectsParent: true
+    Warhead@Smu: LeaveSmudge
+		SmudgeType: Crater
+		InvalidTargets: Structure, Wall, Trees
+
+ScrapsExplosion:
+	Warhead@1Dam: SpreadDamage
+		Spread: 9
+		Damage: 10
+		Versus:
+			None: 1
+			Wood: 1
+			Light: 1
+			Heavy: 1
+		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
+	Warhead@2Eff: CreateEffect
+		Explosions: small_explosion
+		ImpactSounds: kaboom25.aud
+	Warhead@3Res: CreateResource
+		AddsResourceType: Scraps
+		Size: 1,1
+
+MammothTusk:
+	Range: 4c512
+	Projectile: Missile
+		Speed: 341
+		HorizontalRateOfTurn: 15
+		RangeLimit: 6c256
+
+ATMine:
+    Warhead@1Dam: SpreadDamage
+        AffectsParent: false
+        InvalidTargets: Defense
+
+M60mg.elite:
+	Inherits: M60mg
+	Burst: 10
+
+FLAK-23-AA-E:
+    Inherits: FLAK-23-AA
+	Warhead@1Dam: SpreadDamage
+		Spread: 425
+
+FLAK-23-AG-E:
+    Inherits: FLAK-23-AG
+	Warhead@1Dam: SpreadDamage
+		Spread: 425
+
+TTankZap.elite:
+    Inherits: TTankZap
+    Burst: 3
+    BurstDelays: 6
+
+Stinger.elite:
+    Inherits: Stinger
+	Burst: 4
+
+StingerAA.elite:
+    Inherits: StingerAA
+    Burst: 4
+
+2Inch.elite:
+    Inherits: 2Inch
+    Burst: 2
+
+8Inch.elite:
+    Inherits: 8Inch
+    Burst: 3
+
+Grenade.triple:
+    Inherits: Grenade
+    Burst: 3
+
+SilencedPPK.elite:
+    Inherits: SilencedPPK
+    Range: 4c768
+
+PortaTesla.elite:
+    Inherits: PortaTesla
+	Warhead@emp: GrantExternalCondition
+		Range: 1c512
+		Duration: 10
+		Condition: empdisable
+		ValidTargets: Vehicle
+
+HeliAGGun:
+	Inherits: ^HeavyMG
+	ReloadDelay: 20
+	Burst: 2
+	BurstDelays: 0
+	Range: 5c0
+	MinRange: 0c768
+	Report: gun5TD.aud
+	Projectile: Bullet
+		Blockable: false
+	Warhead@1Dam: SpreadDamage
+		Spread: 256
+		Damage: 2000
+		Versus:
+			None: 100
+			Wood: 50
+			Light: 75
+			Heavy: 25
+		DamageTypes: Prone80Percent, TriggerProne, RippedApartDeath
+
+HeliAAGun:
+	Inherits: HeliAGGun
+	ValidTargets: Air
+	Warhead@1Dam: SpreadDamage
+		Spread: 128
+		ValidTargets: Air
+		Versus:
+			Light: 50
+
+HeliDepthCharge:
+	Inherits: DepthCharge
+	Burst: 2
+	Range: 0c128
+
+ChainGun.Yak.Right:
+	Inherits: ChainGun
+	MinRange: 3c0
+	ReloadDelay: 30
+	Burst: 4
+	BurstDelays: 1
+	FirstBurstTargetOffset: -768,64,0
+	FollowingBurstTargetOffset: 512,0,0
+
+ChainGun.Yak.Left:
+	Inherits: ChainGun.Yak.Right
+	FirstBurstTargetOffset: -768,-64,0
+
+MaverickAA:
+	Inherits: ^AntiAirMissile
+	ReloadDelay: 104
+	Burst: 2
+	BurstDelays: 7
+	Range: 11c0
+	MinRange: 3c0
+	Projectile: Missile
+		Speed: 304
+		Inaccuracy: 512
+		RangeLimit: 14c410
+		CruiseAltitude: 2c0
+	Warhead@1Dam: SpreadDamage
+		Damage: 2500
+		Versus:
+			None: 30
+			Wood: 90
+			Light: 100
+			Concrete: 100		
+		Spread: 256
+		ValidTargets: Air
+	Report: missile7.aud
+	Warhead@2Eff: CreateEffect
+		Explosions: med_explosion_air
+
+203mm:
+	ReloadDelay: 160
+	InvalidTargets: Air
+	Range: 12c0
+	Burst: 3
+	BurstDelays: 8
+	MinRange: 2c0
+	Report: hvygun10.aud
+	Projectile: Bullet
+		Speed: 244
+		Blockable: false
+		LaunchAngle: 50
+		Inaccuracy: 1c382
+		Image: 120MM
+	Warhead@1Dam: SpreadDamage
+		InvalidTargets: Air
+		Spread: 626
+		Damage: 12000
+		Versus:
+			None: 60
+			Wood: 65
+			Light: 60
+			Heavy: 50
+			Concrete: 50
+		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Crater
+		InvalidTargets: Vehicle, Tank, Structure, Wall, Husk, Trees
+	Warhead@3Eff: CreateEffect
+		Explosions: artillery_explosion
+		ImpactSounds: kaboom15.aud
+		ValidTargets: Ground, Ship, Trees
+	Warhead@4EffWater: CreateEffect
+		Explosions: large_splash
+		ImpactSounds: splashl1.aud, splashl2.aud
+		ValidTargets: Water, Underwater
+		InvalidTargets: Ship, Structure, Bridge
+
+TTankZapHeavy:
+	Inherits: ^TeslaWeapon
+	ReloadDelay: 120
+	Range: 4c768
+	Warhead@1Dam: SpreadDamage
+		Damage: 7000
+	Burst: 3
+	BurstDelays: 22
+
+KVFlame:
+	ReloadDelay: 90
+	Range: 5c512
+	Burst: 25
+	BurstDelays: 1
+	ValidTargets: Infantry, Vehicle, Tank, Structure, Wall, Ground
+	InvalidTargets: Water
+	Projectile: Bullet
+		Speed: 200
+		Inaccuracy: 853
+		LaunchAngle: 31
+		Image: fb3
+		TrailImage: fb4
+	Warhead@1Dam: SpreadDamage
+		Damage: 900
+		Versus:
+			None: 100
+			Wood: 100
+			Light: 30
+			Heavy: 20
+			Concrete: 50
+		Spread: 341
+		ValidTargets: Ground, Water, Trees
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Scorch
+	Warhead@3Eff: CreateEffect
+		Explosions: small_napalm
+		ImpactSounds: firebl3.aud
+
+MammothTuskAT:
+	Inherits: MammothTusk
+	ValidTargets: Tank, Vehicle, Husk
+	Warhead@1Dam: SpreadDamage
+		Damage: 2500
+		Versus:
+			Light: 80
+			Heavy: 60
+		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
+	-Warhead@5EffAir: CreateEffect
+
+MammothTuskAA:
+	Inherits: MammothTusk
+	ValidTargets: Air
+	Warhead@1Dam: SpreadDamage
+		Damage: 2500
+	-Warhead@3Eff: CreateEffect
+
+130mm:
+	Inherits: 120mm
+	ReloadDelay: 70
+	-Burst:
+	Range: 6c256
+	Report: tnkdfire.aud
+
+HellfireAG.rapid:
+    Inherits: HellfireAG
+	Burst: 2
+	BurstDelays: 7
+
+BombingRun.dc:
+	ReloadDelay: 60
+	Burst: 5
+	BurstDelays: 6
+	Range: 2c512
+    ValidTargets: Underwater
+	Projectile: GravityBomb
+		Velocity: 72, 0, -90
+		Acceleration: 0, 0, -8
+		Image: BOMB
+		Shadow: true
+	Warhead@1Dam: SpreadDamage
+		Spread: 128
+		Damage: 8000
+		ValidTargets: Submarine
+		Versus:
+			Light: 75
+		DamageTypes: ExplosionDeath
+	Warhead@4EffWater: CreateEffect
+		Explosions: large_splash
+		ImpactSounds: h2obomb2.aud
+		ValidTargets: Water, Underwater
+	Warhead@3Eff: CreateEffect
+		Explosions: small_explosion
+		ImpactSounds: kaboom15.aud
+		ValidTargets: Submarine
