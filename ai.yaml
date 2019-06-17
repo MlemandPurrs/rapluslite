@@ -272,7 +272,7 @@ Player:
 	HarvesterBotModule@russia:
 		RequiresCondition: enable-ai-player && player.russia
 		HarvesterTypes: harv.soviet
-		RefineryTypes: proc.soviet
+		RefineryTypes: proc.russia
 	HarvesterBotModule@ukraine:
 		RequiresCondition: enable-ai-player && player.ukraine
 		HarvesterTypes: harv.soviet
@@ -287,7 +287,7 @@ Player:
 		MaximumExcessPower: 160
 		ExcessPowerIncrement: 40
 		ExcessPowerIncreaseThreshold: 4
-		CheckForWaterRadius: 4
+		CheckForWaterRadius: 8
 		ConstructionYardTypes: fact
 		RefineryTypes: proc
 		PowerTypes: powr,apwr
@@ -330,7 +330,7 @@ Player:
 		MaximumExcessPower: 160
 		ExcessPowerIncrement: 40
 		ExcessPowerIncreaseThreshold: 4
-		CheckForWaterRadius: 4
+		CheckForWaterRadius: 8
 		ConstructionYardTypes: fact
 		RefineryTypes: proc
 		PowerTypes: powr,apwr
@@ -373,7 +373,7 @@ Player:
 		MaximumExcessPower: 160
 		ExcessPowerIncrement: 40
 		ExcessPowerIncreaseThreshold: 4
-		CheckForWaterRadius: 4
+		CheckForWaterRadius: 8
 		ConstructionYardTypes: fact
 		RefineryTypes: proc
 		PowerTypes: powr,apwr
@@ -416,34 +416,34 @@ Player:
 		MaximumExcessPower: 200
 		ExcessPowerIncrement: 40
 		ExcessPowerIncreaseThreshold: 4
-		CheckForWaterRadius: 4
+		CheckForWaterRadius: 8
 		ConstructionYardTypes: fact
-		RefineryTypes: proc.soviet
-		PowerTypes: powr,apwr
-		BarracksTypes: barr
-		VehiclesFactoryTypes: weap
-		ProductionTypes: barr,weap,afld
-		NavalProductionTypes: spen
+		RefineryTypes: proc.russia
+		PowerTypes: powr.russia,apwr.russia
+		BarracksTypes: barr.russia
+		VehiclesFactoryTypes: weap.russia
+		ProductionTypes: barr.russia,weap.russia,afld.russia
+		NavalProductionTypes: spen.russia
 		SiloTypes: silo
 		BuildingLimits:
-			proc.soviet: 4
-			barr: 2
-            kenn: 4
-            dome.soviet: 1
-			weap: 3
-			spen: 1
-			afld: 4
+			proc.russia: 4
+			barr.russia: 2
+            kenn.russia: 4
+            dome.russia: 1
+			weap.russia: 3
+			spen.russia: 1
+			afld.russia: 4
             stek.russia: 1
-			fix: 1
+			fix.russia: 1
 			iron: 1
 		BuildingFractions:
-			proc.soviet: 15
-			barr: 2
-			kenn: 1
-            dome.soviet: 1
-			weap: 6
-			spen: 1
-			afld: 4
+			proc.russia: 15
+			barr.russia: 2
+			kenn.russia: 1
+            dome.russia: 1
+			weap.russia: 6
+			spen.russia: 1
+			afld.russia: 4
             hgun: 3
 			ftur: 10
 			tsla: 5
@@ -459,7 +459,7 @@ Player:
 		MaximumExcessPower: 200
 		ExcessPowerIncrement: 40
 		ExcessPowerIncreaseThreshold: 4
-		CheckForWaterRadius: 4
+		CheckForWaterRadius: 8
 		ConstructionYardTypes: fact
 		RefineryTypes: proc.soviet
 		PowerTypes: powr,apwr
@@ -502,7 +502,7 @@ Player:
 		MaximumExcessPower: 200
 		ExcessPowerIncrement: 40
 		ExcessPowerIncreaseThreshold: 4
-		CheckForWaterRadius: 4
+		CheckForWaterRadius: 8
 		ConstructionYardTypes: fact
 		RefineryTypes: proc.belarus
 		PowerTypes: powr,apwr
@@ -585,7 +585,7 @@ Player:
 		ExcludeFromSquadsTypes: harv.soviet, mcv, dog
 		NavalUnitsTypes: ss,ss.ag,msub,msub.aa,lst,tbt
 		ConstructionYardTypes: fact
-		NavalProductionTypes: spen
+		NavalProductionTypes: spen.russia
 	SquadManagerBotModule@ukraine:
 		RequiresCondition: enable-ai-player && player.ukraine
 		SquadSize: 16
@@ -695,10 +695,7 @@ Player:
 			harv.soviet: 15
 			ftrk: 30
 			btr.russia: 15
-			2tnk.russia: 45
-			3tnk.russia: 35
 			v2rl: 40
-			4tnk.russia: 25
 			ttnk: 25
 			mig: 30
 			yak: 30

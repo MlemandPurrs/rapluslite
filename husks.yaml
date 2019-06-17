@@ -141,20 +141,6 @@ HARV.Belarus.EmptyHusk:
 	RenderSprites:
 		Image: 2tnk.soviet.destroyed
 
-2TNK.Russia.Husk:
-	Inherits: ^Husk
-	Tooltip:
-		Name: Husk (Medium Tank)
-	ThrowsParticle@turret:
-		Anim: turret
-	TransformOnCapture:
-		IntoActor: 2tnk.Russia
-	InfiltrateForTransform:
-		IntoActor: 2tnk.Russia
-	RenderSprites:
-		Image: 2tnk.soviet.destroyed
-	-MapEditorData:
-
 2TNK.Ukraine.Husk:
 	Inherits: ^Husk
 	Tooltip:
@@ -183,20 +169,6 @@ HARV.Belarus.EmptyHusk:
 		Image: 2tnk.soviet.destroyed
 	-MapEditorData:
 
-3TNK.Russia.Husk:
-	Inherits: ^Husk
-	Tooltip:
-		Name: Husk (Heavy Tank)
-	ThrowsParticle@turret:
-		Anim: turret
-	TransformOnCapture:
-		IntoActor: 3tnk.Russia
-	InfiltrateForTransform:
-		IntoActor: 3tnk.Russia
-	RenderSprites:
-		Image: 3tnk.destroyed
-	-MapEditorData:
-
 3TNK.Ukraine.Husk:
 	Inherits: ^Husk
 	Tooltip:
@@ -223,20 +195,6 @@ HARV.Belarus.EmptyHusk:
 		IntoActor: 3tnk.Belarus
 	RenderSprites:
 		Image: 3tnk.destroyed
-	-MapEditorData:
-
-4TNK.Russia.Husk:
-	Inherits: ^Husk
-	Tooltip:
-		Name: Husk (Mammoth Tank)
-	ThrowsParticle@turret:
-		Anim: turret
-	TransformOnCapture:
-		IntoActor: 4tnk.Russia
-	InfiltrateForTransform:
-		IntoActor: 4tnk.Russia
-	RenderSprites:
-		Image: 4tnk.destroyed
 	-MapEditorData:
 
 4TNK.Ukraine.Husk:

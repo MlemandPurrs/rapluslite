@@ -2,8 +2,6 @@ FACT:
 	Building:
 		Footprint: xxX xxx XxX
 		Dimensions: 3,3
-    Buildable:
-        Description: Produces Structures and Defenses.\nAllows self-repairs on nearby Buildings \naslong not low on power.
 	Power:
 		Amount: 30
 	Production:
@@ -18,17 +16,11 @@ FACT:
 	WithDeathAnimation:
 		DeathSequence: dead
 		UseDeathTypeSuffix: false
-#	ProximityExternalCondition@AUTOREPAIR:
-#		Condition: conyardrepairs
-#		Range: 8c0
-#		RequiresCondition: !disabled && !lowpower
-#	GrantConditionOnPowerState@LOWPOWER:
-#		Condition: lowpower
-#		ValidPowerStates: Low, Critical
 
 POWR:
     Buildable:
         BuildPaletteOrder: 1
+        Prerequisites: ~!player.russia, ~techlevel.infonly
 	Building:
 		Footprint: xx xx
 		Dimensions: 2,2
@@ -42,6 +34,7 @@ POWR:
 APWR:
     Buildable:
         BuildPaletteOrder: 9
+		Prerequisites: ~!player.russia, ~techlevel.infonly
 	Building:
 		Footprint: xxx Xxx
 		Dimensions: 3,2
@@ -67,8 +60,8 @@ TENT:
 
 BARR:
 	Buildable:
-		Prerequisites: ~structures.soviet, ~techlevel.infonly
         BuildPaletteOrder: 2
+        Prerequisites: ~structures.soviet, ~!player.russia, ~techlevel.infonly
 	ProvidesPrerequisite@soviet:
 		Factions: soviet, russia, ukraine, belarus
 		Prerequisite: infantry.soviet
@@ -88,7 +81,7 @@ BARR:
 KENN:
     Buildable:
         BuildPaletteOrder: 11
-        Prerequisites: anypower, ~techlevel.infonly
+        Prerequisites: anypower, ~!player.russia, ~techlevel.infonly
 	WithDeathAnimation:
 		DeathSequence: dead
 		UseDeathTypeSuffix: false
@@ -118,7 +111,7 @@ PROC:
 PROC.Soviet:
 	Inherits: PROC
 	Buildable:
-		Prerequisites: ~structures.soviet, ~!player.belarus, ~techlevel.infonly
+		Prerequisites: ~structures.soviet, ~!player.russia, ~!player.belarus, ~techlevel.infonly
 	-FreeActor:
 	FreeActor:
 		Actor: HARV.soviet
@@ -166,6 +159,7 @@ WEAP:
     Inherits@IDISABLE: ^DisableOnPowerDown
     Buildable:
         BuildPaletteOrder: 5
+        Prerequisites: proc, ~!player.russia, ~techlevel.low
 	ProvidesPrerequisite@soviet:
 		Factions: soviet, russia, ukraine, belarus
 		Prerequisite: vehicles.soviet
@@ -183,11 +177,16 @@ WEAP:
 	WithDeathAnimation:
 		DeathSequence: dead
 		UseDeathTypeSuffix: false
+	Exit@2:
+        RequiresCondition: !being-captured
+		SpawnOffset: 213,-128,0
+		ExitCell: 0,2
 
 FIX:
     Inherits@IDISABLE: ^DisableOnPowerDown
     Buildable:
         BuildPaletteOrder: 8
+        Prerequisites: weap, ~!player.russia, ~techlevel.medium
 	Valued:
 		Cost: 800
 	WithDeathAnimation:
@@ -228,7 +227,7 @@ DOME.England:
         Prerequisites: proc, ~!structures.soviet, ~player.england, ~techlevel.medium
 	RenderSprites:
 		Image: dome
-	ProvidesPrerequisite:
+	ProvidesPrerequisite@COPY:
 		Prerequisite: dome    
     -MapEditorData:
 	RevealsShroud:
@@ -248,11 +247,11 @@ DOME.England:
 DOME.Soviet:
 	Inherits: DOME
 	Buildable:
-		Prerequisites: proc, ~structures.soviet, ~techlevel.infonly
+		Prerequisites: proc, ~structures.soviet, ~!player.russia, ~techlevel.infonly
         Description: Provides an overview\nof the battlefield.\nCan detect cloaked units.\n  Special Ability: Spy Plane\nReveals an area of the map\nand cloaked enemy units there.\n (requires Airfield)
 	RenderSprites:
 		Image: dome
-	ProvidesPrerequisite:
+	ProvidesPrerequisite@COPY:
 		Prerequisite: dome
     AirstrikePower@spyplane:
 		OrderName: SovietSpyPlanePowerInfoOrder
@@ -458,6 +457,8 @@ STEK.Russia:
     Buildable:
         Prerequisites: afldorweap, dome, ~player.russia, ~techlevel.high
         Description: Provides Soviet advanced technologies.\nMaximum one can be built.\n  Special Ability: EMP Bomb\nA fast plane drops an EMP Bomb on your target,\nthat disabled Vehicles, Buildings and Ships\nDisabled units cannot move or shoot for a while\nUncloaks hidden units, Submarines will resurface\n (requires Airfield)
+	Valued:
+		Cost: 1800
 	RenderSprites:
 		Image: stek
 	ProvidesPrerequisite@soviettechcenter:
@@ -488,7 +489,7 @@ STEK.Belarus:
 
 AFLD:
     Buildable:
-        Prerequisites: dome, ~structures.soviet, ~techlevel.medium
+        Prerequisites: dome, ~structures.soviet, ~!player.russia, ~techlevel.medium
         Description: Produces and reloads aircraft.\n  Special Ability: Paratroopers\nA Badger plane drops a squad of\nVeteran infantry anywhere on the map.
         BuildPaletteOrder: 7
 	Building:
@@ -557,6 +558,7 @@ SYRD:
 SPEN:
     Buildable:
         BuildPaletteOrder: 3
+        Prerequisites: anypower, ~structures.soviet, ~!player.russia, ~techlevel.low
 	Valued:
 		Cost: 1000
 	ProvidesPrerequisite@soviet:
@@ -835,7 +837,7 @@ PDOX:
     -ProvidesPrerequisite@germany:
     -ProvidesPrerequisite@germanstructure:
 	ChronoshiftPower@chronoshift:
-		OrderName: Chronoshift
+		OrderName: ChronoshiftPowerInfoOrder
 		PauseOnCondition: disabled
 		Icon: chrono
 		ChargeInterval: 3000
@@ -855,6 +857,8 @@ IRON:
 	Buildable:
         BuildPaletteOrder: 8
     ProvidesPrerequisite@buildingname:
+    GrantExternalConditionPower@IRONCURTAIN:
+        OrderName: IronCurtainPowerInfoOrder
 
 MSLO:
 	Buildable:
@@ -1047,3 +1051,151 @@ MINV:
 			russia: minp
 			ukraine: minp
             belarus: minp
+
+POWR.Russia:
+    Inherits: POWR
+	Buildable:
+		Prerequisites: ~player.russia, ~techlevel.infonly
+	Valued:
+		Cost: 270
+	RenderSprites:
+		Image: powr
+	ProvidesPrerequisite@COPY:
+		Prerequisite: powr
+	Explodes@RUMALUS:
+		Weapon: Demolish
+		DamageThreshold: 10
+	-MapEditorData:
+
+APWR.Russia:
+    Inherits: APWR
+	Buildable:
+		Prerequisites: dome, ~player.russia, ~techlevel.medium
+	Valued:
+		Cost: 540
+	RenderSprites:
+		Image: apwr
+	ProvidesPrerequisite@COPY:
+		Prerequisite: apwr
+	Explodes@RUMALUS:
+		Weapon: Demolish
+		DamageThreshold: 10
+	-MapEditorData:
+
+PROC.Russia:
+    Inherits: PROC.Soviet
+	Buildable:
+		Prerequisites: ~structures.soviet, ~player.russia, ~techlevel.infonly
+	Valued:
+		Cost: 1350
+	RenderSprites:
+		Image: proc
+	ProvidesPrerequisite@COPY:
+		Prerequisite: proc
+	Explodes@RUMALUS:
+		Weapon: Demolish
+		DamageThreshold: 10    
+
+BARR.Russia:
+    Inherits: BARR
+	Buildable:
+		Prerequisites: anypower, ~structures.soviet, ~player.russia, ~techlevel.infonly
+	Valued:
+		Cost: 450
+	RenderSprites:
+		Image: barr
+	ProvidesPrerequisite@COPY:
+		Prerequisite: barr
+	Explodes@RUMALUS:
+		Weapon: Demolish
+		DamageThreshold: 10
+	-MapEditorData:
+
+KENN.Russia:
+    Inherits: KENN
+	Buildable:
+		Prerequisites: anypower, ~player.russia, ~techlevel.infonly
+	Valued:
+		Cost: 90
+	RenderSprites:
+		Image: kenn
+	ProvidesPrerequisite:
+		Prerequisite: kenn
+	Explodes@RUMALUS:
+		Weapon: Demolish
+		DamageThreshold: 10
+	-MapEditorData:
+
+WEAP.Russia:
+    Inherits: WEAP
+    Buildable:
+        Prerequisites: proc, ~player.russia, ~techlevel.low
+	Valued:
+		Cost: 1800
+	RenderSprites:
+		Image: weap
+	ProvidesPrerequisite@COPY:
+		Prerequisite: weap
+	Explodes@RUMALUS:
+		Weapon: Demolish
+		DamageThreshold: 10
+	-MapEditorData:
+
+FIX.Russia:
+    Inherits: FIX
+    Buildable:
+        Prerequisites: weap, ~player.russia, ~techlevel.medium
+	Valued:
+		Cost: 720
+	RenderSprites:
+		Image: fix
+	ProvidesPrerequisite@COPY:
+		Prerequisite: fix
+	Explodes@RUMALUS:
+		Weapon: Demolish
+		DamageThreshold: 10
+	-MapEditorData:
+
+SPEN.Russia:
+    Inherits: SPEN
+    Buildable:
+        Prerequisites: anypower, ~structures.soviet, ~player.russia, ~techlevel.low
+	Valued:
+		Cost: 900
+	RenderSprites:
+		Image: spen
+	ProvidesPrerequisite@COPY:
+		Prerequisite: spen
+	Explodes@RUMALUS:
+		Weapon: Demolish
+		DamageThreshold: 10
+	-MapEditorData:
+
+AFLD.Russia:
+    Inherits: AFLD
+    Buildable:
+        Prerequisites: dome, ~structures.soviet, ~player.russia, ~techlevel.medium
+	Valued:
+		Cost: 450
+	RenderSprites:
+		Image: afld
+	ProvidesPrerequisite@COPY:
+		Prerequisite: afld
+	Explodes@RUMALUS:
+		Weapon: Demolish
+		DamageThreshold: 10
+	-MapEditorData:
+
+DOME.Russia:
+    Inherits: DOME.Soviet
+    Buildable:
+        Prerequisites: proc, ~structures.soviet, ~player.russia, ~techlevel.infonly
+	Valued:
+		Cost: 1350
+	RenderSprites:
+		Image: dome
+	ProvidesPrerequisite@COPY:
+		Prerequisite: dome
+	Explodes@RUMALUS:
+		Weapon: Demolish
+		DamageThreshold: 10

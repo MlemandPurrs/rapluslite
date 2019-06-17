@@ -1753,6 +1753,7 @@ explosion:
 		BlendMode: Additive
 		Tick: 80
     small_chem: chemball
+    nuke_small: atomlight
 
 emp-overlay:
 	emp-overlay: emp_fx01

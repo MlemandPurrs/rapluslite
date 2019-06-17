@@ -540,7 +540,7 @@ BTR.RussiaR2:
 	Inherits: 2TNK
 	Buildable:
 		BuildPaletteOrder: 4
-		Prerequisites: fix, ~vehicles.soviet, ~!player.russia, ~!player.ukraine, ~!player.belarus, ~techlevel.medium
+		Prerequisites: fix, ~vehicles.soviet, ~!player.ukraine, ~!player.belarus, ~techlevel.medium
 		Description: Soviet Main Battle Tank.\n  Strong vs Vehicles\n  Weak vs Infantry, Aircraft
 	Tooltip:
 		Name: Medium Tank (Soviet)
@@ -575,17 +575,6 @@ BTR.RussiaR2:
         PauseOnCondition: empdisable
 	SpawnActorOnDeath:
 		Actor: 2TNK.Soviet.Husk
-
-2TNK.Russia:
-	Inherits: 2TNK.Soviet
-	Buildable:
-		Prerequisites: fix, ~vehicles.soviet, ~player.russia, ~techlevel.medium
-		BuildDurationModifier: 50
-	SpawnActorOnDeath:
-		Actor: 2TNK.Russia.Husk
-	RenderSprites:
-		Image: 2tnk.Soviet
-	-MapEditorData:
 
 2TNK.Ukraine:
 	Inherits: 2TNK.Soviet
@@ -633,7 +622,7 @@ BTR.RussiaR2:
     Buildable:
         Queue: Vehicle, MWFVehicle
         BuildPaletteOrder: 5
-        Prerequisites: fix, ~vehicles.soviet, ~!player.russia, ~!player.ukraine, ~!player.belarus, ~techlevel.medium
+        Prerequisites: fix, ~vehicles.soviet, ~!player.ukraine, ~!player.belarus, ~techlevel.medium
     Armament:
         PauseOnCondition: empdisable
         RequiresCondition: !rank-elite
@@ -648,17 +637,6 @@ BTR.RussiaR2:
     AttackTurreted:
         Armaments: primary, elite
         PauseOnCondition: empdisable
-
-3TNK.Russia:
-	Inherits: 3TNK
-	Buildable:
-		Prerequisites: fix, ~vehicles.soviet, ~player.russia, ~techlevel.medium
-		BuildDurationModifier: 50
-	SpawnActorOnDeath:
-		Actor: 3TNK.Russia.Husk
-	RenderSprites:
-		Image: 3tnk
-	-MapEditorData:
 
 3TNK.Ukraine:
 	Inherits: 3TNK
@@ -703,7 +681,7 @@ BTR.RussiaR2:
 4TNK:
     Buildable:
         BuildPaletteOrder: 8
-        Prerequisites: fix, stek, ~vehicles.soviet, ~!player.russia, ~!player.ukraine, ~!player.belarus, ~techlevel.high
+        Prerequisites: fix, stek, ~vehicles.soviet, ~!player.ukraine, ~!player.belarus, ~techlevel.high
         BuildDurationModifier: 60
         Description: Big and slow tank, with anti-air capability.\nCan crush concrete walls.\nSelf-repairs when below 50% of maximum Health.\n  Strong vs Vehicles, Infantry, Buildings\n  Weak vs Artillery
 	Passenger:
@@ -718,19 +696,6 @@ BTR.RussiaR2:
         DeployedCondition: invulnerability
         RequiresCondition: rank-elite
         SkipMakeAnimation: True
-
-4TNK.Russia:
-	Inherits: 4TNK
-	Buildable:
-		Prerequisites: fix, stek, ~vehicles.soviet, ~player.russia, ~techlevel.high
-		BuildDurationModifier: 50
-	Health:
-		HP: 81000
-	SpawnActorOnDeath:
-		Actor: 4TNK.Russia.Husk
-	RenderSprites:
-		Image: 4tnk
-	-MapEditorData:
 
 4TNK.Ukraine:
 	Inherits: 4TNK
@@ -1462,7 +1427,7 @@ DTNK:
 TTNK:
     Buildable:
         BuildPaletteOrder: 9
-        Prerequisites: tsla, stek, ~vehicles.soviet, ~player.russia, ~techlevel.high
+        Prerequisites: stek, ~vehicles.soviet, ~player.russia, ~techlevel.high
         Description: Tank with mounted Tesla coil.\n  Immune to EMP\n  Strong vs Infantry, Vehicles, Buildings\n  Weak vs Aircraft
         BuildDurationModifier: 60
     Mobile:
@@ -1497,7 +1462,7 @@ MCV:
         BuildPaletteOrder: 10
         BuildDurationModifier: 60
     Valued:
-		Cost: 3000
+		Cost: 2500
 	Passenger:
 		Weight: 4
 	Targetable:

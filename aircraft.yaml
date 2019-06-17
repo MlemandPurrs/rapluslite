@@ -8,6 +8,16 @@ TRAN:
 		UnloadingDelay: 15
 		LocalOffset: 0, 0, -128
 
+TRAN.Soviet:
+	Inherits: TRAN
+	Buildable:
+        BuildPaletteOrder: 4
+        BuildAtProductionType: Plane
+		Prerequisites: ~afld, ~aircraft.soviet, ~techlevel.medium
+	RenderSprites:
+		Image: tran
+	-MapEditorData:
+
 IROQ:
 	Inherits: ^Helicopter
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
@@ -134,7 +144,7 @@ HELI:
 
 HIND:
     Buildable:
-        BuildPaletteOrder: 4
+        BuildPaletteOrder: 5
         BuildAtProductionType: Plane
         Prerequisites: ~afld, stek, ~player.belarus, ~tech.stolen, ~techlevel.high
         Description: Helicopter gunship armed with dual chainguns and anti-ground rockets.\n  Strong vs Infantry, Light armor\n  Weak vs Tanks, Aircraft
@@ -176,7 +186,7 @@ HIND:
 		Armaments: primary, secondary, tertiary
 		FacingTolerance: 20
 	Rearmable:
-		RearmActors: afld, afld.ukraine, hpad, carr.deployed
+		RearmActors: afld, afld.russia, afld.ukraine, hpad, carr.deployed
 
 U2.emp:
 	Inherits: U2
@@ -231,6 +241,8 @@ YAK:
 		PipType: Blue
 		ReloadDelay: 11
 		AmmoCondition: ammodc
+	Rearmable:
+		RearmActors: afld, afld.russia, afld.ukraine
 
 YAK.Belarus:
     Inherits: YAK
@@ -266,11 +278,8 @@ MIG:
 		Name: secondary
 		Weapon: MaverickAA
 		PauseOnCondition: !ammo
-# doesnt accept condition, damn it.
-#   JamsMissiles:
-#		Range: 3c0
-#		DeflectionStances: Neutral, Enemy
-#       RequiresCondition: rank-elite
+	Rearmable:
+		RearmActors: afld, afld.russia, afld.ukraine
 
 COSSACK:
 	Inherits: ^Plane
@@ -343,7 +352,7 @@ COSSACK:
 	RenderSprites:
 		Image: cossack
 	Rearmable:
-		RearmActors: afld, afld.ukraine
+		RearmActors: afld, afld.russia, afld.ukraine
 
 HARR:
 	Inherits: ^Helicopter
@@ -411,4 +420,4 @@ HARR:
 	ProducibleWithLevel:
 		Prerequisites: aircraft.upgraded
 	Rearmable:
-		RearmActors: afld, afld.ukraine, hpad, carr.deployed
+		RearmActors: afld, afld.russia, afld.ukraine, hpad, carr.deployed

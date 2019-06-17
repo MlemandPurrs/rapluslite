@@ -39,7 +39,7 @@ E3:
 
 E4:
 	Buildable: 
-        Prerequisites: ~barr, ftur, ~!player.ukraine, ~techlevel.low
+        Prerequisites: ~barr, dome, ~!player.ukraine, ~techlevel.low
         BuildPaletteOrder: 9
     Armament@PRIMARY:
         RequiresCondition: !rank-elite
@@ -61,7 +61,7 @@ E4:
 E4.Ukraine:
 	Inherits: E4
 	Buildable: 
-        Prerequisites: ~barr, ftur, ~player.ukraine, ~!barracks.upgraded, ~techlevel.low
+        Prerequisites: ~barr, dome, ~player.ukraine, ~!barracks.upgraded, ~techlevel.low
 	ProducibleWithLevel:
 		Prerequisites: techlevel.infonly
 		InitialLevels: 1
@@ -410,6 +410,7 @@ MGI:
 SHOK:
     Buildable:
         BuildPaletteOrder: 7
+        Prerequisites: ~barr, stek, ~player.russia, ~techlevel.high
 	Valued:
 		Cost: 450
     Armament@PRIMARY:

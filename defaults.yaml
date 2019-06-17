@@ -137,6 +137,12 @@
 ^Building:
     Inherits@94: ^LeavesScraps
     Inherits@97: ^BuildingAffectedByEMP
+	RequiresBuildableArea:
+		Adjacent: 3
+
+^Defense
+	RequiresBuildableArea:
+		Adjacent: 3
 
 ^BasicHusk:
 	ConditionManager:

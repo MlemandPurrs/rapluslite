@@ -142,26 +142,49 @@ APTusk:
 
 SCUD.elite:
     Inherits: SCUD
-    -Projectile:
-	Projectile: Bullet
-		Speed: 340
-		Blockable: false
-		TrailImage: smokey
-		TrailDelay: 5
-		Inaccuracy: 213
-		Image: V2
-		Shadow: True
-		LaunchAngle: 62
+	Warhead@3Eff: CreateEffect
+		Explosions: nuke_small
+		ImpactSounds: kaboom1.aud
+		ImpactActors: false    
+	Warhead@5Dam: SpreadDamage
+		Spread: 1c0
+		Damage: 1125
+		Falloff: 1000, 368, 135, 50, 18, 7, 0
+		ValidTargets: Ground, Water, Trees
+		Versus:
+			None: 90
+			Wood: 75
+			Light: 70
+			Heavy: 40
+			Concrete: 100
+		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath, Incendiary
+	Warhead@6Eff: CreateEffect
+		ImpactSounds: kaboom22.aud
+		Delay: 5
+		ImpactActors: false
+	Warhead@7Dam: SpreadDamage
+		Spread: 2c0
+		Damage: 1125
+		Falloff: 1000, 368, 135, 50, 18, 7, 0
+		ValidTargets: Ground, Water, Trees
+		Versus:
+			None: 90
+			Wood: 75
+			Light: 70
+			Heavy: 40
+			Concrete: 100
+		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath, Incendiary
+	Warhead@8Smu: LeaveSmudge
+		SmudgeType: Scorch
+		InvalidTargets: Vehicle, Structure, Wall, Trees
+		Size: 3
+		Delay: 15
 
 SCUD.ukraine:
 	Inherits: SCUD
-	ReloadDelay: 216
-
-SCUD.ukraine.elite:
-    Inherits: SCUD.ukraine
-    -Projectile:
+	-Projectile:
 	Projectile: Bullet
-		Speed: 340
+		Speed: 204
 		Blockable: false
 		TrailImage: smokey
 		TrailDelay: 5
@@ -169,6 +192,56 @@ SCUD.ukraine.elite:
 		Image: V2
 		Shadow: True
 		LaunchAngle: 62
+
+SCUD.ukraine.elite:
+    Inherits: SCUD.ukraine
+	-Projectile:
+	Projectile: Bullet
+		Speed: 204
+		Blockable: false
+		TrailImage: smokey
+		TrailDelay: 5
+		Inaccuracy: 213
+		Image: V2
+		Shadow: True
+		LaunchAngle: 62
+	Warhead@3Eff: CreateEffect
+		Explosions: nuke_small
+		ImpactSounds: kaboom1.aud
+		ImpactActors: false    
+	Warhead@5Dam: SpreadDamage
+		Spread: 1c0
+		Damage: 1125
+		Falloff: 1000, 368, 135, 50, 18, 7, 0
+		ValidTargets: Ground, Water, Trees
+		Versus:
+			None: 90
+			Wood: 75
+			Light: 70
+			Heavy: 40
+			Concrete: 100
+		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath, Incendiary
+	Warhead@6Eff: CreateEffect
+		ImpactSounds: kaboom22.aud
+		Delay: 5
+		ImpactActors: false
+	Warhead@7Dam: SpreadDamage
+		Spread: 2c0
+		Damage: 1125
+		Falloff: 1000, 368, 135, 50, 18, 7, 0
+		ValidTargets: Ground, Water, Trees
+		Versus:
+			None: 90
+			Wood: 75
+			Light: 70
+			Heavy: 40
+			Concrete: 100
+		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath, Incendiary
+	Warhead@8Smu: LeaveSmudge
+		SmudgeType: Scorch
+		InvalidTargets: Vehicle, Structure, Wall, Trees
+		Size: 3
+		Delay: 15
 
 TeslaZap.russia:
 	Inherits: TeslaZap
