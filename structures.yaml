@@ -775,10 +775,6 @@ HGUN:
 		Weapon: TurretGun.dual
 		LocalOffset: 512,62,112, 512,-62,112
 		MuzzleSequence: muzzle
-    Armament@lowpower:
-		Weapon: TurretGun.dual
-		LocalOffset: 512,62,112, 512,-62,112
-		MuzzleSequence: muzzle
 
 GTUR:
 	Inherits: ^Defense
