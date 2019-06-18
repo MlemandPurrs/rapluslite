@@ -200,7 +200,7 @@ CARR:
 		Queue: Ship
 		BuildAtProductionType: Boat
 		BuildPaletteOrder: 5
-		Prerequisites: ~syrd, hpad, ~techlevel.medium
+		Prerequisites: ~syrd, hpad, ~player.england, ~techlevel.medium
 		Description: Nautical Support vessel.\nCan be deployed, becoming immobile\nto rearm Helicopters at Sea.\n  Unarmed
 	Valued:
 		Cost: 1500

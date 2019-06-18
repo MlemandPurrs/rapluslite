@@ -747,17 +747,20 @@ GUN:
         Prerequisites: weap, ~structures.allies, ~techlevel.medium
 	DetectCloaked:
 		Range: 3c0
+    -Turreted:
 	Turreted:
 		TurnSpeed: 15
 		InitialFacing: 224
         RequiresCondition: !lowpower
     Turreted@lowpower:
+        Turret: lowpower
  		TurnSpeed: 7
 		InitialFacing: 224
         RequiresCondition: lowpower
     Armament:
         PauseOnCondition: disabled
     AttackTurreted:
+        Turrets: primary, lowpower
         PauseOnCondition: disabled
 	GrantConditionOnPowerState@LOWPOWER:
 		Condition: lowpower
