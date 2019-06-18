@@ -695,7 +695,7 @@ PBOX:
 		PortCones: 88, 88, 88, 88, 88, 88
 	DetectCloaked:
 		Range: 3c0
-        RequiresCondition: !disabled
+        RequiresCondition: !disabled && !build-incomplete
 
 HBOX:
 	Buildable:
@@ -709,7 +709,7 @@ HBOX:
 		PortCones: 88, 88, 88, 88, 88, 88
 	DetectCloaked:
 		Range: 3c0
-        RequiresCondition: !disabled
+        RequiresCondition: !disabled && !build-incomplete
 
 FTUR:
     Inherits@IDISABLE: ^DisableOnPowerDown
@@ -721,6 +721,7 @@ FTUR:
         PauseOnCondition: disabled
 	DetectCloaked:
 		Range: 3c0
+        RequiresCondition: !disabled && !build-incomplete
 
 TSLA: 
 	Buildable:
@@ -728,6 +729,7 @@ TSLA:
         Prerequisites: dome, ~structures.soviet, ~!player.russia, ~techlevel.medium
 	DetectCloaked:
 		Range: 3c0
+        RequiresCondition: !disabled
 
 TSLA.russia:
 	Inherits: TSLA
@@ -747,20 +749,12 @@ GUN:
         Prerequisites: weap, ~structures.allies, ~techlevel.medium
 	DetectCloaked:
 		Range: 3c0
-    -Turreted:
+        RequiresCondition: !disabled && !lowpower && !build-incomplete
 	Turreted:
-		TurnSpeed: 15
 		InitialFacing: 224
-        RequiresCondition: !lowpower
-    Turreted@lowpower:
-        Turret: lowpower
- 		TurnSpeed: 7
-		InitialFacing: 224
-        RequiresCondition: lowpower
     Armament:
         PauseOnCondition: disabled
     AttackTurreted:
-        Turrets: primary, lowpower
         PauseOnCondition: disabled
 	GrantConditionOnPowerState@LOWPOWER:
 		Condition: lowpower
@@ -778,6 +772,10 @@ HGUN:
 	Tooltip:
 		Name: Heavy Turret
 	Armament:
+		Weapon: TurretGun.dual
+		LocalOffset: 512,62,112, 512,-62,112
+		MuzzleSequence: muzzle
+    Armament@lowpower:
 		Weapon: TurretGun.dual
 		LocalOffset: 512,62,112, 512,-62,112
 		MuzzleSequence: muzzle
