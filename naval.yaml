@@ -205,7 +205,7 @@ CARR:
 	Valued:
 		Cost: 1500
 	Tooltip:
-		Name: Helicarrier
+		Name: Helicraft Carrier
 	Health:
 		HP: 32500
 	Armor:
@@ -252,7 +252,7 @@ CARR.Deployed:
 	Valued:
 		Cost: 1500
 	Tooltip:
-		Name: Heli Carrier
+		Name: Helicraft Carrier
 	Building:
 		TerrainTypes: Water
 		RequiresBaseProvider: False

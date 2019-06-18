@@ -34,7 +34,7 @@ POWR:
 APWR:
     Buildable:
         BuildPaletteOrder: 9
-		Prerequisites: ~!player.russia, ~techlevel.infonly
+		Prerequisites: dome, ~!player.russia, ~techlevel.infonly
 	Building:
 		Footprint: xxx Xxx
 		Dimensions: 3,2
