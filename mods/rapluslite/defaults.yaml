@@ -133,6 +133,12 @@
     WithParachute:
         Image: maxichute
 	EdibleByLeap:
+    Repairable:
+        RepairBuildings: fix, fix.russia
+
+^Plane:
+	Repairable:
+		RepairBuildings: fix, fix.russia
 
 ^Building:
     Inherits@94: ^LeavesScraps
@@ -140,7 +146,7 @@
 	RequiresBuildableArea:
 		Adjacent: 3
 
-^Defense
+^Defense:
 	RequiresBuildableArea:
 		Adjacent: 3
 
@@ -463,3 +469,24 @@ RANKUPCRATE:
 tech.stolen:
 	AlwaysVisible:
 	ProvidesPrerequisite:
+
+MINS:
+	Inherits: ^Mine
+	Tooltip:
+		Name: Sea Mine
+	Cloak:
+		CloakTypes: Underwater
+		InitialDelay: 0
+		CloakDelay: 50
+		CloakSound: subshow1.aud
+		UncloakSound: subshow1.aud
+		Palette: submerged
+	RenderSprites:
+		Image: mins
+	Targetable:
+		TargetTypes: Water, Defense
+	Explodes:
+		Weapon: ASMine
+    GrantExternalConditionToCrusher:
+        OnCrushCondition: minehit 	
+        OnCrushDuration: 50

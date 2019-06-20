@@ -105,13 +105,13 @@
             Shallow: 70
 	Locomotor@NAVAL:
 		Name: naval
-		Crushes: crate
+		Crushes: mine, crate
 		TerrainSpeeds:
 			Water: 100
             Shallow: 70
 	Locomotor@LANDINGCRAFT:
 		Name: lcraft
-		Crushes: crate
+		Crushes: mine, crate
 		TerrainSpeeds:
 			Water: 100
 			Beach: 70
@@ -144,7 +144,7 @@
 		Name: Germany
 		InternalName: germany
 		Side: Allies
-        Description: Germany\nSpecialization: Technology\nThe forces of Germany take pride in displaying their scientific progress on the battlefield.\nFaction Variations:\n    - Tanks* are more durable but move slower.\n*Those Tanks being the Light and Medium Tanks.\nTanks have their Health increased by 10%, they move marginally slower in return.\n    - Mechanic has +2 Range bonus.\nVeterancy Bonus:\n    - Destroyer gets built as Veteran.\nUnique Support Power:\n    - Field Repairs\nVehicles in an area will get repaired over time.\nSpecial Units:\n    - Machine Gunner (Infantry)\nInfantry armed with an modified version of the M60 Machinegun.\n    - Chrono Tank (Vehicle)\nThis tank armed with rocket pods is capable of Teleportation.
+        Description: Germany\nSpecialization: Technology\nThe forces of Germany take pride in displaying their scientific progress on the battlefield.\nFaction Variations:\n    - Tanks* are more durable but move slower.\n*Those Tanks being the Light and Medium Tanks.\nTanks have their Health increased by 10%, they move marginally slower in return.\n    - Mechanic has +2 Range bonus.\nVeterancy Bonus:\n    - Destroyer gets built as Veteran.\nUnique Support Power:\n    - Field Repairs\nVehicles in an area will get repaired over time.\nSpecial Units:\n    - Machine Gunner (Infantry)\nInfantry armed with an modified version of the M60 Machinegun.\n    - Chrono Tank (Vehicle)\nThis tank armed with rocket pods is capable of Teleportation.\n    - Repair Ship (Naval)\nUnarmed vessel capable of laying sea mines and repairing ships.
 	Faction@4:
 		Name: Soviet
 		InternalName: soviet

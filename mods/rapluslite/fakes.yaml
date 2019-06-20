@@ -799,7 +799,7 @@ MGGF:
 		GenericVisibility: Enemy
 		GenericStancePrefix: False
 	Valued:
-		Cost: 250
+		Cost: 200
 	WithDecoration@fake:
 		RequiresSelection: true
 		Image: pips

@@ -837,3 +837,17 @@ BombingRun.dc:
 		Explosions: small_explosion
 		ImpactSounds: kaboom15.aud
 		ValidTargets: Submarine
+
+ASMine:
+	Inherits: ATMine
+	Warhead@1Dam: SpreadDamage
+		Spread: 256
+		Damage: 10000
+		AffectsParent: true
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+		ValidTargets: Ship, Submarine, Underwater
+    -Warhead@Smu: LeaveSmudge
+	Warhead@4EffWater: CreateEffect
+		Explosions: large_explosion
+		ImpactSounds: mineblo1.aud
+		ValidTargets: Underwater

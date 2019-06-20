@@ -181,6 +181,8 @@ WEAP:
         RequiresCondition: !being-captured
 		SpawnOffset: 213,-128,0
 		ExitCell: 0,2
+	GrantExternalConditionToProduced:
+		Condition: produced
 
 FIX:
     Inherits@IDISABLE: ^DisableOnPowerDown
@@ -554,6 +556,10 @@ SYRD:
 	DetectCloaked:
 		CloakTypes: Underwater
 		Range: 5c0
+	ProximityExternalCondition@MINEREPLENISH:
+		Condition: replenishsmine
+		Range: 5c0
+		RequiresCondition: !disabled
 
 SPEN:
     Buildable:
@@ -579,10 +585,16 @@ SPEN:
 	DetectCloaked:
 		CloakTypes: Underwater
 		Range: 5c0
+	ProximityExternalCondition@MINEREPLENISH:
+		Condition: replenishsmine
+		Range: 5c0
+		RequiresCondition: !disabled
 
 GAP:
     Buildable:
         BuildPaletteOrder: 10
+    Valued:
+        Cost: 1000
     ProvidesPrerequisite@buildingname:
 
 SBAG:
@@ -860,6 +872,15 @@ IRON:
 MSLO:
 	Buildable:
         BuildPaletteOrder: 9
+	Cloak:
+		InitialDelay: 125
+		CloakDelay: 60
+		IsPlayerPalette: true
+        CloakTypes: Cloak, Thief
+		PauseOnCondition: cloak-force-disabled
+	GrantConditionOnDamageState@UNCLOAK:
+		Condition: cloak-force-disabled
+		ValidDamageStates: Critical
 
 AGUN:
 	Buildable:
@@ -946,7 +967,7 @@ FISTBUILD:
 		Prerequisite: vehicles.soviet
 		ResetOnOwnerChange: True
 	ProductionBar:
-		ProductionType: Vehicle
+		ProductionType: MWFVehicle
 	ProvidesPrerequisite:
 		Prerequisite: weap
 	ProvidesPrerequisite@buildingname:
@@ -1096,7 +1117,7 @@ PROC.Russia:
 BARR.Russia:
     Inherits: BARR
 	Buildable:
-		Prerequisites: anypower, ~structures.soviet, ~player.russia, ~techlevel.infonly
+		Prerequisites: ~structures.soviet, ~player.russia, ~techlevel.infonly
 	Valued:
 		Cost: 450
 	RenderSprites:

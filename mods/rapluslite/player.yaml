@@ -94,6 +94,7 @@ Player:
 		SpeechNotification: LowPower
 	AllyRepair:
 	PlayerResources:
+        DefaultCash: 10000
 		InsufficientFundsNotification: InsufficientFunds
 		CashTickUpNotification: CashTickUp
 		CashTickDownNotification: CashTickDown
@@ -102,6 +103,7 @@ Player:
 	GpsWatcher:
 	Shroud:
 		FogCheckboxDisplayOrder: 3
+        ExploredMapCheckboxEnabled: True
 	LobbyPrerequisiteCheckbox@GLOBALBOUNTY:
 		ID: bounty
 		Label: Kill Bounties

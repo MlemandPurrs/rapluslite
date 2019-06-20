@@ -74,6 +74,80 @@ PT:
 		Turret: secondary
 		Sequence: turret-dc
 
+RSHP:
+    Inherits: ^Ship
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Boat
+		BuildPaletteOrder: 5
+		Prerequisites: ~syrd, fix, ~player.germany, ~techlevel.medium
+		Description: Light support ship.\nRepairs nearby Ships and Submarines.\nLays sea mines to destroy\nunwary enemy Ships and Submarines.\nRestocks Sea Mines when near\na Naval yard or an Sub Pen.\nCan detect submarines.\n  Unarmed
+	Valued:
+		Cost: 750
+	Tooltip:
+		Name: Repair Ship
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 20000
+	Armor:
+		Type: Heavy
+	Mobile:
+		TurnSpeed: 7
+		Speed: 85
+	RevealsShroud:
+		Range: 6c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	Turreted:
+		TurnSpeed: 7
+		Offset: -461,0,150
+    Armament:
+		Weapon: Repair
+		Cursor: repair
+		OutsideRangeCursor: repair
+		TargetStances: Ally
+		ForceTargetStances: None
+		Turret: primary
+        PauseOnCondition: empdisable
+	AttackTurreted:
+        PauseOnCondition: empdisable
+	SelectionDecorations:
+	WithSpriteTurret:
+	DetectCloaked:
+		CloakTypes: Underwater
+		Range: 4c0
+	RenderDetectionCircle:
+	Selectable:
+		DecorationBounds: 36,36
+	AutoTarget:
+	AutoTargetPriority@DEFAULT:
+		ValidTargets: Ship, Submarine
+	Minelayer:
+		Mine: MINS
+	Rearmable:
+		RearmActors:
+	MineImmune:
+	AmmoPool:
+		Armaments: 
+		Ammo: 3
+		RearmSound: minelay1.aud
+	ReloadAmmoPool:
+		Delay: 300
+		Count: 1
+        Sound: minelay1.aud
+		RequiresCondition: replenishsmine
+	WithDecoration@minereplenish:
+		RequiresSelection: true
+		Image: pips
+		Sequence: tag-reload
+		ReferencePoint: Top
+		ZOffset: 256
+		RequiresCondition: replenishsmine
+	ExternalCondition@MINEREPLENISH:
+		Condition: replenishsmine
+
 DD:
     Buildable:
         BuildPaletteOrder: 3
@@ -318,7 +392,7 @@ SS:
 		Range: 3c0
 		RequiresCondition: underwater
 	RepairableNear:
-		Buildings: spen
+		Buildings: spen, spen.russia
 	Cloak:
 		CloakTypes: Underwater
 		InitialDelay: 0
@@ -328,7 +402,8 @@ SS:
 		CloakedCondition: underwater
 		Palette: submerged
 		UncloakOn: Attack, Heal, Dock, SelfHeal, Demolish
-		PauseOnCondition: cloak-force-disabled || shallowcrossing || empdisable
+		PauseOnCondition: cloak-force-disabled || shallowcrossing || empdisable || minehit
+        RequiresCondition: !deployed
 	Targetable:
 		TargetTypes: Ground, Water, Ship, Submarine, SeaDetonateAttack
 		RequiresCondition: !underwater
@@ -341,6 +416,10 @@ SS:
 	GrantConditionOnTerrain@CROSSINGFORD:
 		Condition: shallowcrossing
 		TerrainTypes: Shallow
+    GrantConditionOnDeploy:
+        DeployedCondition: deployed
+	ExternalCondition@MINEHIT:
+		Condition: minehit
 
 SS.AG:
 	Inherits: SS
@@ -386,6 +465,18 @@ SS.AG:
 		Types: Infantry
 		PassengerFacing: 0
 		LoadingCondition: notmobile
+    -Cloak:
+	Cloak:
+		CloakTypes: Underwater
+		InitialDelay: 0
+		CloakDelay: 50
+		CloakSound: subshow1.aud
+		UncloakSound: subshow1.aud
+		CloakedCondition: underwater
+		Palette: submerged
+		UncloakOn: Attack, Heal, Unload, Dock, SelfHeal, Demolish
+		PauseOnCondition: cloak-force-disabled || shallowcrossing || empdisable || minehit
+    -GrantConditionOnDeploy:
 
 MSUB:
     Buildable:
@@ -424,7 +515,7 @@ MSUB:
 		Range: 4c0
 		RequiresCondition: underwater
 	RepairableNear:
-		Buildings: spen
+		Buildings: spen, spen.russia
 	Cloak:
 		CloakTypes: Underwater
 		InitialDelay: 0
@@ -434,7 +525,8 @@ MSUB:
 		CloakedCondition: underwater
 		Palette: submerged
 		UncloakOn: Attack, Heal, Dock, SelfHeal, Demolish
-		PauseOnCondition: cloak-force-disabled || shallowcrossing || empdisable
+		PauseOnCondition: cloak-force-disabled || shallowcrossing || empdisable || minehit
+        RequiresCondition: !deployed
 	Targetable:
 		TargetTypes: Ground, Water, Ship, Submarine, SeaDetonateAttack
 		RequiresCondition: !underwater
@@ -447,10 +539,12 @@ MSUB:
 	GrantConditionOnTerrain@CROSSINGFORD:
 		Condition: shallowcrossing
 		TerrainTypes: Shallow
+    GrantConditionOnDeploy:
+        DeployedCondition: deployed
+	ExternalCondition@MINEHIT:
+		Condition: minehit
 
 MSUB.AA:
-    Buildable:
-        BuildPaletteOrder: 3
 	Inherits: MSUB
 	Buildable:
 		BuildPaletteOrder: 3
@@ -542,7 +636,7 @@ TBT:
 	Selectable:
 		DecorationBounds: 36,36
 	RepairableNear:
-		Buildings: syrd, spen
+		Buildings: syrd, spen, spen.russia
 
 FSUB:
 	Inherits: ^Ship
@@ -609,7 +703,7 @@ FSUB:
 		TargetTypes: Underwater, Submarine
 		RequiresCondition: underwater
 	RepairableNear:
-		Buildings: spen
+		Buildings: spen, spen.russia
 	Cloak:
 		CloakTypes: Underwater
 		InitialDelay: 0
@@ -619,7 +713,8 @@ FSUB:
 		CloakedCondition: underwater
 		Palette: submerged
 		UncloakOn: Attack, Heal, Dock, SelfHeal, Demolish
-		PauseOnCondition: cloak-force-disabled || shallowcrossing || empdisable
+		PauseOnCondition: cloak-force-disabled || shallowcrossing || empdisable || minehit
+        RequiresCondition: !deployed
 	Targetable:
 		TargetTypes: Ground, Water, Ship, Submarine, SeaDetonateAttack
 		RequiresCondition: !underwater
@@ -640,3 +735,7 @@ FSUB:
 		EmptyWeapon: MiniNuke
 		DamageSource: Killer
         RequiresCondition: rank-elite
+    GrantConditionOnDeploy:
+        DeployedCondition: deployed
+	ExternalCondition@MINEHIT:
+		Condition: minehit

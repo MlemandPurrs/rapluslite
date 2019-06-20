@@ -30,7 +30,7 @@ HARV.Soviet:
 		Name: secondary
 		Turret: secondary
 		Weapon: M60mg
-		LocalOffset: 380,0,40
+		LocalOffset: 320,0,60
 		MuzzleSequence: muzzle
         PauseOnCondition: empdisable
         RequiresCondition: !rank-elite
@@ -38,7 +38,7 @@ HARV.Soviet:
 		Name: elite
 		Turret: secondary
 		Weapon: M60mg.elite
-		LocalOffset: 380,0,40
+		LocalOffset: 320,0,60
 		MuzzleSequence: muzzle
         PauseOnCondition: empdisable
 		RequiresCondition: rank-elite    
@@ -220,6 +220,15 @@ APC:
 	Targetable:
 		TargetTypes: Ground, Vehicle, VehicleDisguise
 		RequiresCondition: !parachute
+    -Tooltip:
+	Tooltip@sidebar:
+		Name: Armored Personnel Carrier
+        RequiresCondition: !produced
+	Tooltip@ingame:
+		Name: APC
+        RequiresCondition: produced    
+	ExternalCondition@PRODUCED:
+		Condition: produced
 
 BTR:
 	Inherits: ^Vehicle
@@ -232,8 +241,15 @@ BTR:
 		Description: Mobile infantry transport\nFaster but nimbler than its Allies counterpart\nCan transport up to 5 infantry\n Strong vs Infantry\n Weak vs Tanks, Aircraft
 	Valued:
 		Cost: 650
-	Tooltip:
-		Name: Armored Personnel Carrier (Soviet)
+    -Tooltip:
+	Tooltip@sidebar:
+		Name: Armored Personnel Carrier
+        RequiresCondition: !produced
+	Tooltip@ingame:
+		Name: APC (Soviet)
+        RequiresCondition: produced    
+	ExternalCondition@PRODUCED:
+		Condition: produced
 	Health:
 		HP: 20000
 	Armor:
@@ -542,9 +558,15 @@ BTR.RussiaR2:
 		BuildPaletteOrder: 4
 		Prerequisites: fix, ~vehicles.soviet, ~!player.ukraine, ~!player.belarus, ~techlevel.medium
 		Description: Soviet Main Battle Tank.\n  Strong vs Vehicles\n  Weak vs Infantry, Aircraft
-	Tooltip:
+    -Tooltip:
+	Tooltip@sidebar:
+		Name: Medium Tank
+        RequiresCondition: !produced
+	Tooltip@ingame:
 		Name: Medium Tank (Soviet)
-		GenericName: Tank
+        RequiresCondition: produced    
+	ExternalCondition@PRODUCED:
+		Condition: produced
 	Valued:
 		Cost: 850
 	Mobile:
@@ -1076,7 +1098,7 @@ MGG:
         BuildDurationModifier: 60
         Description: Regenerates the shroud nearby,\nobscuring the area.\n  Can be toggled on/off via deploy command.\n  Continues to function while in a Transport.\n  Unarmed
     Valued:
-        Cost: 1000
+        Cost: 800
     WithIdleOverlay@SPINNER:
         PauseOnCondition: empdisable || deployed
     CreatesShroud:
@@ -1122,7 +1144,7 @@ DTNK:
 		GenericName: Vehicle
         RequiresCondition: jeep
 	DisguiseTooltip@apc:
-		Name: Armored Personnel Carrier
+		Name: APC
 		GenericName: Vehicle
         RequiresCondition: apc
     DisguiseTooltip@tnk1:
@@ -1446,7 +1468,43 @@ DTRK:
     Buildable:
         BuildPaletteOrder: 9
         Prerequisites: stek, ~vehicles.soviet, ~player.ukraine, ~techlevel.high
-        Description: Truck with actively armed nuclear\nexplosives. Has very weak armor.\n  Detonates when Iron Curtained or Chronoshifted\nalso Detonates if the Transport its in sinks.
+        Description: Truck with actively armed nuclear\nexplosives. Has very weak armor.\n  Detonates when Iron Curtained or Chronoshifted\nalso Detonates if the Transport its in sinks.\n Can disguise as Supply Truck, friendly or enemy.
+	Selectable:
+		Class: DemoDisguise
+    -Tooltip:
+	Targetable:
+		TargetTypes: Ground, Vehicle, DemoDisguise
+		RequiresCondition: !parachute
+	DisguiseTooltip@default:
+		Name: Demolition Truck
+        GenericName: Vehicle
+        RequiresCondition: !truk
+	DisguiseTooltip@truk:
+		Name: Supply Truck
+		GenericName: Vehicle
+        RequiresCondition: truk
+    Disguise:
+		DisguisedCondition: disguise
+		ValidStances: Ally, Neutral, Enemy
+		TargetTypes: DemoDisguise
+		DisguisedAsConditions: 
+			truk: truk
+	WithDecoration@disguise:
+		Image: pips
+		Sequence: pip-disguise
+		Palette: effect
+		ReferencePoint: Top, Right
+		ZOffset: 256
+		RequiresCondition: disguise
+	IgnoresDisguise:
+    -WithFacingSpriteBody:
+	WithFacingSpriteBody@Default:
+		PauseOnCondition: truk
+		RequiresCondition: !truk
+	WithFacingSpriteBody@Truk:
+        Name: truk
+		Sequence: truk-body
+		RequiresCondition: truk
 
 QTNK:
     Buildable:
@@ -1476,7 +1534,7 @@ TRUK:
 	Carryable:
 		LocalOffset: 0,0,100
 	Targetable:
-		TargetTypes: Ground, Vehicle, VehicleDisguise
+		TargetTypes: Ground, Vehicle, VehicleDisguise, DemoDisguise
 		RequiresCondition: !parachute
 
 FIST:
@@ -1510,7 +1568,7 @@ FIST:
 		IntoActor: fistbuild
 		Offset: -1,-1
 		Facing: 96
-		TransformSounds: constru2.aud, hvydoor1.aud
+		TransformSounds: placbldg.aud, build5.aud
 		NoTransformNotification: BuildingCannotPlaceAudio
 	MustBeDestroyed:
 		RequiredForShortGame: true

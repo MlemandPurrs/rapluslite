@@ -971,6 +971,9 @@ qtnk:
 
 dtrk:
     Inherits: emp-overlay
+    truk-body: truk
+		Facings: 32
+		UseClassicFacingFudge: True
 
 truk:
     Inherits: emp-overlay
@@ -1306,6 +1309,7 @@ carr:
 	icon: carricon
 
 carr.deployed:
+    Inherits: emp-overlay
 	idle: carr
 		Start: 0
 		Length: 1
@@ -2148,6 +2152,10 @@ pips:
 	tag-hold:
 		Start: 4
         Offset: 0, 2
+    tag-reload: tag-reload
+        Offset: 0, 2
+    tag-deployed: tag-deployed
+        Offset: 0, 2
 
 dtnk:
 	Inherits: emp-overlay
@@ -2255,3 +2263,18 @@ harr:
 		Facings: 32
 		UseClassicFacingFudge: True
 	icon: harricon
+
+rshp:
+    Inherits: emp-overlay
+	idle: pt
+		Facings: 16
+	turret: crane-tur
+		Facings: 32
+	icon: rshpicon
+
+mins:
+	idle:
+		Length: *
+		ZOffset: -512
+		Tick: 250
+	icon: jmin
