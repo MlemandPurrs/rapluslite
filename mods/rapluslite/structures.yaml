@@ -876,6 +876,7 @@ MSLO:
 		InitialDelay: 125
 		CloakDelay: 60
 		IsPlayerPalette: true
+        UncloakOn: Attack, Damage
         CloakTypes: Cloak, Thief
 		PauseOnCondition: cloak-force-disabled
 	GrantConditionOnDamageState@UNCLOAK:

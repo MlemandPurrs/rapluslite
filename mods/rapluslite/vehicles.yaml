@@ -897,6 +897,8 @@ MNLY:
 	Targetable:
 		TargetTypes: Ground, Vehicle, VehicleDisguise
 		RequiresCondition: !parachute
+   	Rearmable:
+		RearmActors: fix, fix.russia
         
 ATNK:
 	Inherits: ^TrackedVehicle

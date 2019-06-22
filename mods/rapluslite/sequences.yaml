@@ -418,7 +418,7 @@ ftur:
 	make: fturmake
 		Length: *
 		Offset: 0,-2
-        Tick: 100
+        Tick: 50
 
 ftur.husk:
 	idle: ftur
@@ -433,7 +433,7 @@ gun:
     Inherits: emp-overlay
 	make: gunmake
 		Length: *
-        Tick: 80
+        Tick: 70
 
 gun.husk:
 	idle: gun
@@ -455,7 +455,7 @@ hgun:
 		UseClassicFacingFudge: True
 	make: hgunmake
 		Length: *
-        Tick: 80
+        Tick: 70
 	damaged-idle:
 		Start: 64
 		Facings: 32
@@ -484,6 +484,10 @@ hgun.husk:
 
 tsla:
     Inherits: emp-overlay
+	make: tslamake
+		Length: *
+		Offset: 0,-13
+        Tick: 70
 
 tsla.husk:
 	idle: tsla
@@ -2278,3 +2282,7 @@ mins:
 		ZOffset: -512
 		Tick: 250
 	icon: jmin
+
+smig:
+	idle:
+		Facings: 16

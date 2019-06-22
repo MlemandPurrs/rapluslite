@@ -25,7 +25,7 @@ IROQ:
 		Queue: Aircraft
 		BuildAtProductionType: Helicopter
 		BuildPaletteOrder: 2
-		Prerequisites: ~hpad, ~aircraft.allies, ~techlevel.medium
+		Prerequisites: ~hpad, ~aircraft.allies, ~!aitoodumb, ~techlevel.medium
 		Description: Light helicopter armed with dual chainguns.\nCan use Depthcharges against Submarines.\n  Strong vs Infantry, Light vehicles\n  Weak vs Tanks, Aircraft
 	Valued:
 		Cost: 1350
@@ -77,8 +77,9 @@ IROQ:
 		Sequence: slow-rotor
 		RequiresCondition: !airborne
 	AmmoPool:
-		Ammo: 12
-		PipCount: 6
+        Armaments: primary, secondary
+		Ammo: 24
+		PipCount: 4
 		AmmoCondition: ammo
 		ReloadDelay: 9
     AmmoPool@2:
@@ -99,6 +100,18 @@ IROQ:
 		DecorationBounds: 38,32
 	Rearmable:
 		RearmActors: hpad, carr.deployed
+
+IROQ.AI:
+    Inherits: IROQ
+	Buildable:
+		Prerequisites: ~hpad, ~aircraft.allies, ~aitoodumb, ~techlevel.medium
+    -Armament@TERTIARY:
+    -AmmoPool@2:
+	AttackAircraft:
+    	Armaments: primary, secondary
+    RenderSprites:
+        Image: iroq
+    -MapEditorData:
 
 BADR.Crate:
 	Inherits: BADR
@@ -197,15 +210,15 @@ U2.emp:
 		Ammo: 1
 		AmmoCondition: ammo
 	Tooltip:
-		Name: Tesla Plane
+		Name: Special MiG
 	RenderSprites:
-		Image: u2
+		Image: smig
 
 YAK:
     Buildable:
         BuildPaletteOrder: 1
-        Prerequisites: ~afld, ~!player.belarus, ~techlevel.medium
-        Description: Strafing Attack Plane armed with\ndual machine guns.\n  Strong vs Infantry, Light armor\n  Weak vs Tanks, Aircraft
+        Prerequisites: ~afld, ~!player.belarus, ~!aitoodumb, ~techlevel.medium
+        Description: Strafing Attack Plane armed with\ndual machine guns.\nBombs Submarines with Depthcharges.\n  Strong vs Infantry, Light armor\n  Weak vs Tanks, Aircraft
     Aircraft:
         TakeOffOnCreation: False
 	AttackAircraft:
@@ -228,10 +241,11 @@ YAK:
 		Weapon: BombingRun.dc
 		LocalOffset: 300,0,0
 		PauseOnCondition: !ammodc
-	AmmoPool:
+    -AmmoPool:
+	AmmoPool@1:
         Armaments: primary, secondary
-		Ammo: 15
-		PipCount: 5
+		Ammo: 32
+		PipCount: 4
 		ReloadDelay: 11
 		AmmoCondition: ammo
 	AmmoPool@2:
@@ -247,7 +261,7 @@ YAK:
 YAK.Belarus:
     Inherits: YAK
     Buildable:
-        Prerequisites: ~afld, ~player.belarus, ~!aircraft.upgraded, ~techlevel.medium
+        Prerequisites: ~afld, ~player.belarus, ~!aitoodumb, ~!aircraft.upgraded, ~techlevel.medium
 	ProducibleWithLevel:
 		Prerequisites: techlevel.infonly
 		InitialLevels: 1
@@ -258,17 +272,45 @@ YAK.Belarus:
 YAK.BelarusR2:
     Inherits: YAK.Belarus
     Buildable:
-        Prerequisites: ~afld, ~player.belarus, ~aircraft.upgraded, ~techlevel.medium
+        Prerequisites: ~afld, ~player.belarus, ~!aitoodumb, ~aircraft.upgraded, ~techlevel.medium
 	ProducibleWithLevel:
 		Prerequisites: techlevel.infonly
 		InitialLevels: 2
     RenderSprites:
 		Image: yak
 
+YAK.AI:
+    Inherits: YAK
+	Buildable:
+		Prerequisites: ~afld, ~!player.belarus, ~aitoodumb, ~techlevel.medium
+    Aircraft:
+        TakeOffOnCreation: True
+    -Armament@TERTIARY:
+    -AmmoPool@2:
+	AttackAircraft:
+    	Armaments: primary, secondary
+    RenderSprites:
+        Image: yak
+    -MapEditorData:
+
+YAK.Belarus.AI:
+    Inherits: YAK.Belarus
+	Buildable:
+		Prerequisites: ~afld, ~player.belarus, ~aitoodumb, ~!aircraft.upgraded, ~techlevel.medium
+    Aircraft:
+        TakeOffOnCreation: True
+    -Armament@TERTIARY:
+    -AmmoPool@2:
+    RenderSprites:
+        Image: yak
+	AttackAircraft:
+    	Armaments: primary, secondary
+
 MIG:
     Buildable:
         BuildPaletteOrder: 2
         BuildDurationModifier: 60
+        Prerequisites: ~afld, stek, ~!aitoodumb, ~techlevel.high
         Description: Fast Multi-Role Attack Plane.\n  Can attack both Air and Ground targets.\n  Strong vs Buildings, Vehicles\n  Weak vs Infantry, Aircraft
     Aircraft:
         TakeOffOnCreation: False
@@ -280,6 +322,16 @@ MIG:
 		PauseOnCondition: !ammo
 	Rearmable:
 		RearmActors: afld, afld.russia, afld.ukraine
+
+MIG.AI:
+    Inherits: MIG
+	Buildable:
+		Prerequisites: ~afld, stek, ~aitoodumb, ~techlevel.high
+    Aircraft:
+        TakeOffOnCreation: True
+    RenderSprites:
+        Image: mig
+    -MapEditorData:
 
 COSSACK:
 	Inherits: ^Plane
