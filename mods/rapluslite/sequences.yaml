@@ -29,6 +29,10 @@ proc:
     fake-icon: proficon
 	dead: proc-dead
 		Tick: 800
+	idle-smoke: proc-smoke
+		Length: 40
+		Tick: 160
+		Offset: 0,-25
 
 proc.husk:
 	idle: proc-dead2
@@ -37,6 +41,51 @@ proc.husk:
 		UseTilesetExtension: true
 		TilesetOverrides:
 			INTERIOR: TEMPERAT
+
+ercc-proc:
+    Inherits: emp-overlay
+	idle: ercc-bot
+		Offset: 2, -9
+		ZOffset: -1c511
+	damaged-idle: ercc-bot
+		Offset: 2, -9
+		ZOffset: -1c511
+		Start: 1
+    topsolid: ercc-top
+		Offset: 2, -9
+		ZOffset: 0c312
+		Start: 0
+	damaged-topsolid: ercc-top
+		Offset: 2, -9
+		ZOffset: 0c312
+		Start: 2
+    opaquetop: ercc-top
+		Offset: 2, -9
+		ZOffset: 0c312
+		Start: 1	
+	damaged-opaquetop: ercc-top
+		Offset: 2, -9
+		ZOffset: 0c312
+		Start: 3
+	make: ercc-make
+		Offset: 5, -13
+		Length: *
+        Tick: 80
+	dead: procdead
+		Tick: 800
+	bib: bib2
+        Offset: 2, 10
+		Length: *
+		UseTilesetExtension: true
+		TilesetOverrides:
+			INTERIOR: TEMPERAT
+	icon: procicon
+    fake-icon: proficon
+	idle-smoke: proc-smoke
+		Length: 40
+		Tick: 160
+		Offset: 2,-41
+        ZOffset: 1c511
 
 silo:
     Inherits: emp-overlay
@@ -64,7 +113,7 @@ powr:
 		Tick: 80
 
 powr.husk:
-	idle: powr-dead2
+	idle: powrdead2
 	bib: bib3
 		Length: *
 		UseTilesetExtension: true
@@ -655,6 +704,7 @@ iron:
 		Length: *
 		Offset: 0,-12
         Tick: 80
+    fake-icon: iroficon
 
 iron.husk:
 	idle: iron
@@ -692,7 +742,6 @@ acom:
 		UseTilesetExtension: true
 		TilesetOverrides:
 			INTERIOR: TEMPERAT
-	icon: acomicon
 
 acom.husk:
 	idle: acom
@@ -1155,7 +1204,7 @@ e5:
 			DESERT: TEMPERAT
 			INTERIOR: TEMPERAT
 	die-crushed: corpse1
-		Length: 6
+		Length: *
 		Tick: 1600
 		ZOffset: -511
 		UseTilesetExtension: true
@@ -1388,6 +1437,7 @@ tecn:
 		Tick: 1600
 		ZOffset: -511
 		UseTilesetExtension: true
+        TilesetOverrides:
 			DESERT: TEMPERAT
 			INTERIOR: TEMPERAT
 
@@ -1428,7 +1478,7 @@ c4:
 			DESERT: TEMPERAT
 			INTERIOR: TEMPERAT
 	die-crushed: corpse1
-		Length: 6
+		Length: *
 		Tick: 1600
 		ZOffset: -511
 		UseTilesetExtension: true
@@ -1478,7 +1528,7 @@ c5:
 			DESERT: TEMPERAT
 			INTERIOR: TEMPERAT
 	die-crushed: corpse1
-		Length: 6
+		Length: *
 		Tick: 1600
 		ZOffset: -511
 		UseTilesetExtension: true
@@ -1528,7 +1578,7 @@ c6:
 			DESERT: TEMPERAT
 			INTERIOR: TEMPERAT
 	die-crushed: corpse1
-		Length: 6
+		Length: *
 		Tick: 1600
 		ZOffset: -511
 		UseTilesetExtension: true
@@ -1578,7 +1628,7 @@ c7:
 			DESERT: TEMPERAT
 			INTERIOR: TEMPERAT
 	die-crushed: corpse1
-		Length: 6
+		Length: *
 		Tick: 1600
 		ZOffset: -511
 		UseTilesetExtension: true
@@ -1628,7 +1678,7 @@ c8:
 			DESERT: TEMPERAT
 			INTERIOR: TEMPERAT
 	die-crushed: corpse1
-		Length: 6
+		Length: *
 		Tick: 1600
 		ZOffset: -511
 		UseTilesetExtension: true
@@ -1678,7 +1728,7 @@ c9:
 			DESERT: TEMPERAT
 			INTERIOR: TEMPERAT
 	die-crushed: corpse1
-		Length: 6
+		Length: *
 		Tick: 1600
 		ZOffset: -511
 		UseTilesetExtension: true
@@ -1728,7 +1778,7 @@ c10:
 			DESERT: TEMPERAT
 			INTERIOR: TEMPERAT
 	die-crushed: corpse1
-		Length: 6
+		Length: *
 		Tick: 1600
 		ZOffset: -511
 		UseTilesetExtension: true
@@ -1791,12 +1841,6 @@ apwr:
 		Length: 40
 		Tick: 160
 		Offset: -12,-30
-
-proc:
-	idle-smoke: proc-smoke
-		Length: 40
-		Tick: 160
-		Offset: 0,-25
 
 bio:
 	make: biomake
@@ -1912,24 +1956,16 @@ gren:
 		Length: *
 		UseTilesetExtension: true
 		TilesetOverrides:
-			TEMPERATTD: TEMPERAT
 			DESERT: TEMPERAT
-			DESERTTD: TEMPERAT
-			SNOWTD: SNOW
-			INTERIOR: SUBTERRAN
-			TROPIC: JUNGLE
+			INTERIOR: TEMPERAT            
 	die-crushed: corpse1
-		Length: 6
+		Length: *
 		Tick: 1600
 		ZOffset: -511
 		UseTilesetExtension: true
 		TilesetOverrides:
-			TEMPERATTD: TEMPERAT
-			DESERTTD: DESERT
-			SNOWTD: SNOW
+			DESERT: TEMPERAT
 			INTERIOR: TEMPERAT
-			TROPIC: JUNGLE
-			SUBTERRAN: TEMPERAT
 	prone-stand:
 		Start: 208
 		Stride: 4
@@ -2286,3 +2322,66 @@ mins:
 smig:
 	idle:
 		Facings: 16
+
+plot:
+	stand:
+		Facings: 8
+	panic-stand:
+		Start: 8
+		Length: 6
+		Facings: 8
+	panic-run:
+		Start: 8
+		Length: 6
+		Facings: 8
+	run:
+		Start: 56
+		Length: 6
+		Facings: 8
+		Tick: 80
+	shoot:
+		Start: 205
+		Length: 4
+		Facings: 8
+	cheer:
+		Start: 200
+		Length: 3
+		Facings: 8
+		Tick: 120
+	die1:
+		Start: 329
+		Length: 8
+		Tick: 80
+	die2:
+		Start: 337
+		Length: 8
+		Tick: 80
+	die3:
+		Start: 337
+		Length: 8
+		Tick: 80
+	die4:
+		Start: 345
+		Length: 12
+		Tick: 80
+	die5:
+		Start: 357
+		Length: 18
+		Tick: 80
+	die6: electro
+		Length: *
+		UseTilesetExtension: true
+		TilesetOverrides:
+			DESERT: TEMPERAT
+			INTERIOR: TEMPERAT
+	die-crushed: corpse1
+		Length: *
+		Tick: 1600
+		ZOffset: -511
+		UseTilesetExtension: true
+		TilesetOverrides:
+			DESERT: TEMPERAT
+			INTERIOR: TEMPERAT
+
+tran:
+    svyt-icon: tran2icon

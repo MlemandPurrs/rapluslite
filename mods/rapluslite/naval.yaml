@@ -285,7 +285,7 @@ CARR:
 	Armor:
 		Type: Heavy
 	Mobile:
-		TurnSpeed: 7
+		TurnSpeed: 255
 		Speed: 85
 	RevealsShroud:
 		Range: 6c0

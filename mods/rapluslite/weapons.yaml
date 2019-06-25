@@ -665,6 +665,8 @@ HeliDepthCharge:
 	Inherits: DepthCharge
 	Burst: 2
 	Range: 0c128
+	Projectile: Bullet
+		Inaccuracy: 64
 
 ChainGun.Yak.Right:
 	Inherits: ChainGun

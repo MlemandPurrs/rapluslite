@@ -1,3 +1,11 @@
+BADR.Crate:
+	Inherits: BADR
+	ParaDrop:
+		DropRange: 0c512
+	RenderSprites:
+		Image: badr
+	-MapEditorData:
+
 TRAN:
     Buildable:
         BuildPaletteOrder: 1
@@ -14,6 +22,9 @@ TRAN.Soviet:
         BuildPaletteOrder: 4
         BuildAtProductionType: Plane
 		Prerequisites: ~afld, ~aircraft.soviet, ~techlevel.medium
+        Icon: svyt-icon
+	Tooltip:
+		Name: Yak 24
 	RenderSprites:
 		Image: tran
 	-MapEditorData:
@@ -86,6 +97,7 @@ IROQ:
 		Armaments: tertiary
 		PipType: Blue
         Ammo: 4
+        PipCount: 2
 		ReloadDelay: 9
 		AmmoCondition: ammodc
 	SelectionDecorations:
@@ -100,6 +112,7 @@ IROQ:
 		DecorationBounds: 38,32
 	Rearmable:
 		RearmActors: hpad, carr.deployed
+    AcceptsDeliveredExperience:
 
 IROQ.AI:
     Inherits: IROQ
@@ -112,14 +125,6 @@ IROQ.AI:
     RenderSprites:
         Image: iroq
     -MapEditorData:
-
-BADR.Crate:
-	Inherits: BADR
-	ParaDrop:
-		DropRange: 0c512
-	RenderSprites:
-		Image: badr
-	-MapEditorData:
 
 HELI:
     Buildable:
@@ -154,6 +159,7 @@ HELI:
     WithMuzzleOverlay:
 	Rearmable:
 		RearmActors: hpad, carr.deployed
+    AcceptsDeliveredExperience:
 
 HIND:
     Buildable:
@@ -200,6 +206,7 @@ HIND:
 		FacingTolerance: 20
 	Rearmable:
 		RearmActors: afld, afld.russia, afld.ukraine, hpad, carr.deployed
+    AcceptsDeliveredExperience:
 
 U2.emp:
 	Inherits: U2
@@ -257,6 +264,7 @@ YAK:
 		AmmoCondition: ammodc
 	Rearmable:
 		RearmActors: afld, afld.russia, afld.ukraine
+    AcceptsDeliveredExperience:
 
 YAK.Belarus:
     Inherits: YAK
@@ -322,6 +330,7 @@ MIG:
 		PauseOnCondition: !ammo
 	Rearmable:
 		RearmActors: afld, afld.russia, afld.ukraine
+    AcceptsDeliveredExperience:
 
 MIG.AI:
     Inherits: MIG
@@ -473,3 +482,4 @@ HARR:
 		Prerequisites: aircraft.upgraded
 	Rearmable:
 		RearmActors: afld, afld.russia, afld.ukraine, hpad, carr.deployed
+    AcceptsDeliveredExperience:

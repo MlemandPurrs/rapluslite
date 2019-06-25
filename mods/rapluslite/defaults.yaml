@@ -102,6 +102,24 @@
 		ZOffset: 256
         ValidStances: Ally, Enemy, Neutral
 
+^InfantryExperienceHospitalOverrides:
+	WithDecoration@RANK-1:
+		BlinkInterval: 32
+		BlinkPatterns:
+			hospitalheal: On, Off
+	WithDecoration@RANK-2:
+		BlinkInterval: 32
+		BlinkPatterns:
+			hospitalheal: On, Off
+	WithDecoration@RANK-3:
+		BlinkInterval: 32
+		BlinkPatterns:
+			hospitalheal: On, Off
+	WithDecoration@RANK-ELITE:
+		BlinkInterval: 32
+		BlinkPatterns:
+			hospitalheal: On, Off
+
 ^IronCurtainable:
 	WithColoredOverlay@IRONCURTAIN:
 		RequiresCondition: invulnerability
@@ -119,7 +137,7 @@
 		Bounds: 18,18,0,-6
 		DecorationBounds: 12,17,0,-6
     WithDecoration@REDCROSS:
-        ReferencePoint: Top, Right
+        ReferencePoint: Bottom, Right
 
 ^Vehicle:
     Inherits@94: ^LeavesScraps
@@ -137,6 +155,7 @@
         RepairBuildings: fix, fix.russia
 
 ^Plane:
+    -EjectOnDeath:
 	Repairable:
 		RepairBuildings: fix, fix.russia
 
@@ -490,3 +509,33 @@ MINS:
     GrantExternalConditionToCrusher:
         OnCrushCondition: minehit 	
         OnCrushDuration: 50
+
+^EjectsPilotOnAir:
+	EjectOnDeath@RANK-1:
+		PilotActor: PLOT.R1
+		SuccessRate: 45
+		EjectOnGround: false
+		EjectInAir: true
+		AllowUnsuitableCell: false
+		RequiresCondition: rank-veteran == 1
+	EjectOnDeath@RANK-2:
+		PilotActor: PLOT.R2
+		SuccessRate: 30
+		EjectOnGround: false
+		EjectInAir: true
+		AllowUnsuitableCell: false
+		RequiresCondition: rank-veteran == 2
+	EjectOnDeath@RANK-3:
+		PilotActor: PLOT.R3
+		SuccessRate: 25
+		EjectOnGround: false
+		EjectInAir: true
+		AllowUnsuitableCell: false
+		RequiresCondition: rank-veteran == 3
+	EjectOnDeath@RANK-ELITE:
+		PilotActor: PLOT.RE
+		SuccessRate: 10
+		EjectOnGround: false
+		EjectInAir: true
+		AllowUnsuitableCell: false
+		RequiresCondition: rank-elite

@@ -111,7 +111,7 @@ SPY:
     Buildable:
         Prerequisites: ~tent, dome, ~!player.england, ~techlevel.medium
         BuildPaletteOrder: 7
-        Description: Agent of the Intelligence Service.\nCan detect cloaked units and spies.\n  Special Ability: Espionage\nInfiltrates enemy production structures for rank bonus.\nSteals enemy credits from Refineries.\nInfiltrates enemy Power Plants to cut off their Power.\nInfiltrates Radar Domes to reset their exploration.\n  Special Ability: Disguise\nCan disguise as enemy Infantry.\nLoses disguise when attacking.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
+        Description: Agent of the Intelligence Service.\nCan detect cloaked units and spies.\n  Special Ability: Espionage\nInfiltrates enemy production structures for rank bonus.\nSteals enemy credits from Refineries.\nInfiltrates enemy Power Plants to cut off base power.\nInfiltrates Radar Domes to reset their exploration.\nInfiltrates Tech Centers to unlock your country's Tech Unit.\n  Special Ability: Disguise\nCan disguise as enemy Infantry.\nLoses disguise when attacking.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
 	Armament:
         RequiresCondition: !rank-elite
     Armament@elite:
@@ -146,7 +146,7 @@ SPY.EnglandR2:
 THF:
 	Buildable:
         BuildPaletteOrder: 6
-        Description: Field operative of the Union.\n  Special Ability: Theft\nSteals enemy credits from Refineries.\n  Special Ability: Hijacking\nHijacks enemy vehicles.\n  Special Ability: Cloaking\nCloaks when standing still.\n  Unarmed
+        Description: Field operative of the Union.\n  Special Ability: Theft\nSteals enemy credits from Refineries.\nInfiltrates Tech Centers to unlock your country's Tech Unit.\n  Special Ability: Hijacking\nHijacks enemy vehicles.\n  Special Ability: Cloaking\nCloaks when standing still.\n  Unarmed
 	Health:
 		HP: 4500
 
@@ -603,3 +603,52 @@ Ant:
 		WanderMoveRadius: 30
 	RenderSprites:
 		PlayerPalette: scoutant
+
+PLOT:
+	Inherits@1: ^CivInfantry
+	Inherits@2: ^ArmedCivilian
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Tooltip:
+		Name: Pilot
+	-ScaredyCat:
+	Passenger:
+		Weight: 1
+
+PLOT.R1:
+	Inherits: PLOT
+	ProducibleWithLevel:
+		Prerequisites: techlevel.infonly
+		InitialLevels: 1
+	DeliversExperience:
+	RenderSprites:
+		Image: plot
+
+PLOT.R2:
+	Inherits: PLOT
+	ProducibleWithLevel:
+		Prerequisites: techlevel.infonly
+		InitialLevels: 2
+	DeliversExperience:
+	RenderSprites:
+		Image: plot
+    -MapEditorData:
+
+PLOT.R3:
+	Inherits: PLOT
+	ProducibleWithLevel:
+		Prerequisites: techlevel.infonly
+		InitialLevels: 3
+	DeliversExperience:
+	RenderSprites:
+		Image: plot
+    -MapEditorData:
+
+PLOT.RE:
+	Inherits: PLOT
+	ProducibleWithLevel:
+		Prerequisites: techlevel.infonly
+		InitialLevels: 4
+	DeliversExperience:
+	RenderSprites:
+		Image: plot
+    -MapEditorData:

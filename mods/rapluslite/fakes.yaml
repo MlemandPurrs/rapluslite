@@ -11,7 +11,7 @@ FPWR:
 		BuildPaletteOrder: 1
 		Queue: Fakestructure
 		Prerequisites: ~player.france, ~techlevel.infonly
-		Description: Looks like a Power Plant
+		Description: Looks like a Power Plant.
 		Icon: fake-icon
 	Tooltip:
 		Name: Fake Power Plant
@@ -45,7 +45,7 @@ FAPW:
 		BuildPaletteOrder: 9
 		Queue: Fakestructure
 		Prerequisites: dome, ~player.france, ~techlevel.medium
-		Description: Looks like an Advanced Power Plant
+		Description: Looks like an Advanced Power Plant.
 		Icon: fake-icon
 	Tooltip:
 		Name: Fake Advanced Power Plant
@@ -73,7 +73,7 @@ FAPW:
 		RequiresCondition: !build-incomplete
 		Sequence: idle-smoke
 
-BARF:
+TENF:
 	Inherits: ^FakeBuilding
 	Inherits@infiltrate: ^InfiltratableFake
 	Inherits@shape: ^2x2Shape
@@ -81,14 +81,14 @@ BARF:
 		Bounds: 48,48
 	Tooltip:
 		Name: Fake Barracks
-		GenericName: Barracks (Allies)
+		GenericName: Allied Barracks
 		GenericVisibility: Enemy
 		GenericStancePrefix: False
 	Buildable:
 		BuildPaletteOrder: 2
 		Queue: Fakestructure
 		Prerequisites: ~player.france, ~techlevel.infonly
-		Description: Looks like an Barracks
+		Description: Looks like an Allied Barracks.
 		Icon: fake-icon
 	Building:
 		Footprint: xx xx ==
@@ -97,6 +97,37 @@ BARF:
 	WithBuildingBib:
 	RenderSprites:
 		Image: TENT
+	Valued:
+		Cost: 125
+	Health:
+		HP: 40000
+	Armor:
+		Type: Wood
+
+BARF:
+	Inherits: ^FakeBuilding
+	Inherits@infiltrate: ^InfiltratableFake
+	Inherits@shape: ^2x2Shape
+	Selectable:
+		Bounds: 48,48
+	Tooltip:
+		Name: Fake Barracks
+		GenericName: Soviet Barracks
+		GenericVisibility: Enemy
+		GenericStancePrefix: False
+	Buildable:
+		BuildPaletteOrder: 18
+		Queue: Fakestructure
+		Prerequisites: ~structures.soviet, ~player.france, ~techlevel.infonly
+		Description: Looks like an Soviet Barracks.
+		Icon: fake-icon
+	Building:
+		Footprint: xx xx ==
+		Dimensions: 2,3
+		LocalCenterOffset: 0,-512,0
+	WithBuildingBib:
+	RenderSprites:
+		Image: BARR
 	Valued:
 		Cost: 125
 	Health:
@@ -113,9 +144,9 @@ PROF:
 	SelectionDecorations:
 	Buildable:
 		BuildPaletteOrder: 4
-		Prerequisites: proc, ~player.france, ~techlevel.low
+		Prerequisites: ~disabled
 		Queue: Fakestructure
-		Description: Looks like a Ore Refinery
+		Description: Looks like the standard, old Ore Refinery.
 		Icon: fake-icon
 	Tooltip:
 		Name: Fake Ore Refinery
@@ -127,7 +158,7 @@ PROF:
 		Dimensions: 3,4
 		LocalCenterOffset: 0,-512,0
 	RenderSprites:
-		Image: PROC
+		Image: proc
 	WithBuildingBib:
 	WithIdleOverlay@TOP:
 		RequiresCondition: !build-incomplete
@@ -156,6 +187,65 @@ PROF:
 	Armor:
 		Type: Wood
 
+PROF.ERCC:
+	Inherits: ^FakeBuilding
+	Inherits@infiltrate: ^InfiltratableFake
+	Selectable:
+		Bounds: 72,45,0,-14
+		DecorationBounds: 72,77,0,-15
+	SelectionDecorations:
+	Buildable:
+		BuildPaletteOrder: 4
+		Prerequisites: proc, ~player.france, ~techlevel.low
+		Queue: Fakestructure
+		Description: Looks like a Ore Refinery.
+		Icon: fake-icon
+	Tooltip:
+		Name: Fake Ore Refinery
+		GenericName: Ore Refinery
+		GenericVisibility: Enemy
+		GenericStancePrefix: False
+	Building:
+		Footprint: =Xx === ===
+		Dimensions: 3,3
+		LocalCenterOffset: 0,0,0
+	RenderSprites:
+		Image: ercc-proc
+	WithBuildingBib:
+	WithIdleOverlay@topsolid:
+		RequiresCondition: !build-incomplete
+		Sequence: topsolid
+	-HitShape:
+    HitShape@TOPLEFT:
+		TargetableOffsets: 560,-1152,0, 880,-630,0 
+		Type: Rectangle
+			TopLeft: -1536, -768
+			BottomRight: -256,-256
+	HitShape@TOPRIGHT:
+		TargetableOffsets: 1400,1152,0, 1720,630,0
+		Type: Rectangle
+			TopLeft: 256, -1536
+			BottomRight: 1536, -256
+	HitShape@BOTRIGHT:
+		TargetableOffsets: -560,1152,0, -800,630,0
+		Type: Rectangle
+			TopLeft: 256, 256
+			BottomRight: 1536, 768
+	HitShape@BOTLEFT:
+		TargetableOffsets: -560,-1152,0, -800,-630,0
+		Type: Rectangle
+			TopLeft: -1536, 256
+			BottomRight: -256, 1536
+	WithIdleOverlay@SMOKE:
+		RequiresCondition: !build-incomplete
+		Sequence: idle-smoke
+	Valued:
+		Cost: 375
+	Health:
+		HP: 90000
+	Armor:
+		Type: Wood
+
 WEAF:
 	Inherits: ^FakeBuilding
 	Inherits@infiltrate: ^InfiltratableFake
@@ -166,7 +256,7 @@ WEAF:
 		BuildPaletteOrder: 5
 		Prerequisites: proc, ~player.france, ~techlevel.low
 		Queue: Fakestructure
-		Description: Looks like a Weapons Factory
+		Description: Looks like a Weapons Factory.
 		Icon: fake-icon
 	Tooltip:
 		Name: Fake War Factory
@@ -199,7 +289,7 @@ FIXF:
 		BuildPaletteOrder: 8
 		Queue: Fakestructure
 		Prerequisites: weap, ~player.france, ~techlevel.medium
-		Description: Looks like a Service Depot
+		Description: Looks like a Service Depot.
 		Icon: fake-icon
 	Tooltip:
 		Name: Fake Service Depot
@@ -233,11 +323,11 @@ SYRF:
 		BuildPaletteOrder: 3
 		Queue: Fakestructure
 		Prerequisites: anypower, ~player.france, ~techlevel.medium
-		Description: Looks like a Ship Yard
+		Description: Looks like a Naval Yard.
 		Icon: fake-icon
 	Tooltip:
-		Name: Fake Ship Yard
-		GenericName: Ship Yard
+		Name: Fake Naval Yard
+		GenericName: Naval Yard
 		GenericVisibility: Enemy
 		GenericStancePrefix: False
 	Targetable:
@@ -280,7 +370,7 @@ SPEF:
 		BuildPaletteOrder: 15
 		Queue: Fakestructure
 		Prerequisites: ~structures.soviet, ~player.france, ~techlevel.low
-		Description: Looks like a Sub Pen
+		Description: Looks like a Sub Pen.
 		Icon: fake-icon
 	Tooltip:
 		Name: Fake Sub Pen
@@ -328,7 +418,7 @@ AFLF:
 		BuildPaletteOrder: 13
 		Queue: Fakestructure
 		Prerequisites: ~structures.soviet, ~player.france, ~techlevel.medium
-		Description: Looks like an Airfield
+		Description: Looks like an Airfield.
 		Icon: fake-icon
 	Building:
 		Footprint: xxx xx=
@@ -357,7 +447,7 @@ HPAF:
 		BuildPaletteOrder: 7
 		Queue: Fakestructure
 		Prerequisites: dome, ~player.france, ~techlevel.medium
-		Description: Looks like an Helipad
+		Description: Looks like an Helipad.
 		Icon: fake-icon
 	Building:
 		Footprint: xx ==
@@ -391,7 +481,7 @@ DOMF:
 		BuildPaletteOrder: 6
 		Queue: Fakestructure
 		Prerequisites: proc, ~player.france, ~techlevel.medium
-		Description: Looks like a Radar Dome
+		Description: Looks like a Radar Dome.
 		Icon: fake-icon
 	Building:
 		Footprint: xx xx
@@ -423,7 +513,7 @@ ATEF:
 		Queue: Fakestructure
 		Prerequisites: weap, dome, ~player.france, ~techlevel.unrestricted
 		BuildLimit: 1
-		Description: Looks like allies Tech Center\nMaximum 1 can be built.
+		Description: Looks like allies Tech Center.\nMaximum 1 can be built.
 		Icon: fake-icon
 	Building:
 		Footprint: xx xx
@@ -441,7 +531,6 @@ ATEF:
 
 STEF:
 	Inherits: ^FakeBuilding
-	Inherits@IDISABLE: ^DisableOnLowPower
 	Inherits@shape: ^3x2Shape
 	Selectable:
 		Bounds: 72,48
@@ -453,10 +542,10 @@ STEF:
 		GenericVisibility: Enemy
 		GenericStancePrefix: False
 	Buildable:
-		BuildPaletteOrder: 13
-		Queue: Supportstruct
+		BuildPaletteOrder: 16
+		Queue: Fakestructure
         BuildLimit: 1
-		Prerequisites: stek, ~player.france, ~techlevel.high
+		Prerequisites: ~structures.soviet, ~player.france, ~techlevel.high
 		Description: Looks like soviet Tech Center.\nMaximum 1 can be built.
 		Icon: fake-icon
 	Building:
@@ -489,13 +578,48 @@ PDOF:
 		Queue: Fakestructure
 		Prerequisites: atek, ~player.france, ~techlevel.unrestricted
 		BuildLimit: 1
-		Description: Looks like a Chronosphere\nMaximum 1 can be built
+		Description: Looks like a Chronosphere.\nMaximum 1 can be built.
 		Icon: fake-icon
 	Building:
 		Footprint: xx xx
 		Dimensions: 2,2
 	RenderSprites:
 		Image: PDOX
+	WithBuildingBib:
+		HasMinibib: Yes
+	Valued:
+		Cost: 375
+	Health:
+		HP: 100000
+	Armor:
+		Type: Wood
+	Explodes:
+		DamageThreshold: 50
+
+IROF:
+	Inherits: ^FakeBuilding
+	Inherits@IDISABLE: ^DisableOnLowPower
+	Inherits@shape: ^2x1Shape
+	Selectable:
+		Bounds: 48,28,0,2
+		DecorationBounds: 50,50,0,-12
+	Tooltip:
+		Name: Fake Iron Curtain
+		GenericName: Iron Curtain
+		GenericVisibility: Enemy
+		GenericStancePrefix: False
+	Buildable:
+		BuildPaletteOrder: 17
+		Queue: Fakestructure
+		Prerequisites: ~structures.soviet, ~player.france, ~techlevel.unrestricted
+		BuildLimit: 1
+		Description: Looks like the Iron Curtain.\nMaximum 1 can be built.
+		Icon: fake-icon
+	Building:
+		Footprint: xx
+		Dimensions: 2,1
+	RenderSprites:
+		Image: IRON
 	WithBuildingBib:
 		HasMinibib: Yes
 	Valued:
@@ -523,7 +647,7 @@ MSLF:
 		Queue: Fakestructure
 		Prerequisites: techcenter, ~player.france, ~techlevel.unrestricted
 		BuildLimit: 1
-		Description: Looks like a Missile Silo\nMaximum 1 can be built
+		Description: Looks like a Missile Silo.\nMaximum 1 can be built.
 		Icon: fake-icon
 	Building:
 		Footprint: xx
