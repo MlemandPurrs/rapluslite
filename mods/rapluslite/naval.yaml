@@ -1,13 +1,14 @@
 LST:
     Buildable:
         BuildPaletteOrder: 1
+        Description: General-purpose naval transport.\nCan carry up to 18 Infantry and Tanks.\nGets slowed down to half-speed\nwhen cargo occupied gets above 8.\n  Unarmed
 	Cargo:
-		MaxWeight: 12
-		PipCount: 12
+		MaxWeight: 16
+		PipCount: 16
         PassengerConditions:
             mgg: mgg-inside
             dtrk: demo-inside
-    #       mrj: mrj-inside
+        LoadedCondition: Loaded
 	RepairableNear:
 		Buildings: syrd, spen
 	CreatesShroud:
@@ -27,6 +28,9 @@ LST:
 		EmptyWeapon: MiniNuke
 		DamageSource: Killer
         RequiresCondition: demo-inside
+	SpeedMultiplier@HALFCAPACITY:
+		RequiresCondition: Loaded >= 8
+		Modifier: 50
 
 PT:
     Buildable:
@@ -267,6 +271,9 @@ CA:
         Sequence: turret-elite
 		Turret: secondary
         RequiresCondition: rank-elite
+    ReloadArmamentsBar:
+        Color: FFFF00
+    RenderRangeCircle:
 
 CARR:
 	Inherits: ^Ship
@@ -367,6 +374,7 @@ CARR.Deployed:
 SS:
     Buildable:
         BuildPaletteOrder: 2
+        Description: Submerged anti-ship unit\narmed with torpedoes.\nCan detect other submarines.\n  Strong vs Naval units\n  Weak vs Ground units, Aircraft\n  Special Ability: Submerge\nCan dive underwater to become invisible\nmove unseen and avoid damage of most weapons.\nCan be manually ordered to surface for Repairs.
 	Valued:
 		Cost: 775
     Armament:
@@ -430,7 +438,7 @@ SS.AG:
 		BuildAtProductionType: Submarine
 		BuildPaletteOrder: 5
 		Prerequisites: ~spen, stek, ~techlevel.high
-		Description: Submerged multi-role unit\narmed with torpedoes and flak gun.\nCan carry two Infantry.\nCan detect other submarines.\n  Strong vs Naval units\n  Weak vs Ground units\n  Special Ability: Submerge
+		Description: Submerged multi-role unit\narmed with torpedoes and grenadelauncher.\nCan carry two Infantry.\nCan detect other submarines.\n  Strong vs Infantry, Buildings\n  Weak vs Tanks, Aircraft\n  Special Ability: Submerge\nCan dive underwater to become invisible\nmove unseen and avoid damage of most weapons.
 	Tooltip:
 		Name: Attack Submarine
 	Health:
@@ -441,18 +449,12 @@ SS.AG:
 		RequiresCondition: !notmobile && !empdisable
 	Armament@SECONDARY:
 		Name: secondary
-		Weapon: SubCannon
-		LocalOffset: 612,0,192
-		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
-	Armament@TERTIARY:
-		Name: tertiary
-		Weapon: SubCannonAA
+		Weapon: GrenadeLauncher.sub
 		LocalOffset: 612,0,192
 		MuzzleSequence: muzzle
         PauseOnCondition: empdisable
 	AttackFrontal:
-		Armaments: primary, elite, secondary, tertiary
+		Armaments: primary, elite, secondary
 	WithMuzzleOverlay:
 	WithMoveAnimation:
 		MoveSequence: move
@@ -481,7 +483,7 @@ SS.AG:
 MSUB:
     Buildable:
         BuildPaletteOrder: 4
-		Description: Submerged anti-ground siege unit.\nCan detect other submarines.\n  Strong vs Buildings, Ground units, Aircraft\n  Weak vs Naval units\n  Special Ability: Submerge	
+		Description: Submerged anti-ground siege unit.\nCan detect other submarines.\n  Strong vs Buildings, Ground units, Aircraft\n  Weak vs Naval units\n  Special Ability: Submerge\nCan dive underwater to become invisible\nmove unseen and avoid damage of most weapons.\nCan be manually ordered to surface for Repairs.
         BuildDurationModifier: 60
 	Armament@PRIMARY:
         PauseOnCondition: empdisable
@@ -543,13 +545,16 @@ MSUB:
         DeployedCondition: deployed
 	ExternalCondition@MINEHIT:
 		Condition: minehit
+    ReloadArmamentsBar:
+        Color: FFFF00
+    RenderRangeCircle:
 
 MSUB.AA:
 	Inherits: MSUB
 	Buildable:
 		BuildPaletteOrder: 3
 		Prerequisites: ~spen, dome, ~techlevel.medium
-		Description: Submerged unit with anti-air capabilities.\nCan detect other submarines.\n  Strong vs Aircraft\n  Cannot attack ground units\n  Special Ability: Submerge
+		Description: Submerged unit with anti-air capabilities.\nCan detect other submarines.\n  Strong vs Aircraft\n  Cannot attack ground units\n  Special Ability: Submerge\nCan dive underwater to become invisible\nmove unseen and avoid damage of most weapons.\nCan be manually ordered to surface for Repairs.
 	Tooltip:
 		Name: SAM Submarine
 	Valued:
@@ -599,7 +604,7 @@ TBT:
 		Queue: Ship
 		BuildPaletteOrder: 6
 		Prerequisites: tsla, stek, ~player.russia, ~techlevel.high
-		Description: Ship with mounted Tesla coil\n  Immune to EMP\n  Strong vs Infantry, Navy\n  Weak vs Tanks, Aircraft
+		Description: Ship with mounted Tesla coil.\n  Immune to EMP\n  Strong vs Infantry, Navy\n  Weak vs Tanks, Aircraft
 	Valued:
 		Cost: 850
 	Tooltip:
@@ -646,7 +651,7 @@ FSUB:
 		BuildAtProductionType: Submarine
 		BuildPaletteOrder: 6
 		Prerequisites: ~spen, ftur, stek, ~player.ukraine, ~techlevel.medium
-		Description: Submerged anti-ship unit\narmed with fireball launcher.\n Strong vs Ships and Infantry.\n Weak vs Aircraft and Defenses.
+		Description: Submerged anti-ship unit\narmed with fireball launcher.\n Strong vs Ships and Infantry.\n Weak vs Aircraft and Defenses.\n  Special Ability: Submerge\nCan dive underwater to become invisible\nmove unseen and avoid damage of most weapons.\nCan be manually ordered to surface for Repairs.
 	Valued:
 		Cost: 800
 	Tooltip:
@@ -739,3 +744,143 @@ FSUB:
         DeployedCondition: deployed
 	ExternalCondition@MINEHIT:
 		Condition: minehit
+
+SCRP:
+    Inherits: ^Ship
+    Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+    Buildable:
+        Queue: Ship
+        BuildPaletteOrder: 6
+        Prerequisites: stek, ~player.kazakh, ~techlevel.high
+        Description: Quick, light-weight boat\narmed with Flak cannon.\nLays sea mines to destroy\nunwary enemy Ships and Submarines.\nRestocks Sea Mines when near\na Naval yard or an Sub Pen.\nCan detect submarines.\n  Strong vs Aircraft, Infantry\n  Weak vs Ships, Tanks
+    Valued:
+        Cost: 750
+    Tooltip:
+        Name: Sea Scorpion
+    Health:
+        HP: 20000
+    Armor:
+        Type: Heavy
+    Mobile:
+        TurnSpeed: 7
+        Speed: 128
+    RevealsShroud:
+        Range: 6c0
+        RevealGeneratedShroud: False
+    RevealsShroud@GAPGEN:
+        Range: 4c0
+    Turreted:
+        TurnSpeed: 7
+        Offset: -448,0,100
+    Armament@AA:
+        Weapon: FLAK-23-AA
+        Recoil: 85
+        LocalOffset: 328,0,348
+        MuzzleSequence: muzzle
+		PauseOnCondition: empdisable
+    Armament@AG:
+        Weapon: FLAK-23-AG
+        Recoil: 85
+        LocalOffset: 328,0,348
+        MuzzleSequence: muzzle
+		PauseOnCondition: empdisable
+    AttackTurreted:
+		PauseOnCondition: empdisable
+    WithSpriteTurret:
+	WithMuzzleOverlay:
+	SelectionDecorations:
+	Selectable:
+		DecorationBounds: 44,44
+	DetectCloaked:
+		CloakTypes: Underwater
+		Range: 4c0
+	RenderDetectionCircle:
+	Minelayer:
+		Mine: MINS
+	Rearmable:
+		RearmActors:
+	MineImmune:
+	AmmoPool:
+		Armaments: 
+		Ammo: 3
+		RearmSound: minelay1.aud
+	ReloadAmmoPool:
+		Delay: 300
+		Count: 1
+        Sound: minelay1.aud
+		RequiresCondition: replenishsmine
+	WithDecoration@minereplenish:
+		RequiresSelection: true
+		Image: pips
+		Sequence: tag-reload
+		ReferencePoint: Top
+		ZOffset: 256
+		RequiresCondition: replenishsmine
+	ExternalCondition@MINEREPLENISH:
+		Condition: replenishsmine
+	RepairableNear:
+		Buildings: syrd, spen, spen.russia
+
+HVRF:
+	Inherits: ^Vehicle
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Ship
+		BuildPaletteOrder: 6
+        BuildAtProductionType: Boat
+		Prerequisites: dome, fix, ~vehicles.allies, ~player.spain, ~techlevel.high
+		Description: Amphibian anti-air unit with\ntoken Mg for ground support.\nCan carry one Infantry.\n  Strong vs Infantry, Aircraft\n  Weak vs Tanks, Ships
+	Valued:
+		Cost: 625
+	Tooltip:
+		Name: Hover Flak
+	Health:
+		HP: 15000
+	Armor:
+		Type: Light
+	Mobile:
+		Speed: 128
+        Locomotor: amphibious
+        RequiresCondition: !empdisable && !notmobile && !being-captured
+	RevealsShroud:
+		Range: 6c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Turreted:
+        Turret: primary
+		TurnSpeed: 5
+        Offset: 0,0,128
+	Armament@PRIMARY:
+		Weapon: FLAK-23-AA
+        Turret: 
+		LocalOffset: 86,160,220, 86,-160,220
+		MuzzleSequence: muzzle
+        PauseOnCondition: empdisable
+	Armament@SECONDARY:
+        Turret: primary
+		Weapon: M60mg
+		MuzzleSequence: muzzle
+		LocalOffset: 128,0,43
+        PauseOnCondition: empdisable
+	AttackFrontal:
+        Armaments: primary, secondary
+        PauseOnCondition: empdisable
+	WithSpriteTurret:
+	WithMuzzleOverlay:
+	GrantConditionOnTerrain@SEA:
+		TerrainTypes: Water, River
+		Condition: floating
+    Targetable:
+		RequiresCondition: !floating
+	Targetable@SEA:
+		TargetTypes: Ground, Water, Ship
+		RequiresCondition: floating
+    RenderRangeCircle:
+    -Passenger:
+	Cargo:
+		Types: Infantry
+		MaxWeight: 1
+        PipCount: 1
+		LoadingCondition: notmobile

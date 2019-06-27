@@ -27,6 +27,16 @@
     Burst: 3
 	BurstDelays: 6
 
+25mm.spain:
+    Inherits: 25mm
+    ReloadDelay: 24
+    Range: 5c768
+
+25mm.spain.elite:
+    Inherits: 25mm.spain
+    Burst: 3
+	BurstDelays: 6
+
 90mm.elite:
 	Inherits: 90mm
 	Burst: 2
@@ -53,6 +63,16 @@
 	Burst: 2
 	BurstDelays: 8
 
+90mm.spain:
+	Inherits: 90mm
+    ReloadDelay: 56
+	Range: 5c768
+
+90mm.spain.elite:
+	Inherits: 90mm.spain
+	Burst: 2
+	BurstDelays: 8
+
 105mm.Singular:
 	Inherits: 105mm
 	ReloadDelay: 60
@@ -66,41 +86,9 @@
 	Inherits: 105mm.Singular
     Range: 6c768
 
-105mm.Singular.ukraine:
-	Inherits: 105mm.ukraine
-	ReloadDelay: 65
-	-Burst:
-	-BurstDelays:
-	Warhead@1Dam: SpreadDamage
-		Versus:
-			Heavy: 115
-
-105mm.Singular.ukraine.elite:
-	Inherits: 105mm.Singular.ukraine
-    Range: 7c768
-
 105mm.elite:
 	Inherits: 105mm
     Range: 6c768
- 
-105mm.ukraine:
-	Inherits: ^Cannon
-	Range: 5c768
-	ReloadDelay: 78
-	Burst: 2
-	BurstDelays: 4
-	Warhead@1Dam: SpreadDamage
-		Versus:
-			Heavy: 115
-
-105mm.ukraine.elite:
-	Inherits: 105mm.ukraine
-    Range: 7c768
- 
-120mm.ukraine:
-	Inherits: 120mm
-	Range: 5c768
-	ReloadDelay: 100
 
 LtnkRockets:
 	Inherits: ^AntiGroundMissile
@@ -139,6 +127,10 @@ M1CTank.elite:
 
 APTusk:
 	Burst: 2
+
+APTusk.single:
+    Inherits: APTusk
+	-Burst:
 
 SCUD.elite:
     Inherits: SCUD
@@ -320,8 +312,40 @@ Repair.truk:
 	Warhead@1Dam: SpreadDamage
 		Damage: -3500
 
+FLAK-23-AG.britain:
+    Inherits: FLAK-23-AG
+	Warhead@1Dam: SpreadDamage
+		Damage: 2250
+
+FLAK-23-AG.france:
+    Inherits: FLAK-23-AG
+    ReloadDelay: 9
+	Warhead@1Dam: SpreadDamage
+		Damage: 1750
+
+FLAK-23-AG.spain:
+    Inherits: FLAK-23-AG
+    ReloadDelay: 12
+    Range: 7c0
+
 FLAK-23-AA:
     Range: 7c0
+
+FLAK-23-AA.britain:
+    Inherits: FLAK-23-AA
+	Warhead@1Dam: SpreadDamage
+		Damage: 2250
+
+FLAK-23-AA.france:
+    Inherits: FLAK-23-AA
+    ReloadDelay: 9
+	Warhead@1Dam: SpreadDamage
+		Damage: 1750
+
+FLAK-23-AA.spain:
+    Inherits: FLAK-23-AA
+    ReloadDelay: 12
+    Range: 8c0
 
 VolkovGun:
 	Inherits: ^SnipeWeapon
@@ -352,6 +376,17 @@ VolkovGun:
         ImpactSounds: splash9.aud
         ValidTargets: Water, Underwater
         InvalidTargets: Ship, Structure, Bridge
+
+TorpTube:
+    Projectile: Missile
+        HorizontalRateOfTurn: 2
+	Warhead@1Dam: SpreadDamage
+		Damage: 12000
+		Versus:
+			Wood: 50
+			Light: 50
+			Heavy: 85
+			Concrete: 850
 
 TorpTube.elite:
     Inherits: TorpTube
@@ -384,7 +419,7 @@ SubMissileAA.elite:
 # hybrid of 25mm and FLAK-23
 SubCannon:
 	Inherits: FLAK-23-AG
-	ReloadDelay: 25
+	ReloadDelay: 18
 	Range: 6c512
 	Warhead@1Dam: SpreadDamage
 		Damage: 2500
@@ -397,7 +432,7 @@ SubCannon:
 
 SubCannonAA:
 	Inherits: FLAK-23-AA
-	ReloadDelay: 25
+	ReloadDelay: 18
 	Range: 7c0
 	Warhead@1Dam: SpreadDamage
 		Damage: 2500
@@ -409,6 +444,10 @@ SubCannonAA:
 			Concrete: 35
 
 DepthCharge:
+	Warhead@1Dam: SpreadDamage
+		Damage: 4000
+		Versus:
+			Light: 100
 	Projectile: Bullet
 		Speed: 150
 
@@ -492,6 +531,9 @@ EmpBomb:
 		InvalidTargets: Vehicle, Structure, Wall
 		Size: 1
 
+TurretGun:
+	Range: 7c512
+
 TurretGun.dual:
 	Inherits: TurretGun
 	ReloadDelay: 40
@@ -527,6 +569,14 @@ GrenadeLauncher:
 		ContrailDelay: 0
 		ContrailWidth: 0c064
 	Report: aacanon3.aud
+
+GrenadeLauncher.sub:
+    Inherits: GrenadeLauncher
+    ReloadDelay: 49
+    Warhead@1Dam: SpreadDamage
+        Versus:
+			Light: 50
+			Heavy: 50
 
 ZSU-23:
     Range: 9c0
@@ -607,6 +657,11 @@ Stinger.elite:
 StingerAA.elite:
     Inherits: StingerAA
     Burst: 4
+
+2Inch:
+    ReloadDelay: 40
+	Projectile: Bullet
+		Speed: 724
 
 2Inch.elite:
     Inherits: 2Inch
@@ -853,3 +908,100 @@ ASMine:
 		Explosions: large_explosion
 		ImpactSounds: mineblo1.aud
 		ValidTargets: Underwater
+
+Kornet:
+	Inherits: ^AntiGroundMissile
+	Range: 6c768
+	Report: missile6.aud
+	ValidTargets: Ground
+	Projectile: Missile
+		Arm: 2
+		HorizontalRateOfTurn: 5
+		Speed: 213
+		RangeLimit: 9c204
+	Warhead@1Dam: SpreadDamage
+		Spread: 128
+		Damage: 5000
+		ValidTargets: Ground
+		Versus:
+			None: 10
+			Wood: 74
+			Light: 34
+			Heavy: 100
+	Warhead@3Eff: CreateEffect
+		Explosions: med_explosion
+		ImpactSounds: xplos.aud
+		ImpactActors: false
+		ValidTargets: Ground, Water
+
+MortarNapalm:
+	ReloadDelay: 60
+	Range: 8c512
+	MinRange: 1c0
+	ValidTargets: Ground, Water
+	InvalidTargets: Air
+	Report: nade.aud
+	Projectile: Bullet
+		Speed: 166
+		Blockable: false
+		LaunchAngle: 92
+		Inaccuracy: 768
+		Image: BOMB
+		ContrailLength: 10
+		ContrailZOffset: 0
+		ContrailDelay: 0
+		ContrailWidth: 0c064
+	Warhead@1Dam: SpreadDamage
+		Spread: 512
+		Damage: 5000
+		Versus:
+			None: 60
+			Wood: 110
+			Light: 55
+			Heavy: 45
+			Concrete: 100
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Scorch
+		InvalidTargets: Vehicle, Tank, Structure, Wall, Husk, Trees
+	Warhead@3Eff: CreateEffect
+		Explosions: small_napalm
+		ImpactSounds: firetrt1.aud
+		ValidTargets: Ground, Ship
+	Warhead@4EffWater: CreateEffect
+		Explosions: small_splash
+		ImpactSounds: splash9.aud
+		ValidTargets: Water, Underwater
+		InvalidTargets: Ship, Structure, Bridge
+
+227mm:
+	Inherits: ^AntiGroundMissile
+	ReloadDelay: 100
+	Range: 9c0
+	MinRange: 3c0
+	Burst: 4
+	BurstDelays: 4
+	Report: rocket1TD.aud
+	ValidTargets: Ground
+	TargetActorCenter: true
+	# Remove default Missile properties
+	-Projectile:
+	Projectile: Bullet
+		Blockable: false
+		Image: DRAGON
+		Shadow: true
+		TrailImage: smokey
+		Inaccuracy: 853
+		LaunchAngle: 62
+		ContrailLength: 10
+		Speed: 341
+	Warhead@1Dam: SpreadDamage
+		Spread: 683
+		ValidTargets: Ground
+		Versus:
+			None: 25
+			Wood: 60
+			Light: 100
+			Heavy: 50
+	Warhead@3Eff: CreateEffect
+		Explosions: med_explosion

@@ -86,6 +86,20 @@ HARV.Belarus.EmptyHusk:
 		Image: 1tnk.destroyed
 	-MapEditorData:
 
+1TNK.Spain.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Light Tank)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: 1tnk.Spain
+	InfiltrateForTransform:
+		IntoActor: 1tnk.Spain
+	RenderSprites:
+		Image: 1tnk.destroyed
+	-MapEditorData:
+
 2TNK.England.Husk:
 	Inherits: ^Husk
 	Tooltip:
@@ -124,6 +138,20 @@ HARV.Belarus.EmptyHusk:
 		IntoActor: 2tnk.Germany
 	InfiltrateForTransform:
 		IntoActor: 2tnk.Germany
+	RenderSprites:
+		Image: 2tnk.destroyed
+	-MapEditorData:
+
+2TNK.Spain.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Medium Tank)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: 2tnk.Spain
+	InfiltrateForTransform:
+		IntoActor: 2tnk.Spain
 	RenderSprites:
 		Image: 2tnk.destroyed
 	-MapEditorData:
@@ -251,6 +279,19 @@ HARV.Belarus.EmptyHusk:
 	RenderSprites:
 		Image: 4tnk.flam.destroyed
 
+BEHE.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Behemoth)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: behe
+	InfiltrateForTransform:
+		IntoActor: behe
+	RenderSprites:
+		Image: behe.destroyed
+
 ATNK.Husk:
 	Inherits: ^Husk
 	Tooltip:
@@ -261,6 +302,58 @@ ATNK.Husk:
 		IntoActor: atnk
 	InfiltrateForTransform:
 		IntoActor: atnk
+	RenderSprites:
+		Image: atnk.destroyed
+
+ATNK.England.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Flak Tank)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: atnk.england
+	InfiltrateForTransform:
+		IntoActor: atnk.england
+	RenderSprites:
+		Image: atnk.destroyed
+
+ATNK.France.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Flak Tank)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: atnk.france
+	InfiltrateForTransform:
+		IntoActor: atnk.france
+	RenderSprites:
+		Image: atnk.destroyed
+
+ATNK.Germany.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Flak Tank)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: atnk.germany
+	InfiltrateForTransform:
+		IntoActor: atnk.germany
+	RenderSprites:
+		Image: atnk.destroyed
+
+ATNK.Spain.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Flak Tank)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: atnk.spain
+	InfiltrateForTransform:
+		IntoActor: atnk.spain
 	RenderSprites:
 		Image: atnk.destroyed
 

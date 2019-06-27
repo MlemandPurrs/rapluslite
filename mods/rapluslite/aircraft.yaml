@@ -1,3 +1,12 @@
+BADR:
+    SpeedMultiplier:
+        Modifier: 110
+        RequiresCondition: kazakh.player
+    GrantConditionOnFaction:
+        Condition: kazakh.player
+        Factions: kazakh
+        ResetOnOwnerChange: True
+
 BADR.Crate:
 	Inherits: BADR
 	ParaDrop:
@@ -27,6 +36,13 @@ TRAN.Soviet:
 		Name: Yak 24
 	RenderSprites:
 		Image: tran
+    SpeedMultiplier:
+        Modifier: 110
+        RequiresCondition: kazakh.player
+    GrantConditionOnFaction:
+        Condition: kazakh.player
+        Factions: kazakh
+        ResetOnOwnerChange: True
 	-MapEditorData:
 
 IROQ:
@@ -265,6 +281,13 @@ YAK:
 	Rearmable:
 		RearmActors: afld, afld.russia, afld.ukraine
     AcceptsDeliveredExperience:
+    SpeedMultiplier:
+        Modifier: 110
+        RequiresCondition: kazakh.player
+    GrantConditionOnFaction:
+        Condition: kazakh.player
+        Factions: kazakh
+        ResetOnOwnerChange: True
 
 YAK.Belarus:
     Inherits: YAK
@@ -322,6 +345,7 @@ MIG:
         Description: Fast Multi-Role Attack Plane.\n  Can attack both Air and Ground targets.\n  Strong vs Buildings, Vehicles\n  Weak vs Infantry, Aircraft
     Aircraft:
         TakeOffOnCreation: False
+        TakeoffSounds: migtoff1.aud
 	Valued:
 		Cost: 1800
 	Armament@SECONDARY:
@@ -331,6 +355,13 @@ MIG:
 	Rearmable:
 		RearmActors: afld, afld.russia, afld.ukraine
     AcceptsDeliveredExperience:
+    SpeedMultiplier:
+        Modifier: 110
+        RequiresCondition: kazakh.player
+    GrantConditionOnFaction:
+        Condition: kazakh.player
+        Factions: kazakh
+        ResetOnOwnerChange: True
 
 MIG.AI:
     Inherits: MIG
@@ -414,6 +445,13 @@ COSSACK:
 		Image: cossack
 	Rearmable:
 		RearmActors: afld, afld.russia, afld.ukraine
+    SpeedMultiplier:
+        Modifier: 110
+        RequiresCondition: kazakh.player
+    GrantConditionOnFaction:
+        Condition: kazakh.player
+        Factions: kazakh
+        ResetOnOwnerChange: True
 
 HARR:
 	Inherits: ^Helicopter

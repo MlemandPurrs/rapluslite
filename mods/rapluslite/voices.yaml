@@ -1,10 +1,14 @@
 GenericVoice:
 	Variants:
+        spain: .v01,.v03
 		belarus: .r01,.r03
+        kazakh: .r01,.r03
 
 VehicleVoice:
 	Variants:
+        spain: .v00,.v02
 		belarus: .r00,.r02
+        kazakh: .r00,.r02
 
 VolkovVoice:
 	DefaultVariant: .aud

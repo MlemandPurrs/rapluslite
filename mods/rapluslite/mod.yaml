@@ -1,6 +1,6 @@
 Metadata:
 	Title: Red Alert Plus (Lite)
-	Version: release-20190314
+	Version: v1.1-betahotfix
 	Website: https://www.openra.net
 	WebIcon32: https://www.openra.net/images/icons/ra_32x32.png
 
@@ -48,7 +48,7 @@ Packages:
 
 MapFolders:
     rapluslite|maps: System
-	~^maps/ra/release-20190314: User
+	~^maps/ra/v1.1-betahotfix: User
 
 Rules:
 	ra|rules/misc.yaml

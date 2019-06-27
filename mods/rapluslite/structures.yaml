@@ -7,12 +7,21 @@ FACT:
 	Production:
 		Produces: Building,Defense,Fakestructure
         PauseOnCondition: disabled
+	ProvidesPrerequisite@allies:
+		Factions: allies, england, france, germany, spain
+		Prerequisite: structures.allies
+	ProvidesPrerequisite@spain:
+		Factions: spain
+		Prerequisite: structures.spain
 	ProvidesPrerequisite@soviet:
-		Factions: soviet, russia, ukraine, belarus
+		Factions: soviet, russia, ukraine, belarus, kazakh
 		Prerequisite: structures.soviet
 	ProvidesPrerequisite@belarus:
 		Factions: belarus
 		Prerequisite: structures.belarus
+	ProvidesPrerequisite@kazakhstan:
+		Factions: kazakh
+		Prerequisite: structures.kazakh
 	WithDeathAnimation:
 		DeathSequence: dead
 		UseDeathTypeSuffix: false
@@ -83,13 +92,22 @@ TENT:
 	Buildable:
 		Prerequisites: ~structures.allies, ~techlevel.infonly
         BuildPaletteOrder: 2
-        Description: Trains Infantry units.\nCan be Infiltrated by an Spy resulting\nin Veterancy for enemy Infantry.
+        Description: Trains Infantry units.\nCan be Infiltrated by an Spy resulting\nin Veterancy for enemy Infantry.\n Special: Free Guards\nEach Barracks comes with two free Rifle Infantry.
 	WithDeathAnimation:
 		DeathSequence: dead
 		UseDeathTypeSuffix: false
 	Production:
 		Produces: Infantry, Soldier
         PauseOnCondition: disabled
+	ProvidesPrerequisite@allies:
+		Factions: allies, england, france, germany, spain
+		Prerequisite: infantry.allies
+	ProvidesPrerequisite@spain:
+		Factions: spain
+		Prerequisite: infantry.spain
+	ProvidesPrerequisite@spanishstructure:
+		RequiresPrerequisites: structures.spain
+		Prerequisite: infantry.spain
     FreeActor@1:
 		Actor: E1
 		SpawnOffset: 0,2
@@ -105,9 +123,9 @@ BARR:
 	Buildable:
         BuildPaletteOrder: 2
         Prerequisites: ~structures.soviet, ~!player.russia, ~techlevel.infonly
-        Description: Trains Infantry units.\nCan be Infiltrated by an Spy resulting\nin Veterancy for enemy Infantry.
+        Description: Trains Infantry units.\nCan be Infiltrated by an Spy resulting\nin Veterancy for enemy Infantry.\n Special: Free Guards\nEach Barracks comes with two free Rifle Infantry.
 	ProvidesPrerequisite@soviet:
-		Factions: soviet, russia, ukraine, belarus
+		Factions: soviet, russia, ukraine, belarus, kazakh
 		Prerequisite: infantry.soviet
 	ProvidesPrerequisite@belarus:
 		Factions: belarus
@@ -115,6 +133,12 @@ BARR:
 	ProvidesPrerequisite@belarussianstructure:
 		RequiresPrerequisites: structures.belarus
 		Prerequisite: infantry.belarus
+	ProvidesPrerequisite@kazakhstan:
+		Factions: kazakh
+		Prerequisite: infantry.kazakh
+	ProvidesPrerequisite@kazakhstructure:
+		RequiresPrerequisites: structures.kazakh
+		Prerequisite: infantry.kazakh
 	WithDeathAnimation:
 		DeathSequence: dead
 		UseDeathTypeSuffix: false
@@ -213,7 +237,7 @@ PROC.ERCC:
 	RenderSprites:
 		Image: ercc-proc
 	Building:
-		Footprint: =Xx === ===
+		Footprint: =Xx x== ===
 		Dimensions: 3,3
 		LocalCenterOffset: 0,0,0
 	Refinery:
@@ -308,8 +332,19 @@ SILO:
 		InitialDelay: 600
 		Amount: 30
 		PauseOnCondition: lowpower || disabled
+        RequiresCondition: !owner.is.spain
+	CashTrickler@FASTINCOME:
+		Interval: 400
+		InitialDelay: 400
+		Amount: 30
+		PauseOnCondition: lowpower || disabled
+        RequiresCondition: owner.is.spain
 	CashTricklerBar:
     -InfiltrateForCash:
+    GrantConditionOnFaction:
+        Condition: owner.is.spain
+        Factions: spain
+        ResetOnOwnerChange: True
 
 WEAP:
     Inherits@IDISABLE: ^DisableOnPowerDown
@@ -317,8 +352,17 @@ WEAP:
         BuildPaletteOrder: 5
         Prerequisites: proc, ~!player.russia, ~techlevel.low
         Description: Produces Vehicle units.\nCan be Infiltrated by an Spy resulting\nin Veterancy for enemy Vehicles.
+	ProvidesPrerequisite@allies:
+		Factions: allies, england, france, germany, spain
+		Prerequisite: vehicles.allies
+	ProvidesPrerequisite@spain:
+		Factions: spain
+		Prerequisite: vehicles.spain
+	ProvidesPrerequisite@spanishstructure:
+		RequiresPrerequisites: structures.spain
+		Prerequisite: vehicles.spain
 	ProvidesPrerequisite@soviet:
-		Factions: soviet, russia, ukraine, belarus
+		Factions: soviet, russia, ukraine, belarus, kazakh
 		Prerequisite: vehicles.soviet
 	ProvidesPrerequisite@belarus:
 		Factions: belarus
@@ -326,6 +370,12 @@ WEAP:
 	ProvidesPrerequisite@belarussianstructure:
 		RequiresPrerequisites: structures.belarus
 		Prerequisite: vehicles.belarus
+	ProvidesPrerequisite@kazakhstan:
+		Factions: kazakh
+		Prerequisite: vehicles.kazakh
+	ProvidesPrerequisite@kazakhstructure:
+		RequiresPrerequisites: structures.kazakh
+		Prerequisite: vehicles.kazakh
 	ProvidesPrerequisite@TECHPREQ:
 		Prerequisite: afldorweap
 	Production:
@@ -390,7 +440,7 @@ DOME:
 		Footprint: xx xx
 		Dimensions: 2,2
     Buildable:
-        Prerequisites: proc, ~!structures.soviet, ~!player.england, ~techlevel.medium
+        Prerequisites: proc, ~!structures.soviet, ~!player.england, ~!player.spain, ~techlevel.medium
         BuildPaletteOrder: 6
         Description: Provides an overview\nof the battlefield.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.\nCan detect cloaked units.
 	Valued:
@@ -434,6 +484,30 @@ DOME.England:
 	DetectCloaked:
 		Range: 7c0
 		RequiresCondition: !disabled
+
+DOME.Spain:
+	Inherits: DOME
+    Buildable:
+        Prerequisites: proc, ~!structures.soviet, ~player.spain, ~techlevel.medium
+        Description: Provides an overview\nof the battlefield.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.\nCan detect cloaked units.\n Special Ability: Radar Scan\nReveals an area of the map\nand cloaked enemy units there.\n (requires Allied Tech Center)
+	RenderSprites:
+		Image: dome
+	ProvidesPrerequisite@COPY:
+		Prerequisite: dome
+	SpawnActorPower@RadarScan:
+		PauseOnCondition: disabled
+		OrderName: RadarScanPowerInfoOrder
+		Actor: camera.small
+		Prerequisites: ~atek, player.spain
+		LifeTime: 300
+		ChargeInterval: 3750
+		Icon: radarscan
+		Description: Radar Scan
+		LongDesc: Reveals an area of the map and cloaked enemy units there.
+		StartFullyCharged: false
+		SelectTargetSpeechNotification: SelectTarget
+		Cursor: chrono-select
+    -MapEditorData:
 
 DOME.Soviet:
 	Inherits: DOME
@@ -580,7 +654,7 @@ STEK:
     Buildable:
         BuildLimit: 1
         Description: Provides Soviet advanced technologies.\nMaximum one can be built.\nCan be Infiltrated by an Spy or Thief for\nunlocking Tech unit production.
-        Prerequisites: afldorweap, dome, ~structures.soviet, ~!player.russia, ~!player.ukraine, ~!player.belarus, ~techlevel.high
+        Prerequisites: afldorweap, dome, ~structures.soviet, ~!player.russia, ~!player.ukraine, ~!player.belarus, ~!player.kazakh, ~techlevel.high
         BuildPaletteOrder: 10
 	Valued:
 		Cost: 2000
@@ -645,6 +719,27 @@ STEK:
 		CircleSequence: circles
 		PauseOnCondition: lowpower || disabled
 		Cursor: airdrop
+	ParatroopersPower@ParaTanks:
+		OrderName: SovietParaTanksPowerInfoOrder
+		Prerequisites: ~aircraft.soviet, player.kazakh
+		Icon: paratanks
+		ChargeInterval: 7500
+		Description: Paratanks
+		LongDesc: A Badger drops an Veteran squad of two Medium\nand a Heavy Tank anywhere on the map.
+		DropItems: 2TNK.Soviet.R1, 3TNK.R1, 2TNK.Soviet.R1
+		ReinforcementsArrivedSpeechNotification: ReinforcementsArrived
+		SelectTargetSpeechNotification: SelectTarget
+		AllowImpassableCells: false
+		QuantizedFacings: 8
+		CameraActor: camera.paradrop
+		UnitType: badr
+		DisplayBeacon: true
+		BeaconPoster: paratanks
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+		PauseOnCondition: lowpower || disabled
+		Cursor: airdrop
 	GrantConditionOnPowerState@LOWPOWER:
 		Condition: lowpower
 		ValidPowerStates: Low, Critical
@@ -692,6 +787,17 @@ STEK.Belarus:
 		Prerequisite: stek
 	-MapEditorData:
 
+STEK.Kazakh:
+	Inherits: STEK
+    Buildable:
+        Prerequisites: afldorweap, dome, ~player.kazakh, ~techlevel.high
+        Description: Provides Soviet advanced technologies.\nMaximum one can be built.\nCan be Infiltrated by an Spy or Thief for\nunlocking Tech unit production.\n  Special Ability: Tank Drop\nA Badger drops an Veteran squad of two Medium\nand a Heavy Tank anywhere on the map.\n (requires Airfield)
+	RenderSprites:
+		Image: stek
+	ProvidesPrerequisite@COPY:
+		Prerequisite: stek
+	-MapEditorData:
+
 AFLD:
     Buildable:
         Prerequisites: dome, ~structures.soviet, ~!player.russia, ~techlevel.medium
@@ -701,7 +807,7 @@ AFLD:
 		Footprint: xxx xx=
 		Dimensions: 3,2
     ProvidesPrerequisite@soviet:
-		Factions: soviet, russia, ukraine, belarus
+		Factions: soviet, russia, ukraine, belarus, kazakh
 		Prerequisite: aircraft.soviet
 	ProvidesPrerequisite@belarus:
 		Factions: belarus
@@ -709,6 +815,12 @@ AFLD:
 	ProvidesPrerequisite@belarussianstructure:
 		RequiresPrerequisites: structures.belarus
 		Prerequisite: aircraft.belarus
+	ProvidesPrerequisite@kazakhstan:
+		Factions: kazakh
+		Prerequisite: aircraft.kazakh
+	ProvidesPrerequisite@kazakhstructure:
+		RequiresPrerequisites: structures.kazakh
+		Prerequisite: aircraft.kazakh
     -AirstrikePower@spyplane:
     -AirstrikePower@parabombs:
     ParatroopersPower@paratroopers:
@@ -762,6 +874,15 @@ HPAD:
 	Production:
 		Produces: Aircraft, Helicopter
         PauseOnCondition: disabled
+	ProvidesPrerequisite@allies:
+		Factions: allies, england, france, germany, spain
+		Prerequisite: aircraft.allies
+	ProvidesPrerequisite@spain:
+		Factions: spain
+		Prerequisite: aircraft.spain
+	ProvidesPrerequisite@spanishstructure:
+		RequiresPrerequisites: structures.spain
+		Prerequisite: aircraft.spain
 
 SYRD:
     Buildable:
@@ -780,6 +901,17 @@ SYRD:
 		Condition: replenishsmine
 		Range: 5c0
 		RequiresCondition: !disabled
+	Valued:
+		Cost: 750
+	ProvidesPrerequisite@allies:
+		Factions: allies, england, france, germany, spain
+		Prerequisite: ships.allies
+	ProvidesPrerequisite@spain:
+		Factions: spain
+		Prerequisite: ships.spain
+	ProvidesPrerequisite@spanishstructure:
+		RequiresPrerequisites: structures.spain
+		Prerequisite: ships.spain
 
 SPEN:
     Buildable:
@@ -787,9 +919,9 @@ SPEN:
         Prerequisites: anypower, ~structures.soviet, ~!player.russia, ~techlevel.low
         Description: Produces and repairs\nSubmarines and Transports.\nCan be Infiltrated by an Spy for\nunlocking Sonar Pulse support power.
 	Valued:
-		Cost: 1000
+		Cost: 750
 	ProvidesPrerequisite@soviet:
-		Factions: soviet, russia, ukraine, belarus
+		Factions: soviet, russia, ukraine, belarus, kazakh
 		Prerequisite: ships.soviet
 	ProvidesPrerequisite@belarus:
 		Factions: belarus
@@ -797,6 +929,12 @@ SPEN:
 	ProvidesPrerequisite@belarussianstructure:
 		RequiresPrerequisites: structures.belarus
 		Prerequisite: ships.belarus
+	ProvidesPrerequisite@kazakhstan:
+		Factions: kazakh
+		Prerequisite: ships.kazakh
+	ProvidesPrerequisite@kazakhstructure:
+		RequiresPrerequisites: structures.kazakh
+		Prerequisite: ships.kazakh
 	WithDeathAnimation:
 		DeathSequence: dead
 		UseDeathTypeSuffix: false
@@ -816,7 +954,7 @@ SPEN.Russia:
     Buildable:
         Prerequisites: anypower, ~structures.soviet, ~player.russia, ~techlevel.low
 	Valued:
-		Cost: 900
+		Cost: 675
 	RenderSprites:
 		Image: spen
 	ProvidesPrerequisite@COPY:
@@ -1118,6 +1256,63 @@ MSLO:
 	GrantConditionOnDamageState@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
+    -NukePower:
+	NukePower@Normal:
+		OrderName: NukePowerInfoOrder
+        PauseOnCondition: disabled
+		RequiresCondition: !kazakh.player
+		Cursor: nuke
+		Icon: abomb
+		ChargeInterval: 13500
+		Description: Atom Bomb
+		LongDesc: Launches a devastating atomic bomb at target location
+		BeginChargeSpeechNotification: AbombPrepping
+		EndChargeSpeechNotification: AbombReady
+		SelectTargetSpeechNotification: SelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		IncomingSpeechNotification: AbombLaunchDetected
+		MissileWeapon: atomic
+		MissileDelay: 5
+		SpawnOffset: 1c0,427,0
+		DisplayTimerStances: Ally, Neutral, Enemy
+		DisplayBeacon: True
+		DisplayRadarPing: True
+		BeaconPoster: atomicon
+		FlashType: Nuke
+		CameraRange: 10c0
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+	NukePower@Advanced:
+		OrderName: AdvNukePowerInfoOrder
+		PauseOnCondition: disabled
+        RequiresCondition: kazakh.player
+		Cursor: nuke
+		Icon: abomb
+		ChargeInterval: 11500
+		Description: Atom Bomb
+		LongDesc: Launches a devastating atomic bomb at target location
+		BeginChargeSpeechNotification: AbombPrepping
+		EndChargeSpeechNotification: AbombReady
+		SelectTargetSpeechNotification: SelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		IncomingSpeechNotification: AbombLaunchDetected
+		MissileWeapon: atomic
+		MissileDelay: 5
+		SpawnOffset: 1c0,427,0
+		DisplayTimerStances: Ally, Neutral, Enemy
+		DisplayBeacon: True
+		DisplayRadarPing: True
+		BeaconPoster: atomicon
+		FlashType: Nuke
+		CameraRange: 10c0
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+    GrantConditionOnFaction:
+        Condition: kazakh.player
+        Factions: kazakh
+        ResetOnOwnerChange: True
 
 AGUN:
 	Buildable:
@@ -1269,6 +1464,7 @@ HOSP:
 		Actor: HOSP.Husk
 
 BIO:
+    Inherits@POWER_OUTAGE: ^DisabledByPowerOutage
 	Power:
 		Amount: 300
 	WithIdleOverlay@SMOKE:
@@ -1302,7 +1498,51 @@ MINV:
 	RenderSprites:
 		Image: minv
 		FactionImages:
+            spain: minv
 			soviet: minp
 			russia: minp
 			ukraine: minp
             belarus: minp
+
+HOSP.Buildable:
+	Inherits: ^ScienceBuilding
+	Inherits@shape: ^2x2Shape
+	Selectable:
+		Bounds: 48,48
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+		LocalCenterOffset: 0,-512,0
+	Health:
+		HP: 40000
+	Armor:
+		Type: Wood
+	Tooltip:
+		Name: Hospital
+	Buildable:
+		Queue: Building
+		BuildPaletteOrder: 14
+		Prerequisites: ~structures.allies, ~tech.stolen, ~player.spain
+		BuildLimit: 1
+		Description: Field hospital of the Allies.\nMaximum 1 can be built.\n Passive Ability: Medical Distribution\nAllows Infantry to self-heal
+	SelectionDecorations:
+	RevealsShroud:
+		Range: 6c0
+		RevealGeneratedShroud: False
+        RequiresCondition: !disabled
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+        RequiresCondition: !disabled
+    RevealsShroud@DISABLED:
+		Range: 3c0
+        RequiresCondition: disabled
+	WithBuildingBib:
+	Power:
+		Amount: -40
+	ProvidesPrerequisite@buildingname:
+	Valued:
+		Cost: 1000
+	GpsDot:
+		String: Hospital
+	RenderSprites:
+		Image: hosp

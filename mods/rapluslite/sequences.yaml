@@ -1,4 +1,5 @@
 hosp:
+    Inherits: emp-overlay
     idle:
         Tick: 100
     damaged-idle:
@@ -6,7 +7,6 @@ hosp:
 	make: hospmake
 		Length: *
 		Tick: 80
-		Offset: 0,-2
 
 fact:
     Inherits: emp-overlay
@@ -184,6 +184,8 @@ barr:
         Tick: 100
     damaged-idle:
         Tick: 100
+    make:
+        Tick: 80
     fake-icon: barficon
 	dead:
 		Start: 10
@@ -949,6 +951,56 @@ btr:
 		UseClassicFacingFudge: True
 		ZOffset: -512
 
+behe:
+	Inherits: emp-overlay
+	idle:
+		Facings: 32
+		UseClassicFacingFudge: True
+	turret:
+		Start: 32
+		Facings: 32
+		UseClassicFacingFudge: True
+	muzzle:
+		Combine:
+			behmuz-n:
+				Length: *
+				Offset: 0,0
+			behmuz-nw:
+				Length: *
+				Offset: 0,0
+			behmuz-w:
+				Length: *
+				Offset: 0,0
+			behmuz-sw:
+				Length: *
+				Offset: 0,0
+			behmuz-s:
+				Length: *
+				Offset: 0,0
+			behmuz-se:
+				Length: *
+				Offset: 0,0
+			behmuz-e:
+				Length: *
+				Offset: 0,0
+			behmuz-ne:
+				Length: *
+				Offset: 0,0
+		Facings: 8
+		Length: 10
+	icon: beheicon
+
+behe.destroyed:
+	idle: behe
+		Facings: 32
+		UseClassicFacingFudge: True
+		ZOffset: -512
+	turret: behe
+		Start: 32
+		Facings: 32
+		UseClassicFacingFudge: True
+		ZOffset: -512
+
 arty:
     Inherits: emp-overlay
     fake-icon: artficon
@@ -1027,6 +1079,19 @@ dtrk:
     truk-body: truk
 		Facings: 32
 		UseClassicFacingFudge: True
+
+brdm:
+    Inherits: emp-overlay
+	idle:
+		Facings: 32
+		UseClassicFacingFudge: True
+	turret:
+		Start: 32
+		Facings: 32
+		UseClassicFacingFudge: True
+	muzzle: gunfire2
+		Length: 2
+	icon: brdmicon
 
 truk:
     Inherits: emp-overlay
@@ -1798,6 +1863,9 @@ beacon:
 	rankcrate: rankcratesmallicon
 		Length: *
 		Offset: 0,-42
+	paratanks: paratanksmallicon
+		Length: *
+		Offset: 0,-42
 
 icon:
 	fieldrepair: frepicon
@@ -1805,6 +1873,8 @@ icon:
     decoyarmy: decoyarmyicon
     gpsscrambler: gpsscricon
     empbomb: empbombicon
+	radarscan: rdrscnicon
+	paratanks: paratankicon
 
 explosion:
 	pulse_explosion: pulsefx2
@@ -1843,6 +1913,7 @@ apwr:
 		Offset: -12,-30
 
 bio:
+    Inherits: emp-overlay
 	make: biomake
 		Length: *
 		Tick: 80
@@ -2076,10 +2147,187 @@ snip:
 		Start: 176
 		Length: 2
 
+atgm:
+	stand:
+		Facings: 8
+	stand2:
+		Start: 8
+		Facings: 8
+	run:
+		Start: 16
+		Length: 6
+		Facings: 8
+		Tick: 100
+	throw:
+		Start: 64
+		Length: 8
+		Facings: 8
+	liedown:
+		Start: 176
+		Length: 2
+		Facings: 8
+	standup:
+		Start: 128
+		Length: 2
+		Facings: 8
+	prone-stand:
+		Start: 144
+		Stride: 4
+		Facings: 8
+	prone-stand2:
+		Start: 144
+		Stride: 4
+		Facings: 8
+	prone-run:
+		Start: 144
+		Length: 4
+		Facings: 8
+		Tick: 100
+	prone-throw:
+		Start: 192
+		Length: 10
+		Facings: 8
+	idle1:
+		Start: 272
+		Length: 14
+		Tick: 120
+	idle2:
+		Start: 286
+		Length: 18
+		Tick: 120
+	cheer:
+		Start: 358
+		Length: 3
+		Facings: 8
+		Tick: 120
+	die1:
+		Start: 304
+		Length: 8
+		Tick: 80
+	die2:
+		Start: 312
+		Length: 8
+		Tick: 80
+	die3:
+		Start: 320
+		Length: 8
+		Tick: 80
+	die4:
+		Start: 328
+		Length: 12
+		Tick: 80
+	die5:
+		Start: 340
+		Length: 18
+		Tick: 80
+	die6: electro
+		Length: *
+		UseTilesetExtension: true
+		TilesetOverrides:
+            DESERT: TEMPERAT
+            INTERIOR: TEMPERAT
+	die-crushed: corpse1
+		Length: *
+		Tick: 1600
+		ZOffset: -511
+		UseTilesetExtension: true
+		TilesetOverrides:
+            DESERT: TEMPERAT
+            INTERIOR: TEMPERAT
+	icon: atgmicon
+
 dog.bomb:
 	Defaults: dog
 	Inherits: dog
 	icon: demodogicon
+
+mrtr:
+	stand:
+		Facings: 8
+	stand2:
+		Facings: 8
+	run:
+		Start: 16
+		Length: 6
+		Facings: 8
+		Tick: 100
+	throw:
+		Start: 64
+		Length: 20
+		Facings: 8
+	liedown:
+		Start: 224
+		Length: 2
+		Facings: 8
+	standup:
+		Start: 272
+		Length: 2
+		Facings: 8
+	prone-stand:
+		Start: 240
+		Stride: 4
+		Facings: 8
+	prone-stand2:
+		Start: 240
+		Stride: 4
+		Facings: 8
+	prone-run:
+		Start: 240
+		Length: 4
+		Facings: 8
+		Tick: 100
+	prone-throw:
+		Start: 288
+		Length: 12
+		Facings: 8
+	idle1:
+		Start: 384
+		Length: 16
+		Tick: 120
+	idle2:
+		Start: 400
+		Length: 16
+		Tick: 120
+	cheer:
+		Start: 494
+		Length: 3
+		Facings: 8
+		Tick: 120
+	die1:
+		Start: 416
+		Length: 9
+		Tick: 80
+	die2:
+		Start: 424
+		Length: 8
+		Tick: 80
+	die3:
+		Start: 432
+		Length: 8
+		Tick: 80
+	die4:
+		Start: 440
+		Length: 12
+		Tick: 80
+	die5:
+		Start: 452
+		Length: 18
+		Tick: 80
+	die6: electro
+		Length: *
+		UseTilesetExtension: true
+		TilesetOverrides:
+			DESERT: TEMPERAT
+			INTERIOR: TEMPERAT
+	die-crushed: corpse1
+		Length: *
+		Tick: 1600
+		ZOffset: -511
+		UseTilesetExtension: true
+		TilesetOverrides:
+			DESERT: TEMPERAT
+            INTERIOR: TEMPERAT
+	icon: mrtricon
 
 v19:
     idle:
@@ -2231,7 +2479,7 @@ dtnk:
 	turret-2tnk: 2tnk
         Start: 32
 		Facings: 32
-		UseClassicFacingFudge: True   
+		UseClassicFacingFudge: True
 	arty-body: arty
 		Facings: 32
 		UseClassicFacingFudge: True
@@ -2285,6 +2533,20 @@ dtnk:
 	spinner-mrj: mrj
 		Start: 32
 		Length: 32
+	hell-body: hell
+		Facings: 32
+		UseClassicFacingFudge: True
+	turret-hell: hell
+        Start: 32
+		Facings: 32
+		UseClassicFacingFudge: True
+	mrls-body: mrls
+		Facings: 32
+		UseClassicFacingFudge: True
+	turret-mrls: mrls
+        Start: 32
+		Facings: 32
+		UseClassicFacingFudge: True
 	icon: dtnkicon
 
 dtnk.destroyed:
@@ -2385,3 +2647,55 @@ plot:
 
 tran:
     svyt-icon: tran2icon
+
+scrp:
+	Inherits: emp-overlay
+    idle:
+        Facings: -32
+    turret:
+		Start: 32
+        Facings: -32
+    muzzle: gunfire2
+        Length: 5
+    icon: scrpicon
+
+hell:
+	Inherits: emp-overlay
+	idle:
+		Facings: 32
+	turret:
+		Start: 32
+		Facings: 32
+	icon: hellicon
+
+mrls:
+	Inherits: emp-overlay
+	idle: 
+		Facings: 32
+		UseClassicFacingFudge: True
+	turret: 
+		Start: 32
+		Facings: 32
+		UseClassicFacingFudge: True
+	empty-aim: 
+		Start: 64
+		Facings: 32
+		UseClassicFacingFudge: True
+	aim: 
+		Start: 32
+		Facings: 32
+		UseClassicFacingFudge: True
+	icon: mrlsicon
+
+hvrf:
+	Inherits: emp-overlay
+	idle:
+		Facings: 32
+		UseClassicFacingFudge: True
+	turret: mgun
+		Facings: 32
+		UseClassicFacingFudge: True
+	muzzle: minigun
+		Length: 6
+		Facings: 8
+	icon: hvrficon

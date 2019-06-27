@@ -584,6 +584,10 @@ flags: buttons.png
 	greece: 30,157,30,15
     belarus: 60,157,30,15
 
+    kazakh: 90,112,30,15
+    lithuan: 120,97,30,15
+    uzbek: 120,112,30,15
+
 music: buttons.png
 	pause: 0,193,25,25
 	stop: 25,193,25,25

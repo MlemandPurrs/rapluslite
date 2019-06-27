@@ -9,6 +9,8 @@ E1:
         RequiresCondition: rank-elite
     AttackFrontal:
         Armaments: primary, elite
+    Passenger:
+        PipType: Green
 
 E2:
     Buildable:
@@ -32,14 +34,18 @@ E2:
         RequiresCondition: rank-elite
     AttackFrontal:
         Armaments: primary, elite
+    Passenger:
+        PipType: Green
 
 E3:
     Buildable:
         BuildPaletteOrder: 2
+    Passenger:
+        PipType: Green
 
 E4:
 	Buildable: 
-        Prerequisites: ~barr, dome, ~!player.ukraine, ~techlevel.low
+        Prerequisites: ~barr, ftur, ~!player.ukraine, ~techlevel.low
         BuildPaletteOrder: 9
     Armament@PRIMARY:
         RequiresCondition: !rank-elite
@@ -57,6 +63,8 @@ E4:
         RequiresCondition: rank-elite
     AttackFrontal:
         Armaments: primary, elite
+    Passenger:
+        PipType: Green
 
 E4.Ukraine:
 	Inherits: E4
@@ -83,15 +91,28 @@ E6:
     Buildable:
         BuildPaletteOrder: 5
         Description: Infiltrates and captures\nenemy structures.\nCan repair destroyed Bridges.\n  Unarmed
+    -GrantConditionOnPrerequisite@GLOBALREUSABLEENGINEER:
+    -Captures:
+    -Captures@REUSABLE:
+	Captures:
+		CaptureTypes: building
+		PlayerExperience: 25
+		CaptureDelay: 200
+    Passenger:
+        PipType: Blue
 
 MEDI:
     Buildable:
         BuildPaletteOrder: 3
+    Passenger:
+        PipType: Blue
 
 MECH:
     Buildable:
         Prerequisites: ~tent, fix, ~!player.germany, ~techlevel.medium
         BuildPaletteOrder: 6
+    Passenger:
+        PipType: Blue
 
 MECH.Germany:
 	Inherits: MECH
@@ -120,6 +141,8 @@ SPY:
         RequiresCondition: rank-elite
     AttackFrontal:
         Armaments: primary, elite
+    Passenger:
+        PipType: Yellow
 
 SPY.England:
 	Buildable:
@@ -149,6 +172,8 @@ THF:
         Description: Field operative of the Union.\n  Special Ability: Theft\nSteals enemy credits from Refineries.\nInfiltrates Tech Centers to unlock your country's Tech Unit.\n  Special Ability: Hijacking\nHijacks enemy vehicles.\n  Special Ability: Cloaking\nCloaks when standing still.\n  Unarmed
 	Health:
 		HP: 4500
+    Passenger:
+        PipType: Blue
 
 E7:
     Buildable:
@@ -185,6 +210,8 @@ E7:
 	#	 ChargeDelay: 125
     #    RequiresCondition: rank-elite
     #    PauseOnCondition: empdisable 
+    Passenger:
+        PipType: Red
 
 VOLK:
     Inherits: GNRL
@@ -302,7 +329,7 @@ SNIP:
 		CloakSound:
 		UncloakSound: appear1.aud
 		IsPlayerPalette: true
-		UncloakOn: Unload, Dock, Demolish, Move
+		UncloakOn: Attack, Unload, Dock, Demolish
 		PauseOnCondition: !(!cloak-force-disabled)
         RequiresCondition: rank-elite
 	GrantConditionOnDamageState@UNCLOAK:
@@ -367,6 +394,8 @@ GREN:
 		RequiresCondition: parachute
 	ProducibleWithLevel:
 		Prerequisites: barracks.upgraded
+	Passenger:
+		PipType: Red
 
 MGI:
 	Inherits: ^Soldier
@@ -404,8 +433,45 @@ MGI:
 		RequiresCondition: parachute
 	ProducibleWithLevel:
 		Prerequisites: barracks.upgraded
-	RenderSprites:
-		Image: mgi
+	Passenger:
+		PipType: Red
+
+ATGM:
+	Inherits: ^Soldier
+	Inherits@EXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Valued:
+		Cost: 500
+	Tooltip:
+		Name: ATGM Soldier
+	Buildable:
+		BuildPaletteOrder: 8
+		Prerequisites: ~tent, fix, ~infantry.allies, ~player.spain, ~techlevel.medium
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		Description: Anti-armor rocket infantry.\nCannot attack Air units.\n Strong vs Tanks, Vehicles\n Weak vs everything Else 
+	Mobile:
+		Speed: 42
+	Health:
+		HP: 4500
+	AutoTarget:
+		ScanRadius: 6
+	Armament@PRIMARY:
+		Weapon: Kornet
+		LocalOffset: 226,43,245
+		FireDelay: 10
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: Kornet
+	TakeCover:
+		ProneOffset: 180,0,-200
+	AttackFrontal:
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+	Passenger:
+		PipType: Yellow
 
 SHOK:
     Buildable:
@@ -428,6 +494,8 @@ SHOK:
         RequiresCondition: rank-elite
     AttackFrontal:
         Armaments: primary, elite
+	Passenger:
+		PipType: Red
 
 DOG.Bomb:
 	Inherits: ^Soldier
@@ -491,7 +559,7 @@ DOG.Bomb:
 		VoiceSet: DogVoice
 	-TakeCover:
 	Passenger:
-		PipType: Red
+		PipType: Yellow
 	Explodes:
 		Weapon: UnitExplodeSmall
 		EmptyWeapon: UnitExplodeSmall
@@ -553,6 +621,44 @@ E5:
 	ProducibleWithLevel:
 		Prerequisites: barracks.upgraded
 
+MRTR:
+	Inherits: ^Soldier
+	Inherits@EXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Queue: Infantry
+		BuildPaletteOrder: 7
+		BuildAtProductionType: Soldier
+		Prerequisites: ~barr, dome, ~player.kazakh, ~techlevel.medium
+		Description: Infantry armed with a Mortar gun\nthat shoots napalm rounds.\n Strong vs Buildings, Infantry\n Weak vs Vehicles, Aircraft
+	Valued:
+		Cost: 500
+	Mobile:
+		Speed: 50
+	Tooltip:
+		Name: Mortar Infantry
+	Health:
+		HP: 5250
+	Armament@PRIMARY:
+		Weapon: MortarNapalm
+		LocalOffset: 0,0,155
+		FireDelay: 15
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: MortarNapalm
+		FireDelay: 15
+	AttackFrontal:
+	WithInfantryBody:
+		DefaultAttackSequence: throw
+	Explodes:
+		Weapon: UnitExplodeSmall
+		EmptyWeapon: UnitExplodeSmall
+		Chance: 50
+	Passenger:
+		PipType: Yellow
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+
 C4:
 	RenderSprites:
 		Image: C4
@@ -588,13 +694,17 @@ TECN:
 		Name: Technician
 	Passenger:
 		Weight: 1
+        PipType: Blue
 	RenderSprites:
 		Image: TECN
+
 
 DOG:
     Buildable:
         BuildPaletteOrder: 4
         Prerequisites: kenn, ~techlevel.infonly
+	Passenger:
+		PipType: Green
 
 Ant:
 	Buildable:
@@ -613,6 +723,7 @@ PLOT:
 	-ScaredyCat:
 	Passenger:
 		Weight: 1
+        PipType: Blue
 
 PLOT.R1:
 	Inherits: PLOT

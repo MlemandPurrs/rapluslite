@@ -341,7 +341,7 @@ SYRF:
 	RenderSprites:
 		Image: SYRD
 	Valued:
-		Cost: 250
+		Cost: 185
 	Health:
 		HP: 100000
 	Armor:
@@ -386,7 +386,7 @@ SPEF:
 	RenderSprites:
 		Image: SPEN
 	Valued:
-		Cost: 250
+		Cost: 185
 	Health:
 		HP: 100000
 	Armor:

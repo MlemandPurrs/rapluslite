@@ -136,6 +136,12 @@
 	Selectable:
 		Bounds: 18,18,0,-6
 		DecorationBounds: 12,17,0,-6
+	GrantConditionOnPrerequisite@HOSPITAL2:
+		Condition: hospital2
+		Prerequisites: hosp.buildable
+	GrantCondition@HOSPITAL:
+		RequiresCondition: hospital || hospital2 && damaged
+		Condition: hospitalheal
     WithDecoration@REDCROSS:
         ReferencePoint: Bottom, Right
 
@@ -400,76 +406,120 @@ CAMERA.fieldrepair:
 	MapEditorData:
 		Categories: System
 
+CAMERA.small:
+    Inherits: CAMERA
+	RevealsShroud:
+		Range: 5c0
+		Type: CenterPosition
+	DetectCloaked:
+		Range: 5c0
+		CloakTypes: Cloak, Thief
+
 CRATE:
+	GiveUnitCrateAction@jeep:
+		SelectionShares: 6
+		Units: jeep
+		ValidFactions: allies, england, france, germany, spain
+		Prerequisites: techlevel.low
+	GiveUnitCrateAction@1tnk:
+		SelectionShares: 6
+		Units: 1tnk
+		ValidFactions: allies, england, france, germany, spain
+		Prerequisites: techlevel.low
 	GiveUnitCrateAction@apc:
 		SelectionShares: 6
 		Units: apc
-		ValidFactions: allies, england, france, germany
+		ValidFactions: allies, england, france, germany, spain
 		Prerequisites: techlevel.low
 	GiveUnitCrateAction@btr:
 		SelectionShares: 6
 		Units: btr
-		ValidFactions: soviet, russia, ukraine, belarus
+		ValidFactions: soviet, russia, ukraine, belarus, kazakh
 		Prerequisites: techlevel.low
 	GiveUnitCrateAction@ftrk:
 		SelectionShares: 6
 		Units: ftrk
-		ValidFactions: soviet, russia, ukraine, belarus
+		ValidFactions: soviet, russia, ukraine, belarus, kazakh
 		Prerequisites: techlevel.low
+	GiveUnitCrateAction@arty:
+		SelectionShares: 5
+		Units: arty
+		ValidFactions: allies, england, france, germany, spain
+		Prerequisites: techlevel.medium, dome
     GiveUnitCrateAction@v2rl:
 		SelectionShares: 5
 		Units: v2rl
-		ValidFactions: soviet, russia, ukraine, belarus
+		ValidFactions: soviet, russia, ukraine, belarus, kazakh
 		Prerequisites: techlevel.medium, dome
+	GiveUnitCrateAction@2tnk:
+		SelectionShares: 4
+		Units: 2tnk
+		ValidFactions: allies, england, france, germany, spain
+		Prerequisites: techlevel.medium, fix
 	GiveUnitCrateAction@2tnksvyt:
 		SelectionShares: 4
 		Units: 2tnk.soviet
-		ValidFactions: soviet, russia, ukraine, belarus
+		ValidFactions: soviet, russia, ukraine, belarus, kazakh
 		Prerequisites: techlevel.medium, fix
 	GiveUnitCrateAction@3tnk:
 		SelectionShares: 4
 		Units: 3tnk
-		ValidFactions: soviet, russia, ukraine, belarus
+		ValidFactions: soviet, russia, ukraine, belarus, kazakh
 		Prerequisites: techlevel.medium, fix
     GiveUnitCrateAction@atnk:
 		SelectionShares: 6
 		Units: atnk
-		ValidFactions: allies, england, france, germany
+		ValidFactions: allies, england, france, germany, spain
 		Prerequisites: techlevel.high, dome
 	GiveUnitCrateAction@squadlight:
 		SelectionShares: 10
 		Units: e1,e1,e1,e3,e3
-		ValidFactions: allies, england, france, germany, soviet, russia, ukraine, belarus
+		ValidFactions: allies, england, france, germany, spain, soviet, russia, ukraine, belarus, kazakh
 	GiveUnitCrateAction@squadlightallies:
 		SelectionShares: 9
 		Units: e1,e1,e1,e3,e3,medi,jeep
-		ValidFactions: allies, england, france, germany
+		ValidFactions: allies, england, france, germany, spain
         TimeDelay: 2250
 	GiveUnitCrateAction@squadlightsoviet:
 		SelectionShares: 9
 		Units: e1,e1,e1,e3,e3,e4,ftrk
-		ValidFactions: soviet, russia, ukraine, belarus
+		ValidFactions: soviet, russia, ukraine, belarus, kazakh
         TimeDelay: 2250
 	GiveUnitCrateAction@squadheavyallies:
 		SelectionShares: 7
 		Units: e1,e1,e1,e1,e3,e3,e3,e6,medi
-		ValidFactions: allies, england, france, germany
+		ValidFactions: allies, england, france, germany, spain
 		TimeDelay: 4500
 	GiveUnitCrateAction@squadheavysoviet:
 		SelectionShares: 7
 		Units: e1,e1,e1,e4,e4,e3,e3,e3,e6
-		ValidFactions: soviet, russia, ukraine, belarus
+		ValidFactions: soviet, russia, ukraine, belarus, kazakh
 		TimeDelay: 4500
 	GiveUnitCrateAction@squadheavyalliesb:
 		SelectionShares: 6
 		Units: e1,e1,e1,medi,e3,e3,1tnk,1tnk,atnk
-		ValidFactions: allies, england, france, germany
+		ValidFactions: allies, england, france, germany, spain
 		TimeDelay: 4500
 	GiveUnitCrateAction@squadheavysovietb:
 		SelectionShares: 6
 		Units: e1,e1,e1,e4,e3,e3,ftrk,ftrk,2tnk.soviet
-		ValidFactions: soviet, russia, ukraine, belarus
+		ValidFactions: soviet, russia, ukraine, belarus, kazakh
 		TimeDelay: 4500
+	GrantExternalConditionCrateAction@invis:
+		SelectionShares: 5
+		Sequence: stealth
+		Sound: appear1.aud
+		Condition: gps.scrambler
+		Duration: 400
+	ExplodeCrateAction@ore:
+		Weapon: OreExplosion
+		SelectionShares: 3
+	LevelUpCrateAction@superlevel:
+		Levels: 4
+		SelectionShares: 1
+	ExplodeCrateAction@nuke:
+		Weapon: MiniNuke
+		SelectionShares: 1
 
 RANKUPCRATE:
 	Inherits: ^Crate
@@ -503,7 +553,7 @@ MINS:
 	RenderSprites:
 		Image: mins
 	Targetable:
-		TargetTypes: Water, Defense
+		TargetTypes: Underwater
 	Explodes:
 		Weapon: ASMine
     GrantExternalConditionToCrusher:

@@ -118,13 +118,6 @@ Player:
 		Enabled: True
 		DisplayOrder: 7
 		Prerequisites: global-factundeploy
-	LobbyPrerequisiteCheckbox@REUSABLEENGINEERS:
-		ID: reusable-engineers
-		Label: Reusable Engineers
-		Description: Engineers remain on the battlefield after capturing a structure
-		Enabled: False
-		DisplayOrder: 9
-		Prerequisites: global-reusable-engineers
 	FrozenActorLayer:
 	BaseAttackNotifier:
 	PlayerStatistics:
@@ -158,7 +151,7 @@ Player:
         AdviceInterval: 400
 	PlayerExperience:
 	ConditionManager:
-	ProvidesPrerequisite@Britain:
+	ProvidesPrerequisite@England:
 		Factions: england
 		Prerequisite: player.england    
 	ProvidesPrerequisite@France:
@@ -167,6 +160,9 @@ Player:
 	ProvidesPrerequisite@Germany:
 		Factions: germany
 		Prerequisite: player.germany
+	ProvidesPrerequisite@Spain:
+		Factions: spain
+		Prerequisite: player.spain
 	ProvidesPrerequisite@Russia:
 		Factions: russia
 		Prerequisite: player.russia
@@ -176,6 +172,9 @@ Player:
 	ProvidesPrerequisite@Belarus:
 		Factions: belarus
 		Prerequisite: player.belarus
+	ProvidesPrerequisite@Kazakhstan:
+		Factions: kazakh
+		Prerequisite: player.kazakh
     GrantConditionOnPrerequisite@England:
 		Condition: player.england
 		Prerequisites: player.england
@@ -185,6 +184,9 @@ Player:
     GrantConditionOnPrerequisite@Germany:
 		Condition: player.germany
 		Prerequisites: player.germany
+    GrantConditionOnPrerequisite@Spain:
+		Condition: player.spain
+		Prerequisites: player.spain
     GrantConditionOnPrerequisite@Russia:
 		Condition: player.russia
 		Prerequisites: player.russia
@@ -194,6 +196,9 @@ Player:
     GrantConditionOnPrerequisite@Belarus:
 		Condition: player.belarus
 		Prerequisites: player.belarus
+    GrantConditionOnPrerequisite@Kazakhstan:
+		Condition: player.kazakh
+		Prerequisites: player.kazakh
 	LobbyPrerequisiteCheckbox@GLOBALSCRAPS:
 		ID: scraps
 		Label: Scrap Metal
