@@ -81,6 +81,7 @@ E4.UkraineR2:
 	Inherits: E4.Ukraine
 	Buildable: 
         Prerequisites: ~barr, ftur, ~player.ukraine, ~barracks.upgraded, ~techlevel.low
+        Icon: rank2-icon
 	ProducibleWithLevel:
 		Prerequisites: techlevel.infonly
 		InitialLevels: 2
@@ -94,10 +95,10 @@ E6:
     -GrantConditionOnPrerequisite@GLOBALREUSABLEENGINEER:
     -Captures:
     -Captures@REUSABLE:
-	Captures:
+	Captures@REPLACER:
 		CaptureTypes: building
 		PlayerExperience: 25
-		CaptureDelay: 200
+		CaptureDelay: 100
     Passenger:
         PipType: Blue
 
@@ -158,10 +159,11 @@ SPY.England:
 		InitialLevels: 1
     -MapEditorData:
 
-SPY.EnglandR2:
+SPY.England.R2:
     Inherits: SPY.England
 	Buildable:
 		Prerequisites: ~tent, dome, ~player.england, ~barracks.upgraded, ~techlevel.medium
+        Icon: rank2-icon
 	ProducibleWithLevel:
 		Prerequisites: techlevel.infonly
 		InitialLevels: 2
@@ -441,12 +443,12 @@ ATGM:
 	Inherits@EXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Valued:
-		Cost: 500
+		Cost: 600
 	Tooltip:
 		Name: ATGM Soldier
 	Buildable:
-		BuildPaletteOrder: 8
-		Prerequisites: ~tent, fix, ~infantry.allies, ~player.spain, ~techlevel.medium
+		BuildPaletteOrder: 9
+		Prerequisites: ~tent, atek, ~infantry.allies, ~player.greece, ~techlevel.high
 		Queue: Infantry
 		BuildAtProductionType: Soldier
 		Description: Anti-armor rocket infantry.\nCannot attack Air units.\n Strong vs Tanks, Vehicles\n Weak vs everything Else 
@@ -471,7 +473,73 @@ ATGM:
 	ProducibleWithLevel:
 		Prerequisites: barracks.upgraded
 	Passenger:
-		PipType: Yellow
+		PipType: Red
+
+RMBO:
+	Inherits: ^Soldier
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Valued:
+		Cost: 1000
+	Tooltip:
+		Name: Commando
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 9
+		Prerequisites: ~tent, atek, ~infantry.allies, ~player.turkey, ~techlevel.high
+		Description: Elite commando infantry.\nArmed with assault rifle and C4.\n  Special Ability: Camouflage\nCloaks when standing still.\n  Strong vs Infantry, Buildings\n  Weak vs Vehicles, Aircraft
+	Mobile:
+		Speed: 71
+		Voice: Move
+	Guard:
+		Voice: Move
+	Health:
+		HP: 10000
+	Passenger:
+		PipType: Red
+		Voice: Move
+	RevealsShroud:
+		Range: 6c0
+	Demolition:
+		DetonationDelay: 45
+		Voice: Demolish
+	Armament:
+		Weapon: M1Carbine
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: Vulcan
+		MuzzleSequence: garrison-muzzle
+	AttackFrontal:
+		Voice: Attack
+	AttackMove:
+	WithDeathAnimation:
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		IdleSequences: idle1,idle2,idle3
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	VoiceAnnouncement:
+		RequiresCondition: produced
+		Voice: Build
+	AnnounceOnKill:
+	Voiced:
+		VoiceSet: CommandoVoice
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+	DetectCloaked:
+		CloakTypes: Cloak, Hijacker
+		Range: 3c0
+	Cloak:
+		InitialDelay: 250
+		CloakDelay: 120
+		CloakSound:
+		UncloakSound: appear1.aud
+		IsPlayerPalette: true
+		UncloakOn: Attack, Unload, Heal, Dock, SelfHeal, Demolish, Move
+		PauseOnCondition: cloak-force-disabled
+	GrantConditionOnDamageState@UNCLOAK:
+		Condition: cloak-force-disabled
+		ValidDamageStates: Critical
 
 SHOK:
     Buildable:
@@ -659,6 +727,48 @@ MRTR:
 	ProducibleWithLevel:
 		Prerequisites: barracks.upgraded
 
+RPG:
+	Inherits: ^Soldier
+	Inherits@EXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Valued:
+		Cost: 600
+	Tooltip:
+		Name: RPG Trooper
+	Buildable:
+		BuildPaletteOrder: 7
+		Prerequisites: ~barr, ftur, stek, ~player.uzbek, ~techlevel.medium
+		#   Prerequisites: ~disabled
+        Queue: Infantry
+		BuildAtProductionType: Soldier
+		Description: Soldier armed with thermobaric Napalm rockets.\nCannot attack Air units.\n  Strong vs clustered Infantry, Structures\n  Weak vs Anti-Infantry measures
+	Selectable:
+		Class: E3
+    Health:
+		HP: 5500
+	AutoTarget:
+		ScanRadius: 6
+	Armament@PRIMARY:
+		Weapon: Thermobaric
+		LocalOffset: 256,43,341
+		FireDelay: 5
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: Thermobaric
+	TakeCover:
+		ProneOffset: 180,0,-200
+	AttackFrontal:
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+	Passenger:
+		PipType: Red
+	Explodes:
+		Weapon: UnitExplodeSmall
+		EmptyWeapon: UnitExplodeSmall
+		DamageSource: Killer
+
 C4:
 	RenderSprites:
 		Image: C4
@@ -698,13 +808,43 @@ TECN:
 	RenderSprites:
 		Image: TECN
 
-
 DOG:
     Buildable:
         BuildPaletteOrder: 4
-        Prerequisites: kenn, ~techlevel.infonly
+        Prerequisites: kenn, ~!player.turkmen, ~techlevel.infonly
 	Passenger:
 		PipType: Green
+
+DOG.Turkmen:
+    Inherits: DOG
+    Buildable:
+        Prerequisites: kenn, ~player.turkmen, ~techlevel.infonly
+		Description: Anti-infantry unit.\nCan detect cloaked units and spies.\n  Special ability: Amphibian\nCan swim through sea and river.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
+	Mobile:
+		Locomotor: foot-amphibious    
+	GrantConditionOnTerrain:
+		TerrainTypes: Water, River
+		Condition: swimming
+	Targetable:
+		RequiresCondition: !parachute && !swimming
+	Targetable@SEA:
+		TargetTypes: Ground, Water, Infantry
+		RequiresCondition: !parachute && swimming
+	WithInfantryBody:
+		RequiresCondition: !swimming
+	WithInfantryBody@RUN:
+		MoveSequence: run
+		RequiresCondition: run && !swimming
+	WithInfantryBody@SEA:
+		RequiresCondition: swimming
+		MoveSequence: swim
+		DefaultAttackSequence: swim_eat
+		IdleSequences: swim_idle
+		StandSequences: swim_stand
+	WithDeathAnimation:
+		RequiresCondition: !swimming
+    RenderSprites:
+        Image: dog
 
 Ant:
 	Buildable:
@@ -763,3 +903,82 @@ PLOT.RE:
 	RenderSprites:
 		Image: plot
     -MapEditorData:
+
+STNG:
+	Inherits: ^Soldier
+	Inherits@EXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetAir
+	Valued:
+		Cost: 900
+	Tooltip:
+		Name: Anti-Air Soldier
+	Buildable:
+		BuildPaletteOrder: 9
+		Prerequisites: ~tent, atek, ~player.spain, ~techlevel.high
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		Description: Anti-aircraft rocket infantry.\nCannot attack Ground units.\n  Strong vs Aircraft\n  Weak vs everything Else
+	Selectable:
+		Class: STNG
+    Mobile:
+		Speed: 50
+	Health:
+		HP: 6000
+	AutoTarget:
+		ScanRadius: 6
+	Armament@PRIMARY:
+		Weapon: PortaNike
+		LocalOffset: 256,43,341
+		FireDelay: 5
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: PortaNike
+	TakeCover:
+		ProneOffset: 180,0,-200
+	AttackFrontal:
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+	Passenger:
+		PipType: Red
+
+MARK:
+	Inherits: ^Soldier
+	Valued:
+		Cost: 700
+	Tooltip:
+		Name: Marksman
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 7
+		Prerequisites: ~barr, stek, ~player.turkmen, ~techlevel.high
+		Description: Infantry armed with an Sniper rifle.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
+	Health:
+		HP: 5000
+	Passenger
+		PipType: Red
+	RevealsShroud:
+		Range: 6c0
+	AutoTarget:
+		InitialStance: HoldFire
+		InitialStanceAI: ReturnFire
+	AutoTargetPriority@DEFAULT:
+		ValidTargets: Infantry
+	Armament@PRIMARY:
+		Weapon: Sniper
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: Sniper
+		MuzzleSequence: garrison-muzzle
+	AttackFrontal:
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+	-MustBeDestroyed:
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+    RenderSprites:
+        Image: e1sniper

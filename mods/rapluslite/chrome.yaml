@@ -585,8 +585,8 @@ flags: buttons.png
     belarus: 60,157,30,15
 
     kazakh: 90,112,30,15
-    lithuan: 120,97,30,15
     uzbek: 120,112,30,15
+    turkmen: 120,97,30,15
 
 music: buttons.png
 	pause: 0,193,25,25

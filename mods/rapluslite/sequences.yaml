@@ -404,6 +404,7 @@ bio.husk:
 	bib: bib3
 		UseTilesetExtension: true
 		Length: *
+    icon: bioicon
 
 oilb.husk:
 	Defaults:
@@ -827,9 +828,11 @@ hhusk2.soviet:
         
 jeep:
     Inherits: emp-overlay
+	rank2-icon: jeepr2icon
 
 ftrk:
     Inherits: emp-overlay
+	rank2-icon: ftrkr2icon
 
 ftrk.repair:
 	Inherits: emp-overlay
@@ -861,6 +864,7 @@ btr:
 	unload:
 		Start: 32
 	icon: btricon
+	rank2-icon: btrr2icon
 
 1tnk:
     Inherits: emp-overlay
@@ -868,7 +872,11 @@ btr:
 		Start: 0
 		Facings: 32
 		UseClassicFacingFudge: True
+	idle-float: 1tnk-float
+		Facings: 32
+		UseClassicFacingFudge: True
     fake-icon: 1tnficon
+	rank2-icon: 1tnkr2icon
 
 2tnk:
     Inherits: emp-overlay
@@ -889,6 +897,7 @@ btr:
 	muzzle: gunfire2
 		Length: 5
 	icon: 2tnksvyticon
+    rank2-icon: 2tnksvytr2icon
 
 2tnk.soviet.destroyed:
 	idle: 2tnk-soviet
@@ -1004,6 +1013,7 @@ behe.destroyed:
 arty:
     Inherits: emp-overlay
     fake-icon: artficon
+	rank2-icon: artyr2icon
 
 v2rl:
     Inherits: emp-overlay
@@ -1022,7 +1032,11 @@ atnk:
 	muzzle: minigun
 		Length: 6
 		Facings: 8
+	idle-float: 1tnk-float
+		Facings: 32
+		UseClassicFacingFudge: True
 	icon: atnkicon
+    rank2-icon: atnkr2icon
 
 atnk.destroyed:
 	idle: 1tnk
@@ -1054,6 +1068,13 @@ tnkd.destroyed:
 
 mrj:
     Inherits: emp-overlay
+	turret: mgun
+		Facings: 32
+		UseClassicFacingFudge: True
+	muzzle: minigun
+		Length: 6
+		Facings: 8
+    mhq-icon: mhqicon
 
 stnk:
     Inherits: emp-overlay
@@ -1866,6 +1887,12 @@ beacon:
 	paratanks: paratanksmallicon
 		Length: *
 		Offset: 0,-42
+	airdrop: airdropsmallicon
+		Length: *
+		Offset: 0,-42
+	paranuke: paranukesmallicon
+		Length: *
+		Offset: 0,-42
 
 icon:
 	fieldrepair: frepicon
@@ -1875,6 +1902,10 @@ icon:
     empbomb: empbombicon
 	radarscan: rdrscnicon
 	paratanks: paratankicon
+	airdrop: airdropicon
+    fturicon: fturicon
+    paramines: mnlyicon
+	paranuke: paranukeicon
 
 explosion:
 	pulse_explosion: pulsefx2
@@ -1925,6 +1956,7 @@ bio:
 		Length: 40
 		Tick: 160
 		Offset: 0,-20
+    icon: bioicon
 
 tbt:
 	Inherits: emp-overlay
@@ -1956,6 +1988,7 @@ iroq:
 		Length: 6
 		Facings: 8
 	icon: iroqicon
+    rank2-icon: iroqr2icon
 
 cossack:
 	idle:
@@ -2236,6 +2269,29 @@ atgm:
             INTERIOR: TEMPERAT
 	icon: atgmicon
 
+dog:
+	swim_idle: bikinidog
+		Start: 0
+		Facings: 8
+		Length: 10
+		Tick: 100
+	swim_stand: bikinidog
+		Start: 0
+		Facings: 8
+		Length: 10
+		Tick: 100
+	swim: bikinidog
+		Start: 0
+		Facings: 8
+		Length: 10
+		Tick: 100
+	swim_eat: h2o_exp2
+		Start: 1
+		Facings: 1
+		Length: 4
+		Tick: 100
+		Transpose: True
+
 dog.bomb:
 	Defaults: dog
 	Inherits: dog
@@ -2466,6 +2522,8 @@ dtnk:
 	apc-body: apc
 		Facings: 32
 		UseClassicFacingFudge: True
+	turret-mapc: apc-tur
+		Facings: 32
 	1tnk-body: 1tnk
 		Facings: 32
 		UseClassicFacingFudge: True        
@@ -2547,6 +2605,10 @@ dtnk:
         Start: 32
 		Facings: 32
 		UseClassicFacingFudge: True
+	mbun-body: harty
+		Facings: 32
+		UseClassicFacingFudge: True
+	turret-mbun:  4tnkpbox
 	icon: dtnkicon
 
 dtnk.destroyed:
@@ -2686,6 +2748,7 @@ mrls:
 		Facings: 32
 		UseClassicFacingFudge: True
 	icon: mrlsicon
+    msam-icon: msamicon
 
 hvrf:
 	Inherits: emp-overlay
@@ -2699,3 +2762,508 @@ hvrf:
 		Length: 6
 		Facings: 8
 	icon: hvrficon
+
+e4:
+	rank2-icon: e4r2icon
+
+spy:
+	rank2-icon: spyr2icon
+
+yak:
+    rank2-icon: yakr2icon
+
+ally-bdgr:
+	idle:
+		Facings: 16
+
+ally-u2:
+	idle:
+		Facings: 16
+
+mbun:
+	Inherits: emp-overlay
+	idle: harty
+		Facings: 32
+        UseClassicFacingFudge: True
+    turret: 4tnkpbox
+	muzzle: minigun
+		Length: 6
+		Facings: 8
+	icon: mbunicon
+
+spg:
+	Inherits: emp-overlay
+	idle:
+		Facings: 32
+		UseClassicFacingFudge: True
+	muzzle: gunfire2
+		Length: 2
+	icon: spgicon
+
+spg.destroyed:
+	idle: spg
+		Facings: 32
+		UseClassicFacingFudge: True
+
+bshp:
+    Inherits: emp-overlay
+	idle: dd
+		Facings: 16
+	turret: pttur
+		Facings: 32
+	muzzle: gunfire2
+		Length: 5
+	turret-dc: mgun
+		Facings: 32
+	mg-muzzle: minigun
+		Length: 6
+		Facings: 8
+	icon: bshpicon
+
+mgnm:
+	Inherits: emp-overlay
+	idle:
+		Facings: 16
+	move:
+		Start: 16
+		Facings: 16
+		Length: 8
+	icon: mgnmicon
+
+gtwr:
+    Inherits: emp-overlay
+	idle:
+	damaged-idle:
+		Start: 1
+	dead:
+		Start: 1
+		Tick: 800
+	make: gtwr-make
+		Length: *
+        Tick: 70
+	muzzle: minigun
+		Length: 6
+		Facings: 8
+	bib: mbPBOX
+		Length: *
+		Offset: 0,-2
+		UseTilesetExtension: true
+		TilesetOverrides:
+			INTERIOR: TEMPERAT
+	icon: gtwricon
+
+rmbo:
+	stand:
+		Facings: 8
+	run:
+		Start: 8
+		Length: 6
+		Facings: 8
+		Tick: 100
+	shoot:
+		Start: 56
+		Length: 7
+		Facings: 8
+	liedown:
+		Start: 112
+		Length: 2
+		Facings: 8
+	standup:
+		Start: 160
+		Length: 2
+		Facings: 8
+	prone-stand:
+		Start: 128
+		Stride: 4
+		Facings: 8
+	prone-run:
+		Start: 128
+		Length: 4
+		Facings: 8
+		Tick: 100
+	prone-shoot:
+		Start: 176
+		Length: 7
+		Facings: 8
+	idle1:
+		Start: 232
+		Length: 30
+		Tick: 120
+	die1:
+		Start: 262
+		Length: 8
+		Tick: 80
+	die2:
+		Start: 270
+		Length: 8
+		Tick: 80
+	die3:
+		Start: 278
+		Length: 8
+		Tick: 80
+	die4:
+		Start: 286
+		Length: 12
+		Tick: 80
+	die5:
+		Start: 298
+		Length: 18
+		Tick: 80
+	die6: electro
+		Length: *
+		UseTilesetExtension: true
+		TilesetOverrides:
+            DESERT: TEMPERAT
+            INTERIOR: TEMPERAT
+	die-crushed: corpse1
+		Length: *
+		Tick: 1600
+		ZOffset: -511
+		UseTilesetExtension: true
+		TilesetOverrides:
+            DESERT: TEMPERAT
+            INTERIOR: TEMPERAT
+	garrison-muzzle: minigun
+		Length: 6
+		Facings: 8
+	icon: rmboicon
+
+hapc:
+    Inherits: emp-overlay
+	idle: mnly
+		Facings: 32
+		UseClassicFacingFudge: True
+	muzzle: minigun
+		Length: 6
+		Facings: 8
+	open: mnly
+		Start: 32
+		Length: 3
+	unload: mnly
+		Start: 32
+	icon: hapcicon
+
+mapc:
+    Inherits: emp-overlay
+	idle: apc
+		Facings: 32
+		UseClassicFacingFudge: True
+	turret: apc-tur
+		Facings: 32
+	muzzle: apcmuz
+		Length: 3
+		Stride: 6
+		Facings: 8
+	open: apc
+		Start: 32
+		Length: 3
+	unload: apc
+		Start: 32
+	icon: mapcicon
+
+mapc.destroyed:
+	idle: apc
+		Facings: 32
+		UseClassicFacingFudge: True
+		ZOffset: -512
+	turret: apc-tur
+		Facings: 32
+		ZOffset: -512
+
+ssm:
+    Inherits: emp-overlay
+	idle:
+		Facings: 32
+		UseClassicFacingFudge: True
+	turret:
+		Start: 32
+		Facings: 32
+		UseClassicFacingFudge: True
+	turret1:
+		Start: 64
+		Facings: 32
+		UseClassicFacingFudge: True
+	turret0:
+		Start: 96
+		Facings: 32
+		UseClassicFacingFudge: True
+	icon: ssmicon
+    nuke-icon: nssmicon
+    
+ssm.destroyed:
+	idle: ssm
+		Facings: 32
+		UseClassicFacingFudge: True
+		ZOffset: -512
+	turret: ssm
+		Start: 96
+		Facings: 32
+		UseClassicFacingFudge: True
+		ZOffset: -512
+
+hjm:
+	idle: missilenew
+		Facings: 32
+		ZOffset: 1023
+
+rpg:
+	stand:
+		Facings: 8
+	stand2:
+		Start: 8
+		Facings: 8
+	run:
+		Start: 16
+		Length: 6
+		Facings: 8
+		Tick: 120
+	shoot:
+		Start: 64
+		Length: 16
+		Facings: 8
+	parachute:
+		Start: 393
+	idle1:
+		Start: 384
+		Length: 16
+		Tick: 120
+	idle2:
+		Start: 401
+		Length: 16
+		Tick: 120
+	die1:
+		Start: 416
+		Length: 8
+	die2:
+		Start: 424
+		Length: 8
+	die3:
+		Start: 432
+		Length: 8
+	die4:
+		Start: 441
+		Length: 12
+	die5:
+		Start: 452
+		Length: 18
+	die6: electro
+		Length: *
+		UseTilesetExtension: true
+		TilesetOverrides:
+			DESERT: TEMPERAT
+			INTERIOR: TEMPERAT
+	die-crushed: corpse1
+		Length: *
+		Tick: 1600
+		ZOffset: -511
+		UseTilesetExtension: true
+		TilesetOverrides:
+			DESERT: TEMPERAT
+			INTERIOR: TEMPERAT
+	liedown:
+		Start: 192
+		Length: 2
+		Facings: 8
+	standup:
+		Start: 240
+		Length: 2
+		Facings: 8
+	prone-stand:
+		Start: 208
+		Stride: 4
+		Facings: 8
+	prone-stand2:
+		Start: 208
+		Stride: 4
+		Facings: 8
+	prone-run:
+		Start: 208
+		Length: 4
+		Facings: 8
+		Tick: 120
+	prone-shoot:
+		Start: 256
+		Length: 16
+		Facings: 8
+	icon: rpgicon
+	parachute:
+		Start: 496
+		Length: 3
+		Reverse: true
+		Facings: 8
+
+stng:
+	stand:
+		Facings: 8
+	stand2:
+		Start: 8
+		Facings: 8
+	run:
+		Start: 16
+		Length: 6
+		Facings: 8
+		Tick: 100
+	shoot:
+		Start: 64
+		Length: 16
+		Facings: 8
+	liedown:
+		Start: 192
+		Length: 2
+		Facings: 8
+	standup:
+		Start: 240
+		Length: 2
+		Facings: 8
+	prone-stand:
+		Start: 208
+		Stride: 4
+		Facings: 8
+	prone-stand2:
+		Start: 208
+		Stride: 4
+		Facings: 8
+	prone-run:
+		Start: 208
+		Length: 4
+		Facings: 8
+		Tick: 100
+	prone-shoot:
+		Start: 256
+		Length: 16
+		Facings: 8
+	idle1:
+		Start: 384
+		Length: 14
+		Tick: 120
+	idle2:
+		Start: 398
+		Length: 18
+		Tick: 120
+	cheer:
+		Start: 470
+		Length: 3
+		Facings: 8
+		Tick: 120	
+	die1:
+		Start: 416
+		Length: 9
+		Tick: 80
+	die2:
+		Start: 424
+		Length: 8
+		Tick: 80
+	die3:
+		Start: 432
+		Length: 8
+		Tick: 80
+	die4:
+		Start: 440
+		Length: 12
+		Tick: 80
+	die5:
+		Start: 452
+		Length: 18
+		Tick: 80
+	die6: electro
+		Length: *
+		UseTilesetExtension: true
+		TilesetOverrides:
+			DESERT: TEMPERAT
+			INTERIOR: TEMPERAT
+	die-crushed: corpse1
+		Length: *
+		Tick: 1600
+		ZOffset: -511
+		UseTilesetExtension: true
+		TilesetOverrides:
+			DESERT: TEMPERAT
+			INTERIOR: TEMPERAT
+	icon: stngicon
+	parachute:
+		Start: 192
+		Length: 2
+
+e1sniper:
+	stand:
+		Facings: 8
+	stand2:
+		Start: 8
+		Facings: 8
+	run:
+		Start: 16
+		Length: 6
+		Facings: 8
+		Tick: 100
+	shoot:
+		Start: 64
+		Length: 8
+		Facings: 8
+	prone-stand:
+		Start: 144
+		Stride: 4
+		Facings: 8
+	prone-stand2:
+		Start: 144
+		Stride: 4
+		Facings: 8
+	prone-run:
+		Start: 144
+		Length: 4
+		Facings: 8
+		Tick: 100
+	liedown:
+		Start: 128
+		Length: 2
+		Facings: 8
+	standup:
+		Start: 176
+		Length: 2
+		Facings: 8
+	prone-shoot:
+		Start: 192
+		Length: 8
+		Facings: 8
+	parachute:
+		Start: 377
+	idle1:
+		Start: 256
+		Length: 16
+		Tick: 120
+	idle2:
+		Start: 272
+		Length: 16
+		Tick: 120
+	die1:
+		Start: 288
+		Length: 8
+	die2:
+		Start: 296
+		Length: 8
+	die3:
+		Start: 304
+		Length: 8
+	die4:
+		Start: 312
+		Length: 12
+	die5:
+		Start: 324
+		Length: 18
+	die6: electro
+		Length: *
+		UseTilesetExtension: true
+		TilesetOverrides:
+			DESERT: TEMPERAT
+			INTERIOR: TEMPERAT
+	die-crushed: corpse1
+		Length: *
+		Tick: 1600
+		ZOffset: -511
+		UseTilesetExtension: true
+		TilesetOverrides:
+			DESERT: TEMPERAT
+			INTERIOR: TEMPERAT
+	garrison-muzzle: minigun
+		Length: 6
+		Facings: 8
+	icon: snipericon

@@ -15,6 +15,8 @@ Metrics:
 	FactionSuffix-ukraine: soviet
     FactionSuffix-belarus: soviet
     FactionSuffix-kazakh: soviet
+    FactionSuffix-uzbek: soviet
+    FactionSuffix-turkmen: soviet
 	IncompatibleProtectedGameColor: B22222
 	IncompatibleVersionColor: D3D3D3
 	TextfieldColorHighlight: 562020

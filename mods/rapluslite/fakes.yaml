@@ -914,7 +914,8 @@ MGGF:
 	Inherits: MGG
 	Buildable:
 		BuildPaletteOrder: 15
-		Prerequisites: atek, ~player.france
+		#   Prerequisites: atek, ~player.france
+        Prerequisites: ~disabled
 		Description: Looks like a Mobile Gap Generator.
 		Icon: fake-icon
 	Tooltip:

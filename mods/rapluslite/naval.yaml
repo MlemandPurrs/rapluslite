@@ -222,6 +222,82 @@ DD.Germany:
 		InitialLevels: 1
     -MapEditorData:
 
+BSHP:
+	Inherits: ^Ship
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Boat
+		BuildPaletteOrder: 6
+		Prerequisites: ~syrd, dome, ~player.greece, ~techlevel.medium
+		Description: Fast artillery ship, with depthcharges as secondary.\nCan detect submarines.\n  Strong vs Buildings, Ships\n  Weak vs Aircraft, Infantry
+	Valued:
+		Cost: 1150
+	Tooltip:
+		Name: Battleship
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 40000
+	Armor:
+		Type: Heavy
+	Mobile:
+		TurnSpeed: 5
+		Speed: 85
+	RevealsShroud:
+		Range: 6c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	Turreted@PRIMARY:
+        Turret: primary
+		TurnSpeed: 3
+		Offset: 469,0,128
+    Turreted@SECONDARY:
+		Turret: secondary
+		TurnSpeed: 5
+		Offset: -761,0,128
+	Armament@PRIMARY:
+        Turret: primary
+		Weapon: 8Inch.singular
+        LocalOffset: 480,0,40
+		Recoil: 85
+		RecoilRecovery: 34
+        PauseOnCondition: empdisable
+        MuzzleSequence: muzzle
+	Armament@SECONDARY:
+        Name: secondary
+        Turret: secondary
+		Weapon: DepthCharge
+        PauseOnCondition: empdisable
+        #   Armament@TERTIARY:
+		#   Name: tertiary
+        #   Turret: secondary
+		#   Weapon: M60mg
+        #   LocalOffset: 128,0,43
+		#   MuzzleSequence: mg-muzzle
+	AttackTurreted:
+        #   Armaments: primary, secondary, tertiary
+        Armaments: primary, secondary
+		Turrets: primary, secondary
+		TargetFrozenActors: True
+		ForceFireIgnoresActors: True
+        PauseOnCondition: empdisable    
+	SelectionDecorations:
+	WithSpriteTurret@PRIMARY:
+		Turret: primary
+		Sequence: turret
+	WithSpriteTurret@SECONDARY:
+		Turret: secondary
+		Sequence: turret-dc
+    WithMuzzleOverlay:
+	DetectCloaked:
+		CloakTypes: Underwater
+		Range: 4c0
+	RenderDetectionCircle:
+	Selectable:
+		DecorationBounds: 38,38
+
 CA:
     Buildable:
         BuildPaletteOrder: 4
@@ -375,6 +451,7 @@ SS:
     Buildable:
         BuildPaletteOrder: 2
         Description: Submerged anti-ship unit\narmed with torpedoes.\nCan detect other submarines.\n  Strong vs Naval units\n  Weak vs Ground units, Aircraft\n  Special Ability: Submerge\nCan dive underwater to become invisible\nmove unseen and avoid damage of most weapons.\nCan be manually ordered to surface for Repairs.
+        Prerequisites: ~spen, ~!player.turkmen, ~techlevel.low
 	Valued:
 		Cost: 775
     Armament:
@@ -428,6 +505,17 @@ SS:
         DeployedCondition: deployed
 	ExternalCondition@MINEHIT:
 		Condition: minehit
+
+SS.Turkmen:
+    Inherits: SS
+    Buildable:
+        Prerequisites: ~spen, ~player.turkmen, ~techlevel.low
+    RenderSprites:
+        Image: ss
+	ProducibleWithLevel:
+		Prerequisites: techlevel.infonly
+		InitialLevels: 1
+    -MapEditorData:
 
 SS.AG:
 	Inherits: SS
@@ -820,6 +908,80 @@ SCRP:
 		Condition: replenishsmine
 	RepairableNear:
 		Buildings: syrd, spen, spen.russia
+
+MGNM:
+	Inherits: ^Ship
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Submarine
+		BuildPaletteOrder: 6
+		Prerequisites: ~spen, fix, ~player.turkmen, ~techlevel.medium
+		Description: Dirigible sea-mine.\nCloaked when standing still.\n  Strong vs Naval units\n  Weak vs anything Else
+	Valued:
+		Cost: 625
+	Tooltip:
+		Name: Magnetic Mine
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 5000
+	Armor:
+		Type: Heavy
+	Mobile:
+		TurnSpeed: 3
+		Speed: 42
+	RevealsShroud:
+		Range: 3c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 1c0
+	Explodes@UNITEXPLODES:
+		Weapon: ASMineMagnetic
+		DamageSource: Killer
+	AttackFrontal:
+		FacingTolerance: 128
+	Armament@PRIMARY:
+		Weapon: SeaMineTargeting
+	SelectionDecorations:
+	Selectable:
+		DecorationBounds: 36,36
+	GrantConditionOnAttack:
+		Condition: triggered
+	GrantConditionOnDeploy:
+		DeployedCondition: triggered
+	-DamageMultiplier@IRONCURTAIN:
+	KillsSelf:
+		RequiresCondition: invulnerability || triggered
+	Chronoshiftable:
+		ExplodeInstead: yes
+	Targetable:
+		TargetTypes: Ground, Water, Ship, Submarine, SeaDetonateAttack
+		RequiresCondition: !underwater
+	Targetable@UNDERWATER:
+		TargetTypes: Underwater, Submarine, SeaDetonateAttack
+		RequiresCondition: underwater
+	Cloak:
+		CloakTypes: Underwater
+		InitialDelay: 50
+		CloakDelay: 50
+		CloakSound: subshow1.aud
+		UncloakSound: subshow1.aud
+		Palette: submerged
+		UncloakOn: Attack, Demolish, Move
+		CloakedCondition: underwater
+		PauseOnCondition: cloak-force-disabled || shallowcrossing || empdisable
+	GrantConditionOnDamageState@UNCLOAK:
+		Condition: cloak-force-disabled
+		ValidDamageStates: Critical
+	GrantConditionOnTerrain@CROSSINGFORD:
+		Condition: shallowcrossing
+		TerrainTypes: Shallow
+	-MustBeDestroyed:
+	WithMoveAnimation:
+		MoveSequence: move
+	Voiced:
+		VoiceSet: RoboticVoice
 
 HVRF:
 	Inherits: ^Vehicle

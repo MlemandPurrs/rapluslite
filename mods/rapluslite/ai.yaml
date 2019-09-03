@@ -107,6 +107,78 @@ Player:
 					Attractiveness: -10
 					TargetMetric: Value
 					CheckRadius: 7c0
+	SupportPowerBotModule@greece:
+		RequiresCondition: enable-ai-player && player.greece
+		Decisions:
+			NuclearMissile:
+				OrderName: NukePowerInfoOrder
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			AlliesParaTanks:
+				OrderName: AlliedParaTanksPowerInfoOrder
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+	SupportPowerBotModule@turkey:
+		RequiresCondition: enable-ai-player && player.turkey
+		Decisions:
+			NuclearMissile:
+				OrderName: NukePowerInfoOrder
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			AlliesParanuke:
+				OrderName: AlliedParanukePowerInfoOrder
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Vehicle, Infantry
+					Attractiveness: 3
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@2:
+					Against: Ally
+					Types: Ground, Water
+					Attractiveness: -20
+					TargetMetric: Value
+					CheckRadius: 4c0
+				Consideration@3:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 2c0
 	SupportPowerBotModule@russia:
 		RequiresCondition: enable-ai-player && player.russia
 		Decisions:
@@ -347,6 +419,108 @@ Player:
 					Attractiveness: 1
 					TargetMetric: None
 					CheckRadius: 2c0
+	SupportPowerBotModule@uzbekistan:
+		RequiresCondition: enable-ai-player && player.uzbek
+		Decisions:
+			SovietSpyplane:
+				OrderName: SovietSpyPlanePowerInfoOrder
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			SovietParatroopers:
+				OrderName: SovietParatroopersPowerInfoOrder
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			NuclearMissile:
+				OrderName: NukePowerInfoOrder
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			IronCurtainPower:
+				OrderName: IronCurtainPowerInfoOrder
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Ally
+					Types: Tank, Vehicle, Ship
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 2c0
+	SupportPowerBotModule@turkmenistan:
+		RequiresCondition: enable-ai-player && player.turkmen
+		Decisions:
+			SovietSpyplane:
+				OrderName: SovietSpyPlanePowerInfoOrder
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			SovietParatroopers:
+				OrderName: SovietParatroopersPowerInfoOrder
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			NuclearMissile:
+				OrderName: NukePowerInfoOrder
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			IronCurtainPower:
+				OrderName: IronCurtainPowerInfoOrder
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Ally
+					Types: Tank, Vehicle, Ship
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 2c0
 	HarvesterBotModule@england:
 		RequiresCondition: enable-ai-player && player.england
 		HarvesterTypes: harv
@@ -361,6 +535,14 @@ Player:
 		RefineryTypes: proc.ercc
 	HarvesterBotModule@spain:
 		RequiresCondition: enable-ai-player && player.spain
+		HarvesterTypes: harv
+		RefineryTypes: proc.ercc
+	HarvesterBotModule@greece:
+		RequiresCondition: enable-ai-player && player.greece
+		HarvesterTypes: harv
+		RefineryTypes: proc.ercc
+	HarvesterBotModule@turkey:
+		RequiresCondition: enable-ai-player && player.turkey
 		HarvesterTypes: harv
 		RefineryTypes: proc.ercc
 	HarvesterBotModule@russia:
@@ -379,6 +561,14 @@ Player:
 		RequiresCondition: enable-ai-player && player.kazakh
 		HarvesterTypes: harv.soviet
 		RefineryTypes: proc.soviet
+	HarvesterBotModule@uzbekistan:
+		RequiresCondition: enable-ai-player && player.uzbek
+		HarvesterTypes: harv.soviet
+		RefineryTypes: proc.soviet
+	HarvesterBotModule@turkmenistan:
+		RequiresCondition: enable-ai-player && player.turkmen
+		HarvesterTypes: harv.soviet
+		RefineryTypes: proc.soviet		
 	BaseBuilderBotModule@england:
 		RequiresCondition: enable-ai-player && player.england
 		MinimumExcessPower: 60
@@ -577,6 +767,106 @@ Player:
             atek: 1
 			mslo: 1
 			pdox: 1
+	BaseBuilderBotModule@greece:
+		RequiresCondition: enable-ai-player && player.greece
+		MinimumExcessPower: 60
+		MaximumExcessPower: 160
+		ExcessPowerIncrement: 40
+		ExcessPowerIncreaseThreshold: 4
+		CheckForWaterRadius: 8
+		ConstructionYardTypes: fact
+		RefineryTypes: proc.ercc
+		PowerTypes: powr.greece,apwr.greece
+		BarracksTypes: tent
+		VehiclesFactoryTypes: weap
+		ProductionTypes: tent,weap,hpad
+		NavalProductionTypes: syrd
+		SiloTypes: silo
+		BuildingLimits:
+			proc.ercc: 4
+			tent: 2
+            kenn: 4
+			dome: 1
+			weap: 3
+			syrd: 1
+			hpad: 4
+            atek.greece: 1
+			fix: 1
+			pdox: 1
+            mslo: 1
+            agun: 6
+            gun: 6
+            pbox: 8
+            hbox: 4
+            gap: 4
+		BuildingFractions:
+			proc.ercc: 15
+			tent: 2
+			kenn: 1
+			dome: 1
+			weap: 6
+			hpad: 4
+			syrd: 1
+			pbox: 7
+			hbox: 3
+			gun: 7
+			gap: 2
+			fix: 1
+			agun: 5
+            atek.greece: 1
+			mslo: 1
+			pdox: 1
+	BaseBuilderBotModule@turkey:
+		RequiresCondition: enable-ai-player && player.turkey
+		MinimumExcessPower: 60
+		MaximumExcessPower: 160
+		ExcessPowerIncrement: 40
+		ExcessPowerIncreaseThreshold: 4
+		CheckForWaterRadius: 8
+		ConstructionYardTypes: fact
+		RefineryTypes: proc.ercc
+		PowerTypes: powr,apwr
+		BarracksTypes: tent
+		VehiclesFactoryTypes: weap
+		ProductionTypes: tent,weap,hpad
+		NavalProductionTypes: syrd
+		SiloTypes: silo
+		BuildingLimits:
+			proc.ercc: 4
+			tent: 2
+            kenn: 4
+			dome: 1
+			weap: 3
+			syrd: 1
+			hpad: 4
+            atek.turkey: 1
+			fix: 1
+			pdox: 1
+            mslo: 1
+            agun: 6
+            gun: 6
+            pbox: 8
+            hbox: 4
+            gap: 4
+			gtwr: 4
+		BuildingFractions:
+			proc.ercc: 15
+			tent: 2
+			kenn: 1
+			dome: 1
+			weap: 6
+			hpad: 4
+			syrd: 1
+			pbox: 7
+			hbox: 3
+			gtwr: 4
+			gun: 7
+			gap: 2
+			fix: 1
+			agun: 5
+            atek.turkey: 1
+			mslo: 1
+			pdox: 1
 	BaseBuilderBotModule@russia:
 		RequiresCondition: enable-ai-player && player.russia
 		MinimumExcessPower: 60
@@ -773,13 +1063,62 @@ Player:
             stek.kazakh: 1
 			mslo: 1
 			iron: 1
+	BaseBuilderBotModule@uzbekistan:
+		RequiresCondition: enable-ai-player && player.uzbek
+		MinimumExcessPower: 60
+		MaximumExcessPower: 200
+		ExcessPowerIncrement: 40
+		ExcessPowerIncreaseThreshold: 4
+		CheckForWaterRadius: 8
+		ConstructionYardTypes: fact
+		RefineryTypes: proc.soviet
+		PowerTypes: powr,apwr
+		BarracksTypes: barr
+		VehiclesFactoryTypes: weap
+		ProductionTypes: barr,weap,afld
+		NavalProductionTypes: spen
+		SiloTypes: silo
+		BuildingLimits:
+			proc.soviet: 4
+			barr: 2
+            kenn: 4
+            dome.soviet: 1
+			weap: 3
+			spen: 1
+			afld: 4
+            stek.uzbek: 1
+			fix: 1
+			iron: 1
+            mslo: 1
+            ftur: 6
+            hgun: 4
+            tsla: 4
+            sam: 4
+            hsam: 2
+		BuildingFractions:
+			proc.soviet: 15
+			barr: 2
+			kenn: 1
+            dome.soviet: 1
+			weap: 6
+			spen: 1
+			afld: 4
+            hgun: 3
+			ftur: 10
+			tsla: 5
+			fix: 1
+			sam: 3
+			hsam: 1
+            stek.uzbek: 1
+			mslo: 1
+			iron: 1
 	BuildingRepairBotModule@aiplayer:
 		RequiresCondition: enable-ai-player
 	McvManagerBotModule@aiplayer:
 		RequiresCondition: enable-ai-player
 		McvTypes: mcv
 		ConstructionYardTypes: fact
-		McvFactoryTypes: weap
+		McvFactoryTypes: weap,weap.russia
 	CaptureManagerBotModule@engineer:
 		RequiresCondition: enable-ai-player
 		CapturingActorTypes: e6
@@ -787,13 +1126,13 @@ Player:
 		CheckCaptureTargetsForVisibility: false
 		MaximumCaptureTargetOptions: 15
 	CaptureManagerBotModule@thf:
-		RequiresCondition: enable-ai-player && player.russia || player.ukraine || player.belarus
+		RequiresCondition: enable-ai-player && player.russia || player.ukraine || player.belarus || player.uzbek || player.turkmen
 		CapturingActorTypes: thf
         CapturableActorTypes: harv,harv.soviet,harv.belarus,mcv,v2rl,v2rl.ukraine,arty,arty.france,4tnk,4tnk.ukraine,4tnk.belarus,ttnk,ctnk
 		CheckCaptureTargetsForVisibility: true
 		MaximumCaptureTargetOptions: 15
 	CaptureManagerBotModule@mech:
-		RequiresCondition: enable-ai-player && player.england || player.france || player.germany
+		RequiresCondition: enable-ai-player && player.england || player.france || player.germany || player.greece || player.turkey
 		CapturingActorTypes: mech,mech.germany
 		CheckCaptureTargetsForVisibility: true
 		MaximumCaptureTargetOptions: 15
@@ -901,6 +1240,58 @@ Player:
 		AttackScanRadius: 24
 		ExcludeFromSquadsTypes: harv, mcv, dog, e1, e3, atgm, jeep.spain, apc, 1tnk.spain, 2tnk.spain, arty, atnk.spain, hell, e7, pt, dd, ca, hvrf, e6, mech
 		ConstructionYardTypes: fact
+	SquadManagerBotModule@greece:
+		RequiresCondition: enable-ai-player && player.greece
+		SquadSize: 16
+		SquadSizeRandomBonus: 16
+		RushInterval: 400
+		AttackScanRadius: 16
+		ExcludeFromSquadsTypes: harv, mcv, dog, pt, dd, ca, bshp, heli, iroq.ai, e6, mech
+		ConstructionYardTypes: fact
+	SquadManagerBotModule@greece.sea:
+		RequiresCondition: enable-ai-player && player.england
+		SquadSize: 4
+		SquadSizeRandomBonus: 4
+		RushInterval: 400
+		AttackScanRadius: 24
+		ExcludeFromSquadsTypes: harv, mcv, dog, e1, e3, atgm, jeep, apc, 1tnk.greece, 2tnk, arty, atnk.greece, e7, heli, iroq.ai, e6, mech
+		NavalUnitsTypes: pt,dd,ca,bshp
+		ConstructionYardTypes: fact
+		NavalProductionTypes: syrd
+	SquadManagerBotModule@greece.air:
+		RequiresCondition: enable-ai-player && player.greece
+		SquadSize: 2
+		SquadSizeRandomBonus: 2
+		RushInterval: 400
+		AttackScanRadius: 24
+		ExcludeFromSquadsTypes: harv, mcv, dog, e1, e3, atgm, jeep, apc, 1tnk.greece, 2tnk, arty, atnk.greece, e7, pt, dd, ca, bshp, e6, mech
+		ConstructionYardTypes: fact
+	SquadManagerBotModule@turkey:
+		RequiresCondition: enable-ai-player && player.turkey
+		SquadSize: 16
+		SquadSizeRandomBonus: 16
+		RushInterval: 400
+		AttackScanRadius: 16
+		ExcludeFromSquadsTypes: harv, mcv, dog, pt, dd, ca, heli, iroq.turkey.ai, e6, mech
+		ConstructionYardTypes: fact
+	SquadManagerBotModule@turkey.sea:
+		RequiresCondition: enable-ai-player && player.turkey
+		SquadSize: 4
+		SquadSizeRandomBonus: 4
+		RushInterval: 400
+		AttackScanRadius: 24
+		ExcludeFromSquadsTypes: harv, mcv, dog, e1, e3, rmbo, jeep, apc, mapc, 1tnk.turkey, 2tnk, arty, atnk.turkey, e7, heli, iroq.turkey.ai, e6, mech
+		NavalUnitsTypes: pt,dd,ca
+		ConstructionYardTypes: fact
+		NavalProductionTypes: syrd
+	SquadManagerBotModule@turkey.air:
+		RequiresCondition: enable-ai-player && player.turkey
+		SquadSize: 2
+		SquadSizeRandomBonus: 2
+		RushInterval: 400
+		AttackScanRadius: 24
+		ExcludeFromSquadsTypes: harv, mcv, dog, e1, e3, rmbo, jeep, apc, mapc, 1tnk.turkey, 2tnk, arty, atnk.turkey, e7, pt, dd, ca, e6, mech
+		ConstructionYardTypes: fact
 	SquadManagerBotModule@russia:
 		RequiresCondition: enable-ai-player && player.russia
 		SquadSize: 16
@@ -1004,6 +1395,58 @@ Player:
 		RushInterval: 400
 		AttackScanRadius: 24
 		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e3, e4, volk, mrtr, ftrk.kazakh, btr, 2tnk.soviet, 3tnk, 4tnk, v2rl, brdm, ss, ss.ag, msub, msub.aa, scrp, e6, thf
+		ConstructionYardTypes: fact
+	SquadManagerBotModule@uzbekistan:
+		RequiresCondition: enable-ai-player && player.uzbek
+		SquadSize: 16
+		SquadSizeRandomBonus: 16
+		RushInterval: 400
+		AttackScanRadius: 16
+		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, ss, ss.ag, msub, msub.aa, yak.ai, mig.ai, e6, thf
+		ConstructionYardTypes: fact
+	SquadManagerBotModule@uzbekistan.sea:
+		RequiresCondition: enable-ai-player && player.uzbek
+		SquadSize: 4
+		SquadSizeRandomBonus: 4
+		RushInterval: 400
+		AttackScanRadius: 24
+		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e3, e4, volk, rpg, ftrk, btr, 2tnk.uzbek, 3tnk, 4tnk, v2rl, yak.ai, mig.ai, e6, thf
+		NavalUnitsTypes: ss,ss.ag,msub,msub.aa
+		ConstructionYardTypes: fact
+		NavalProductionTypes: spen
+	SquadManagerBotModule@uzbekistan.air:
+		RequiresCondition: enable-ai-player && player.uzbek
+		SquadSize: 2
+		SquadSizeRandomBonus: 2
+		RushInterval: 400
+		AttackScanRadius: 24
+		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e3, e4, volk, rpg, ftrk, btr, 2tnk.uzbek, 3tnk, 4tnk, v2rl, ss, ss.ag, msub, msub.aa, e6, thf
+		ConstructionYardTypes: fact
+	SquadManagerBotModule@turkmenistan:
+		RequiresCondition: enable-ai-player && player.turkmen
+		SquadSize: 16
+		SquadSizeRandomBonus: 16
+		RushInterval: 400
+		AttackScanRadius: 16
+		ExcludeFromSquadsTypes: harv.soviet, mcv, dog.turkmen, ss, ss.ag, msub, msub.aa, yak.ai, mig.ai, e6, thf
+		ConstructionYardTypes: fact
+	SquadManagerBotModule@turkmenistan.sea:
+		RequiresCondition: enable-ai-player && player.turkmen
+		SquadSize: 4
+		SquadSizeRandomBonus: 4
+		RushInterval: 400
+		AttackScanRadius: 24
+		ExcludeFromSquadsTypes: harv.soviet, mcv, dog.turkmen, e1, e3, e4, volk, mark, ftrk, btr, 2tnk.soviet, 3tnk, 4tnk, v2rl, spg, yak.ai, mig.ai, e6, thf
+		NavalUnitsTypes: ss,ss.ag,msub,msub.aa
+		ConstructionYardTypes: fact
+		NavalProductionTypes: spen
+	SquadManagerBotModule@turkmenistan.air:
+		RequiresCondition: enable-ai-player && player.turkmen
+		SquadSize: 2
+		SquadSizeRandomBonus: 2
+		RushInterval: 400
+		AttackScanRadius: 24
+		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e3, e4, volk, mark, ftrk, btr, 2tnk.uzbek, 3tnk, 4tnk, v2rl, spg, ss, ss.ag, msub, msub.aa, e6, thf
 		ConstructionYardTypes: fact
 	UnitBuilderBotModule@england:
 		RequiresCondition: enable-ai-player && player.england
@@ -1157,7 +1600,7 @@ Player:
 			e1: 65
 			e3: 30
 			dog: 15
-			mgi: 25
+			stng: 3
 			harv: 15
 			jeep.spain: 20
 			apc: 30
@@ -1165,7 +1608,6 @@ Player:
 			2tnk.spain: 50
 			arty: 15
             atnk.spain: 5
-			mrls: 10
 			e7: 1
             e6: 2
             mech: 2
@@ -1176,9 +1618,9 @@ Player:
 			jeep.spain: 4
 			e7: 1
             e6: 2
-            mrls: 2
             mech: 2
             hell: 4
+			stng: 3
 	UnitBuilderBotModule@spain.sea:
 		RequiresCondition: enable-ai-player && player.spain
         IdleBaseUnitsMaximum: 6
@@ -1202,6 +1644,104 @@ Player:
             heli: 60
 		UnitLimits:
             iroq.ai: 4
+			heli: 6
+	UnitBuilderBotModule@greece:
+		RequiresCondition: enable-ai-player && player.greece
+        UnitQueues: Vehicle, Infantry
+		UnitsToBuild:
+			e1: 65
+			e3: 30
+			dog: 15
+			atgm: 5
+			harv: 15
+			jeep: 20
+			apc: 30
+			1tnk.greece: 40
+			2tnk: 50
+			arty: 15
+            atnk.greece: 5
+			e7: 1
+            e6: 2
+            mech: 2
+		UnitLimits:
+			dog: 4
+			harv: 8
+			jeep: 4
+			e7: 1
+            e6: 2
+            mech: 2
+	UnitBuilderBotModule@greece.sea:
+		RequiresCondition: enable-ai-player && player.greece
+        IdleBaseUnitsMaximum: 6
+        UnitQueues: Ship
+		UnitsToBuild:
+			pt: 30
+			dd: 30
+			ca: 20
+			bshp: 20
+		UnitLimits:
+			pt: 6
+			dd: 6
+			ca: 4
+			bshp: 4
+	UnitBuilderBotModule@greece.air:
+		RequiresCondition: enable-ai-player && player.greece
+        IdleBaseUnitsMaximum: 4
+        UnitQueues: Aircraft
+		UnitsToBuild:
+			iroq.ai: 40
+            heli: 60
+		UnitLimits:
+            iroq.ai: 4
+			heli: 6
+	UnitBuilderBotModule@turkey:
+		RequiresCondition: enable-ai-player && player.turkey
+        UnitQueues: Vehicle, Infantry
+		UnitsToBuild:
+			e1: 65
+			e3: 30
+			dog: 15
+			harv: 15
+			jeep: 20
+			apc: 15
+			mapc: 15
+			1tnk.turkey: 40
+			2tnk: 50
+			arty: 15
+            atnk.turkey: 5
+			e7: 1
+			rmbo: 1
+            e6: 2
+            mech: 2
+		UnitLimits:
+			dog: 4
+			harv: 8
+			jeep: 4
+			e7: 1
+			rmbo: 1
+            e6: 2
+            mech: 2
+	UnitBuilderBotModule@turkey.sea:
+		RequiresCondition: enable-ai-player && player.turkey
+        IdleBaseUnitsMaximum: 6
+        UnitQueues: Ship
+		UnitsToBuild:
+			pt: 30
+			dd: 30
+			ca: 20
+		UnitLimits:
+			pt: 6
+			dd: 6
+			ca: 4
+	UnitBuilderBotModule@turkey.air:
+		RequiresCondition: enable-ai-player && player.turkey
+        IdleBaseUnitsMaximum: 4
+        UnitQueues: Aircraft
+		UnitsToBuild:
+			iroq.turkey.ai: 40
+            heli: 60
+		UnitLimits:
+            iroq.turkey.ai: 4
 			heli: 6
 	UnitBuilderBotModule@russia:
 		RequiresCondition: enable-ai-player && player.russia
@@ -1405,6 +1945,109 @@ Player:
 			scrp: 2
 	UnitBuilderBotModule@kazakhstan.air:
 		RequiresCondition: enable-ai-player && player.kazakh
+        IdleBaseUnitsMaximum: 4
+        UnitQueues: Aircraft
+		UnitsToBuild:
+			yak.ai: 60
+            mig.ai: 40
+		UnitLimits:
+            yak.ai: 6
+			mig.ai: 4
+	UnitBuilderBotModule@uzbekistan:
+		RequiresCondition: enable-ai-player && player.uzbek
+        UnitQueues: Vehicle, Infantry
+		UnitsToBuild:
+			e1: 65
+			e2: 15
+			e3: 30
+			e4: 15
+			rpg: 5
+			dog: 15
+			harv.soviet: 15
+			ftrk: 30
+			btr: 15
+			2tnk.uzbek: 45
+			3tnk: 35
+			v2rl: 40
+			4tnk: 25
+			volk: 1
+            e6: 2
+            thf: 2
+		UnitLimits:
+			dog: 4
+            harv.soviet: 8
+			ftrk: 6
+			volk: 1
+            e6: 2
+            thf: 2
+			rpg: 3
+	UnitBuilderBotModule@uzbekistan.sea:
+		RequiresCondition: enable-ai-player && player.uzbek
+        IdleBaseUnitsMaximum: 6
+        UnitQueues: Ship
+		UnitsToBuild:
+			ss: 30
+			ss.ag: 30
+			msub: 20
+            msub.aa: 20
+		UnitLimits:
+			ss: 4
+			ss.ag: 6
+            msub: 4
+            msub.aa: 2
+	UnitBuilderBotModule@uzbekistan.air:
+		RequiresCondition: enable-ai-player && player.uzbek
+        IdleBaseUnitsMaximum: 4
+        UnitQueues: Aircraft
+		UnitsToBuild:
+			yak.ai: 60
+            mig.ai: 40
+		UnitLimits:
+            yak.ai: 6
+			mig.ai: 4
+	UnitBuilderBotModule@turkmenistan:
+		RequiresCondition: enable-ai-player && player.turkmenistan
+        UnitQueues: Vehicle, Infantry
+		UnitsToBuild:
+			e1: 65
+			e2: 15
+			e3: 30
+			e4: 15
+			dog: 15
+			harv.soviet: 15
+			ftrk: 30
+			btr: 15
+			2tnk.soviet: 45
+			3tnk: 35
+			v2rl: 40
+			4tnk: 25
+			spg: 15
+			volk: 1
+            e6: 2
+            thf: 2
+		UnitLimits:
+			dog: 4
+            harv.soviet: 8
+			ftrk: 6
+			volk: 1
+            e6: 2
+            thf: 2
+	UnitBuilderBotModule@turkmenistan.sea:
+		RequiresCondition: enable-ai-player && player.turkmen
+        IdleBaseUnitsMaximum: 6
+        UnitQueues: Ship
+		UnitsToBuild:
+			ss: 30
+			ss.ag: 30
+			msub: 20
+            msub.aa: 20
+		UnitLimits:
+			ss: 4
+			ss.ag: 6
+            msub: 4
+            msub.aa: 2
+	UnitBuilderBotModule@turkmenistan.air:
+		RequiresCondition: enable-ai-player && player.turkmen
         IdleBaseUnitsMaximum: 4
         UnitQueues: Aircraft
 		UnitsToBuild:

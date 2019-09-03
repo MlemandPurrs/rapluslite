@@ -1,14 +1,22 @@
 GenericVoice:
 	Variants:
         spain: .v01,.v03
+        greece: .v01,.v03
+        turkey: .v01,.v03
 		belarus: .r01,.r03
         kazakh: .r01,.r03
+        uzbek: .r01,.r03
+        turkmen: .r01,.r03
 
 VehicleVoice:
 	Variants:
         spain: .v00,.v02
+        greece: .v00,.v02
+        turkey: .v00,.v02
 		belarus: .r00,.r02
         kazakh: .r00,.r02
+        uzbek: .r00,.r02
+        turkmen: .r00,.r02
 
 VolkovVoice:
 	DefaultVariant: .aud
@@ -31,3 +39,17 @@ RoboticVoice:
 		Select: vsensela, vsenselb, vsenselc, vsenseld
 		Move: vsenmova, vsenmovb, vsenmovc
 		Action: vsenmova, vsenmovb, vsenmovc
+
+CommandoVoice:
+	Voices:
+		Select: ryeah1,ryes1,ryo1
+		Move: rcmon1,ronit1,rgotit1
+		Attack: ronit1,rgotit1,rnoprblm1
+		Action: ronit1,rgotit1,rnoprblm1
+		Demolish: rnoprblm1
+		Die: ramyell1
+		Burned: ramyell1
+		Zapped: ramyell1
+		Poisoned: ramyell1
+		Build: rrokroll1
+		Kill: rkeepem1,rlaugh1,rlefty1,rtuffguy1

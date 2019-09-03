@@ -15,6 +15,15 @@ BADR.Crate:
 		Image: badr
 	-MapEditorData:
 
+B52:
+	Inherits: BADR
+	Tooltip:
+		Name: B-52
+	SpawnActorOnDeath:
+		Actor: B52.Husk
+	RenderSprites:
+		Image: ally-bdgr
+
 TRAN:
     Buildable:
         BuildPaletteOrder: 1
@@ -52,12 +61,12 @@ IROQ:
 		Queue: Aircraft
 		BuildAtProductionType: Helicopter
 		BuildPaletteOrder: 2
-		Prerequisites: ~hpad, ~aircraft.allies, ~!aitoodumb, ~techlevel.medium
+		Prerequisites: ~hpad, ~aircraft.allies, ~!player.turkey, ~!aitoodumb, ~techlevel.medium
 		Description: Light helicopter armed with dual chainguns.\nCan use Depthcharges against Submarines.\n  Strong vs Infantry, Light vehicles\n  Weak vs Tanks, Aircraft
 	Valued:
 		Cost: 1350
 	Tooltip:
-        Name: Iroqouis
+        Name: Iroqouis Scout
 	Health:
 		HP: 8000
 	RevealsShroud:
@@ -93,8 +102,8 @@ IROQ:
 		Speed: 176
 		LandableTerrainTypes: Clear,Rough,Road,Ore,Beach,Gems
 	AutoTarget:
-		InitialStance: ReturnFire
-		InitialStanceAI: AttackAnything
+		InitialStance: HoldFire
+		InitialStanceAI: HoldFire
 	WithIdleOverlay@ROTORAIR:
 		Offset: 0,0,85
 		Sequence: rotor
@@ -130,6 +139,28 @@ IROQ:
 		RearmActors: hpad, carr.deployed
     AcceptsDeliveredExperience:
 
+IROQ.Turkey:
+    Inherits: IROQ
+    Buildable:
+        Prerequisites: ~hpad, ~aircraft.allies, ~player.turkey, ~!aitoodumb, ~!aircraft.upgraded, ~techlevel.medium
+	ProducibleWithLevel:
+		Prerequisites: techlevel.infonly
+		InitialLevels: 1
+    RenderSprites:
+		Image: iroq
+    -MapEditorData:
+
+IROQ.Turkey.R2:
+    Inherits: IROQ.Turkey
+    Buildable:
+        Prerequisites: ~hpad, ~aircraft.allies, ~player.turkey, ~!aitoodumb, ~aircraft.upgraded, ~techlevel.medium
+        Icon: rank2-icon
+	ProducibleWithLevel:
+		Prerequisites: techlevel.infonly
+		InitialLevels: 2
+    RenderSprites:
+		Image: iroq
+
 IROQ.AI:
     Inherits: IROQ
 	Buildable:
@@ -140,6 +171,21 @@ IROQ.AI:
     	Armaments: primary, secondary
     RenderSprites:
         Image: iroq
+    -MapEditorData:
+
+IROQ.Turkey.AI:
+    Inherits: IROQ
+    Buildable:
+        Prerequisites: ~hpad, ~aircraft.allies, ~player.turkey, ~aitoodumb, ~techlevel.medium
+	ProducibleWithLevel:
+		Prerequisites: techlevel.infonly
+		InitialLevels: 1
+    -Armament@TERTIARY:
+    -AmmoPool@2:
+	AttackAircraft:
+    	Armaments: primary, secondary
+    RenderSprites:
+		Image: iroq
     -MapEditorData:
 
 HELI:
@@ -233,9 +279,26 @@ U2.emp:
 		Ammo: 1
 		AmmoCondition: ammo
 	Tooltip:
-		Name: Special MiG
+		Name: Tesla Plane
+	SpawnActorOnDeath:
+		Actor: U2.emp.Husk
 	RenderSprites:
 		Image: smig
+
+U2.nuke
+	Inherits: U2
+	Armament:
+		Weapon: NukeBomb
+		PauseOnCondition: !ammo
+	AmmoPool:
+		Ammo: 1
+		AmmoCondition: ammo
+	Tooltip:
+		Name: Nuke Plane
+	SpawnActorOnDeath:
+		Actor: U2.nuke.Husk
+	RenderSprites:
+		Image: ally-u2
 
 YAK:
     Buildable:
@@ -279,7 +342,7 @@ YAK:
 		ReloadDelay: 11
 		AmmoCondition: ammodc
 	Rearmable:
-		RearmActors: afld, afld.russia, afld.ukraine
+		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh
     AcceptsDeliveredExperience:
     SpeedMultiplier:
         Modifier: 110
@@ -304,8 +367,9 @@ YAK.BelarusR2:
     Inherits: YAK.Belarus
     Buildable:
         Prerequisites: ~afld, ~player.belarus, ~!aitoodumb, ~aircraft.upgraded, ~techlevel.medium
+        Icon: rank2-icon
 	ProducibleWithLevel:
-		Prerequisites: techlevel.infonly
+        Prerequisites: techlevel.infonly
 		InitialLevels: 2
     RenderSprites:
 		Image: yak
@@ -353,7 +417,7 @@ MIG:
 		Weapon: MaverickAA
 		PauseOnCondition: !ammo
 	Rearmable:
-		RearmActors: afld, afld.russia, afld.ukraine
+		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh
     AcceptsDeliveredExperience:
     SpeedMultiplier:
         Modifier: 110
@@ -444,7 +508,7 @@ COSSACK:
 	RenderSprites:
 		Image: cossack
 	Rearmable:
-		RearmActors: afld, afld.russia, afld.ukraine
+		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh
     SpeedMultiplier:
         Modifier: 110
         RequiresCondition: kazakh.player
@@ -519,5 +583,5 @@ HARR:
 	ProducibleWithLevel:
 		Prerequisites: aircraft.upgraded
 	Rearmable:
-		RearmActors: afld, afld.russia, afld.ukraine, hpad, carr.deployed
+		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh, hpad, carr.deployed
     AcceptsDeliveredExperience:

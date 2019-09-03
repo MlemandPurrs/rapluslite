@@ -100,6 +100,20 @@ HARV.Belarus.EmptyHusk:
 		Image: 1tnk.destroyed
 	-MapEditorData:
 
+1TNK.Turkey.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Light Tank)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: 1tnk.Turkey
+	InfiltrateForTransform:
+		IntoActor: 1tnk.Turkey
+	RenderSprites:
+		Image: 1tnk.destroyed
+	-MapEditorData:
+
 2TNK.England.Husk:
 	Inherits: ^Husk
 	Tooltip:
@@ -354,6 +368,19 @@ ATNK.Spain.Husk:
 		IntoActor: atnk.spain
 	InfiltrateForTransform:
 		IntoActor: atnk.spain
+	RenderSprites:
+		Image: atnk.destroyed
+
+ATNK.Turkey.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Flak Tank)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: atnk.turkey
+	InfiltrateForTransform:
+		IntoActor: atnk.turkey
 	RenderSprites:
 		Image: atnk.destroyed
 
@@ -834,3 +861,82 @@ FCOM.Husk:
 		Name: Forward Command (Destroyed)
 	RenderSprites:
 		Image: acom.husk
+
+B52.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: B-52
+	Aircraft:
+		TurnSpeed: 5
+		Speed: 149
+	SmokeTrailWhenDamaged@0:
+		Offset: -432,560,0
+		Interval: 2
+		MinDamage: Undamaged
+	SmokeTrailWhenDamaged@1:
+		Offset: -432,-560,0
+		Interval: 2
+		MinDamage: Undamaged
+	RenderSprites:
+		Image: ally-bdgr
+	-RevealOnDeath:
+
+SPG.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (SPG)
+	TransformOnCapture:
+		IntoActor: spg
+	InfiltrateForTransform:
+		IntoActor: spg
+	RenderSprites:
+		Image: spg.destroyed
+
+MAPC.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Assault APC)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: mapc
+	InfiltrateForTransform:
+		IntoActor: mapc
+	RenderSprites:
+		Image: mapc.destroyed
+
+U2.emp.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: Husk (Tesla Plane)
+	Aircraft:
+		TurnSpeed: 7
+		Speed: 373
+	Contrail@1:
+		Offset: -725,683,0
+	Contrail@2:
+		Offset: -725,-683,0
+	SmokeTrailWhenDamaged:
+		Offset: -1c43,0,0
+		Interval: 2
+		MinDamage: Undamaged
+	RenderSprites:
+		Image: smig
+
+U2.nuke.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: Husk (Nuke Plane)
+	Aircraft:
+		TurnSpeed: 7
+		Speed: 373
+	Contrail@1:
+		Offset: -725,683,0
+	Contrail@2:
+		Offset: -725,-683,0
+	SmokeTrailWhenDamaged:
+		Offset: -1c43,0,0
+		Interval: 2
+		MinDamage: Undamaged
+	RenderSprites:
+		Image: ally-u2
