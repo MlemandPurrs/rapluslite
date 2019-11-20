@@ -1,0 +1,359 @@
+
+cnc.boat.gdi:
+	Inherits: ^Ship
+	Inherits@EXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Boat
+		BuildPaletteOrder: 1
+		Prerequisites: ~ships.gdi, ~techlevel.low
+		Description: Light fire-support ship armed with Rocket battery.\n  Strong vs Defenses, Air\n  Weak vs Ships, Infantry
+	Valued:
+		Cost: 500
+	Tooltip:
+		Name: Patrol Boat
+	Health:
+		HP: 18000
+	Armor:
+		Type: Heavy
+	Mobile:
+		TurnSpeed: 7
+		Speed: 128
+	RevealsShroud:
+		Range: 5c0
+	Turreted:
+		TurnSpeed: 5
+		Offset: 460,0,171
+	Armament@PRIMARY:
+		Weapon: 227mm.stnk
+		LocalOffset: 85,-85,0, 85,85,0
+		PauseOnCondition: empdisable
+	AttackTurreted:
+		PauseOnCondition: empdisable
+	WithMuzzleOverlay:
+	SelectionDecorations:
+	WithSpriteTurret:
+	WithMoveAnimation:
+		MoveSequence: move
+	Selectable:
+		DecorationBounds: 36,36
+
+cnc.boat.nod:
+	Inherits: ^Ship
+	Inherits@EXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Boat
+		BuildPaletteOrder: 1
+		Prerequisites: ~ships.nod, ~techlevel.low
+		Description: Fast scout ship armed with dual Machineguns.\n Does not appear on enemy radar\n  Strong vs Infantry\n  Weak vs Ships, Vehicles
+	Valued:
+		Cost: 475
+	Tooltip:
+		Name: Scarab Speedboat
+	Health:
+		HP: 18000
+	Armor:
+		Type: Light
+	Mobile:
+		TurnSpeed: 7
+		Speed: 152
+	RevealsShroud:
+		Range: 5c0
+	Armament@PRIMARY:
+		Weapon: M60mg
+		LocalOffset: 101,85,183
+		MuzzleSequence: muzzle
+		PauseOnCondition: empdisable
+	Armament@SECONDARY:
+		Weapon: M60mg
+		LocalOffset: 101,-85,183
+		MuzzleSequence: muzzle
+		PauseOnCondition: empdisable
+	AttackFrontal:
+		PauseOnCondition: empdisable
+	WithMuzzleOverlay:
+	WithMoveAnimation:
+		MoveSequence: move
+	SelectionDecorations:
+	Selectable:
+		DecorationBounds: 36,36
+	AppearsOnRadar:
+		ValidStances: Ally
+	-GpsDot:
+
+cnc.hvrc:
+	Inherits: ^Ship
+	Valued:
+		Cost: 500
+	Tooltip:
+		Name: Hovercraft Transport
+	Buildable:
+		Queue: Ship
+		BuildPaletteOrder: 1
+		Prerequisites: ~techlevel.low
+		Description: General-purpose naval transport.\nCan carry infantry and vehicles across Sea\n  Unarmed
+	Mobile:
+		Locomotor: lcraft
+		TurnSpeed: 3
+		Speed: 110
+		PauseOnCondition: !(!notmobile && !empdisable)
+	Health:
+		HP: 25000
+	Armor:
+		Type: Heavy
+	RevealsShroud:
+		Range: 3c0
+	SelectionDecorations:
+	Selectable:
+		Bounds: 48,48
+	WithRoof:
+	WithCargo:
+		DisplayTypes: Infantry, Vehicle
+		LocalOffset: 390,-256,0, 390,256,0, 0,0,0, -390,-256,0, -390,256,0
+	Cargo:
+		Types: Infantry, Vehicle
+		MaxWeight: 5
+		PipCount: 5
+		PassengerFacing: 0
+		LoadingCondition: notmobile
+
+cnc.mrls.hvr:
+	Inherits: cnc.mrls
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Boat
+		BuildPaletteOrder: 3
+		Prerequisites: anyhq, anytech, ~ships.gdi, ~techlevel.high
+	-Tooltip@sidebar:
+	-Tooltip@ingame:
+	Tooltip:
+		Name: Hover MRLS
+	Valued:
+		Cost: 1200
+	Mobile:
+		Locomotor: amphibious
+	-ExternalCondition@PRODUCED:
+	-Turreted:
+	-WithSpriteTurret:
+	-WithTurretAimAnimation:
+	Armament@PRIMARY:
+		Weapon: 227mm.stnk
+		LocalOffset: -213,64,200, -213,-64,200
+		PauseOnCondition: empdisable
+	GrantConditionOnTerrain@SEA:
+		TerrainTypes: Water, River
+		Condition: floating
+	Targetable:
+		RequiresCondition: !floating
+	Targetable@SEA:
+		TargetTypes: Ground, Water, Ship, Repair, Tank, SeaDetonateAttack
+		RequiresCondition: floating
+	-AttackTurreted:
+	AttackFrontal:
+		TargetFrozenActors: True
+		ForceFireIgnoresActors: True
+		PauseOnCondition: empdisable
+	WithAimAnimation:
+		Sequence: aim
+	SpawnActorOnDeath:
+		Actor: cnc.mrls.hvr.husk
+		RequiresCondition: !floating
+	RenderSprites:
+		Image: cnc.mrls.hvr
+	-Passenger:
+	-Carryable:
+
+cnc.ssm.hvr:
+	Inherits: cnc.ssm
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Boat
+		BuildPaletteOrder: 3
+		Prerequisites: anyhq, cnc.fix, anytech, ~ships.nod, ~techlevel.high
+	-Tooltip@sidebar:
+	-Tooltip@ingame:
+	Tooltip:
+		Name: Hover SSM
+	Valued:
+		Cost: 1400
+	-ExternalCondition@PRODUCED:
+	Mobile:
+		Locomotor: amphibious
+		PauseOnCondition: empdisable && being-captured
+	GrantConditionOnTerrain@SEA:
+		TerrainTypes: Water, River
+		Condition: floating
+	Targetable:
+		RequiresCondition: !floating
+	Targetable@SEA:
+		TargetTypes: Ground, Water, Ship, Repair, Tank, SeaDetonateAttack
+		RequiresCondition: floating
+	-Turreted:
+	-WithSpriteTurret:
+	Armament:
+	-WithSpriteTurret@OneMissile:
+	-WithSpriteTurret@NoMissiles:
+	SpawnActorOnDeath:
+		Actor: cnc.ssm.hvr.husk
+		RequiresCondition: !floating
+	RenderSprites:
+		Image: cnc.ssm.hvr
+	-Passenger:
+	-Carryable:
+	WithFacingSpriteBody:
+		RequiresCondition: ammo > 1
+	WithFacingSpriteBody@OneMissile:
+		Name: onemissile
+		RequiresCondition: ammo == 1
+		Sequence: rockets1
+	WithFacingSpriteBody@NoMissiles:
+		Name: nomissile
+		RequiresCondition: !ammo
+		Sequence: rockets0
+
+cnc.hvrf:
+	Inherits: ^Vehicle
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetAir
+	Buildable:
+		Queue: Ship
+		BuildPaletteOrder: 4
+		BuildAtProductionType: Boat
+		# Prerequisites: cnc.hq, ~ships.nod, ~techlevel.medium
+		Prerequisites: ~disabled
+		Description: Amphibian anti-air unit with\ngood sight radius.\n Can attack Aircraft only\n  Strong vs Aircraft\n  Weak vs anything Else
+	Valued:
+		Cost: 450
+	Tooltip:
+		Name: Scout Craft
+	Health:
+		HP: 15000
+	Armor:
+		Type: Light
+	Mobile:
+		Speed: 128
+		Locomotor: amphibious
+		PauseOnCondition: !(!empdisable && !being-captured)
+	RevealsShroud:
+		Range: 8c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 6c0
+	Armament:
+		Weapon: FLAK-23-AA
+		LocalOffset: 86,160,220, 86,-160,220
+		MuzzleSequence: muzzle
+		PauseOnCondition: empdisable
+	AttackFrontal:
+		PauseOnCondition: empdisable
+	WithMuzzleOverlay:
+	GrantConditionOnTerrain@SEA:
+		TerrainTypes: Water, River
+		Condition: floating
+	Targetable:
+		RequiresCondition: !floating
+	Targetable@SEA:
+		TargetTypes: Ground, Water, Ship
+		RequiresCondition: floating
+	RenderRangeCircle:
+	-Passenger:
+	-Carryable:
+	SpawnActorOnDeath:
+		Actor: cnc.hvrf.husk
+		RequiresCondition: !floating
+
+cnc.cata:
+	Inherits: ^Ship
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Boat
+		BuildPaletteOrder: 5
+		# Prerequisites: cnc.fix, ~ships.nod, ~techlevel.medium
+		Prerequisites: ~disabled
+		Description: Light support ship.\nRepairs nearby Ships and Submarines.\nLays sea mines to destroy\nunwary enemy Ships and Submarines.\nRestocks Sea Mines when near\na Naval yard or an Sub Pen.\nCan detect submarines.\n  Unarmed
+	Valued:
+		Cost: 650
+	Tooltip:
+		Name: Support Craft
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 20000
+	Armor:
+		Type: Light
+	Mobile:
+		TurnSpeed: 7
+		Speed: 85
+	RevealsShroud:
+		Range: 6c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	Turreted:
+		TurnSpeed: 7
+		Offset: 0,0,427
+	AttackTurreted:
+		PauseOnCondition: empdisable
+	Armament:
+		Weapon: Repair
+		Cursor: repair
+		OutsideRangeCursor: repair
+		TargetStances: Ally
+		ForceTargetStances: None
+	Selectable:
+		Bounds: 32,32
+	WithSpriteTurret:
+	DetectCloaked:
+		CloakTypes: Underwater
+		Range: 5c0
+	RenderDetectionCircle:
+	AutoTarget:
+	AutoTargetPriority@DEFAULT:
+		ValidTargets: Ship, Submarine
+	Minelayer:
+		Mine: MINS
+	Rearmable:
+		RearmActors:
+	MineImmune:
+	AmmoPool:
+		Armaments:
+		Ammo: 3
+		RearmSound: minelay1.aud
+	ReloadAmmoPool:
+		Delay: 300
+		Count: 1
+		Sound: minelay1.aud
+		RequiresCondition: replenishsmine
+	WithDecoration@minereplenish:
+		RequiresSelection: true
+		Image: pips
+		Sequence: tag-reload
+		ReferencePoint: Top
+		ZOffset: 256
+		RequiresCondition: replenishsmine
+	ExternalCondition@MINEREPLENISH:
+		Condition: replenishsmine
+
+MINS:
+	Inherits: ^Mine
+	Tooltip:
+		Name: Sea Mine
+	Cloak:
+		CloakTypes: Underwater
+		InitialDelay: 0
+		CloakDelay: 50
+		CloakSound: subshow1.aud
+		UncloakSound: subshow1.aud
+		Palette: submerged
+	RenderSprites:
+		Image: mins
+	Targetable:
+		TargetTypes: Underwater
+	Explodes:
+		Weapon: ASMine
+	GrantExternalConditionToCrusher:
+		OnCrushCondition: minehit
+		OnCrushDuration: 50

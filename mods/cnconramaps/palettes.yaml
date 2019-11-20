@@ -1,0 +1,26 @@
+^Palettes:
+	# remappable tiberium, cool idea
+	PaletteFromFile@tibtreefix:
+		Name: tibtreefix
+		Filename: temperat.pal
+		ShadowIndex: 3,4
+		AllowModifiers: false
+	FixedColorPalette@GreenTiberium:
+		Base: tibtreefix
+		Name: greentiberium
+		Color: B6F706
+		RemapIndex: 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95
+	FixedColorPalette@BlueTiberium:
+		Base: tibtreefix
+		Name: bluetiberium
+		Color: 89BAFF
+		RemapIndex: 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95
+	FixedColorPalette@RedTiberium:
+		Base: tibtreefix
+		Name: redtiberium
+		Color: F70606
+		RemapIndex: 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95
+	PlayerColorPalette@TD:
+		BasePalette: desert
+		BaseName: playertd
+		RemapIndex: 176, 178, 180, 182, 184, 186, 189, 191, 177, 179, 181, 183, 185, 187, 188, 190

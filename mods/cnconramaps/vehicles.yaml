@@ -1,0 +1,1399 @@
+
+apc.colorpicker:
+	Inherits: APC
+	-Buildable:
+	-MapEditorData:
+	RenderSprites:
+		Image: apc.ui
+		Palette: colorpicker
+		Scale: 1.5
+	-WithColoredOverlay@EMPDISABLE:
+	-TimedConditionBar@EMPDISABLE:
+	-WithIdleOverlay@EMPDISABLE:
+	-ExternalCondition@EMPDISABLE:
+	
+cnc.mcv:
+	Inherits: MCV
+	Buildable:
+		BuildPaletteOrder: 10
+		Prerequisites: cnc.fix, ~techlevel.medium
+	Valued:
+		Cost: 2000
+	-Transforms:
+	Transforms:
+		IntoActor: cnc.cyrd
+		Offset: -1,-1
+		Facing: 96
+		TransformSounds: placbldg.aud, build5.aud
+		NoTransformNotification: BuildingCannotPlaceAudio
+	-SpawnActorOnDeath:
+	SpawnActorOnDeath:
+		Actor: cnc.mcv.husk
+	Passenger:
+		CargoType: Vehicle
+		Weight: 4
+		PipType: Blue
+	RenderSprites:
+		Image: cnc.mcv
+		FactionImages:
+			gdi: cnc.mcv
+			nod: cnc.mcv.nod
+
+cnc.mwf:
+	Inherits: ^Vehicle
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 12
+		Prerequisites: cnc.tech, cnc.fix, ~vehicles.gdi, !cnc.weap.mobile, ~techlevel.high
+		BuildLimit: 1
+		Description: Maximum 1 can be built.\nDeploys into a War Factory\nwith local seperate queue.\nThis factory can only produce basic units.\n  Unarmed
+	Valued:
+		Cost: 2000
+	-Tooltip:
+	Tooltip@sidebar:
+		Name: Mobile War Factory
+		RequiresCondition: !produced
+	Tooltip@ingame:
+		Name: MWF
+		RequiresCondition: produced
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	Selectable:
+		Priority: 4
+	Health:
+		HP: 60000
+	Armor:
+		Type: Light
+	Mobile:
+		Speed: 71
+		Locomotor: heavywheeled
+	RevealsShroud:
+		Range: 5c0
+	Armor:
+		Type: Heavy
+	Transforms:
+		IntoActor: cnc.weap.mobile
+		Offset: -1,-1
+		Facing: 96
+		TransformSounds: placbldg.aud, build5.aud
+		NoTransformNotification: BuildingCannotPlaceAudio
+	MustBeDestroyed:
+		RequiredForShortGame: true
+	SpawnActorOnDeath:
+		Actor: cnc.mwf.husk
+	Passenger:
+		Weight: 4
+        PipType: Blue
+		
+cnc.harv:
+	Inherits: HARV
+	Buildable:
+		Queue: Vehicle, MWFVehicle
+		BuildPaletteOrder: 1
+		Prerequisites: refinery, ~techlevel.infonly
+		Description: Collects Tiberium for processing.\n  Unarmed
+	Valued:
+		Cost: 1000
+	-Tooltip:
+	Tooltip:
+		Name: Tiberium Harvester
+		GenericName: Harvester
+	-Harvester:
+	Harvester:
+		Capacity: 20
+		Resources: Ore,Gems
+		BaleLoadDelay: 12
+		BaleUnloadDelay: 6
+		SearchFromProcRadius: 30
+		SearchFromHarvesterRadius: 15
+		EmptyCondition: no-tiberium
+	-WithHarvesterSpriteBody:
+	WithFacingSpriteBody:
+	-WithHarvestAnimation:
+	WithHarvestAnimation:
+	-Explodes:
+	Explodes:
+		RequiresCondition: !no-tiberium
+		Weapon: OreExplosion
+	-SpawnActorOnDeath:
+	SpawnActorOnDeath:
+		Actor: cnc.harv.husk.empty
+	HarvesterHuskModifier:
+		FullHuskActor: cnc.harv.husk.full
+		FullnessThreshold: 50
+	RenderSprites:
+		Image: cnc.harv
+		FactionImages:
+			gdi: cnc.harv
+			nod: cnc.harv.nod
+	Passenger:
+		CargoType: Vehicle
+		PipType: Blue
+		Weight: 4
+
+cnc.truk:
+	Inherits: TRUK
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 11
+		Prerequisites: cnc.refn, ~techlevel.low
+	Health:
+		HP: 10000
+	Passenger:
+		CargoType: Vehicle
+		PipType: Blue
+
+cnc.dtrk:
+	Inherits: DTRK
+	Buildable:
+		BuildPaletteOrder: 99
+		Prerequisites: ~disabled
+	
+cnc.jeep:
+	Inherits: JEEP
+	Buildable:
+		Queue: Vehicle, MWFVehicle
+		BuildPaletteOrder: 2
+		Prerequisites: ~vehicles.gdi, ~techlevel.low
+		Description: Fast scout & anti-infantry vehicle.\nCan carry one infantry.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
+	Tooltip:
+		Name: Humvee
+	Valued:
+		Cost: 350
+	Mobile:
+		PauseOnCondition: !(!empdisable && !notmobile && !being-captured)
+	Turreted:
+		Offset: -85,0,134
+	Armament:
+		LocalOffset: 171,0,85
+	SpawnActorOnDeath:
+		Actor: cnc.jeep.husk
+		OwnerType: InternalName
+	Passenger:
+		CargoType: Vehicle
+		PipType: Green
+	AcceptsDeliveredExperience:
+
+cnc.jeep.tow:
+	Inherits: cnc.jeep
+	Buildable:
+		Prerequisites: ~disabled
+	Tooltip:
+		Name: Humvee (TOW)
+	-Turreted:
+	Turreted:
+		TurnSpeed: 10
+		Offset: -85,0,128
+	-Armament:
+	Armament:
+		Weapon: Kornet
+		LocalOffset: 171,0,85
+		PauseOnCondition: empdisable
+	WithSpriteTurret:
+		Sequence: tow-turret
+	-WithMuzzleOverlay:
+	SpawnActorOnDeath:
+		Actor: cnc.jeep.tow.husk
+	RenderSprites:
+		Image: cnc.jeep
+
+cnc.bggy:
+	Inherits: JEEP
+	Buildable:
+		Queue: Vehicle, MWFVehicle
+		BuildPaletteOrder: 2
+		Prerequisites: ~vehicles.nod, ~techlevel.low
+		Description: Fast scout & anti-infantry vehicle.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
+	Tooltip:
+		Name: Buggy
+	Valued:
+		Cost: 300
+	Mobile:
+		PauseOnCondition: !(!empdisable && !being-captured)
+	Health:
+		HP: 12000
+	Turreted:
+		Offset: -43,0,128
+	Armament:
+		LocalOffset: 171,0,43
+	SpawnActorOnDeath:
+		Actor: cnc.bggy.husk
+		OwnerType: InternalName
+	-Cargo:
+	Passenger:
+		CargoType: Vehicle
+		PipType: Green
+	AcceptsDeliveredExperience:
+
+cnc.bggy.snip:
+	Inherits: cnc.bggy
+	Buildable:
+		Prerequisites: ~disabled
+	Tooltip:
+		Name: Buggy (Sniper)
+	-Armament:
+	Armament:
+		Weapon: Sniper
+		LocalOffset: 171,0,43
+		MuzzleSequence: muzzle
+		PauseOnCondition: empdisable
+	AutoTargetPriority@DEFAULT:
+		ValidTargets: Infantry
+	-AttackTurreted:
+	AttackFrontal:
+	SpawnActorOnDeath:
+		Actor: cnc.bggy.snip.husk
+	RenderSprites:
+		Image: cnc.bggy
+
+cnc.aav:
+	Inherits: APC
+	Inherits@EXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Valued:
+		Cost: 650
+	-Tooltip:
+	Tooltip@sidebar:
+		Name: Amphibious Assault Vehicle
+		RequiresCondition: !produced
+	Tooltip@ingame:
+		Name: AAV
+		RequiresCondition: produced
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	Buildable:
+		Queue: Vehicle, MWFVehicle
+		BuildPaletteOrder: 5
+		Prerequisites: cnc.fix, anyhq, ~vehicles.gdi, ~techlevel.medium
+		Description: Armored infantry transport.\nCan carry up to 3 Infantry.\n  Special ability: Amphibian\nCan swim through sea and river.\n  Strong vs Infantry, Vehicles\n  Weak vs Tanks, Aircraft
+	Mobile:
+		Speed: 128
+		Locomotor: tracked-amphibious
+		PauseOnCondition: !(!empdisable && !notmobile && !being-captured)
+	GrantConditionOnTerrain@SEA:
+		TerrainTypes: Water, River
+		Condition: floating
+	Targetable:
+		RequiresCondition: !floating
+	Targetable@SEA:
+		TargetTypes: Ground, Water, Ship, Repair, Tank, SeaDetonateAttack
+		RequiresCondition: floating
+	Armor:
+		Type: Heavy
+	-AttackFrontal:
+	Turreted:
+		TurnSpeed: 10
+		Offset: 90,90,90
+	-Armament:
+	Armament:
+		Weapon: M60mg
+		LocalOffset: 215,85,99
+		MuzzleSequence: muzzle
+		PauseOnCondition: empdisable
+	Armament@SECONDARY:
+		Weapon: APCGun
+		Recoil: 48
+		RecoilRecovery: 9
+		LocalOffset: 215,-85,99
+		MuzzleSequence: muzzle-gun
+		PauseOnCondition: empdisable
+	AttackTurreted:
+		PauseOnCondition: empdisable
+	WithMuzzleOverlay:
+	WithSpriteTurret:
+	Cargo:
+		Types: Infantry
+		MaxWeight: 3
+		PipCount: 3
+	WithFacingSpriteBody:
+		RequiresCondition: !floating
+	WithFacingSpriteBody@SEA:
+		Name: floating
+		Sequence: idle-float
+		RequiresCondition: floating
+	SpawnActorOnDeath:
+		Actor: cnc.aav.husk
+		RequiresCondition: !floating
+	-Passenger:
+	-Carryable:
+	AcceptsDeliveredExperience:
+
+cnc.mrpg:
+	Inherits: ^TrackedVehicle
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Valued:
+		Cost: 450
+	Tooltip:
+		Name: RPG Launcher
+	Buildable:
+		BuildPaletteOrder: 5
+		# Prerequisites: cnc.fix, anyhq, ~vehicles.gdi, ~techlevel.medium
+		Prerequisites: ~disabled
+		Queue: Vehicle
+		Description: Medium-range fire-support vehicle.\n Can lay one Mine.\n  Strong vs clustered Infantry, Light Vehicles\n  Weak vs Defenses, Tanks
+	Mobile:
+		TurnSpeed: 4
+		Speed: 142
+	Health:
+		HP: 22000
+	Armor:
+		Type: Heavy
+	RevealsShroud:
+		Range: 5c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Armament:
+		Weapon: RPGLauncher
+		LocalOffset: 43,43,256, 43,-43,256
+		MuzzleSequence: muzzle
+		PauseOnCondition: empdisable
+	AttackFrontal:
+		PauseOnCondition: empdisable
+	WithMuzzleOverlay:
+	Explodes:
+		Weapon: UnitExplode
+		EmptyWeapon: UnitExplodeSmall
+	SpawnActorOnDeath:
+		Actor: cnc.mrpg.husk
+	ProducibleWithLevel:
+		Prerequisites: vehicles.upgraded
+	Minelayer:
+		Mine: MINV
+	MineImmune:
+	AmmoPool:
+		Armaments:
+		Ammo: 1
+		RearmSound: minelay1.aud
+	Rearmable:
+		RearmActors: cnc.fix
+	AcceptsDeliveredExperience:
+
+cnc.bike:
+	Inherits: ^Vehicle
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Valued:
+		Cost: 500
+	Tooltip:
+		Name: Recon Bike
+	Buildable:
+		Queue: Vehicle, MWFVehicle
+		BuildPaletteOrder: 5
+		Prerequisites: anyhq, ~vehicles.nod, ~techlevel.medium
+		Description: Fast scout vehicle, armed with rockets.\nCan detect cloaked units.\nCan attack Aircraft.\n Strong vs Vehicles, Tanks\n Weak vs Infantry
+	Mobile:
+		TurnSpeed: 10
+		Speed: 210
+		Locomotor: wheeled
+	Health:
+		HP: 15000
+	Armor:
+		Type: Light
+	RevealsShroud:
+		Range: 6c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	Armament@PRIMARY:
+		Weapon: BikeRockets
+		LocalOffset: -128, -170, 170, -128, 170, 170
+		LocalYaw: 100, -100
+		PauseOnCondition: empdisable
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: BikeRocketsAA
+		LocalOffset: -128, -170, 170, -128, 170, 170
+		LocalYaw: 100, -100
+		PauseOnCondition: empdisable
+	AttackFrontal:
+		PauseOnCondition: empdisable
+	DetectCloaked:
+		Range: 5c0
+	SpawnActorOnDeath:
+		Actor: cnc.bike.husk
+	Passenger:
+		CargoType: Vehicle
+		PipType: Yellow
+	AcceptsDeliveredExperience:
+
+cnc.apc:
+	Inherits: APC
+	Buildable:
+		Queue: Vehicle, MWFVehicle
+		BuildPaletteOrder: 3
+		Prerequisites: barracks, ~vehicles.gdi, ~techlevel.low
+		Description: Tough infantry transport.\n  Strong vs Infantry, Light armor\n  Weak vs Tanks, Aircraft
+	Valued:
+		Cost: 500
+	Mobile:
+		PauseOnCondition: !(!empdisable && !notmobile && !being-captured)
+	-Tooltip:
+	Tooltip@sidebar:
+		Name: Armored Personnel Carrier
+		RequiresCondition: !produced
+	Tooltip@ingame:
+		Name: APC
+		RequiresCondition: produced
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	Armament:
+		LocalOffset: 165,0,171
+	Turreted:
+		TurnSpeed: 10
+		Offset: 0,0,60
+	-AttackFrontal:
+	AttackTurreted:
+		PauseOnCondition: empdisable
+	WithSpriteTurret:
+	SpawnActorOnDeath:
+		Actor: cnc.apc.husk
+	Passenger:
+		CargoType: Vehicle
+		PipType: Green
+	AcceptsDeliveredExperience:
+
+cnc.maag:
+	Inherits: cnc.apc
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 7
+		Prerequisites: anytech, ~vehicles.gdi, ~techlevel.high
+		Description: Modification of the Infantry transport\nwith an Flak Gun.\n  Strong vs Infantry, Aircraft\n  Weak vs anything Else
+	Valued:
+		Cost: 800
+	Mobile:
+		PauseOnCondition: !(!empdisable && !being-captured)
+	Tooltip@sidebar:
+		Name: Mobile Anti-Air Gun
+		RequiresCondition: !produced
+	Tooltip@ingame:
+		Name: Mobile AA
+		RequiresCondition: produced
+	Turreted:
+		TurnSpeed: 10
+	-Armament:
+	Armament@AA:
+		Weapon: FLAK-23-AA
+		Recoil: 24
+		RecoilRecovery: 9
+		LocalOffset: 85,85,99, 85,-85,99
+		MuzzleSequence: muzzle-aa
+		PauseOnCondition: empdisable
+	Armament@AG:
+		Weapon: FLAK-23-AG
+		Recoil: 24
+		RecoilRecovery: 9
+		LocalOffset: 85,85,99, 85,-85,99
+		MuzzleSequence: muzzle
+		PauseOnCondition: empdisable
+	-Cargo:
+	RenderRangeCircle:
+	-SpawnActorOnDeath:
+	SpawnActorOnDeath:
+		Actor: cnc.maag.husk
+	-AutoTarget:
+	AutoTarget:
+		InitialStanceAI: Defend
+		AttackAnythingCondition: stance-attackanything
+	-AutoTargetPriority@DEFAULT:
+	AutoTargetPriority@DEFAULT:
+		RequiresCondition: !stance-attackanything && !assault-move
+		ValidTargets: Infantry, Vehicle, Water, Underwater, Air, Defense
+		InvalidTargets: NoAutoTarget, WaterStructure
+	-AutoTargetPriority@ATTACKANYTHING:
+	AutoTargetPriority@ATTACKANYTHING:
+		RequiresCondition: stance-attackanything || assault-move
+		ValidTargets: Infantry, Vehicle, Water, Underwater, Air, Structure, Defense
+		InvalidTargets: NoAutoTarget
+	AttackMove:
+		AssaultMoveCondition: assault-move
+	AcceptsDeliveredExperience:
+
+cnc.apc.nod:
+	Inherits: APC
+	Buildable:
+		Queue: Vehicle, MWFVehicle
+		BuildPaletteOrder: 3
+		Prerequisites: barracks, ~vehicles.nod, ~techlevel.low
+		Description: Fast infantry transport.\n  Strong vs Infantry, Light armor\n  Weak vs Tanks, Aircraft
+	Valued:
+		Cost: 500
+	Health:
+		HP: 20000
+	Mobile:
+		Speed: 156
+		PauseOnCondition: !(!empdisable && !notmobile && !being-captured)
+	-Tooltip:
+	Tooltip@sidebar:
+		Name: Armored Personnel Carrier
+		RequiresCondition: !produced
+	Tooltip@ingame:
+		Name: APC
+		RequiresCondition: produced
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	Armament:
+		LocalOffset: 165,0,171
+	Turreted:
+		TurnSpeed: 10
+		Offset: 0,0,40
+	-AttackFrontal:
+	AttackTurreted:
+		PauseOnCondition: empdisable
+	WithSpriteTurret:
+	SpawnActorOnDeath:
+		Actor: cnc.apc.nod.husk
+	Passenger:
+		CargoType: Vehicle
+		PipType: Green
+	AcceptsDeliveredExperience:
+
+cnc.msam:
+	Inherits: cnc.apc.nod
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 7
+		Prerequisites: anytech, ~vehicles.nod, ~techlevel.high
+		Description: Modification of the Infantry transport\nthat can attack Aircraft only.\n  Strong vs Aircraft\n  Weak vs anything Else
+	Valued:
+		Cost: 800
+	Tooltip@sidebar:
+		Name: Surface-to-Air Missile Launcher
+		RequiresCondition: !produced
+	Tooltip@ingame:
+		Name: Mobile SAM
+		RequiresCondition: produced
+	Turreted:
+		TurnSpeed: 10
+		Offset: -80,0,20
+	Mobile:
+		PauseOnCondition: !(!empdisable && !being-captured)
+	-Armament:
+	Armament:
+		Name: primary
+		Weapon: Nike.msam
+		LocalOffset: 0,-171,60, 0,171,60
+		PauseOnCondition: !ammo && !empdisable
+	AmmoPool:
+		Ammo: 2
+		PipCount: 0
+		AmmoCondition: ammo
+	-WithMuzzleOverlay:
+	RenderRangeCircle:
+	-Cargo:
+	-SpawnActorOnDeath:
+	SpawnActorOnDeath:
+		Actor: cnc.msam.husk
+	ReloadAmmoPool:
+		Delay: 160
+		Count: 2
+		RequiresCondition: !ammo && !empdisable
+	ReloadArmamentsBar:
+		Armaments: primary
+		Color: FFFF00
+	-AutoTarget:
+	AutoTarget:
+		InitialStanceAI: Defend
+	-AutoTargetPriority@DEFAULT:
+	AutoTargetPriority@DEFAULT:
+		ValidTargets: Air
+		InvalidTargets: NoAutoTarget
+	-AutoTargetPriority@ATTACKANYTHING:
+	-AttackMove:
+	AcceptsDeliveredExperience:
+
+cnc.sapc:
+	Inherits: ^Vehicle
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 14
+		# Prerequisites: barracks, cnc.tmpl, ~vehicles.nod, ~tech.stolen.nod, ~techlevel.high
+		Prerequisites: ~disabled
+		Description: Lightly armored infantry transport which\ncan cloak.\nCan transport up to 5 Infantry.\n  Unarmed
+	Valued:
+		Cost: 1350
+	Tooltip:
+		Name: Stealth APC
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 30000
+	Armor:
+		Type: Light
+	Mobile:
+		Speed: 142
+		Locomotor: heavywheeled
+		PauseOnCondition: !(!empdisable && !notmobile && !being-captured)
+	RevealsShroud:
+		Range: 5c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Cargo:
+		Types: Infantry
+		MaxWeight: 5
+		PipCount: 5
+		LoadingCondition: notmobile
+	Cloak:
+		InitialDelay: 125
+		CloakDelay: 175
+		CloakSound: appear1.aud
+		UncloakSound: appear1.aud
+		IsPlayerPalette: true
+		PauseOnCondition: cloak-force-disabled
+	GrantConditionOnDamageState@UNCLOAK:
+		Condition: cloak-force-disabled
+		ValidDamageStates: Critical
+	-MustBeDestroyed:
+	Passenger:
+		PipType: Blue
+	SpawnActorOnDeath:
+		Actor: cnc.sapc.husk
+
+cnc.ltnk:
+	Inherits: 1TNK
+	Buildable:
+		Queue: Vehicle, MWFVehicle
+		BuildPaletteOrder: 4
+		Prerequisites: ~vehicles.nod, ~techlevel.low
+		Description: Fast tank, good for scouting.\nCan carry one infantry.\n  Special ability: Amphibian\nCan swim through sea and river.\n  Strong vs Light armor\n  Weak vs Infantry, Tanks, Aircraft
+	Valued:
+		Cost: 600
+	-Armament:
+	Armament:
+		Weapon: 25mm.ltnk
+		Recoil: 85
+		RecoilRecovery: 25
+		LocalOffset: 720,0,90
+		MuzzleSequence: muzzle
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: ltnk.rocket
+		LocalOffset: 100,-90,90
+		Recoil: 0
+		PauseOnCondition: empdisable
+	Mobile:
+		Locomotor: tracked-amphibious
+		PauseOnCondition: !(!empdisable && !notmobile && !being-captured)
+	GrantConditionOnTerrain@SEA:
+		TerrainTypes: Water, River
+		Condition: floating
+	Targetable:
+		RequiresCondition: !floating
+	Targetable@SEA:
+		TargetTypes: Ground, Water, Ship, Repair, Tank, SeaDetonateAttack
+		RequiresCondition: floating
+	SpawnActorOnDeath:
+		Actor: cnc.ltnk.husk
+		RequiresCondition: !floating
+	WithFacingSpriteBody:
+		RequiresCondition: !floating
+	WithFacingSpriteBody@SEA:
+		Name: floating
+		Sequence: idle-float
+		RequiresCondition: floating
+	Passenger:
+		PipType: Green
+	Carryable:
+		RequiresCondition: !floating
+	Cargo:
+		Types: Infantry
+		MaxWeight: 1
+		PipCount: 1
+		LoadingCondition: notmobile
+	AcceptsDeliveredExperience:
+
+cnc.mtnk:
+	Inherits: 2TNK
+	Buildable:
+		Queue: Vehicle, MWFVehicle
+		BuildPaletteOrder: 4
+		Prerequisites: cnc.fix, ~vehicles.gdi, ~techlevel.medium
+		Description: Main Battle Tank.\n  Strong vs Vehicles\n  Weak vs Infantry, Aircraft
+	Valued:
+		Cost: 800
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: M1CTank
+		MuzzleSequence: mg-muzzle
+		LocalOffset: 286,3,90
+		PauseOnCondition: empdisable
+	AttackTurreted:
+        PauseOnCondition: empdisable
+	SpawnActorOnDeath:
+		Actor: cnc.mtnk.husk
+	Passenger:
+		CargoType: Vehicle
+		PipType: Yellow
+	AcceptsDeliveredExperience:
+
+cnc.mtnk.rail:
+	Inherits: cnc.mtnk
+	Buildable:
+		BuildPaletteOrder: 10
+		# Prerequisites: cnc.fix, cnc.tech, ~vehicles.gdi, ~techlevel.high
+		Prerequisites: ~disabled
+		Queue: Vehicle
+		Description: Main Battle Tank armed with Railgun.\n  Strong vs Vehicles\n  Weak vs Infantry, Aircraft
+	Tooltip:
+		Name: Medium Tank (Railgun)
+	Valued:
+		Cost: 1200
+	-Armament:
+	-Armament@SECONDARY:
+	Armament:
+		Weapon: MedRail
+		LocalOffset: 768,0,90
+		Recoil: 170
+		RecoilRecovery: 42
+		PauseOnCondition: empdisable
+	-WithMuzzleOverlay:
+	-SpawnActorOnDeath:
+	SpawnActorOnDeath:
+		Actor: cnc.mtnk.rail.husk
+
+cnc.htnk:
+	Inherits: 2TNK
+	Buildable:
+		BuildPaletteOrder: 5
+		Prerequisites: ~disabled
+		Description: Tank Hunter.\n  Strong vs Tanks\n  Weak vs Infantry, Aircraft
+	Tooltip:
+		Name: Cobra Tank
+	Valued:
+		Cost: 900
+	Armament:
+		Weapon: 105mm.singular
+	-SpawnActorOnDeath:
+	SpawnActorOnDeath:
+		Actor: cnc.htnk.husk
+	AcceptsDeliveredExperience:
+
+cnc.mrls:
+	Inherits: ^TrackedVehicle
+	Inherits@EXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Valued:
+		Cost: 900
+	Buildable:
+		BuildPaletteOrder: 6
+		Prerequisites: anyhq, ~vehicles.gdi, ~techlevel.medium
+		Queue: Vehicle
+		Description: Long range rocket artillery.\nCannot attack Air units.\n  Strong vs all Ground units\n  Weak vs Aircraft
+	-Tooltip:
+	Tooltip@sidebar:
+		Name: Multiple Rocket Launch System
+		RequiresCondition: !produced
+	Tooltip@ingame:
+		Name: MRLS
+		RequiresCondition: produced
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	Mobile:
+		Speed: 85
+		TurnSpeed: 3
+		Locomotor: lighttracked
+	Health:
+		HP: 10000
+	Armor:
+		Type: Light
+	RevealsShroud:
+		Range: 5c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Turreted:
+		TurnSpeed: 3
+		Offset: -256,0,128
+	Armament@PRIMARY:
+		Weapon: 227mm
+		LocalOffset: 213,128,0, 213,-128,0
+		PauseOnCondition: empdisable
+	AttackTurreted:
+		TargetFrozenActors: True
+		ForceFireIgnoresActors: True
+		PauseOnCondition: empdisable
+	WithSpriteTurret:
+	WithTurretAimAnimation:
+		Sequence: aim
+	ProducibleWithLevel:
+		Prerequisites: vehicles.upgraded
+	RenderRangeCircle:
+	Explodes:
+		Weapon: ArtilleryExplode
+		EmptyWeapon: UnitExplodeSmall
+		LoadedChance: 75
+	SpawnActorOnDeath:
+		Actor: cnc.mrls.husk
+	Passenger:
+		CargoType: Vehicle
+		PipType: Yellow
+	AcceptsDeliveredExperience:
+
+cnc.ssm:
+	Inherits: ^TrackedVehicle
+	Inherits@EXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Valued:
+		Cost: 1100
+	-Tooltip:
+	Tooltip@sidebar:
+		Name: Surface-to-Surface Missile Launcher
+		RequiresCondition: !produced
+	Tooltip@ingame:
+		Name: SSM Launcher
+		RequiresCondition: produced
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Buildable:
+		BuildPaletteOrder: 12
+		Prerequisites: anyhq, cnc.fix, anytech, ~vehicles.nod, ~techlevel.high
+		Queue: Vehicle
+		Description: Long-range rocket artillery.\nHas very weak Armor.\n  Strong vs Everything at range\n  Weak vs Close ranged attacks
+	Mobile:
+		Speed: 85
+		TurnSpeed: 3
+		PauseOnCondition: empdisable && being-captured
+	Health:
+		HP: 7500
+	Armor:
+		Type: Light
+	RevealsShroud:
+		Range: 5c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Turreted:
+		TurnSpeed: 3
+		Offset: -128,0,128
+		RealignDelay: 0
+	Armament:
+		Weapon: HonestJohn
+		LocalOffset: 0,171,0, 0,-171,0
+		PauseOnCondition: !ammo || empdisable
+	AmmoPool:
+		Ammo: 2
+		PipCount: 0
+		AmmoCondition: ammo
+	AttackFrontal:
+		TargetFrozenActors: True
+		ForceFireIgnoresActors: True
+		PauseOnCondition: empdisable
+	WithSpriteTurret:
+		RequiresCondition: ammo > 1
+	WithSpriteTurret@OneMissile:
+		RequiresCondition: ammo == 1
+		Sequence: turret1
+	WithSpriteTurret@NoMissiles:
+		RequiresCondition: !ammo
+		Sequence: turret0
+	AutoTarget:
+	Explodes@UNITEXPLODES:
+		Weapon: BarrelExplode
+	ReloadAmmoPool@1:
+		Delay: 240
+		Count: 2
+		RequiresCondition: !ammo
+	ReloadArmamentsBar:
+		Color: FFFF00
+	ProducibleWithLevel:
+		Prerequisites: vehicles.upgraded
+	Selectable:
+		DecorationBounds: 28,28
+	RenderRangeCircle:
+	Passenger:
+		CargoType: Vehicle
+		PipType: Red
+	AcceptsDeliveredExperience:
+
+cnc.arty:
+	Inherits: ARTY
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 6
+		Prerequisites: anyhq, ~vehicles.nod, ~techlevel.medium
+		Description: Long-range artillery.\n  Strong vs Infantry, Buildings\n  Weak vs Vehicles, Aircraft
+	Valued:
+		Cost: 900
+	Health:
+		HP: 10000
+	Mobile:
+		TurnSpeed: 4
+		Locomotor: heavywheeled
+	Armament:
+		LocalOffset: 724,0,208
+	-AttackFrontal:
+	AttackTurreted:
+		TargetFrozenActors: True
+		ForceFireIgnoresActors: True
+		PauseOnCondition: empdisable
+	Turreted:
+		TurnSpeed: 4
+		Offset: -100,0,0
+	WithSpriteTurret:
+	SpawnActorOnDeath:
+		Actor: cnc.arty.husk
+	Passenger:
+		CargoType: Vehicle
+		PipType: Yellow
+	AcceptsDeliveredExperience:
+
+cnc.mamm:
+	Inherits: 4TNK
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 8
+		Prerequisites: cnc.fix, cnc.tech, ~vehicles.gdi, ~techlevel.high
+		Description: Big and slow tank, with anti-air capability.\nCan crush concrete walls.\n  Strong vs Vehicles, Infantry, Aircraft\n  Weak vs Stealth units, Flame weapons
+	Valued:
+		Cost: 1500
+	Mobile:
+		TurnSpeed: 3
+	Turreted:
+		TurnSpeed: 3
+	SpawnActorOnDeath:
+		Actor: cnc.mamm.husk
+	SelfHealing:
+		Step: 250
+	Passenger:
+		CargoType: Vehicle
+		PipType: Red
+		Weight: 4
+	AcceptsDeliveredExperience:
+
+cnc.mamm.rail:
+	Inherits: cnc.mamm
+	Buildable:
+		BuildPaletteOrder: 11
+		# Prerequisites: vehicleproduction, fix, anytech, ~upgrade.railguns, ~vehicles.gdi, ~techlevel.high
+		Prerequisites: ~disabled
+		Queue: Vehicle
+		Description: Heavily armored GDI Tank, armed with Railguns.\n Can attack Aircraft\n  Strong vs Everything\n  Weak vs nothing
+	Tooltip:
+		Name: Mammoth Tank (Railgun)
+	Valued:
+		Cost: 2000
+	Armament@PRIMARY:
+		Weapon: MedRailDual
+		LocalOffset: 900,180,340, 900,-180,340
+		Recoil: 170
+		RecoilRecovery: 42
+		PauseOnCondition: empdisable
+	-WithMuzzleOverlay:
+	SpawnActorOnDeath:
+		Actor: cnc.mamm.rail.husk
+		OwnerType: InternalName
+		EffectiveOwnerFromOwner: true
+
+cnc.ftnk.old:
+	Inherits: ^TrackedVehicle
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Valued:
+		Cost: 800
+	Tooltip:
+		Name: Flame Tank
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 7
+		Prerequisites: ~disabled
+		Description: Heavily armored flame-throwing vehicle.\n  Strong vs Infantry, Buildings\n  Weak vs Tanks
+	Mobile:
+		Speed: 80
+	Health:
+		HP: 35000
+	Armor:
+		Type: Heavy
+	RevealsShroud:
+		Range: 5c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Armament:
+		Weapon: BigFlamer
+		LocalOffset: 512,128,42, 512,-128,42
+		MuzzleSequence: muzzle
+	AttackFrontal:
+	WithMuzzleOverlay:
+	Explodes:
+		Weapon: BarrelExplode
+		EmptyWeapon: BarrelExplode
+	SpawnActorOnDeath:
+		Actor: cnc.ftnk.old.husk
+	Passenger:
+		CargoType: Vehicle
+		PipType: Yellow
+	AcceptsDeliveredExperience:
+
+cnc.ftnk.chem:
+	Inherits: cnc.ftnk.old
+	Armament:
+		Weapon: Chemspray.dual
+		MuzzlePalette: desert
+	Tooltip:
+		Name: Chem Tank
+	-Explodes:
+	Explodes:
+		Weapon: UnitExplodeChemLarge
+		EmptyWeapon: UnitExplodeChemLarge
+	-SpawnActorOnDeath:
+	SpawnActorOnDeath:
+		Actor: cnc.ftnk.chem.husk	
+
+cnc.ftnk:
+	Inherits: ^TrackedVehicle
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Valued:
+		Cost: 800
+	Tooltip:
+		Name: Flame Tank
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 8
+		Prerequisites: anyhq, cnc.fix, ~vehicles.nod, ~techlevel.medium
+		Description: Heavily armored flame-throwing vehicle\n Strong vs Infantry, Buildings and Vehicles\n Weak vs Tanks
+	Mobile:
+		Speed: 80
+	Health:
+		HP: 35000
+	Armor:
+		Type: Heavy
+	RevealsShroud:
+		Range: 5c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Turreted:
+		TurnSpeed: 5
+	Armament:
+		Weapon: BigFlamer
+		LocalOffset: 512,128,42, 512,-128,42
+		MuzzleSequence: muzzle
+		PauseOnCondition: empdisable
+	AttackTurreted:
+		PauseOnCondition: empdisable
+	WithMuzzleOverlay:
+	WithSpriteTurret:
+	Explodes:
+		Weapon: BarrelExplode
+		EmptyWeapon: BarrelExplode
+	SpawnActorOnDeath:
+		Actor: cnc.ftnk.husk
+	Passenger:
+		CargoType: Vehicle
+		PipType: Yellow
+	AcceptsDeliveredExperience:
+
+cnc.ctnk:
+	Inherits: ^TrackedVehicle
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Valued:
+		Cost: 1600
+	Tooltip:
+		Name: Chemical Tank
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 16
+		Prerequisites: ~disabled
+		Description: Heavily armored chemicals spraying vehicle.\n  Strong vs Infantry, Buildings\n  Weak vs Tanks
+	Mobile:
+		Speed: 80
+	Health:
+		HP: 35000
+	Armor:
+		Type: Heavy
+	RevealsShroud:
+		Range: 5c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Armament:
+		# todo give it an RA flamethrower-like, different weapon.
+		Weapon: Chemspray.dual
+		LocalOffset: 768,128,42, 768,-128,42
+		MuzzleSequence: muzzle
+		MuzzlePalette: desert
+	AttackFrontal:
+	WithMuzzleOverlay:
+	Explodes:
+		Weapon: UnitExplodeChemLarge
+		EmptyWeapon: UnitExplodeChemLarge
+	SpawnActorOnDeath:
+		Actor: cnc.ctnk.husk
+	Passenger:
+		CargoType: Vehicle
+		PipType: Red
+	AcceptsDeliveredExperience:
+
+cnc.mhq:
+	Inherits: ^TrackedVehicle
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 9
+		Prerequisites: anyhq, anytech, ~vehicles.gdi, ~techlevel.high
+		Description: Mobile base of operations, armed with a token mg.\nDetects cloaked units within sight-radius.\n  Strong vs Infantry\n  Weak vs Everything else
+	Valued:
+		Cost: 600
+	-Tooltip:
+	Tooltip@sidebar:
+		Name: Mobile Headquarters
+		RequiresCondition: !produced
+	Tooltip@ingame:
+		Name: Mobile HQ
+		RequiresCondition: produced
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	Health:
+		HP: 15000
+	Armor:
+		Type: Light
+	Mobile:
+		Speed: 85
+	RevealsShroud:
+		Range: 6c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Turreted:
+		TurnSpeed: 10
+		Offset: 225,0,168
+	Armament:
+		Weapon: M60mg
+		MuzzleSequence: muzzle
+		LocalOffset: 128,0,41
+		PauseOnCondition: empdisable
+	AttackTurreted:
+		PauseOnCondition: empdisable
+	WithMuzzleOverlay:
+	WithSpriteTurret:
+	WithIdleOverlay@SPINNER:
+		Sequence: spinner
+		Offset: -128,0,256
+		PauseOnCondition: empdisable
+	DetectCloaked:
+		Range: 5c0
+	Passenger:
+		CargoType: Vehicle
+		PipType: Red
+	RenderDetectionCircle:
+	SpawnActorOnDeath:
+		Actor: cnc.mhq.husk
+
+cnc.mhq.start:
+	Inherits: ^TrackedVehicle
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 98
+		Prerequisites: ~disabled
+		Description: Mobile base of operations.\nDetects cloaked units within sight-radius.\n  Unarmed
+	Valued:
+		Cost: 600
+	Tooltip:
+		Name: Mobile HQ
+	Health:
+		HP: 15000
+	Armor:
+		Type: Light
+	Mobile:
+		Speed: 85
+	RevealsShroud:
+		Range: 6c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	WithIdleOverlay@SPINNER:
+		Sequence: spinner
+		Offset: -128,0,256
+		PauseOnCondition: empdisable
+	DetectCloaked:
+		Range: 5c0
+	Passenger:
+		CargoType: Vehicle
+		PipType: Red
+	RenderDetectionCircle:
+	Explodes@UNITEXPLODES:
+		Weapon: BarrelExplode
+	RenderSprites:
+		Image: cnc.mhq
+	MustBeDestroyed:
+		RequiredForShortGame: true
+
+cnc.stnk:
+	Inherits: STNK
+	Buildable:
+		BuildPaletteOrder: 9
+		Prerequisites: cnc.tmpl, ~vehicles.nod, ~techlevel.high
+		Description: Long-range missile tank which\ncan cloak.\nCan attack Aircraft.\n  Strong vs Light armor\n  Weak vs Infantry, Tanks, Aircraft
+	Valued:
+		Cost: 900
+	Tooltip:
+		Name: Stealth Tank
+	Mobile:
+		PauseOnCondition: !(!empdisable && !being-captured)
+	Armament:
+		Weapon: 227mm.stnk
+		LocalOffset: 213,43,128, 213,-43,128
+	-Cloak:
+	Cloak:
+		InitialDelay: 125
+		CloakDelay: 175
+		CloakSound: vanish1.aud
+		UncloakSound: appear1.aud
+		IsPlayerPalette: true
+		PauseOnCondition: cloak-force-disabled || empdisable
+	-Cargo:
+	SpawnActorOnDeath:
+		Actor: cnc.stnk.husk
+	AcceptsDeliveredExperience:
+
+cnc.disr:
+	Inherits: ^TrackedVehicle
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Valued:
+		Cost: 1250
+	Tooltip:
+		Name: Sonic Tank
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 13
+		Prerequisites: cnc.fix, cnc.eye, ~vehicles.gdi, ~tech.stolen.nod, ~techlevel.high
+		Description: High-tech weapons platform with Sonic armament.\n  Strong vs clustered Ground Units\n  Weak vs Aircraft, Artillery
+	Health:
+		HP: 35000
+	Armor:
+		Type: Heavy
+	Mobile:
+		Locomotor: heavytracked
+		TurnSpeed: 3
+		Speed: 56
+	RevealsShroud:
+		Range: 6c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	Armament:
+		Weapon: SonicZap
+		FireDelay: 0
+		LocalOffset: -120,0,150
+		PauseOnCondition: empdisable
+	Armament@SECONDARY:
+		Weapon: SonicZapVisual
+		Name: secondary
+		FireDelay: 0
+		LocalOffset: -120,0,150
+		PauseOnCondition: empdisable
+	Turreted:
+		TurnSpeed: 4
+		Offset: -256,0,0
+	AttackTurreted:
+		PauseOnCondition: empdisable
+		OpportunityFire: False
+	WithSpriteTurret:
+	-Carryable:
+	SelectionDecorations:
+	Selectable:
+		DecorationBounds: 34,34,0,-3
+	SpawnActorOnDeath:
+		Actor: cnc.disr.husk
+	Passenger:
+		CargoType: Vehicle
+		Weight: 4
+		PipType: Red
+	Targetable:
+		RequiresCondition: !parachute
+		TargetTypes: Ground, Vehicle, Disruptor
+
+cnc.mwav:
+	Inherits: ^TrackedVehicle
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 13
+		Prerequisites: cnc.fix, cnc.intc, ~vehicles.nod, ~tech.stolen.gdi, ~techlevel.high
+		Description: Experimental vehicle armed with an Laser\nthat can disable its target Vehicle.\n Immune to EMP.\n  Strong vs Vehicles, Ships\n  Weak vs Infantry, Aircraft
+	Valued:
+		Cost: 1250
+	Tooltip:
+		Name: Microwave Tank
+	Health:
+		HP: 52500
+	Armor:
+		Type: Heavy
+	Mobile:
+		Speed: 56
+		PauseOnCondition: !(!being-captured)
+	RevealsShroud:
+		Range: 6c0
+	SelectionDecorations:
+	Selectable:
+		DecorationBounds: 28,28
+	Passenger:
+		CargoType: Vehicle
+		Weight: 4
+	Armament:
+		Weapon: MicroLaser
+		LocalOffset: 500,-85,326
+	Turreted:
+		TurnSpeed: 10
+	AttackTurreted:
+	WithSpriteTurret:
+	-Carryable:
+	SpawnActorOnDeath:
+		Actor: cnc.mwav.husk
+
+cnc.mrep:
+	Inherits: ^TrackedVehicle
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 14
+		# Prerequisites: cnc.fix, ~vehicles.nod, ~techlevel.high
+		Prerequisites: ~disabled
+		Description: Mechanized Repair Service.\n Repairs nearby vehicles.\nDetects Mines.\n  Unarmed
+	Valued:
+		Cost: 700
+	Tooltip:
+		Name: Mobile Repair Tank
+	Selectable:
+		Priority: 6
+	Health:
+		HP: 10000
+	Armor:
+		Type: Light
+	Voiced:
+		VoiceSet: MechanicVoice
+	Mobile:
+		Speed: 110
+		Voice: Move
+	RevealsShroud:
+		Range: 3c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 2c0
+	AttackFrontal:
+		PauseOnCondition: empdisable
+	Armament:
+		Weapon: Repair
+		Cursor: repair
+		OutsideRangeCursor: repair
+		TargetStances: Ally
+		ForceTargetStances: None
+		PauseOnCondition: empdisable
+	AutoTarget:
+	AutoTargetPriority@DEFAULT:
+		ValidTargets: Vehicle, Ship
+	Passenger:
+		PipType: Blue
+	MineImmune:
+	DetectCloaked:
+		Range: 5c0
+		CloakTypes: Mine
+	RenderDetectionCircle:
+	SpawnActorOnDeath:
+		Actor: cnc.mrep.husk

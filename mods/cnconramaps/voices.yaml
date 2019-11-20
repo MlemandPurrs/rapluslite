@@ -1,0 +1,35 @@
+GenericVoice:
+	Variants:
+        gdi: .v01,.v03
+        nod: .v01,.v03
+
+VehicleVoice:
+	Variants:
+        gdi: .v00,.v02
+        nod: .v00,.v02
+
+CommandoVoice:
+	Voices:
+		Select: ryeah1,ryes1,ryo1
+		Move: rcmon1,ronit1,rgotit1
+		Attack: ronit1,rgotit1,rnoprblm1
+		Action: ronit1,rgotit1,rnoprblm1
+		Demolish: rnoprblm1
+		Die: ramyell1
+		Burned: ramyell1
+		Zapped: ramyell1
+		Poisoned: ramyell1
+		Build: rrokroll1
+		Kill: rkeepem1,rlaugh1,rlefty1,rtuffguy1
+
+CyborgVoice:
+	Voices:
+		Select: cyp-i000,cyp-i002,cyp-i006
+		Move: cyp-i008,cyp-i010,cyp-i014,cyp-i016,cyp-i020
+		Attack: cyp-i008,cyp-i010,cyp-i012,cyp-i018
+		Action: cyp-i008,cyp-i010,cyp-i012,cyp-i018
+		Die: cyp-n104,cyp-n106,cyp-n108
+		Burned: cyp-n108
+		Zapped: cyp-n106
+		Poisoned: cyp-n104
+	DisableVariants: Die, Burned, Zapped, Poisoned

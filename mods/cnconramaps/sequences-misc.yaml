@@ -1,0 +1,109 @@
+laserfire:
+	idle: veh-hit3
+		Length: *
+		ZOffset: 511
+
+apc.ui:
+	idle: apc
+		Start: 8
+		Length: 1
+
+icon:
+	airstrike: cncairstrikeicon
+	sathack: cncsathackicon
+	ioncannon: cncionicon
+	uavicon: cncuavicon
+	radarscan: rdrscnicon
+	cncparatroopers: cncparaicon
+	paranuke: paranukeicon
+
+beacon:
+	airstrike: cncairstrikesmallicon
+		Length: *
+		Offset: 0,-42
+	uavicon: cncuavsmallicon
+		Length: *
+		Offset: 0,-42
+
+resources:
+	rti1: rtib1
+		UseTilesetExtension: false
+	rti2: rtib2
+		UseTilesetExtension: false
+	rti3: rtib3
+		UseTilesetExtension: false
+	rti4: rtib4
+		UseTilesetExtension: false
+	rti5: rtib5
+		UseTilesetExtension: false
+	rti6: rtib6
+		UseTilesetExtension: false
+	rti7: rtib7
+		UseTilesetExtension: false
+	rti8: rtib8
+		UseTilesetExtension: false
+	rti9: rtib9
+		UseTilesetExtension: false
+	rti10: rtib10
+		UseTilesetExtension: false
+	rti11: rtib11
+		UseTilesetExtension: false
+	rti12: rtib12
+		UseTilesetExtension: false
+
+patriot:
+	idle:
+		Facings: 32
+		ZOffset: 1023
+
+hjm:
+	idle: missilenew
+		Facings: 32
+		ZOffset: 1023
+
+explosion:
+	pulse_explosion: pulsefx2
+		BlendMode: Additive
+		Tick: 80
+	pulse_explosion_small: pulsefx1
+		BlendMode: Alpha
+		Tick: 80
+    small_chem: chemball
+    medium_chem: chemball-medium
+    large_chem: chemball-large
+    nuke_small: atomlight
+
+emp-overlay:
+	emp-overlay: empfx01
+		Length: *
+		BlendMode: Additive
+		Offset: 0, 0
+		UseTilesetCode: false
+		UseTilesetExtension: false
+		ZOffset: 512
+
+pips:
+	pip-hazmat: pip-hazmat
+		Length: *
+	tag-reload: tag-reload
+		Length: *
+
+ionsfx:
+	idle:
+		Length: *
+		Offset: 0, -78
+		ZOffset: 1023
+
+mins:
+	idle:
+		Length: *
+		ZOffset: -512
+		Tick: 250
+	icon: jmin
+
+maxichute:
+	open:
+		ZOffset: 512
+	idle:
+		Length: 20
+		ZOffset: 512

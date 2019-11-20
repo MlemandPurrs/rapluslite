@@ -1,0 +1,416 @@
+^BaseWorld:
+	Inherits: ^Palettes
+	AlwaysVisible:
+	ActorMap:
+	ScreenMap:
+	Selection:
+	MusicPlaylist:
+		VictoryMusic: score
+		DefeatMusic: map
+	TerrainGeometryOverlay:
+	DebugVisualizations:
+	Locomotor@FOOT:
+		Name: foot
+		Crushes: mine, crate
+		SharesCell: true
+		TerrainSpeeds:
+			Clear: 90
+			Rough: 80
+			Road: 100
+			Bridge: 100
+			Ore: 80
+				PathingCost: 300
+			Gems: 80
+				PathingCost: 300
+			Scraps: 80
+			Beach: 80
+			Shallow: 80
+	Locomotor@FOOT_AMPHIBIOUS:
+		Name: foot-amphibious
+		Crushes: mine, crate
+		SharesCell: true
+		TerrainSpeeds:
+			Clear: 90
+			Rough: 80
+			Road: 100
+			Bridge: 100
+			Ore: 80
+			Gems: 80
+			Scraps: 80
+			Beach: 80
+			Shallow: 80
+			Water: 60
+			River: 40
+	Locomotor@CHEM:
+		Name: chem
+		Crushes: mine, crate
+		SharesCell: true
+		TerrainSpeeds:
+			Clear: 90
+			Rough: 80
+			Road: 100
+			Bridge: 100
+			Ore: 80
+			Gems: 80
+			Beach: 80
+			Shallow: 80
+	Locomotor@WHEELED:
+		Name: wheeled
+		Crushes: mine, crate
+		TerrainSpeeds:
+			Clear: 80
+			Rough: 40
+			Road: 100
+			Bridge: 100
+			Ore: 70
+			Gems: 70
+			Scraps: 70
+			Beach: 40
+			Shallow: 40
+	Locomotor@HEAVYWHEELED:
+		Name: heavywheeled
+		Crushes: wall, mine, crate, infantry
+		TerrainSpeeds:
+			Clear: 80
+			Rough: 40
+			Road: 100
+			Bridge: 100
+			Ore: 70
+			Gems: 70
+			Scraps: 70
+			Beach: 40
+			Shallow: 40
+	Locomotor@LIGHTTRACKED:
+		Name: lighttracked
+		Crushes: wall, mine, crate
+		TerrainSpeeds:
+			Clear: 80
+			Rough: 70
+			Road: 100
+			Bridge: 100
+			Ore: 70
+			Gems: 70
+			Scraps: 70
+			Beach: 70
+			Shallow: 70
+	Locomotor@TRACKED:
+		Name: tracked
+		Crushes: wall, infantry, mine, crate
+		TerrainSpeeds:
+			Clear: 80
+			Rough: 70
+			Road: 100
+			Bridge: 100
+			Ore: 70
+			Gems: 70
+			Scraps: 70
+			Beach: 70
+			Shallow: 70
+	Locomotor@HEAVYTRACKED:
+		Name: heavytracked
+		Crushes: wall, infantry, mine, crate, heavywall
+		TerrainSpeeds:
+			Clear: 80
+			Rough: 70
+			Road: 100
+			Bridge: 100
+			Ore: 70
+			Gems: 70
+			Scraps: 70
+			Beach: 70
+			Shallow: 70
+	Locomotor@TRACKED_AMPHIBIOUS:
+		Name: tracked-amphibious
+		Crushes: infantry, mine, crate
+		TerrainSpeeds:
+			Clear: 80
+			Rough: 70
+			Road: 100
+			Bridge: 100
+			Ore: 70
+			Gems: 70
+			Scraps: 70
+			Beach: 70
+			Shallow: 70
+			Water: 50
+			River: 30
+	Locomotor@NAVAL:
+		Name: naval
+		Crushes: mine, crate
+		TerrainSpeeds:
+			Water: 100
+			Shallow: 70
+	Locomotor@LANDINGCRAFT:
+		Name: lcraft
+		Crushes: mine, crate
+		TerrainSpeeds:
+			Water: 100
+			Beach: 70
+			Shallow: 70
+	Locomotor@AMPHIBIOUS:
+		Name: amphibious
+		Crushes: infantry, mine, crate
+		TerrainSpeeds:
+			Clear: 50
+			Rough: 30
+			Road: 60
+			Bridge: 60
+			Ore: 30
+			Gems: 30
+			Scraps: 30
+			Beach: 70
+			Shallow: 70
+			Water: 80
+			River: 70
+	Locomotor@HOVERCRAFT:
+		Name: hcraft
+		Crushes: crate
+		TerrainSpeeds:
+			Clear: 70
+			Rough: 50
+			Road: 90
+			Water: 100
+			Ore: 60
+			Gems: 60
+			Beach: 90
+			River: 100
+			Shallow: 90
+	JumpjetLocomotor@JUMPJET:
+		Name: jumpjet
+		Crushes: crate
+		SharesCell: true
+		JumpjetTransitionCost: 100
+		TerrainSpeeds:
+			Clear: 90
+			Rough: 80
+			Road: 100
+			Bridge: 100
+			Beach: 90
+			Ore: 90
+			Gems: 90
+			Shallow: 90
+			Jumpjet: 110
+	Locomotor@IMMOBILE:
+		Name: immobile
+		TerrainSpeeds:
+	TerrainRenderer:
+	ShroudRenderer:
+		FogVariants: shroud
+		Index: 255, 16, 32, 48, 64, 80, 96, 112, 128, 144, 160, 176, 192, 208, 224, 240, 20, 40, 56, 65, 97, 130, 148, 194, 24, 33, 66, 132, 28, 41, 67, 134, 1, 2, 4, 8, 3, 6, 12, 9, 7, 14, 13, 11, 5, 10, 15, 255
+		UseExtendedIndex: true
+	Faction@0:
+		Name: Allies
+		InternalName: allies
+		Side: Allies
+		Selectable: False
+	Faction@1:
+		Name: England
+		InternalName: england
+		Side: Allies
+		Description: England: Counterintelligence\nSpecial Unit: British Spy\nSpecial Unit: Mobile Gap Generator
+		Selectable: False
+	Faction@2:
+		Name: France
+		InternalName: france
+		Side: Allies
+		Description: France: Deception\nSpecial Ability: Can build fake structures\nSpecial Unit: Phase Transport
+		Selectable: False
+	Faction@3:
+		Name: Germany
+		InternalName: germany
+		Side: Allies
+		Description: Germany: Technology\nSpecial Ability: Advanced Chronoshift\nSpecial Unit: Chrono Tank
+		Selectable: False
+	Faction@4:
+		Name: Soviet
+		InternalName: soviet
+		Side: Soviet
+		Selectable: False
+	Faction@5:
+		Name: Russia
+		InternalName: russia
+		Side: Soviet
+		Description: Russia: Tesla Weapons\nSpecial Unit: Tesla Tank\nSpecial Unit: Shock Trooper
+		Selectable: False
+	Faction@6:
+		Name: Ukraine
+		InternalName: ukraine
+		Side: Soviet
+		Description: Ukraine: Demolitions\nSpecial Ability: Parabombs\nSpecial Unit: Demolition Truck
+		Selectable: False
+	Faction@GDI:
+		Name: GDI
+		InternalName: gdi
+		Description: Global Defense Initiative\nThe GDI is an international military branch of the United Nations that are tasked\nwith keeping the world peace. Commanding the combined forces of the world's\nmost powerful nations, the GDI posseses an unmatched arsenal of weaponry
+	Faction@Nod:
+		Name: Nod
+		InternalName: nod
+		Description: Brotherhood of Nod\nThe Brotherhood is a fanatical religious cult centered around their leader Kane\nand the alien substance Tiberium. They utilize stealth technology, propaganda\nand guerilla tactics to defeat those who oppose their goal of world domination
+	Faction@random:
+		Name: Any
+		InternalName: Random
+		RandomFactionMembers: gdi, nod
+		Side: Random
+		Description: Random\nA random faction will be chosen when the game starts.
+	Faction@randomallies:
+		Name: Allies
+		InternalName: RandomAllies
+		RandomFactionMembers: england, france, germany
+		Side: Random
+		Description: Random Allied Country\nA random Allied country will be chosen when the game starts.
+		Selectable: False
+	Faction@randomsoviet:
+		Name: Soviet
+		InternalName: RandomSoviet
+		RandomFactionMembers: russia, ukraine
+		Side: Random
+		Description: Random Soviet Country\nA random Soviet country will be chosen when the game starts.
+		Selectable: False
+	ResourceType@ore:
+		Type: Ore
+		Name: Tiberium
+		PipColor: Green
+		ResourceType: 1
+		TerrainType: Ore
+		Palette: greentiberium
+		Sequences: rti1,rti2,rti3,rti4,rti5,rti6,rti7,rti8,rti9,rti10,rti11,rti12
+		MaxDensity: 12
+		ValuePerUnit: 25
+		AllowedTerrainTypes: Clear,Road
+		AllowUnderActors: true
+	ResourceType@gem:
+		Type: Gems
+		Name: Tiberium
+		PipColor: Blue
+		ResourceType: 2
+		TerrainType: Gems
+		Palette: bluetiberium
+		Sequences: rti1,rti2,rti3,rti4,rti5,rti6,rti7,rti8,rti9,rti10,rti11,rti12
+		MaxDensity: 12
+		ValuePerUnit: 50
+		AllowedTerrainTypes: Clear,Road
+		AllowUnderActors: true
+	JumpjetActorLayer:
+		HeightOffset: 1c460
+
+World:
+	Inherits: ^BaseWorld
+	ChatCommands:
+	DevCommands:
+	DebugVisualizationCommands:
+	PlayerCommands:
+	HelpCommand:
+	ScreenShaker:
+	BuildingInfluence:
+	ProductionQueueFromSelection:
+		ProductionPaletteWidget: PRODUCTION_PALETTE
+	LegacyBridgeLayer:
+		Bridges: bridge1, bridge2, bridge3, bridge4, br1, br2, br3, sbridge1, sbridge2, sbridge3, sbridge4
+	CustomTerrainDebugOverlay:
+	CrateSpawner:
+		DeliveryAircraft: badr.delivery
+		QuantizedFacings: 16
+		Minimum: 1
+		Maximum: 3
+		SpawnInterval: 3000
+		WaterChance: 20
+		InitialSpawnDelay: 1500
+		CheckboxDisplayOrder: 1
+	DomainIndex:
+	SmudgeLayer@SCORCH:
+		Type: Scorch
+		Sequence: scorches
+		SmokePercentage: 50
+	SmudgeLayer@CRATER:
+		Type: Crater
+		Sequence: craters
+	ResourceLayer:
+	ResourceClaimLayer:
+	WarheadDebugOverlay:
+	SpawnMapActors:
+	MapBuildRadius:
+		AllyBuildRadiusCheckboxDisplayOrder: 4
+		BuildRadiusCheckboxDisplayOrder: 5
+	MapOptions:
+		ShortGameCheckboxDisplayOrder: 2
+		TechLevelDropdownDisplayOrder: 2
+		GameSpeedDropdownDisplayOrder: 3
+	CreateMPPlayers:
+	MPStartUnits@mcvonly:
+		Class: none
+		ClassName: MCV Only
+		Factions: gdi, nod
+		BaseActor: cnc.mcv
+	MPStartUnits@conyard:
+		Class: conyard
+		ClassName: Conyard
+		Factions: gdi, nod
+		BaseActor: cnc.cyrd
+	MPStartUnits@lightgdi:
+		Class: light
+		ClassName: Light Support
+		Factions: gdi
+		BaseActor: cnc.mcv
+		SupportActors: cnc.e1,cnc.e1,cnc.e1,cnc.e3,cnc.e3,cnc.jeep,cnc.aav
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@lightnod:
+		Class: light
+		ClassName: Light Support
+		Factions: nod
+		BaseActor: cnc.mcv
+		SupportActors: cnc.e1,cnc.e1,cnc.e1,cnc.e3,cnc.e3,cnc.bggy,cnc.ltnk
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@heavygdi:
+		Class: heavy
+		ClassName: Heavy Support
+		Factions: gdi
+		BaseActor: cnc.mcv
+		SupportActors: cnc.e1,cnc.e1,cnc.e1,cnc.e3,cnc.e3,cnc.jeep,cnc.aav,cnc.mtnk,cnc.mtnk
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@heavynod:
+		Class: heavy
+		ClassName: Heavy Support
+		Factions: nod
+		BaseActor: cnc.mcv
+		SupportActors: cnc.e1,cnc.e1,cnc.e1,cnc.e3,cnc.e3,cnc.bggy,cnc.ltnk,cnc.ltnk,cnc.ltnk
+		InnerSupportRadius: 3
+		OuterSupportRadius: 5
+	MPStartUnits@cratehunters:
+		Class: mhq
+		ClassName: Crate Hunters
+		Factions: gdi, nod
+		BaseActor: cnc.mhq.start
+	MPStartLocations:
+		SeparateTeamSpawnsCheckboxDisplayOrder: 6
+	SpawnMPUnits:
+		DropdownDisplayOrder: 1
+	PathFinder:
+	ValidateOrder:
+	DebugPauseState:
+	RadarPings:
+	StartGameNotification:
+	ObjectivesPanel:
+		PanelName: SKIRMISH_STATS
+	LoadWidgetAtGameStart:
+	ScriptTriggers:
+	TimeLimitManager:
+		TimeLimitWarnings:
+			40: FourtyMinutesRemaining
+			30: ThirtyMinutesRemaining
+			20: TwentyMinutesRemaining
+			10: TenMinutesRemaining
+			5: WarningFiveMinutesRemaining
+			4: WarningFourMinutesRemaining
+			3: WarningThreeMinutesRemaining
+			2: WarningTwoMinutesRemaining
+			1: WarningOneMinuteRemaining
+
+EditorWorld:
+	Inherits: ^BaseWorld
+	EditorActorLayer:
+	EditorResourceLayer:
+	EditorSelectionLayer:
+	LoadWidgetAtGameStart:

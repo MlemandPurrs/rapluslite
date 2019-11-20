@@ -1,0 +1,206 @@
+Player:
+	# comment
+	ModularBot@BotPlayer:
+		Name: AI Player
+		Type: normal
+	GrantConditionOnBotOwner@normal:
+		Condition: enable-normal-ai
+		Bots: normal
+	ProvidesPrerequisite@AIRESTRICTOR:
+		Prerequisite: aitoodumb
+		RequiresCondition: enable-normal-ai
+	SupportPowerBotModule:
+		RequiresCondition: enable-normal-ai
+		Decisions:
+			UseReconDrone:
+				OrderName: GDIDronePower
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			UseParatroopers:
+				OrderName: CnCParatroopers
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			UseAirstrike:
+				OrderName: GDIWarthogsPower
+				MinimumAttractiveness: 2000
+				Consideration@1:
+					Against: Enemy
+					Types: Vehicle, Infantry
+					Attractiveness: 3
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@2:
+					Against: Ally
+					Types: Ground, Water
+					Attractiveness: -20
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@3:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 2c0
+			UseNuclear:
+				OrderName: NodNukeMissile
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			UseIonCannon:
+				OrderName: IonCannonPower
+				MinimumAttractiveness: 1000
+				FineScanRadius: 2
+				Consideration@1:
+					Against: Enemy
+					Types: Air, Tank, Vehicle, Infantry, Water
+					Attractiveness: 2
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@2:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@3:
+					Against: Ally
+					Types: Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 3c0
+	HarvesterBotModule:
+		RequiresCondition: enable-normal-ai
+		HarvesterTypes: cnc.harv
+		RefineryTypes: cnc.refn
+	BaseBuilderBotModule:
+		RequiresCondition: enable-normal-ai
+		MinimumExcessPower: 60
+		MaximumExcessPower: 160
+		ExcessPowerIncrement: 40
+		ExcessPowerIncreaseThreshold: 4
+		ConstructionYardTypes: cnc.cyrd
+		RefineryTypes: cnc.refn
+		PowerTypes: cnc.powr,cnc.apwr
+		BarracksTypes: cnc.barr,cnc.hand
+		VehiclesFactoryTypes: cnc.weap,cnc.strp,cnc.weap.nod
+		ProductionTypes: cnc.barr,cnc.hand,cnc.weap,cnc.strp,cnc.weap.nod
+		SiloTypes: cnc.silo
+		BuildingLimits:
+			cnc.refn: 4
+			cnc.barr: 1
+			cnc.hand: 1
+			cnc.comm.gdi: 1
+			cnc.comm.nod: 1
+			cnc.weap: 1
+			cnc.weap.nod: 1
+			cnc.strp: 1
+			cnc.tech: 1
+			cnc.tmpl: 1
+			cnc.fix: 1
+			cnc.eye.old: 1
+			cnc.intc: 1
+			cnc.afld: 1
+		BuildingFractions:
+			cnc.refn: 30
+			cnc.barr: 1
+			cnc.hand: 1
+			cnc.weap: 1
+			cnc.strp: 1
+			cnc.gtwr: 7
+			cnc.gtur: 7
+			cnc.obli.new: 5
+			cnc.agt: 3
+			cnc.agun: 5
+			cnc.sam: 5
+			cnc.tech: 1
+			cnc.tmpl: 1
+			cnc.fix: 1
+			cnc.comm.gdi: 10
+			cnc.comm.nod: 10
+			cnc.eye.old: 1
+			cnc.intc: 1
+			cnc.afld: 1
+	BuildingRepairBotModule:
+		RequiresCondition: enable-normal-ai
+	SquadManagerBotModule:
+		RequiresCondition: enable-normal-ai
+		SquadSize: 9
+		SquadSizeRandomBonus: 9
+		ExcludeFromSquadsTypes: cnc.harv, cnc.mcv, cnc.tecn
+		NavalUnitsTypes: cnc.boat.gdi,cnc.boat.nod
+		NavalProductionTypes: cnc.syrd
+		ConstructionYardTypes: cnc.cyrd
+	McvManagerBotModule:
+		RequiresCondition: enable-normal-ai
+		McvTypes: cnc.mcv
+		ConstructionYardTypes: cnc.cyrd
+		McvFactoryTypes: cnc.weap,cnc.strp,cnc.weap.nod
+	UnitBuilderBotModule:
+		RequiresCondition: enable-normal-ai
+		IdleBaseUnitsMaximum: 6
+		UnitsToBuild:
+			cnc.e1: 65
+			cnc.e2: 15
+			cnc.e3: 30
+			cnc.e4: 15
+			cnc.e5: 15
+			cnc.e6: 5
+			cnc.medi: 15
+			cnc.snip: 15
+			cnc.mort: 15
+			cnc.harv: 10
+			cnc.apc: 30
+			cnc.apc.nod: 30
+			cnc.jeep: 20
+			cnc.bggy: 20
+			cnc.arty: 30
+			cnc.mrls: 30
+			cnc.maag: 25
+			cnc.ltnk: 50
+			cnc.mtnk: 50
+			cnc.aav: 25
+			cnc.mamm: 25
+			cnc.stnk: 25
+			cnc.heli: 10
+			cnc.orca: 10
+			cnc.f18: 5
+			cnc.f22: 5
+		UnitLimits:
+			cnc.medi: 3
+			cnc.e6: 1
+			cnc.harv: 8
+			cnc.jeep: 4
+			cnc.bggy: 4
+			cnc.maag: 4
+	CaptureManagerBotModule:
+		RequiresCondition: enable-normal-ai
+		CapturingActorTypes: cnc.e6
+		CapturableActorTypes: oilb,fcom,bio,miss,hosp,cnc.cyrd,cnc.tech,cnc.tmpl,cnc.refn,cnc.weap,cnc.weap.nod,cnc.strp
+		CheckCaptureTargetsForVisibility: false
+		MaximumCaptureTargetOptions: 5

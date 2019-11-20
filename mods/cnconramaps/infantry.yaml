@@ -1,0 +1,665 @@
+^RottingInfantry
+	WithDeathAnimation@ROT:
+		DeathSequence: rot
+		# DeathPaletteIsPlayerPalette: False
+		# DeathSequencePalette: effect
+		DeathTypes:
+			DefaultDeath: 1
+			BulletDeath: 2
+			SmallExplosionDeath: 3
+			ExplosionDeath: 4
+
+cnc.e1:
+	Inherits: E1
+	Inherits@ROT: ^RottingInfantry
+	Inherits@TiberiumDamage: ^InfantryTiberiumDamage
+	Buildable:
+		BuildPaletteOrder: 1
+		Prerequisites: ~barracks, ~techlevel.infonly
+	Valued:
+		Cost: 100
+	Passenger:
+		PipType: Green
+
+cnc.e1.r1:
+	Inherits: cnc.e1
+	RenderSprites:
+		Image: cnc.e1
+	ProducibleWithLevel:
+		Prerequisites: techlevel.infonly
+		InitialLevels: 1
+	-Buildable:
+
+cnc.e2:
+	Inherits: E2
+	Inherits@ROT: ^RottingInfantry
+	Inherits@TiberiumDamage: ^InfantryTiberiumDamage
+	Buildable:
+		BuildPaletteOrder: 3
+		Prerequisites: ~barracks, refinery, ~infantry.gdi, ~techlevel.infonly
+	Valued:
+		Cost: 225
+	Passenger:
+		PipType: Green
+
+cnc.e3:
+	Inherits: E3
+	Inherits@ROT: ^RottingInfantry
+	Inherits@TiberiumDamage: ^InfantryTiberiumDamage
+	Buildable:
+		BuildPaletteOrder: 2
+		Prerequisites: ~barracks, vehicleproduction, ~techlevel.infonly
+	Valued:
+		Cost: 300
+	Passenger:
+		PipType: Green
+
+cnc.e3.r1:
+	Inherits: cnc.e3
+	RenderSprites:
+		Image: cnc.e3
+	ProducibleWithLevel:
+		Prerequisites: techlevel.infonly
+		InitialLevels: 1
+	-Buildable:
+
+cnc.e4:
+	Inherits: E4
+	Inherits@ROT: ^RottingInfantry
+	Inherits@TiberiumDamage: ^InfantryTiberiumDamage
+	Buildable:
+		Prerequisites: refinery, ~infantry.nod, ~techlevel.infonly
+		BuildPaletteOrder: 3
+		Description: Anti-structure Infantry.\n  Strong vs Infantry, Buildings\n  Weak vs Vehicles, Aircraft
+	Mobile:
+		Speed: 64
+	Passenger:
+		PipType: Green
+
+cnc.snip:
+	Inherits: ^Soldier
+	Inherits@EXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Inherits@ROT: ^RottingInfantry
+	Inherits@TiberiumDamage: ^InfantryTiberiumDamage
+	Valued:
+		Cost: 900
+	Tooltip:
+		Name: Sniper
+	Buildable:
+		BuildPaletteOrder: 7
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		Prerequisites: anytech, ~infantry.gdi, ~techlevel.high
+		Description: Sharpshooter infantry.\n Detects cloaked units at close range.\n  Special Ability: Cloaked\nCloaks when standing still.\n  Strong vs Infantry\n  Weak vs anything Else
+	Health:
+		HP: 8000
+	Mobile:
+		Speed: 56
+	Passenger:
+		PipType: Yellow
+	RevealsShroud:
+		Range: 6c0
+	AutoTarget:
+		InitialStance: HoldFire
+		InitialStanceAI: ReturnFire
+	AutoTargetPriority@DEFAULT:
+		ValidTargets: Infantry
+	Armament@PRIMARY:
+		Weapon: Sniper
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: Sniper
+		MuzzleSequence: garrison-muzzle
+	AttackFrontal:
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		RequiresCondition: !parachute
+	WithInfantryBody@PARACHUTE:
+		StandSequences: parachute
+		RequiresCondition: parachute
+	Cloak:
+		InitialDelay: 90
+		CloakDelay: 90
+		CloakSound:
+		UncloakSound: appear1.aud
+		IsPlayerPalette: true
+		UncloakOn: Attack, Unload, Heal, Dock, SelfHeal, Demolish, Move
+		PauseOnCondition: !(!cloak-force-disabled)
+	GrantConditionOnDamageState@UNCLOAK:
+		Condition: cloak-force-disabled
+		ValidDamageStates: Critical
+	DetectCloaked:
+		CloakTypes: Cloak, Thief
+		Range: 3c0
+	-MustBeDestroyed:
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+	RenderSprites:
+		Image: snip
+
+cnc.e5:
+	Inherits: ^Soldier
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@ROT: ^RottingInfantry
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 4
+		Prerequisites: anyhq, ~infantry.nod, ~techlevel.high
+		Description: Close range, anti-everything Infantry.\n Immune to Tiberium damage.\n  Strong vs all Ground units and Structures.\n  Weak vs Anti-Infantry Defenses, Aircraft.
+	Valued:
+		Cost: 600
+	Tooltip:
+		Name: Chemical Trooper
+	Health:
+		HP: 9000
+	WithDeathAnimation:
+	Passenger:
+		PipType: Red
+	Armament@PRIMARY:
+		Weapon: Chemspray
+		LocalOffset: 341,0,256
+		FireDelay: 3
+		MuzzleSequence: muzzle
+		MuzzlePalette: desert
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: Chemspray
+		MuzzleSequence: muzzle
+		MuzzlePalette: desert
+	TakeCover:
+		ProneOffset: 160,0,-288
+	Mobile:
+		Speed: 64
+		Locomotor: chem
+	AttackFrontal:
+	-Crushable:
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+	WithInfantryBody@PARACHUTE:
+		StandSequences: parachute
+		RequiresCondition: parachute
+	WithMuzzleOverlay:
+	Explodes:
+		Weapon: UnitExplodeChemSmall
+		EmptyWeapon: UnitExplodeChemSmall
+		Chance: 30
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+	RenderSprites:
+		Image: e5
+
+cnc.e7:
+	Inherits: E7
+	Inherits@ROT: ^RottingInfantry
+	Inherits@TiberiumDamage: ^InfantryTiberiumDamage
+	Buildable:
+		BuildPaletteOrder: 5
+		Prerequisites: cnc.tmpl, ~infantry.nod, ~techlevel.high
+		Description: Elite commando infantry. Armed with\ndual pistols and C4.\nMaximum 1 can be trained.\n  Strong vs Infantry, Buildings\n  Weak vs Vehicles, Aircraft
+	Valued:
+		Cost: 1000
+	Tooltip:
+		Name: Commando
+	-DetectCloaked:
+
+cnc.rmbo:
+	Inherits: ^Soldier
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Inherits@ROT: ^RottingInfantry
+	Inherits@TiberiumDamage: ^InfantryTiberiumDamage
+	Valued:
+		Cost: 1000
+	Tooltip:
+		Name: Commando
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 5
+		BuildLimit: 1
+		Prerequisites: cnc.tech, ~infantry.gdi, ~techlevel.high
+		Description: Elite commando infantry.\nArmed with assault rifle and C4.\nMaximum 1 can be trained.\n  Special Ability: Camouflage\nCloaks when standing still.\n  Strong vs Infantry, Buildings\n  Weak vs Vehicles, Aircraft
+	Mobile:
+		Speed: 71
+		Voice: Move
+	Guard:
+		Voice: Move
+	Health:
+		HP: 10000
+	Passenger:
+		PipType: Red
+		Voice: Move
+	RevealsShroud:
+		Range: 6c0
+	Demolition:
+		DetonationDelay: 45
+		Voice: Demolish
+	Armament:
+		Weapon: M1Carbine
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: Vulcan
+		MuzzleSequence: garrison-muzzle
+	AttackFrontal:
+		Voice: Attack
+	AttackMove:
+	WithDeathAnimation:
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		IdleSequences: idle1,idle2
+		StandSequences: stand
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	VoiceAnnouncement:
+		RequiresCondition: produced
+		Voice: Build
+	AnnounceOnKill:
+	Voiced:
+		VoiceSet: CommandoVoice
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+	DetectCloaked:
+		CloakTypes: Cloak, Hijacker
+		Range: 3c0
+	Cloak:
+		InitialDelay: 250
+		CloakDelay: 120
+		CloakSound:
+		UncloakSound: appear1.aud
+		IsPlayerPalette: true
+		UncloakOn: Attack, Unload, Heal, Dock, SelfHeal, Demolish, Move
+		PauseOnCondition: cloak-force-disabled
+	GrantConditionOnDamageState@UNCLOAK:
+		Condition: cloak-force-disabled
+		ValidDamageStates: Critical
+	RenderSprites:
+		Image: rmbo
+
+cnc.e6:
+	Inherits: E6
+	Inherits@ROT: ^RottingInfantry
+	Inherits@TiberiumDamage: ^InfantryTiberiumDamage
+	Buildable:
+		BuildPaletteOrder: 6
+		Prerequisites: ~barracks, ~techlevel.infonly
+		Description: Damages and captures enemy structures.\nCan repair bridges.\nCan restore Vehicle husks to working condition by capturing them.\n  Unarmed
+	Valued:
+		Cost: 500
+	-GrantConditionOnPrerequisite@GLOBALREUSABLEENGINEER:
+	-Captures:
+	-Captures@REUSABLE:
+	Captures@SABOTAGE:
+		CaptureTypes: building-sabotage
+		SabotageThreshold: 25
+		SabotageHPRemoval: 25
+		PlayerExperience: 50
+	Captures@CAPTURES:
+		CaptureTypes: building, husk
+		PlayerExperience: 50
+	Infiltrates:
+		Types: Husk
+		ValidStances: Ally
+		EnterCursor: goldwrench
+		PlayerExperience: 25
+	Passenger:
+		PipType: Blue
+
+cnc.medi:
+	Inherits: MEDI
+	Inherits@ROT: ^RottingInfantry
+	Inherits@TiberiumDamage: ^InfantryTiberiumDamage
+	Buildable:
+		BuildPaletteOrder: 4
+		Prerequisites: anyhq, ~infantry.gdi, ~techlevel.medium
+
+cnc.vice:
+	Inherits@1: ^ExistsInWorld
+	Inherits@2: ^SpriteActor
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	RenderSprites:
+		PlayerPalette: playertd
+	Huntable:
+	Health:
+		HP: 11000
+	Armor:
+		Type: Light
+	RevealsShroud:
+		Range: 6c0
+	Mobile:
+		Speed: 71
+		Locomotor: chem
+	SelectionDecorations:
+	WithSpriteControlGroupDecoration:
+	Selectable:
+		Bounds: 24,24
+	Targetable:
+		TargetTypes: Ground, Infantry, Creep
+	AutoTarget:
+		ScanRadius: 5
+	AttackMove:
+	DrawLineToTarget:
+	HiddenUnderFog:
+	Buildable:
+		Queue: Biolab
+		BuildPaletteOrder: 40
+		Description: Mutated abomination that spits liquid Tiberium.\n  Strong vs Infantry, Buildings\n  Weak vs Aircraft
+	Valued:
+		Cost: 1000
+	Tooltip:
+		Name: Visceroid
+	Armament:
+		Weapon: Chemspray
+		LocalOffset: 384,0,0
+		MuzzleSequence: muzzle
+		MuzzlePalette: desert
+	AttackFrontal:
+	BodyOrientation:
+		QuantizedFacings: 8
+	WithSpriteBody:
+	WithMuzzleOverlay:
+	Guard:
+	Guardable:
+	DamagedByTerrain:
+		Damage: -30
+		DamageInterval: 50
+		DamageTypes: FireDeath
+		Terrain: Ore, Gems
+	HitShape:
+		Type: Circle
+			Radius: 427
+	Tooltip:
+	ActorLostNotification:
+	Explodes:
+		Weapon: UnitExplodeChemSmall
+		EmptyWeapon: UnitExplodeChemSmall
+		Chance: 100
+	AttackWander:
+	RenderSprites:
+		Image: vice
+
+cnc.tecn:
+	Inherits@1: ^CivInfantry
+	Inherits@2: ^ArmedCivilian
+	Inherits@ROT: ^RottingInfantry
+	Inherits@TiberiumDamage: ^InfantryTiberiumDamage
+	Tooltip:
+		Name: Technician
+	Passenger:
+		Weight: 1
+		PipType: Blue
+	RenderSprites:
+		Image: cnctecn
+
+cnc.mort:
+	Inherits: ^Soldier
+	Inherits@EXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Inherits@ROT: ^RottingInfantry
+	Inherits@TiberiumDamage: ^InfantryTiberiumDamage
+	Buildable:
+		Queue: Infantry
+		BuildPaletteOrder: 7
+		BuildAtProductionType: Soldier
+		Prerequisites: anytech, ~infantry.nod, ~techlevel.high
+		Description: Infantry armed with a Mortar gun\nthat shoots chemical rounds.\n Immune to Tiberium damage.\n  Strong vs Buildings, Infantry\n  Weak vs Vehicles, Aircraft
+	Valued:
+		Cost: 800
+	Mobile:
+		Speed: 50
+	Tooltip:
+		Name: Chemical Mortar
+	Health:
+		HP: 5250
+	Armament@PRIMARY:
+		Weapon: MortarChem
+		LocalOffset: 0,0,155
+		FireDelay: 15
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: MortarChem
+		FireDelay: 15
+	AttackFrontal:
+	WithInfantryBody:
+		DefaultAttackSequence: throw
+	Explodes:
+		Weapon: UnitExplodeChemSmall
+		EmptyWeapon: UnitExplodeChemSmall
+		Chance: 50
+	Passenger:
+		PipType: Red
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+	RenderSprites:
+		Image: mort
+
+cnc.spy:
+	Inherits: SPY
+	Inherits@ROT: ^RottingInfantry
+	Inherits@TiberiumDamage: ^InfantryTiberiumDamage
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Spy
+		BuildPaletteOrder: 8
+		Prerequisites: anytech, ~infantry.gdi, ~techlevel.high
+		Description: Agent of the Intelligence Service.\nCan detect cloaked units and spies.\n  Special Ability: Espionage\nInfiltrates enemy production structures for rank bonus.\nSteals enemy credits from Refineries.\nInfiltrates enemy Power Plants to cut off base power.\nInfiltrates Comm. Centers to reset their exploration.\nInfiltrates Tech Centers to unlock your side's Tech Units.\n  Special Ability: Disguise\nCan disguise as enemy Infantry.\nLoses disguise when attacking.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
+
+cnc.infl:
+	Inherits: SPY
+	Inherits@ROT: ^RottingInfantry
+	Inherits@TiberiumDamage: ^InfantryTiberiumDamage
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Spy
+		BuildPaletteOrder: 8
+		Prerequisites: anytech, ~infantry.nod, ~techlevel.high
+		Description: Agent of the Black Hand.\nCan detect cloaked units and spies.\n  Special Ability: Espionage\nInfiltrates enemy production structures for rank bonus.\nSteals enemy credits from Refineries.\nInfiltrates enemy Power Plants to cut off base power.\nInfiltrates Comm. Centers to reset their exploration.\nInfiltrates Tech Centers to unlock your side's Tech Units.\n  Special Ability: Stealth\nCan move around unseen.\nLoses cloak when attacking.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
+	-DisguiseTooltip:
+	Tooltip:
+		Name: Infiltrator
+	-Disguise:
+	-WithDisguisingInfantryBody:
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		IdleSequences: idle1,idle2
+		StandSequences: stand
+	-WithDecoration@disguise:
+	-IgnoresDisguise:
+	Cloak:
+		InitialDelay: 90
+		CloakDelay: 90
+		CloakSound: vanish1.aud
+		UncloakSound: appear1.aud
+		IsPlayerPalette: true
+		PauseOnCondition: cloak-force-disabled
+	GrantConditionOnDamageState@UNCLOAK:
+		Condition: cloak-force-disabled
+		ValidDamageStates: Critical
+	Voiced:
+		VoiceSet: ThiefVoice
+	RenderSprites:
+		Image: infl
+	Mobile:
+		Voice: Action
+	Passenger:
+		Voice: Action
+	AttackMove:
+		Voice: Action
+
+cnc.jump:
+	Inherits: ^Soldier
+	Inherits@EXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Inherits@TiberiumDamage: ^InfantryTiberiumDamage
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 9
+		Prerequisites: anytech, anyhq, ~infantry.gdi, ~tech.stolen.gdi, ~techlevel.high
+		Description: Airborne soldier armed with a minigun.\n  Strong vs Infantry, Light vehicles\n  Weak vs Armor, Anti-Air
+	Valued:
+		Cost: 600
+	Tooltip:
+		Name: Jumpjet Infantry
+	Mobile:
+		Speed: 71
+		Locomotor: jumpjet
+	Health:
+		HP: 12000
+	Armor:
+		Type: Light
+	Passenger:
+		PipType: Green
+		Weight: 2
+	RevealsShroud:
+		Range: 6c0
+	Armament:
+		Weapon: M60mg.inf
+	-Crushable:
+	AttackFrontal:
+	-TakeCover:
+	-WithInfantryBody:
+	WithInfantryBody:
+		RequiresCondition: !airborne
+		StandSequences: stand
+		DefaultAttackSequence: shoot
+	WithInfantryBody@flying:
+		RequiresCondition: airborne
+		DefaultAttackSequence: flying-shoot
+		StandSequences: flying
+		MoveSequence: flying-run
+	Hovers:
+		RequiresCondition: airborne
+	DamagedByTerrain:
+		RequiresCondition: !airborne
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+	-Targetable:
+	Targetable:
+		TargetTypes: Ground, Infantry, Disguise
+		RequiresCondition: !airborne
+	-Targetable@HEAL:
+	Targetable@HEAL:
+		RequiresCondition: !airborne && damaged
+		TargetTypes: Heal
+	Targetable@AIRBORNE:
+		TargetTypes: Air
+		RequiresCondition: airborne
+	WithShadow@airborne:
+		RequiresCondition: airborne
+	GrantConditionOnJumpjetLayer:
+		Condition: airborne
+	-Parachutable:
+	-WithParachute:
+	Explodes:
+		Weapon: UnitExplodeSmall
+		EmptyWeapon: UnitExplodeSmall
+		Chance: 100
+
+cnc.cybr:
+	Inherits: ^Cyborg
+	Inherits@EXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Valued:
+		Cost: 700
+	Tooltip:
+		Name: Cyborg
+	Buildable:
+		BuildPaletteOrder: 9
+		Prerequisites: anytech, anyhq, ~infantry.nod, ~tech.stolen.nod, ~techlevel.high
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		Description: Cybernetic minigunner.\n Fights on when at the verge of death.\n Immune to Tiberium damage.\n Susceptible to EMP.\n Can be repaired.\n Cannot be crushed.\n  Strong vs Infantry\n  Weak vs Vehicles
+	Mobile:
+		Speed: 56
+		Voice: Move
+	Voiced:
+		VoiceSet: CyborgVoice
+	Armor:
+		Type: Light
+	Health:
+		HP: 17500
+	Armament@1:
+		Weapon: M60mg.inf
+		PauseOnCondition: empdisable
+		Name: OnFoot
+	Armament@2:
+		Weapon: M60mg
+		PauseOnCondition: empdisable
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: M60mg
+		MuzzleSequence: garrison-muzzle
+	AttackFrontal:
+		Voice: Attack
+		Armaments: OnFoot
+	SelectionDecorations:
+	Passenger:
+		PipType: Red
+		Weight: 2
+		Voice: Move
+	Targetable:
+		TargetTypes: Ground
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+
+Ant:
+	Buildable:
+		Prerequisites: ~disabled
+
+Zombie:
+	Buildable:
+		Prerequisites: ~disabled
+
+PLOT:
+	Inherits@1: ^CivInfantry
+	Inherits@2: ^ArmedCivilian
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@ROT: ^RottingInfantry
+	Inherits@TiberiumDamage: ^InfantryTiberiumDamage
+	Tooltip:
+		Name: Pilot
+	-ScaredyCat:
+	Passenger:
+		Weight: 1
+        PipType: Blue
+
+PLOT.R1:
+	Inherits: PLOT
+	ProducibleWithLevel:
+		Prerequisites: techlevel.infonly
+		InitialLevels: 1
+	DeliversExperience:
+	RenderSprites:
+		Image: plot
+
+PLOT.R2:
+	Inherits: PLOT
+	ProducibleWithLevel:
+		Prerequisites: techlevel.infonly
+		InitialLevels: 2
+	DeliversExperience:
+	RenderSprites:
+		Image: plot
+    -MapEditorData:
+
+PLOT.R3:
+	Inherits: PLOT
+	ProducibleWithLevel:
+		Prerequisites: techlevel.infonly
+		InitialLevels: 3
+	DeliversExperience:
+	RenderSprites:
+		Image: plot
+    -MapEditorData:
+
+PLOT.RE:
+	Inherits: PLOT
+	ProducibleWithLevel:
+		Prerequisites: techlevel.infonly
+		InitialLevels: 4
+	DeliversExperience:
+	RenderSprites:
+		Image: plot
+    -MapEditorData:

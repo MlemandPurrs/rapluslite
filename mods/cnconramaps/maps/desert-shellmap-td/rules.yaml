@@ -1,0 +1,127 @@
+Player:
+	-ConquestVictoryConditions:
+	LobbyPrerequisiteCheckbox@GLOBALBOUNTY:
+		Enabled: False
+		Locked: True
+
+World:
+	-CrateSpawner:
+	-SpawnMPUnits:
+	-MPStartLocations:
+	MusicPlaylist:
+		BackgroundMusic: intro
+		DisableWorldSounds: true
+	ResourceType@ore:
+		ValuePerUnit: 0
+	LuaScript:
+		Scripts: desert-shellmap.lua
+	-StartGameNotification:
+
+^Palettes:
+	IndexedPlayerPalette:
+		PlayerIndex:
+			Soviets: 128, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 121, 122, 122, 123, 123
+			Allies: 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95
+	IndexedPlayerPalette@player-buildings:
+		BasePalette: tibtreefix
+		BaseName: player-buildings
+		RemapIndex: 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95
+		PlayerIndex:
+			Soviets: 229, 230, 231, 232, 233, 234, 235, 8, 236, 237, 238, 239, 221, 222, 223, 223
+			Allies: 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95
+
+^ExistsInWorld:
+	GivesExperience:
+		ActorExperienceModifier: 0
+
+^Vehicle:
+	DamageMultiplier@UNKILLABLE:
+		RequiresCondition: unkillable
+		Modifier: 0
+	ExternalCondition@UNKILLABLE:
+		Condition: unkillable
+
+^Infantry:
+	DeathSounds@NORMAL:
+		VolumeMultiplier: 0.1
+	DeathSounds@BURNED:
+		VolumeMultiplier: 0.1
+	DeathSounds@ZAPPED:
+		VolumeMultiplier: 0.1
+	DamageMultiplier@UNKILLABLE:
+		RequiresCondition: unkillable
+		Modifier: 0
+	ExternalCondition@UNKILLABLE:
+		Condition: unkillable
+
+^Ship:
+	DamageMultiplier@UNKILLABLE:
+		RequiresCondition: unkillable
+		Modifier: 0
+	ExternalCondition@UNKILLABLE:
+		Condition: unkillable
+
+^Plane:
+	DamageMultiplier@UNKILLABLE:
+		RequiresCondition: unkillable
+		Modifier: 0
+	ExternalCondition@UNKILLABLE:
+		Condition: unkillable
+
+^Building:
+	DamageMultiplier@UNKILLABLE:
+		RequiresCondition: unkillable
+		Modifier: 0
+	ExternalCondition@UNKILLABLE:
+		Condition: unkillable
+	RenderSprites:
+		PlayerPalette: player-buildings
+
+^Bridge:
+	DamageMultiplier:
+		Modifier: 0
+
+^Wall:
+	DamageMultiplier:
+		Modifier: 0
+
+OILB:
+	CashTrickler:
+		ShowTicks: false
+	RenderSprites:
+		PlayerPalette: player-buildings
+
+TRAN.Husk2:
+	Burns:
+		Damage: 0
+
+MISS:
+	DamageMultiplier@INVULNERABLE:
+		Modifier: 0
+
+cnc.apc.nod:
+	Cargo:
+		InitialUnits: E1,E1,E4,E3,E4
+
+Ant:
+	Buildable:
+		Prerequisites: barr
+	Health:
+		HP: 20000
+
+cnc.rmbo:
+	-AnnounceOnKill:
+
+cnc.hand:
+	RenderSprites:
+		PlayerPalette: player-buildings	
+
+powerproxy.paratroopers:
+	ParatroopersPower:
+		DisplayBeacon: false
+		DropItems: cnc.e1,cnc.e1,cnc.e5,cnc.e3,cnc.e5
+
+powerproxy.parazombies:
+	Inherits: powerproxy.paratroopers
+	ParatroopersPower:
+		DropItems: ZOMBIE,ZOMBIE,ZOMBIE,ZOMBIE,ZOMBIE

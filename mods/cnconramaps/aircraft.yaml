@@ -1,0 +1,771 @@
+
+cnc.tran:
+	Inherits: TRAN
+	Buildable:
+		BuildPaletteOrder: 1
+		Prerequisites: ~cnc.hpad, ~techlevel.low
+	Aircraft:
+		LandableTerrainTypes: Clear,Rough,Road,Ore,Beach,Gems,Shallow
+	RenderSprites:
+		Image: cnc.tran
+
+cnc.orca:
+	Inherits: ^Helicopter
+	Inherits@EXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Inherits@EJECTPILOT: ^EjectsPilotOnAir
+	Valued:
+		Cost: 1000
+	Tooltip:
+		Name: Orca
+	Buildable:
+		BuildPaletteOrder: 2
+		BuildAtProductionType: Helicopter
+		Prerequisites: ~cnc.hpad, ~aircraft.gdi, ~techlevel.high
+		Queue: Aircraft
+		Description: VTOL assault craft armed with\nmulti-purpose Missiles and Chaingun.\n  Strong vs Buildings, Tanks\n  Weak vs Infantry, Anti-Air
+	AttackAircraft:
+		FacingTolerance: 20
+		Armaments: primary, secondary, tertiary
+		PersistentTargeting: false
+		AttackType: Hover
+	Aircraft:
+		TurnSpeed: 7
+		Speed: 186
+	Rearmable:
+		RearmActors: cnc.hpad
+	Health:
+		HP: 9000
+	Armor:
+		Type: Light
+	RevealsShroud:
+		Range: 10c0
+		Type: GroundPosition
+	Armament@PRIMARY:
+		Name: primary
+		Weapon: OrcaAGMissiles
+		LocalOffset: 427,-171,-213, 427,171,-213
+		PauseOnCondition: !ammo
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: OrcaAAMissiles
+		LocalOffset: 427,-171,-213, 427,171,-213
+		PauseOnCondition: !ammo
+	Armament@TERTIARY:
+		Name: tertiary
+		Weapon: Vulcan.heli
+		MuzzleSequence: muzzle
+		LocalOffset: 427,0,-213
+		PauseOnCondition: !ammogun
+	AutoTarget:
+		ScanRadius: 5
+	AmmoPool:
+		Armaments: primary, secondary
+		Ammo: 6
+		PipCount: 6
+		AmmoCondition: ammo
+	AmmoPool@2:
+		Armaments: tertiary, quartenary
+		Ammo: 4
+		PipCount: 6
+		PipType: Red
+		AmmoCondition: ammogun
+	SpawnActorOnDeath:
+		Actor: cnc.orca.husk
+	WithMoveAnimation:
+		MoveSequence: move
+	WithMuzzleOverlay:
+	SelectionDecorations:
+	Selectable:
+		DecorationBounds: 30,24
+	ProducibleWithLevel:
+		Prerequisites: aircraft.upgraded
+
+cnc.heli:
+	Inherits: HELI
+	Buildable:
+		BuildPaletteOrder: 2
+		Prerequisites: ~cnc.hpad, ~aircraft.nod, ~techlevel.high
+		Description: Helicopter gunship with multi-purpose\nChainguns and Missiles.\n  Strong vs Everything\n  Weak vs Anti-Air, Aircraft
+	Armament@TERTIARY:
+		Name: tertiary
+		Weapon: HeliAGGun
+		LocalOffset: 128,-213,-85, 128,213,-85
+		MuzzleSequence: muzzle
+		PauseOnCondition: !ammogun
+	Armament@QUARTENARY:
+		Name: quartenary
+		Weapon: HeliAAGun
+		LocalOffset: 128,-213,-85, 128,213,-85
+		MuzzleSequence: muzzle
+		PauseOnCondition: !ammogun
+	AttackAircraft:
+		Armaments: primary, secondary, tertiary, quartenary
+	AmmoPool:
+		PipType: Red
+	AmmoPool@2:
+		Armaments: tertiary, quartenary
+		Ammo: 10
+		PipCount: 5
+		ReloadDelay: 9
+		AmmoCondition: ammogun
+	WithMuzzleOverlay:
+	Rearmable:
+		RearmActors: cnc.hpad
+
+cnc.rh66:
+	Inherits: ^Helicopter
+	Inherits@EXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Aircraft
+		BuildPaletteOrder: 5
+		BuildAtProductionType: Helicopter
+		# Prerequisites: cnc.tmpl, ~aircraft.nod, ~techlevel.high
+		Prerequisites: ~disabled
+		Description: Stealthed Helicopter that is armed\nwith air-to-ground Rockets and Machinegun.\nCannot attack Air units.\n  Strong vs Light Vehicles, Buildings\n  Weak vs Anti-Air, Detectors
+	Valued:
+		Cost: 1500
+	Tooltip:
+		Name: Comanche
+	-AppearsOnRadar:
+	Health:
+		HP: 15000
+	Armor:
+		Type: Heavy
+	RevealsShroud:
+		Range: 7c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+		Type: GroundPosition
+	Armament@PRIMARY:
+		Weapon: M60mg
+		LocalOffset: 427,0,-213
+		MuzzleSequence: muzzle
+	Armament@SECONDARY:
+		Weapon: rah66AG
+		LocalOffset: 0,-213,-85, 0,213,-85
+		PauseOnCondition: !ammo
+	AttackAircraft:
+		FacingTolerance: 20
+		PersistentTargeting: false
+		AttackType: Hover
+	Aircraft:
+		AltitudeVelocity: 0c100
+		TurnSpeed: 5
+		Speed: 150
+	Cloak:
+		InitialDelay: 100
+		CloakDelay: 200
+		CloakSound: vanish1.aud
+		UncloakSound: appear1.aud
+		IsPlayerPalette: true
+		PauseOnCondition: cloak-force-disabled && !airborne
+	AutoTarget:
+		InitialStance: ReturnFire
+		InitialStanceAI: AttackAnything
+	WithIdleOverlay@ROTORAIR:
+		Offset: 10,0,80
+		Sequence: rotor
+		RequiresCondition: airborne
+	WithIdleOverlay@ROTORGROUND:
+		Offset: 10,0,80
+		Sequence: slow-rotor
+		RequiresCondition: !airborne
+	GrantConditionOnDamageState@UNCLOAK:
+		Condition: cloak-force-disabled
+		ValidDamageStates: Critical
+	AmmoPool:
+		Ammo: 8
+		AmmoCondition: ammo
+	ReloadAmmoPool:
+		Delay: 225
+		Count: 8
+		RequiresCondition: !ammo
+	WithMuzzleOverlay:
+	SelectionDecorations:
+	SmokeTrailWhenDamaged:
+		Offset: -427,0,0
+	Selectable:
+		DecorationBounds: 36,28
+	SpawnActorOnDeath:
+		Actor: cnc.rh66.husk
+	ProducibleWithLevel:
+		Prerequisites: aircraft.upgraded
+
+cnc.carr:
+	Inherits: ^Helicopter
+	Inherits@EJECTPILOT: ^EjectsPilotOnAir
+	Valued:
+		Cost: 1000
+	Tooltip:
+		Name: Orca Carryall
+	Buildable:
+		Queue: Aircraft
+		BuildPaletteOrder: 3
+		BuildAtProductionType: Helicopter
+		Prerequisites: cnc.fix, ~cnc.hpad, ~aircraft.gdi, ~techlevel.high
+		Description: VTOL Vehicle Transporter\nCan carry one land vehicle\n Unarmed
+	Aircraft:
+		AltitudeVelocity: 0c100
+		InitialFacing: 224
+		TurnSpeed: 4
+		Speed: 160
+		LandableTerrainTypes: Clear,Rough,Road,Beach,Ore,Gems,Shallow
+		Repulsable: True
+		Voice: Move
+	Carryall:
+		BeforeLoadDelay: 10
+		BeforeUnloadDelay: 15
+		LocalOffset: 0, 0, -128
+	Health:
+		HP: 30000
+	Armor:
+		Type: Heavy
+	RevealsShroud:
+		Range: 7c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+		Type: GroundPosition
+	SpawnActorOnDeath:
+		Actor: cnc.carr.husk
+	SmokeTrailWhenDamaged:
+		Offset: -427,0,0
+		Interval: 2
+	SelectionDecorations:
+	Selectable:
+		DecorationBounds: 30,24
+	Voiced:
+		VoiceSet: MechanicVoice
+
+cnc.carr.delivery:
+	Inherits: ^Helicopter
+	Tooltip:
+		Name: Orca Carryall (Automated)
+	Buildable:
+		Description: Automated Vehicle Transporter\nAutomatically lifts Harvesters from and to Tiberium
+	Valued:
+		Cost: 1000
+	Health:
+		HP: 45000
+	Armor:
+		Type: Light
+	Aircraft:
+		TurnSpeed: 5
+		Speed: 326
+		InitialFacing: 0
+		LandableTerrainTypes: Clear,Rough,Road,Beach,Ore,Gems
+		AltitudeVelocity: 0c100
+		TurnToLand: true
+		Repulsable: false
+		CruiseAltitude: 2160
+		CanHover: true
+		AirborneCondition: airborne
+		CanSlide: True
+		IdleBehavior: LeaveMap
+	Carryall:
+		BeforeLoadDelay: 10
+		BeforeUnloadDelay: 15
+		LocalOffset: 0, 0, -128
+	RenderSprites:
+		Image: cnc.carr
+	RejectsOrders:
+	RevealsShroud:
+		Range: 0c0
+		Type: CenterPosition
+	-Selectable:
+	Targetable@GROUND:
+		TargetTypes: Ground, Vehicle
+		RequiresCondition: !airborne
+	Targetable@AIRBORNE:
+		TargetTypes: Air
+		RequiresCondition: airborne
+	Interactable:
+	SelfHealing:
+		Step: 50
+		Delay: 3
+		HealIfBelow: 50
+	SpawnActorOnDeath:
+		Actor: cnc.carr.husk
+	-MapEditorData:
+
+cnc.carr.automatic:
+	Inherits: cnc.carr.delivery
+	Buildable:
+		BuildPaletteOrder: 6
+		Prerequisites: ~disabled
+		Queue: Aircraft
+		BuildAtProductionType: Helicopter
+	-Carryall:
+	AutoCarryall:
+		LocalOffset: 0, 0, -128
+	Aircraft:
+	RevealsShroud:
+		Range: 5c0
+		Type: CenterPosition
+
+cnc.v22:
+	Inherits: ^Helicopter
+	Valued:
+		Cost: 1000
+	Tooltip:
+		Name: V-22 Carryall
+	Buildable:
+		Queue: Aircraft
+		BuildPaletteOrder: 3
+		BuildAtProductionType: Helicopter
+		Prerequisites: cnc.fix, ~cnc.hpad, ~aircraft.nod, ~techlevel.high
+		Description: VTOL Vehicle Transporter.\nCan carry one land vehicle.\n  Unarmed
+	Aircraft:
+		AltitudeVelocity: 0c100
+		InitialFacing: 224
+		TurnSpeed: 4
+		Speed: 160
+		LandableTerrainTypes: Clear,Rough,Road,Beach,Ore,Gems,Shallow
+		Repulsable: True
+		Voice: Move
+	Carryall:
+		BeforeLoadDelay: 10
+		BeforeUnloadDelay: 15
+		LocalOffset: 0, 0, -128
+	Health:
+		HP: 30000
+	Armor:
+		Type: Heavy
+	RevealsShroud:
+		Range: 7c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+		Type: GroundPosition
+	SpawnActorOnDeath:
+		Actor: cnc.v22.husk
+	SmokeTrailWhenDamaged:
+		Offset: -427,0,0
+		Interval: 2
+	SelectionDecorations:
+	Selectable:
+		DecorationBounds: 40,36
+	WithIdleOverlay@ROTOR1AIR:
+		Offset: 0,845,650
+		Sequence: rotor
+		RequiresCondition: airborne
+	#Offset ^forward, right, up^
+	WithIdleOverlay@ROTOR1GROUND:
+		Offset: 0,845,650
+		Sequence: slow-rotor
+		RequiresCondition: !airborne
+	WithIdleOverlay@ROTOR2AIR:
+		Offset: 0,-845,650
+		Sequence: rotor2
+		RequiresCondition: airborne
+	WithIdleOverlay@ROTOR2GROUND:
+		Offset: 0,-845,650
+		Sequence: slow-rotor2
+		RequiresCondition: !airborne
+	Voiced:
+		VoiceSet: MechanicVoice
+
+cnc.v22.delivery:
+	Inherits: ^Helicopter
+	Tooltip:
+		Name: V-22 Carryall (Automated)
+	Buildable:
+		Description: Automated Vehicle Transporter\nAutomatically lifts Harvesters from and to Tiberium
+	Valued:
+		Cost: 1000
+	Health:
+		HP: 45000
+	Armor:
+		Type: Light
+	Aircraft:
+		TurnSpeed: 5
+		Speed: 326
+		InitialFacing: 0
+		LandableTerrainTypes: Clear,Rough,Road,Beach,Tiberium,BlueTiberium
+		AltitudeVelocity: 0c100
+		TurnToLand: true
+		Repulsable: false
+		CruiseAltitude: 2160
+		CanHover: true
+		AirborneCondition: airborne
+		CanSlide: True
+		IdleBehavior: LeaveMap
+	Carryall:
+		BeforeLoadDelay: 10
+		BeforeUnloadDelay: 15
+		LocalOffset: 0, 0, -128
+	RenderSprites:
+		Image: cnc.v22
+	RejectsOrders:
+	RevealsShroud:
+		Range: 0c0
+		Type: CenterPosition
+	-Selectable:
+	Targetable@GROUND:
+		TargetTypes: Ground, Vehicle
+		RequiresCondition: !airborne
+	Targetable@AIRBORNE:
+		TargetTypes: Air
+		RequiresCondition: airborne
+	Interactable:
+	SelfHealing:
+		Step: 50
+		Delay: 3
+		HealIfBelow: 50
+	SpawnActorOnDeath:
+		Actor: cnc.v22.husk
+	WithIdleOverlay@ROTOR1AIR:
+		Offset: 0,845,650
+		Sequence: rotor
+		RequiresCondition: airborne
+	#Offset ^forward, right, up^
+	WithIdleOverlay@ROTOR1GROUND:
+		Offset: 0,845,650
+		Sequence: slow-rotor
+		RequiresCondition: !airborne
+	WithIdleOverlay@ROTOR2AIR:
+		Offset: 0,-845,650
+		Sequence: rotor2
+		RequiresCondition: airborne
+	WithIdleOverlay@ROTOR2GROUND:
+		Offset: 0,-845,650
+		Sequence: slow-rotor2
+		RequiresCondition: !airborne
+	-MapEditorData:
+
+cnc.v22.automatic:
+	Inherits: cnc.v22.delivery
+	Buildable:
+		BuildPaletteOrder: 6
+		Prerequisites: ~disabled
+		Queue: Aircraft
+		BuildAtProductionType: Helicopter
+	-Carryall:
+	AutoCarryall:
+		LocalOffset: 0, 0, -128
+	Aircraft:
+	RevealsShroud:
+		Range: 5c0
+		Type: CenterPosition
+
+BADR:
+	Inherits: ^NeutralPlane
+	ParaDrop:
+		DropRange: 4c0
+		ChuteSound: chute1.aud
+	Health:
+		HP: 30000
+	Aircraft:
+		CruiseAltitude: 2560
+		TurnSpeed: 5
+		Speed: 149
+		Repulsable: False
+		MaximumPitch: 56
+	Cargo:
+		MaxWeight: 10
+	-Selectable:
+	SelectionDecorations:
+		RenderSelectionBars: False
+	-Voiced:
+	-EjectOnDeath:
+	RejectsOrders:
+	GivesExperience:
+		Experience: 1000
+	Interactable:
+	Tooltip:
+		Name: C-17 Cargo Plane
+	RenderSprites:
+		Image: cnc.c17
+	Contrail@1:
+		Offset: -261,-650,0
+		TrailLength: 15
+	Contrail@2:
+		Offset: -85,-384,0
+		TrailLength: 16
+	Contrail@3:
+		Offset: -85,384,0
+		TrailLength: 16
+	Contrail@4:
+		Offset: -261,650,0
+		TrailLength: 15
+	SmokeTrailWhenDamaged@0:
+		Offset: -261,-384,0
+		Interval: 2
+	SmokeTrailWhenDamaged@1:
+		Offset: -261,384,0
+		Interval: 2
+	SpawnActorOnDeath:
+		Actor: cnc.c17.husk
+
+badr.delivery:
+	Inherits: BADR
+	RenderSprites:
+		Image: cnc.c17
+	Aircraft:
+		Speed: 326
+	SpawnActorOnDeath:
+		Actor: cnc.c17.husk
+
+cnc.a10.bomber:
+	Inherits: ^NeutralPlane
+	AttackBomber:
+		Armaments: gun, bombs
+	Armament@GUNS:
+		Name: gun
+		Weapon: Vulcan.bomber
+		LocalOffset: 1024,0,-85
+	WithMuzzleOverlay:
+	Armament@BOMBS:
+		Name: bombs
+		Weapon: Napalm.bomber
+		LocalOffset: 0,-256,-43, 0,256,-43
+	Health:
+		HP: 30000
+	Aircraft:
+		CruiseAltitude: 2560
+		TurnSpeed: 5
+		Speed: 298
+		Repulsable: False
+		MaximumPitch: 56
+	-Selectable:
+	SelectionDecorations:
+		RenderSelectionBars: False
+	-Voiced:
+	Tooltip:
+		Name: A-10 Bomber Plane
+	Contrail@1:
+		Offset: -640,171,0
+		TrailLength: 15
+	Contrail@2:
+		Offset: -640,-171,0
+		TrailLength: 15
+	RenderSprites:
+		Image: a10
+	SpawnActorOnDeath:
+		Actor: cnc.a10.husk
+	SmokeTrailWhenDamaged@0:
+		Offset: -640,171,0
+		Interval: 2
+	SmokeTrailWhenDamaged@1:
+		Offset: -640,-171,0
+		Interval: 2
+	-EjectOnDeath:
+	-MapEditorData:
+	RejectsOrders:
+	RenderSprites:
+		Image: cnc.a10
+	GivesExperience:
+		Experience: 1000
+	Interactable:
+
+cnc.uav:
+	Inherits: ^NeutralPlane
+	Tooltip:
+		Name: Recon Drone
+	Health:
+		HP: 15000
+	Armor:
+		Type: Heavy
+	Aircraft:
+		CruiseAltitude: 2560
+		TurnSpeed: 7
+		Speed: 149
+		Repulsable: False
+		MaximumPitch: 56
+	AttackBomber:
+	-Selectable:
+	SelectionDecorations:
+		RenderSelectionBars: False
+	-Voiced:
+	SpawnActorOnDeath:
+		Actor: cnc.uav.husk
+	SmokeTrailWhenDamaged:
+		Offset: -1c43,0,0
+		Interval: 2
+	DetectCloaked:
+		CloakTypes: Cloak
+	RevealsShroud:
+		Range: 14c0
+		Type: CenterPosition
+	-EjectOnDeath:
+	RejectsOrders:
+	Interactable:
+	GivesExperience:
+		Experience: 1000
+
+cnc.f18:
+	Inherits: MIG
+	Inherits@EJECTPILOT: ^EjectsPilotOnAir
+	Buildable:
+		BuildPaletteOrder: 4
+		Prerequisites: anytech, ~planeproduction, ~aircraft.gdi, ~techlevel.high
+		Description: Fast Multi-Role Plane.\n  Strong vs Buildings, Vehicles\n  Weak vs Infantry, Aircraft
+	Valued:
+		Cost: 2000
+	Tooltip:
+		Name: F-18 Hornet
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: MaverickAA
+		PauseOnCondition: !ammo
+	Armament@TERTIARY:
+		Name: tertiary
+		Weapon: BombingRun
+		LocalOffset: 300,0,0
+		PauseOnCondition: !ammobomb
+	Armament@FOURTH:
+		Name: fourth
+		Weapon: ChainGun.Yak.AA.Left
+		LocalOffset: 256,-213,0
+		MuzzleSequence: muzzle
+		PauseOnCondition: !ammogun
+	Armament@FIFTH:
+		Name: fifth
+		Weapon: ChainGun.Yak.AA.Right
+		LocalOffset: 256,213,0
+		MuzzleSequence: muzzle
+		FireDelay: 1
+		PauseOnCondition: !ammogun
+	WithMuzzleOverlay:
+	AmmoPool:
+		PipType: Red
+	AmmoPool@GUNS:
+		Armaments: fourth, fifth
+		Ammo: 32
+		PipCount: 4
+		ReloadDelay: 11
+		PipType: Green
+		AmmoCondition: ammogun
+	AmmoPool@BOMBS:
+		Armaments: tertiary
+		Ammo: 6
+		PipCount: 3
+		PipType: Yellow
+		AmmoCondition: ammobomb
+	Rearmable:
+		RearmActors: afld, afld.ukraine, cnc.afld
+	-AttackAircraft:
+	AttackAircraft:
+		Armaments: primary, secondary, tertiary, fourth, fifth
+		FacingTolerance: 20
+	SpawnActorOnDeath:
+		Actor: cnc.f18.husk
+	Repairable:
+		RepairActors: cnc.afld
+
+cnc.f22:
+	Inherits: MIG
+	Inherits@EJECTPILOT: ^EjectsPilotOnAir
+	Buildable:
+		BuildPaletteOrder: 4
+		Prerequisites: anytech, ~planeproduction, ~aircraft.nod, ~techlevel.high
+		Description: Fast Multi-Role Plane.\n  Strong vs Buildings, Vehicles\n  Weak vs Infantry, Aircraft
+	Valued:
+		Cost: 2000
+	Tooltip:
+		Name: F-22 Raptor
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: MaverickAA
+		PauseOnCondition: !ammo
+	Armament@TERTIARY:
+		Name: tertiary
+		Weapon: BombingRun
+		LocalOffset: 300,0,0
+		PauseOnCondition: !ammobomb
+	Armament@FOURTH:
+		Name: fourth
+		Weapon: ChainGun.Yak.AA.Left
+		LocalOffset: 256,-213,0
+		MuzzleSequence: muzzle
+		PauseOnCondition: !ammogun
+	Armament@FIFTH:
+		Name: fifth
+		Weapon: ChainGun.Yak.AA.Right
+		LocalOffset: 256,213,0
+		MuzzleSequence: muzzle
+		FireDelay: 1
+		PauseOnCondition: !ammogun
+	WithMuzzleOverlay:
+	AmmoPool:
+		PipType: Red
+	AmmoPool@GUNS:
+		Armaments: fourth, fifth
+		Ammo: 32
+		PipCount: 4
+		ReloadDelay: 11
+		PipType: Green
+		AmmoCondition: ammogun
+	AmmoPool@BOMBS:
+		Armaments: tertiary
+		Ammo: 5
+		PipType: Yellow
+		AmmoCondition: ammobomb
+	Rearmable:
+		RearmActors: afld, afld.ukraine, cnc.afld
+	-AttackAircraft:
+	AttackAircraft:
+		Armaments: primary, secondary, tertiary, fourth, fifth
+		FacingTolerance: 20
+	SpawnActorOnDeath:
+		Actor: cnc.f22.husk
+	Repairable:
+		RepairActors: cnc.afld
+
+cnc.sr71:
+	Inherits: ^NeutralPlane
+	AttackBomber:
+	Armament:
+		Weapon: NukeBomb
+		PauseOnCondition: !ammo
+	AmmoPool:
+		Ammo: 1
+		AmmoCondition: ammo
+	Health:
+		HP: 30000
+	Aircraft:
+		CruiseAltitude: 2560
+		TurnSpeed: 5
+		Speed: 371
+		Repulsable: False
+		MaximumPitch: 56
+	AmmoPool:
+		Ammo: 5
+	-Selectable:
+	SelectionDecorations:
+		RenderSelectionBars: False
+	-Voiced:
+	Tooltip:
+		Name: Stealth Bomber
+	SpawnActorOnDeath:
+		Actor: cnc.sr71.husk
+	SmokeTrailWhenDamaged@0:
+		Offset: -432,560,0
+		Interval: 2
+	SmokeTrailWhenDamaged@1:
+		Offset: -432,-560,0
+		Interval: 2
+	-EjectOnDeath:
+	-MapEditorData:
+	RejectsOrders:
+	RenderSprites:
+		Image: cnc.sr71
+	GivesExperience:
+		Experience: 1000
+	Interactable:
+	Cloak@NORMAL:
+		InitialDelay: 0
+		CloakDelay: 75
+		CloakSound: vanish1.aud
+		UncloakSound: appear1.aud
+		IsPlayerPalette: true
+		PauseOnCondition: cloak-force-disabled && !airborne
+	GrantConditionOnDamageState@UNCLOAK:
+		Condition: cloak-force-disabled
+		ValidDamageStates: Critical

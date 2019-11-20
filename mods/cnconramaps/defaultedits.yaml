@@ -1,0 +1,654 @@
+
+^GainsExperience:
+	GainsExperience:
+		LevelUpNotification: LevelUp
+		Conditions:
+			200: rank-veteran
+			400: rank-veteran
+			800: rank-veteran
+			1600: rank-veteran
+		LevelUpImage: crate-effects
+	GrantCondition@RANK-ELITE:
+		RequiresCondition: rank-veteran >= 4
+		Condition: rank-elite
+	DamageMultiplier@RANK-1:
+		RequiresCondition: rank-veteran == 1
+		Modifier: 90
+	DamageMultiplier@RANK-2:
+		RequiresCondition: rank-veteran == 2
+		Modifier: 80
+	DamageMultiplier@RANK-3:
+		RequiresCondition: rank-veteran == 3
+		Modifier: 70
+	DamageMultiplier@RANK-ELITE:
+		RequiresCondition: rank-elite
+		Modifier: 70
+	FirepowerMultiplier@RANK-1:
+		RequiresCondition: rank-veteran == 1
+		Modifier: 110
+	FirepowerMultiplier@RANK-2:
+		RequiresCondition: rank-veteran == 2
+		Modifier: 120
+	FirepowerMultiplier@RANK-3:
+		RequiresCondition: rank-veteran == 3
+		Modifier: 130
+	FirepowerMultiplier@RANK-ELITE:
+		RequiresCondition: rank-elite
+		Modifier: 130
+	SpeedMultiplier@RANK-1:
+		RequiresCondition: rank-veteran == 1
+		Modifier: 105
+	SpeedMultiplier@RANK-2:
+		RequiresCondition: rank-veteran == 2
+		Modifier: 110
+	SpeedMultiplier@RANK-3:
+		RequiresCondition: rank-veteran == 3
+		Modifier: 120
+	SpeedMultiplier@RANK-ELITE:
+		RequiresCondition: rank-elite
+		Modifier: 120
+	ReloadDelayMultiplier@RANK-1:
+		RequiresCondition: rank-veteran == 1
+		Modifier: 90
+	ReloadDelayMultiplier@RANK-2:
+		RequiresCondition: rank-veteran == 2
+		Modifier: 80
+	ReloadDelayMultiplier@RANK-3:
+		RequiresCondition: rank-veteran == 3
+		Modifier: 70
+	ReloadDelayMultiplier@RANK-ELITE:
+		RequiresCondition: rank-elite
+		Modifier: 70
+	SelfHealing@ELITE:
+		-Step: 200
+		PercentageStep: 5
+		Delay: 75
+		HealIfBelow: 100
+		DamageCooldown: 150
+		RequiresCondition: rank-elite
+	WithDecoration@RANK-1:
+		Image: rank
+		Sequence: rank-veteran-1
+		Palette: effect
+		ReferencePoint: Top, Right
+		RequiresCondition: rank-veteran == 1
+		ZOffset: 256
+		ValidStances: Ally, Enemy, Neutral
+	WithDecoration@RANK-2:
+		Image: rank
+		Sequence: rank-veteran-2
+		Palette: effect
+		ReferencePoint: Top, Right
+		RequiresCondition: rank-veteran == 2
+		ZOffset: 256
+		ValidStances: Ally, Enemy, Neutral
+	WithDecoration@RANK-3:
+		Image: rank
+		Sequence: rank-veteran-3
+		Palette: effect
+		ReferencePoint: Top, Right
+		RequiresCondition: rank-veteran == 3
+		ZOffset: 256
+		ValidStances: Ally, Enemy, Neutral
+	WithDecoration@RANK-ELITE:
+		Image: rank
+		Sequence: rank-elite
+		Palette: effect
+		ReferencePoint: Top, Right
+		RequiresCondition: rank-elite
+		ZOffset: 256
+		ValidStances: Ally, Enemy, Neutral
+
+^Vehicle:
+	Inherits@97: ^AffectedByEMP
+	Mobile:
+		PauseOnCondition: !(!empdisable && !being-captured)
+	Passenger:
+		Weight: 2
+	WithParachute:
+		Image: maxichute
+	Repairable:
+		RepairActors: fix, cnc.fix
+	Carryable:
+		LocalOffset: 0,0,100
+	Sellable@ONPAD:
+		RefundPercent: 30
+		RequiresCondition: OnPad
+	ExternalCondition@ONPAD:
+		Condition: OnPad
+
+^Husk:
+	Husk:
+		AllowedTerrain: Clear, Rough, Road, Ore, Gems, Beach, Shallow
+
+^Ship:
+	Inherits@97: ^AffectedByEMP
+	Mobile:
+		PauseOnCondition: !(!empdisable)
+	Targetable:
+		TargetTypes: Ground, Water, Ship, SeaDetonateAttack
+	RepairableNear:
+		RepairActors: syrd, cnc.syrd
+
+^Building:
+	RequiresBuildableArea:
+		Adjacent: 3
+
+^BasicHusk:
+	ConditionManager:
+
+^Defense:
+	RequiresBuildableArea:
+		Adjacent: 3
+
+^BuildingPlug:
+	Interactable:
+	AlwaysVisible:
+	Building:
+		BuildSounds: place2.aud
+		UndeploySounds: cashturn.aud
+	SequencePlaceBuildingPreview:
+		Sequence: place
+		SequencePalette: placebuilding
+	KillsSelf:
+		RemoveInstead: true
+	RenderSprites:
+
+^Gate:
+	Inherits: ^Building
+	Health:
+		HP: 35000
+	Armor:
+		Type: Heavy
+	LineBuildNode:
+		Types: concrete, gate
+	-WithSpriteBody:
+	-EngineerRepairable:
+	-SpawnActorsOnSell:
+	-CaptureManager:
+	-Capturable:
+	-CapturableProgressBar:
+	-CapturableProgressBlink:
+	-WithMakeAnimation:
+	#	Condition: build-incomplete
+	WithGateSpriteBody:
+		PauseOnCondition: disabled
+	Tooltip:
+		Name: Gate
+	Building:
+		BuildSounds: place2.aud
+		TerrainTypes: Clear, Road
+	RequiresBuildableArea:
+		AreaTypes: building
+		Adjacent: 4
+	MapEditorData:
+		Categories: Wall
+	Gate:
+		PauseOnCondition: disabled
+		OpeningSound: cashturn.aud
+		ClosingSound: cashturn.aud
+		BlocksProjectilesHeight: 0
+
+^Crate:
+	Crate:
+		TerrainTypes: Clear, Rough, Road, Ore, Beach, Shallow
+
+^Plane:
+	-EjectOnDeath:
+
+^Helicopter:
+	Repairable:
+		RepairActors: hpad, cnc.hpad
+
+^EjectsPilotOnAir:
+	EjectOnDeath@RANK-1:
+		PilotActor: PLOT.R1
+		SuccessRate: 45
+		EjectOnGround: false
+		EjectInAir: true
+		AllowUnsuitableCell: false
+		RequiresCondition: rank-veteran == 1
+	EjectOnDeath@RANK-2:
+		PilotActor: PLOT.R2
+		SuccessRate: 30
+		EjectOnGround: false
+		EjectInAir: true
+		AllowUnsuitableCell: false
+		RequiresCondition: rank-veteran == 2
+	EjectOnDeath@RANK-3:
+		PilotActor: PLOT.R3
+		SuccessRate: 25
+		EjectOnGround: false
+		EjectInAir: true
+		AllowUnsuitableCell: false
+		RequiresCondition: rank-veteran == 3
+	EjectOnDeath@RANK-ELITE:
+		PilotActor: PLOT.RE
+		SuccessRate: 10
+		EjectOnGround: false
+		EjectInAir: true
+		AllowUnsuitableCell: false
+		RequiresCondition: rank-elite
+
+^InfantryTiberiumDamage:
+	DamagedByTerrain:
+		Terrain: Ore, Gems
+		Damage: 200
+		DamageInterval: 16
+		DamageTypes: TiberiumDeath
+		RequiresCondition: !hazmatsuits
+	GrantConditionOnTerrain@HAZMAT:
+		Condition: ontiberium
+		TerrainTypes: Ore, Gems
+	GrantConditionOnPrerequisite@HAZMAT:
+		Condition: biolab
+		Prerequisites: bio
+	GrantCondition@HAZMAT:
+		RequiresCondition: biolab && ontiberium
+		Condition: hazmatsuits
+	WithDecoration@HAZMAT:
+		Image: pips
+		Sequence: pip-hazmat
+		ReferencePoint: Bottom, Left
+		RequiresCondition: hazmatsuits
+	SpawnActorOnDeath:
+		Probability: 15
+		Actor: cnc.vice
+		OwnerType: InternalName
+		InternalOwner: Creeps
+		DeathType: TiberiumDeath
+		RequiresLobbyCreeps: false
+
+^Infantry:
+	Selectable:
+		Bounds: 18,18,0,-6
+		DecorationBounds: 12,17,0,-6
+	WithDeathAnimation:
+		DeathTypes:
+			DefaultDeath: 1
+			BulletDeath: 2
+			SmallExplosionDeath: 3
+			ExplosionDeath: 4
+			FireDeath: 5
+			ElectricityDeath: 6
+			TiberiumDeath: 7
+		CrushedSequence: die-crushed
+	ExternalCondition@barracks:
+		Condition: barracks
+	GrantCondition@BARRACKSHEALING:
+		RequiresCondition: barracks && damaged
+		Condition: barracksheal
+	SelfHealing@BARRACKSHEALING:
+		Step: 500
+		Delay: 100
+		HealIfBelow: 100
+		DamageCooldown: 125
+		RequiresCondition: barracksheal
+	WithDecoration@REDCROSS:
+		Image: pips
+		Sequence: medic
+		ReferencePoint: Top, Left
+		RequiresCondition: ( barracksheal || hospitalheal )
+		BlinkInterval: 32
+		BlinkPattern: On, Off
+
+^AffectedByEMP:
+	WithColoredOverlay@EMPDISABLE:
+		RequiresCondition: empdisable
+		Palette: disabled
+	TimedConditionBar@EMPDISABLE:
+		Condition: empdisable
+		Color: FFFFFF
+	WithIdleOverlay@EMPDISABLE:
+		Sequence: emp-overlay
+		RequiresCondition: empdisable
+	ExternalCondition@EMPDISABLE:
+		Condition: empdisable
+
+^BuildingAffectedByEMP:
+	WithColoredOverlay@EMPDISABLE:
+		RequiresCondition: empdisable
+		Palette: disabled
+	TimedConditionBar@EMPDISABLE:
+		Condition: empdisable
+		Color: FFFFFF
+	WithIdleOverlay@EMPDISABLE:
+		Sequence: emp-overlay
+		RequiresCondition: empdisable
+	ExternalCondition@EMPDISABLE:
+		Condition: empdisable
+	PowerMultiplier@EMPDISABLE:
+		RequiresCondition: empdisable
+		Modifier: 0
+	GrantCondition@EMPDISABLE:
+		RequiresCondition: empdisable
+		Condition: disabled
+
+^DisableOnPowerDown:
+	WithColoredOverlay@IDISABLE:
+		RequiresCondition: disabled
+		Palette: disabled
+	GrantCondition@IDISABLE:
+		RequiresCondition: powerdown
+		Condition: disabled
+	ToggleConditionOnOrder:
+		DisabledSound: EnablePower
+		EnabledSound: DisablePower
+		Condition: powerdown
+		OrderName: PowerDown
+	WithDecoration@POWERDOWN:
+		Image: poweroff
+		Sequence: offline
+		Palette: chrome
+		RequiresCondition: powerdown
+		ReferencePoint: Center
+		Offsets:
+			repairing: 10, 0
+	PowerMultiplier@POWERDOWN:
+		RequiresCondition: powerdown
+		Modifier: 0
+	RepairableBuilding:
+		RepairCondition: repairing
+		RepairingNotification: Repairing
+	WithBuildingRepairDecoration:
+		Offsets:
+			powerdown: -10, 0
+
+^Cyborg:
+	Inherits@1: ^Infantry
+	Inherits@2: ^AffectedByEMP
+	-Crushable:
+	ExplosionOnDamageTransition:
+		Weapon: UnitExplodeSmall
+		DamageState: Critical
+		TriggerOnlyOnce: true
+	# Explodes:
+	#	Weapon: UnitExplodeSmall
+	#	EmptyWeapon: UnitExplodeSmall
+	Mobile:
+		Locomotor: chem
+	DeathSounds:
+	MustBeDestroyed:
+	WithPermanentInjury:
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		IdleSequences: idle1, idle2
+	GrantConditionOnDamageState@CRITICAL:
+		Condition: criticalspeed
+		ValidDamageStates: Critical
+		GrantPermanently: true
+	SpeedMultiplier@CRITICAL:
+		RequiresCondition: criticalspeed
+		Modifier: 50
+	-Targetable@HEAL:
+	Targetable@REPAIR:
+		RequiresCondition: !parachute && damaged
+		TargetTypes: Repair
+
+^BuildingHusk:
+	Inherits@1: ^SpriteActor
+	Interactable:
+	AppearsOnRadar:
+	Building:
+		Dimensions: 1,1
+		Footprint: x
+	WithSpriteBody:
+	Health:
+		HP: 28000
+	Armor:
+		Type: Wood
+	Burns:
+		Damage: 200
+	HitShape:
+	OwnerLostAction:
+		Action: ChangeOwner
+	CaptureManager:
+	Capturable:
+		Types: BuildingHusk
+		ValidStances: Enemy, Neutral
+	TransformOnCapture:
+		ForceHealthPercentage: 25
+	InfiltrateForTransform:
+		Types: BuildingHusk
+		ForceHealthPercentage: 25
+	Targetable:
+		TargetTypes: Ground, BuildingHusk, NoAutoTarget
+		RequiresForceFire: true
+	Tooltip:
+		GenericName: Destroyed Building
+	# FrozenUnderFog:
+	HiddenUnderFog:
+		Type: CenterPosition
+		AlwaysVisibleStances: None
+	ScriptTriggers:
+	Explodes:
+		Weapon: BuildingExplode
+	MapEditorData:
+		Categories: Husk
+
+^CivBuildingHusk:
+	Inherits@1: ^SpriteActor
+	Interactable:
+	AppearsOnRadar:
+	Building:
+		Dimensions: 1,1
+		Footprint: x
+	WithSpriteBody:
+	Tooltip:
+		GenericName: Civilian Building (Destroyed)
+		GenericStancePrefix: false
+		ShowOwnerRow: false
+	FrozenUnderFog:
+	ScriptTriggers:
+	MapEditorData:
+		Categories: Husk
+
+CRATE:
+	GiveMcvCrateAction:
+		ValidFactions: allies, england, france, germany, soviet, russia, ukraine
+	GiveMcvCrateAction@cnc:
+		SelectionShares: 1
+		NoBaseSelectionShares: 80
+		Units: cnc.mcv
+		ValidFactions: gdi, nod
+	GiveUnitCrateAction@mwf:
+		SelectionShares: 1
+		Units: cnc.mwf
+		ValidFactions: gdi, nod
+		Prerequisites: techlevel.high
+	GiveUnitCrateAction@dtrk:
+		SelectionShares: 1
+		Units: cnc.dtrk
+		ValidFactions: gdi, nod
+		Prerequisites: techlevel.high
+	GiveUnitCrateAction@mrep:
+		SelectionShares: 2
+		Units: cnc.mrep
+		ValidFactions: gdi, nod
+		Prerequisites: techlevel.medium
+	GiveUnitCrateAction@spy:
+		SelectionShares: 3
+		Units: cnc.spy
+		ValidFactions: gdi
+		Prerequisites: anyhq, techlevel.medium
+	GiveUnitCrateAction@infl:
+		SelectionShares: 3
+		Units: cnc.infl
+		ValidFactions: nod
+		Prerequisites: anyhq, techlevel.medium
+	GiveUnitCrateAction@jeep:
+		SelectionShares: 6
+		Units: cnc.jeep
+		ValidFactions: gdi
+		Prerequisites: techlevel.low
+	GiveUnitCrateAction@jeeptow:
+		SelectionShares: 3
+		Units: cnc.jeep.tow
+		ValidFactions: gdi
+		Prerequisites: techlevel.mediumu
+	GiveUnitCrateAction@bggy:
+		SelectionShares: 6
+		Units: cnc.bggy
+		ValidFactions: nod
+		Prerequisites: techlevel.low
+	GiveUnitCrateAction@bggysnip:
+		SelectionShares: 6
+		Units: cnc.bggy.snip
+		ValidFactions: nod
+		Prerequisites: techlevel.medium
+	GiveUnitCrateAction@ltnk:
+		SelectionShares: 6
+		Units: cnc.ltnk
+		ValidFactions: nod
+		Prerequisites: techlevel.low
+	GiveUnitCrateAction@apc:
+		SelectionShares: 6
+		Units: cnc.apc
+		ValidFactions: gdi
+		Prerequisites: techlevel.low
+	GiveUnitCrateAction@nodapc:
+		SelectionShares: 6
+		Units: cnc.apc.nod
+		ValidFactions: nod
+		Prerequisites: techlevel.low
+	GiveUnitCrateAction@ftnk:
+		SelectionShares: 5
+		Units: cnc.ftnk
+		ValidFactions: nod
+		Prerequisites: techlevel.medium, anyhq
+	GiveUnitCrateAction@aav:
+		SelectionShares: 3
+		Units: cnc.aav
+		ValidFactions: gdi
+		Prerequisites: techlevel.medium
+	GiveUnitCrateAction@arty:
+		SelectionShares: 5
+		Units: cnc.arty
+		ValidFactions: nod
+		Prerequisites: techlevel.medium, anyhq
+	GiveUnitCrateAction@ssm:
+		SelectionShares: 4
+		Units: cnc.ssm
+		ValidFactions: nod
+		Prerequisites: techlevel.high, anyhq
+	GiveUnitCrateAction@mtnk:
+		SelectionShares: 5
+		Units: cnc.mtnk
+		ValidFactions: gdi
+		Prerequisites: techlevel.medium, cnc.fix
+	GiveUnitCrateAction@htnk:
+		SelectionShares: 5
+		Units: cnc.htnk
+		ValidFactions: nod
+		Prerequisites: techlevel.medium, cnc.fix
+	GiveUnitCrateAction@mamm:
+		SelectionShares: 4
+		Units: cnc.mamm
+		ValidFactions: gdi
+		Prerequisites: techlevel.high, cnc.fix
+	GiveUnitCrateAction@mrls:
+		SelectionShares: 5
+		Units: cnc.mrls
+		ValidFactions: gdi
+		Prerequisites: techlevel.medium, anyhq
+	GiveUnitCrateAction@squadlight:
+		SelectionShares: 10
+		Units: cnc.e1,cnc.e1,cnc.e1,cnc.e3,cnc.e3
+		ValidFactions: gdi, nod
+	GiveUnitCrateAction@squadheavygdi:
+		SelectionShares: 7
+		Units: cnc.e1,cnc.e1,cnc.e1,cnc.e3,cnc.e3,cnc.e3,cnc.e6,cnc.medi
+		ValidFactions: gdi
+		TimeDelay: 4500
+	GiveUnitCrateAction@squadheavynod:
+		SelectionShares: 7
+		Units: cnc.e1,cnc.e1,cnc.e4,cnc.e4,cnc.e3,cnc.e3,cnc.e3,cnc.e6
+		ValidFactions: nod
+		TimeDelay: 4500
+	GiveUnitCrateAction@harv:
+		SelectionShares: 3
+		Units: cnc.harv
+		ValidFactions: gdi, nod
+	GiveUnitCrateAction@disr:
+		SelectionShares: 1
+		Units: cnc.disr
+		ValidFactions: gdi
+	GiveUnitCrateAction@mwav:
+		SelectionShares: 1
+		Units: cnc.mwav
+		ValidFactions: nod
+	SupportPowerCrateAction@airstrike:
+		Proxy: crate.airstrike
+		SelectionShares: 2
+		TimeDelay: 4500
+	SupportPowerCrateAction@nuke:
+		Proxy: crate.nuke
+		SelectionShares: 1
+		TimeDelay: 13500
+	SupportPowerCrateAction@ion:
+		Proxy: crate.ion
+		SelectionShares: 1
+		TimeDelay: 6750
+
+crate.airstrike:
+	AlwaysVisible:
+	AirstrikePower@WarthogsOneShot:
+		Icon: airstrike
+		SquadSize: 3
+		QuantizedFacings: 8
+		Description: Air Strike (Single Use)
+		LongDesc: Deploy an aerial napalm strike.\nBurns buildings and infantry along a line.
+		SelectTargetSpeechNotification: SelectTarget
+		UnitType: cnc.a10.bomber
+		DisplayBeacon: True
+		BeaconPoster: airstrike
+		DisplayRadarPing: True
+		CameraActor: camera.paradrop
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+		OneShot: yes
+
+crate.nuke:
+	# Inherits: CAMERA
+	# -RevealsShroud:
+	# EditorOnlyTooltip:
+	#	Name: (proxy for crate nuke)
+	AlwaysVisible:
+	BodyOrientation:
+		QuantizedFacings: 1
+	NukePower@NodAtomOneshot:
+		Cursor: nuke
+		Icon: abomb
+		Description: Atom Bomb (Single Use)
+		LongDesc: Launches a devastating atomic bomb\nat a target location.
+		BeginChargeSpeechNotification: AbombPrepping
+		EndChargeSpeechNotification: AbombReady
+		SelectTargetSpeechNotification: SelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		IncomingSpeechNotification: AbombLaunchDetected
+		SkipAscent: True
+		MissileWeapon: atomic
+		MissileDelay: 11
+		SpawnOffset: 3c0,0,-1c512
+		DisplayTimerStances: Ally, Neutral, Enemy
+		DisplayBeacon: True
+		DisplayRadarPing: True
+		BeaconPoster: atomicon
+		FlashType: Nuke
+		CameraRange: 10c0
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+		OneShot: yes
+
+crate.ion:
+	AlwaysVisible:
+	IonCannonPower@IonCannonOneShot:
+		Icon: ioncannon
+		Description: Ion Cannon
+		LongDesc: Initiate an Ion Cannon strike\nApplies instant damage to an small area
+		OnFireSound: ion1.aud
+		DisplayRadarPing: True
+		CameraActor: camera.paradrop
+		OneShot: yes
