@@ -33,6 +33,7 @@ proc:
 		Length: 40
 		Tick: 160
 		Offset: 0,-25
+		BlendMode: DoubleMultiplicative
 
 proc.husk:
 	idle: proc-dead2
@@ -71,8 +72,11 @@ ercc-proc:
 		Offset: 5, -13
 		Length: *
         Tick: 80
-	dead: procdead
+	dead: ercc-bot
+		Start: 1
+		Length: 1
 		Tick: 800
+		Offset: 2, -9
 	bib: bib2
         Offset: 2, 10
 		Length: *
@@ -86,6 +90,7 @@ ercc-proc:
 		Tick: 160
 		Offset: 2,-41
         ZOffset: 1c511
+		BlendMode: DoubleMultiplicative
 
 silo:
     Inherits: emp-overlay
@@ -108,6 +113,16 @@ silo.husk:
 
 powr:
     Inherits: emp-overlay
+	idle-smoke: powr-smoke
+		Length: 40
+		Tick: 160
+		Offset: 0,-20
+		BlendMode: DoubleMultiplicative
+	damaged-idle-smoke: powr-smoke-d
+		Length: 40
+		Tick: 160
+		Offset: 0,-20
+		BlendMode: DoubleMultiplicative
 	make: powrmake
 		Length: *
 		Tick: 80
@@ -125,6 +140,16 @@ apwr:
 	make: apwrmake
 		Length: *
 		Tick: 80
+	idle-smoke: apwr-smoke
+		Length: 40
+		Tick: 160
+		Offset: -12,-30
+		BlendMode: DoubleMultiplicative
+	damaged-idle-smoke: apwr-smoke-d
+		Length: 40
+		Tick: 160
+		Offset: -12,-30
+		BlendMode: DoubleMultiplicative
 
 apwr.husk:
 	idle: apwr-dead2
@@ -142,7 +167,6 @@ tent:
 		UseTilesetExtension: true    
 		TilesetOverrides:
 			INTERIOR: SNOW
-			JUNGLE: SNOW
 	make: tentmake
 		Length: *
 		Tick: 80
@@ -158,7 +182,6 @@ tent:
 		Length: *
 		TilesetOverrides:
 			INTERIOR: TEMPERAT
-			JUNGLE: JUNGLE
     fake-icon: tenficon
         UseTilesetExtension: false
 
@@ -167,7 +190,6 @@ tent.husk:
 		UseTilesetExtension: true
 		TilesetOverrides:
 			INTERIOR: SNOW
-			JUNGLE: SNOW
 	idle: tent
 		Start: 10
 		Length: 1
@@ -176,7 +198,6 @@ tent.husk:
 		UseTilesetExtension: true
 		TilesetOverrides:
 			INTERIOR: TEMPERAT
-			JUNGLE: JUNGLE  
 
 barr:
     Inherits: emp-overlay
@@ -238,8 +259,7 @@ fix:
 		Length: *
 		Offset: 0,1
 		Tick: 80
-	dead:
-		Start: 8
+	dead: fix-dead
 		Offset: 0,1
 		Tick: 800
 
@@ -1923,26 +1943,6 @@ emp-overlay:
 		UseTilesetExtension: false
 		ZOffset: 512
 
-powr:
-	idle-smoke: powr-smoke
-		Length: 40
-		Tick: 160
-		Offset: 0,-20
-	damaged-idle-smoke: powr-smoke-d
-		Length: 40
-		Tick: 160
-		Offset: 0,-20
-
-apwr:
-	idle-smoke: apwr-smoke
-		Length: 40
-		Tick: 160
-		Offset: -12,-30
-	damaged-idle-smoke: apwr-smoke-d
-		Length: 40
-		Tick: 160
-		Offset: -12,-30
-
 bio:
     Inherits: emp-overlay
 	make: biomake
@@ -2094,7 +2094,6 @@ snip:
 		UseTilesetExtension: true
 		TilesetOverrides:
 			INTERIOR: DESERT
-            JUNGLE: TEMPERAT
 	stand:
 		Facings: 8
 	stand2:
@@ -2397,7 +2396,6 @@ resources:
 		UseTilesetExtension: true
 		TilesetOverrides:
 			INTERIOR: TEMPERAT
-            JUNGLE: TEMPERAT
 	gold01: gold01
 	gold02: gold02
 	gold03: gold03
@@ -2438,10 +2436,6 @@ drillmine:
 		Start: 0
 		Length: 32
 		Tick: 160
-
-overlay:
-    build-valid-jungle:
-    target-valid-jungle:
 
 barb:
 	idle:
@@ -2609,6 +2603,9 @@ dtnk:
 		Facings: 32
 		UseClassicFacingFudge: True
 	turret-mbun:  4tnkpbox
+	gcan-body: gcan
+		Facings: 32
+		UseClassicFacingFudge: True
 	icon: dtnkicon
 
 dtnk.destroyed:
@@ -2810,6 +2807,8 @@ bshp:
 	idle: dd
 		Facings: 16
 	turret: pttur
+		Facings: 32
+	turret-elite: turr
 		Facings: 32
 	muzzle: gunfire2
 		Length: 5
@@ -3267,3 +3266,12 @@ e1sniper:
 		Length: 6
 		Facings: 8
 	icon: snipericon
+
+gcan:
+    Inherits: emp-overlay
+	idle: 
+		Facings: 32
+		UseClassicFacingFudge: True
+	muzzle: gunfire2
+		Length: 5
+	icon: gcanicon

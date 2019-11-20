@@ -58,10 +58,6 @@
 	ReloadDelayMultiplier@RANK-ELITE:
 		RequiresCondition: rank-elite
 		Modifier: 70
-	-InaccuracyMultiplier@RANK-1:
-	-InaccuracyMultiplier@RANK-2:
-	-InaccuracyMultiplier@RANK-3:
-	-InaccuracyMultiplier@RANK-ELITE:
 	SelfHealing@ELITE:
 		-Step: 200
         PercentageStep: 5
@@ -160,18 +156,28 @@
         Image: maxichute
 	EdibleByLeap:
     Repairable:
-        RepairBuildings: fix, fix.russia
+        RepairActors: fix, fix.russia
 
 ^Plane:
     -EjectOnDeath:
 	Repairable:
-		RepairBuildings: fix, fix.russia
+		RepairActors: fix, fix.russia
 
 ^Building:
     Inherits@94: ^LeavesScraps
     Inherits@97: ^BuildingAffectedByEMP
 	RequiresBuildableArea:
 		Adjacent: 3
+	#		wtf burns isnt conditional, arrrgh !@#?/$!
+	#		Burns:
+	#		Damage: 200
+	#		PauseonCondition: !damaged-burn
+	#		GrantConditionOnDamageState@CATCHFIRE:
+	#		Condition: damaged-burn
+	#		ValidDamageStates: Critical
+	Capturable:
+		RequiresCondition: !build-incomplete
+		Types: building-sabotage
 
 ^Defense:
 	RequiresBuildableArea:
@@ -203,7 +209,7 @@
 	Targetable:
 		TargetTypes: Ground, Water, Ship, SeaDetonateAttack
 	RepairableNear:
-		Buildings: syrd
+		RepairActors: syrd
 
 ^AffectedByGPSScrambler:
 	Cloak@GPSCRAMBLER:
@@ -266,7 +272,6 @@
 		Color: FFFFFF
 	WithIdleOverlay@EMPDISABLE:
 		Sequence: emp-overlay
-		Palette: tseffect
 		RequiresCondition: empdisable
 	ExternalCondition@EMPDISABLE:
 		Condition: empdisable
@@ -280,7 +285,6 @@
 		Color: FFFFFF
 	WithIdleOverlay@EMPDISABLE:
 		Sequence: emp-overlay
-		Palette: tseffect
 		RequiresCondition: empdisable
 	ExternalCondition@EMPDISABLE:
 		Condition: empdisable
@@ -365,9 +369,9 @@
 		Types: concrete, gate
 	-WithSpriteBody:
 	-EngineerRepairable:
+	-Capturable:
 	-SpawnActorsOnSell:
 	-CaptureManager:
-	-Capturable:
 	-CapturableProgressBar:
 	-CapturableProgressBlink:
 	WithMakeAnimation:
@@ -389,24 +393,6 @@
 		OpeningSound: cashturn.aud
 		ClosingSound: cashturn.aud
 		BlocksProjectilesHeight: 0
-
-^Palettes:
-	PaletteFromFile@tseffect:
-		Name: tseffect
-		Filename: animts.pal
-		ShadowIndex: 4
-	PaletteFromFile@terrain-jungle
-		Name: terrain
-		Tileset: JUNGLE
-		Filename: temperat.pal
-		ShadowIndex: 3, 4
-	IndexedPlayerPalette@scoutant:
-		BaseName: scoutant
-		BasePalette: player
-		RemapIndex: 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95
-		PlayerIndex:
-			Creeps: 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 123, 123, 123, 123
-		AllowModifiers: True
 
 CAMERA.fieldrepair:
 	Interactable:

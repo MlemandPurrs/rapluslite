@@ -11,6 +11,21 @@ Player:
 	SupportPowerBotModule@england:
 		RequiresCondition: enable-ai-player && player.england
 		Decisions:
+			AlliedParatroopers:
+				OrderName: AlliedParatroopersPowerInfoOrder
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
 			NuclearMissile:
 				OrderName: NukePowerInfoOrder
 				MinimumAttractiveness: 3000
@@ -38,6 +53,21 @@ Player:
 	SupportPowerBotModule@france:
 		RequiresCondition: enable-ai-player && player.france
 		Decisions:
+			AlliedParatroopers:
+				OrderName: AlliedParatroopersPowerInfoOrder
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
 			NuclearMissile:
 				OrderName: NukePowerInfoOrder
 				MinimumAttractiveness: 3000
@@ -56,6 +86,21 @@ Player:
 	SupportPowerBotModule@germany:
 		RequiresCondition: enable-ai-player && player.germany
 		Decisions:
+			AlliedParatroopers:
+				OrderName: AlliedParatroopersPowerInfoOrder
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
 			FieldRepairPower:
 				OrderName: FieldRepairPowerInfoOrder
 				MinimumAttractiveness: 1
@@ -83,6 +128,21 @@ Player:
 	SupportPowerBotModule@spain:
 		RequiresCondition: enable-ai-player && player.spain
 		Decisions:
+			AlliedParatroopers:
+				OrderName: AlliedParatroopersPowerInfoOrder
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
 			RadarScan:
 				OrderName: RadarScanPowerInfoOrder
 				MinimumAttractiveness: 1
@@ -110,6 +170,21 @@ Player:
 	SupportPowerBotModule@greece:
 		RequiresCondition: enable-ai-player && player.greece
 		Decisions:
+			AlliedParatroopers:
+				OrderName: AlliedParatroopersPowerInfoOrder
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
 			NuclearMissile:
 				OrderName: NukePowerInfoOrder
 				MinimumAttractiveness: 3000
@@ -125,7 +200,7 @@ Player:
 					Attractiveness: -10
 					TargetMetric: Value
 					CheckRadius: 7c0
-			AlliesParaTanks:
+			AlliedParaTanks:
 				OrderName: AlliedParaTanksPowerInfoOrder
 				MinimumAttractiveness: 5
 				Consideration@1:
@@ -143,6 +218,21 @@ Player:
 	SupportPowerBotModule@turkey:
 		RequiresCondition: enable-ai-player && player.turkey
 		Decisions:
+			AlliedParatroopers:
+				OrderName: AlliedParatroopersPowerInfoOrder
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
 			NuclearMissile:
 				OrderName: NukePowerInfoOrder
 				MinimumAttractiveness: 3000
@@ -158,7 +248,7 @@ Player:
 					Attractiveness: -10
 					TargetMetric: Value
 					CheckRadius: 7c0
-			AlliesParanuke:
+			AlliedParanuke:
 				OrderName: AlliedParanukePowerInfoOrder
 				MinimumAttractiveness: 1
 				Consideration@1:
@@ -1026,7 +1116,7 @@ Player:
 		PowerTypes: powr,apwr
 		BarracksTypes: barr
 		VehiclesFactoryTypes: weap
-		ProductionTypes: barr,weap,afld
+		ProductionTypes: barr,weap,afld.kazakh
 		NavalProductionTypes: spen
 		SiloTypes: silo
 		BuildingLimits:
@@ -1090,6 +1180,55 @@ Player:
 			fix: 1
 			iron: 1
             mslo: 1
+            ftur.uzbek: 6
+            hgun.uzbek: 4
+            tsla.uzbek: 4
+            sam.uzbek: 4
+            hsam.uzbek: 2
+		BuildingFractions:
+			proc.soviet: 15
+			barr: 2
+			kenn: 1
+            dome.soviet: 1
+			weap: 6
+			spen: 1
+			afld: 4
+            hgun.uzbek: 3
+			ftur.uzbek: 10
+			tsla.uzbek: 5
+			fix: 1
+			sam.uzbek: 3
+			hsam.uzbek: 1
+            stek.uzbek: 1
+			mslo: 1
+			iron: 1
+	BaseBuilderBotModule@turkmenistan:
+		RequiresCondition: enable-ai-player && player.turkmen
+		MinimumExcessPower: 60
+		MaximumExcessPower: 200
+		ExcessPowerIncrement: 40
+		ExcessPowerIncreaseThreshold: 4
+		CheckForWaterRadius: 8
+		ConstructionYardTypes: fact
+		RefineryTypes: proc.soviet
+		PowerTypes: powr,apwr
+		BarracksTypes: barr
+		VehiclesFactoryTypes: weap
+		ProductionTypes: barr,weap,afld
+		NavalProductionTypes: spen
+		SiloTypes: silo
+		BuildingLimits:
+			proc.soviet: 4
+			barr: 2
+            kenn: 4
+            dome.soviet: 1
+			weap: 3
+			spen: 1
+			afld: 4
+            stek.turkmen: 1
+			fix: 1
+			iron: 1
+            mslo: 1
             ftur: 6
             hgun: 4
             tsla: 4
@@ -1109,7 +1248,7 @@ Player:
 			fix: 1
 			sam: 3
 			hsam: 1
-            stek.uzbek: 1
+            stek.turkmen: 1
 			mslo: 1
 			iron: 1
 	BuildingRepairBotModule@aiplayer:
@@ -1126,13 +1265,13 @@ Player:
 		CheckCaptureTargetsForVisibility: false
 		MaximumCaptureTargetOptions: 15
 	CaptureManagerBotModule@thf:
-		RequiresCondition: enable-ai-player && player.russia || player.ukraine || player.belarus || player.uzbek || player.turkmen
+		RequiresCondition: enable-ai-player && player.russia || player.ukraine || player.belarus || player.kazakh || player.uzbek || player.turkmen
 		CapturingActorTypes: thf
         CapturableActorTypes: harv,harv.soviet,harv.belarus,mcv,v2rl,v2rl.ukraine,arty,arty.france,4tnk,4tnk.ukraine,4tnk.belarus,ttnk,ctnk
 		CheckCaptureTargetsForVisibility: true
 		MaximumCaptureTargetOptions: 15
 	CaptureManagerBotModule@mech:
-		RequiresCondition: enable-ai-player && player.england || player.france || player.germany || player.greece || player.turkey
+		RequiresCondition: enable-ai-player && player.england || player.france || player.germany || player.spain || player.greece || player.turkey
 		CapturingActorTypes: mech,mech.germany
 		CheckCaptureTargetsForVisibility: true
 		MaximumCaptureTargetOptions: 15
@@ -2006,7 +2145,7 @@ Player:
             yak.ai: 6
 			mig.ai: 4
 	UnitBuilderBotModule@turkmenistan:
-		RequiresCondition: enable-ai-player && player.turkmenistan
+		RequiresCondition: enable-ai-player && player.turkmen
         UnitQueues: Vehicle, Infantry
 		UnitsToBuild:
 			e1: 65

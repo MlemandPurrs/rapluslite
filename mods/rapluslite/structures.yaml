@@ -1,6 +1,6 @@
 FACT:
 	Building:
-		Footprint: xxX xxx XxX
+		Footprint: xxX xxx =x=
 		Dimensions: 3,3
 	Power:
 		Amount: 30
@@ -504,6 +504,9 @@ FIX:
         BuildPaletteOrder: 8
         Prerequisites: weap, ~!player.russia, ~techlevel.medium
         Description: Repairs Vehicles for credits.
+	Building:
+		Footprint: === xxx ===
+		Dimensions: 3,3
 	Valued:
 		Cost: 800
 	WithDeathAnimation:
@@ -534,7 +537,7 @@ DOME:
     Buildable:
         Prerequisites: proc, ~!structures.soviet, ~!player.england, ~!player.spain, ~techlevel.medium
         BuildPaletteOrder: 6
-        Description: Provides an overview\nof the battlefield.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.\nCan detect cloaked units.
+        Description: Provides an overview\nof the battlefield.\nCan detect cloaked units.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.
 	Valued:
 		Cost: 1500
 	RevealsShroud:
@@ -581,7 +584,7 @@ DOME.Spain:
 	Inherits: DOME
     Buildable:
         Prerequisites: proc, ~!structures.soviet, ~player.spain, ~techlevel.medium
-        Description: Provides an overview\nof the battlefield.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.\nCan detect cloaked units.\n Special Ability: Radar Scan\nReveals an area of the map\nand cloaked enemy units there.\n (requires Allied Tech Center)
+        Description: Provides an overview\nof the battlefield.\nCan detect cloaked units.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.\n Special Ability: Radar Scan\nReveals an area of the map\nand cloaked enemy units there.\n (requires Allied Tech Center)
 	RenderSprites:
 		Image: dome
 	ProvidesPrerequisite@COPY:
@@ -599,7 +602,8 @@ DOME.Spain:
 		StartFullyCharged: false
 		SelectTargetSpeechNotification: SelectTarget
 		Cursor: chrono-select
-    -MapEditorData:
+	SupportPowerChargeBar:
+	-MapEditorData:
 
 DOME.Soviet:
 	Inherits: DOME
@@ -630,6 +634,7 @@ DOME.Soviet:
 		CircleSequence: circles
         PauseOnCondition: lowpower
         Cursor: chrono-select
+	SupportPowerChargeBar:
 	-MapEditorData:
 
 DOME.Russia:
@@ -715,6 +720,8 @@ ATEK:
 		CircleSequence: circles
 		PauseOnCondition: lowpower || disabled
 		Cursor: airdrop
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
 	AirstrikePower@AlliedParanuke:
 		OrderName: AlliedParanukePowerInfoOrder
 		Prerequisites: player.turkey
@@ -734,6 +741,8 @@ ATEK:
 		CircleSequence: circles
 		PauseOnCondition: lowpower || disabled
 		Cursor: airstrike
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
 	WithDeathAnimation:
 		DeathSequence: dead
 		UseDeathTypeSuffix: false
@@ -833,6 +842,8 @@ STEK:
 		CircleSequence: circles
 		PauseOnCondition: lowpower || disabled
 		Cursor: empstrike
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
 	AirstrikePower@UkraineParabombs:
 		OrderName: ParabombsPowerInfoOrder
 		Prerequisites: ~aircraft.soviet, player.ukraine
@@ -854,6 +865,8 @@ STEK:
 		CircleSequence: circles
         PauseOnCondition: lowpower || disabled
         Cursor: airstrike
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
 	ParatroopersPower@FieldPromotion:
 		OrderName: FieldPromotionPowerInfoOrder
 		Prerequisites: ~aircraft.soviet, player.belarus
@@ -896,7 +909,9 @@ STEK:
         CircleSequence: circles
         PauseOnCondition: lowpower || disabled
         Cursor: airdrop
-    SpawnActorPower@LoneTower: 
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
+	SpawnActorPower@LoneTower: 
         OrderName: SovietLoneTowerPowerInfoOrder
 		Prerequisites: ~structures.soviet, player.uzbek
         Actor: ftur.uzbek
@@ -928,6 +943,8 @@ STEK:
 		CircleSequence: circles
 		PauseOnCondition: lowpower || disabled
 		Cursor: airdrop
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
 	GrantConditionOnPowerState@LOWPOWER:
 		Condition: lowpower
 		ValidPowerStates: Low, Critical
@@ -1044,10 +1061,10 @@ AFLD:
 		RequiresPrerequisites: structures.turkmen
 		Prerequisite: aircraft.turkmen
     -AirstrikePower@spyplane:
-    -AirstrikePower@parabombs:
+    -AirstrikePower@parabombs:	
     ParatroopersPower@paratroopers:
         OrderName: SovietParatroopersPowerInfoOrder
-        RequiresCondition: !uzbek.player
+		RequiresCondition: soviet.player
         DropItems: E1R1,E3R1,E1R1,E3R1,E1R1
         PauseOnCondition: lowpower
         Cursor: airdrop
@@ -1072,15 +1089,21 @@ AFLD:
 		CircleSequence: circles
         PauseOnCondition: lowpower
         Cursor: airdrop
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
+    GrantConditionOnFaction@normal:
+        Condition: soviet.player
+        Factions: russia,ukraine,belarus,kazakh,turkmen
+        ResetOnOwnerChange: True
+    GrantConditionOnFaction@faster:
+        Condition: uzbek.player
+        Factions: uzbek
+        ResetOnOwnerChange: True
 	ProvidesPrerequisite@TECHPREQ:
 		Prerequisite: afldorweap
 	GrantConditionOnPowerState@LOWPOWER:
 		Condition: lowpower
 		ValidPowerStates: Low, Critical
-    GrantConditionOnFaction@rechargefaster:
-        Condition: uzbek.player
-        Factions: uzbek
-        ResetOnOwnerChange: True
 	WithDeathAnimation:
 		DeathSequence: dead
 		UseDeathTypeSuffix: false
@@ -1123,7 +1146,7 @@ AFLD.Kazakh:
 HPAD:
     Buildable:
         BuildPaletteOrder: 7
-        Description: Produces and reloads Helicopters.\nCan be Infiltrated by an Spy resulting\nin Veterancy for enemy Aircraft.
+        Description: Produces and reloads Helicopters.\nCan be Infiltrated by an Spy resulting\nin Veterancy for enemy Aircraft.\n  Special Ability: Paratroopers\nA B-52 plane drops a squad of\nVeteran infantry anywhere on the map.
 	Building:
 		Footprint: xx ==
 		Dimensions: 2,2
@@ -1155,7 +1178,39 @@ HPAD:
 	ProvidesPrerequisite@turkishstructure:
 		RequiresPrerequisites: structures.turkey
 		Prerequisite: aircraft.turkey
-
+	ParatroopersPower@alliedparatroopers:
+		OrderName: AlliedParatroopersPowerInfoOrder
+		Prerequisites: aircraft.allies
+		RequiresCondition: allied.player
+		Icon: paratroopers
+		ChargeInterval: 7500
+		Description: Paratroopers
+		LongDesc: A B-52 drops a squad of infantry\nanywhere on the map.
+		DropItems: E1R1,E3R1,E1R1,E3R1,E1R1
+		ReinforcementsArrivedSpeechNotification: ReinforcementsArrived
+		SelectTargetSpeechNotification: SelectTarget
+		AllowImpassableCells: false
+		QuantizedFacings: 8
+		CameraActor: camera.paradrop
+		UnitType: b52
+		DisplayBeacon: true
+		BeaconPoster: pinficon
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+        PauseOnCondition: lowpower
+        Cursor: airdrop
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
+    GrantConditionOnFaction:
+        Condition: allied.player
+        Factions: england,france,germany,spain,greece,turkey
+        ResetOnOwnerChange: True
+	SupportPowerChargeBar:
+	GrantConditionOnPowerState@LOWPOWER:
+		Condition: lowpower
+		ValidPowerStates: Low, Critical
+	
 SYRD:
     Buildable:
         BuildPaletteOrder: 3
@@ -1214,6 +1269,7 @@ SYRD:
         Condition: turkey.player
         Factions: turkey
         ResetOnOwnerChange: True
+	SupportPowerChargeBar:
 
 SPEN:
     Buildable:
@@ -1568,7 +1624,7 @@ GTUR:
 		Footprint: xx xx
 		Dimensions: 2,2
 	Health:
-		HP: 60000
+		HP: 40000
 	Armor:
 		Type: Heavy
 	RevealsShroud:
@@ -1731,6 +1787,8 @@ HSAM:
 		Name: Camo SAM Site
 	Valued:
 		Cost: 850
+	Turreted:
+		RealignDelay: -1
 	-AttackTurreted:
 	AttackPopupTurreted:
 		RequiresCondition: !build-incomplete
@@ -1871,7 +1929,7 @@ OILB:
 	CashTrickler@BOOSTED:
 		Interval: 375
 		Amount: 125
-        RequiresCondition: owner.is.turkmen        
+        RequiresCondition: owner.is.turkmen
     GrantConditionOnFaction@incomeboost:
         Condition: owner.is.turkmen
         Factions: turkmen

@@ -203,7 +203,7 @@ FTRK.Repair:
 	Buildable:
 		Queue: Vehicle
 		BuildPaletteOrder: 12
-		Prerequisites: stek, ~vehicles.soviet, ~player.uzbek, ~techlevel.high
+		Prerequisites: fix, stek, ~vehicles.soviet, ~player.uzbek, ~techlevel.high
 		Description: Mechanized Engineers.\nRepairs friendly vehicles.\nCan externally capture structures.\n  Unarmed
 	Valued:
 		Cost: 700
@@ -628,7 +628,7 @@ BTR.crate:
 1TNK.Greece:
 	Inherits: 1TNK
 	Buildable:
-		Prerequisites ~vehicles.allies, ~player.greece, ~!vehicles.upgraded, ~techlevel.low
+		Prerequisites: ~vehicles.allies, ~player.greece, ~!vehicles.upgraded, ~techlevel.low
 	RenderSprites:
 		Image: 1tnk
 	ProducibleWithLevel:
@@ -709,7 +709,7 @@ BTR.crate:
         PauseOnCondition: empdisable
         RequiresCondition: !rank-elite
     Armament@primary-elite:
-        Name: primary-elite
+        Name: primary.elite
 		Weapon: 90mm.elite
 		Recoil: 128
 		RecoilRecovery: 38
@@ -777,7 +777,7 @@ BTR.crate:
         RequiresCondition: !rank-elite
     Armament@primary-elite:
         Name: primary-elite
-		Weapon: 90mm.britain.elite
+		Weapon: 90mm.france.elite
 		Recoil: 128
 		RecoilRecovery: 38
 		LocalOffset: 720,0,80
@@ -1003,12 +1003,13 @@ BTR.crate:
     Armament@SECONDARY:
         PauseOnCondition: empdisable
     AttackTurreted:
-        PauseOnCondition: empdisable
-    GrantConditionOnDeploy:
-        DeployedCondition: invulnerability
-        RequiresCondition: rank-elite
-        SkipMakeAnimation: True
-		
+        PauseOnCondition: empdisable	
+	#		still no way of timed condition in 2019
+    #		GrantConditionOnDeploy:
+    #	    DeployedCondition: invulnerability
+    #	    RequiresCondition: rank-elite
+    #	    SkipMakeAnimation: True
+
 4TNK.Ukraine:
 	Inherits: 4TNK
 	Buildable:
@@ -1142,6 +1143,55 @@ ARTY.France.R2:
 	RenderSprites:
 		Image: arty
 
+GCAN:
+	Inherits: ^TrackedVehicle
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 9
+		Prerequisites: atek, dome, ~vehicles.allies, ~player.turkey, ~tech.stolen, ~techlevel.high
+		Description: Heavy Artillery with extreme Range.\n  Strong vs Infantry, Buildings\n  Weak vs Vehicles, Aircraft
+	Valued:
+		Cost: 1200
+	Tooltip:
+		Name: Grand Cannon
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 25000
+	Armor:
+		Type: Heavy
+	Mobile:
+		TurnSpeed: 2
+		Speed: 85
+	RevealsShroud:
+		Range: 5c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Armament:
+		Weapon: 8Inch.gcan
+		LocalOffset: 720,0,80
+		MuzzleSequence: muzzle
+	AttackFrontal:
+		TargetFrozenActors: True
+		ForceFireIgnoresActors: True
+	WithMuzzleOverlay:
+	Explodes:
+		Weapon: ArtilleryExplode
+		EmptyWeapon: UnitExplodeSmall
+		LoadedChance: 75
+	SelectionDecorations:
+	ProducibleWithLevel:
+		Prerequisites: vehicles.upgraded
+	Selectable:
+		DecorationBounds: 28,28
+    RenderRangeCircle:
+	Targetable:
+		TargetTypes: Ground, Vehicle, VehicleDisguise
+		RequiresCondition: !parachute
+
 V2RL:
     Buildable:
         Queue: Vehicle, MWFVehicle
@@ -1265,7 +1315,8 @@ ATNK:
 		AmmoCondition: ammo
 	ReloadAmmoPool:
 		Delay: 120
-		Count: 1
+		Count: 2
+		RequiresCondition: !ammo
     Passenger:
         PipType: Red
 
@@ -1505,7 +1556,6 @@ MRJ:
         PauseOnCondition: empdisable
     ProximityExternalCondition@JAMMER:
         RequiresCondition: !empdisable
-    -DetectCloaked:
 	Targetable:
 		TargetTypes: Ground, Vehicle, VehicleDisguise
 		RequiresCondition: !parachute
@@ -1519,7 +1569,7 @@ MHQ:
 	Buildable:
 		Queue: Vehicle
 		BuildPaletteOrder: 9
-		Prerequisites: stek, ~vehicles.soviet, ~player.uzbek, ~techlevel.high
+		Prerequisites: dome, stek, ~vehicles.soviet, ~player.uzbek, ~techlevel.high
 		Description: Mobile base of operations, armed with a token mg.\nDetects cloaked units within sight-radius.\nIncreases damage and rate of fire on nearby\nground units and allows them to self-heal.\n  Strong vs Infantry\n  Weak vs Everything else
         Icon: mhq-icon
 	Valued:
@@ -1632,7 +1682,6 @@ STNK:
 	WithSpriteTurret:
 		Turret: primary
 		Sequence: turret
-	-DetectCloaked:
 	Cargo:
         Types: Infantry
 		MaxWeight: 3
@@ -1771,7 +1820,7 @@ MAPC:
 
 MGG:
     Buildable:
-        BuildPaletteOrder: 12
+        BuildPaletteOrder: 9
         Prerequisites: atek, ~vehicles.allies, ~player.greece, ~techlevel.high
         BuildDurationModifier: 60
         Description: Regenerates the shroud nearby,\nobscuring the area.\n  Can be toggled on/off via deploy command.\n  Continues to function while in a Transport.\n  Unarmed
@@ -1818,7 +1867,7 @@ DTNK:
 	DisguiseTooltip@default:
 		Name: Mirage Tank
 		GenericName: Tank
-        RequiresCondition: !jeep && !apc && !tnk1 && !tnk2 && !arty && !mnly && !atnk && !tnkd && !mrj && !stnk && !ctnk && !mcv && !harv && !truk && !mgg && !hell && !mrls && !msam && !mbun && !mapc
+        RequiresCondition: !jeep && !apc && !tnk1 && !tnk2 && !arty && !mnly && !atnk && !tnkd && !mrj && !stnk && !ctnk && !mcv && !harv && !truk && !mgg && !hell && !mrls && !msam && !mbun && !mapc && !gcan
 	DisguiseTooltip@jeep:
 		Name: Ranger
 		GenericName: Vehicle
@@ -1891,7 +1940,7 @@ DTNK:
 		Name: Mobile SAM
 		GenericName: Vehicle
         RequiresCondition: msam
-	DisguiseTooltip@msam:
+	DisguiseTooltip@mbun:
 		Name: Mobile Bunker
 		GenericName: Vehicle
         RequiresCondition: mbun
@@ -1899,6 +1948,10 @@ DTNK:
 		Name: Assault APC
 		GenericName: Vehicle
         RequiresCondition: mapc
+	DisguiseTooltip@gcan:
+		Name: Grand Cannon
+		GenericName: Vehicle
+        RequiresCondition: gcan
 	Health:
 		HP: 45000
 	Armor:
@@ -1920,7 +1973,7 @@ DTNK:
 		LocalOffset: 768,0,90
 		MuzzleSequence: muzzle
         PauseOnCondition: empdisable
-        RequiresCondition: !jeep && !apc && !tnk1 && !tnk2 && !arty && !mnly && !atnk && !tnkd && !mrj && !stnk && !ctnk && !mcv && !harv && !truk && !mgg && !mrls && !mbun && !mapc
+        RequiresCondition: !jeep && !apc && !tnk1 && !tnk2 && !arty && !mnly && !atnk && !tnkd && !mrj && !stnk && !ctnk && !mcv && !harv && !truk && !mgg && !mrls && !mbun && !mapc && !gcan
     Armament@jeep:
         Name: jeeparm
 		Weapon: 90mm.decoy.zero
@@ -1968,7 +2021,7 @@ DTNK:
         Turret: invis-turret
 		LocalOffset: 768,0,90
         PauseOnCondition: empdisable
-        RequiresCondition: apc || arty || mnly || tnkd || mrj || ctnk || mcv || harv || truk || mgg
+        RequiresCondition: apc || arty || mnly || tnkd || mrj || ctnk || mcv || harv || truk || mgg || gcan
     Armament@hell:
         Name: hellarm
 		Weapon: 90mm.decoy.zero
@@ -2056,9 +2109,10 @@ DTNK:
             mggf: mgg
             hell: hell
             mrls: mrls
-			msam: mrls
+			msam: msam
 			mbun: mbun
 			mapc: mapc
+			gcan: gcan
 	WithDecoration@disguise:
 		Image: pips
 		Sequence: pip-disguise
@@ -2113,7 +2167,7 @@ DTNK:
 	WithSpriteTurret@Default:
 		Sequence: turret-default
 		Turret: default-turret
-		RequiresCondition: !jeep && !apc && !tnk1 && !tnk2 && !arty && !mnly && !atnk && !tnkd && !mrj && !stnk && !ctnk && !mcv && !harv && !truk && !mgg && !hell && !mrls && !mbun && !mapc
+		RequiresCondition: !jeep && !apc && !tnk1 && !tnk2 && !arty && !mnly && !atnk && !tnkd && !mrj && !stnk && !ctnk && !mcv && !harv && !truk && !mgg && !hell && !mrls && !msam && !mbun && !mapc && !gcan
 	WithSpriteTurret@jeep:
 		Sequence: turret-mg
 		Turret: jeep-turret
@@ -2141,7 +2195,7 @@ DTNK:
 	WithSpriteTurret@mrls:
 		Sequence: turret-mrls
 		Turret: mrls-turret
-		RequiresCondition: mrls
+		RequiresCondition: mrls && msam
 	WithSpriteTurret@mbun:
 		Sequence: turret-mbun
 		Turret: mbun-turret
@@ -2156,8 +2210,8 @@ DTNK:
 		RequiresCondition: apc && arty && mnly && tnkd && mrj && ctnk && mcv && harv && truk && mgg
     -WithFacingSpriteBody:
 	WithFacingSpriteBody@Default:
-		PauseOnCondition: jeep && apc && tnk1 && tnk2 && arty && mnly && atnk && tnkd && mrj && stnk && ctnk && harv && mcv && truk && mgg && hell && mrls && mbun
-		RequiresCondition: !jeep && !apc && !tnk1 && !tnk2 && !arty && !mnly && !atnk && !tnkd && !mrj && !stnk && !ctnk && !harv && !mcv && !truk && !mgg && !hell && !mrls && !mbun
+		PauseOnCondition: jeep && apc && tnk1 && tnk2 && arty && mnly && atnk && tnkd && mrj && stnk && ctnk && harv && mcv && truk && mgg && hell && mrls && msam && mbun && gcan
+		RequiresCondition: !jeep && !apc && !tnk1 && !tnk2 && !arty && !mnly && !atnk && !tnkd && !mrj && !stnk && !ctnk && !harv && !mcv && !truk && !mgg && !hell && !mrls && !msam && !mbun && !gcan
 	WithFacingSpriteBody@jeep:
         Name: jeep
 		Sequence: jeep-body
@@ -2178,8 +2232,12 @@ DTNK:
         Name: arty
 		Sequence: arty-body
 		RequiresCondition: arty
+	WithFacingSpriteBody@Gcan:
+        Name: gcan
+		Sequence: gcan-body
+		RequiresCondition: gcan
 	WithFacingSpriteBody@Mnly:
-        Name: mn1y
+        Name: mnly
 		Sequence: mnly-body
 		RequiresCondition: mnly
 	WithFacingSpriteBody@Atnk:
@@ -2233,7 +2291,7 @@ DTNK:
 	WithFacingSpriteBody@mrls:
         Name: mrls
 		Sequence: mrls-body
-		RequiresCondition: mrls
+		RequiresCondition: mrls && msam
 	WithFacingSpriteBody@mbun:
         Name: mbun
 		Sequence: mbun-body
@@ -2303,7 +2361,8 @@ MSAM:
 	Buildable:
 		Queue: Vehicle
 		BuildPaletteOrder: 12
-		Prerequisites: atek, ~vehicles.allies, ~tech.stolen, ~player.turkey, ~techlevel.high
+		#		Prerequisites: atek, ~vehicles.allies, ~tech.stolen, ~player.turkey, ~techlevel.high
+		Prerequisites: ~disabled
 		Description: Mobile anti-air battery.\nCannot attack Ground units.\n  Strong vs Aircraft\n  Weak vs anything Else
 		Icon: msam-icon
 	Tooltip@sidebar:
@@ -2694,7 +2753,6 @@ SSM:
 		TargetFrozenActors: True
 		ForceFireIgnoresActors: True
 		PauseOnCondition: empdisable
-		OpportunityFire: False
 	WithSpriteTurret:
 		RequiresCondition: ammo > 1
 	WithSpriteTurret@OneMissile:

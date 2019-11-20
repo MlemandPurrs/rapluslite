@@ -30,8 +30,6 @@ TRAN:
         Prerequisites: ~hpad, ~aircraft.allies, ~techlevel.medium
         Description: Fast Infantry Transport Helicopter.\n  Special Ability: Carryall\nCan carry light vehicles, one at a time.\n  Unarmed
 	Carryall:
-		LoadingDelay: 10
-		UnloadingDelay: 15
 		LocalOffset: 0, 0, -128
 
 TRAN.Soviet:
@@ -52,6 +50,8 @@ TRAN.Soviet:
         Condition: kazakh.player
         Factions: kazakh
         ResetOnOwnerChange: True
+	SpawnActorOnDeath:
+		Actor: TRAN.soviet.Husk
 	-MapEditorData:
 
 IROQ:
@@ -77,8 +77,8 @@ IROQ:
 		Range: 8c0
 		Type: GroundPosition
 	Armament@PRIMARY:
-		Weapon: ChainGun
 		Name: primary
+		Weapon: ChainGun
 		LocalOffset: 85,-213,-85, 85,213,-85
 		MuzzleSequence: muzzle
 		PauseOnCondition: !ammo
@@ -92,11 +92,24 @@ IROQ:
 		Name: tertiary
 		Weapon: HeliDepthCharge
         PauseOnCondition: !ammodc
+	Armament@FOURTH:
+		Name: fourth
+		Weapon: ChainGun.aa
+		LocalOffset: 85,213,-85, 85,-213,-85
+		MuzzleSequence: muzzle
+		PauseOnCondition: !ammo
+	Armament@FIFTH:
+		Name: fifth
+		Weapon: ChainGun.aa
+		LocalOffset: 85,213,-85, 85,-213,-85
+		MuzzleSequence: muzzle
+		PauseOnCondition: !ammo
 	AttackAircraft:
-    	Armaments: primary, secondary, tertiary
+    	Armaments: primary, secondary, tertiary, fourth, fifth
 		FacingTolerance: 20
+		PersistentTargeting: false
+		AttackType: Hover
 	Aircraft:
-		LandWhenIdle: false
 		InitialFacing: 224
 		TurnSpeed: 5
 		Speed: 176
@@ -113,8 +126,8 @@ IROQ:
 		Sequence: slow-rotor
 		RequiresCondition: !airborne
 	AmmoPool:
-        Armaments: primary, secondary
-		Ammo: 24
+        Armaments: primary, secondary, fourth, fifth
+		Ammo: 12
 		PipCount: 4
 		AmmoCondition: ammo
 		ReloadDelay: 9
@@ -228,18 +241,30 @@ HIND:
         BuildPaletteOrder: 5
         BuildAtProductionType: Plane
         Prerequisites: ~afld, stek, ~player.belarus, ~tech.stolen, ~techlevel.high
-        Description: Helicopter gunship armed with dual chainguns and anti-ground rockets.\n  Strong vs Infantry, Light armor\n  Weak vs Tanks, Aircraft
+        Description: Helicopter gunship armed with dual chainguns\nand anti-ground rockets.\n  Strong vs Infantry, Light armor\n  Weak vs Tanks, Aircraft
 	Valued:
 		Cost: 2200
 	Armament@PRIMARY:
-		Weapon: ChainGun
 		Name: primary
+		Weapon: ChainGun
 		LocalOffset: 85,-213,-85, 85,213,-85
 		MuzzleSequence: muzzle
 		PauseOnCondition: !ammo
 	Armament@SECONDARY:
 		Name: secondary
 		Weapon: ChainGun
+		LocalOffset: 85,213,-85, 85,-213,-85
+		MuzzleSequence: muzzle
+		PauseOnCondition: !ammo
+	Armament@FOURTH:
+		Name: fourth
+		Weapon: ChainGun.aa
+		LocalOffset: 85,-213,-85, 85,213,-85
+		MuzzleSequence: muzzle
+		PauseOnCondition: !ammo
+	Armament@FIFTH:
+		Name: fifth
+		Weapon: ChainGun.aa
 		LocalOffset: 85,213,-85, 85,-213,-85
 		MuzzleSequence: muzzle
 		PauseOnCondition: !ammo
@@ -251,7 +276,7 @@ HIND:
 		PauseOnCondition: !ammorock
     -AmmoPool:
 	AmmoPool@GUNS:
-		Armaments: primary, secondary
+		Armaments: primary, secondary, fourth, fifth
 		Ammo: 24
 		PipCount: 6
 		ReloadDelay: 9
@@ -264,10 +289,10 @@ HIND:
         PipType: Red
 		AmmoCondition: ammorock
 	AttackAircraft:
-		Armaments: primary, secondary, tertiary
+		Armaments: primary, secondary, tertiary, fourth, fifth
 		FacingTolerance: 20
 	Rearmable:
-		RearmActors: afld, afld.russia, afld.ukraine, hpad, carr.deployed
+		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh, hpad, carr.deployed
     AcceptsDeliveredExperience:
 
 U2.emp:
@@ -308,7 +333,7 @@ YAK:
     Aircraft:
         TakeOffOnCreation: False
 	AttackAircraft:
-        Armaments: primary, secondary, tertiary
+        Armaments: primary, secondary, tertiary, fourth, fifth
 		FacingTolerance: 20
 	Armament@PRIMARY:
 		Weapon: ChainGun.Yak.Left
@@ -327,9 +352,22 @@ YAK:
 		Weapon: BombingRun.dc
 		LocalOffset: 300,0,0
 		PauseOnCondition: !ammodc
-    -AmmoPool:
+	Armament@FOURTH:
+		Name: fourth
+		Weapon: ChainGun.Yak.AA.Left
+		LocalOffset: 256,-213,0
+		MuzzleSequence: muzzle
+		PauseOnCondition: !ammo
+	Armament@FIFTH:
+		Name: fifth
+		Weapon: ChainGun.Yak.AA.Right
+		LocalOffset: 256,213,0
+		MuzzleSequence: muzzle
+		FireDelay: 1
+		PauseOnCondition: !ammo
+	-AmmoPool:
 	AmmoPool@1:
-        Armaments: primary, secondary
+        Armaments: primary, secondary, fourth, fifth
 		Ammo: 32
 		PipCount: 4
 		ReloadDelay: 11
@@ -406,7 +444,7 @@ MIG:
         BuildPaletteOrder: 2
         BuildDurationModifier: 60
         Prerequisites: ~afld, stek, ~!aitoodumb, ~techlevel.high
-        Description: Fast Multi-Role Attack Plane.\n  Can attack both Air and Ground targets.\n  Strong vs Buildings, Vehicles\n  Weak vs Infantry, Aircraft
+        Description: Fast Multi-Role Attack Plane.\n  Strong vs Buildings, Vehicles\n  Weak vs Infantry, Aircraft
     Aircraft:
         TakeOffOnCreation: False
         TakeoffSounds: migtoff1.aud
@@ -481,7 +519,6 @@ COSSACK:
 		RepulsionSpeed: 40
 		MaximumPitch: 56
 		TakeOffOnCreation: False
-	ReturnOnIdle:
 	Cargo:
 		MaxWeight: 12
 		PipCount: 12
@@ -546,16 +583,22 @@ HARR:
 		Weapon: HellfireAG.rapid
 		LocalOffset: 0,213,-85, 0,-213,-85
 		PauseOnCondition: !ammo
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: HellfireAA.rapid
+		LocalOffset: 0,213,-85, 0,-213,-85
+		PauseOnCondition: !ammo
 	AttackAircraft:
 		Armaments: primary, secondary
 		FacingTolerance: 20
+		PersistentTargeting: false
 	Aircraft:
 		CruiseAltitude: 2560
 		TurnSpeed: 4
 		Speed: 223
 		RepulsionSpeed: 40
 		MaximumPitch: 56
-        CanHover: false
+		CanSlide: False
 	AutoTarget:
 		InitialStance: HoldFire
 		InitialStanceAI: HoldFire
@@ -570,12 +613,13 @@ HARR:
 	GrantConditionOnMovement:
 		Condition: moving
 	SelectionDecorations:
-	SpawnActorOnDeath:
+	-SpawnActorOnDeath:
+	SpawnActorOnDeath@fly:
 		Actor: HARR.flying.Husk
-		RequiresCondition: moving
-	SpawnActorOnDeath:
+		RequiresCondition: moving && airborne
+	SpawnActorOnDeath@hover:
 		Actor: HARR.standing.Husk
-		RequiresCondition: !moving
+		RequiresCondition: !moving && airborne
 	SmokeTrailWhenDamaged:
 		Offset: -427,0,0
 	Selectable:
@@ -585,3 +629,7 @@ HARR:
 	Rearmable:
 		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh, hpad, carr.deployed
     AcceptsDeliveredExperience:
+
+MH60:
+	Buildable:
+		Prerequisites: ~disabled

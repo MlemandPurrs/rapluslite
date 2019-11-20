@@ -10,7 +10,7 @@ LST:
             dtrk: demo-inside
         LoadedCondition: Loaded
 	RepairableNear:
-		Buildings: syrd, spen
+		RepairActors: syrd, spen
 	CreatesShroud:
 		Range: 6c0
         RequiresCondition: mgg-inside
@@ -156,6 +156,8 @@ DD:
     Buildable:
         BuildPaletteOrder: 3
         Prerequisites: ~syrd, dome, ~!player.germany, ~techlevel.medium
+	Valued:
+		Cost: 900
 	-Turreted:
 	Turreted@PRIMARY:
 		Turret: primary
@@ -179,12 +181,6 @@ DD:
 		Turret: primary
         PauseOnCondition: empdisable
         RequiresCondition: !rank-elite
-    Armament@QUARTENARY:
-		Name: quartenary
-        Turret: secondary
-		Weapon: M60mg
-        LocalOffset: 128,0,43
-		MuzzleSequence: mg-muzzle
     Armament@primary-elite:
         Name: primary.elite
 		Weapon: Stinger.elite
@@ -193,13 +189,14 @@ DD:
 		LocalYaw: 64, -64
         RequiresCondition: rank-elite
     Armament@secondary-elite:
+		Name: aa.elite
 		Weapon: StingerAA.elite
         Turret: primary
 		LocalOffset: 0,-150,0, 0,-100,0, 0,100,0, 0,150,0
 		LocalYaw: 64, -64
         RequiresCondition: rank-elite
 	AttackTurreted:
-        Armaments: primary, secondary, tertiary, quartenary, elite
+        Armaments: primary, secondary, tertiary, primary.elite, aa.elite
 		Turrets: primary, secondary
         PauseOnCondition: empdisable
 	-WithSpriteTurret:
@@ -265,20 +262,30 @@ BSHP:
 		RecoilRecovery: 34
         PauseOnCondition: empdisable
         MuzzleSequence: muzzle
+		RequiresCondition: !rank-elite
 	Armament@SECONDARY:
         Name: secondary
         Turret: secondary
 		Weapon: DepthCharge
         PauseOnCondition: empdisable
-        #   Armament@TERTIARY:
-		#   Name: tertiary
-        #   Turret: secondary
-		#   Weapon: M60mg
-        #   LocalOffset: 128,0,43
-		#   MuzzleSequence: mg-muzzle
+     Armament@TERTIARY:
+		Name: tertiary
+        Turret: secondary
+		Weapon: Vulcan.ship
+        LocalOffset: 128,0,43
+		MuzzleSequence: mg-muzzle
+	Armament@ELITE:
+		Name: primary.elite
+        Turret: primary
+		Weapon: 8Inch
+        LocalOffset: 480,0,40
+		Recoil: 85
+		RecoilRecovery: 34
+        PauseOnCondition: empdisable
+        MuzzleSequence: muzzle
+		RequiresCondition: rank-elite
 	AttackTurreted:
-        #   Armaments: primary, secondary, tertiary
-        Armaments: primary, secondary
+        Armaments: primary, secondary, primary.elite, tertiary
 		Turrets: primary, secondary
 		TargetFrozenActors: True
 		ForceFireIgnoresActors: True
@@ -287,6 +294,11 @@ BSHP:
 	WithSpriteTurret@PRIMARY:
 		Turret: primary
 		Sequence: turret
+		RequiresCondition: !rank-elite
+	WithSpriteTurret@PRIMARYELITE:
+        Sequence: turret-elite
+		Turret: primary
+        RequiresCondition: rank-elite
 	WithSpriteTurret@SECONDARY:
 		Turret: secondary
 		Sequence: turret-dc
@@ -347,9 +359,9 @@ CA:
         Sequence: turret-elite
 		Turret: secondary
         RequiresCondition: rank-elite
+	RenderRangeCircle:
     ReloadArmamentsBar:
         Color: FFFF00
-    RenderRangeCircle:
 
 CARR:
 	Inherits: ^Ship
@@ -477,7 +489,7 @@ SS:
 		Range: 3c0
 		RequiresCondition: underwater
 	RepairableNear:
-		Buildings: spen, spen.russia
+		RepairActors: spen, spen.russia
 	Cloak:
 		CloakTypes: Underwater
 		InitialDelay: 0
@@ -605,7 +617,7 @@ MSUB:
 		Range: 4c0
 		RequiresCondition: underwater
 	RepairableNear:
-		Buildings: spen, spen.russia
+		RepairActors: spen, spen.russia
 	Cloak:
 		CloakTypes: Underwater
 		InitialDelay: 0
@@ -729,7 +741,7 @@ TBT:
 	Selectable:
 		DecorationBounds: 36,36
 	RepairableNear:
-		Buildings: syrd, spen, spen.russia
+		RepairActors: syrd, spen, spen.russia
 
 FSUB:
 	Inherits: ^Ship
@@ -738,7 +750,7 @@ FSUB:
 		Queue: Ship
 		BuildAtProductionType: Submarine
 		BuildPaletteOrder: 6
-		Prerequisites: ~spen, ftur, stek, ~player.ukraine, ~techlevel.medium
+		Prerequisites: ~spen, ftur, stek, ~player.ukraine, ~techlevel.high
 		Description: Submerged anti-ship unit\narmed with fireball launcher.\n Strong vs Ships and Infantry.\n Weak vs Aircraft and Defenses.\n  Special Ability: Submerge\nCan dive underwater to become invisible\nmove unseen and avoid damage of most weapons.\nCan be manually ordered to surface for Repairs.
 	Valued:
 		Cost: 800
@@ -789,14 +801,8 @@ FSUB:
 		EmptyWeapon: UnitExplodeSubmarine
 	Selectable:
 		DecorationBounds: 38,38
-	Targetable:
-		TargetTypes: Ground, Water, Ship, Submarine, Repair
-		RequiresCondition: !underwater
-	Targetable@UNDERWATER:
-		TargetTypes: Underwater, Submarine
-		RequiresCondition: underwater
 	RepairableNear:
-		Buildings: spen, spen.russia
+		RepairActors: spen, spen.russia
 	Cloak:
 		CloakTypes: Underwater
 		InitialDelay: 0
@@ -823,11 +829,6 @@ FSUB:
 	GrantConditionOnDamageState@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
-    Explodes@elite:
-		Weapon: MiniNuke
-		EmptyWeapon: MiniNuke
-		DamageSource: Killer
-        RequiresCondition: rank-elite
     GrantConditionOnDeploy:
         DeployedCondition: deployed
 	ExternalCondition@MINEHIT:
@@ -907,7 +908,7 @@ SCRP:
 	ExternalCondition@MINEREPLENISH:
 		Condition: replenishsmine
 	RepairableNear:
-		Buildings: syrd, spen, spen.russia
+		RepairActors: syrd, spen, spen.russia
 
 MGNM:
 	Inherits: ^Ship

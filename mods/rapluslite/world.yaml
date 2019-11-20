@@ -3,6 +3,7 @@
 	AlwaysVisible:
 	ActorMap:
 	ScreenMap:
+	Selection:
 	MusicPlaylist:
 		VictoryMusic: score
 		DefeatMusic: map
@@ -189,7 +190,7 @@
 		Name: Turkey
 		InternalName: turkey
 		Side: Allies
-        Description: Turkey\nSpecialization: Skirmishers\nThe forces of Turkey utilize their experience in guerilla warfare.\nFaction Variations:\n    - Tanks* are amphibian, capable of crossing open Sea and Rivers.\n*Those Tanks being the Light and Flak Tanks.\n    - Sonar Pulse initially available.\nVeterancy Bonus:\n    - Iroqouis Scout gets built as Veteran.\nUnique Support Power:\n    - Paranuke\nA fast plane drops an Paranuke on your target.\nThe bomb is more effective against units rather than structures.\nSpecial Units:\n    - Commando (Infantry)\nElite Infantry armed with assault rifle and C4.\n    - Assault APC (Vehicle)\nAPC with reduced carry capacity and grenadelaunchers.\n    - Guard Tower (Defense)\nDefensive structure that shoots Sniper rifle.\nTech Unit:\n    - Mobile SAM (Vehicle)\nSlow moving anti-air artillery.
+        Description: Turkey\nSpecialization: Skirmishers\nThe forces of Turkey utilize their experience in mobile warfare.\nFaction Variations:\n    - Tanks* are amphibian, capable of crossing open Sea and Rivers.\n*Those Tanks being the Light and Flak Tanks.\n    - Sonar Pulse initially available.\nVeterancy Bonus:\n    - Iroqouis Scout gets built as Veteran.\nUnique Support Power:\n    - Paranuke\nA fast plane drops an Paranuke on your target.\nThe bomb is more effective against units rather than structures.\nSpecial Units:\n    - Commando (Infantry)\nElite Infantry armed with assault rifle and C4.\n    - Assault APC (Vehicle)\nAPC with reduced carry capacity and grenadelaunchers.\n    - Guard Tower (Defense)\nDefensive structure that shoots Sniper rifle.\nTech Unit:\n    - Grand Cannon (Vehicle)\nHeavy artillery with extreme range.
 	Faction@7:
 		Name: Soviet
 		InternalName: soviet
@@ -220,7 +221,7 @@
 		Name: Uzbekist.
 		InternalName: uzbek
 		Side: Soviet
-        Description: Uzbekistan\nSpecialization: Engineering\nThe forces of Uzbekistan facilitate the expansion.\nFaction Variations:\n    - Defenses* are cheaper to build but have reduced Hitpoints.\n*Superweapons are not included.\n10% cheaper to build at the cost of having 10000 less Hitpoints.\n    - Paratroopers power recharges twice as fast.\nVeterancy Bonus:\n    - Medium Tank gets built as Veteran.\nUnique Support Power:\n    - Lone Tower\nA Flame Tower gets instantly constructed on the spot\nsadly not checking passability and build-radius.\nSpecial Units:\n    - RPG Trooper (Infantry)\nInfantry firing Thermobaric rocket that explodes similar to Flame Tower's projectile.\n    - Mobile HQ (Vehicle)\nVehicle that detects stealth, boosts in combat and enables self-heal.\n    - Mobile Repair Truck (Vehicle)\nMechanized engineers that can repair and capture.\nTech Unit:\n    - Nuclear Reactor (Building)\nCan build an copy of the neutral structure with half reduced Hitpoints.
+        Description: Uzbekistan\nSpecialization: Engineering\nThe forces of Uzbekistan facilitate the Soviet expansion.\nFaction Variations:\n    - Defenses* are cheaper to build but have reduced Hitpoints.\n*Superweapons are not included.\n10% cheaper to build at the cost of having 10000 less Hitpoints.\n    - Paratroopers power recharges twice as fast.\nVeterancy Bonus:\n    - Medium Tank gets built as Veteran.\nUnique Support Power:\n    - Lone Tower\nA Flame Tower gets instantly constructed on the spot\nsadly not checking passability and build-radius.\nSpecial Units:\n    - RPG Trooper (Infantry)\nInfantry firing Thermobaric rocket that explodes similar to Flame Tower's projectile.\n    - Mobile HQ (Vehicle)\nVehicle that detects stealth, boosts in combat and enables self-heal.\n    - Mobile Repair Truck (Vehicle)\nMechanized engineers that can repair and capture.\nTech Unit:\n    - Nuclear Reactor (Building)\nCan build an copy of the neutral structure with half reduced Hitpoints.
 	Faction@13:
 		Name: Turkmen.
 		InternalName: turkmen
@@ -429,6 +430,17 @@ World:
 		Types: mine,gmine
 	LuaScript:
 		Scripts: cossackscript.lua
+	TimeLimitManager:
+		TimeLimitWarnings:
+			40: FourtyMinutesRemaining
+			30: ThirtyMinutesRemaining
+			20: TwentyMinutesRemaining
+			10: TenMinutesRemaining
+			5: WarningFiveMinutesRemaining
+			4: WarningFourMinutesRemaining
+			3: WarningThreeMinutesRemaining
+			2: WarningTwoMinutesRemaining
+			1: WarningOneMinuteRemaining
 
 EditorWorld:
 	Inherits: ^BaseWorld

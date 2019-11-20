@@ -422,7 +422,7 @@ FIST.Husk:
 IROQ.Husk:
 	Inherits: ^HelicopterHusk
 	Tooltip:
-		Name: Iroqouis
+		Name: Iroqouis Scout
 	Aircraft:
 		TurnSpeed: 4
 		Speed: 112
@@ -440,6 +440,10 @@ IROQ.Husk:
 		Type: GroundPosition
 	RenderSprites:
 		Image: iroq
+
+HELI.Husk:
+	Tooltip:
+		Name: Apache Longbow
 
 COSSACK.Husk:
 	Inherits: ^PlaneHusk
@@ -481,6 +485,7 @@ HARR.standing.Husk:
 	Aircraft:
 		TurnSpeed: 5
 		Speed: 186
+		CanSlide: False
 	SmokeTrailWhenDamaged:
 		Offset: -427,0,0
 		MinDamage: Undamaged
@@ -940,3 +945,8 @@ U2.nuke.Husk:
 		MinDamage: Undamaged
 	RenderSprites:
 		Image: ally-u2
+
+TRAN.soviet.Husk:
+	Inherits: TRAN.Husk
+	Tooltip:
+		Name: Yak 24

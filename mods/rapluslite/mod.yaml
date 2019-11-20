@@ -38,7 +38,6 @@ Packages:
     rapluslite|bits/buildings
     rapluslite|bits/icons
     rapluslite|bits/infantry
-    rapluslite|bits/jungle
     rapluslite|bits/music
     rapluslite|bits/naval
     rapluslite|bits/resources
@@ -58,6 +57,7 @@ Rules:
 	rapluslite|ai.yaml
 	rapluslite|player.yaml
 	ra|rules/palettes.yaml
+	rapluslite|palettes.yaml
 	rapluslite|world.yaml
 	ra|rules/defaults.yaml
 	ra|rules/vehicles.yaml
@@ -92,7 +92,6 @@ TileSets:
 	rapluslite|tilesets/interior.yaml
 	rapluslite|tilesets/temperat.yaml
 	rapluslite|tilesets/desert.yaml
-    rapluslite|tilesets/jungle.yaml
 
 Cursors:
 	rapluslite|cursors.yaml
@@ -115,10 +114,10 @@ ChromeLayout:
 	common|chrome/ingame-infostats.yaml
 	common|chrome/ingame-menu.yaml
 	ra|chrome/ingame-observer.yaml
-	common|chrome/ingame-observerstats.yaml
 	rapluslite|chrome/ingame-player.yaml
 	common|chrome/ingame-perf.yaml
 	common|chrome/ingame-debug.yaml
+	common|chrome/ingame-debuginfo.yaml
 	common|chrome/ingame-infochat.yaml
 	rapluslite|chrome/mainmenu.yaml
 	common|chrome/settings.yaml
@@ -138,6 +137,8 @@ ChromeLayout:
 	common|chrome/multiplayer-directconnect.yaml
 	common|chrome/connection.yaml
 	common|chrome/replaybrowser.yaml
+	common|chrome/gamesave-browser.yaml
+	ra|chrome/gamesave-loading.yaml
 	common|chrome/dropdowns.yaml
 	common|chrome/musicplayer.yaml
 	common|chrome/tooltips.yaml
@@ -196,27 +197,35 @@ Fonts:
 	Tiny:
 		Font: common|FreeSans.ttf
 		Size: 10
+		Ascender: 8
 	TinyBold:
 		Font: common|FreeSansBold.ttf
 		Size: 10
+		Ascender: 8
 	Small:
 		Font: common|FreeSans.ttf
 		Size: 12
+		Ascender: 9
 	Regular:
 		Font: common|FreeSans.ttf
 		Size: 14
+		Ascender: 11
 	Bold:
 		Font: common|FreeSansBold.ttf
 		Size: 14
+		Ascender: 11
 	MediumBold:
 		Font: common|FreeSansBold.ttf
 		Size: 18
+		Ascender: 14
 	BigBold:
 		Font: common|FreeSansBold.ttf
 		Size: 24
+		Ascender: 18
 	Title:
 		Font: ra|ZoodRangmah.ttf
 		Size: 48
+		Ascender: 26
 
 Missions:
 	ra|missions.yaml
@@ -237,7 +246,6 @@ SpriteSequenceFormat: TilesetSpecificSpriteSequence
 		SNOW: .sno
 		INTERIOR: .int
 		DESERT: .des
-        JUNGLE: .jun
 
 ModelSequenceFormat: PlaceholderModelSequence
 
@@ -268,10 +276,10 @@ GameSpeeds:
 		OrderLatency: 6
 
 ColorValidator:
-	TeamColorPresets: ffc9ca, f50606, 98331f, f57606, f7bb06, f861a4, da06f3, ddb8ff, 06f739, cef7b2, 253D8C, 280df6, 2f86f2, 76d2f8, 34ba93, 07941B
+	TeamColorPresets: F5D378, f50606, 98331f, f57606, f7bb06, f861a4, da06f3, ffc9ca, 06f739, cef7b2, D1987C, 253D8C, 2f86f2, 76d2f8, 34ba93, 07941B
 
 ModContent:
-	InstallPromptMessage: Red Alert Plus lite requires artwork and audio from the original game.\n\nQuick Install will automatically download this content (without music\nor videos) from a mirror of the 2008 Red Alert freeware release.\n\nAdvanced Install includes options for downloading the music and for\ncopying the videos and other content from an original game disc.
+	InstallPromptMessage: Red Alert Plus Lite requires artwork and audio from the original game.\n\nQuick Install will automatically download this content (without music\nor videos) from a mirror of the 2008 Red Alert freeware release.\n\nAdvanced Install includes options for downloading the music and for\ncopying the videos and other content from an original game disc.
 	QuickDownload: quickinstall
 	HeaderMessage: Game content may be extracted from the original game discs or an\nexisting digital install. OpenRA can also download the base game\nfiles from an online mirror of the 2008 freeware release of RA.
 	Packages:

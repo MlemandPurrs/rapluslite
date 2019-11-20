@@ -95,9 +95,14 @@ E6:
     -GrantConditionOnPrerequisite@GLOBALREUSABLEENGINEER:
     -Captures:
     -Captures@REUSABLE:
-	Captures@REPLACER:
-		CaptureTypes: building
-		PlayerExperience: 25
+	Captures@SABOTAGE:
+		CaptureTypes: building-sabotage
+		SabotageThreshold: 25
+		SabotageHPRemoval: 25
+		PlayerExperience: 50
+	Captures@CAPTURES:
+		CaptureTypes: building, husk
+		PlayerExperience: 50
 		CaptureDelay: 100
     Passenger:
         PipType: Blue
@@ -596,6 +601,7 @@ DOG.Bomb:
 	Armament:
 		Weapon: DogJaw.Bomber
 		ReloadingCondition: attack-cooldown
+	-AttackFrontal:
 	AttackLeap:
 		Voice: Attack
 		PauseOnCondition: attacking || attack-cooldown
@@ -636,7 +642,7 @@ DOG.Bomb:
 		Condition: triggered
 	GrantConditionOnDeploy:
 		DeployedCondition: triggered
-        DeploySound: dogw5.aud
+		Voice: Attack
 	KillsSelf:
 		RequiresCondition: triggered
 

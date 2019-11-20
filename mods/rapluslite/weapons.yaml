@@ -77,7 +77,6 @@
 	Inherits: 105mm
 	ReloadDelay: 60
 	-Burst:
-	-BurstDelays:
 	Warhead@1Dam: SpreadDamage
 		Versus:
 			Heavy: 115
@@ -108,7 +107,7 @@ LtnkRockets:
 LtnkRockets.elite:
     Inherits: LtnkRockets
     Burst: 2
-    BurstDelays: 4
+    BurstDelays: 8
 
 M1CTank:
 	Inherits: M1Carbine
@@ -513,7 +512,6 @@ EmpBomb:
 			Concrete: 25
 		DamageTypes: Prone50Percent, TriggerProne
 	Warhead@2Eff: CreateEffect
-		ExplosionPalette: tseffect
 		Explosions: pulse_explosion
 		ImpactSounds: ion1.aud
 	Warhead@emp: GrantExternalCondition
@@ -536,7 +534,7 @@ TurretGun:
 
 TurretGun.dual:
 	Inherits: TurretGun
-	ReloadDelay: 40
+	ReloadDelay: 45
 	Burst: 2
 	BurstDelays: 4
 
@@ -680,6 +678,11 @@ StingerAA.elite:
 	ReloadDelay: 65
 	-Burst:
 
+8Inch.gcan:
+    Inherits: 8Inch
+	ReloadDelay: 125
+	-Burst:
+
 Grenade.triple:
     Inherits: Grenade
     Burst: 3
@@ -732,6 +735,20 @@ HeliDepthCharge:
 	Projectile: Bullet
 		Inaccuracy: 64
 
+ChainGun.aa:
+	Inherits: ChainGun
+	Range: 5c0
+	ValidTargets: Air
+	MinRange: 1c256
+	Projectile: Bullet
+		Blockable: false
+	Warhead@1Dam: SpreadDamage
+		ValidTargets: Air
+		Damage: 1250
+	Warhead@2Eff: CreateEffect
+		ValidTargets: Air
+		ImpactActors: false
+
 ChainGun.Yak.Right:
 	Inherits: ChainGun
 	MinRange: 3c0
@@ -743,6 +760,29 @@ ChainGun.Yak.Right:
 
 ChainGun.Yak.Left:
 	Inherits: ChainGun.Yak.Right
+	FirstBurstTargetOffset: -768,-64,0
+
+ChainGun.Yak.AA.Right:
+	Inherits: ChainGun
+	Range: 5c0
+	ValidTargets: Air
+	Projectile: Bullet
+		Blockable: false
+	MinRange: 3c0
+	ReloadDelay: 30
+	Burst: 4
+	BurstDelays: 1
+	Warhead@1Dam: SpreadDamage
+		ValidTargets: Air
+		Damage: 625
+	Warhead@2Eff: CreateEffect
+		ValidTargets: Air
+		ImpactActors: false
+	FirstBurstTargetOffset: -768,64,0
+	FollowingBurstTargetOffset: 256,0,0
+
+ChainGun.Yak.AA.Left:
+	Inherits: ChainGun.Yak.AA.Right
 	FirstBurstTargetOffset: -768,-64,0
 
 MaverickAA:
@@ -877,6 +917,11 @@ HellfireAG.rapid:
 	Burst: 2
 	BurstDelays: 7
 
+HellfireAA.rapid:
+    Inherits: HellfireAA
+	Burst: 2
+	BurstDelays: 7
+	
 BombingRun.dc:
 	ReloadDelay: 60
 	Burst: 5
@@ -929,7 +974,7 @@ Kornet:
 		Speed: 256
 		RangeLimit: 9c204
 	Warhead@1Dam: SpreadDamage
-		Spread: 1c0
+		Spread: 0c768
 		Damage: 5000
 		ValidTargets: Ground
 		Versus:
@@ -1267,3 +1312,7 @@ NukeBomb:
 		InvalidTargets: Vehicle, Structure, Wall, Trees
 		Size: 4
 		Delay: 15
+
+Vulcan.ship:
+	Inherits: Vulcan
+	ReloadDelay: 45
