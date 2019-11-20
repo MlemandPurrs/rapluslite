@@ -1,6 +1,6 @@
 Metadata:
 	Title: Red Alert Plus (Lite)
-	Version: release-20190314
+	Version: release-20191117
 	Website: https://www.openra.net
 	WebIcon32: https://www.openra.net/images/icons/ra_32x32.png
 
@@ -50,7 +50,7 @@ Packages:
 
 MapFolders:
     rapluslite|maps: System
-	  ~^maps/ra/release-20190314: User
+	  ~^maps/ra/release-20191117: User
 
 Rules:
 	ra|rules/misc.yaml
@@ -119,7 +119,7 @@ ChromeLayout:
 	common|chrome/ingame-debug.yaml
 	common|chrome/ingame-debuginfo.yaml
 	common|chrome/ingame-infochat.yaml
-	rapluslite|chrome/mainmenu.yaml
+	common|chrome/mainmenu.yaml
 	common|chrome/settings.yaml
 	common|chrome/credits.yaml
 	common|chrome/lobby.yaml
@@ -180,7 +180,7 @@ Hotkeys:
 	rapluslite|hotkeys.yaml
 
 LoadScreen: LogoStripeLoadScreen
-	Image: ra|uibits/loadscreen.png
+	Image: rapluslite|uibits/loadscreen.png
 	Text: Filling Crates..., Charging Capacitors..., Reticulating Splines..., Planting Trees..., Building Bridges..., Aging Empires..., Compiling EVA..., Constructing Pylons..., Activating Skynet..., Splitting Atoms...
 
 ServerTraits:
