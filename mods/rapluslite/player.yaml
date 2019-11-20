@@ -97,11 +97,11 @@ Player:
 		LeaveNotification: Leave
 	ConquestVictoryConditions:
 	PowerManager:
-        AdviceInterval: 400
+		AdviceInterval: 400
 		SpeechNotification: LowPower
 	AllyRepair:
 	PlayerResources:
-        DefaultCash: 10000
+		DefaultCash: 10000
 		InsufficientFundsNotification: InsufficientFunds
 		CashTickUpNotification: CashTickUp
 		CashTickDownNotification: CashTickDown
@@ -110,7 +110,7 @@ Player:
 	GpsWatcher:
 	Shroud:
 		FogCheckboxDisplayOrder: 3
-        ExploredMapCheckboxEnabled: True
+		ExploredMapCheckboxEnabled: True
 	LobbyPrerequisiteCheckbox@GLOBALBOUNTY:
 		ID: bounty
 		Label: Kill Bounties
@@ -155,12 +155,12 @@ Player:
 		Image: iconchevrons
 		Sequence: veteran
 	ResourceStorageWarning:
-        AdviceInterval: 400
+		AdviceInterval: 400
 	PlayerExperience:
 	ConditionManager:
 	ProvidesPrerequisite@England:
 		Factions: england
-		Prerequisite: player.england    
+		Prerequisite: player.england
 	ProvidesPrerequisite@France:
 		Factions: france
 		Prerequisite: player.france
@@ -175,7 +175,7 @@ Player:
 		Prerequisite: player.greece
 	ProvidesPrerequisite@Turkey:
 		Factions: turkey
-        Prerequisite: player.turkey
+		Prerequisite: player.turkey
 	ProvidesPrerequisite@Russia:
 		Factions: russia
 		Prerequisite: player.russia
@@ -194,40 +194,40 @@ Player:
 	ProvidesPrerequisite@Turkmenistan:
 		Factions: turkmen
 		Prerequisite: player.turkmen
-    GrantConditionOnPrerequisite@England:
+	GrantConditionOnPrerequisite@England:
 		Condition: player.england
 		Prerequisites: player.england
-    GrantConditionOnPrerequisite@France:
+	GrantConditionOnPrerequisite@France:
 		Condition: player.france
 		Prerequisites: player.france
-    GrantConditionOnPrerequisite@Germany:
+	GrantConditionOnPrerequisite@Germany:
 		Condition: player.germany
 		Prerequisites: player.germany
-    GrantConditionOnPrerequisite@Spain:
+	GrantConditionOnPrerequisite@Spain:
 		Condition: player.spain
 		Prerequisites: player.spain
-    GrantConditionOnPrerequisite@Greece:
+	GrantConditionOnPrerequisite@Greece:
 		Condition: player.greece
 		Prerequisites: player.greece
-    GrantConditionOnPrerequisite@Turkey:
+	GrantConditionOnPrerequisite@Turkey:
 		Condition: player.turkey
 		Prerequisites: player.turkey
-    GrantConditionOnPrerequisite@Russia:
+	GrantConditionOnPrerequisite@Russia:
 		Condition: player.russia
 		Prerequisites: player.russia
-    GrantConditionOnPrerequisite@Ukraine:
+	GrantConditionOnPrerequisite@Ukraine:
 		Condition: player.ukraine
 		Prerequisites: player.ukraine
-    GrantConditionOnPrerequisite@Belarus:
+	GrantConditionOnPrerequisite@Belarus:
 		Condition: player.belarus
 		Prerequisites: player.belarus
-    GrantConditionOnPrerequisite@Kazakhstan:
+	GrantConditionOnPrerequisite@Kazakhstan:
 		Condition: player.kazakh
 		Prerequisites: player.kazakh
-    GrantConditionOnPrerequisite@Uzbekistan:
+	GrantConditionOnPrerequisite@Uzbekistan:
 		Condition: player.uzbek
 		Prerequisites: player.uzbek
-    GrantConditionOnPrerequisite@Turkmenistan:
+	GrantConditionOnPrerequisite@Turkmenistan:
 		Condition: player.turkmen
 		Prerequisites: player.turkmen
 	LobbyPrerequisiteCheckbox@GLOBALSCRAPS:

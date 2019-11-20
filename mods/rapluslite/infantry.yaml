@@ -1,75 +1,75 @@
 E1:
-    Buildable:
-        BuildPaletteOrder: 1
-    Armament@PRIMARY:
-        RequiresCondition: !rank-elite
-    Armament@elite:
-        Name: elite
+	Buildable:
+		BuildPaletteOrder: 1
+	Armament@PRIMARY:
+		RequiresCondition: !rank-elite
+	Armament@elite:
+		Name: elite
 		Weapon: M60mg.Inf
-        RequiresCondition: rank-elite
-    AttackFrontal:
-        Armaments: primary, elite
-    Passenger:
-        PipType: Green
+		RequiresCondition: rank-elite
+	AttackFrontal:
+		Armaments: primary, elite
+	Passenger:
+		PipType: Green
 
 E2:
-    Buildable:
-        BuildPaletteOrder: 3
-    Valued:
-        Cost: 150
-    Armament@PRIMARY:
-        RequiresCondition: !rank-elite
-    Armament@GARRISONED:
-        RequiresCondition: !rank-elite
+	Buildable:
+		BuildPaletteOrder: 3
+	Valued:
+		Cost: 150
+	Armament@PRIMARY:
+		RequiresCondition: !rank-elite
+	Armament@GARRISONED:
+		RequiresCondition: !rank-elite
 	Armament@elite:
-        Name: elite
+		Name: elite
 		Weapon: Grenade.triple
 		LocalOffset: 0,0,555
 		FireDelay: 15
-        RequiresCondition: rank-elite
+		RequiresCondition: rank-elite
 	Armament@garrisoned-elite:
 		Name: garrisoned.elite
 		Weapon: Grenade.triple
 		FireDelay: 15
-        RequiresCondition: rank-elite
-    AttackFrontal:
-        Armaments: primary, elite
-    Passenger:
-        PipType: Green
+		RequiresCondition: rank-elite
+	AttackFrontal:
+		Armaments: primary, elite
+	Passenger:
+		PipType: Green
 
 E3:
-    Buildable:
-        BuildPaletteOrder: 2
-    Passenger:
-        PipType: Green
+	Buildable:
+		BuildPaletteOrder: 2
+	Passenger:
+		PipType: Green
 
 E4:
-	Buildable: 
-        Prerequisites: ~barr, ftur, ~!player.ukraine, ~techlevel.low
-        BuildPaletteOrder: 9
-    Armament@PRIMARY:
-        RequiresCondition: !rank-elite
-    Armament@GARRISONED:
-        RequiresCondition: !rank-elite
+	Buildable:
+		Prerequisites: ~barr, ftur, ~!player.ukraine, ~techlevel.low
+		BuildPaletteOrder: 9
+	Armament@PRIMARY:
+		RequiresCondition: !rank-elite
+	Armament@GARRISONED:
+		RequiresCondition: !rank-elite
 	Armament@elite:
-        Name: elite
+		Name: elite
 		Weapon: Flamer.elite
 		LocalOffset: 700,0,500
 		FireDelay: 8
-        RequiresCondition: rank-elite
+		RequiresCondition: rank-elite
 	Armament@garrisonedelite:
 		Name: garrisoned-elite
 		Weapon: Flamer.elite
-        RequiresCondition: rank-elite
-    AttackFrontal:
-        Armaments: primary, elite
-    Passenger:
-        PipType: Green
+		RequiresCondition: rank-elite
+	AttackFrontal:
+		Armaments: primary, elite
+	Passenger:
+		PipType: Green
 
 E4.Ukraine:
 	Inherits: E4
-	Buildable: 
-        Prerequisites: ~barr, dome, ~player.ukraine, ~!barracks.upgraded, ~techlevel.low
+	Buildable:
+		Prerequisites: ~barr, dome, ~player.ukraine, ~!barracks.upgraded, ~techlevel.low
 	ProducibleWithLevel:
 		Prerequisites: techlevel.infonly
 		InitialLevels: 1
@@ -79,9 +79,9 @@ E4.Ukraine:
 
 E4.UkraineR2:
 	Inherits: E4.Ukraine
-	Buildable: 
-        Prerequisites: ~barr, ftur, ~player.ukraine, ~barracks.upgraded, ~techlevel.low
-        Icon: rank2-icon
+	Buildable:
+		Prerequisites: ~barr, ftur, ~player.ukraine, ~barracks.upgraded, ~techlevel.low
+		Icon: rank2-icon
 	ProducibleWithLevel:
 		Prerequisites: techlevel.infonly
 		InitialLevels: 2
@@ -89,12 +89,12 @@ E4.UkraineR2:
 		Image: e4
 
 E6:
-    Buildable:
-        BuildPaletteOrder: 5
-        Description: Infiltrates and captures\nenemy structures.\nCan repair destroyed Bridges.\n  Unarmed
-    -GrantConditionOnPrerequisite@GLOBALREUSABLEENGINEER:
-    -Captures:
-    -Captures@REUSABLE:
+	Buildable:
+		BuildPaletteOrder: 5
+		Description: Infiltrates and captures\nenemy structures.\nCan repair destroyed Bridges.\n  Unarmed
+	-GrantConditionOnPrerequisite@GLOBALREUSABLEENGINEER:
+	-Captures:
+	-Captures@REUSABLE:
 	Captures@SABOTAGE:
 		CaptureTypes: building-sabotage
 		SabotageThreshold: 25
@@ -104,21 +104,21 @@ E6:
 		CaptureTypes: building, husk
 		PlayerExperience: 50
 		CaptureDelay: 100
-    Passenger:
-        PipType: Blue
+	Passenger:
+		PipType: Blue
 
 MEDI:
-    Buildable:
-        BuildPaletteOrder: 3
-    Passenger:
-        PipType: Blue
+	Buildable:
+		BuildPaletteOrder: 3
+	Passenger:
+		PipType: Blue
 
 MECH:
-    Buildable:
-        Prerequisites: ~tent, fix, ~!player.germany, ~techlevel.medium
-        BuildPaletteOrder: 6
-    Passenger:
-        PipType: Blue
+	Buildable:
+		Prerequisites: ~tent, fix, ~!player.germany, ~techlevel.medium
+		BuildPaletteOrder: 6
+	Passenger:
+		PipType: Blue
 
 MECH.Germany:
 	Inherits: MECH
@@ -135,20 +135,20 @@ MECH.Germany:
 	-MapEditorData:
 
 SPY:
-    Buildable:
-        Prerequisites: ~tent, dome, ~!player.england, ~techlevel.medium
-        BuildPaletteOrder: 7
-        Description: Agent of the Intelligence Service.\nCan detect cloaked units and spies.\n  Special Ability: Espionage\nInfiltrates enemy production structures for rank bonus.\nSteals enemy credits from Refineries.\nInfiltrates enemy Power Plants to cut off base power.\nInfiltrates Radar Domes to reset their exploration.\nInfiltrates Tech Centers to unlock your country's Tech Unit.\n  Special Ability: Disguise\nCan disguise as enemy Infantry.\nLoses disguise when attacking.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
+	Buildable:
+		Prerequisites: ~tent, dome, ~!player.england, ~techlevel.medium
+		BuildPaletteOrder: 7
+		Description: Agent of the Intelligence Service.\nCan detect cloaked units and spies.\n  Special Ability: Espionage\nInfiltrates enemy production structures for rank bonus.\nSteals enemy credits from Refineries.\nInfiltrates enemy Power Plants to cut off base power.\nInfiltrates Radar Domes to reset their exploration.\nInfiltrates Tech Centers to unlock your country's Tech Unit.\n  Special Ability: Disguise\nCan disguise as enemy Infantry.\nLoses disguise when attacking.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
 	Armament:
-        RequiresCondition: !rank-elite
-    Armament@elite:
-        Name: elite
+		RequiresCondition: !rank-elite
+	Armament@elite:
+		Name: elite
 		Weapon: SilencedPPK.elite
-        RequiresCondition: rank-elite
-    AttackFrontal:
-        Armaments: primary, elite
-    Passenger:
-        PipType: Yellow
+		RequiresCondition: rank-elite
+	AttackFrontal:
+		Armaments: primary, elite
+	Passenger:
+		PipType: Yellow
 
 SPY.England:
 	Buildable:
@@ -162,37 +162,37 @@ SPY.England:
 	ProducibleWithLevel:
 		Prerequisites: techlevel.infonly
 		InitialLevels: 1
-    -MapEditorData:
+	-MapEditorData:
 
 SPY.England.R2:
-    Inherits: SPY.England
+	Inherits: SPY.England
 	Buildable:
 		Prerequisites: ~tent, dome, ~player.england, ~barracks.upgraded, ~techlevel.medium
-        Icon: rank2-icon
+		Icon: rank2-icon
 	ProducibleWithLevel:
 		Prerequisites: techlevel.infonly
 		InitialLevels: 2
 
 THF:
 	Buildable:
-        BuildPaletteOrder: 6
-        Description: Field operative of the Union.\n  Special Ability: Theft\nSteals enemy credits from Refineries.\nInfiltrates Tech Centers to unlock your country's Tech Unit.\n  Special Ability: Hijacking\nHijacks enemy vehicles.\n  Special Ability: Cloaking\nCloaks when standing still.\n  Unarmed
+		BuildPaletteOrder: 6
+		Description: Field operative of the Union.\n  Special Ability: Theft\nSteals enemy credits from Refineries.\nInfiltrates Tech Centers to unlock your country's Tech Unit.\n  Special Ability: Hijacking\nHijacks enemy vehicles.\n  Special Ability: Cloaking\nCloaks when standing still.\n  Unarmed
 	Health:
 		HP: 4500
-    Passenger:
-        PipType: Blue
+	Passenger:
+		PipType: Blue
 
 E7:
-    Buildable:
+	Buildable:
 		BuildLimit: 1
 		Description: Elite commando infantry.\nArmed with dual pistols and C4.\nMaximum 1 can be trained.\n  Special ability: Amphibian\nCan swim through sea and river.\n  Strong vs Infantry, Buildings\n  Weak vs Vehicles, Aircraft
-        BuildPaletteOrder: 8
-        Prerequisites: ~tent, atek, ~infantry.allies, ~techlevel.high
+		BuildPaletteOrder: 8
+		Prerequisites: ~tent, atek, ~infantry.allies, ~techlevel.high
 	Mobile:
 		Locomotor: foot-amphibious
 		Speed: 71
 		Voice: Move
-    GrantConditionOnTerrain:
+	GrantConditionOnTerrain:
 		TerrainTypes: Water, River
 		Condition: swimming
 	Targetable:
@@ -212,37 +212,37 @@ E7:
 		StandSequences: swim_stand
 	WithDeathAnimation:
 		RequiresCondition: !swimming
-    # this doesnt accept condition, ühüü ;_;
+	# this doesnt accept condition, ühüü ;_;
 	# PortableChrono@elite:
 	#	 ChargeDelay: 125
-    #    RequiresCondition: rank-elite
-    #    PauseOnCondition: empdisable 
-    Passenger:
-        PipType: Red
+	#    RequiresCondition: rank-elite
+	#    PauseOnCondition: empdisable 
+	Passenger:
+		PipType: Red
 
 VOLK:
-    Inherits: GNRL
-    Buildable:
+	Inherits: GNRL
+	Buildable:
 		Queue: Infantry
 		BuildAtProductionType: Soldier
-        Prerequisites: ~barr, stek, ~infantry.soviet, ~techlevel.high
+		Prerequisites: ~barr, stek, ~infantry.soviet, ~techlevel.high
 		BuildPaletteOrder: 8
 		BuildLimit: 1
 		Description: Elite commando infantry armed with anti-tank gun and C4.\nMaximum 1 can be trained\n  Special ability: Durability\nCannot be crushed unless its Mammoth Tank\n  Strong vs Infantry, Buildings\n  Weak vs Vehicles, Aircraft
-    Valued:
-        Cost: 1500
-    Tooltip:
-        Name: Volkov
-    Health:
-        HP: 12000
-    Armor:
-        Type: Heavy
-    RevealsShroud:
-        Range: 6c0
-    Demolition:
+	Valued:
+		Cost: 1500
+	Tooltip:
+		Name: Volkov
+	Health:
+		HP: 12000
+	Armor:
+		Type: Heavy
+	RevealsShroud:
+		Range: 6c0
+	Demolition:
 		DetonationDelay: 45
 		Voice: Demolish
-    Mobile:
+	Mobile:
 		Speed: 62
 		Voice: Move
 	Guard:
@@ -250,22 +250,22 @@ VOLK:
 	Passenger:
 		PipType: Red
 		Voice: Move
-    AttackFrontal:
-    Voiced:
-        VoiceSet: VolkovVoice
-    Armament:
-        Weapon: VolkovGun
+	AttackFrontal:
+	Voiced:
+		VoiceSet: VolkovVoice
+	Armament:
+		Weapon: VolkovGun
 	Armament@GARRISONED:
 		Name: garrisoned
 		Weapon: VolkovGun
 		MuzzleSequence: garrison-muzzle
-    DetectCloaked:
-        CloakTypes: Cloak, Hijacker
+	DetectCloaked:
+		CloakTypes: Cloak, Hijacker
 	Chronoshiftable:
 	ProducibleWithLevel:
 		Prerequisites: infantry.upgraded
-    RenderSprites:
-        Image: VOLK
+	RenderSprites:
+		Image: VOLK
 	ExternalCondition@PRODUCED:
 		Condition: produced
 	VoiceAnnouncement:
@@ -278,7 +278,7 @@ VOLK:
 		Categories: Infantry
 	ProducibleWithLevel:
 		Prerequisites: barracks.upgraded
-    #summon Chitzkoi at elite ?
+	#summon Chitzkoi at elite ?
 
 SNIP:
 	Inherits: ^Soldier
@@ -329,7 +329,7 @@ SNIP:
 		IsPlayerPalette: true
 		UncloakOn: Attack, Unload, Heal, Dock, SelfHeal, Demolish, Move
 		PauseOnCondition: !(!cloak-force-disabled)
-        RequiresCondition: !rank-elite
+		RequiresCondition: !rank-elite
 	Cloak@elite:
 		InitialDelay: 250
 		CloakDelay: 120
@@ -338,7 +338,7 @@ SNIP:
 		IsPlayerPalette: true
 		UncloakOn: Attack, Unload, Dock, Demolish
 		PauseOnCondition: !(!cloak-force-disabled)
-        RequiresCondition: rank-elite
+		RequiresCondition: rank-elite
 	GrantConditionOnDamageState@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
@@ -366,27 +366,27 @@ GREN:
 		Queue: Infantry
 		BuildAtProductionType: Soldier
 		BuildPaletteOrder: 9
-        Prerequisites: ~tent, atek, ~infantry.allies, ~player.france, ~techlevel.high
+		Prerequisites: ~tent, atek, ~infantry.allies, ~player.france, ~techlevel.high
 		Description: Infantry armed with long-range grenade launcher.\n  Strong vs Infantry, Buildings\n  Weak vs Vehicles, Aircraft
 	Armament@PRIMARY:
 		Weapon: GrenadeLauncher
 		LocalOffset: 100,0,500
-        RequiresCondition: !rank-elite
+		RequiresCondition: !rank-elite
 	Armament@GARRISONED:
 		Name: garrisoned
 		Weapon: GrenadeLauncher
-        RequiresCondition: !rank-elite
-    Armament@elite:
-        Name: elite
+		RequiresCondition: !rank-elite
+	Armament@elite:
+		Name: elite
 		Weapon: 155mm
 		LocalOffset: 100,0,500
-        RequiresCondition: rank-elite
- 	Armament@garrisonedelite:
+		RequiresCondition: rank-elite
+	Armament@garrisonedelite:
 		Name: garrisoned.elite
 		Weapon: 155mm
-        RequiresCondition: rank-elite
+		RequiresCondition: rank-elite
 	AttackFrontal:
-        Armaments: primary, elite
+		Armaments: primary, elite
 	Explodes:
 		Weapon: UnitExplodeSmall
 		EmptyWeapon: UnitExplodeSmall
@@ -421,17 +421,17 @@ MGI:
 		Description: Infantry equipped with a rapid firing Machine Gun.\n  Strong vs Infantry\n  Weak vs Vehicles, Defenses
 	Armament@PRIMARY:
 		Weapon: M60mg.Inf
-        RequiresCondition: !rank-elite
+		RequiresCondition: !rank-elite
 	Armament@GARRISONED:
 		Name: garrisoned
 		Weapon: Vulcan
 		MuzzleSequence: garrison-muzzle
-        RequiresCondition: !rank-elite
-    Armament@elite:
-        Weapon: Vulcan
-        RequiresCondition: rank-elite        
+		RequiresCondition: !rank-elite
+	Armament@elite:
+		Weapon: Vulcan
+		RequiresCondition: rank-elite
 	AttackFrontal:
-        Armaments: primary, elite
+		Armaments: primary, elite
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
 		RequiresCondition: !parachute
@@ -456,7 +456,7 @@ ATGM:
 		Prerequisites: ~tent, atek, ~infantry.allies, ~player.greece, ~techlevel.high
 		Queue: Infantry
 		BuildAtProductionType: Soldier
-		Description: Anti-armor rocket infantry.\nCannot attack Air units.\n Strong vs Tanks, Vehicles\n Weak vs everything Else 
+		Description: Anti-armor rocket infantry.\nCannot attack Air units.\n Strong vs Tanks, Vehicles\n Weak vs everything Else
 	Mobile:
 		Speed: 42
 	Health:
@@ -547,26 +547,26 @@ RMBO:
 		ValidDamageStates: Critical
 
 SHOK:
-    Buildable:
-        BuildPaletteOrder: 7
-        Prerequisites: ~barr, stek, ~player.russia, ~techlevel.high
+	Buildable:
+		BuildPaletteOrder: 7
+		Prerequisites: ~barr, stek, ~player.russia, ~techlevel.high
 	Valued:
 		Cost: 450
-    Armament@PRIMARY:
-        RequiresCondition: !rank-elite
-    Armament@GARRISONED:
-        RequiresCondition: !rank-elite
+	Armament@PRIMARY:
+		RequiresCondition: !rank-elite
+	Armament@GARRISONED:
+		RequiresCondition: !rank-elite
 	Armament@elite:
-        Name: elite
+		Name: elite
 		Weapon: PortaTesla.elite
 		LocalOffset: 427,0,341
-        RequiresCondition: rank-elite
+		RequiresCondition: rank-elite
 	Armament@garrisoned-elite:
 		Name: garrisoned-elite
 		Weapon: PortaTesla.elite
-        RequiresCondition: rank-elite
-    AttackFrontal:
-        Armaments: primary, elite
+		RequiresCondition: rank-elite
+	AttackFrontal:
+		Armaments: primary, elite
 	Passenger:
 		PipType: Red
 
@@ -591,7 +591,7 @@ DOG.Bomb:
 	Mobile:
 		Speed: 71
 		Voice: Move
-		RequiresCondition: !attack-cooldown
+		PauseOnCondition: !(!attack-cooldown)
 	Guard:
 		Voice: Move
 	Passenger:
@@ -670,12 +670,12 @@ E5:
 		LocalOffset: 341,0,256
 		FireDelay: 3
 		MuzzleSequence: muzzle
-        MuzzlePalette: desert
+		MuzzlePalette: desert
 	Armament@GARRISONED:
 		Name: garrisoned
 		Weapon: Chemspray
-        MuzzleSequence: muzzle
-        MuzzlePalette: desert
+		MuzzleSequence: muzzle
+		MuzzlePalette: desert
 	TakeCover:
 		ProneOffset: 160,0,-288
 	Mobile:
@@ -745,12 +745,12 @@ RPG:
 		BuildPaletteOrder: 7
 		Prerequisites: ~barr, ftur, stek, ~player.uzbek, ~techlevel.medium
 		#   Prerequisites: ~disabled
-        Queue: Infantry
+		Queue: Infantry
 		BuildAtProductionType: Soldier
 		Description: Soldier armed with thermobaric Napalm rockets.\nCannot attack Air units.\n  Strong vs clustered Infantry, Structures\n  Weak vs Anti-Infantry measures
 	Selectable:
 		Class: E3
-    Health:
+	Health:
 		HP: 5500
 	AutoTarget:
 		ScanRadius: 6
@@ -810,24 +810,24 @@ TECN:
 		Name: Technician
 	Passenger:
 		Weight: 1
-        PipType: Blue
+		PipType: Blue
 	RenderSprites:
 		Image: TECN
 
 DOG:
-    Buildable:
-        BuildPaletteOrder: 4
-        Prerequisites: kenn, ~!player.turkmen, ~techlevel.infonly
+	Buildable:
+		BuildPaletteOrder: 4
+		Prerequisites: kenn, ~!player.turkmen, ~techlevel.infonly
 	Passenger:
 		PipType: Green
 
 DOG.Turkmen:
-    Inherits: DOG
-    Buildable:
-        Prerequisites: kenn, ~player.turkmen, ~techlevel.infonly
+	Inherits: DOG
+	Buildable:
+		Prerequisites: kenn, ~player.turkmen, ~techlevel.infonly
 		Description: Anti-infantry unit.\nCan detect cloaked units and spies.\n  Special ability: Amphibian\nCan swim through sea and river.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
 	Mobile:
-		Locomotor: foot-amphibious    
+		Locomotor: foot-amphibious
 	GrantConditionOnTerrain:
 		TerrainTypes: Water, River
 		Condition: swimming
@@ -849,12 +849,12 @@ DOG.Turkmen:
 		StandSequences: swim_stand
 	WithDeathAnimation:
 		RequiresCondition: !swimming
-    RenderSprites:
-        Image: dog
+	RenderSprites:
+		Image: dog
 
 Ant:
 	Buildable:
-        Prerequisites: ~disabled
+		Prerequisites: ~disabled
 	AttackWander:
 		WanderMoveRadius: 30
 	RenderSprites:
@@ -869,7 +869,7 @@ PLOT:
 	-ScaredyCat:
 	Passenger:
 		Weight: 1
-        PipType: Blue
+		PipType: Blue
 
 PLOT.R1:
 	Inherits: PLOT
@@ -888,7 +888,7 @@ PLOT.R2:
 	DeliversExperience:
 	RenderSprites:
 		Image: plot
-    -MapEditorData:
+	-MapEditorData:
 
 PLOT.R3:
 	Inherits: PLOT
@@ -898,7 +898,7 @@ PLOT.R3:
 	DeliversExperience:
 	RenderSprites:
 		Image: plot
-    -MapEditorData:
+	-MapEditorData:
 
 PLOT.RE:
 	Inherits: PLOT
@@ -908,7 +908,7 @@ PLOT.RE:
 	DeliversExperience:
 	RenderSprites:
 		Image: plot
-    -MapEditorData:
+	-MapEditorData:
 
 STNG:
 	Inherits: ^Soldier
@@ -926,7 +926,7 @@ STNG:
 		Description: Anti-aircraft rocket infantry.\nCannot attack Ground units.\n  Strong vs Aircraft\n  Weak vs everything Else
 	Selectable:
 		Class: STNG
-    Mobile:
+	Mobile:
 		Speed: 50
 	Health:
 		HP: 6000
@@ -965,7 +965,7 @@ MARK:
 		Description: Infantry armed with an Sniper rifle.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
 	Health:
 		HP: 5000
-	Passenger
+	Passenger:
 		PipType: Red
 	RevealsShroud:
 		Range: 6c0
@@ -986,5 +986,5 @@ MARK:
 	-MustBeDestroyed:
 	ProducibleWithLevel:
 		Prerequisites: barracks.upgraded
-    RenderSprites:
-        Image: e1sniper
+	RenderSprites:
+		Image: e1sniper

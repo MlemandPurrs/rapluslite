@@ -680,8 +680,10 @@ hsam.husk:
 
 vgate:
     Inherits: emp-overlay
-	make:
+	open:
+		Frames: 6, 5, 4, 3, 2, 1, 0
 		Length: 7
+		ZOffset: -1c511
 	idle:
 		Frames: 6, 5, 4, 3, 2, 1, 0
 		Length: 7
@@ -694,8 +696,10 @@ vgate:
 
 hgate:
     Inherits: emp-overlay
-	make:
+	open:
+		Frames: 6, 5, 4, 3, 2, 1, 0
 		Length: 7
+		ZOffset: -1c511
 	idle:
 		Frames: 6, 5, 4, 3, 2, 1, 0
 		Length: 7

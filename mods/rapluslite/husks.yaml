@@ -30,7 +30,7 @@ HARV.Belarus.FullHusk:
 		IntoActor: harv.belarus
 	RenderSprites:
 		Image: hhusk.soviet
-    -MapEditorData:
+	-MapEditorData:
 
 HARV.Belarus.EmptyHusk:
 	Inherits: ^Husk
@@ -42,7 +42,7 @@ HARV.Belarus.EmptyHusk:
 		IntoActor: harv.belarus
 	RenderSprites:
 		Image: hhusk2.soviet
-    -MapEditorData:
+	-MapEditorData:
 
 1TNK.England.Husk:
 	Inherits: ^Husk
@@ -763,8 +763,8 @@ GUN.Husk:
 	Turreted:
 		TurnSpeed: 12
 		InitialFacing: 56
-    -WithSpriteBody:        
-    WithEmbeddedTurretSpriteBody:
+	-WithSpriteBody:
+	WithEmbeddedTurretSpriteBody:
 	Tooltip:
 		Name: Gun Turret (Destroyed)
 
@@ -773,8 +773,8 @@ HGUN.Husk:
 	Turreted:
 		TurnSpeed: 12
 		InitialFacing: 56
-    -WithSpriteBody:
-    WithEmbeddedTurretSpriteBody:
+	-WithSpriteBody:
+	WithEmbeddedTurretSpriteBody:
 	Tooltip:
 		Name: Heavy Turret (Destroyed)
 
@@ -790,8 +790,8 @@ AGUN.Husk:
 	Turreted:
 		TurnSpeed: 15
 		InitialFacing: 224
-    -WithSpriteBody:
-    WithEmbeddedTurretSpriteBody:
+	-WithSpriteBody:
+	WithEmbeddedTurretSpriteBody:
 	Interactable:
 		Bounds: 24,24
 	Tooltip:

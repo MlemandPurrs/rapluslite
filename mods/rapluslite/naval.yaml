@@ -1,40 +1,40 @@
 LST:
-    Buildable:
-        BuildPaletteOrder: 1
-        Description: General-purpose naval transport.\nCan carry up to 18 Infantry and Tanks.\nGets slowed down to half-speed\nwhen cargo occupied gets above 8.\n  Unarmed
+	Buildable:
+		BuildPaletteOrder: 1
+		Description: General-purpose naval transport.\nCan carry up to 18 Infantry and Tanks.\nGets slowed down to half-speed\nwhen cargo occupied gets above 8.\n  Unarmed
 	Cargo:
 		MaxWeight: 16
 		PipCount: 16
-        PassengerConditions:
-            mgg: mgg-inside
-            dtrk: demo-inside
-        LoadedCondition: Loaded
+		PassengerConditions:
+			mgg: mgg-inside
+			dtrk: demo-inside
+		LoadedCondition: Loaded
 	RepairableNear:
-		RepairActors: syrd, spen
+		RepairActors: syrd, spen, spen.russia
 	CreatesShroud:
 		Range: 6c0
-        RequiresCondition: mgg-inside
-    RenderShroudCircle:
-    #    RequiresCondition: !mgg-inside
-    # Jamming still not conditional...
+		RequiresCondition: mgg-inside
+	RenderShroudCircle:
+	#    RequiresCondition: !mgg-inside
+	# Jamming still not conditional...
 	# JamsMissiles:
 	#	Range: 5c0
 	#	DeflectionStances: Neutral, Enemy
-    #    RequiresCondition: mrj-inside
+	#    RequiresCondition: mrj-inside
 	# RenderJammerCircle:
-    #    RequiresCondition: mrj-inside
-    Explodes@demotruck:
+	#    RequiresCondition: mrj-inside
+	Explodes@demotruck:
 		Weapon: MiniNuke
 		EmptyWeapon: MiniNuke
 		DamageSource: Killer
-        RequiresCondition: demo-inside
+		RequiresCondition: demo-inside
 	SpeedMultiplier@HALFCAPACITY:
 		RequiresCondition: Loaded >= 8
 		Modifier: 50
 
 PT:
-    Buildable:
-        BuildPaletteOrder: 2
+	Buildable:
+		BuildPaletteOrder: 2
 	-Turreted:
 	Turreted@PRIMARY:
 		Turret: primary
@@ -46,30 +46,30 @@ PT:
 		Offset: -461,0,18
 	Armament@PRIMARY:
 		Turret: primary
-        PauseOnCondition: empdisable
-        RequiresCondition: !rank-elite
+		PauseOnCondition: empdisable
+		RequiresCondition: !rank-elite
 	Armament@SECONDARY:
 		Turret: secondary
-        PauseOnCondition: empdisable
-    Armament@TERTIARY:
+		PauseOnCondition: empdisable
+	Armament@TERTIARY:
 		Name: tertiary
-        Turret: secondary
+		Turret: secondary
 		Weapon: M60mg
-        LocalOffset: 128,0,43
+		LocalOffset: 128,0,43
 		MuzzleSequence: mg-muzzle
-        PauseOnCondition: empdisable
-    Armament@elite:
-        Name: elite
-        Turret: primary
+		PauseOnCondition: empdisable
+	Armament@elite:
+		Name: elite
+		Turret: primary
 		Weapon: 2Inch.elite
 		LocalOffset: 208,0,48
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
-        RequiresCondition: rank-elite
+		PauseOnCondition: empdisable
+		RequiresCondition: rank-elite
 	AttackTurreted:
-        Armaments: primary, secondary, tertiary, elite
+		Armaments: primary, secondary, tertiary, elite
 		Turrets: primary, secondary
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
 	-WithSpriteTurret:
 	WithSpriteTurret@PRIMARY:
 		Turret: primary
@@ -79,7 +79,7 @@ PT:
 		Sequence: turret-dc
 
 RSHP:
-    Inherits: ^Ship
+	Inherits: ^Ship
 	Buildable:
 		Queue: Ship
 		BuildAtProductionType: Boat
@@ -107,16 +107,16 @@ RSHP:
 	Turreted:
 		TurnSpeed: 7
 		Offset: -461,0,150
-    Armament:
+	Armament:
 		Weapon: Repair
 		Cursor: repair
 		OutsideRangeCursor: repair
 		TargetStances: Ally
 		ForceTargetStances: None
 		Turret: primary
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
 	AttackTurreted:
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
 	SelectionDecorations:
 	WithSpriteTurret:
 	DetectCloaked:
@@ -134,13 +134,13 @@ RSHP:
 		RearmActors:
 	MineImmune:
 	AmmoPool:
-		Armaments: 
+		Armaments:
 		Ammo: 3
 		RearmSound: minelay1.aud
 	ReloadAmmoPool:
 		Delay: 300
 		Count: 1
-        Sound: minelay1.aud
+		Sound: minelay1.aud
 		RequiresCondition: replenishsmine
 	WithDecoration@minereplenish:
 		RequiresSelection: true
@@ -153,9 +153,9 @@ RSHP:
 		Condition: replenishsmine
 
 DD:
-    Buildable:
-        BuildPaletteOrder: 3
-        Prerequisites: ~syrd, dome, ~!player.germany, ~techlevel.medium
+	Buildable:
+		BuildPaletteOrder: 3
+		Prerequisites: ~syrd, dome, ~!player.germany, ~techlevel.medium
 	Valued:
 		Cost: 900
 	-Turreted:
@@ -169,36 +169,36 @@ DD:
 		Offset: -761,0,128
 	Armament@PRIMARY:
 		Turret: primary
-        PauseOnCondition: empdisable
-        RequiresCondition: !rank-elite
+		PauseOnCondition: empdisable
+		RequiresCondition: !rank-elite
 	Armament@SECONDARY:
-        Name: secondary
+		Name: secondary
 		Turret: secondary
 		Weapon: DepthChargeDual
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
 	Armament@TERTIARY:
-        Name: tertiary
+		Name: tertiary
 		Turret: primary
-        PauseOnCondition: empdisable
-        RequiresCondition: !rank-elite
-    Armament@primary-elite:
-        Name: primary.elite
+		PauseOnCondition: empdisable
+		RequiresCondition: !rank-elite
+	Armament@primary-elite:
+		Name: primary.elite
 		Weapon: Stinger.elite
-        Turret: primary
+		Turret: primary
 		LocalOffset: 0,-150,0, 0,-100,0, 0,100,0, 0,150,0
 		LocalYaw: 64, -64
-        RequiresCondition: rank-elite
-    Armament@secondary-elite:
+		RequiresCondition: rank-elite
+	Armament@secondary-elite:
 		Name: aa.elite
 		Weapon: StingerAA.elite
-        Turret: primary
+		Turret: primary
 		LocalOffset: 0,-150,0, 0,-100,0, 0,100,0, 0,150,0
 		LocalYaw: 64, -64
-        RequiresCondition: rank-elite
+		RequiresCondition: rank-elite
 	AttackTurreted:
-        Armaments: primary, secondary, tertiary, primary.elite, aa.elite
+		Armaments: primary, secondary, tertiary, primary.elite, aa.elite
 		Turrets: primary, secondary
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
 	-WithSpriteTurret:
 	WithSpriteTurret@PRIMARY:
 		Turret: primary
@@ -206,18 +206,18 @@ DD:
 	WithSpriteTurret@SECONDARY:
 		Turret: secondary
 		Sequence: turret-dc
-    WithMuzzleOverlay:
+	WithMuzzleOverlay:
 
 DD.Germany:
-    Inherits: DD
-    Buildable:
-        Prerequisites: ~syrd, dome, ~player.germany, ~techlevel.medium
-    RenderSprites:
-        Image: dd
+	Inherits: DD
+	Buildable:
+		Prerequisites: ~syrd, dome, ~player.germany, ~techlevel.medium
+	RenderSprites:
+		Image: dd
 	ProducibleWithLevel:
 		Prerequisites: techlevel.infonly
 		InitialLevels: 1
-    -MapEditorData:
+	-MapEditorData:
 
 BSHP:
 	Inherits: ^Ship
@@ -247,62 +247,62 @@ BSHP:
 	RevealsShroud@GAPGEN:
 		Range: 5c0
 	Turreted@PRIMARY:
-        Turret: primary
+		Turret: primary
 		TurnSpeed: 3
 		Offset: 469,0,128
-    Turreted@SECONDARY:
+	Turreted@SECONDARY:
 		Turret: secondary
 		TurnSpeed: 5
 		Offset: -761,0,128
 	Armament@PRIMARY:
-        Turret: primary
+		Turret: primary
 		Weapon: 8Inch.singular
-        LocalOffset: 480,0,40
+		LocalOffset: 480,0,40
 		Recoil: 85
 		RecoilRecovery: 34
-        PauseOnCondition: empdisable
-        MuzzleSequence: muzzle
+		PauseOnCondition: empdisable
+		MuzzleSequence: muzzle
 		RequiresCondition: !rank-elite
 	Armament@SECONDARY:
-        Name: secondary
-        Turret: secondary
+		Name: secondary
+		Turret: secondary
 		Weapon: DepthCharge
-        PauseOnCondition: empdisable
-     Armament@TERTIARY:
+		PauseOnCondition: empdisable
+	Armament@TERTIARY:
 		Name: tertiary
-        Turret: secondary
+		Turret: secondary
 		Weapon: Vulcan.ship
-        LocalOffset: 128,0,43
+		LocalOffset: 128,0,43
 		MuzzleSequence: mg-muzzle
 	Armament@ELITE:
 		Name: primary.elite
-        Turret: primary
+		Turret: primary
 		Weapon: 8Inch
-        LocalOffset: 480,0,40
+		LocalOffset: 480,0,40
 		Recoil: 85
 		RecoilRecovery: 34
-        PauseOnCondition: empdisable
-        MuzzleSequence: muzzle
+		PauseOnCondition: empdisable
+		MuzzleSequence: muzzle
 		RequiresCondition: rank-elite
 	AttackTurreted:
-        Armaments: primary, secondary, primary.elite, tertiary
+		Armaments: primary, secondary, primary.elite, tertiary
 		Turrets: primary, secondary
 		TargetFrozenActors: True
 		ForceFireIgnoresActors: True
-        PauseOnCondition: empdisable    
+		PauseOnCondition: empdisable
 	SelectionDecorations:
 	WithSpriteTurret@PRIMARY:
 		Turret: primary
 		Sequence: turret
 		RequiresCondition: !rank-elite
 	WithSpriteTurret@PRIMARYELITE:
-        Sequence: turret-elite
+		Sequence: turret-elite
 		Turret: primary
-        RequiresCondition: rank-elite
+		RequiresCondition: rank-elite
 	WithSpriteTurret@SECONDARY:
 		Turret: secondary
 		Sequence: turret-dc
-    WithMuzzleOverlay:
+	WithMuzzleOverlay:
 	DetectCloaked:
 		CloakTypes: Underwater
 		Range: 4c0
@@ -311,57 +311,57 @@ BSHP:
 		DecorationBounds: 38,38
 
 CA:
-    Buildable:
-        BuildPaletteOrder: 4
-        BuildDurationModifier: 60
+	Buildable:
+		BuildPaletteOrder: 4
+		BuildDurationModifier: 60
 	Valued:
 		Cost: 2000
-    Armament@PRIMARY:
-        PauseOnCondition: empdisable
-        RequiresCondition: !rank-elite
-    Armament@SECONDARY:
-        PauseOnCondition: empdisable
-        RequiresCondition: !rank-elite
-    Armament@primary-elite:
-        Name: elite.primary
+	Armament@PRIMARY:
+		PauseOnCondition: empdisable
+		RequiresCondition: !rank-elite
+	Armament@SECONDARY:
+		PauseOnCondition: empdisable
+		RequiresCondition: !rank-elite
+	Armament@primary-elite:
+		Name: elite.primary
 		Turret: primary
 		Weapon: 8Inch.elite
 		LocalOffset: 480,-100,40, 480,0,40, 480,100,40
 		Recoil: 171
 		RecoilRecovery: 34
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
-        RequiresCondition: rank-elite
-    Armament@secondary-elite:
-        Name: elite.secondary
+		PauseOnCondition: empdisable
+		RequiresCondition: rank-elite
+	Armament@secondary-elite:
+		Name: elite.secondary
 		Turret: secondary
 		Weapon: 8Inch.elite
 		LocalOffset: 480,-100,40, 480,0,40, 480,100,40
 		Recoil: 171
 		RecoilRecovery: 34
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
-        RequiresCondition: rank-elite
-    AttackTurreted:
-        Armaments: primary, secondary, elite.primary, elite.secondary
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
+		RequiresCondition: rank-elite
+	AttackTurreted:
+		Armaments: primary, secondary, elite.primary, elite.secondary
+		PauseOnCondition: empdisable
 	WithSpriteTurret@PRIMARY:
 		Turret: primary
-        RequiresCondition: !rank-elite
+		RequiresCondition: !rank-elite
 	WithSpriteTurret@SECONDARY:
 		Turret: secondary
-        RequiresCondition: !rank-elite
+		RequiresCondition: !rank-elite
 	WithSpriteTurret@PRIMARYELITE:
-        Sequence: turret-elite
+		Sequence: turret-elite
 		Turret: primary
-        RequiresCondition: rank-elite
+		RequiresCondition: rank-elite
 	WithSpriteTurret@SECONDARYELITE:
-        Sequence: turret-elite
+		Sequence: turret-elite
 		Turret: secondary
-        RequiresCondition: rank-elite
+		RequiresCondition: rank-elite
 	RenderRangeCircle:
-    ReloadArmamentsBar:
-        Color: FFFF00
+	ReloadArmamentsBar:
+		Color: FFFF00
 
 CARR:
 	Inherits: ^Ship
@@ -451,33 +451,33 @@ CARR.Deployed:
 	Targetable:
 		TargetTypes: Ground, Water, Ship
 	WithResupplyAnimation:
-    -MapEditorData:
+	-MapEditorData:
 	SelfHealing:
 		Step: -100
 		Delay: 3
 		HealIfBelow: 100
 		DamageCooldown: 0
-        RequiresCondition: disabled
+		RequiresCondition: disabled
 
 SS:
-    Buildable:
-        BuildPaletteOrder: 2
-        Description: Submerged anti-ship unit\narmed with torpedoes.\nCan detect other submarines.\n  Strong vs Naval units\n  Weak vs Ground units, Aircraft\n  Special Ability: Submerge\nCan dive underwater to become invisible\nmove unseen and avoid damage of most weapons.\nCan be manually ordered to surface for Repairs.
-        Prerequisites: ~spen, ~!player.turkmen, ~techlevel.low
+	Buildable:
+		BuildPaletteOrder: 2
+		Description: Submerged anti-ship unit\narmed with torpedoes.\nCan detect other submarines.\n  Strong vs Naval units\n  Weak vs Ground units, Aircraft\n  Special Ability: Submerge\nCan dive underwater to become invisible\nmove unseen and avoid damage of most weapons.\nCan be manually ordered to surface for Repairs.
+		Prerequisites: ~spen, ~!player.turkmen, ~techlevel.low
 	Valued:
 		Cost: 775
-    Armament:
-        PauseOnCondition: empdisable
-        RequiresCondition: !rank-elite
+	Armament:
+		PauseOnCondition: empdisable
+		RequiresCondition: !rank-elite
 	Armament@elite:
-        Name: elite
+		Name: elite
 		Weapon: TorpTube.elite
-        LocalOffset: 0,-171,0, 0,171,0
+		LocalOffset: 0,-171,0, 0,171,0
 		FireDelay: 2
-        RequiresCondition: rank-elite
-    AttackFrontal:
-        Armaments: primary, elite
-        PauseOnCondition: empdisable
+		RequiresCondition: rank-elite
+	AttackFrontal:
+		Armaments: primary, elite
+		PauseOnCondition: empdisable
 	RevealsShroud:
 		Range: 6c0
 		RequiresCondition: !underwater
@@ -500,34 +500,34 @@ SS:
 		Palette: submerged
 		UncloakOn: Attack, Heal, Dock, SelfHeal, Demolish
 		PauseOnCondition: cloak-force-disabled || shallowcrossing || empdisable || minehit
-        RequiresCondition: !deployed
+		RequiresCondition: !deployed
 	Targetable:
 		TargetTypes: Ground, Water, Ship, Submarine, SeaDetonateAttack
 		RequiresCondition: !underwater
 	Targetable@UNDERWATER:
 		TargetTypes: Underwater, Submarine, SeaDetonateAttack
 		RequiresCondition: underwater
-    Targetable@REPAIR:
+	Targetable@REPAIR:
 		RequiresCondition: !underwater && damaged
 		TargetTypes: Repair
 	GrantConditionOnTerrain@CROSSINGFORD:
 		Condition: shallowcrossing
 		TerrainTypes: Shallow
-    GrantConditionOnDeploy:
-        DeployedCondition: deployed
+	GrantConditionOnDeploy:
+		DeployedCondition: deployed
 	ExternalCondition@MINEHIT:
 		Condition: minehit
 
 SS.Turkmen:
-    Inherits: SS
-    Buildable:
-        Prerequisites: ~spen, ~player.turkmen, ~techlevel.low
-    RenderSprites:
-        Image: ss
+	Inherits: SS
+	Buildable:
+		Prerequisites: ~spen, ~player.turkmen, ~techlevel.low
+	RenderSprites:
+		Image: ss
 	ProducibleWithLevel:
 		Prerequisites: techlevel.infonly
 		InitialLevels: 1
-    -MapEditorData:
+	-MapEditorData:
 
 SS.AG:
 	Inherits: SS
@@ -546,13 +546,13 @@ SS.AG:
 	Mobile:
 		TurnSpeed: 3
 		Speed: 42
-		RequiresCondition: !notmobile && !empdisable
+		PauseOnCondition: !(!notmobile && !empdisable)
 	Armament@SECONDARY:
 		Name: secondary
 		Weapon: GrenadeLauncher.sub
 		LocalOffset: 612,0,192
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
 	AttackFrontal:
 		Armaments: primary, elite, secondary
 	WithMuzzleOverlay:
@@ -567,7 +567,7 @@ SS.AG:
 		Types: Infantry
 		PassengerFacing: 0
 		LoadingCondition: notmobile
-    -Cloak:
+	-Cloak:
 	Cloak:
 		CloakTypes: Underwater
 		InitialDelay: 0
@@ -578,27 +578,27 @@ SS.AG:
 		Palette: submerged
 		UncloakOn: Attack, Heal, Unload, Dock, SelfHeal, Demolish
 		PauseOnCondition: cloak-force-disabled || shallowcrossing || empdisable || minehit
-    -GrantConditionOnDeploy:
+	-GrantConditionOnDeploy:
 
 MSUB:
-    Buildable:
-        BuildPaletteOrder: 4
+	Buildable:
+		BuildPaletteOrder: 4
 		Description: Submerged anti-ground siege unit.\nCan detect other submarines.\n  Strong vs Buildings, Ground units, Aircraft\n  Weak vs Naval units\n  Special Ability: Submerge\nCan dive underwater to become invisible\nmove unseen and avoid damage of most weapons.\nCan be manually ordered to surface for Repairs.
-        BuildDurationModifier: 60
+		BuildDurationModifier: 60
 	Armament@PRIMARY:
-        PauseOnCondition: empdisable
-        RequiresCondition: !rank-elite
-    Armament@elite:
-        Name: elite
+		PauseOnCondition: empdisable
+		RequiresCondition: !rank-elite
+	Armament@elite:
+		Name: elite
 		Weapon: SubMissile.elite
 		LocalOffset: 0,-171,0, 0,171,0
 		FireDelay: 2
-        PauseOnCondition: empdisable
-        RequiresCondition: rank-elite
-    AttackFrontal:
-        Armaments: primary, elite
-        PauseOnCondition: empdisable
-    -Armament@SECONDARY:
+		PauseOnCondition: empdisable
+		RequiresCondition: rank-elite
+	AttackFrontal:
+		Armaments: primary, elite
+		PauseOnCondition: empdisable
+	-Armament@SECONDARY:
 	Valued:
 		Cost: 1750
 	WithMoveAnimation:
@@ -628,7 +628,7 @@ MSUB:
 		Palette: submerged
 		UncloakOn: Attack, Heal, Dock, SelfHeal, Demolish
 		PauseOnCondition: cloak-force-disabled || shallowcrossing || empdisable || minehit
-        RequiresCondition: !deployed
+		RequiresCondition: !deployed
 	Targetable:
 		TargetTypes: Ground, Water, Ship, Submarine, SeaDetonateAttack
 		RequiresCondition: !underwater
@@ -641,13 +641,13 @@ MSUB:
 	GrantConditionOnTerrain@CROSSINGFORD:
 		Condition: shallowcrossing
 		TerrainTypes: Shallow
-    GrantConditionOnDeploy:
-        DeployedCondition: deployed
+	GrantConditionOnDeploy:
+		DeployedCondition: deployed
 	ExternalCondition@MINEHIT:
 		Condition: minehit
-    ReloadArmamentsBar:
-        Color: FFFF00
-    RenderRangeCircle:
+	ReloadArmamentsBar:
+		Color: FFFF00
+	RenderRangeCircle:
 
 MSUB.AA:
 	Inherits: MSUB
@@ -669,20 +669,20 @@ MSUB.AA:
 		Weapon: SubMissileAA
 		LocalOffset: 0,-171,0, 0,171,0
 		FireDelay: 2
-        PauseOnCondition: empdisable
-        RequiresCondition: !rank-elite
-    -Armament@elite:
-    Armament@elite:
-        Name: elite
+		PauseOnCondition: empdisable
+		RequiresCondition: !rank-elite
+	-Armament@elite:
+	Armament@elite:
+		Name: elite
 		Weapon: SubMissileAA.elite
 		LocalOffset: 0,-171,0, 0,171,0
 		FireDelay: 2
-        PauseOnCondition: empdisable
-        RequiresCondition: rank-elite
+		PauseOnCondition: empdisable
+		RequiresCondition: rank-elite
 	-AttackFrontal:
 	AttackFrontal:
-        Armaments: primary, elite
-        PauseOnCondition: empdisable
+		Armaments: primary, elite
+		PauseOnCondition: empdisable
 	-WithMoveAnimation:
 	RenderSprites:
 		Image: MSUB
@@ -716,7 +716,7 @@ TBT:
 	Mobile:
 		TurnSpeed: 7
 		Speed: 92
-		RequiresCondition:
+		PauseOnCondition:
 	RevealsShroud:
 		Range: 6c0
 		RevealGeneratedShroud: False
@@ -727,16 +727,16 @@ TBT:
 	Armament:
 		Weapon: TTankZap
 		LocalOffset: 85,0,128
-        RequiresCondition: !rank-elite
-    Armament@elite:
-        Name: elite
+		RequiresCondition: !rank-elite
+	Armament@elite:
+		Name: elite
 		Weapon: TTankZap.elite
 		LocalOffset: 85,0,128
-        RequiresCondition: rank-elite
+		RequiresCondition: rank-elite
 	WithIdleOverlay@SPINNER:
 		Sequence: spinner
 	AttackTurreted:
-        Armaments: primary, elite
+		Armaments: primary, elite
 	SelectionDecorations:
 	Selectable:
 		DecorationBounds: 36,36
@@ -779,10 +779,10 @@ FSUB:
 		Weapon: FireballLauncher.Sub
 		LocalOffset: 512,128,42, 512,-128,42
 		PauseOnCondition: empdisable
-    Turreted:
-        TurnSpeed: 255
-        Offset: 525,0,50
-    WithSpriteTurret:
+	Turreted:
+		TurnSpeed: 255
+		Offset: 525,0,50
+	WithSpriteTurret:
 	AttackFrontal:
 		PauseOnCondition: empdisable
 	SelectionDecorations:
@@ -813,7 +813,7 @@ FSUB:
 		Palette: submerged
 		UncloakOn: Attack, Heal, Dock, SelfHeal, Demolish
 		PauseOnCondition: cloak-force-disabled || shallowcrossing || empdisable || minehit
-        RequiresCondition: !deployed
+		RequiresCondition: !deployed
 	Targetable:
 		TargetTypes: Ground, Water, Ship, Submarine, SeaDetonateAttack
 		RequiresCondition: !underwater
@@ -829,53 +829,53 @@ FSUB:
 	GrantConditionOnDamageState@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
-    GrantConditionOnDeploy:
-        DeployedCondition: deployed
+	GrantConditionOnDeploy:
+		DeployedCondition: deployed
 	ExternalCondition@MINEHIT:
 		Condition: minehit
 
 SCRP:
-    Inherits: ^Ship
-    Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
-    Buildable:
-        Queue: Ship
-        BuildPaletteOrder: 6
-        Prerequisites: stek, ~player.kazakh, ~techlevel.high
-        Description: Quick, light-weight boat\narmed with Flak cannon.\nLays sea mines to destroy\nunwary enemy Ships and Submarines.\nRestocks Sea Mines when near\na Naval yard or an Sub Pen.\nCan detect submarines.\n  Strong vs Aircraft, Infantry\n  Weak vs Ships, Tanks
-    Valued:
-        Cost: 750
-    Tooltip:
-        Name: Sea Scorpion
-    Health:
-        HP: 20000
-    Armor:
-        Type: Heavy
-    Mobile:
-        TurnSpeed: 7
-        Speed: 128
-    RevealsShroud:
-        Range: 6c0
-        RevealGeneratedShroud: False
-    RevealsShroud@GAPGEN:
-        Range: 4c0
-    Turreted:
-        TurnSpeed: 7
-        Offset: -448,0,100
-    Armament@AA:
-        Weapon: FLAK-23-AA
-        Recoil: 85
-        LocalOffset: 328,0,348
-        MuzzleSequence: muzzle
+	Inherits: ^Ship
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Ship
+		BuildPaletteOrder: 6
+		Prerequisites: stek, ~player.kazakh, ~techlevel.high
+		Description: Quick, light-weight boat\narmed with Flak cannon.\nLays sea mines to destroy\nunwary enemy Ships and Submarines.\nRestocks Sea Mines when near\na Naval yard or an Sub Pen.\nCan detect submarines.\n  Strong vs Aircraft, Infantry\n  Weak vs Ships, Tanks
+	Valued:
+		Cost: 750
+	Tooltip:
+		Name: Sea Scorpion
+	Health:
+		HP: 20000
+	Armor:
+		Type: Heavy
+	Mobile:
+		TurnSpeed: 7
+		Speed: 128
+	RevealsShroud:
+		Range: 6c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Turreted:
+		TurnSpeed: 7
+		Offset: -448,0,100
+	Armament@AA:
+		Weapon: FLAK-23-AA
+		Recoil: 85
+		LocalOffset: 328,0,348
+		MuzzleSequence: muzzle
 		PauseOnCondition: empdisable
-    Armament@AG:
-        Weapon: FLAK-23-AG
-        Recoil: 85
-        LocalOffset: 328,0,348
-        MuzzleSequence: muzzle
+	Armament@AG:
+		Weapon: FLAK-23-AG
+		Recoil: 85
+		LocalOffset: 328,0,348
+		MuzzleSequence: muzzle
 		PauseOnCondition: empdisable
-    AttackTurreted:
+	AttackTurreted:
 		PauseOnCondition: empdisable
-    WithSpriteTurret:
+	WithSpriteTurret:
 	WithMuzzleOverlay:
 	SelectionDecorations:
 	Selectable:
@@ -890,13 +890,13 @@ SCRP:
 		RearmActors:
 	MineImmune:
 	AmmoPool:
-		Armaments: 
+		Armaments:
 		Ammo: 3
 		RearmSound: minelay1.aud
 	ReloadAmmoPool:
 		Delay: 300
 		Count: 1
-        Sound: minelay1.aud
+		Sound: minelay1.aud
 		RequiresCondition: replenishsmine
 	WithDecoration@minereplenish:
 		RequiresSelection: true
@@ -991,7 +991,7 @@ HVRF:
 	Buildable:
 		Queue: Ship
 		BuildPaletteOrder: 6
-        BuildAtProductionType: Boat
+		BuildAtProductionType: Boat
 		Prerequisites: dome, fix, ~vehicles.allies, ~player.spain, ~techlevel.high
 		Description: Amphibian anti-air unit with\ntoken Mg for ground support.\nCan carry one Infantry.\n  Strong vs Infantry, Aircraft\n  Weak vs Tanks, Ships
 	Valued:
@@ -1004,46 +1004,46 @@ HVRF:
 		Type: Light
 	Mobile:
 		Speed: 128
-        Locomotor: amphibious
-        RequiresCondition: !empdisable && !notmobile && !being-captured
+		Locomotor: amphibious
+		PauseOnCondition: !(!empdisable && !notmobile && !being-captured)
 	RevealsShroud:
 		Range: 6c0
 		RevealGeneratedShroud: False
 	RevealsShroud@GAPGEN:
 		Range: 4c0
 	Turreted:
-        Turret: primary
+		Turret: primary
 		TurnSpeed: 5
-        Offset: 0,0,128
+		Offset: 0,0,128
 	Armament@PRIMARY:
 		Weapon: FLAK-23-AA
-        Turret: 
+		Turret:
 		LocalOffset: 86,160,220, 86,-160,220
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
 	Armament@SECONDARY:
-        Turret: primary
+		Turret: primary
 		Weapon: M60mg
 		MuzzleSequence: muzzle
 		LocalOffset: 128,0,43
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
 	AttackFrontal:
-        Armaments: primary, secondary
-        PauseOnCondition: empdisable
+		Armaments: primary, secondary
+		PauseOnCondition: empdisable
 	WithSpriteTurret:
 	WithMuzzleOverlay:
 	GrantConditionOnTerrain@SEA:
 		TerrainTypes: Water, River
 		Condition: floating
-    Targetable:
+	Targetable:
 		RequiresCondition: !floating
 	Targetable@SEA:
 		TargetTypes: Ground, Water, Ship
 		RequiresCondition: floating
-    RenderRangeCircle:
-    -Passenger:
+	RenderRangeCircle:
+	-Passenger:
 	Cargo:
 		Types: Infantry
 		MaxWeight: 1
-        PipCount: 1
+		PipCount: 1
 		LoadingCondition: notmobile

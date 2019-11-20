@@ -1,14 +1,14 @@
 HARV:
 	Buildable:
-        Queue: Vehicle, MWFVehicle
+		Queue: Vehicle, MWFVehicle
 		Prerequisites: proc, ~vehicles.allies, ~techlevel.infonly
-        BuildPaletteOrder: 1
- 	Harvester:
-        Resources: Ore,Gems,Scraps
+		BuildPaletteOrder: 1
+	Harvester:
+		Resources: Ore,Gems,Scraps
 	Valued:
 		Cost: 1200
-    SelfHealing:
-        RequiresCondition: !empdisable
+	SelfHealing:
+		RequiresCondition: !empdisable
 	Targetable:
 		TargetTypes: Ground, Vehicle, VehicleDisguise
 		RequiresCondition: !parachute
@@ -34,27 +34,27 @@ HARV.Soviet:
 		Weapon: M60mg
 		LocalOffset: 320,0,60
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
-        RequiresCondition: !rank-elite
- 	Armament@ELITE:
+		PauseOnCondition: empdisable
+		RequiresCondition: !rank-elite
+	Armament@ELITE:
 		Name: elite
 		Turret: secondary
 		Weapon: M60mg.elite
 		LocalOffset: 320,0,60
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
-		RequiresCondition: rank-elite    
+		PauseOnCondition: empdisable
+		RequiresCondition: rank-elite
 	AttackTurreted:
-        Armaments: secondary, elite
+		Armaments: secondary, elite
 		Turrets: secondary
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
 	WithSpriteTurret@SECONDARY:
 		Turret: secondary
 	WithMuzzleOverlay:
 	ProducibleWithLevel:
 		Prerequisites: vehicles.upgraded
-    -SpawnActorOnDeath:
-    -HarvesterHuskModifier:
+	-SpawnActorOnDeath:
+	-HarvesterHuskModifier:
 	SpawnActorOnDeath:
 		Actor: HARV.Soviet.EmptyHusk
 	HarvesterHuskModifier:
@@ -62,43 +62,43 @@ HARV.Soviet:
 		FullnessThreshold: 50
 
 HARV.Belarus:
-    Inherits: HARV.Soviet
+	Inherits: HARV.Soviet
 	Buildable:
 		Prerequisites: proc, ~vehicles.soviet, ~player.belarus, ~techlevel.infonly
- 	Harvester:
+	Harvester:
 		Capacity: 30
-        PipCount: 9        
-    RenderSprites:
-        Image: harv.soviet
-    -SpawnActorOnDeath:
-    -HarvesterHuskModifier:
+		PipCount: 9
+	RenderSprites:
+		Image: harv.soviet
+	-SpawnActorOnDeath:
+	-HarvesterHuskModifier:
 	SpawnActorOnDeath:
 		Actor: HARV.Belarus.EmptyHusk
 	HarvesterHuskModifier:
 		FullHuskActor: HARV.Belarus.FullHusk
 		FullnessThreshold: 50
-    -MapEditorData:
+	-MapEditorData:
 
 JEEP:
 	Buildable:
-        Queue: Vehicle, MWFVehicle
-        BuildPaletteOrder: 2
-        Prerequisites: ~vehicles.allies, ~!player.spain, ~techlevel.low
-    Mobile:
-        RequiresCondition: !empdisable && !notmobile && !being-captured
-    Armament:
-        PauseOnCondition: empdisable
-        RequiresCondition: !rank-elite
- 	Armament@ELITE:
+		Queue: Vehicle, MWFVehicle
+		BuildPaletteOrder: 2
+		Prerequisites: ~vehicles.allies, ~!player.spain, ~techlevel.low
+	Mobile:
+		PauseOnCondition: !(!empdisable && !notmobile && !being-captured)
+	Armament:
+		PauseOnCondition: empdisable
+		RequiresCondition: !rank-elite
+	Armament@ELITE:
 		Name: elite
 		Weapon: M60mg.elite
 		LocalOffset: 128,0,43
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
-		RequiresCondition: rank-elite 
-    AttackTurreted:
-        Armaments: primary, elite
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
+		RequiresCondition: rank-elite
+	AttackTurreted:
+		Armaments: primary, elite
+		PauseOnCondition: empdisable
 	Carryable:
 		LocalOffset: 0,0,100
 	Targetable:
@@ -119,53 +119,53 @@ JEEP.Spain:
 	-MapEditorData:
 
 JEEP.Spain.R2:
-    Inherits: JEEP.Spain
-    Buildable:
-        Prerequisites: ~vehicles.allies, ~player.spain, ~vehicles.upgraded, ~techlevel.low
-        Icon: rank2-icon
-    ProducibleWithLevel:
-        Prerequisites: techlevel.infonly
-        InitialLevels: 2
-    RenderSprites:
-        Image: jeep
+	Inherits: JEEP.Spain
+	Buildable:
+		Prerequisites: ~vehicles.allies, ~player.spain, ~vehicles.upgraded, ~techlevel.low
+		Icon: rank2-icon
+	ProducibleWithLevel:
+		Prerequisites: techlevel.infonly
+		InitialLevels: 2
+	RenderSprites:
+		Image: jeep
 
 FTRK:
 	Buildable:
-        Queue: Vehicle, MWFVehicle
-        BuildPaletteOrder: 2
-        Description: Mobile unit with mounted Flak cannon.\nCan carry one Infantry.\n  Strong vs Infantry, Light armor, Aircraft\n  Weak vs Tanks
+		Queue: Vehicle, MWFVehicle
+		BuildPaletteOrder: 2
+		Description: Mobile unit with mounted Flak cannon.\nCan carry one Infantry.\n  Strong vs Infantry, Light armor, Aircraft\n  Weak vs Tanks
 		Prerequisites: ~vehicles.soviet, ~!player.kazakh, ~techlevel.low
-    Mobile:
-        RequiresCondition: !empdisable && !notmobile && !being-captured
+	Mobile:
+		PauseOnCondition: !(!empdisable && !notmobile && !being-captured)
 	Turreted:
 		TurnSpeed: 7
-    Armament@AA:
-        Name: aa
-        PauseOnCondition: empdisable
-        RequiresCondition: !rank-elite
-    Armament@AG:
-        Name: ag
-        PauseOnCondition: empdisable
-        RequiresCondition: !rank-elite
- 	Armament@ELITE-AA:
+	Armament@AA:
+		Name: aa
+		PauseOnCondition: empdisable
+		RequiresCondition: !rank-elite
+	Armament@AG:
+		Name: ag
+		PauseOnCondition: empdisable
+		RequiresCondition: !rank-elite
+	Armament@ELITE-AA:
 		Name: elite-aa
 		Weapon: FLAK-23-AA-E
-        Recoil: 85
+		Recoil: 85
 		LocalOffset: 512,0,192
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
 		RequiresCondition: rank-elite
-    Armament@ELITE-AG:
+	Armament@ELITE-AG:
 		Name: elite-ag
 		Weapon: FLAK-23-AG-E
-        Recoil: 85
+		Recoil: 85
 		LocalOffset: 512,0,192
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
-		RequiresCondition: rank-elite 
-    AttackTurreted:
-        Armaments: aa,ag,elite-aa,elite-ag
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
+		RequiresCondition: rank-elite
+	AttackTurreted:
+		Armaments: aa,ag,elite-aa,elite-ag
+		PauseOnCondition: empdisable
 	Cargo:
 		Types: Infantry
 		MaxWeight: 1
@@ -188,15 +188,15 @@ FTRK.Kazakh:
 	-MapEditorData:
 
 FTRK.Kazakh.R2:
-    Inherits: FTRK.Kazakh
-    Buildable:
-        Prerequisites: ~vehicles.soviet, ~player.kazakh, ~vehicles.upgraded, ~techlevel.low
-        Icon: rank2-icon
-    ProducibleWithLevel:
-        Prerequisites: techlevel.infonly
-        InitialLevels: 2
-    RenderSprites:
-        Image: ftrk
+	Inherits: FTRK.Kazakh
+	Buildable:
+		Prerequisites: ~vehicles.soviet, ~player.kazakh, ~vehicles.upgraded, ~techlevel.low
+		Icon: rank2-icon
+	ProducibleWithLevel:
+		Prerequisites: techlevel.infonly
+		InitialLevels: 2
+	RenderSprites:
+		Image: ftrk
 
 FTRK.Repair:
 	Inherits: ^Vehicle
@@ -254,18 +254,18 @@ FTRK.Repair:
 
 APC:
 	Buildable:
-        Queue: Vehicle, MWFVehicle
+		Queue: Vehicle, MWFVehicle
 		Prerequisites: tent, ~vehicles.allies, ~techlevel.low
-        BuildPaletteOrder: 3
-        Description: Tough infantry transport.\nCan transport up to 5 Infantry.\nCan be Airlifted when empty.\n  Strong vs Infantry, Light armor\n  Weak vs Tanks, Aircraft
+		BuildPaletteOrder: 3
+		Description: Tough infantry transport.\nCan transport up to 5 Infantry.\nCan be Airlifted when empty.\n  Strong vs Infantry, Light armor\n  Weak vs Tanks, Aircraft
 	Valued:
 		Cost: 650
-    Mobile:
-        RequiresCondition: !empdisable && !notmobile && !being-captured
-    Armament:
-        PauseOnCondition: empdisable
-    AttackFrontal:
-        PauseOnCondition: empdisable
+	Mobile:
+		PauseOnCondition: !(!empdisable && !notmobile && !being-captured)
+	Armament:
+		PauseOnCondition: empdisable
+	AttackFrontal:
+		PauseOnCondition: empdisable
 	ProximityExternalCondition@ELITE:
 		Condition: hospitalheal
 		Range: 4c0
@@ -274,37 +274,37 @@ APC:
 		Types: Infantry
 		MaxWeight: 5
 		PipCount: 5
-        LoadedCondition: loaded
+		LoadedCondition: loaded
 		LoadingCondition: notmobile
 	Carryable:
 		LocalOffset: 0,0,100
-        RequiresCondition: !loaded
+		RequiresCondition: !loaded
 	Targetable:
 		TargetTypes: Ground, Vehicle, VehicleDisguise
 		RequiresCondition: !parachute
-    -Tooltip:
+	-Tooltip:
 	Tooltip@sidebar:
 		Name: Armored Personnel Carrier
-        RequiresCondition: !produced
+		RequiresCondition: !produced
 	Tooltip@ingame:
 		Name: APC
-        RequiresCondition: produced    
+		RequiresCondition: produced
 	ExternalCondition@PRODUCED:
 		Condition: produced
 	Passenger:
 		PipType: Green
 
 APC.crate:
-    Inherits: APC
-    -Tooltip@sidebar:
-    -Tooltip@ingame:
-    Tooltip:
-        Name: APC
-    -ExternalCondition@PRODUCED:      
-    RenderSprites:
-        Image: apc
-    -Buildable:
-    -MapEditorData:
+	Inherits: APC
+	-Tooltip@sidebar:
+	-Tooltip@ingame:
+	Tooltip:
+		Name: APC
+	-ExternalCondition@PRODUCED:
+	RenderSprites:
+		Image: apc
+	-Buildable:
+	-MapEditorData:
 
 MBUN:
 	Inherits: ^Vehicle
@@ -324,7 +324,7 @@ MBUN:
 		Type: Heavy
 	Mobile:
 		Speed: 56
-		RequiresCondition: !empdisable && !notmobile && !being-captured
+		PauseOnCondition: !(!empdisable && !notmobile && !being-captured)
 	Armament:
 		Weapon: M60mg
 		MuzzleSequence: muzzle
@@ -337,14 +337,14 @@ MBUN:
 		Range: 4c0
 	Turreted:
 		TurnSpeed: 255
-        Offset: -32,0,160
+		Offset: -32,0,160
 	AttackGarrisoned:
 		Armaments: garrisoned
 		PortOffsets: 284,0,128, 124,-241,128, -124,-241,128, -284,0,128, -124,241,128, 124,241,128
 		PortYaws: 0, 176, 341, 512, 682, 853
 		PortCones: 88, 88, 88, 88, 88, 88
 		PauseOnCondition: empdisable
-    WithSpriteTurret:
+	WithSpriteTurret:
 	WithMuzzleOverlay:
 	Cargo:
 		Types: Infantry
@@ -354,7 +354,7 @@ MBUN:
 		LoadedCondition: loaded
 	Passenger:
 		Weight: 4
-        PipType: Red
+		PipType: Red
 	Selectable:
 		DecorationBounds: 28,28
 	Targetable:
@@ -372,13 +372,13 @@ BTR:
 		Description: Mobile infantry transport.\nCan transport up to 5 Infantry.\nCan be Airlifted when empty.\n  Strong vs Infantry\n  Weak vs Tanks, Aircraft
 	Valued:
 		Cost: 650
-    -Tooltip:
+	-Tooltip:
 	Tooltip@sidebar:
 		Name: Armored Personnel Carrier
-        RequiresCondition: !produced
+		RequiresCondition: !produced
 	Tooltip@ingame:
 		Name: BTR
-        RequiresCondition: produced    
+		RequiresCondition: produced
 	ExternalCondition@PRODUCED:
 		Condition: produced
 	Health:
@@ -387,7 +387,7 @@ BTR:
 		Type: Heavy
 	Mobile:
 		Speed: 142
-		RequiresCondition: !empdisable && !notmobile && !being-captured
+		PauseOnCondition: !(!empdisable && !notmobile && !being-captured)
 	RevealsShroud:
 		Range: 5c0
 		RevealGeneratedShroud: False
@@ -401,22 +401,22 @@ BTR:
 		LocalOffset: 150,0,100
 		MuzzleSequence: muzzle
 		FireDelay: 8
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
 	AttackTurreted:
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
 	WithMuzzleOverlay:
 	WithSpriteTurret:
 	Cargo:
 		Types: Infantry
 		MaxWeight: 5
 		PipCount: 5
-        LoadedCondition: loaded
-		LoadingCondition: notmobile      
+		LoadedCondition: loaded
+		LoadingCondition: notmobile
 	ProducibleWithLevel:
 		Prerequisites: vehicles.upgraded
 	Carryable:
 		LocalOffset: 0,0,100
-        RequiresCondition: !loaded
+		RequiresCondition: !loaded
 	Passenger:
 		PipType: Green
 	ProximityExternalCondition@ELITE:
@@ -427,7 +427,7 @@ BTR:
 BTR.Russia:
 	Inherits: BTR
 	Buildable:
-		Prerequisites: barr, ~vehicles.soviet, ~player.russia, ~!vehicles.upgraded, ~techlevel.low 
+		Prerequisites: barr, ~vehicles.soviet, ~player.russia, ~!vehicles.upgraded, ~techlevel.low
 	ProducibleWithLevel:
 		Prerequisites: techlevel.infonly
 		InitialLevels: 1
@@ -436,10 +436,10 @@ BTR.Russia:
 	-MapEditorData:
 
 BTR.Russia.R2:
-    Inherits: BTR.Russia
+	Inherits: BTR.Russia
 	Buildable:
-		Prerequisites: barr, ~vehicles.soviet, ~player.russia, ~vehicles.upgraded, ~techlevel.low 
-        Icon: rank2-icon
+		Prerequisites: barr, ~vehicles.soviet, ~player.russia, ~vehicles.upgraded, ~techlevel.low
+		Icon: rank2-icon
 	ProducibleWithLevel:
 		Prerequisites: techlevel.infonly
 		InitialLevels: 2
@@ -447,79 +447,79 @@ BTR.Russia.R2:
 		Image: btr
 
 BTR.R1:
-    Inherits: BTR
-    -Tooltip@sidebar:
-    -Tooltip@ingame:
-    Tooltip:
-        Name: BTR
-    -ExternalCondition@PRODUCED:      
-    RenderSprites:
-        Image: btr
-    ProducibleWithLevel:
-        Prerequisites: techlevel.infonly
-        InitialLevels: 1
-    Cargo:
-        InitialUnits: E1R1, E3R1, E1R1
-    -Buildable:
-    -MapEditorData:
+	Inherits: BTR
+	-Tooltip@sidebar:
+	-Tooltip@ingame:
+	Tooltip:
+		Name: BTR
+	-ExternalCondition@PRODUCED:
+	RenderSprites:
+		Image: btr
+	ProducibleWithLevel:
+		Prerequisites: techlevel.infonly
+		InitialLevels: 1
+	Cargo:
+		InitialUnits: E1R1, E3R1, E1R1
+	-Buildable:
+	-MapEditorData:
 
 BTR.crate:
-    Inherits: BTR
-    -Tooltip@sidebar:
-    -Tooltip@ingame:
-    Tooltip:
-        Name: BTR
-    -ExternalCondition@PRODUCED:      
-    RenderSprites:
-        Image: btr
-    -Buildable:
-    -MapEditorData:
+	Inherits: BTR
+	-Tooltip@sidebar:
+	-Tooltip@ingame:
+	Tooltip:
+		Name: BTR
+	-ExternalCondition@PRODUCED:
+	RenderSprites:
+		Image: btr
+	-Buildable:
+	-MapEditorData:
 
 1TNK:
-    Buildable:
-        Queue: Vehicle, MWFVehicle
-        BuildPaletteOrder: 4
+	Buildable:
+		Queue: Vehicle, MWFVehicle
+		BuildPaletteOrder: 4
 		Prerequisites: ~vehicles.allies, ~!player.england, ~!player.france, ~!player.germany, ~!player.spain, ~!player.greece, ~!player.turkey, ~techlevel.low
 	Valued:
 		Cost: 600
-    -Armament:
-    Armament@PRIMARY:
+	-Armament:
+	Armament@PRIMARY:
 		Weapon: 25mm
 		Recoil: 85
 		RecoilRecovery: 25
 		LocalOffset: 768,0,90
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
-        RequiresCondition: !rank-elite
+		PauseOnCondition: empdisable
+		RequiresCondition: !rank-elite
 	Armament@SECONDARY:
 		Name: secondary
 		Weapon: LtnkRockets
 		LocalOffset: 100,90,90
 		LocalYaw: -100, 100
 		Recoil: 10
-        PauseOnCondition: empdisable
-        RequiresCondition: !rank-elite
-    Armament@primary-elite:
-        Name: primary.elite
+		PauseOnCondition: empdisable
+		RequiresCondition: !rank-elite
+	Armament@primary-elite:
+		Name: primary.elite
 		Weapon: 25mm.elite
 		Recoil: 85
 		RecoilRecovery: 25
 		LocalOffset: 768,0,90
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
-        RequiresCondition: rank-elite
-    Armament@secondary-elite:
-        Name: secondary.elite
+		PauseOnCondition: empdisable
+		RequiresCondition: rank-elite
+	Armament@secondary-elite:
+		Name: secondary.elite
 		Weapon: LtnkRockets.elite
 		Recoil: 85
 		RecoilRecovery: 25
 		LocalOffset: 768,0,90
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
-        RequiresCondition: rank-elite
-    AttackTurreted:
-        Armaments: primary, primary.elite, secondary, secondary.elite
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
+		RequiresCondition: rank-elite
+	AttackTurreted:
+		Armaments: primary, primary.elite, secondary, secondary.elite
+		PauseOnCondition: empdisable
 	Carryable:
 		LocalOffset: 0,0,100
 	Targetable:
@@ -541,21 +541,21 @@ BTR.crate:
 		LocalOffset: 768,0,90
 		MuzzleSequence: muzzle
 		PauseOnCondition: empdisable
-        RequiresCondition: !rank-elite
-    Armament@primary-elite:
-        Name: primary.elite
+		RequiresCondition: !rank-elite
+	Armament@primary-elite:
+		Name: primary.elite
 		Weapon: 25mm.britain.elite
 		Recoil: 85
 		RecoilRecovery: 25
 		LocalOffset: 768,0,90
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
-        RequiresCondition: rank-elite
+		PauseOnCondition: empdisable
+		RequiresCondition: rank-elite
 	SpawnActorOnDeath:
 		Actor: 1TNK.England.Husk
 	RenderSprites:
 		Image: 1tnk
-	-MapEditorData:	
+	-MapEditorData:
 
 1TNK.France:
 	Inherits: 1TNK
@@ -568,16 +568,16 @@ BTR.crate:
 		LocalOffset: 768,0,90
 		MuzzleSequence: muzzle
 		PauseOnCondition: empdisable
-        RequiresCondition: !rank-elite
-    Armament@primary-elite:
-        Name: primary.elite
+		RequiresCondition: !rank-elite
+	Armament@primary-elite:
+		Name: primary.elite
 		Weapon: 25mm.france.elite
 		Recoil: 85
 		RecoilRecovery: 25
 		LocalOffset: 768,0,90
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
-        RequiresCondition: rank-elite
+		PauseOnCondition: empdisable
+		RequiresCondition: rank-elite
 	SpawnActorOnDeath:
 		Actor: 1TNK.France.Husk
 	RenderSprites:
@@ -609,16 +609,16 @@ BTR.crate:
 		LocalOffset: 768,0,90
 		MuzzleSequence: muzzle
 		PauseOnCondition: empdisable
-        RequiresCondition: !rank-elite
-    Armament@primary-elite:
-        Name: primary.elite
+		RequiresCondition: !rank-elite
+	Armament@primary-elite:
+		Name: primary.elite
 		Weapon: 25mm.spain.elite
 		Recoil: 85
 		RecoilRecovery: 25
 		LocalOffset: 768,0,90
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
-        RequiresCondition: rank-elite
+		PauseOnCondition: empdisable
+		RequiresCondition: rank-elite
 	SpawnActorOnDeath:
 		Actor: 1TNK.Spain.Husk
 	RenderSprites:
@@ -637,10 +637,10 @@ BTR.crate:
 	-MapEditorData:
 
 1TNK.Greece.R2:
-    Inherits: 1TNK.Greece
+	Inherits: 1TNK.Greece
 	Buildable:
 		Prerequisites: ~vehicles.allies, ~player.greece, ~vehicles.upgraded, ~techlevel.low
-        Icon: rank2-icon
+		Icon: rank2-icon
 	ProducibleWithLevel:
 		Prerequisites: techlevel.infonly
 		InitialLevels: 2
@@ -651,7 +651,7 @@ BTR.crate:
 	Inherits: 1TNK
 	Buildable:
 		Prerequisites: ~vehicles.allies, ~player.turkey, ~techlevel.low
-        Description: Fast tank, good for scouting.\n  Special ability: Amphibian\nCan swim through sea and river.\n  Strong vs Light armor\n  Weak vs Infantry, Tanks, Aircraft
+		Description: Fast tank, good for scouting.\n  Special ability: Amphibian\nCan swim through sea and river.\n  Strong vs Light armor\n  Weak vs Infantry, Tanks, Aircraft
 	Mobile:
 		Locomotor: tracked-amphibious
 	GrantConditionOnTerrain@SEA:
@@ -669,7 +669,7 @@ BTR.crate:
 		Sequence: idle-float
 		RequiresCondition: floating
 	SpawnActorOnDeath:
-        Actor: 1TNK.Turkey.Husk
+		Actor: 1TNK.Turkey.Husk
 		RequiresCondition: !floating
 	RenderSprites:
 		Image: 1tnk
@@ -686,47 +686,47 @@ BTR.crate:
 	-MapEditorData:
 
 2TNK:
-    Buildable:
-        Queue: Vehicle, MWFVehicle
-        BuildPaletteOrder: 5
-        Prerequisites: fix, ~vehicles.allies, ~!player.england, ~!player.france, ~!player.germany, ~!player.spain, ~techlevel.medium
+	Buildable:
+		Queue: Vehicle, MWFVehicle
+		BuildPaletteOrder: 5
+		Prerequisites: fix, ~vehicles.allies, ~!player.england, ~!player.france, ~!player.germany, ~!player.spain, ~techlevel.medium
 	Valued:
 		Cost: 700
-    -Armament:
-    Armament@PRIMARY:
+	-Armament:
+	Armament@PRIMARY:
 		Weapon: 90mm
 		Recoil: 128
 		RecoilRecovery: 38
 		LocalOffset: 720,0,80
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
-        RequiresCondition: !rank-elite
+		PauseOnCondition: empdisable
+		RequiresCondition: !rank-elite
 	Armament@SECONDARY:
 		Name: secondary
 		Weapon: M1CTank
 		MuzzleSequence: mg-muzzle
 		LocalOffset: 286,3,90
-        PauseOnCondition: empdisable
-        RequiresCondition: !rank-elite
-    Armament@primary-elite:
-        Name: primary.elite
+		PauseOnCondition: empdisable
+		RequiresCondition: !rank-elite
+	Armament@primary-elite:
+		Name: primary.elite
 		Weapon: 90mm.elite
 		Recoil: 128
 		RecoilRecovery: 38
 		LocalOffset: 720,0,80
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
-        RequiresCondition: rank-elite
-    Armament@secondary-elite:
+		PauseOnCondition: empdisable
+		RequiresCondition: rank-elite
+	Armament@secondary-elite:
 		Name: secondary.elite
 		Weapon: M1CTank.elite
 		MuzzleSequence: mg-muzzle
 		LocalOffset: 286,3,90
-        PauseOnCondition: empdisable
-        RequiresCondition: rank-elite
-    AttackTurreted:
-        Armaments: primary, primary.elite, secondary, secondary.elite
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
+		RequiresCondition: rank-elite
+	AttackTurreted:
+		Armaments: primary, primary.elite, secondary, secondary.elite
+		PauseOnCondition: empdisable
 	Targetable:
 		TargetTypes: Ground, Vehicle, VehicleDisguise
 		RequiresCondition: !parachute
@@ -747,21 +747,21 @@ BTR.crate:
 		LocalOffset: 720,0,80
 		MuzzleSequence: muzzle
 		PauseOnCondition: empdisable
-        RequiresCondition: !rank-elite
-    Armament@primary-elite:
-        Name: primary-elite
+		RequiresCondition: !rank-elite
+	Armament@primary-elite:
+		Name: primary-elite
 		Weapon: 90mm.britain.elite
 		Recoil: 128
 		RecoilRecovery: 38
 		LocalOffset: 720,0,80
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
-        RequiresCondition: rank-elite
+		PauseOnCondition: empdisable
+		RequiresCondition: rank-elite
 	SpawnActorOnDeath:
 		Actor: 2TNK.England.Husk
 	RenderSprites:
 		Image: 2tnk
-	-MapEditorData:	
+	-MapEditorData:
 
 2TNK.France:
 	Inherits: 2TNK
@@ -774,16 +774,16 @@ BTR.crate:
 		LocalOffset: 720,0,80
 		MuzzleSequence: muzzle
 		PauseOnCondition: empdisable
-        RequiresCondition: !rank-elite
-    Armament@primary-elite:
-        Name: primary-elite
+		RequiresCondition: !rank-elite
+	Armament@primary-elite:
+		Name: primary-elite
 		Weapon: 90mm.france.elite
 		Recoil: 128
 		RecoilRecovery: 38
 		LocalOffset: 720,0,80
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
-        RequiresCondition: rank-elite
+		PauseOnCondition: empdisable
+		RequiresCondition: rank-elite
 	SpawnActorOnDeath:
 		Actor: 2TNK.France.Husk
 	RenderSprites:
@@ -815,16 +815,16 @@ BTR.crate:
 		LocalOffset: 720,0,80
 		MuzzleSequence: muzzle
 		PauseOnCondition: empdisable
-        RequiresCondition: !rank-elite
-    Armament@primary-elite:
-        Name: primary-elite
+		RequiresCondition: !rank-elite
+	Armament@primary-elite:
+		Name: primary-elite
 		Weapon: 90mm.spain.elite
 		Recoil: 128
 		RecoilRecovery: 38
 		LocalOffset: 720,0,80
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
-        RequiresCondition: rank-elite
+		PauseOnCondition: empdisable
+		RequiresCondition: rank-elite
 	SpawnActorOnDeath:
 		Actor: 2TNK.Spain.Husk
 	RenderSprites:
@@ -853,9 +853,9 @@ BTR.crate:
 		Cost: 850
 	Mobile:
 		Speed: 71
-    -Armament@PRIMARY:
-    -Armament@SECONDARY:
-    -Armament@secondary-elite:
+	-Armament@PRIMARY:
+	-Armament@SECONDARY:
+	-Armament@secondary-elite:
 	Armament@PRIMARY:
 		Name: primary
 		Weapon: 105mm.Singular
@@ -864,7 +864,7 @@ BTR.crate:
 		LocalOffset: 768,0,90
 		MuzzleSequence: muzzle
 		PauseOnCondition: empdisable
-        RequiresCondition: !rank-elite
+		RequiresCondition: !rank-elite
 	Armament@primary-elite:
 		Name: primary.elite
 		Weapon: 105mm.Singular.elite
@@ -872,11 +872,11 @@ BTR.crate:
 		RecoilRecovery: 26
 		LocalOffset: 768,0,90
 		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable   
-        RequiresCondition: rank-elite
-    AttackTurreted:
-        Armaments: primary, primary.elite
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
+		RequiresCondition: rank-elite
+	AttackTurreted:
+		Armaments: primary, primary.elite
+		PauseOnCondition: empdisable
 	SpawnActorOnDeath:
 		Actor: 2TNK.Soviet.Husk
 
@@ -900,7 +900,7 @@ BTR.crate:
 	Health:
 		HP: 40500
 	Valued:
-		Cost: 765   
+		Cost: 765
 	SpawnActorOnDeath:
 		Actor: 2TNK.Belarus.Husk
 	RenderSprites:
@@ -919,10 +919,10 @@ BTR.crate:
 	-MapEditorData:
 
 2TNK.Uzbek.R2:
-    Inherits: 2TNK.Uzbek
+	Inherits: 2TNK.Uzbek
 	Buildable:
 		Prerequisites: fix, ~vehicles.soviet, ~player.uzbek, ~vehicles.upgraded, ~techlevel.medium
-        Icon: rank2-icon
+		Icon: rank2-icon
 	ProducibleWithLevel:
 		Prerequisites: techlevel.infonly
 		InitialLevels: 2
@@ -930,25 +930,25 @@ BTR.crate:
 		Image: 2tnk.soviet
 
 3TNK:
-    Buildable:
-        Queue: Vehicle, MWFVehicle
-        BuildPaletteOrder: 5
-        Prerequisites: fix, ~vehicles.soviet, ~!player.ukraine, ~!player.belarus, ~techlevel.medium
-        Description: Soviet Main Battle Tank, with dual cannons.\n  Strong vs Vehicles\n  Weak vs Infantry, Aircraft
-    Armament:
-        PauseOnCondition: empdisable
-        RequiresCondition: !rank-elite
+	Buildable:
+		Queue: Vehicle, MWFVehicle
+		BuildPaletteOrder: 5
+		Prerequisites: fix, ~vehicles.soviet, ~!player.ukraine, ~!player.belarus, ~techlevel.medium
+		Description: Soviet Main Battle Tank, with dual cannons.\n  Strong vs Vehicles\n  Weak vs Infantry, Aircraft
+	Armament:
+		PauseOnCondition: empdisable
+		RequiresCondition: !rank-elite
 	Armament@elite:
-        Name: elite
+		Name: elite
 		Weapon: 105mm.elite
 		Recoil: 128
 		RecoilRecovery: 38
 		LocalOffset: 768,85,90, 768,-85,90
 		MuzzleSequence: muzzle
-        RequiresCondition: rank-elite
-    AttackTurreted:
-        Armaments: primary, elite
-        PauseOnCondition: empdisable
+		RequiresCondition: rank-elite
+	AttackTurreted:
+		Armaments: primary, elite
+		PauseOnCondition: empdisable
 	Passenger:
 		PipType: Yellow
 
@@ -959,7 +959,7 @@ BTR.crate:
 		BuildDurationModifier: 70
 	Mobile:
 		Speed: 80
-    SpawnActorOnDeath:
+	SpawnActorOnDeath:
 		Actor: 3TNK.Ukraine.Husk
 	RenderSprites:
 		Image: 3tnk
@@ -971,7 +971,7 @@ BTR.crate:
 		Prerequisites: fix, ~vehicles.soviet, ~player.belarus, ~techlevel.medium
 	Health:
 		HP: 54000
- 	Valued:
+	Valued:
 		Cost: 1035
 	SpawnActorOnDeath:
 		Actor: 3TNK.Belarus.Husk
@@ -990,25 +990,25 @@ BTR.crate:
 	-MapEditorData:
 
 4TNK:
-    Buildable:
-        BuildPaletteOrder: 8
-        Prerequisites: fix, stek, ~vehicles.soviet, ~!player.ukraine, ~!player.belarus, ~techlevel.high
-        BuildDurationModifier: 60
-        Description: Big and slow tank, with anti-air capability.\nCan crush concrete walls.\nSelf-repairs when below 50% of maximum Health.\n  Strong vs Vehicles, Infantry, Buildings\n  Weak vs Artillery
+	Buildable:
+		BuildPaletteOrder: 8
+		Prerequisites: fix, stek, ~vehicles.soviet, ~!player.ukraine, ~!player.belarus, ~techlevel.high
+		BuildDurationModifier: 60
+		Description: Big and slow tank, with anti-air capability.\nCan crush concrete walls.\nSelf-repairs when below 50% of maximum Health.\n  Strong vs Vehicles, Infantry, Buildings\n  Weak vs Artillery
 	Passenger:
 		Weight: 4
-        PipType: Red
-    Armament@PRIMARY:
-        PauseOnCondition: empdisable
-    Armament@SECONDARY:
-        PauseOnCondition: empdisable
-    AttackTurreted:
-        PauseOnCondition: empdisable	
+		PipType: Red
+	Armament@PRIMARY:
+		PauseOnCondition: empdisable
+	Armament@SECONDARY:
+		PauseOnCondition: empdisable
+	AttackTurreted:
+		PauseOnCondition: empdisable
 	#		still no way of timed condition in 2019
-    #		GrantConditionOnDeploy:
-    #	    DeployedCondition: invulnerability
-    #	    RequiresCondition: rank-elite
-    #	    SkipMakeAnimation: True
+	#		GrantConditionOnDeploy:
+	#	    DeployedCondition: invulnerability
+	#	    RequiresCondition: rank-elite
+	#	    SkipMakeAnimation: True
 
 4TNK.Ukraine:
 	Inherits: 4TNK
@@ -1028,9 +1028,9 @@ BTR.crate:
 	Inherits: 4TNK
 	Buildable:
 		Prerequisites: fix, stek, ~vehicles.soviet, ~player.belarus, ~techlevel.high
-    Valued:
-        Cost: 1800
- 	Health:
+	Valued:
+		Cost: 1800
+	Health:
 		HP: 81000
 	SpawnActorOnDeath:
 		Actor: 4TNK.Belarus.Husk
@@ -1049,9 +1049,9 @@ BTR.crate:
 		Prerequisites: fix, tsla, stek, ~vehicles.soviet, ~player.russia, ~tech.stolen, ~techlevel.high
 		Description: Heavy Tesla armed tank\nwith anti-air rockets.\nCan crush concrete walls\nSelf-repairs when below 50% of maximum Health.\n Immune to EMP\n  Strong vs Vehicles, Infantry, Buildings\n  Weak vs Artillery
 	Mobile:
-		RequiresCondition: !being-captured
+		PauseOnCondition: !(!being-captured)
 	-Armament@PRIMARY:
-    Armament@PRIMARY:
+	Armament@PRIMARY:
 		Weapon: TTankZapHeavy
 		LocalOffset: 900,0,340
 		Recoil: 43
@@ -1098,29 +1098,29 @@ BTR.crate:
 		Actor: 4TNK.Flam.Husk
 
 ARTY:
-    Buildable:
-        Queue: Vehicle, MWFVehicle
-        BuildPaletteOrder: 6
-        Prerequisites: dome, ~vehicles.allies, ~!player.france, ~techlevel.medium
-    Armament:
-        PauseOnCondition: empdisable
-        RequiresCondition: !rank-elite
-    Armament@ELITE:
-        Name: elite
+	Buildable:
+		Queue: Vehicle, MWFVehicle
+		BuildPaletteOrder: 6
+		Prerequisites: dome, ~vehicles.allies, ~!player.france, ~techlevel.medium
+	Armament:
+		PauseOnCondition: empdisable
+		RequiresCondition: !rank-elite
+	Armament@ELITE:
+		Name: elite
 		Weapon: 155mm.elite
 		LocalOffset: 624,0,208
 		MuzzleSequence: muzzle
-        RequiresCondition: rank-elite
-    AttackFrontal:
-        Armaments: primary, elite
-        PauseOnCondition: empdisable
+		RequiresCondition: rank-elite
+	AttackFrontal:
+		Armaments: primary, elite
+		PauseOnCondition: empdisable
 	Targetable:
 		TargetTypes: Ground, Vehicle, VehicleDisguise
 		RequiresCondition: !parachute
-    RenderRangeCircle:
-    Passenger:
-        PipType: Yellow
-        
+	RenderRangeCircle:
+	Passenger:
+		PipType: Yellow
+		
 ARTY.France:
 	Inherits: ARTY
 	Buildable:
@@ -1136,7 +1136,7 @@ ARTY.France.R2:
 	Inherits: ARTY.France
 	Buildable:
 		Prerequisites: dome, ~vehicles.allies, ~player.france, ~vehicles.upgraded, ~techlevel.medium
-        Icon: rank2-icon
+		Icon: rank2-icon
 	ProducibleWithLevel:
 		Prerequisites: techlevel.infonly
 		InitialLevels: 2
@@ -1187,64 +1187,64 @@ GCAN:
 		Prerequisites: vehicles.upgraded
 	Selectable:
 		DecorationBounds: 28,28
-    RenderRangeCircle:
+	RenderRangeCircle:
 	Targetable:
 		TargetTypes: Ground, Vehicle, VehicleDisguise
 		RequiresCondition: !parachute
 
 V2RL:
-    Buildable:
-        Queue: Vehicle, MWFVehicle
-        BuildPaletteOrder: 6
-        Prerequisites: dome, ~vehicles.soviet, ~!player.ukraine, ~techlevel.medium
-    Armament:
-        PauseOnCondition: empdisable
-        RequiresCondition: !rank-elite
-    Armament@elite:
-        Name: elite
+	Buildable:
+		Queue: Vehicle, MWFVehicle
+		BuildPaletteOrder: 6
+		Prerequisites: dome, ~vehicles.soviet, ~!player.ukraine, ~techlevel.medium
+	Armament:
+		PauseOnCondition: empdisable
+		RequiresCondition: !rank-elite
+	Armament@elite:
+		Name: elite
 		Weapon: SCUD.elite
 		ReloadingCondition: reloading
-        PauseOnCondition: empdisable
-        RequiresCondition: rank-elite
-    AttackFrontal:
-        Armaments: primary, elite
-        PauseOnCondition: empdisable
-    RenderRangeCircle:
-    Passenger:
-        PipType: Yellow
+		PauseOnCondition: empdisable
+		RequiresCondition: rank-elite
+	AttackFrontal:
+		Armaments: primary, elite
+		PauseOnCondition: empdisable
+	RenderRangeCircle:
+	Passenger:
+		PipType: Yellow
 
 V2RL.Ukraine:
 	Inherits: V2RL
 	Buildable:
 		Prerequisites: dome, ~vehicles.soviet, ~player.ukraine, ~techlevel.medium
-    -Armament:
+	-Armament:
 	Armament:
 		Weapon: SCUD.ukraine
 		ReloadingCondition: reloading
 		PauseOnCondition: empdisable
-    -Armament@elite:
-    Armament@elite:
-        Name: elite
+	-Armament@elite:
+	Armament@elite:
+		Name: elite
 		Weapon: SCUD.ukraine.elite
 		ReloadingCondition: reloading
-        PauseOnCondition: empdisable
-        RequiresCondition: rank-elite
+		PauseOnCondition: empdisable
+		RequiresCondition: rank-elite
 	RenderSprites:
 		Image: v2rl
 	-MapEditorData:
 
 MNLY:
-    Buildable:
-        BuildPaletteOrder: 7
+	Buildable:
+		BuildPaletteOrder: 7
 	Valued:
 		Cost: 700
 	Targetable:
 		TargetTypes: Ground, Vehicle, VehicleDisguise
 		RequiresCondition: !parachute
-   	Rearmable:
+	Rearmable:
 		RearmActors: fix, fix.russia
-    Passenger:
-        PipType: Blue
+	Passenger:
+		PipType: Blue
 
 ATNK:
 	Inherits: ^TrackedVehicle
@@ -1277,28 +1277,28 @@ ATNK:
 		Weapon: FLAK-23-AA
 		LocalOffset: 262,160,160, 262,-160,160
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
 	Armament@SECONDARY:
-        Name: secondary
+		Name: secondary
 		Weapon: FLAK-23-AG
 		LocalOffset: 262,160,160, 262,-160,160
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
 	Armament@TERTIARY:
-        Name: tertiary
+		Name: tertiary
 		Weapon: RedEye
 		LocalOffset: 196,160,160, 196,-160,160
-        PauseOnCondition: empdisable || !ammo
+		PauseOnCondition: empdisable || !ammo
 	AttackTurreted:
-        Armaments: primary, secondary, tertiary
-        PauseOnCondition: empdisable
+		Armaments: primary, secondary, tertiary
+		PauseOnCondition: empdisable
 	WithSpriteTurret:
 	ProducibleWithLevel:
 		Prerequisites: vehicles.upgraded
 	WithMuzzleOverlay:
 	DetectCloaked:
 		Range: 4c0
-        RequiresCondition: rank-elite
+		RequiresCondition: rank-elite
 	Carryable:
 		LocalOffset: 0,0,100
 	SpawnActorOnDeath:
@@ -1306,19 +1306,19 @@ ATNK:
 	Targetable:
 		TargetTypes: Ground, Vehicle, VehicleDisguise
 		RequiresCondition: !parachute
-    RenderRangeCircle:
-    AmmoPool:
+	RenderRangeCircle:
+	AmmoPool:
 		Armaments: tertiary
 		PipType: Green
-        Ammo: 2
-        PipCount: 2
+		Ammo: 2
+		PipCount: 2
 		AmmoCondition: ammo
 	ReloadAmmoPool:
 		Delay: 120
 		Count: 2
 		RequiresCondition: !ammo
-    Passenger:
-        PipType: Red
+	Passenger:
+		PipType: Red
 
 ATNK.England:
 	Inherits: ATNK
@@ -1330,18 +1330,18 @@ ATNK.England:
 		Weapon: FLAK-23-AA.britain
 		LocalOffset: 262,160,160, 262,-160,160
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
 	Armament@SECONDARY:
-        Name: secondary
+		Name: secondary
 		Weapon: FLAK-23-AG.britain
 		LocalOffset: 262,160,160, 262,-160,160
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
 	SpawnActorOnDeath:
 		Actor: ATNK.England.Husk
 	RenderSprites:
 		Image: atnk
-	-MapEditorData:	
+	-MapEditorData:
 
 ATNK.France:
 	Inherits: ATNK
@@ -1351,13 +1351,13 @@ ATNK.France:
 		Weapon: FLAK-23-AA.france
 		LocalOffset: 262,160,160, 262,-160,160
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
 	Armament@SECONDARY:
-        Name: secondary
+		Name: secondary
 		Weapon: FLAK-23-AG.france
 		LocalOffset: 262,160,160, 262,-160,160
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
 	SpawnActorOnDeath:
 		Actor: ATNK.France.Husk
 	RenderSprites:
@@ -1386,13 +1386,13 @@ ATNK.Spain:
 		Weapon: FLAK-23-AA.spain
 		LocalOffset: 262,160,160, 262,-160,160
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
 	Armament@SECONDARY:
-        Name: secondary
+		Name: secondary
 		Weapon: FLAK-23-AG.spain
 		LocalOffset: 262,160,160, 262,-160,160
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
 	SpawnActorOnDeath:
 		Actor: ATNK.Spain.Husk
 	RenderSprites:
@@ -1414,7 +1414,7 @@ ATNK.GreeceR2:
 	Inherits: ATNK.Greece
 	Buildable:
 		Prerequisites: dome, fix, ~vehicles.allies, ~player.greece, ~vehicles.upgraded, ~techlevel.high
-        Icon: rank2-icon
+		Icon: rank2-icon
 	ProducibleWithLevel:
 		Prerequisites: techlevel.infonly
 		InitialLevels: 2
@@ -1425,7 +1425,7 @@ ATNK.Turkey:
 	Inherits: ATNK
 	Buildable:
 		Prerequisites: dome, fix, ~vehicles.allies, ~player.turkey, ~techlevel.high
-        Description: Mobile anti-air unit.\n  Special ability: Amphibian\nCan swim through sea and river.\n  Strong vs Infantry, Aircraft\n  Weak vs Tanks
+		Description: Mobile anti-air unit.\n  Special ability: Amphibian\nCan swim through sea and river.\n  Strong vs Infantry, Aircraft\n  Weak vs Tanks
 	Mobile:
 		Locomotor: tracked-amphibious
 	GrantConditionOnTerrain@SEA:
@@ -1443,7 +1443,7 @@ ATNK.Turkey:
 		Sequence: idle-float
 		RequiresCondition: floating
 	SpawnActorOnDeath:
-        Actor: ATNK.Turkey.Husk
+		Actor: ATNK.Turkey.Husk
 		RequiresCondition: !floating
 	RenderSprites:
 		Image: atnk
@@ -1491,7 +1491,7 @@ TNKD:
 		Prerequisites: vehicles.upgraded
 	Passenger:
 		Weight: 4
-        PipType: Red
+		PipType: Red
 	Targetable:
 		TargetTypes: Ground, Vehicle, VehicleDisguise
 		RequiresCondition: !parachute
@@ -1507,13 +1507,13 @@ SPG:
 		Description: Self-propelled Gun that is equally\nefficient against Structures and Tanks.\n  Strong vs Tanks, Defenses\n  Weak vs Infantry, Aircraft
 	Valued:
 		Cost: 800
-    -Tooltip:
+	-Tooltip:
 	Tooltip@sidebar:
 		Name: Self Propelled Gun
-        RequiresCondition: !produced
+		RequiresCondition: !produced
 	Tooltip@ingame:
 		Name: SPG
-        RequiresCondition: produced    
+		RequiresCondition: produced
 	ExternalCondition@PRODUCED:
 		Condition: produced
 	Health:
@@ -1543,24 +1543,24 @@ SPG:
 	ProducibleWithLevel:
 		Prerequisites: vehicles.upgraded
 	Passenger:
-        Weight: 2
+		Weight: 2
 		PipType: Red
 
 MRJ:
-    Buildable:
-        BuildPaletteOrder: 9
-        Prerequisites: atek, ~vehicles.allies, ~player.england, ~techlevel.high
-        BuildDurationModifier: 60
-        Description: Jams nearby enemy radar domes\nand deflects incoming missiles.\n  Continues to deflect missiles while in a Transport.\n  Unarmed
-    WithIdleOverlay@SPINNER:
-        PauseOnCondition: empdisable
-    ProximityExternalCondition@JAMMER:
-        RequiresCondition: !empdisable
+	Buildable:
+		BuildPaletteOrder: 9
+		Prerequisites: atek, ~vehicles.allies, ~player.england, ~techlevel.high
+		BuildDurationModifier: 60
+		Description: Jams nearby enemy radar domes\nand deflects incoming missiles.\n  Continues to deflect missiles while in a Transport.\n  Unarmed
+	WithIdleOverlay@SPINNER:
+		PauseOnCondition: empdisable
+	ProximityExternalCondition@JAMMER:
+		RequiresCondition: !empdisable
 	Targetable:
 		TargetTypes: Ground, Vehicle, VehicleDisguise
 		RequiresCondition: !parachute
-    Passenger:
-        PipType: Blue
+	Passenger:
+		PipType: Blue
 
 MHQ:
 	Inherits: ^TrackedVehicle
@@ -1571,16 +1571,16 @@ MHQ:
 		BuildPaletteOrder: 9
 		Prerequisites: dome, stek, ~vehicles.soviet, ~player.uzbek, ~techlevel.high
 		Description: Mobile base of operations, armed with a token mg.\nDetects cloaked units within sight-radius.\nIncreases damage and rate of fire on nearby\nground units and allows them to self-heal.\n  Strong vs Infantry\n  Weak vs Everything else
-        Icon: mhq-icon
+		Icon: mhq-icon
 	Valued:
 		Cost: 1000
-    -Tooltip:
+	-Tooltip:
 	Tooltip@sidebar:
 		Name: Mobile Headquarters
-        RequiresCondition: !produced
+		RequiresCondition: !produced
 	Tooltip@ingame:
 		Name: Mobile HQ
-        RequiresCondition: produced    
+		RequiresCondition: produced
 	ExternalCondition@PRODUCED:
 		Condition: produced
 	Health:
@@ -1617,55 +1617,55 @@ MHQ:
 		Range: 6c0
 		RequiresCondition: !empdisable
 	Passenger:
-        PipType: Red
+		PipType: Red
 	RenderDetectionCircle:
 	RenderSprites:
 		Image: mrj
 
 CTNK:
-    Buildable:
-        BuildPaletteOrder: 9
-        Prerequisites: atek, ~vehicles.allies, ~player.germany, ~techlevel.high
-        BuildDurationModifier: 60
-    Armament@PRIMARY:
-        PauseOnCondition: empdisable
-    Armament@SECONDARY:
-        PauseOnCondition: empdisable
+	Buildable:
+		BuildPaletteOrder: 9
+		Prerequisites: atek, ~vehicles.allies, ~player.germany, ~techlevel.high
+		BuildDurationModifier: 60
+	Armament@PRIMARY:
+		PauseOnCondition: empdisable
+	Armament@SECONDARY:
+		PauseOnCondition: empdisable
 	AttackFrontal:
 		PauseOnCondition: empdisable
 	PortableChrono:
 		ChargeDelay: 250
-    # Portable Chrono isnt conditional, doesnt pause under EMP and cannot have multiples on an unit
-    #    RequiresCondition: !rank-elite
-    #    PauseOnCondition: empdisable
+	# Portable Chrono isnt conditional, doesnt pause under EMP and cannot have multiples on an unit
+	#    RequiresCondition: !rank-elite
+	#    PauseOnCondition: empdisable
 	# PortableChrono@elite:
 	#	 ChargeDelay: 125
-    #    RequiresCondition: rank-elite
-    #    PauseOnCondition: empdisable 
+	#    RequiresCondition: rank-elite
+	#    PauseOnCondition: empdisable 
 	Targetable:
 		TargetTypes: Ground, Vehicle, VehicleDisguise
 		RequiresCondition: !parachute
-    Passenger:
-        PipType: Red
+	Passenger:
+		PipType: Red
 
 STNK:
-    Buildable:
-        BuildPaletteOrder: 9
-        Prerequisites: atek, ~vehicles.allies, ~player.france, ~techlevel.high
-        BuildDurationModifier: 60
+	Buildable:
+		BuildPaletteOrder: 9
+		Prerequisites: atek, ~vehicles.allies, ~player.france, ~techlevel.high
+		BuildDurationModifier: 60
 	-Armament:
 	Armament@PRIMARY:
 		Name: primary
 		Turret: secondary
 		Weapon: APTusk
 		LocalOffset: 85,384,176, 85,-384,176
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
 	Armament@SECONDARY:
 		Name: secondary
 		Turret: primary
 		Weapon: StingerAA
 		LocalOffset: 192,0,176
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
 	-Turreted:
 	Turreted@PRIMARY:
 		Turret: primary
@@ -1678,26 +1678,26 @@ STNK:
 	#	Turrets: primary
 	#	Armaments: secondary
 	AttackFrontal:
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
 	WithSpriteTurret:
 		Turret: primary
 		Sequence: turret
 	Cargo:
-        Types: Infantry
+		Types: Infantry
 		MaxWeight: 3
 		PipCount: 3
-    #   RequiresCondition: !rank-elite
-    # actors cannot have multiple cargo traits, shame really
-    #   Cargo@elite:
-    #   Types: Infantry
+	#   RequiresCondition: !rank-elite
+	# actors cannot have multiple cargo traits, shame really
+	#   Cargo@elite:
+	#   Types: Infantry
 	#	MaxWeight: 6
 	#	PipCount: 6
-    #   RequiresCondition: rank-elite
+	#   RequiresCondition: rank-elite
 	Targetable:
 		TargetTypes: Ground, Vehicle, VehicleDisguise
 		RequiresCondition: !parachute
-    Passenger:
-        PipType: Red
+	Passenger:
+		PipType: Red
 
 HELL:
 	Inherits: ^Vehicle
@@ -1721,7 +1721,7 @@ HELL:
 		Type: Heavy
 	Mobile:
 		Speed: 128
-        Locomotor: heavywheeled
+		Locomotor: heavywheeled
 	RevealsShroud:
 		Range: 5c0
 		RevealGeneratedShroud: False
@@ -1733,15 +1733,15 @@ HELL:
 		Weapon: Flamer
 		LocalOffset: 584,0,180
 		FireDelay: 8
-        RequiresCondition: !rank-elite
+		RequiresCondition: !rank-elite
 	Armament@elite:
-        Name: elite
+		Name: elite
 		Weapon: Flamer.elite
 		LocalOffset: 584,0,180
 		FireDelay: 8
-        RequiresCondition: rank-elite
+		RequiresCondition: rank-elite
 	AttackTurreted:
-        Armaments: primary, elite
+		Armaments: primary, elite
 	WithSpriteTurret:
 	Explodes:
 		Weapon: VisualExplode
@@ -1749,8 +1749,8 @@ HELL:
 		Chance: 100
 	ProducibleWithLevel:
 		Prerequisites: vehicles.upgraded
-    Passenger:
-        PipType: Yellow
+	Passenger:
+		PipType: Yellow
 	Targetable:
 		TargetTypes: Ground, Vehicle, VehicleDisguise
 		RequiresCondition: !parachute
@@ -1760,9 +1760,9 @@ MAPC:
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Buildable:
-        Queue: Vehicle
+		Queue: Vehicle
 		BuildPaletteOrder: 9
-        Prerequisites: atek, ~vehicles.allies, ~player.turkey, ~techlevel.high
+		Prerequisites: atek, ~vehicles.allies, ~player.turkey, ~techlevel.high
 		Description: APC variant armed with twin-linked grenade-launcher.\nCan transport up to 3 Infantry.\n  Strong vs Vehicles\n  Weak vs Infantry
 	Valued:
 		Cost: 800
@@ -1776,7 +1776,7 @@ MAPC:
 		Type: Heavy
 	Mobile:
 		Speed: 142
-        RequiresCondition: !empdisable && !notmobile && !being-captured
+		PauseOnCondition: !(!empdisable && !notmobile && !being-captured)
 	RevealsShroud:
 		Range: 5c0
 		RevealGeneratedShroud: False
@@ -1790,9 +1790,9 @@ MAPC:
 		RecoilRecovery: 18
 		LocalOffset: 85,85,299, 85,-85,299
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
 	AttackTurreted:
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
 	ProximityExternalCondition@ELITE:
 		Condition: hospitalheal
 		Range: 4c0
@@ -1807,11 +1807,11 @@ MAPC:
 		Types: Infantry
 		MaxWeight: 3
 		PipCount: 3
-        LoadedCondition: loaded
+		LoadedCondition: loaded
 		LoadingCondition: notmobile
 	Carryable:
 		LocalOffset: 0,0,100
-        RequiresCondition: !loaded
+		RequiresCondition: !loaded
 	Targetable:
 		TargetTypes: Ground, Vehicle, VehicleDisguise
 		RequiresCondition: !parachute
@@ -1819,20 +1819,20 @@ MAPC:
 		PipType: Red
 
 MGG:
-    Buildable:
-        BuildPaletteOrder: 9
-        Prerequisites: atek, ~vehicles.allies, ~player.greece, ~techlevel.high
-        BuildDurationModifier: 60
-        Description: Regenerates the shroud nearby,\nobscuring the area.\n  Can be toggled on/off via deploy command.\n  Continues to function while in a Transport.\n  Unarmed
-    Valued:
-        Cost: 800
-    WithIdleOverlay@SPINNER:
-        PauseOnCondition: empdisable || deployed
-    CreatesShroud:
-        RequiresCondition: !empdisable && !deployed
-    GrantConditionOnDeploy:
-        DeployedCondition: deployed
-        SkipMakeAnimation: yes
+	Buildable:
+		BuildPaletteOrder: 9
+		Prerequisites: atek, ~vehicles.allies, ~player.greece, ~techlevel.high
+		BuildDurationModifier: 60
+		Description: Regenerates the shroud nearby,\nobscuring the area.\n  Can be toggled on/off via deploy command.\n  Continues to function while in a Transport.\n  Unarmed
+	Valued:
+		Cost: 800
+	WithIdleOverlay@SPINNER:
+		PauseOnCondition: empdisable || deployed
+	CreatesShroud:
+		RequiresCondition: !empdisable && !deployed
+	GrantConditionOnDeploy:
+		DeployedCondition: deployed
+		SkipMakeAnimation: yes
 	WithDecoration@offline:
 		RequiresSelection: true
 		Image: pips
@@ -1843,8 +1843,8 @@ MGG:
 	Targetable:
 		TargetTypes: Ground, Vehicle, VehicleDisguise
 		RequiresCondition: !parachute
-    Passenger:
-        PipType: Blue
+	Passenger:
+		PipType: Blue
 
 #   Disguise Tank
 DTNK:
@@ -1867,248 +1867,248 @@ DTNK:
 	DisguiseTooltip@default:
 		Name: Mirage Tank
 		GenericName: Tank
-        RequiresCondition: !jeep && !apc && !tnk1 && !tnk2 && !arty && !mnly && !atnk && !tnkd && !mrj && !stnk && !ctnk && !mcv && !harv && !truk && !mgg && !hell && !mrls && !msam && !mbun && !mapc && !gcan
+		RequiresCondition: !jeep && !apc && !tnk1 && !tnk2 && !arty && !mnly && !atnk && !tnkd && !mrj && !stnk && !ctnk && !mcv && !harv && !truk && !mgg && !hell && !mrls && !msam && !mbun && !mapc && !gcan
 	DisguiseTooltip@jeep:
 		Name: Ranger
 		GenericName: Vehicle
-        RequiresCondition: jeep
+		RequiresCondition: jeep
 	DisguiseTooltip@apc:
 		Name: APC
 		GenericName: Vehicle
-        RequiresCondition: apc
-    DisguiseTooltip@tnk1:
+		RequiresCondition: apc
+	DisguiseTooltip@tnk1:
 		Name: Light Tank
 		GenericName: Tank
-        RequiresCondition: tnk1
+		RequiresCondition: tnk1
 	DisguiseTooltip@tnk2:
 		Name: Medium Tank
 		GenericName: Tank
-        RequiresCondition: tnk2
+		RequiresCondition: tnk2
 	DisguiseTooltip@arty:
 		Name: Artillery
 		GenericName: Vehicle
-        RequiresCondition: arty
+		RequiresCondition: arty
 	DisguiseTooltip@mnly:
 		Name: Minelayer
 		GenericName: Vehicle
-        RequiresCondition: mnly
-    DisguiseTooltip@atnk:
+		RequiresCondition: mnly
+	DisguiseTooltip@atnk:
 		Name: Flak Tank
 		GenericName: Tank
-        RequiresCondition: atnk
+		RequiresCondition: atnk
 	DisguiseTooltip@tnkd:
 		Name: Tank Destroyer
 		GenericName: Tank
-        RequiresCondition: tnkd
+		RequiresCondition: tnkd
 	DisguiseTooltip@mrj:
 		Name: Mobile Radar Jammer
 		GenericName: Vehicle
-        RequiresCondition: mrj
+		RequiresCondition: mrj
 	DisguiseTooltip@stnk:
 		Name: Phase Transport
 		GenericName: Vehicle
-        RequiresCondition: stnk
+		RequiresCondition: stnk
 	DisguiseTooltip@ctnk:
 		Name: Chrono Tank
 		GenericName: Tank
-        RequiresCondition: ctnk
+		RequiresCondition: ctnk
 	DisguiseTooltip@mcv:
 		Name: Mobile Construction Vehicle
 		GenericName: Vehicle
-        RequiresCondition: mcv
+		RequiresCondition: mcv
 	DisguiseTooltip@harv:
 		Name: Ore Truck
 		GenericName: Harvester
-        RequiresCondition: harv
+		RequiresCondition: harv
 	DisguiseTooltip@truk:
 		Name: Supply Truck
 		GenericName: Vehicle
-        RequiresCondition: truk
+		RequiresCondition: truk
 	DisguiseTooltip@mgg:
 		Name: Mobile Gap Generator
 		GenericName: Vehicle
-        RequiresCondition: mgg
+		RequiresCondition: mgg
 	DisguiseTooltip@hell:
 		Name: Hellhound
 		GenericName: Tank
-        RequiresCondition: hell
+		RequiresCondition: hell
 	DisguiseTooltip@mrls:
 		Name: MRLS
 		GenericName: Vehicle
-        RequiresCondition: mrls
+		RequiresCondition: mrls
 	DisguiseTooltip@msam:
 		Name: Mobile SAM
 		GenericName: Vehicle
-        RequiresCondition: msam
+		RequiresCondition: msam
 	DisguiseTooltip@mbun:
 		Name: Mobile Bunker
 		GenericName: Vehicle
-        RequiresCondition: mbun
+		RequiresCondition: mbun
 	DisguiseTooltip@mapc:
 		Name: Assault APC
 		GenericName: Vehicle
-        RequiresCondition: mapc
+		RequiresCondition: mapc
 	DisguiseTooltip@gcan:
 		Name: Grand Cannon
 		GenericName: Vehicle
-        RequiresCondition: gcan
+		RequiresCondition: gcan
 	Health:
 		HP: 45000
 	Armor:
 		Type: Light
-    Mobile:
+	Mobile:
 		Speed: 128
-        RequiresCondition: !empdisable && !being-captured   
+		PauseOnCondition: !(!empdisable && !being-captured)
 	RevealsShroud:
 		Range: 6c0
 		RevealGeneratedShroud: False
 	RevealsShroud@GAPGEN:
 		Range: 4c0
-    Armament@default:
-        Name: defaultarm
+	Armament@default:
+		Name: defaultarm
 		Weapon: 90mm.france
 		Recoil: 85
 		RecoilRecovery: 25
-        Turret: default-turret
+		Turret: default-turret
 		LocalOffset: 768,0,90
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
-        RequiresCondition: !jeep && !apc && !tnk1 && !tnk2 && !arty && !mnly && !atnk && !tnkd && !mrj && !stnk && !ctnk && !mcv && !harv && !truk && !mgg && !mrls && !mbun && !mapc && !gcan
-    Armament@jeep:
-        Name: jeeparm
+		PauseOnCondition: empdisable
+		RequiresCondition: !jeep && !apc && !tnk1 && !tnk2 && !arty && !mnly && !atnk && !tnkd && !mrj && !stnk && !ctnk && !mcv && !harv && !truk && !mgg && !mrls && !mbun && !mapc && !gcan
+	Armament@jeep:
+		Name: jeeparm
 		Weapon: 90mm.decoy.zero
 		Recoil: 0
-        Turret: jeep-turret
+		Turret: jeep-turret
 		LocalOffset: 768,0,90
-        PauseOnCondition: empdisable
-        RequiresCondition: jeep
-    Armament@tnk1:
-        Name: 1tnkarm
+		PauseOnCondition: empdisable
+		RequiresCondition: jeep
+	Armament@tnk1:
+		Name: 1tnkarm
 		Weapon: 90mm.decoy.zero
 		Recoil: 0
-        Turret: 1tnk-turret
+		Turret: 1tnk-turret
 		LocalOffset: 768,0,90
-        PauseOnCondition: empdisable
-        RequiresCondition: tnk1        
-    Armament@tnk2:
-        Name: 2tnkarm
+		PauseOnCondition: empdisable
+		RequiresCondition: tnk1
+	Armament@tnk2:
+		Name: 2tnkarm
 		Weapon: 90mm.decoy.zero
 		Recoil: 0
-        Turret: 2tnk-turret
+		Turret: 2tnk-turret
 		LocalOffset: 768,0,90
-        PauseOnCondition: empdisable
-        RequiresCondition: tnk2
-    Armament@atnk:
-        Name: atnkarm
+		PauseOnCondition: empdisable
+		RequiresCondition: tnk2
+	Armament@atnk:
+		Name: atnkarm
 		Weapon: 90mm.decoy.zero
 		Recoil: 0
-        Turret: atnk-turret
+		Turret: atnk-turret
 		LocalOffset: 768,0,90
-        PauseOnCondition: empdisable
-        RequiresCondition: atnk
-    Armament@stnk:
-        Name: stnkarm
+		PauseOnCondition: empdisable
+		RequiresCondition: atnk
+	Armament@stnk:
+		Name: stnkarm
 		Weapon: 90mm.decoy.zero
 		Recoil: 0
-        Turret: stnk-turret
+		Turret: stnk-turret
 		LocalOffset: 768,0,90
-        PauseOnCondition: empdisable
-        RequiresCondition: stnk
-    Armament@invis:
-        Name: invisarm
+		PauseOnCondition: empdisable
+		RequiresCondition: stnk
+	Armament@invis:
+		Name: invisarm
 		Weapon: 90mm.decoy.zero
 		Recoil: 0
-        Turret: invis-turret
+		Turret: invis-turret
 		LocalOffset: 768,0,90
-        PauseOnCondition: empdisable
-        RequiresCondition: apc || arty || mnly || tnkd || mrj || ctnk || mcv || harv || truk || mgg || gcan
-    Armament@hell:
-        Name: hellarm
+		PauseOnCondition: empdisable
+		RequiresCondition: apc || arty || mnly || tnkd || mrj || ctnk || mcv || harv || truk || mgg || gcan
+	Armament@hell:
+		Name: hellarm
 		Weapon: 90mm.decoy.zero
 		Recoil: 0
-        Turret: hell-turret
+		Turret: hell-turret
 		LocalOffset: 768,0,90
-        PauseOnCondition: empdisable
-        RequiresCondition: hell
-    Armament@mrls:
-        Name: mrlsarm
+		PauseOnCondition: empdisable
+		RequiresCondition: hell
+	Armament@mrls:
+		Name: mrlsarm
 		Weapon: 90mm.decoy.zero
 		Recoil: 0
-        Turret: mrls-turret
+		Turret: mrls-turret
 		LocalOffset: 768,0,90
-        PauseOnCondition: empdisable
-        RequiresCondition: mrls
-    Armament@mbun:
-        Name: mbunarm
+		PauseOnCondition: empdisable
+		RequiresCondition: mrls
+	Armament@mbun:
+		Name: mbunarm
 		Weapon: 90mm.decoy.zero
 		Recoil: 0
-        Turret: mbun-turret
+		Turret: mbun-turret
 		LocalOffset: 128,0,43
-        PauseOnCondition: empdisable
-        RequiresCondition: mbun		
-    Armament@mapc:
-        Name: mapcarm
+		PauseOnCondition: empdisable
+		RequiresCondition: mbun
+	Armament@mapc:
+		Name: mapcarm
 		Weapon: 90mm.decoy.zero
 		Recoil: 0
-        Turret: mapc-turret
+		Turret: mapc-turret
 		LocalOffset: 768,0,90
-        PauseOnCondition: empdisable
-        RequiresCondition: mapc
+		PauseOnCondition: empdisable
+		RequiresCondition: mapc
 	SpawnActorOnDeath:
 		Actor: dtnk.husk
 		OwnerType: InternalName
 		EffectiveOwnerFromOwner: true
-    #   this will be an long, messy section. it has to look and behave identical to whatever its mimicin als.
-    Disguise:
+	#   this will be an long, messy section. it has to look and behave identical to whatever its mimicin als.
+	Disguise:
 		DisguisedCondition: disguise
 		ValidStances: Ally
 		TargetTypes: VehicleDisguise
-		DisguisedAsConditions: 
+		DisguisedAsConditions:
 			jeep: jeep
-            jeep.spain: jeep
+			jeep.spain: jeep
 			jeep.spain.r2: jeep
-            apc: apc
+			apc: apc
 			1tnk: tnk1
-            1tnk.england: tnk1
-            1tnk.france: tnk1
-            1tnk.germany: tnk1
-            1tnk.spain: tnk1
+			1tnk.england: tnk1
+			1tnk.france: tnk1
+			1tnk.germany: tnk1
+			1tnk.spain: tnk1
 			1tnk.greece: tnk1
 			1tnk.greece.r2: tnk1
 			1tnk.turkey: tnk1
-            1tnf: tnk1
+			1tnf: tnk1
 			2tnk: tnk2
-            2tnk.england: tnk2
-            2tnk.france: tnk2
-            2tnk.germany: tnk2
-            2tnk.spain: tnk2
-            2tnf: tnk2
+			2tnk.england: tnk2
+			2tnk.france: tnk2
+			2tnk.germany: tnk2
+			2tnk.spain: tnk2
+			2tnf: tnk2
 			arty: arty
-            arty.france: arty
-            arty.france.r2: arty
-            artf: arty
+			arty.france: arty
+			arty.france.r2: arty
+			artf: arty
 			mnly: mnly
-            atnk: atnk
-            atnk.england: atnk
-            atnk.france: atnk
-            atnk.germany: atnk
-            atnk.spain: atnk
+			atnk: atnk
+			atnk.england: atnk
+			atnk.france: atnk
+			atnk.germany: atnk
+			atnk.spain: atnk
 			atnk.greece: atnk
 			atnk.greece.r2: atnk
 			atnk.turkey: atnk
-            tnkd: tnkd
-            mrj: mrj
-            stnk: stnk
-            ctnk: ctnk
-            mcv: mcv
-            mcvf: mcv
-            harv: harv
-            truk: truk
-            truf: truk
-            mgg: mgg
-            mggf: mgg
-            hell: hell
-            mrls: mrls
+			tnkd: tnkd
+			mrj: mrj
+			stnk: stnk
+			ctnk: ctnk
+			mcv: mcv
+			mcvf: mcv
+			harv: harv
+			truk: truk
+			truf: truk
+			mgg: mgg
+			mggf: mgg
+			hell: hell
+			mrls: mrls
 			msam: msam
 			mbun: mbun
 			mapc: mapc
@@ -2124,7 +2124,7 @@ DTNK:
 	Turreted@Default:
 		Turret: default-turret
 		TurnSpeed: 5
-        Offset: 0,0,128
+		Offset: 0,0,128
 	Turreted@Jeep:
 		Turret: jeep-turret
 		TurnSpeed: 10
@@ -2133,36 +2133,36 @@ DTNK:
 		Turret: 1tnk-turret
 		TurnSpeed: 7
 	Turreted@tnk2:
-        Turret: 2tnk-turret
+		Turret: 2tnk-turret
 		TurnSpeed: 5
-    Turreted@atnk:
-        Turret: atnk-turret
+	Turreted@atnk:
+		Turret: atnk-turret
 		TurnSpeed: 5
 		Offset: -45,0,10
-    Turreted@stnk:
+	Turreted@stnk:
 		Turret: stnk-turret
 		TurnSpeed: 5
-    Turreted@hell:
+	Turreted@hell:
 		Turret: hell-turret
 		TurnSpeed: 5
-    Turreted@mrls:
+	Turreted@mrls:
 		Turret: mrls-turret
 		TurnSpeed: 3
 		Offset: -256,0,128
-    Turreted@mbun:
+	Turreted@mbun:
 		Turret: mbun-turret
 		TurnSpeed: 255
 		Offset: -32,0,160
-    Turreted@mapc:
+	Turreted@mapc:
 		Turret: mapc-turret
 		TurnSpeed: 5
-    Turreted@other:
+	Turreted@other:
 		Turret: invis-turret
 		TurnSpeed: 5
 	AttackTurreted:
-        Armaments: defaultarm, jeeparm, 1tnkarm, 2tnkarm, atnkarm, stnkarm, invisarm, hellarm, mrlsarm, mbunarm, mapcarm
-        Turrets: default-turret, jeep-turret, 1tnk-turret, 2tnk-turret, atnk-turret, stnk-turret, invis-turret, hell-turret, mrls-turret, mbun-turret, mapc-turret
-        PauseOnCondition: empdisable
+		Armaments: defaultarm, jeeparm, 1tnkarm, 2tnkarm, atnkarm, stnkarm, invisarm, hellarm, mrlsarm, mbunarm, mapcarm
+		Turrets: default-turret, jeep-turret, 1tnk-turret, 2tnk-turret, atnk-turret, stnk-turret, invis-turret, hell-turret, mrls-turret, mbun-turret, mapc-turret
+		PauseOnCondition: empdisable
 	WithMuzzleOverlay:
 	WithSpriteTurret@Default:
 		Sequence: turret-default
@@ -2208,96 +2208,96 @@ DTNK:
 		Sequence: turret-invis
 		Turret: invis-turret
 		RequiresCondition: apc && arty && mnly && tnkd && mrj && ctnk && mcv && harv && truk && mgg
-    -WithFacingSpriteBody:
+	-WithFacingSpriteBody:
 	WithFacingSpriteBody@Default:
 		PauseOnCondition: jeep && apc && tnk1 && tnk2 && arty && mnly && atnk && tnkd && mrj && stnk && ctnk && harv && mcv && truk && mgg && hell && mrls && msam && mbun && gcan
 		RequiresCondition: !jeep && !apc && !tnk1 && !tnk2 && !arty && !mnly && !atnk && !tnkd && !mrj && !stnk && !ctnk && !harv && !mcv && !truk && !mgg && !hell && !mrls && !msam && !mbun && !gcan
 	WithFacingSpriteBody@jeep:
-        Name: jeep
+		Name: jeep
 		Sequence: jeep-body
 		RequiresCondition: jeep
 	WithFacingSpriteBody@apc:
-        Name: apc
+		Name: apc
 		Sequence: apc-body
 		RequiresCondition: apc || mapc
 	WithFacingSpriteBody@tnk1:
-        Name: tnk1
+		Name: tnk1
 		Sequence: 1tnk-body
 		RequiresCondition: tnk1
 	WithFacingSpriteBody@tnk2:
-        Name: tnk2
+		Name: tnk2
 		Sequence: 2tnk-body
 		RequiresCondition: tnk2
 	WithFacingSpriteBody@Arty:
-        Name: arty
+		Name: arty
 		Sequence: arty-body
 		RequiresCondition: arty
 	WithFacingSpriteBody@Gcan:
-        Name: gcan
+		Name: gcan
 		Sequence: gcan-body
 		RequiresCondition: gcan
 	WithFacingSpriteBody@Mnly:
-        Name: mnly
+		Name: mnly
 		Sequence: mnly-body
 		RequiresCondition: mnly
 	WithFacingSpriteBody@Atnk:
-        Name: atnk
+		Name: atnk
 		Sequence: atnk-body
 		RequiresCondition: atnk
 	WithFacingSpriteBody@Tnkd:
-        Name: tnkd
+		Name: tnkd
 		Sequence: tnkd-body
 		RequiresCondition: tnkd
 	WithFacingSpriteBody@Mrj:
-        Name: mrj
+		Name: mrj
 		Sequence: mrj-body
 		RequiresCondition: mrj
 	WithFacingSpriteBody@Stnk:
-        Name: stnk
+		Name: stnk
 		Sequence: stnk-body
 		RequiresCondition: stnk
 	WithFacingSpriteBody@Ctnk:
-        Name: ctnk
+		Name: ctnk
 		Sequence: ctnk-body
 		RequiresCondition: ctnk
 	WithFacingSpriteBody@Harv:
-        Name: harv
+		Name: harv
 		Sequence: harv-body
 		RequiresCondition: harv
 	WithFacingSpriteBody@Mcv:
-        Name: mcv
+		Name: mcv
 		Sequence: mcv-body
 		RequiresCondition: mcv
 	WithFacingSpriteBody@Truk:
-        Name: truk
+		Name: truk
 		Sequence: truk-body
 		RequiresCondition: truk
 	WithFacingSpriteBody@Mgg:
-        Name: mgg
+		Name: mgg
 		Sequence: mgg-body
 		RequiresCondition: mgg
 	WithIdleOverlay@Mgg:
 		Offset: -299,0,171
 		Sequence: spinner-mgg
-        RequiresCondition: mgg
+		RequiresCondition: mgg
 	WithIdleOverlay@Mrj:
 		Sequence: spinner-mrj
 		Offset: -256,0,256
-        RequiresCondition: mrj
+		RequiresCondition: mrj
 	WithFacingSpriteBody@hell:
-        Name: hell
+		Name: hell
 		Sequence: hell-body
 		RequiresCondition: hell
 	WithFacingSpriteBody@mrls:
-        Name: mrls
+		Name: mrls
 		Sequence: mrls-body
 		RequiresCondition: mrls && msam
 	WithFacingSpriteBody@mbun:
-        Name: mbun
+		Name: mbun
 		Sequence: mbun-body
 		RequiresCondition: mbun
 	Passenger:
-        PipType: Red
+		PipType: Red
 
 MRLS:
 	Inherits: ^TrackedVehicle
@@ -2310,13 +2310,13 @@ MRLS:
 		Prerequisites: ~disabled
 		Queue: Vehicle
 		Description: Long range rocket artillery.\nCannot attack Air units\n  Strong vs all Ground units\n  Weak vs Aircraft
-    -Tooltip:
+	-Tooltip:
 	Tooltip@sidebar:
 		Name: Multiple Launch Rocket System
-        RequiresCondition: !produced
+		RequiresCondition: !produced
 	Tooltip@ingame:
 		Name: MRLS
-        RequiresCondition: produced
+		RequiresCondition: produced
 	ExternalCondition@PRODUCED:
 		Condition: produced
 	Mobile:
@@ -2351,13 +2351,13 @@ MRLS:
 	Explodes@UNITEXPLODES:
 		Weapon: UnitExplode
 	Passenger:
-        PipType: Red
+		PipType: Red
 	Targetable:
 		TargetTypes: Ground, Vehicle, VehicleDisguise
 		RequiresCondition: !parachute
 
 MSAM:
-    Inherits: MRLS
+	Inherits: MRLS
 	Buildable:
 		Queue: Vehicle
 		BuildPaletteOrder: 12
@@ -2367,67 +2367,67 @@ MSAM:
 		Icon: msam-icon
 	Tooltip@sidebar:
 		Name: Mobile Surface-to-Air Missile
-        RequiresCondition: !produced
+		RequiresCondition: !produced
 	Tooltip@ingame:
 		Name: Mobile SAM
-        RequiresCondition: produced
+		RequiresCondition: produced
 	Turreted:
 		TurnSpeed: 5
-    -Armament@PRIMARY:
+	-Armament@PRIMARY:
 	Armament@PRIMARY:
 		Weapon: RedEye.volley
 		LocalOffset: 213,128,0, 213,-128,0
-		PauseOnCondition: empdisable    
-    -AttackTurreted:
-    AttackTurreted:
-        PauseOnCondition: empdisable
-    RenderSprites:
-        Image: mrls
+		PauseOnCondition: empdisable
+	-AttackTurreted:
+	AttackTurreted:
+		PauseOnCondition: empdisable
+	RenderSprites:
+		Image: mrls
 
 TTNK:
-    Buildable:
-        BuildPaletteOrder: 9
-        Prerequisites: stek, ~vehicles.soviet, ~player.russia, ~techlevel.high
-        Description: Tank with mounted Tesla coil.\n  Immune to EMP\n  Strong vs Infantry, Vehicles, Buildings\n  Weak vs Aircraft
-        BuildDurationModifier: 60
-    Mobile:
-        RequiresCondition: !being-captured
-    Armament:
-        RequiresCondition: !rank-elite
-    Armament@elite:
-        Name: elite
+	Buildable:
+		BuildPaletteOrder: 9
+		Prerequisites: stek, ~vehicles.soviet, ~player.russia, ~techlevel.high
+		Description: Tank with mounted Tesla coil.\n  Immune to EMP\n  Strong vs Infantry, Vehicles, Buildings\n  Weak vs Aircraft
+		BuildDurationModifier: 60
+	Mobile:
+		PauseOnCondition: !(!being-captured)
+	Armament:
+		RequiresCondition: !rank-elite
+	Armament@elite:
+		Name: elite
 		Weapon: TTankZap.elite
 		LocalOffset: 0,0,213
-        RequiresCondition: rank-elite
-    AttackTurreted:
-        Armaments: primary, elite
-    Passenger:
-        PipType: Red
+		RequiresCondition: rank-elite
+	AttackTurreted:
+		Armaments: primary, elite
+	Passenger:
+		PipType: Red
 
 DTRK:
-    Buildable:
-        BuildPaletteOrder: 9
-        Prerequisites: stek, ~vehicles.soviet, ~player.ukraine, ~techlevel.high
-        Description: Truck with actively armed nuclear\nexplosives. Has very weak armor.\n  Detonates when Iron Curtained or Chronoshifted\nalso Detonates if the Transport its in sinks.\n Can disguise as Supply Truck, friendly or enemy.
+	Buildable:
+		BuildPaletteOrder: 9
+		Prerequisites: stek, ~vehicles.soviet, ~player.ukraine, ~techlevel.high
+		Description: Truck with actively armed nuclear\nexplosives. Has very weak armor.\n  Detonates when Iron Curtained or Chronoshifted\nalso Detonates if the Transport its in sinks.\n Can disguise as Supply Truck, friendly or enemy.
 	Selectable:
 		Class: DemoDisguise
-    -Tooltip:
+	-Tooltip:
 	Targetable:
 		TargetTypes: Ground, Vehicle, DemoDisguise
 		RequiresCondition: !parachute
 	DisguiseTooltip@default:
 		Name: Demolition Truck
-        GenericName: Vehicle
-        RequiresCondition: !truk
+		GenericName: Vehicle
+		RequiresCondition: !truk
 	DisguiseTooltip@truk:
 		Name: Supply Truck
 		GenericName: Vehicle
-        RequiresCondition: truk
-    Disguise:
+		RequiresCondition: truk
+	Disguise:
 		DisguisedCondition: disguise
 		ValidStances: Ally, Neutral, Enemy
 		TargetTypes: DemoDisguise
-		DisguisedAsConditions: 
+		DisguisedAsConditions:
 			truk: truk
 	WithDecoration@disguise:
 		Image: pips
@@ -2437,25 +2437,25 @@ DTRK:
 		ZOffset: 256
 		RequiresCondition: disguise
 	IgnoresDisguise:
-    -WithFacingSpriteBody:
+	-WithFacingSpriteBody:
 	WithFacingSpriteBody@Default:
 		PauseOnCondition: truk
 		RequiresCondition: !truk
 	WithFacingSpriteBody@Truk:
-        Name: truk
+		Name: truk
 		Sequence: truk-body
 		RequiresCondition: truk
-    Passenger:
-        PipType: Red
+	Passenger:
+		PipType: Red
 
 QTNK:
-    Buildable:
-        BuildPaletteOrder: 9
-        Prerequisites: stek, ~vehicles.soviet, ~player.belarus, ~techlevel.high
+	Buildable:
+		BuildPaletteOrder: 9
+		Prerequisites: stek, ~vehicles.soviet, ~player.belarus, ~techlevel.high
 	Passenger:
 		Weight: 4
-        PipType: Red
-    Valued:
+		PipType: Red
+	Valued:
 		Cost: 1500
 
 BRDM:
@@ -2469,13 +2469,13 @@ BRDM:
 		Description: Fast armored car with anti-armor rockets.\nCannot attack Air units.\n  Strong vs Vehicles, Tanks\n  Weak vs Infantry, Aircraft
 	Valued:
 		Cost: 650
-    -Tooltip:
+	-Tooltip:
 	Tooltip@sidebar:
 		Name: Tank Hunter
-        RequiresCondition: !produced
+		RequiresCondition: !produced
 	Tooltip@ingame:
 		Name: BRDM
-        RequiresCondition: produced
+		RequiresCondition: produced
 	ExternalCondition@PRODUCED:
 		Condition: produced
 	Health:
@@ -2485,7 +2485,7 @@ BRDM:
 	Mobile:
 		TurnSpeed: 10
 		Speed: 170
-		RequiresCondition: !empdisable && !being-captured
+		PauseOnCondition: !(!empdisable && !being-captured)
 	RevealsShroud:
 		Range: 6c0
 		RevealGeneratedShroud: False
@@ -2502,25 +2502,25 @@ BRDM:
 	WithSpriteTurret:
 	ProducibleWithLevel:
 		Prerequisites: vehicles.upgraded
-    Passenger:
-        PipType: Red
+	Passenger:
+		PipType: Red
 	Carryable:
 		LocalOffset: 0,0,100
 
 BRDM.R1:
-    Inherits: BRDM
-    -Tooltip@sidebar:
-    -Tooltip@ingame:
-    Tooltip:
-        Name: BRDM
-    -ExternalCondition@PRODUCED:        
-    RenderSprites:
-        Image: brdm
-    ProducibleWithLevel:
-        Prerequisites: techlevel.infonly
-        InitialLevels: 1
-    -Buildable:
-    -MapEditorData:
+	Inherits: BRDM
+	-Tooltip@sidebar:
+	-Tooltip@ingame:
+	Tooltip:
+		Name: BRDM
+	-ExternalCondition@PRODUCED:
+	RenderSprites:
+		Image: brdm
+	ProducibleWithLevel:
+		Prerequisites: techlevel.infonly
+		InitialLevels: 1
+	-Buildable:
+	-MapEditorData:
 
 BEHE:
 	Inherits: ^TrackedVehicle
@@ -2529,14 +2529,14 @@ BEHE:
 	Buildable:
 		Queue: Vehicle
 		BuildPaletteOrder: 14
-        BuildLimit: 1
+		BuildLimit: 1
 		Prerequisites: stek, ~vehicles.soviet, ~tech.stolen, ~player.kazakh, ~techlevel.high
 		Description: Artillery tank of majestic proportions.\nMaximum one can be built.\nCan crush concrete walls.\nSelf-repairs when below 50% of maximum Health.\n  Strong vs Defenses, Vehicles, Infantry\n  Weak vs Aircraft, fast Units
 	Valued:
 		Cost: 3000
 	Tooltip:
 		Name: Behemoth Tank
-        GenericName: Tank
+		GenericName: Tank
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
@@ -2583,7 +2583,7 @@ BEHE:
 	Passenger:
 		CargoType: Vehicle
 		Weight: 4
-        PipType: Red
+		PipType: Red
 	RenderRangeCircle:
 
 HAPC:
@@ -2607,7 +2607,7 @@ HAPC:
 		Type: Heavy
 	Mobile:
 		Speed: 85
-		RequiresCondition: !empdisable && !notmobile && !being-captured
+		PauseOnCondition: !(!empdisable && !notmobile && !being-captured)
 	RevealsShroud:
 		Range: 5c0
 		RevealGeneratedShroud: False
@@ -2617,9 +2617,9 @@ HAPC:
 		Weapon: M60mg
 		LocalOffset: 85,0,171
 		MuzzleSequence: muzzle
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
 	AttackFrontal:
-        PauseOnCondition: empdisable
+		PauseOnCondition: empdisable
 	ProximityExternalCondition@ELITE:
 		Condition: hospitalheal
 		Range: 4c0
@@ -2634,32 +2634,32 @@ HAPC:
 		Prerequisites: vehicles.upgraded
 	Passenger:
 		PipType: Green
-    MineImmune:
+	MineImmune:
 
 MCV:
-    Buildable:
-        BuildPaletteOrder: 10
-        BuildDurationModifier: 60
-    Valued:
+	Buildable:
+		BuildPaletteOrder: 10
+		BuildDurationModifier: 60
+	Valued:
 		Cost: 2500
 	Passenger:
 		Weight: 4
-        PipType: Blue
+		PipType: Blue
 	Targetable:
 		TargetTypes: Ground, Vehicle, VehicleDisguise
 		RequiresCondition: !parachute
 
 TRUK:
-    Buildable:
-        BuildPaletteOrder: 11
-        Prerequisites: proc, ~techlevel.low
+	Buildable:
+		BuildPaletteOrder: 11
+		Prerequisites: proc, ~techlevel.low
 	Carryable:
 		LocalOffset: 0,0,100
 	Targetable:
 		TargetTypes: Ground, Vehicle, VehicleDisguise, DemoDisguise
 		RequiresCondition: !parachute
-    Passenger:
-        PipType: Blue
+	Passenger:
+		PipType: Blue
 
 FIST:
 	Inherits: ^Vehicle
@@ -2699,7 +2699,7 @@ FIST:
 	Passenger:
 		CargoType: Vehicle
 		Weight: 4
-        PipType: Blue
+		PipType: Blue
 
 SSM:
 	Inherits: ^TrackedVehicle
@@ -2707,21 +2707,21 @@ SSM:
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Valued:
 		Cost: 1500
-    -Tooltip:
+	-Tooltip:
 	Tooltip@sidebar:
 		Name: Surface-to-Surface Missile Launcher
-        RequiresCondition: !produced
+		RequiresCondition: !produced
 	Tooltip@ingame:
 		Name: SSM Launcher
-        RequiresCondition: produced
+		RequiresCondition: produced
 	ExternalCondition@PRODUCED:
 		Condition: produced
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Buildable:
 		BuildPaletteOrder: 13
-        BuildLimit: 1
-        Prerequisites: ~disabled
+		BuildLimit: 1
+		Prerequisites: ~disabled
 		#   Prerequisites: atek, ~vehicles.allies, ~tech.stolen, ~player.turkey, ~techlevel.high
 		Queue: Vehicle
 		Description: Long-range rocket artillery.\nHas very weak Armor.\nExplodes violently on death!\n  Strong vs Everything\n  Weak vs Close Range attacks
@@ -2763,13 +2763,13 @@ SSM:
 		Sequence: turret0
 	AutoTarget:
 	Explodes@UNITEXPLODES:
-        Weapon: BarrelExplode
+		Weapon: BarrelExplode
 	ReloadAmmoPool@1:
 		Delay: 240
 		Count: 2
-        RequiresCondition: !ammo
-    ReloadArmamentsBar:
-        Color: FFFF00
+		RequiresCondition: !ammo
+	ReloadArmamentsBar:
+		Color: FFFF00
 	ProducibleWithLevel:
 		Prerequisites: vehicles.upgraded
 	Selectable:
@@ -2777,37 +2777,37 @@ SSM:
 	RenderRangeCircle:
 	Passenger:
 		CargoType: Vehicle
-        PipType: Red
+		PipType: Red
 
 SSM.nuke:
-    Inherits: SSM
-    -Tooltip@sidebar:
-    -Tooltip@ingame:
+	Inherits: SSM
+	-Tooltip@sidebar:
+	-Tooltip@ingame:
 	Tooltip@sidebar:
 		Name: Nuclear Missile Launcher
-        RequiresCondition: !produced
+		RequiresCondition: !produced
 	Tooltip@ingame:
 		Name: Nuclear SSM
-        RequiresCondition: produced    
+		RequiresCondition: produced
 	Buildable:
 		BuildPaletteOrder: 13
-        BuildLimit: 1
-        Prerequisites: ~disabled
+		BuildLimit: 1
+		Prerequisites: ~disabled
 		#   Prerequisites: atek, ~vehicles.allies, ~tech.stolen, ~player.turkey, ~techlevel.high
 		Queue: Vehicle
 		Description: Long-range nuclear rocket artillery.\nHas very weak Armor.\nExplodes violently on death!\n  Strong vs Everything\n  Weak vs Close Range attacks
-        Icon: nuke-icon
+		Icon: nuke-icon
 	Armament:
 		Weapon: HonestJohn.nuke
 		LocalOffset: 0,171,0, 0,-171,0
 		PauseOnCondition: empdisable
 	-Explodes@UNITEXPLODES:
-    Explodes@UNITEXPLODES:
+	Explodes@UNITEXPLODES:
 		Weapon: MiniNuke
-        EmptyWeapon: BarrelExplode
-    RenderSprites:
-        Image: ssm
+		EmptyWeapon: BarrelExplode
+	RenderSprites:
+		Image: ssm
 	AnnounceOnSeen:
 		Notification: AbombLaunchDetected
 		PingRadar: True
-        
+		

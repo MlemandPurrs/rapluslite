@@ -658,7 +658,7 @@ Player:
 	HarvesterBotModule@turkmenistan:
 		RequiresCondition: enable-ai-player && player.turkmen
 		HarvesterTypes: harv.soviet
-		RefineryTypes: proc.soviet		
+		RefineryTypes: proc.soviet
 	BaseBuilderBotModule@england:
 		RequiresCondition: enable-ai-player && player.england
 		MinimumExcessPower: 60
@@ -677,20 +677,20 @@ Player:
 		BuildingLimits:
 			proc.ercc: 4
 			tent: 2
-            kenn: 4
+			kenn: 4
 			dome: 1
 			weap: 3
 			syrd: 1
 			hpad: 4
-            atek.england: 1
+			atek.england: 1
 			fix: 1
 			pdox: 1
-            mslo: 1
-            agun: 6
-            gun: 6
-            pbox: 8
-            hbox: 4
-            gap: 4
+			mslo: 1
+			agun: 6
+			gun: 6
+			pbox: 8
+			hbox: 4
+			gap: 4
 		BuildingFractions:
 			proc.ercc: 15
 			tent: 2
@@ -705,7 +705,7 @@ Player:
 			gap: 2
 			fix: 1
 			agun: 5
-            atek.england: 1
+			atek.england: 1
 			mslo: 1
 			pdox: 1
 	BaseBuilderBotModule@france:
@@ -726,21 +726,21 @@ Player:
 		BuildingLimits:
 			proc.ercc: 4
 			tent: 2
-            kenn: 4
+			kenn: 4
 			dome: 1
 			weap: 3
 			syrd: 1
 			hpad: 4
-            atek.france: 1
+			atek.france: 1
 			fix: 1
 			pdox: 1
-            mslo: 1
-            pbox: 8
-            hbox: 4
-            gun: 6
-            agun: 6
-            gap: 4
-            gtur: 3
+			mslo: 1
+			pbox: 8
+			hbox: 4
+			gun: 6
+			agun: 6
+			gap: 4
+			gtur: 3
 		BuildingFractions:
 			proc.ercc: 15
 			tent: 2
@@ -755,10 +755,10 @@ Player:
 			gap: 2
 			fix: 1
 			agun: 5
-            atek.france: 1
+			atek.france: 1
 			mslo: 1
 			pdox: 1
-            gtur: 3
+			gtur: 3
 	BaseBuilderBotModule@germany:
 		RequiresCondition: enable-ai-player && player.germany
 		MinimumExcessPower: 60
@@ -777,20 +777,20 @@ Player:
 		BuildingLimits:
 			proc.ercc: 4
 			tent: 2
-            kenn: 4
+			kenn: 4
 			dome: 1
 			weap: 3
 			syrd: 1
 			hpad: 4
-            atek.germany: 1
+			atek.germany: 1
 			fix: 1
 			pdox: 1
-            mslo: 1
-            pbox: 8
-            hbox: 4
-            gun: 6
-            agun: 6
-            gap: 4
+			mslo: 1
+			pbox: 8
+			hbox: 4
+			gun: 6
+			agun: 6
+			gap: 4
 		BuildingFractions:
 			proc.ercc: 15
 			tent: 2
@@ -805,7 +805,7 @@ Player:
 			gap: 2
 			fix: 1
 			agun: 5
-            atek.germany: 1
+			atek.germany: 1
 			mslo: 1
 			pdox: 1
 	BaseBuilderBotModule@spain:
@@ -826,20 +826,20 @@ Player:
 		BuildingLimits:
 			proc.ercc: 4
 			tent: 2
-            kenn: 4
+			kenn: 4
 			dome.spain: 1
 			weap: 3
 			syrd: 1
 			hpad: 4
-            atek: 1
+			atek: 1
 			fix: 1
 			pdox: 1
-            mslo: 1
-            pbox: 8
-            hbox: 4
-            gun: 6
-            agun: 6
-            gap: 4
+			mslo: 1
+			pbox: 8
+			hbox: 4
+			gun: 6
+			agun: 6
+			gap: 4
 		BuildingFractions:
 			proc.ercc: 15
 			tent: 2
@@ -854,7 +854,7 @@ Player:
 			gap: 2
 			fix: 1
 			agun: 5
-            atek: 1
+			atek: 1
 			mslo: 1
 			pdox: 1
 	BaseBuilderBotModule@greece:
@@ -875,20 +875,20 @@ Player:
 		BuildingLimits:
 			proc.ercc: 4
 			tent: 2
-            kenn: 4
+			kenn: 4
 			dome: 1
 			weap: 3
 			syrd: 1
 			hpad: 4
-            atek.greece: 1
+			atek.greece: 1
 			fix: 1
 			pdox: 1
-            mslo: 1
-            agun: 6
-            gun: 6
-            pbox: 8
-            hbox: 4
-            gap: 4
+			mslo: 1
+			agun: 6
+			gun: 6
+			pbox: 8
+			hbox: 4
+			gap: 4
 		BuildingFractions:
 			proc.ercc: 15
 			tent: 2
@@ -903,7 +903,7 @@ Player:
 			gap: 2
 			fix: 1
 			agun: 5
-            atek.greece: 1
+			atek.greece: 1
 			mslo: 1
 			pdox: 1
 	BaseBuilderBotModule@turkey:
@@ -924,20 +924,20 @@ Player:
 		BuildingLimits:
 			proc.ercc: 4
 			tent: 2
-            kenn: 4
+			kenn: 4
 			dome: 1
 			weap: 3
 			syrd: 1
 			hpad: 4
-            atek.turkey: 1
+			atek.turkey: 1
 			fix: 1
 			pdox: 1
-            mslo: 1
-            agun: 6
-            gun: 6
-            pbox: 8
-            hbox: 4
-            gap: 4
+			mslo: 1
+			agun: 6
+			gun: 6
+			pbox: 8
+			hbox: 4
+			gap: 4
 			gtwr: 4
 		BuildingFractions:
 			proc.ercc: 15
@@ -954,7 +954,7 @@ Player:
 			gap: 2
 			fix: 1
 			agun: 5
-            atek.turkey: 1
+			atek.turkey: 1
 			mslo: 1
 			pdox: 1
 	BaseBuilderBotModule@russia:
@@ -975,35 +975,35 @@ Player:
 		BuildingLimits:
 			proc.russia: 4
 			barr.russia: 2
-            kenn.russia: 4
-            dome.russia: 1
+			kenn.russia: 4
+			dome.russia: 1
 			weap.russia: 3
 			spen.russia: 1
 			afld.russia: 4
-            stek.russia: 1
+			stek.russia: 1
 			fix.russia: 1
 			iron: 1
-            mslo: 1
-            ftur: 6
-            hgun: 4
-            tsla.russia: 4
-            sam: 4
-            hsam: 2
+			mslo: 1
+			ftur: 6
+			hgun: 4
+			tsla.russia: 4
+			sam: 4
+			hsam: 2
 		BuildingFractions:
 			proc.russia: 15
 			barr.russia: 2
 			kenn.russia: 1
-            dome.russia: 1
+			dome.russia: 1
 			weap.russia: 6
 			spen.russia: 1
 			afld.russia: 4
-            hgun: 3
+			hgun: 3
 			ftur: 10
 			tsla.russia: 5
 			fix: 1
 			sam: 3
 			hsam: 1
-            stek.russia: 1
+			stek.russia: 1
 			mslo: 1
 			iron: 1
 	BaseBuilderBotModule@ukraine:
@@ -1024,35 +1024,35 @@ Player:
 		BuildingLimits:
 			proc.soviet: 4
 			barr: 2
-            kenn: 4
-            dome.soviet: 1
+			kenn: 4
+			dome.soviet: 1
 			weap: 3
 			spen: 1
 			afld: 4
-            stek.ukraine: 1
+			stek.ukraine: 1
 			fix: 1
 			iron: 1
-            mslo: 1
-            ftur: 6
-            hgun: 4
-            tsla: 4
-            sam: 4
-            hsam: 2
+			mslo: 1
+			ftur: 6
+			hgun: 4
+			tsla: 4
+			sam: 4
+			hsam: 2
 		BuildingFractions:
 			proc.soviet: 15
 			barr: 2
 			kenn: 1
-            dome.soviet: 1
+			dome.soviet: 1
 			weap: 6
 			spen: 1
 			afld: 4
-            hgun: 3
+			hgun: 3
 			ftur: 10
 			tsla: 5
 			fix: 1
 			sam: 3
 			hsam: 1
-            stek.ukraine: 1
+			stek.ukraine: 1
 			mslo: 1
 			iron: 1
 	BaseBuilderBotModule@belarus:
@@ -1073,35 +1073,35 @@ Player:
 		BuildingLimits:
 			proc.belarus: 4
 			barr: 2
-            kenn: 4
-            dome.soviet: 1
+			kenn: 4
+			dome.soviet: 1
 			weap: 3
 			spen: 1
 			afld: 4
-            stek.belarus: 1
+			stek.belarus: 1
 			fix: 1
 			iron: 1
-            mslo: 1
-            ftur: 6
-            hgun: 4
-            tsla: 4
-            sam: 4
-            hsam: 2
+			mslo: 1
+			ftur: 6
+			hgun: 4
+			tsla: 4
+			sam: 4
+			hsam: 2
 		BuildingFractions:
 			proc.belarus: 15
 			barr: 2
 			kenn: 1
-            dome.soviet: 1
+			dome.soviet: 1
 			weap: 6
 			spen: 1
 			afld: 4
-            hgun: 3
+			hgun: 3
 			ftur: 10
 			tsla: 5
 			fix: 1
 			sam: 3
 			hsam: 1
-            stek.belarus: 1
+			stek.belarus: 1
 			mslo: 1
 			iron: 1
 	BaseBuilderBotModule@kazakhstan:
@@ -1122,35 +1122,35 @@ Player:
 		BuildingLimits:
 			proc.soviet: 4
 			barr: 2
-            kenn: 4
-            dome.soviet: 1
+			kenn: 4
+			dome.soviet: 1
 			weap: 3
 			spen: 1
 			afld: 4
-            stek.kazakh: 1
+			stek.kazakh: 1
 			fix: 1
 			iron: 1
-            mslo: 1
-            ftur: 6
-            hgun: 4
-            tsla: 4
-            sam: 4
-            hsam: 2
+			mslo: 1
+			ftur: 6
+			hgun: 4
+			tsla: 4
+			sam: 4
+			hsam: 2
 		BuildingFractions:
 			proc.soviet: 15
 			barr: 2
 			kenn: 1
-            dome.soviet: 1
+			dome.soviet: 1
 			weap: 6
 			spen: 1
 			afld: 4
-            hgun: 3
+			hgun: 3
 			ftur: 10
 			tsla: 5
 			fix: 1
 			sam: 3
 			hsam: 1
-            stek.kazakh: 1
+			stek.kazakh: 1
 			mslo: 1
 			iron: 1
 	BaseBuilderBotModule@uzbekistan:
@@ -1171,35 +1171,35 @@ Player:
 		BuildingLimits:
 			proc.soviet: 4
 			barr: 2
-            kenn: 4
-            dome.soviet: 1
+			kenn: 4
+			dome.soviet: 1
 			weap: 3
 			spen: 1
 			afld: 4
-            stek.uzbek: 1
+			stek.uzbek: 1
 			fix: 1
 			iron: 1
-            mslo: 1
-            ftur.uzbek: 6
-            hgun.uzbek: 4
-            tsla.uzbek: 4
-            sam.uzbek: 4
-            hsam.uzbek: 2
+			mslo: 1
+			ftur.uzbek: 6
+			hgun.uzbek: 4
+			tsla.uzbek: 4
+			sam.uzbek: 4
+			hsam.uzbek: 2
 		BuildingFractions:
 			proc.soviet: 15
 			barr: 2
 			kenn: 1
-            dome.soviet: 1
+			dome.soviet: 1
 			weap: 6
 			spen: 1
 			afld: 4
-            hgun.uzbek: 3
+			hgun.uzbek: 3
 			ftur.uzbek: 10
 			tsla.uzbek: 5
 			fix: 1
 			sam.uzbek: 3
 			hsam.uzbek: 1
-            stek.uzbek: 1
+			stek.uzbek: 1
 			mslo: 1
 			iron: 1
 	BaseBuilderBotModule@turkmenistan:
@@ -1220,35 +1220,35 @@ Player:
 		BuildingLimits:
 			proc.soviet: 4
 			barr: 2
-            kenn: 4
-            dome.soviet: 1
+			kenn: 4
+			dome.soviet: 1
 			weap: 3
 			spen: 1
 			afld: 4
-            stek.turkmen: 1
+			stek.turkmen: 1
 			fix: 1
 			iron: 1
-            mslo: 1
-            ftur: 6
-            hgun: 4
-            tsla: 4
-            sam: 4
-            hsam: 2
+			mslo: 1
+			ftur: 6
+			hgun: 4
+			tsla: 4
+			sam: 4
+			hsam: 2
 		BuildingFractions:
 			proc.soviet: 15
 			barr: 2
 			kenn: 1
-            dome.soviet: 1
+			dome.soviet: 1
 			weap: 6
 			spen: 1
 			afld: 4
-            hgun: 3
+			hgun: 3
 			ftur: 10
 			tsla: 5
 			fix: 1
 			sam: 3
 			hsam: 1
-            stek.turkmen: 1
+			stek.turkmen: 1
 			mslo: 1
 			iron: 1
 	BuildingRepairBotModule@aiplayer:
@@ -1261,13 +1261,13 @@ Player:
 	CaptureManagerBotModule@engineer:
 		RequiresCondition: enable-ai-player
 		CapturingActorTypes: e6
-        CapturableActorTypes: oilb,bio,miss,fcom,hosp
+		CapturableActorTypes: oilb,bio,miss,fcom,hosp
 		CheckCaptureTargetsForVisibility: false
 		MaximumCaptureTargetOptions: 15
 	CaptureManagerBotModule@thf:
 		RequiresCondition: enable-ai-player && player.russia || player.ukraine || player.belarus || player.kazakh || player.uzbek || player.turkmen
 		CapturingActorTypes: thf
-        CapturableActorTypes: harv,harv.soviet,harv.belarus,mcv,v2rl,v2rl.ukraine,arty,arty.france,4tnk,4tnk.ukraine,4tnk.belarus,ttnk,ctnk
+		CapturableActorTypes: harv,harv.soviet,harv.belarus,mcv,v2rl,v2rl.ukraine,arty,arty.france,4tnk,4tnk.ukraine,4tnk.belarus,ttnk,ctnk
 		CheckCaptureTargetsForVisibility: true
 		MaximumCaptureTargetOptions: 15
 	CaptureManagerBotModule@mech:
@@ -1589,7 +1589,7 @@ Player:
 		ConstructionYardTypes: fact
 	UnitBuilderBotModule@england:
 		RequiresCondition: enable-ai-player && player.england
-        UnitQueues: Vehicle, Infantry
+		UnitQueues: Vehicle, Infantry
 		UnitsToBuild:
 			e1: 65
 			e3: 30
@@ -1601,21 +1601,21 @@ Player:
 			1tnk.england: 40
 			2tnk.england: 50
 			arty: 15
-            atnk.england: 5
+			atnk.england: 5
 			e7: 1
-            e6: 2
-            mech: 2
+			e6: 2
+			mech: 2
 		UnitLimits:
 			dog: 4
 			harv: 8
 			jeep: 4
 			e7: 1
-            e6: 2
-            mech: 2
+			e6: 2
+			mech: 2
 	UnitBuilderBotModule@england.sea:
 		RequiresCondition: enable-ai-player && player.england
-        IdleBaseUnitsMaximum: 6
-        UnitQueues: Ship
+		IdleBaseUnitsMaximum: 6
+		UnitQueues: Ship
 		UnitsToBuild:
 			pt: 50
 			dd: 30
@@ -1626,17 +1626,17 @@ Player:
 			ca: 4
 	UnitBuilderBotModule@england.air:
 		RequiresCondition: enable-ai-player && player.england
-        IdleBaseUnitsMaximum: 4
-        UnitQueues: Aircraft
+		IdleBaseUnitsMaximum: 4
+		UnitQueues: Aircraft
 		UnitsToBuild:
 			iroq.ai: 40
-            heli: 60
+			heli: 60
 		UnitLimits:
-            iroq.ai: 4
+			iroq.ai: 4
 			heli: 6
 	UnitBuilderBotModule@france:
 		RequiresCondition: enable-ai-player && player.france
-        UnitQueues: Vehicle, Infantry
+		UnitQueues: Vehicle, Infantry
 		UnitsToBuild:
 			e1: 65
 			gren: 20
@@ -1649,22 +1649,22 @@ Player:
 			2tnk.france: 50
 			arty.france: 15
 			stnk: 5
-            atnk.france: 5
+			atnk.france: 5
 			e7: 1
-            e6: 2
-            mech: 2
+			e6: 2
+			mech: 2
 		UnitLimits:
 			dog: 4
 			harv: 8
 			jeep: 4
 			e7: 1
-            e6: 2
-            stnk: 3
-            mech: 2
+			e6: 2
+			stnk: 3
+			mech: 2
 	UnitBuilderBotModule@france.sea:
 		RequiresCondition: enable-ai-player && player.france
-        IdleBaseUnitsMaximum: 6
-        UnitQueues: Ship
+		IdleBaseUnitsMaximum: 6
+		UnitQueues: Ship
 		UnitsToBuild:
 			pt: 50
 			dd: 30
@@ -1675,17 +1675,17 @@ Player:
 			ca: 4
 	UnitBuilderBotModule@france.air:
 		RequiresCondition: enable-ai-player && player.france
-        IdleBaseUnitsMaximum: 4
-        UnitQueues: Aircraft
+		IdleBaseUnitsMaximum: 4
+		UnitQueues: Aircraft
 		UnitsToBuild:
 			iroq.ai: 40
-            heli: 60
+			heli: 60
 		UnitLimits:
-            iroq.ai: 4
+			iroq.ai: 4
 			heli: 6
 	UnitBuilderBotModule@germany:
 		RequiresCondition: enable-ai-player && player.germany
-        UnitQueues: Vehicle, Infantry
+		UnitQueues: Vehicle, Infantry
 		UnitsToBuild:
 			e1: 65
 			e3: 30
@@ -1697,23 +1697,23 @@ Player:
 			1tnk.germany: 40
 			2tnk.germany: 50
 			arty: 15
-            atnk.germany: 5
+			atnk.germany: 5
 			ctnk: 10
 			e7: 1
-            e6: 2
-            mech.germany: 2
+			e6: 2
+			mech.germany: 2
 		UnitLimits:
 			dog: 4
 			harv: 8
 			jeep: 4
 			e7: 1
-            e6: 2
-            ctnk: 5
-            mech.germany: 2
+			e6: 2
+			ctnk: 5
+			mech.germany: 2
 	UnitBuilderBotModule@germany.sea:
 		RequiresCondition: enable-ai-player && player.germany
-        IdleBaseUnitsMaximum: 6
-        UnitQueues: Ship
+		IdleBaseUnitsMaximum: 6
+		UnitQueues: Ship
 		UnitsToBuild:
 			pt: 50
 			dd.germany: 30
@@ -1724,17 +1724,17 @@ Player:
 			ca: 4
 	UnitBuilderBotModule@germany.air:
 		RequiresCondition: enable-ai-player && player.germany
-        IdleBaseUnitsMaximum: 4
-        UnitQueues: Aircraft
+		IdleBaseUnitsMaximum: 4
+		UnitQueues: Aircraft
 		UnitsToBuild:
 			iroq.ai: 40
-            heli: 60
+			heli: 60
 		UnitLimits:
-            iroq.ai: 4
+			iroq.ai: 4
 			heli: 6
 	UnitBuilderBotModule@spain:
 		RequiresCondition: enable-ai-player && player.spain
-        UnitQueues: Vehicle, Infantry
+		UnitQueues: Vehicle, Infantry
 		UnitsToBuild:
 			e1: 65
 			e3: 30
@@ -1746,47 +1746,47 @@ Player:
 			1tnk.spain: 40
 			2tnk.spain: 50
 			arty: 15
-            atnk.spain: 5
+			atnk.spain: 5
 			e7: 1
-            e6: 2
-            mech: 2
-            hell: 4
+			e6: 2
+			mech: 2
+			hell: 4
 		UnitLimits:
 			dog: 4
 			harv: 8
 			jeep.spain: 4
 			e7: 1
-            e6: 2
-            mech: 2
-            hell: 4
+			e6: 2
+			mech: 2
+			hell: 4
 			stng: 3
 	UnitBuilderBotModule@spain.sea:
 		RequiresCondition: enable-ai-player && player.spain
-        IdleBaseUnitsMaximum: 6
-        UnitQueues: Ship
+		IdleBaseUnitsMaximum: 6
+		UnitQueues: Ship
 		UnitsToBuild:
 			pt: 50
 			dd: 28
 			ca: 20
-            hvrf: 2
+			hvrf: 2
 		UnitLimits:
 			pt: 8
 			dd: 6
 			ca: 4
-            hvrf: 2
+			hvrf: 2
 	UnitBuilderBotModule@spain.air:
 		RequiresCondition: enable-ai-player && player.spain
-        IdleBaseUnitsMaximum: 4
-        UnitQueues: Aircraft
+		IdleBaseUnitsMaximum: 4
+		UnitQueues: Aircraft
 		UnitsToBuild:
 			iroq.ai: 40
-            heli: 60
+			heli: 60
 		UnitLimits:
-            iroq.ai: 4
+			iroq.ai: 4
 			heli: 6
 	UnitBuilderBotModule@greece:
 		RequiresCondition: enable-ai-player && player.greece
-        UnitQueues: Vehicle, Infantry
+		UnitQueues: Vehicle, Infantry
 		UnitsToBuild:
 			e1: 65
 			e3: 30
@@ -1798,21 +1798,21 @@ Player:
 			1tnk.greece: 40
 			2tnk: 50
 			arty: 15
-            atnk.greece: 5
+			atnk.greece: 5
 			e7: 1
-            e6: 2
-            mech: 2
+			e6: 2
+			mech: 2
 		UnitLimits:
 			dog: 4
 			harv: 8
 			jeep: 4
 			e7: 1
-            e6: 2
-            mech: 2
+			e6: 2
+			mech: 2
 	UnitBuilderBotModule@greece.sea:
 		RequiresCondition: enable-ai-player && player.greece
-        IdleBaseUnitsMaximum: 6
-        UnitQueues: Ship
+		IdleBaseUnitsMaximum: 6
+		UnitQueues: Ship
 		UnitsToBuild:
 			pt: 30
 			dd: 30
@@ -1825,17 +1825,17 @@ Player:
 			bshp: 4
 	UnitBuilderBotModule@greece.air:
 		RequiresCondition: enable-ai-player && player.greece
-        IdleBaseUnitsMaximum: 4
-        UnitQueues: Aircraft
+		IdleBaseUnitsMaximum: 4
+		UnitQueues: Aircraft
 		UnitsToBuild:
 			iroq.ai: 40
-            heli: 60
+			heli: 60
 		UnitLimits:
-            iroq.ai: 4
+			iroq.ai: 4
 			heli: 6
 	UnitBuilderBotModule@turkey:
 		RequiresCondition: enable-ai-player && player.turkey
-        UnitQueues: Vehicle, Infantry
+		UnitQueues: Vehicle, Infantry
 		UnitsToBuild:
 			e1: 65
 			e3: 30
@@ -1847,23 +1847,23 @@ Player:
 			1tnk.turkey: 40
 			2tnk: 50
 			arty: 15
-            atnk.turkey: 5
+			atnk.turkey: 5
 			e7: 1
 			rmbo: 1
-            e6: 2
-            mech: 2
+			e6: 2
+			mech: 2
 		UnitLimits:
 			dog: 4
 			harv: 8
 			jeep: 4
 			e7: 1
 			rmbo: 1
-            e6: 2
-            mech: 2
+			e6: 2
+			mech: 2
 	UnitBuilderBotModule@turkey.sea:
 		RequiresCondition: enable-ai-player && player.turkey
-        IdleBaseUnitsMaximum: 6
-        UnitQueues: Ship
+		IdleBaseUnitsMaximum: 6
+		UnitQueues: Ship
 		UnitsToBuild:
 			pt: 30
 			dd: 30
@@ -1874,17 +1874,17 @@ Player:
 			ca: 4
 	UnitBuilderBotModule@turkey.air:
 		RequiresCondition: enable-ai-player && player.turkey
-        IdleBaseUnitsMaximum: 4
-        UnitQueues: Aircraft
+		IdleBaseUnitsMaximum: 4
+		UnitQueues: Aircraft
 		UnitsToBuild:
 			iroq.turkey.ai: 40
-            heli: 60
+			heli: 60
 		UnitLimits:
-            iroq.turkey.ai: 4
+			iroq.turkey.ai: 4
 			heli: 6
 	UnitBuilderBotModule@russia:
 		RequiresCondition: enable-ai-player && player.russia
-        UnitQueues: Vehicle, Infantry
+		UnitQueues: Vehicle, Infantry
 		UnitsToBuild:
 			e1: 65
 			e2: 15
@@ -1901,44 +1901,44 @@ Player:
 			4tnk: 25
 			ttnk: 25
 			volk: 1
-            e6: 2
-            thf: 2
+			e6: 2
+			thf: 2
 		UnitLimits:
 			dog: 4
-            harv.soviet: 8
+			harv.soviet: 8
 			ftrk: 6
 			volk: 1
-            e6: 2
-            thf: 2
+			e6: 2
+			thf: 2
 	UnitBuilderBotModule@russia.sea:
 		RequiresCondition: enable-ai-player && player.russia
-        IdleBaseUnitsMaximum: 6
-        UnitQueues: Ship
+		IdleBaseUnitsMaximum: 6
+		UnitQueues: Ship
 		UnitsToBuild:
 			ss: 30
 			ss.ag: 20
 			msub: 20
-            msub.aa: 20
-            tbt: 10
+			msub.aa: 20
+			tbt: 10
 		UnitLimits:
 			ss: 4
 			ss.ag: 6
-            msub: 4
-            msub.aa: 2
+			msub: 4
+			msub.aa: 2
 			tbt: 4
 	UnitBuilderBotModule@russia.air:
 		RequiresCondition: enable-ai-player && player.russia
-        IdleBaseUnitsMaximum: 4
-        UnitQueues: Aircraft
+		IdleBaseUnitsMaximum: 4
+		UnitQueues: Aircraft
 		UnitsToBuild:
 			yak.ai: 60
-            mig.ai: 40
+			mig.ai: 40
 		UnitLimits:
-            yak.ai: 6
+			yak.ai: 6
 			mig.ai: 4
 	UnitBuilderBotModule@ukraine:
 		RequiresCondition: enable-ai-player && player.ukraine
-        UnitQueues: Vehicle, Infantry
+		UnitQueues: Vehicle, Infantry
 		UnitsToBuild:
 			e1: 65
 			e2: 15
@@ -1953,44 +1953,44 @@ Player:
 			v2rl.ukraine: 40
 			4tnk.ukraine: 25
 			volk: 1
-            e6: 2
-            thf: 2
+			e6: 2
+			thf: 2
 		UnitLimits:
 			dog: 4
-            harv.soviet: 8
+			harv.soviet: 8
 			ftrk: 6
 			volk: 1
-            e6: 2
-            thf: 2
+			e6: 2
+			thf: 2
 	UnitBuilderBotModule@ukraine.sea:
 		RequiresCondition: enable-ai-player && player.ukraine
-        IdleBaseUnitsMaximum: 6
-        UnitQueues: Ship
+		IdleBaseUnitsMaximum: 6
+		UnitQueues: Ship
 		UnitsToBuild:
 			ss: 30
 			ss.ag: 20
 			msub: 20
-            msub.aa: 20
-            fsub: 10
+			msub.aa: 20
+			fsub: 10
 		UnitLimits:
 			ss: 4
 			ss.ag: 6
-            msub: 4
-            msub.aa: 2
+			msub: 4
+			msub.aa: 2
 			fsub: 2
 	UnitBuilderBotModule@ukraine.air:
 		RequiresCondition: enable-ai-player && player.ukraine
-        IdleBaseUnitsMaximum: 4
-        UnitQueues: Aircraft
+		IdleBaseUnitsMaximum: 4
+		UnitQueues: Aircraft
 		UnitsToBuild:
 			yak.ai: 40
-            mig.ai: 60
+			mig.ai: 60
 		UnitLimits:
-            yak.ai: 4
+			yak.ai: 4
 			mig.ai: 6
 	UnitBuilderBotModule@belarus:
 		RequiresCondition: enable-ai-player && player.belarus
-        UnitQueues: Vehicle, Infantry
+		UnitQueues: Vehicle, Infantry
 		UnitsToBuild:
 			e1: 65
 			e2: 15
@@ -2005,42 +2005,42 @@ Player:
 			v2rl: 40
 			4tnk.belarus: 25
 			volk: 1
-            e6: 2
-            thf: 2
+			e6: 2
+			thf: 2
 		UnitLimits:
 			dog: 4
-            harv.belarus: 8
+			harv.belarus: 8
 			ftrk: 6
 			volk: 1
-            e6: 2
-            thf: 2
+			e6: 2
+			thf: 2
 	UnitBuilderBotModule@belarus.sea:
 		RequiresCondition: enable-ai-player && player.belarus
-        IdleBaseUnitsMaximum: 6
-        UnitQueues: Ship
+		IdleBaseUnitsMaximum: 6
+		UnitQueues: Ship
 		UnitsToBuild:
 			ss: 30
 			ss.ag: 30
 			msub: 20
-            msub.aa: 20
+			msub.aa: 20
 		UnitLimits:
 			ss: 4
 			ss.ag: 6
-            msub: 4
-            msub.aa: 2
+			msub: 4
+			msub.aa: 2
 	UnitBuilderBotModule@belarus.air:
 		RequiresCondition: enable-ai-player && player.belarus
-        IdleBaseUnitsMaximum: 4
-        UnitQueues: Aircraft
+		IdleBaseUnitsMaximum: 4
+		UnitQueues: Aircraft
 		UnitsToBuild:
 			yak.belarus.ai: 60
-            mig.ai: 40
+			mig.ai: 40
 		UnitLimits:
-            yak.belarus.ai: 6
+			yak.belarus.ai: 6
 			mig.ai: 4
 	UnitBuilderBotModule@kazakhstan:
 		RequiresCondition: enable-ai-player && player.kazakh
-        UnitQueues: Vehicle, Infantry
+		UnitQueues: Vehicle, Infantry
 		UnitsToBuild:
 			e1: 65
 			e2: 15
@@ -2057,44 +2057,44 @@ Player:
 			4tnk: 25
 			brdm: 25
 			volk: 1
-            e6: 2
-            thf: 2
+			e6: 2
+			thf: 2
 		UnitLimits:
 			dog: 4
-            harv.soviet: 8
+			harv.soviet: 8
 			ftrk: 6
 			volk: 1
-            e6: 2
-            thf: 2
+			e6: 2
+			thf: 2
 	UnitBuilderBotModule@kazakhstan.sea:
 		RequiresCondition: enable-ai-player && player.kazakh
-        IdleBaseUnitsMaximum: 6
-        UnitQueues: Ship
+		IdleBaseUnitsMaximum: 6
+		UnitQueues: Ship
 		UnitsToBuild:
 			ss: 30
 			ss.ag: 20
 			msub: 20
-            msub.aa: 20
-            scrp: 5
+			msub.aa: 20
+			scrp: 5
 		UnitLimits:
 			ss: 4
 			ss.ag: 6
-            msub: 4
-            msub.aa: 2
+			msub: 4
+			msub.aa: 2
 			scrp: 2
 	UnitBuilderBotModule@kazakhstan.air:
 		RequiresCondition: enable-ai-player && player.kazakh
-        IdleBaseUnitsMaximum: 4
-        UnitQueues: Aircraft
+		IdleBaseUnitsMaximum: 4
+		UnitQueues: Aircraft
 		UnitsToBuild:
 			yak.ai: 60
-            mig.ai: 40
+			mig.ai: 40
 		UnitLimits:
-            yak.ai: 6
+			yak.ai: 6
 			mig.ai: 4
 	UnitBuilderBotModule@uzbekistan:
 		RequiresCondition: enable-ai-player && player.uzbek
-        UnitQueues: Vehicle, Infantry
+		UnitQueues: Vehicle, Infantry
 		UnitsToBuild:
 			e1: 65
 			e2: 15
@@ -2110,43 +2110,43 @@ Player:
 			v2rl: 40
 			4tnk: 25
 			volk: 1
-            e6: 2
-            thf: 2
+			e6: 2
+			thf: 2
 		UnitLimits:
 			dog: 4
-            harv.soviet: 8
+			harv.soviet: 8
 			ftrk: 6
 			volk: 1
-            e6: 2
-            thf: 2
+			e6: 2
+			thf: 2
 			rpg: 3
 	UnitBuilderBotModule@uzbekistan.sea:
 		RequiresCondition: enable-ai-player && player.uzbek
-        IdleBaseUnitsMaximum: 6
-        UnitQueues: Ship
+		IdleBaseUnitsMaximum: 6
+		UnitQueues: Ship
 		UnitsToBuild:
 			ss: 30
 			ss.ag: 30
 			msub: 20
-            msub.aa: 20
+			msub.aa: 20
 		UnitLimits:
 			ss: 4
 			ss.ag: 6
-            msub: 4
-            msub.aa: 2
+			msub: 4
+			msub.aa: 2
 	UnitBuilderBotModule@uzbekistan.air:
 		RequiresCondition: enable-ai-player && player.uzbek
-        IdleBaseUnitsMaximum: 4
-        UnitQueues: Aircraft
+		IdleBaseUnitsMaximum: 4
+		UnitQueues: Aircraft
 		UnitsToBuild:
 			yak.ai: 60
-            mig.ai: 40
+			mig.ai: 40
 		UnitLimits:
-            yak.ai: 6
+			yak.ai: 6
 			mig.ai: 4
 	UnitBuilderBotModule@turkmenistan:
 		RequiresCondition: enable-ai-player && player.turkmen
-        UnitQueues: Vehicle, Infantry
+		UnitQueues: Vehicle, Infantry
 		UnitsToBuild:
 			e1: 65
 			e2: 15
@@ -2162,36 +2162,36 @@ Player:
 			4tnk: 25
 			spg: 15
 			volk: 1
-            e6: 2
-            thf: 2
+			e6: 2
+			thf: 2
 		UnitLimits:
 			dog: 4
-            harv.soviet: 8
+			harv.soviet: 8
 			ftrk: 6
 			volk: 1
-            e6: 2
-            thf: 2
+			e6: 2
+			thf: 2
 	UnitBuilderBotModule@turkmenistan.sea:
 		RequiresCondition: enable-ai-player && player.turkmen
-        IdleBaseUnitsMaximum: 6
-        UnitQueues: Ship
+		IdleBaseUnitsMaximum: 6
+		UnitQueues: Ship
 		UnitsToBuild:
 			ss: 30
 			ss.ag: 30
 			msub: 20
-            msub.aa: 20
+			msub.aa: 20
 		UnitLimits:
 			ss: 4
 			ss.ag: 6
-            msub: 4
-            msub.aa: 2
+			msub: 4
+			msub.aa: 2
 	UnitBuilderBotModule@turkmenistan.air:
 		RequiresCondition: enable-ai-player && player.turkmen
-        IdleBaseUnitsMaximum: 4
-        UnitQueues: Aircraft
+		IdleBaseUnitsMaximum: 4
+		UnitQueues: Aircraft
 		UnitsToBuild:
 			yak.ai: 60
-            mig.ai: 40
+			mig.ai: 40
 		UnitLimits:
-            yak.ai: 6
+			yak.ai: 6
 			mig.ai: 4

@@ -1,11 +1,11 @@
 BADR:
-    SpeedMultiplier:
-        Modifier: 110
-        RequiresCondition: kazakh.player
-    GrantConditionOnFaction:
-        Condition: kazakh.player
-        Factions: kazakh
-        ResetOnOwnerChange: True
+	SpeedMultiplier:
+		Modifier: 110
+		RequiresCondition: kazakh.player
+	GrantConditionOnFaction:
+		Condition: kazakh.player
+		Factions: kazakh
+		ResetOnOwnerChange: True
 
 BADR.Crate:
 	Inherits: BADR
@@ -25,31 +25,31 @@ B52:
 		Image: ally-bdgr
 
 TRAN:
-    Buildable:
-        BuildPaletteOrder: 1
-        Prerequisites: ~hpad, ~aircraft.allies, ~techlevel.medium
-        Description: Fast Infantry Transport Helicopter.\n  Special Ability: Carryall\nCan carry light vehicles, one at a time.\n  Unarmed
+	Buildable:
+		BuildPaletteOrder: 1
+		Prerequisites: ~hpad, ~aircraft.allies, ~techlevel.medium
+		Description: Fast Infantry Transport Helicopter.\n  Special Ability: Carryall\nCan carry light vehicles, one at a time.\n  Unarmed
 	Carryall:
 		LocalOffset: 0, 0, -128
 
 TRAN.Soviet:
 	Inherits: TRAN
 	Buildable:
-        BuildPaletteOrder: 4
-        BuildAtProductionType: Plane
+		BuildPaletteOrder: 4
+		BuildAtProductionType: Plane
 		Prerequisites: ~afld, ~aircraft.soviet, ~techlevel.medium
-        Icon: svyt-icon
+		Icon: svyt-icon
 	Tooltip:
 		Name: Yak 24
 	RenderSprites:
 		Image: tran
-    SpeedMultiplier:
-        Modifier: 110
-        RequiresCondition: kazakh.player
-    GrantConditionOnFaction:
-        Condition: kazakh.player
-        Factions: kazakh
-        ResetOnOwnerChange: True
+	SpeedMultiplier:
+		Modifier: 110
+		RequiresCondition: kazakh.player
+	GrantConditionOnFaction:
+		Condition: kazakh.player
+		Factions: kazakh
+		ResetOnOwnerChange: True
 	SpawnActorOnDeath:
 		Actor: TRAN.soviet.Husk
 	-MapEditorData:
@@ -66,7 +66,7 @@ IROQ:
 	Valued:
 		Cost: 1350
 	Tooltip:
-        Name: Iroqouis Scout
+		Name: Iroqouis Scout
 	Health:
 		HP: 8000
 	RevealsShroud:
@@ -88,10 +88,10 @@ IROQ:
 		LocalOffset: 85,213,-85, 85,-213,-85
 		MuzzleSequence: muzzle
 		PauseOnCondition: !ammo
-    Armament@TERTIARY:
+	Armament@TERTIARY:
 		Name: tertiary
 		Weapon: HeliDepthCharge
-        PauseOnCondition: !ammodc
+		PauseOnCondition: !ammodc
 	Armament@FOURTH:
 		Name: fourth
 		Weapon: ChainGun.aa
@@ -105,7 +105,7 @@ IROQ:
 		MuzzleSequence: muzzle
 		PauseOnCondition: !ammo
 	AttackAircraft:
-    	Armaments: primary, secondary, tertiary, fourth, fifth
+		Armaments: primary, secondary, tertiary, fourth, fifth
 		FacingTolerance: 20
 		PersistentTargeting: false
 		AttackType: Hover
@@ -126,16 +126,16 @@ IROQ:
 		Sequence: slow-rotor
 		RequiresCondition: !airborne
 	AmmoPool:
-        Armaments: primary, secondary, fourth, fifth
+		Armaments: primary, secondary, fourth, fifth
 		Ammo: 12
 		PipCount: 4
 		AmmoCondition: ammo
 		ReloadDelay: 9
-    AmmoPool@2:
+	AmmoPool@2:
 		Armaments: tertiary
 		PipType: Blue
-        Ammo: 4
-        PipCount: 2
+		Ammo: 4
+		PipCount: 2
 		ReloadDelay: 9
 		AmmoCondition: ammodc
 	SelectionDecorations:
@@ -150,67 +150,67 @@ IROQ:
 		DecorationBounds: 38,32
 	Rearmable:
 		RearmActors: hpad, carr.deployed
-    AcceptsDeliveredExperience:
+	AcceptsDeliveredExperience:
 
 IROQ.Turkey:
-    Inherits: IROQ
-    Buildable:
-        Prerequisites: ~hpad, ~aircraft.allies, ~player.turkey, ~!aitoodumb, ~!aircraft.upgraded, ~techlevel.medium
+	Inherits: IROQ
+	Buildable:
+		Prerequisites: ~hpad, ~aircraft.allies, ~player.turkey, ~!aitoodumb, ~!aircraft.upgraded, ~techlevel.medium
 	ProducibleWithLevel:
 		Prerequisites: techlevel.infonly
 		InitialLevels: 1
-    RenderSprites:
+	RenderSprites:
 		Image: iroq
-    -MapEditorData:
+	-MapEditorData:
 
 IROQ.Turkey.R2:
-    Inherits: IROQ.Turkey
-    Buildable:
-        Prerequisites: ~hpad, ~aircraft.allies, ~player.turkey, ~!aitoodumb, ~aircraft.upgraded, ~techlevel.medium
-        Icon: rank2-icon
+	Inherits: IROQ.Turkey
+	Buildable:
+		Prerequisites: ~hpad, ~aircraft.allies, ~player.turkey, ~!aitoodumb, ~aircraft.upgraded, ~techlevel.medium
+		Icon: rank2-icon
 	ProducibleWithLevel:
 		Prerequisites: techlevel.infonly
 		InitialLevels: 2
-    RenderSprites:
+	RenderSprites:
 		Image: iroq
 
 IROQ.AI:
-    Inherits: IROQ
+	Inherits: IROQ
 	Buildable:
 		Prerequisites: ~hpad, ~aircraft.allies, ~aitoodumb, ~techlevel.medium
-    -Armament@TERTIARY:
-    -AmmoPool@2:
+	-Armament@TERTIARY:
+	-AmmoPool@2:
 	AttackAircraft:
-    	Armaments: primary, secondary
-    RenderSprites:
-        Image: iroq
-    -MapEditorData:
+		Armaments: primary, secondary
+	RenderSprites:
+		Image: iroq
+	-MapEditorData:
 
 IROQ.Turkey.AI:
-    Inherits: IROQ
-    Buildable:
-        Prerequisites: ~hpad, ~aircraft.allies, ~player.turkey, ~aitoodumb, ~techlevel.medium
+	Inherits: IROQ
+	Buildable:
+		Prerequisites: ~hpad, ~aircraft.allies, ~player.turkey, ~aitoodumb, ~techlevel.medium
 	ProducibleWithLevel:
 		Prerequisites: techlevel.infonly
 		InitialLevels: 1
-    -Armament@TERTIARY:
-    -AmmoPool@2:
+	-Armament@TERTIARY:
+	-AmmoPool@2:
 	AttackAircraft:
-    	Armaments: primary, secondary
-    RenderSprites:
+		Armaments: primary, secondary
+	RenderSprites:
 		Image: iroq
-    -MapEditorData:
+	-MapEditorData:
 
 HELI:
-    Buildable:
-        BuildPaletteOrder: 3
-        BuildDurationModifier: 60
-        Prerequisites: ~hpad, atek, ~aircraft.allies, ~techlevel.high
-        Description: Helicopter gunship with multi-purpose\nChainguns and Missiles.\n  Strong vs Everything\n  Weak vs Anti-Air, Aircraft
+	Buildable:
+		BuildPaletteOrder: 3
+		BuildDurationModifier: 60
+		Prerequisites: ~hpad, atek, ~aircraft.allies, ~techlevel.high
+		Description: Helicopter gunship with multi-purpose\nChainguns and Missiles.\n  Strong vs Everything\n  Weak vs Anti-Air, Aircraft
 	Tooltip:
 		Name: Apache Longbow
 	Armament@TERTIARY:
-        Name: tertiary
+		Name: tertiary
 		Weapon: HeliAGGun
 		LocalOffset: 128,-213,-85, 128,213,-85
 		MuzzleSequence: muzzle
@@ -223,25 +223,25 @@ HELI:
 		PauseOnCondition: !ammogun
 	AttackAircraft:
 		Armaments: primary, secondary, tertiary, quartenary
-    AmmoPool:
-        PipType: Red
+	AmmoPool:
+		PipType: Red
 	AmmoPool@2:
 		Armaments: tertiary, quartenary
 		Ammo: 10
 		PipCount: 5
 		ReloadDelay: 9
 		AmmoCondition: ammogun
-    WithMuzzleOverlay:
+	WithMuzzleOverlay:
 	Rearmable:
 		RearmActors: hpad, carr.deployed
-    AcceptsDeliveredExperience:
+	AcceptsDeliveredExperience:
 
 HIND:
-    Buildable:
-        BuildPaletteOrder: 5
-        BuildAtProductionType: Plane
-        Prerequisites: ~afld, stek, ~player.belarus, ~tech.stolen, ~techlevel.high
-        Description: Helicopter gunship armed with dual chainguns\nand anti-ground rockets.\n  Strong vs Infantry, Light armor\n  Weak vs Tanks, Aircraft
+	Buildable:
+		BuildPaletteOrder: 5
+		BuildAtProductionType: Plane
+		Prerequisites: ~afld, stek, ~player.belarus, ~tech.stolen, ~techlevel.high
+		Description: Helicopter gunship armed with dual chainguns\nand anti-ground rockets.\n  Strong vs Infantry, Light armor\n  Weak vs Tanks, Aircraft
 	Valued:
 		Cost: 2200
 	Armament@PRIMARY:
@@ -274,7 +274,7 @@ HIND:
 		LocalOffset: 0,-640,0, 0,640,0
 		LocalYaw: -40, 24
 		PauseOnCondition: !ammorock
-    -AmmoPool:
+	-AmmoPool:
 	AmmoPool@GUNS:
 		Armaments: primary, secondary, fourth, fifth
 		Ammo: 24
@@ -286,14 +286,14 @@ HIND:
 		Ammo: 8
 		PipCount: 4
 		ReloadDelay: 9
-        PipType: Red
+		PipType: Red
 		AmmoCondition: ammorock
 	AttackAircraft:
 		Armaments: primary, secondary, tertiary, fourth, fifth
 		FacingTolerance: 20
 	Rearmable:
 		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh, hpad, carr.deployed
-    AcceptsDeliveredExperience:
+	AcceptsDeliveredExperience:
 
 U2.emp:
 	Inherits: U2
@@ -310,7 +310,7 @@ U2.emp:
 	RenderSprites:
 		Image: smig
 
-U2.nuke
+U2.nuke:
 	Inherits: U2
 	Armament:
 		Weapon: NukeBomb
@@ -326,14 +326,14 @@ U2.nuke
 		Image: ally-u2
 
 YAK:
-    Buildable:
-        BuildPaletteOrder: 1
-        Prerequisites: ~afld, ~!player.belarus, ~!aitoodumb, ~techlevel.medium
-        Description: Strafing Attack Plane armed with\ndual machine guns.\nBombs Submarines with Depthcharges.\n  Strong vs Infantry, Light armor\n  Weak vs Tanks, Aircraft
-    Aircraft:
-        TakeOffOnCreation: False
+	Buildable:
+		BuildPaletteOrder: 1
+		Prerequisites: ~afld, ~!player.belarus, ~!aitoodumb, ~techlevel.medium
+		Description: Strafing Attack Plane armed with\ndual machine guns.\nBombs Submarines with Depthcharges.\n  Strong vs Infantry, Light armor\n  Weak vs Tanks, Aircraft
+	Aircraft:
+		TakeOffOnCreation: False
 	AttackAircraft:
-        Armaments: primary, secondary, tertiary, fourth, fifth
+		Armaments: primary, secondary, tertiary, fourth, fifth
 		FacingTolerance: 20
 	Armament@PRIMARY:
 		Weapon: ChainGun.Yak.Left
@@ -348,7 +348,7 @@ YAK:
 		FireDelay: 1
 		PauseOnCondition: !ammo
 	Armament@TERTIARY:
-        Name: tertiary
+		Name: tertiary
 		Weapon: BombingRun.dc
 		LocalOffset: 300,0,0
 		PauseOnCondition: !ammodc
@@ -367,7 +367,7 @@ YAK:
 		PauseOnCondition: !ammo
 	-AmmoPool:
 	AmmoPool@1:
-        Armaments: primary, secondary, fourth, fifth
+		Armaments: primary, secondary, fourth, fifth
 		Ammo: 32
 		PipCount: 4
 		ReloadDelay: 11
@@ -375,79 +375,79 @@ YAK:
 	AmmoPool@2:
 		Armaments: tertiary
 		Ammo: 6
-        PipCount: 2
+		PipCount: 2
 		PipType: Blue
 		ReloadDelay: 11
 		AmmoCondition: ammodc
 	Rearmable:
 		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh
-    AcceptsDeliveredExperience:
-    SpeedMultiplier:
-        Modifier: 110
-        RequiresCondition: kazakh.player
-    GrantConditionOnFaction:
-        Condition: kazakh.player
-        Factions: kazakh
-        ResetOnOwnerChange: True
+	AcceptsDeliveredExperience:
+	SpeedMultiplier:
+		Modifier: 110
+		RequiresCondition: kazakh.player
+	GrantConditionOnFaction:
+		Condition: kazakh.player
+		Factions: kazakh
+		ResetOnOwnerChange: True
 
 YAK.Belarus:
-    Inherits: YAK
-    Buildable:
-        Prerequisites: ~afld, ~player.belarus, ~!aitoodumb, ~!aircraft.upgraded, ~techlevel.medium
+	Inherits: YAK
+	Buildable:
+		Prerequisites: ~afld, ~player.belarus, ~!aitoodumb, ~!aircraft.upgraded, ~techlevel.medium
 	ProducibleWithLevel:
 		Prerequisites: techlevel.infonly
 		InitialLevels: 1
-    RenderSprites:
+	RenderSprites:
 		Image: yak
-    -MapEditorData:
+	-MapEditorData:
 
 YAK.BelarusR2:
-    Inherits: YAK.Belarus
-    Buildable:
-        Prerequisites: ~afld, ~player.belarus, ~!aitoodumb, ~aircraft.upgraded, ~techlevel.medium
-        Icon: rank2-icon
+	Inherits: YAK.Belarus
+	Buildable:
+		Prerequisites: ~afld, ~player.belarus, ~!aitoodumb, ~aircraft.upgraded, ~techlevel.medium
+		Icon: rank2-icon
 	ProducibleWithLevel:
-        Prerequisites: techlevel.infonly
+		Prerequisites: techlevel.infonly
 		InitialLevels: 2
-    RenderSprites:
+	RenderSprites:
 		Image: yak
 
 YAK.AI:
-    Inherits: YAK
+	Inherits: YAK
 	Buildable:
 		Prerequisites: ~afld, ~!player.belarus, ~aitoodumb, ~techlevel.medium
-    Aircraft:
-        TakeOffOnCreation: True
-    -Armament@TERTIARY:
-    -AmmoPool@2:
+	Aircraft:
+		TakeOffOnCreation: True
+	-Armament@TERTIARY:
+	-AmmoPool@2:
 	AttackAircraft:
-    	Armaments: primary, secondary
-    RenderSprites:
-        Image: yak
-    -MapEditorData:
+		Armaments: primary, secondary
+	RenderSprites:
+		Image: yak
+	-MapEditorData:
 
 YAK.Belarus.AI:
-    Inherits: YAK.Belarus
+	Inherits: YAK.Belarus
 	Buildable:
 		Prerequisites: ~afld, ~player.belarus, ~aitoodumb, ~!aircraft.upgraded, ~techlevel.medium
-    Aircraft:
-        TakeOffOnCreation: True
-    -Armament@TERTIARY:
-    -AmmoPool@2:
-    RenderSprites:
-        Image: yak
+	Aircraft:
+		TakeOffOnCreation: True
+	-Armament@TERTIARY:
+	-AmmoPool@2:
+	RenderSprites:
+		Image: yak
 	AttackAircraft:
-    	Armaments: primary, secondary
+		Armaments: primary, secondary
 
 MIG:
-    Buildable:
-        BuildPaletteOrder: 2
-        BuildDurationModifier: 60
-        Prerequisites: ~afld, stek, ~!aitoodumb, ~techlevel.high
-        Description: Fast Multi-Role Attack Plane.\n  Strong vs Buildings, Vehicles\n  Weak vs Infantry, Aircraft
-    Aircraft:
-        TakeOffOnCreation: False
-        TakeoffSounds: migtoff1.aud
+	Buildable:
+		BuildPaletteOrder: 2
+		BuildDurationModifier: 60
+		Prerequisites: ~afld, stek, ~!aitoodumb, ~techlevel.high
+		Description: Fast Multi-Role Attack Plane.\n  Strong vs Buildings, Vehicles\n  Weak vs Infantry, Aircraft
+	Aircraft:
+		TakeOffOnCreation: False
+		TakeoffSounds: migtoff1.aud
 	Valued:
 		Cost: 1800
 	Armament@SECONDARY:
@@ -456,24 +456,24 @@ MIG:
 		PauseOnCondition: !ammo
 	Rearmable:
 		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh
-    AcceptsDeliveredExperience:
-    SpeedMultiplier:
-        Modifier: 110
-        RequiresCondition: kazakh.player
-    GrantConditionOnFaction:
-        Condition: kazakh.player
-        Factions: kazakh
-        ResetOnOwnerChange: True
+	AcceptsDeliveredExperience:
+	SpeedMultiplier:
+		Modifier: 110
+		RequiresCondition: kazakh.player
+	GrantConditionOnFaction:
+		Condition: kazakh.player
+		Factions: kazakh
+		ResetOnOwnerChange: True
 
 MIG.AI:
-    Inherits: MIG
+	Inherits: MIG
 	Buildable:
 		Prerequisites: ~afld, stek, ~aitoodumb, ~techlevel.high
-    Aircraft:
-        TakeOffOnCreation: True
-    RenderSprites:
-        Image: mig
-    -MapEditorData:
+	Aircraft:
+		TakeOffOnCreation: True
+	RenderSprites:
+		Image: mig
+	-MapEditorData:
 
 COSSACK:
 	Inherits: ^Plane
@@ -546,13 +546,13 @@ COSSACK:
 		Image: cossack
 	Rearmable:
 		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh
-    SpeedMultiplier:
-        Modifier: 110
-        RequiresCondition: kazakh.player
-    GrantConditionOnFaction:
-        Condition: kazakh.player
-        Factions: kazakh
-        ResetOnOwnerChange: True
+	SpeedMultiplier:
+		Modifier: 110
+		RequiresCondition: kazakh.player
+	GrantConditionOnFaction:
+		Condition: kazakh.player
+		Factions: kazakh
+		ResetOnOwnerChange: True
 
 HARR:
 	Inherits: ^Helicopter
@@ -628,7 +628,7 @@ HARR:
 		Prerequisites: aircraft.upgraded
 	Rearmable:
 		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh, hpad, carr.deployed
-    AcceptsDeliveredExperience:
+	AcceptsDeliveredExperience:
 
 MH60:
 	Buildable:

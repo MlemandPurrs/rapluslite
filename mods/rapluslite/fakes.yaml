@@ -216,8 +216,8 @@ PROF.ERCC:
 		RequiresCondition: !build-incomplete
 		Sequence: topsolid
 	-HitShape:
-    HitShape@TOPLEFT:
-		TargetableOffsets: 560,-1152,0, 880,-630,0 
+	HitShape@TOPLEFT:
+		TargetableOffsets: 560,-1152,0, 880,-630,0
 		Type: Rectangle
 			TopLeft: -1536, -768
 			BottomRight: -256,-256
@@ -544,7 +544,7 @@ STEF:
 	Buildable:
 		BuildPaletteOrder: 16
 		Queue: Fakestructure
-        BuildLimit: 1
+		BuildLimit: 1
 		Prerequisites: ~structures.soviet, ~player.france, ~techlevel.high
 		Description: Looks like soviet Tech Center.\nMaximum 1 can be built.
 		Icon: fake-icon
@@ -762,7 +762,7 @@ FGAP:
 	Explodes:
 		Weapon: Demolish
 		DamageThreshold: 50
-    -Armament@PRIMARY:
+	-Armament@PRIMARY:
 	-Armament@SECONDARY:
 	Armament@PRIMARY:
 		Weapon: 25mm.Decoy
@@ -797,7 +797,7 @@ FGAP:
 	Explodes:
 		Weapon: Demolish
 		DamageThreshold: 50
-    -Armament@PRIMARY:
+	-Armament@PRIMARY:
 	Armament@PRIMARY:
 		Weapon: 90mm.decoy
 		Recoil: 0
@@ -903,8 +903,8 @@ TRUF:
 	Explodes:
 		Weapon: Demolish
 		DamageThreshold: 50
-    -DeliversCash:
-    -SpawnActorOnDeath:
+	-DeliversCash:
+	-SpawnActorOnDeath:
 	RenderSprites:
 		Image: TRUK
 	Voiced:
@@ -915,7 +915,7 @@ MGGF:
 	Buildable:
 		BuildPaletteOrder: 15
 		#   Prerequisites: atek, ~player.france
-        Prerequisites: ~disabled
+		Prerequisites: ~disabled
 		Description: Looks like a Mobile Gap Generator.
 		Icon: fake-icon
 	Tooltip:
@@ -934,16 +934,16 @@ MGGF:
 	Explodes:
 		Weapon: Demolish
 		DamageThreshold: 50
-    -CreatesShroud:
-    -RenderShroudCircle:
-    -GrantConditionOnDeploy:
-    -SpawnActorOnDeath:
-    -WithIdleOverlay@SPINNER:
-    -WithDecoration@offline:
-    WithIdleOverlay@SPINNER:
-        Offset: -299,0,171
-        Sequence: spinner
-        PauseOnCondition: empdisable
+	-CreatesShroud:
+	-RenderShroudCircle:
+	-GrantConditionOnDeploy:
+	-SpawnActorOnDeath:
+	-WithIdleOverlay@SPINNER:
+	-WithDecoration@offline:
+	WithIdleOverlay@SPINNER:
+		Offset: -299,0,171
+		Sequence: spinner
+		PauseOnCondition: empdisable
 	RenderSprites:
 		Image: MGG
 	Voiced:

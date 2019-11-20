@@ -20,7 +20,7 @@
 		RequiresCondition: rank-veteran == 3
 		Modifier: 70
 	DamageMultiplier@RANK-ELITE:
- 		RequiresCondition: rank-elite
+		RequiresCondition: rank-elite
 		Modifier: 70
 	FirepowerMultiplier@RANK-1:
 		RequiresCondition: rank-veteran == 1
@@ -60,7 +60,7 @@
 		Modifier: 70
 	SelfHealing@ELITE:
 		-Step: 200
-        PercentageStep: 5
+		PercentageStep: 5
 		Delay: 75
 		HealIfBelow: 100
 		DamageCooldown: 150
@@ -72,7 +72,7 @@
 		ReferencePoint: Top, Left
 		RequiresCondition: rank-veteran == 1
 		ZOffset: 256
-        ValidStances: Ally, Enemy, Neutral
+		ValidStances: Ally, Enemy, Neutral
 	WithDecoration@RANK-2:
 		Image: rank
 		Sequence: rank-veteran-2
@@ -80,7 +80,7 @@
 		ReferencePoint: Top, Left
 		RequiresCondition: rank-veteran == 2
 		ZOffset: 256
-        ValidStances: Ally, Enemy, Neutral
+		ValidStances: Ally, Enemy, Neutral
 	WithDecoration@RANK-3:
 		Image: rank
 		Sequence: rank-veteran-3
@@ -88,7 +88,7 @@
 		ReferencePoint: Top, Left
 		RequiresCondition: rank-veteran == 3
 		ZOffset: 256
-        ValidStances: Ally, Enemy, Neutral
+		ValidStances: Ally, Enemy, Neutral
 	WithDecoration@RANK-ELITE:
 		Image: rank
 		Sequence: rank-elite
@@ -96,7 +96,7 @@
 		ReferencePoint: Top, Left
 		RequiresCondition: rank-elite
 		ZOffset: 256
-        ValidStances: Ally, Enemy, Neutral
+		ValidStances: Ally, Enemy, Neutral
 
 ^InfantryExperienceHospitalOverrides:
 	WithDecoration@RANK-1:
@@ -128,8 +128,8 @@
 		Condition: invulnerability
 
 ^Infantry:
-    Inherits@93: ^AffectedByLeadership
-    Inherits@96: ^AffectedByGPSScrambler
+	Inherits@93: ^AffectedByLeadership
+	Inherits@96: ^AffectedByGPSScrambler
 	Selectable:
 		Bounds: 18,18,0,-6
 		DecorationBounds: 12,17,0,-6
@@ -139,33 +139,33 @@
 	GrantCondition@HOSPITAL:
 		RequiresCondition: hospital || hospital2 && damaged
 		Condition: hospitalheal
-    WithDecoration@REDCROSS:
-        ReferencePoint: Bottom, Right
+	WithDecoration@REDCROSS:
+		ReferencePoint: Bottom, Right
 
 ^Vehicle:
-    Inherits@93: ^AffectedByLeadership
-    Inherits@94: ^LeavesScraps
-    Inherits@95: ^AffectedByEmergencyRepair
-    Inherits@96: ^AffectedByGPSScrambler
-    Inherits@97: ^AffectedByEMP
-    Mobile:
-        RequiresCondition: !empdisable && !being-captured
+	Inherits@93: ^AffectedByLeadership
+	Inherits@94: ^LeavesScraps
+	Inherits@95: ^AffectedByEmergencyRepair
+	Inherits@96: ^AffectedByGPSScrambler
+	Inherits@97: ^AffectedByEMP
+	Mobile:
+		PauseOnCondition: !(!empdisable && !being-captured)
 	Passenger:
 		Weight: 2
-    WithParachute:
-        Image: maxichute
+	WithParachute:
+		Image: maxichute
 	EdibleByLeap:
-    Repairable:
-        RepairActors: fix, fix.russia
+	Repairable:
+		RepairActors: fix, fix.russia
 
 ^Plane:
-    -EjectOnDeath:
+	-EjectOnDeath:
 	Repairable:
 		RepairActors: fix, fix.russia
 
 ^Building:
-    Inherits@94: ^LeavesScraps
-    Inherits@97: ^BuildingAffectedByEMP
+	Inherits@94: ^LeavesScraps
+	Inherits@97: ^BuildingAffectedByEMP
 	RequiresBuildableArea:
 		Adjacent: 3
 	#		wtf burns isnt conditional, arrrgh !@#?/$!
@@ -192,24 +192,24 @@
 		Delay: 3
 		HealIfBelow: 100
 		DamageCooldown: 0
-        RequiresCondition: disabled
+		RequiresCondition: disabled
 
 ^Husk:
-    Inherits@94: ^LeavesScraps
+	Inherits@94: ^LeavesScraps
 	Husk:
 		AllowedTerrain: Clear, Rough, Road, Ore, Gems, Scraps, Beach, Shallow
 
 ^Ship:
-    Inherits@93: ^AffectedByLeadership
-    Inherits@95: ^AffectedByEmergencyRepair
-    Inherits@96: ^AffectedByGPSScrambler
-    Inherits@97: ^AffectedByEMP
-    Mobile:
-        RequiresCondition: !empdisable
+	Inherits@93: ^AffectedByLeadership
+	Inherits@95: ^AffectedByEmergencyRepair
+	Inherits@96: ^AffectedByGPSScrambler
+	Inherits@97: ^AffectedByEMP
+	Mobile:
+		PauseOnCondition: !(!empdisable)
 	Targetable:
 		TargetTypes: Ground, Water, Ship, SeaDetonateAttack
 	RepairableNear:
-		RepairActors: syrd
+		RepairActors: spen, syrd
 
 ^AffectedByGPSScrambler:
 	Cloak@GPSCRAMBLER:
@@ -294,15 +294,15 @@
 	GrantCondition@EMPDISABLE:
 		RequiresCondition: empdisable
 		Condition: disabled
-
-    # this trait does not exists, wtf
-    #   ^AffectedByOilBonus:
+	# this trait does not exists, wtf
+	#   ^AffectedByOilBonus:
 	#   CashTricklerMultiplier@OILBONUS:
-    #   RequiresCondition: oilbonus
-    #   Modifier: 125
+	#   RequiresCondition: oilbonus
+	#   Modifier: 125
 	#   GrantConditionOnPrerequisite@OILBONUS:
-    #   Condition: oilbonus
-    #   Prerequisites: player.turkmen
+	#   Condition: oilbonus
+	#   Prerequisites: player.turkmen
+
 
 ^DisableOnPowerDown:
 	WithColoredOverlay@IDISABLE:
@@ -374,10 +374,10 @@
 	-CaptureManager:
 	-CapturableProgressBar:
 	-CapturableProgressBlink:
-	WithMakeAnimation:
-		Condition: build-incomplete
+	-WithMakeAnimation:
+	#	Condition: build-incomplete
 	WithGateSpriteBody:
-		PauseOnCondition: build-incomplete
+		PauseOnCondition: disabled
 	Tooltip:
 		Name: Gate
 	Building:
@@ -389,7 +389,7 @@
 	MapEditorData:
 		Categories: Wall
 	Gate:
-		PauseOnCondition: build-incomplete || disabled
+		PauseOnCondition: disabled
 		OpeningSound: cashturn.aud
 		ClosingSound: cashturn.aud
 		BlocksProjectilesHeight: 0
@@ -422,7 +422,7 @@ CAMERA.fieldrepair:
 		Categories: System
 
 CAMERA.small:
-    Inherits: CAMERA
+	Inherits: CAMERA
 	RevealsShroud:
 		Range: 5c0
 		Type: CenterPosition
@@ -461,7 +461,7 @@ CRATE:
 		Units: arty
 		ValidFactions: allies, england, france, germany, spain, greece, turkey
 		Prerequisites: techlevel.medium, dome
-    GiveUnitCrateAction@v2rl:
+	GiveUnitCrateAction@v2rl:
 		SelectionShares: 5
 		Units: v2rl
 		ValidFactions: soviet, russia, ukraine, belarus, kazakh, uzbek, turkmen
@@ -481,7 +481,7 @@ CRATE:
 		Units: 3tnk
 		ValidFactions: soviet, russia, ukraine, belarus, kazakh, uzbek, turkmen
 		Prerequisites: techlevel.medium, fix
-    GiveUnitCrateAction@atnk:
+	GiveUnitCrateAction@atnk:
 		SelectionShares: 6
 		Units: atnk
 		ValidFactions: allies, england, france, germany, spain, greece, turkey
@@ -494,12 +494,12 @@ CRATE:
 		SelectionShares: 9
 		Units: e1,e1,e1,e3,e3,medi,jeep
 		ValidFactions: allies, england, france, germany, spain, greece, turkey
-        TimeDelay: 2250
+		TimeDelay: 2250
 	GiveUnitCrateAction@squadlightsoviet:
 		SelectionShares: 9
 		Units: e1,e1,e1,e3,e3,e4,ftrk
 		ValidFactions: soviet, russia, ukraine, belarus, kazakh, uzbek, turkmen
-        TimeDelay: 2250
+		TimeDelay: 2250
 	GiveUnitCrateAction@squadheavyallies:
 		SelectionShares: 7
 		Units: e1,e1,e1,e1,e3,e3,e3,e6,medi
@@ -538,7 +538,7 @@ CRATE:
 
 RANKUPCRATE:
 	Inherits: ^Crate
-    Tooltip:
+	Tooltip:
 		Name: Rank-up Crate
 		GenericName: Rank-up Crate
 		ShowOwnerRow: false
@@ -548,7 +548,7 @@ RANKUPCRATE:
 		MaxExtraCollectors: 9
 	RenderSprites:
 		Image: scrate-rankup
-    -MapEditorData:
+	-MapEditorData:
 
 tech.stolen:
 	AlwaysVisible:
@@ -571,9 +571,9 @@ MINS:
 		TargetTypes: Underwater
 	Explodes:
 		Weapon: ASMine
-    GrantExternalConditionToCrusher:
-        OnCrushCondition: minehit 	
-        OnCrushDuration: 50
+	GrantExternalConditionToCrusher:
+		OnCrushCondition: minehit
+		OnCrushDuration: 50
 
 ^EjectsPilotOnAir:
 	EjectOnDeath@RANK-1:
