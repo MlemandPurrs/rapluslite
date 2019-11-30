@@ -24,6 +24,14 @@ B52:
 	RenderSprites:
 		Image: ally-bdgr
 
+B52.Crate:
+	Inherits: B52
+	ParaDrop:
+		DropRange: 0c512
+	RenderSprites:
+		Image: ally-bdgr
+	-MapEditorData:
+
 TRAN:
 	Buildable:
 		BuildPaletteOrder: 1
@@ -66,7 +74,7 @@ IROQ:
 	Valued:
 		Cost: 1350
 	Tooltip:
-		Name: Iroqouis Scout
+		Name: Iroquois Scout
 	Health:
 		HP: 8000
 	RevealsShroud:
@@ -150,7 +158,6 @@ IROQ:
 		DecorationBounds: 38,32
 	Rearmable:
 		RearmActors: hpad, carr.deployed
-	AcceptsDeliveredExperience:
 
 IROQ.Turkey:
 	Inherits: IROQ
@@ -201,6 +208,33 @@ IROQ.Turkey.AI:
 		Image: iroq
 	-MapEditorData:
 
+MI2:
+	Inherits: IROQ
+	-Buildable:
+	Buildable:
+		Queue: Aircraft
+		BuildAtProductionType: Helicopter
+		BuildPaletteOrder: 5
+		Prerequisites: ~hpad, ~aircraft.soviet, ~techlevel.medium
+		Description: Light helicopter armed with dual chainguns.\n  Strong vs Infantry, Light vehicles\n  Weak vs Tanks, Aircraft
+	Valued:
+		Cost: 1200
+	Tooltip:
+		Name: MI-2 Scout
+	-Armament@TERTIARY:
+	-AmmoPool@2:
+	AttackAircraft:
+		Armaments: primary, secondary, fourth, fifth
+	SpawnActorOnDeath:
+		Actor: MI2.Husk
+	SpeedMultiplier:
+		Modifier: 110
+		RequiresCondition: kazakh.player
+	GrantConditionOnFaction:
+		Condition: kazakh.player
+		Factions: kazakh
+		ResetOnOwnerChange: True
+
 HELI:
 	Buildable:
 		BuildPaletteOrder: 3
@@ -208,7 +242,7 @@ HELI:
 		Prerequisites: ~hpad, atek, ~aircraft.allies, ~techlevel.high
 		Description: Helicopter gunship with multi-purpose\nChainguns and Missiles.\n  Strong vs Everything\n  Weak vs Anti-Air, Aircraft
 	Tooltip:
-		Name: Apache Longbow
+		Name: Apache
 	Armament@TERTIARY:
 		Name: tertiary
 		Weapon: HeliAGGun
@@ -234,16 +268,17 @@ HELI:
 	WithMuzzleOverlay:
 	Rearmable:
 		RearmActors: hpad, carr.deployed
-	AcceptsDeliveredExperience:
 
 HIND:
 	Buildable:
-		BuildPaletteOrder: 5
-		BuildAtProductionType: Plane
-		Prerequisites: ~afld, stek, ~player.belarus, ~tech.stolen, ~techlevel.high
+		BuildPaletteOrder: 6
+		BuildAtProductionType: Helicopter
+		Prerequisites: ~hpad, stek, ~aircraft.soviet, ~techlevel.high
 		Description: Helicopter gunship armed with dual chainguns\nand anti-ground rockets.\n  Strong vs Infantry, Light armor\n  Weak vs Tanks, Aircraft
+	Tooltip:
+		Name: MI-24 Hind
 	Valued:
-		Cost: 2200
+		Cost: 1800
 	Armament@PRIMARY:
 		Name: primary
 		Weapon: ChainGun
@@ -283,7 +318,7 @@ HIND:
 		AmmoCondition: ammo
 	AmmoPool@ROCKETS:
 		Armaments: tertiary
-		Ammo: 8
+		Ammo: 7
 		PipCount: 4
 		ReloadDelay: 9
 		PipType: Red
@@ -292,8 +327,14 @@ HIND:
 		Armaments: primary, secondary, tertiary, fourth, fifth
 		FacingTolerance: 20
 	Rearmable:
-		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh, hpad, carr.deployed
-	AcceptsDeliveredExperience:
+		RearmActors: hpad, carr.deployed
+	SpeedMultiplier:
+		Modifier: 110
+		RequiresCondition: kazakh.player
+	GrantConditionOnFaction:
+		Condition: kazakh.player
+		Factions: kazakh
+		ResetOnOwnerChange: True
 
 U2.emp:
 	Inherits: U2
@@ -328,7 +369,7 @@ U2.nuke:
 YAK:
 	Buildable:
 		BuildPaletteOrder: 1
-		Prerequisites: ~afld, ~!player.belarus, ~!aitoodumb, ~techlevel.medium
+		Prerequisites: ~afld, ~aircraft.soviet, ~!player.belarus, ~!aitoodumb, ~techlevel.medium
 		Description: Strafing Attack Plane armed with\ndual machine guns.\nBombs Submarines with Depthcharges.\n  Strong vs Infantry, Light armor\n  Weak vs Tanks, Aircraft
 	Aircraft:
 		TakeOffOnCreation: False
@@ -381,7 +422,6 @@ YAK:
 		AmmoCondition: ammodc
 	Rearmable:
 		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh
-	AcceptsDeliveredExperience:
 	SpeedMultiplier:
 		Modifier: 110
 		RequiresCondition: kazakh.player
@@ -393,7 +433,7 @@ YAK:
 YAK.Belarus:
 	Inherits: YAK
 	Buildable:
-		Prerequisites: ~afld, ~player.belarus, ~!aitoodumb, ~!aircraft.upgraded, ~techlevel.medium
+		Prerequisites: ~afld, ~player.belarus, ~aircraft.soviet, ~!aitoodumb, ~!aircraft.upgraded, ~techlevel.medium
 	ProducibleWithLevel:
 		Prerequisites: techlevel.infonly
 		InitialLevels: 1
@@ -404,7 +444,7 @@ YAK.Belarus:
 YAK.BelarusR2:
 	Inherits: YAK.Belarus
 	Buildable:
-		Prerequisites: ~afld, ~player.belarus, ~!aitoodumb, ~aircraft.upgraded, ~techlevel.medium
+		Prerequisites: ~afld, ~player.belarus, ~aircraft.soviet, ~!aitoodumb, ~aircraft.upgraded, ~techlevel.medium
 		Icon: rank2-icon
 	ProducibleWithLevel:
 		Prerequisites: techlevel.infonly
@@ -415,7 +455,7 @@ YAK.BelarusR2:
 YAK.AI:
 	Inherits: YAK
 	Buildable:
-		Prerequisites: ~afld, ~!player.belarus, ~aitoodumb, ~techlevel.medium
+		Prerequisites: ~afld, ~!player.belarus, ~aircraft.soviet, ~aitoodumb, ~techlevel.medium
 	Aircraft:
 		TakeOffOnCreation: True
 	-Armament@TERTIARY:
@@ -429,7 +469,7 @@ YAK.AI:
 YAK.Belarus.AI:
 	Inherits: YAK.Belarus
 	Buildable:
-		Prerequisites: ~afld, ~player.belarus, ~aitoodumb, ~!aircraft.upgraded, ~techlevel.medium
+		Prerequisites: ~afld, ~player.belarus, ~aircraft.soviet, ~aitoodumb, ~!aircraft.upgraded, ~techlevel.medium
 	Aircraft:
 		TakeOffOnCreation: True
 	-Armament@TERTIARY:
@@ -439,11 +479,27 @@ YAK.Belarus.AI:
 	AttackAircraft:
 		Armaments: primary, secondary
 
+YAK.Allies:
+	Inherits: YAK
+	Buildable:
+		BuildPaletteOrder: 4
+		Prerequisites: ~afld, ~aircraft.allies, ~techlevel.medium
+	-Armament@TERTIARY:
+	-AmmoPool@2:
+	AttackAircraft:
+		Armaments: primary, secondary
+	Valued:
+		Cost: 800
+	Tooltip:
+		Name: Spitfire Attack Plane
+	RenderSprites:
+		Image: ally-yak
+
 MIG:
 	Buildable:
 		BuildPaletteOrder: 2
 		BuildDurationModifier: 60
-		Prerequisites: ~afld, stek, ~!aitoodumb, ~techlevel.high
+		Prerequisites: ~afld, stek, ~aircraft.soviet, ~!aitoodumb, ~techlevel.high
 		Description: Fast Multi-Role Attack Plane.\n  Strong vs Buildings, Vehicles\n  Weak vs Infantry, Aircraft
 	Aircraft:
 		TakeOffOnCreation: False
@@ -456,7 +512,6 @@ MIG:
 		PauseOnCondition: !ammo
 	Rearmable:
 		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh
-	AcceptsDeliveredExperience:
 	SpeedMultiplier:
 		Modifier: 110
 		RequiresCondition: kazakh.player
@@ -468,12 +523,25 @@ MIG:
 MIG.AI:
 	Inherits: MIG
 	Buildable:
-		Prerequisites: ~afld, stek, ~aitoodumb, ~techlevel.high
+		Prerequisites: ~afld, stek, ~aircraft.soviet, ~aitoodumb, ~techlevel.high
 	Aircraft:
 		TakeOffOnCreation: True
 	RenderSprites:
 		Image: mig
 	-MapEditorData:
+
+MIG.Allies:
+	Inherits: MIG
+	Buildable:
+		BuildPaletteOrder: 5
+		BuildDurationModifier: 60
+		Prerequisites: ~afld, atek, ~aircraft.allies, ~techlevel.high
+	Valued:
+		Cost: 1200
+	Tooltip:
+		Name: Tornado Attack Plane
+	RenderSprites:
+		Image: ally-mig
 
 COSSACK:
 	Inherits: ^Plane
@@ -482,7 +550,7 @@ COSSACK:
 		BuildAtProductionType: Plane
 		BuildPaletteOrder: 3
 		BuildLimit: 1
-		Prerequisites: ~afld, stek, ~techlevel.high
+		Prerequisites: ~afld, stek, ~aircraft.soviet, ~techlevel.high
 		Description: Superheavy cargo lifter plane.\nMaximum 1 can be built.\n Special Ability: Supertransport\nTransports up to 15 Infantry or Vehicles.\nDeploys those with a parachute (force fire to unload)\n  Unarmed
 	Valued:
 		Cost: 2750
@@ -628,8 +696,59 @@ HARR:
 		Prerequisites: aircraft.upgraded
 	Rearmable:
 		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh, hpad, carr.deployed
-	AcceptsDeliveredExperience:
 
 MH60:
 	Buildable:
 		Prerequisites: ~disabled
+
+FROG.Bomber:
+	Inherits: ^NeutralPlane
+	AttackBomber:
+		Armaments: gun, bombs
+	Armament@GUNS:
+		Name: gun
+		Weapon: Vulcan.bomber
+		LocalOffset: 1024,0,-85
+	WithMuzzleOverlay:
+	Armament@BOMBS:
+		Name: bombs
+		Weapon: Napalm.bomber
+		LocalOffset: 0,-256,-43, 0,256,-43
+	Health:
+		HP: 30000
+	Aircraft:
+		CruiseAltitude: 2560
+		TurnSpeed: 5
+		Speed: 298
+		Repulsable: False
+		MaximumPitch: 56
+	-Selectable:
+	SelectionDecorations:
+		RenderSelectionBars: False
+	-Voiced:
+	Tooltip:
+		Name: Frogfoot Bomber
+	Contrail@1:
+		Offset: -640,171,0
+		TrailLength: 15
+	Contrail@2:
+		Offset: -640,-171,0
+		TrailLength: 15
+	RenderSprites:
+		Image: a10
+	SpawnActorOnDeath:
+		Actor: FROG.Husk
+	SmokeTrailWhenDamaged@0:
+		Offset: -640,171,0
+		Interval: 2
+	SmokeTrailWhenDamaged@1:
+		Offset: -640,-171,0
+		Interval: 2
+	-EjectOnDeath:
+	-MapEditorData:
+	RejectsOrders:
+	RenderSprites:
+		Image: frog
+	GivesExperience:
+		Experience: 1000
+	Interactable:

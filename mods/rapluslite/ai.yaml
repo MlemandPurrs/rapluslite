@@ -11,8 +11,8 @@ Player:
 	SupportPowerBotModule@england:
 		RequiresCondition: enable-ai-player && player.england
 		Decisions:
-			AlliedParatroopers:
-				OrderName: AlliedParatroopersPowerInfoOrder
+			UseParatroopers:
+				OrderName: AlliedParatroopers
 				MinimumAttractiveness: 5
 				Consideration@1:
 					Against: Enemy
@@ -26,8 +26,8 @@ Player:
 					Attractiveness: -5
 					TargetMetric: None
 					CheckRadius: 8c0
-			NuclearMissile:
-				OrderName: NukePowerInfoOrder
+			UseNuclear:
+				OrderName: NukeMissile
 				MinimumAttractiveness: 3000
 				Consideration@1:
 					Against: Enemy
@@ -41,8 +41,8 @@ Player:
 					Attractiveness: -10
 					TargetMetric: Value
 					CheckRadius: 7c0
-			GpsScramblerPower:
-				OrderName: GPSScramblerPowerInfoOrder
+			UseInvisibility:
+				OrderName: GPSScrambler
 				MinimumAttractiveness: 1
 				Consideration@1:
 					Against: Ally
@@ -53,8 +53,8 @@ Player:
 	SupportPowerBotModule@france:
 		RequiresCondition: enable-ai-player && player.france
 		Decisions:
-			AlliedParatroopers:
-				OrderName: AlliedParatroopersPowerInfoOrder
+			UseParatroopers:
+				OrderName: AlliedParatroopers
 				MinimumAttractiveness: 5
 				Consideration@1:
 					Against: Enemy
@@ -68,8 +68,8 @@ Player:
 					Attractiveness: -5
 					TargetMetric: None
 					CheckRadius: 8c0
-			NuclearMissile:
-				OrderName: NukePowerInfoOrder
+			UseNuclear:
+				OrderName: NukeMissile
 				MinimumAttractiveness: 3000
 				Consideration@1:
 					Against: Enemy
@@ -86,8 +86,8 @@ Player:
 	SupportPowerBotModule@germany:
 		RequiresCondition: enable-ai-player && player.germany
 		Decisions:
-			AlliedParatroopers:
-				OrderName: AlliedParatroopersPowerInfoOrder
+			UseParatroopers:
+				OrderName: AlliedParatroopers
 				MinimumAttractiveness: 5
 				Consideration@1:
 					Against: Enemy
@@ -101,8 +101,8 @@ Player:
 					Attractiveness: -5
 					TargetMetric: None
 					CheckRadius: 8c0
-			FieldRepairPower:
-				OrderName: FieldRepairPowerInfoOrder
+			UseFieldRepairs:
+				OrderName: FieldRepair
 				MinimumAttractiveness: 1
 				Consideration@1:
 					Against: Ally
@@ -110,8 +110,8 @@ Player:
 					Attractiveness: 1
 					TargetMetric: None
 					CheckRadius: 2c0
-			NuclearMissile:
-				OrderName: NukePowerInfoOrder
+			UseNuclear:
+				OrderName: NukeMissile
 				MinimumAttractiveness: 3000
 				Consideration@1:
 					Against: Enemy
@@ -128,8 +128,8 @@ Player:
 	SupportPowerBotModule@spain:
 		RequiresCondition: enable-ai-player && player.spain
 		Decisions:
-			AlliedParatroopers:
-				OrderName: AlliedParatroopersPowerInfoOrder
+			UseParatroopers:
+				OrderName: AlliedParatroopers
 				MinimumAttractiveness: 5
 				Consideration@1:
 					Against: Enemy
@@ -143,8 +143,8 @@ Player:
 					Attractiveness: -5
 					TargetMetric: None
 					CheckRadius: 8c0
-			RadarScan:
-				OrderName: RadarScanPowerInfoOrder
+			UseRadarScan:
+				OrderName: RadarScan
 				MinimumAttractiveness: 1
 				Consideration@1:
 					Against: Enemy
@@ -152,8 +152,8 @@ Player:
 					Attractiveness: 1
 					TargetMetric: None
 					CheckRadius: 5c0
-			NuclearMissile:
-				OrderName: NukePowerInfoOrder
+			UseNuclear:
+				OrderName: NukeMissile
 				MinimumAttractiveness: 3000
 				Consideration@1:
 					Against: Enemy
@@ -170,8 +170,8 @@ Player:
 	SupportPowerBotModule@greece:
 		RequiresCondition: enable-ai-player && player.greece
 		Decisions:
-			AlliedParatroopers:
-				OrderName: AlliedParatroopersPowerInfoOrder
+			UseParatroopers:
+				OrderName: AlliedParatroopers
 				MinimumAttractiveness: 5
 				Consideration@1:
 					Against: Enemy
@@ -185,8 +185,8 @@ Player:
 					Attractiveness: -5
 					TargetMetric: None
 					CheckRadius: 8c0
-			NuclearMissile:
-				OrderName: NukePowerInfoOrder
+			UseNuclear:
+				OrderName: NukeMissile
 				MinimumAttractiveness: 3000
 				Consideration@1:
 					Against: Enemy
@@ -200,8 +200,8 @@ Player:
 					Attractiveness: -10
 					TargetMetric: Value
 					CheckRadius: 7c0
-			AlliedParaTanks:
-				OrderName: AlliedParaTanksPowerInfoOrder
+			UseParatanks:
+				OrderName: AlliedParaTanks
 				MinimumAttractiveness: 5
 				Consideration@1:
 					Against: Enemy
@@ -218,8 +218,8 @@ Player:
 	SupportPowerBotModule@turkey:
 		RequiresCondition: enable-ai-player && player.turkey
 		Decisions:
-			AlliedParatroopers:
-				OrderName: AlliedParatroopersPowerInfoOrder
+			UseParatroopers:
+				OrderName: AlliedParatroopers
 				MinimumAttractiveness: 5
 				Consideration@1:
 					Against: Enemy
@@ -233,8 +233,8 @@ Player:
 					Attractiveness: -5
 					TargetMetric: None
 					CheckRadius: 8c0
-			NuclearMissile:
-				OrderName: NukePowerInfoOrder
+			UseNuclear:
+				OrderName: NukeMissile
 				MinimumAttractiveness: 3000
 				Consideration@1:
 					Against: Enemy
@@ -248,8 +248,8 @@ Player:
 					Attractiveness: -10
 					TargetMetric: Value
 					CheckRadius: 7c0
-			AlliedParanuke:
-				OrderName: AlliedParanukePowerInfoOrder
+			UseParanuke:
+				OrderName: AlliedParanuke
 				MinimumAttractiveness: 1
 				Consideration@1:
 					Against: Enemy
@@ -269,20 +269,11 @@ Player:
 					Attractiveness: 1
 					TargetMetric: Value
 					CheckRadius: 2c0
-	SupportPowerBotModule@russia:
-		RequiresCondition: enable-ai-player && player.russia
+	SupportPowerBotModule@italy:
+		RequiresCondition: enable-ai-player && player.italy
 		Decisions:
-			SovietSpyplane:
-				OrderName: SovietSpyPlanePowerInfoOrder
-				MinimumAttractiveness: 1
-				Consideration@1:
-					Against: Enemy
-					Types: Structure
-					Attractiveness: 1
-					TargetMetric: None
-					CheckRadius: 5c0
-			SovietParatroopers:
-				OrderName: SovietParatroopersPowerInfoOrder
+			UseParatroopers:
+				OrderName: AlliedParatroopers
 				MinimumAttractiveness: 5
 				Consideration@1:
 					Against: Enemy
@@ -296,8 +287,8 @@ Player:
 					Attractiveness: -5
 					TargetMetric: None
 					CheckRadius: 8c0
-			NuclearMissile:
-				OrderName: NukePowerInfoOrder
+			UseNuclear:
+				OrderName: NukeMissile
 				MinimumAttractiveness: 3000
 				Consideration@1:
 					Against: Enemy
@@ -311,8 +302,50 @@ Player:
 					Attractiveness: -10
 					TargetMetric: Value
 					CheckRadius: 7c0
-			IronCurtainPower:
-				OrderName: IronCurtainPowerInfoOrder
+	SupportPowerBotModule@russia:
+		RequiresCondition: enable-ai-player && player.russia
+		Decisions:
+			UseSpyPlane:
+				OrderName: SovietSpyPlane
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			UseParatroopers:
+				OrderName: SovietParatroopers
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			UseNuclear:
+				OrderName: NukeMissile
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			UseInvulnerability:
+				OrderName: IronCurtainPower
 				MinimumAttractiveness: 1
 				Consideration@1:
 					Against: Ally
@@ -320,8 +353,8 @@ Player:
 					Attractiveness: 1
 					TargetMetric: None
 					CheckRadius: 2c0
-			SovietEMPPower:
-				OrderName: SovietEMPPowerInfoOrder
+			UseEMPBomb:
+				OrderName: SovietEMP
 				MinimumAttractiveness: 1
 				Consideration@1:
 					Against: Enemy
@@ -332,8 +365,8 @@ Player:
 	SupportPowerBotModule@ukraine:
 		RequiresCondition: enable-ai-player && player.ukraine
 		Decisions:
-			SovietSpyplane:
-				OrderName: SovietSpyPlanePowerInfoOrder
+			UseSpyPlane:
+				OrderName: SovietSpyPlane
 				MinimumAttractiveness: 1
 				Consideration@1:
 					Against: Enemy
@@ -341,8 +374,8 @@ Player:
 					Attractiveness: 1
 					TargetMetric: None
 					CheckRadius: 5c0
-			SovietParatroopers:
-				OrderName: SovietParatroopersPowerInfoOrder
+			UseParatroopers:
+				OrderName: SovietParatroopers
 				MinimumAttractiveness: 5
 				Consideration@1:
 					Against: Enemy
@@ -356,8 +389,8 @@ Player:
 					Attractiveness: -5
 					TargetMetric: None
 					CheckRadius: 8c0
-			SovietParabombs:
-				OrderName: SovietParabombsPowerInfoOrder
+			UseParabombs:
+				OrderName: SovietParabombs
 				MinimumAttractiveness: 1
 				Consideration@1:
 					Against: Enemy
@@ -365,8 +398,8 @@ Player:
 					Attractiveness: 1
 					TargetMetric: None
 					CheckRadius: 5c0
-			NuclearMissile:
-				OrderName: NukePowerInfoOrder
+			UseNuclear:
+				OrderName: NukeMissile
 				MinimumAttractiveness: 3000
 				Consideration@1:
 					Against: Enemy
@@ -380,8 +413,8 @@ Player:
 					Attractiveness: -10
 					TargetMetric: Value
 					CheckRadius: 7c0
-			IronCurtainPower:
-				OrderName: IronCurtainPowerInfoOrder
+			UseInvulnerability:
+				OrderName: IronCurtainPower
 				MinimumAttractiveness: 1
 				Consideration@1:
 					Against: Ally
@@ -392,8 +425,8 @@ Player:
 	SupportPowerBotModule@belarus:
 		RequiresCondition: enable-ai-player && player.belarus
 		Decisions:
-			SovietSpyplane:
-				OrderName: SovietSpyPlanePowerInfoOrder
+			UseSpyPlane:
+				OrderName: SovietSpyPlane
 				MinimumAttractiveness: 1
 				Consideration@1:
 					Against: Enemy
@@ -401,8 +434,8 @@ Player:
 					Attractiveness: 1
 					TargetMetric: None
 					CheckRadius: 5c0
-			SovietParatroopers:
-				OrderName: SovietParatroopersPowerInfoOrder
+			UseParatroopers:
+				OrderName: SovietFastParatroopers
 				MinimumAttractiveness: 5
 				Consideration@1:
 					Against: Enemy
@@ -417,7 +450,7 @@ Player:
 					TargetMetric: None
 					CheckRadius: 8c0
 			SovietParabombs:
-				OrderName: SovietParabombsPowerInfoOrder
+				OrderName: SovietParabombs
 				MinimumAttractiveness: 1
 				Consideration@1:
 					Against: Enemy
@@ -425,8 +458,8 @@ Player:
 					Attractiveness: 1
 					TargetMetric: None
 					CheckRadius: 5c0
-			NuclearMissile:
-				OrderName: NukePowerInfoOrder
+			UseNuclear:
+				OrderName: NukeMissile
 				MinimumAttractiveness: 3000
 				Consideration@1:
 					Against: Enemy
@@ -440,8 +473,8 @@ Player:
 					Attractiveness: -10
 					TargetMetric: Value
 					CheckRadius: 7c0
-			IronCurtainPower:
-				OrderName: IronCurtainPowerInfoOrder
+			UseInvulnerability:
+				OrderName: IronCurtainPower
 				MinimumAttractiveness: 1
 				Consideration@1:
 					Against: Ally
@@ -452,8 +485,8 @@ Player:
 	SupportPowerBotModule@kazakhstan:
 		RequiresCondition: enable-ai-player && player.kazakh
 		Decisions:
-			SovietSpyplane:
-				OrderName: SovietSpyPlanePowerInfoOrder
+			UseSpyPlane:
+				OrderName: SovietSpyPlane
 				MinimumAttractiveness: 1
 				Consideration@1:
 					Against: Enemy
@@ -461,8 +494,8 @@ Player:
 					Attractiveness: 1
 					TargetMetric: None
 					CheckRadius: 5c0
-			SovietParatroopers:
-				OrderName: SovietParatroopersPowerInfoOrder
+			UseParatroopers:
+				OrderName: SovietParatroopers
 				MinimumAttractiveness: 5
 				Consideration@1:
 					Against: Enemy
@@ -476,8 +509,8 @@ Player:
 					Attractiveness: -5
 					TargetMetric: None
 					CheckRadius: 8c0
-			SovietParatanks:
-				OrderName: SovietParaTanksPowerInfoOrder
+			UseParatanks:
+				OrderName: SovietParaTanks
 				MinimumAttractiveness: 1
 				Consideration@1:
 					Against: Enemy
@@ -485,8 +518,8 @@ Player:
 					Attractiveness: 1
 					TargetMetric: None
 					CheckRadius: 5c0
-			NuclearMissile:
-				OrderName: AdvNukePowerInfoOrder
+			UseNuclear:
+				OrderName: AdvNukeMissile
 				MinimumAttractiveness: 3000
 				Consideration@1:
 					Against: Enemy
@@ -500,8 +533,8 @@ Player:
 					Attractiveness: -10
 					TargetMetric: Value
 					CheckRadius: 7c0
-			IronCurtainPower:
-				OrderName: IronCurtainPowerInfoOrder
+			UseInvulnerability:
+				OrderName: IronCurtainPower
 				MinimumAttractiveness: 1
 				Consideration@1:
 					Against: Ally
@@ -512,8 +545,8 @@ Player:
 	SupportPowerBotModule@uzbekistan:
 		RequiresCondition: enable-ai-player && player.uzbek
 		Decisions:
-			SovietSpyplane:
-				OrderName: SovietSpyPlanePowerInfoOrder
+			UseSpyPlane:
+				OrderName: SovietSpyPlane
 				MinimumAttractiveness: 1
 				Consideration@1:
 					Against: Enemy
@@ -521,8 +554,8 @@ Player:
 					Attractiveness: 1
 					TargetMetric: None
 					CheckRadius: 5c0
-			SovietParatroopers:
-				OrderName: SovietParatroopersPowerInfoOrder
+			UseParatroopers:
+				OrderName: SovietParatroopers
 				MinimumAttractiveness: 5
 				Consideration@1:
 					Against: Enemy
@@ -536,8 +569,8 @@ Player:
 					Attractiveness: -5
 					TargetMetric: None
 					CheckRadius: 8c0
-			NuclearMissile:
-				OrderName: NukePowerInfoOrder
+			UseNuclear:
+				OrderName: NukeMissile
 				MinimumAttractiveness: 3000
 				Consideration@1:
 					Against: Enemy
@@ -551,8 +584,8 @@ Player:
 					Attractiveness: -10
 					TargetMetric: Value
 					CheckRadius: 7c0
-			IronCurtainPower:
-				OrderName: IronCurtainPowerInfoOrder
+			UseInvulnerability:
+				OrderName: IronCurtainPower
 				MinimumAttractiveness: 1
 				Consideration@1:
 					Against: Ally
@@ -563,8 +596,8 @@ Player:
 	SupportPowerBotModule@turkmenistan:
 		RequiresCondition: enable-ai-player && player.turkmen
 		Decisions:
-			SovietSpyplane:
-				OrderName: SovietSpyPlanePowerInfoOrder
+			UseSpyPlane:
+				OrderName: SovietSpyPlane
 				MinimumAttractiveness: 1
 				Consideration@1:
 					Against: Enemy
@@ -572,8 +605,8 @@ Player:
 					Attractiveness: 1
 					TargetMetric: None
 					CheckRadius: 5c0
-			SovietParatroopers:
-				OrderName: SovietParatroopersPowerInfoOrder
+			UseParatroopers:
+				OrderName: SovietParatroopers
 				MinimumAttractiveness: 5
 				Consideration@1:
 					Against: Enemy
@@ -587,8 +620,8 @@ Player:
 					Attractiveness: -5
 					TargetMetric: None
 					CheckRadius: 8c0
-			NuclearMissile:
-				OrderName: NukePowerInfoOrder
+			UseNuclear:
+				OrderName: NukeMissile
 				MinimumAttractiveness: 3000
 				Consideration@1:
 					Against: Enemy
@@ -602,8 +635,8 @@ Player:
 					Attractiveness: -10
 					TargetMetric: Value
 					CheckRadius: 7c0
-			IronCurtainPower:
-				OrderName: IronCurtainPowerInfoOrder
+			UseInvulnerability:
+				OrderName: IronCurtainPower
 				MinimumAttractiveness: 1
 				Consideration@1:
 					Against: Ally
@@ -611,6 +644,78 @@ Player:
 					Attractiveness: 1
 					TargetMetric: None
 					CheckRadius: 2c0
+	SupportPowerBotModule@karelia:
+		RequiresCondition: enable-ai-player && player.karelia
+		Decisions:
+			UseSpyPlane:
+				OrderName: SovietSpyPlane
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			UseParatroopers:
+				OrderName: SovietParatroopers
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			UseNuclear:
+				OrderName: NukeMissile
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			UseInvulnerability:
+				OrderName: IronCurtainPower
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Ally
+					Types: Tank, Vehicle, Ship
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 2c0
+			UseAirstrike:
+				OrderName: SovietAirstrike
+				MinimumAttractiveness: 2000
+				Consideration@1:
+					Against: Enemy
+					Types: Vehicle, Infantry
+					Attractiveness: 3
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@2:
+					Against: Ally
+					Types: Ground, Water
+					Attractiveness: -20
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@3:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 2c0			
 	HarvesterBotModule@england:
 		RequiresCondition: enable-ai-player && player.england
 		HarvesterTypes: harv
@@ -635,6 +740,10 @@ Player:
 		RequiresCondition: enable-ai-player && player.turkey
 		HarvesterTypes: harv
 		RefineryTypes: proc.ercc
+	HarvesterBotModule@italy:
+		RequiresCondition: enable-ai-player && player.italy
+		HarvesterTypes: harv
+		RefineryTypes: proc.ercc
 	HarvesterBotModule@russia:
 		RequiresCondition: enable-ai-player && player.russia
 		HarvesterTypes: harv.soviet
@@ -645,8 +754,8 @@ Player:
 		RefineryTypes: proc.soviet
 	HarvesterBotModule@belarus:
 		RequiresCondition: enable-ai-player && player.belarus
-		HarvesterTypes: harv.belarus
-		RefineryTypes: proc.belarus
+		HarvesterTypes: harv.soviet
+		RefineryTypes: proc.soviet
 	HarvesterBotModule@kazakhstan:
 		RequiresCondition: enable-ai-player && player.kazakh
 		HarvesterTypes: harv.soviet
@@ -657,6 +766,10 @@ Player:
 		RefineryTypes: proc.soviet
 	HarvesterBotModule@turkmenistan:
 		RequiresCondition: enable-ai-player && player.turkmen
+		HarvesterTypes: harv.soviet
+		RefineryTypes: proc.soviet
+	HarvesterBotModule@karelia:
+		RequiresCondition: enable-ai-player && player.karelia
 		HarvesterTypes: harv.soviet
 		RefineryTypes: proc.soviet
 	BaseBuilderBotModule@england:
@@ -957,6 +1070,55 @@ Player:
 			atek.turkey: 1
 			mslo: 1
 			pdox: 1
+	BaseBuilderBotModule@italy:
+		RequiresCondition: enable-ai-player && player.italy
+		MinimumExcessPower: 60
+		MaximumExcessPower: 160
+		ExcessPowerIncrement: 40
+		ExcessPowerIncreaseThreshold: 4
+		CheckForWaterRadius: 8
+		ConstructionYardTypes: fact
+		RefineryTypes: proc.ercc
+		PowerTypes: powr,apwr
+		BarracksTypes: tent
+		VehiclesFactoryTypes: weap
+		ProductionTypes: tent,weap,hpad
+		NavalProductionTypes: syrd
+		SiloTypes: silo
+		BuildingLimits:
+			proc.ercc: 4
+			tent: 2
+			kenn: 4
+			dome: 1
+			weap: 3
+			syrd: 1
+			hpad: 4
+			atek.italy: 1
+			fix: 1
+			pdox: 1
+			mslo: 1
+			agun: 6
+			gun: 6
+			pbox: 8
+			hbox: 4
+			gap: 4
+		BuildingFractions:
+			proc.ercc: 15
+			tent: 2
+			kenn: 1
+			dome: 1
+			weap: 6
+			hpad: 4
+			syrd: 1
+			pbox: 7
+			hbox: 3
+			gun: 7
+			gap: 2
+			fix: 1
+			agun: 5
+			atek.italy: 1
+			mslo: 1
+			pdox: 1
 	BaseBuilderBotModule@russia:
 		RequiresCondition: enable-ai-player && player.russia
 		MinimumExcessPower: 60
@@ -1063,7 +1225,7 @@ Player:
 		ExcessPowerIncreaseThreshold: 4
 		CheckForWaterRadius: 8
 		ConstructionYardTypes: fact
-		RefineryTypes: proc.belarus
+		RefineryTypes: proc.soviet
 		PowerTypes: powr,apwr
 		BarracksTypes: barr
 		VehiclesFactoryTypes: weap
@@ -1251,6 +1413,55 @@ Player:
 			stek.turkmen: 1
 			mslo: 1
 			iron: 1
+	BaseBuilderBotModule@karelia:
+		RequiresCondition: enable-ai-player && player.karelia
+		MinimumExcessPower: 60
+		MaximumExcessPower: 200
+		ExcessPowerIncrement: 40
+		ExcessPowerIncreaseThreshold: 4
+		CheckForWaterRadius: 8
+		ConstructionYardTypes: fact
+		RefineryTypes: proc.soviet
+		PowerTypes: powr,apwr
+		BarracksTypes: barr
+		VehiclesFactoryTypes: weap
+		ProductionTypes: barr,weap,afld
+		NavalProductionTypes: spen
+		SiloTypes: silo
+		BuildingLimits:
+			proc.soviet: 4
+			barr: 2
+			kenn: 4
+			dome.soviet: 1
+			weap: 3
+			spen: 1
+			afld: 4
+			stek.karelia: 1
+			fix: 1
+			iron: 1
+			mslo: 1
+			ftur: 6
+			hgun: 4
+			tsla: 4
+			sam: 4
+			hsam: 2
+		BuildingFractions:
+			proc.soviet: 15
+			barr: 2
+			kenn: 1
+			dome.soviet: 1
+			weap: 6
+			spen: 1
+			afld: 4
+			hgun: 3
+			ftur: 10
+			tsla: 5
+			fix: 1
+			sam: 3
+			hsam: 1
+			stek.karelia: 1
+			mslo: 1
+			iron: 1
 	BuildingRepairBotModule@aiplayer:
 		RequiresCondition: enable-ai-player
 	McvManagerBotModule@aiplayer:
@@ -1260,7 +1471,7 @@ Player:
 		McvFactoryTypes: weap,weap.russia
 	CaptureManagerBotModule@engineer:
 		RequiresCondition: enable-ai-player
-		CapturingActorTypes: e6
+		CapturingActorTypes: e6,e6.uzbek
 		CapturableActorTypes: oilb,bio,miss,fcom,hosp
 		CheckCaptureTargetsForVisibility: false
 		MaximumCaptureTargetOptions: 15
@@ -1419,7 +1630,7 @@ Player:
 		SquadSizeRandomBonus: 4
 		RushInterval: 400
 		AttackScanRadius: 24
-		ExcludeFromSquadsTypes: harv, mcv, dog, e1, e3, rmbo, jeep, apc, mapc, 1tnk.turkey, 2tnk, arty, atnk.turkey, e7, heli, iroq.turkey.ai, e6, mech
+		ExcludeFromSquadsTypes: harv, mcv, dog, e1, e3, rmbo, jeep, apc, mapc, 1tnk, 2tnk, arty, atnk, e7, heli, iroq.turkey.ai, e6, mech
 		NavalUnitsTypes: pt,dd,ca
 		ConstructionYardTypes: fact
 		NavalProductionTypes: syrd
@@ -1429,7 +1640,33 @@ Player:
 		SquadSizeRandomBonus: 2
 		RushInterval: 400
 		AttackScanRadius: 24
-		ExcludeFromSquadsTypes: harv, mcv, dog, e1, e3, rmbo, jeep, apc, mapc, 1tnk.turkey, 2tnk, arty, atnk.turkey, e7, pt, dd, ca, e6, mech
+		ExcludeFromSquadsTypes: harv, mcv, dog, e1, e3, rmbo, jeep, apc, mapc, 1tnk, 2tnk, arty, atnk, e7, pt, dd, ca, e6, mech
+		ConstructionYardTypes: fact
+	SquadManagerBotModule@italy:
+		RequiresCondition: enable-ai-player && player.italy
+		SquadSize: 16
+		SquadSizeRandomBonus: 16
+		RushInterval: 400
+		AttackScanRadius: 16
+		ExcludeFromSquadsTypes: harv, mcv, dog, pt, dd, ca, heli, iroq.ai, e6, mech
+		ConstructionYardTypes: fact
+	SquadManagerBotModule@italy.sea:
+		RequiresCondition: enable-ai-player && player.italy
+		SquadSize: 4
+		SquadSizeRandomBonus: 4
+		RushInterval: 400
+		AttackScanRadius: 24
+		ExcludeFromSquadsTypes: harv, mcv, dog, e1, e3, jeep, apc.italy, 1tnk.italy, 2tnk, arty, atnk.italy, e7, heli, iroq.ai, e6, mech
+		NavalUnitsTypes: pt,dd,ca
+		ConstructionYardTypes: fact
+		NavalProductionTypes: syrd
+	SquadManagerBotModule@italy.air:
+		RequiresCondition: enable-ai-player && player.italy
+		SquadSize: 2
+		SquadSizeRandomBonus: 2
+		RushInterval: 400
+		AttackScanRadius: 24
+		ExcludeFromSquadsTypes: harv, mcv, dog, e1, e3, jeep, apc.italy, 1tnk.italy, 2tnk, arty, atnk.italy, e7, pt, dd, ca, e6, mech
 		ConstructionYardTypes: fact
 	SquadManagerBotModule@russia:
 		RequiresCondition: enable-ai-player && player.russia
@@ -1489,7 +1726,7 @@ Player:
 		SquadSizeRandomBonus: 16
 		RushInterval: 400
 		AttackScanRadius: 16
-		ExcludeFromSquadsTypes: harv.belarus, mcv, dog, ss, ss.ag, msub, msub.aa, yak.ai, mig.ai, e6, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, ss, ss.ag, msub, msub.aa, yak.ai, mig.ai, e6, thf
 		ConstructionYardTypes: fact
 	SquadManagerBotModule@belarus.sea:
 		RequiresCondition: enable-ai-player && player.belarus
@@ -1497,7 +1734,7 @@ Player:
 		SquadSizeRandomBonus: 4
 		RushInterval: 400
 		AttackScanRadius: 24
-		ExcludeFromSquadsTypes: harv.belarus, mcv, dog, e1, e3, e4, volk, ftrk, btr, 2tnk.belarus, 3tnk.belarus, 4tnk.belarus, v2rl, yak.belarus.ai, mig.ai, e6, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e3, e4, volk, ftrk, btr, 2tnk.belarus, 3tnk.belarus, 4tnk.belarus, v2rl, yak.belarus.ai, mig.ai, e6, thf
 		NavalUnitsTypes: ss,ss.ag,msub,msub.aa
 		ConstructionYardTypes: fact
 		NavalProductionTypes: spen
@@ -1507,7 +1744,7 @@ Player:
 		SquadSizeRandomBonus: 2
 		RushInterval: 400
 		AttackScanRadius: 24
-		ExcludeFromSquadsTypes: harv.belarus, mcv, dog, e1, e3, e4, volk, ftrk, btr, 2tnk.belarus, 3tnk.belarus, 4tnk.belarus, v2rl, ss, ss.ag, msub, msub.aa, e6, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e3, e4, volk, ftrk, btr, 2tnk.belarus, 3tnk.belarus, 4tnk.belarus, v2rl, ss, ss.ag, msub, msub.aa, e6, thf
 		ConstructionYardTypes: fact
 	SquadManagerBotModule@kazakhstan:
 		RequiresCondition: enable-ai-player && player.kazakh
@@ -1541,7 +1778,7 @@ Player:
 		SquadSizeRandomBonus: 16
 		RushInterval: 400
 		AttackScanRadius: 16
-		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, ss, ss.ag, msub, msub.aa, yak.ai, mig.ai, e6, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, ss, ss.ag, msub, msub.aa, yak.ai, mig.ai, e6.uzbek, thf
 		ConstructionYardTypes: fact
 	SquadManagerBotModule@uzbekistan.sea:
 		RequiresCondition: enable-ai-player && player.uzbek
@@ -1549,7 +1786,7 @@ Player:
 		SquadSizeRandomBonus: 4
 		RushInterval: 400
 		AttackScanRadius: 24
-		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e3, e4, volk, rpg, ftrk, btr, 2tnk.uzbek, 3tnk, 4tnk, v2rl, yak.ai, mig.ai, e6, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e2.uzbek, e3, e4, volk, rpg, ftrk, btr, 2tnk.soviet, 3tnk, 4tnk, v2rl, yak.ai, mig.ai, e6.uzbek, thf
 		NavalUnitsTypes: ss,ss.ag,msub,msub.aa
 		ConstructionYardTypes: fact
 		NavalProductionTypes: spen
@@ -1559,7 +1796,7 @@ Player:
 		SquadSizeRandomBonus: 2
 		RushInterval: 400
 		AttackScanRadius: 24
-		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e3, e4, volk, rpg, ftrk, btr, 2tnk.uzbek, 3tnk, 4tnk, v2rl, ss, ss.ag, msub, msub.aa, e6, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e2.uzbek, e3, e4, volk, rpg, ftrk, btr, 2tnk.soviet, 3tnk, 4tnk, v2rl, ss, ss.ag, msub, msub.aa, e6.uzbek, thf
 		ConstructionYardTypes: fact
 	SquadManagerBotModule@turkmenistan:
 		RequiresCondition: enable-ai-player && player.turkmen
@@ -1567,7 +1804,7 @@ Player:
 		SquadSizeRandomBonus: 16
 		RushInterval: 400
 		AttackScanRadius: 16
-		ExcludeFromSquadsTypes: harv.soviet, mcv, dog.turkmen, ss, ss.ag, msub, msub.aa, yak.ai, mig.ai, e6, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, ss, ss.ag, msub, msub.aa, yak.ai, mig.ai, e6, thf
 		ConstructionYardTypes: fact
 	SquadManagerBotModule@turkmenistan.sea:
 		RequiresCondition: enable-ai-player && player.turkmen
@@ -1575,7 +1812,7 @@ Player:
 		SquadSizeRandomBonus: 4
 		RushInterval: 400
 		AttackScanRadius: 24
-		ExcludeFromSquadsTypes: harv.soviet, mcv, dog.turkmen, e1, e3, e4, volk, mark, ftrk, btr, 2tnk.soviet, 3tnk, 4tnk, v2rl, spg, yak.ai, mig.ai, e6, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e3, e4, volk, mark, ftrk, btr, 2tnk.turkmen, 3tnk, 4tnk, v2rl, spg, yak.ai, mig.ai, e6, thf
 		NavalUnitsTypes: ss,ss.ag,msub,msub.aa
 		ConstructionYardTypes: fact
 		NavalProductionTypes: spen
@@ -1585,7 +1822,33 @@ Player:
 		SquadSizeRandomBonus: 2
 		RushInterval: 400
 		AttackScanRadius: 24
-		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e3, e4, volk, mark, ftrk, btr, 2tnk.uzbek, 3tnk, 4tnk, v2rl, spg, ss, ss.ag, msub, msub.aa, e6, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e3, e4, volk, mark, ftrk, btr, 2tnk.turkmen, 3tnk, 4tnk, v2rl, spg, ss, ss.ag, msub, msub.aa, e6, thf
+		ConstructionYardTypes: fact
+	SquadManagerBotModule@karelia:
+		RequiresCondition: enable-ai-player && player.karelia
+		SquadSize: 16
+		SquadSizeRandomBonus: 16
+		RushInterval: 400
+		AttackScanRadius: 16
+		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, ss, ss.ag, msub, msub.aa, fsub, yak.ai, mig.ai, e6, thf
+		ConstructionYardTypes: fact
+	SquadManagerBotModule@karelia.sea:
+		RequiresCondition: enable-ai-player && player.karelia
+		SquadSize: 4
+		SquadSizeRandomBonus: 4
+		RushInterval: 400
+		AttackScanRadius: 24
+		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e3, e4, volk, ftrk, btr, 2tnk, 3tnk, 4tnk, v2rl, yak.ai, mig.ai, e6, thf
+		NavalUnitsTypes: ss,ss.ag,msub,msub.aa,fsub
+		ConstructionYardTypes: fact
+		NavalProductionTypes: spen
+	SquadManagerBotModule@karelia.air:
+		RequiresCondition: enable-ai-player && player.karelia
+		SquadSize: 2
+		SquadSizeRandomBonus: 2
+		RushInterval: 400
+		AttackScanRadius: 24
+		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e3, e4, volk, ftrk, btr, 2tnk, 3tnk, 4tnk, v2rl, ss, ss.ag, msub, msub.aa, fsub, e6, thf
 		ConstructionYardTypes: fact
 	UnitBuilderBotModule@england:
 		RequiresCondition: enable-ai-player && player.england
@@ -1844,10 +2107,10 @@ Player:
 			jeep: 20
 			apc: 15
 			mapc: 15
-			1tnk.turkey: 40
+			1tnk: 40
 			2tnk: 50
 			arty: 15
-			atnk.turkey: 5
+			atnk: 5
 			e7: 1
 			rmbo: 1
 			e6: 2
@@ -1881,6 +2144,52 @@ Player:
 			heli: 60
 		UnitLimits:
 			iroq.turkey.ai: 4
+			heli: 6
+	UnitBuilderBotModule@italy:
+		RequiresCondition: enable-ai-player && player.italy
+		UnitQueues: Vehicle, Infantry
+		UnitsToBuild:
+			e1: 65
+			e3: 30
+			dog: 15
+			harv: 15
+			jeep: 20
+			apc.italy: 30
+			1tnk.italy: 40
+			2tnk: 50
+			arty: 15
+			atnk.italy: 5
+			e7: 1
+			e6: 2
+			mech: 2
+		UnitLimits:
+			dog: 4
+			harv: 8
+			jeep: 4
+			e7: 1
+			e6: 2
+			mech: 2
+	UnitBuilderBotModule@italy.sea:
+		RequiresCondition: enable-ai-player && player.italy
+		IdleBaseUnitsMaximum: 6
+		UnitQueues: Ship
+		UnitsToBuild:
+			pt: 50
+			dd: 30
+			ca: 20
+		UnitLimits:
+			pt: 8
+			dd: 6
+			ca: 4
+	UnitBuilderBotModule@italy.air:
+		RequiresCondition: enable-ai-player && player.italy
+		IdleBaseUnitsMaximum: 4
+		UnitQueues: Aircraft
+		UnitsToBuild:
+			iroq.ai: 40
+			heli: 60
+		UnitLimits:
+			iroq.ai: 4
 			heli: 6
 	UnitBuilderBotModule@russia:
 		RequiresCondition: enable-ai-player && player.russia
@@ -1997,7 +2306,7 @@ Player:
 			e3: 30
 			e4: 15
 			dog: 15
-			harv.belarus: 15
+			harv.soviet: 15
 			ftrk: 30
 			btr: 15
 			2tnk.belarus: 45
@@ -2097,7 +2406,7 @@ Player:
 		UnitQueues: Vehicle, Infantry
 		UnitsToBuild:
 			e1: 65
-			e2: 15
+			e2.uzbek: 15
 			e3: 30
 			e4: 15
 			rpg: 5
@@ -2105,19 +2414,19 @@ Player:
 			harv.soviet: 15
 			ftrk: 30
 			btr: 15
-			2tnk.uzbek: 45
+			2tnk: 45
 			3tnk: 35
 			v2rl: 40
 			4tnk: 25
 			volk: 1
-			e6: 2
+			e6.uzbek: 2
 			thf: 2
 		UnitLimits:
 			dog: 4
 			harv.soviet: 8
 			ftrk: 6
 			volk: 1
-			e6: 2
+			e6.uzbek: 2
 			thf: 2
 			rpg: 3
 	UnitBuilderBotModule@uzbekistan.sea:
@@ -2156,7 +2465,7 @@ Player:
 			harv.soviet: 15
 			ftrk: 30
 			btr: 15
-			2tnk.soviet: 45
+			2tnk.turkmen: 45
 			3tnk: 35
 			v2rl: 40
 			4tnk: 25
@@ -2195,3 +2504,55 @@ Player:
 		UnitLimits:
 			yak.ai: 6
 			mig.ai: 4
+	UnitBuilderBotModule@karelia:
+		RequiresCondition: enable-ai-player && player.karelia
+		UnitQueues: Vehicle, Infantry
+		UnitsToBuild:
+			e1: 65
+			e2: 15
+			e3: 30
+			e4: 15
+			dog: 15
+			harv.soviet: 15
+			ftrk: 30
+			btr: 15
+			2tnk: 45
+			3tnk: 35
+			v2rl: 40
+			4tnk: 25
+			volk: 1
+			e6: 2
+			thf: 2
+		UnitLimits:
+			dog: 4
+			harv.soviet: 8
+			ftrk: 6
+			volk: 1
+			e6: 2
+			thf: 2
+	UnitBuilderBotModule@karelia.sea:
+		RequiresCondition: enable-ai-player && player.karelia
+		IdleBaseUnitsMaximum: 6
+		UnitQueues: Ship
+		UnitsToBuild:
+			ss.karelia: 30
+			ss.ag: 20
+			msub: 20
+			msub.aa: 20
+			bsub: 10
+		UnitLimits:
+			ss.karelia: 4
+			ss.ag: 6
+			msub: 4
+			msub.aa: 2
+			bsub: 1
+	UnitBuilderBotModule@karelia.air:
+		RequiresCondition: enable-ai-player && player.karelia
+		IdleBaseUnitsMaximum: 4
+		UnitQueues: Aircraft
+		UnitsToBuild:
+			yak.ai: 40
+			mig.ai: 60
+		UnitLimits:
+			yak.ai: 4
+			mig.ai: 6

@@ -3,20 +3,24 @@ GenericVoice:
         spain: .v01,.v03
         greece: .v01,.v03
         turkey: .v01,.v03
+        italy: .v01,.v03
 		belarus: .r01,.r03
         kazakh: .r01,.r03
         uzbek: .r01,.r03
         turkmen: .r01,.r03
-
+        karelia: .r01,.r03
+		
 VehicleVoice:
 	Variants:
         spain: .v00,.v02
         greece: .v00,.v02
         turkey: .v00,.v02
+        italy: .v00,.v02
 		belarus: .r00,.r02
         kazakh: .r00,.r02
         uzbek: .r00,.r02
         turkmen: .r00,.r02
+        karelia: .r00,.r02
 
 VolkovVoice:
 	DefaultVariant: .aud

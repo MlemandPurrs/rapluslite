@@ -176,6 +176,9 @@ Player:
 	ProvidesPrerequisite@Turkey:
 		Factions: turkey
 		Prerequisite: player.turkey
+	ProvidesPrerequisite@Italy:
+		Factions: italy
+		Prerequisite: player.italy
 	ProvidesPrerequisite@Russia:
 		Factions: russia
 		Prerequisite: player.russia
@@ -194,6 +197,9 @@ Player:
 	ProvidesPrerequisite@Turkmenistan:
 		Factions: turkmen
 		Prerequisite: player.turkmen
+	ProvidesPrerequisite@Karelia:
+		Factions: karelia
+		Prerequisite: player.karelia
 	GrantConditionOnPrerequisite@England:
 		Condition: player.england
 		Prerequisites: player.england
@@ -212,6 +218,9 @@ Player:
 	GrantConditionOnPrerequisite@Turkey:
 		Condition: player.turkey
 		Prerequisites: player.turkey
+	GrantConditionOnPrerequisite@Italy:
+		Condition: player.italy
+		Prerequisites: player.italy
 	GrantConditionOnPrerequisite@Russia:
 		Condition: player.russia
 		Prerequisites: player.russia
@@ -230,6 +239,9 @@ Player:
 	GrantConditionOnPrerequisite@Turkmenistan:
 		Condition: player.turkmen
 		Prerequisites: player.turkmen
+	GrantConditionOnPrerequisite@Karelia:
+		Condition: player.karelia
+		Prerequisites: player.karelia
 	LobbyPrerequisiteCheckbox@GLOBALSCRAPS:
 		ID: scraps
 		Label: Scrap Metal

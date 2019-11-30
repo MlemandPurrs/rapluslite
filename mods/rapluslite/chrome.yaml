@@ -588,6 +588,9 @@ flags: buttons.png
     uzbek: 120,112,30,15
     turkmen: 120,97,30,15
 
+	italy: 150,112,30,15
+	karelia: 150,97,30,15
+
 music: buttons.png
 	pause: 0,193,25,25
 	stop: 25,193,25,25

@@ -42,7 +42,7 @@ FAPW:
 	HitShape:
 		TargetableOffsets: -355,-1024,0
 	Buildable:
-		BuildPaletteOrder: 9
+		BuildPaletteOrder: 12
 		Queue: Fakestructure
 		Prerequisites: dome, ~player.france, ~techlevel.medium
 		Description: Looks like an Advanced Power Plant.
@@ -116,7 +116,7 @@ BARF:
 		GenericVisibility: Enemy
 		GenericStancePrefix: False
 	Buildable:
-		BuildPaletteOrder: 18
+		BuildPaletteOrder: 17
 		Queue: Fakestructure
 		Prerequisites: ~structures.soviet, ~player.france, ~techlevel.infonly
 		Description: Looks like an Soviet Barracks.
@@ -367,7 +367,7 @@ SPEF:
 	Targetable:
 		TargetTypes: Ground, Water, Structure, SpyInfiltrate
 	Buildable:
-		BuildPaletteOrder: 15
+		BuildPaletteOrder: 18
 		Queue: Fakestructure
 		Prerequisites: ~structures.soviet, ~player.france, ~techlevel.low
 		Description: Looks like a Sub Pen.
@@ -415,7 +415,7 @@ AFLF:
 		GenericVisibility: Enemy
 		GenericStancePrefix: False
 	Buildable:
-		BuildPaletteOrder: 13
+		BuildPaletteOrder: 16
 		Queue: Fakestructure
 		Prerequisites: ~structures.soviet, ~player.france, ~techlevel.medium
 		Description: Looks like an Airfield.
@@ -509,7 +509,7 @@ ATEF:
 		GenericVisibility: Enemy
 		GenericStancePrefix: False
 	Buildable:
-		BuildPaletteOrder: 10
+		BuildPaletteOrder: 9
 		Queue: Fakestructure
 		Prerequisites: weap, dome, ~player.france, ~techlevel.unrestricted
 		BuildLimit: 1
@@ -542,7 +542,7 @@ STEF:
 		GenericVisibility: Enemy
 		GenericStancePrefix: False
 	Buildable:
-		BuildPaletteOrder: 16
+		BuildPaletteOrder: 11
 		Queue: Fakestructure
 		BuildLimit: 1
 		Prerequisites: ~structures.soviet, ~player.france, ~techlevel.high
@@ -574,7 +574,7 @@ PDOF:
 		GenericVisibility: Enemy
 		GenericStancePrefix: False
 	Buildable:
-		BuildPaletteOrder: 11
+		BuildPaletteOrder: 13
 		Queue: Fakestructure
 		Prerequisites: atek, ~player.france, ~techlevel.unrestricted
 		BuildLimit: 1
@@ -609,7 +609,7 @@ IROF:
 		GenericVisibility: Enemy
 		GenericStancePrefix: False
 	Buildable:
-		BuildPaletteOrder: 17
+		BuildPaletteOrder: 14
 		Queue: Fakestructure
 		Prerequisites: ~structures.soviet, ~player.france, ~techlevel.unrestricted
 		BuildLimit: 1
@@ -643,7 +643,7 @@ MSLF:
 		GenericVisibility: Enemy
 		GenericStancePrefix: False
 	Buildable:
-		BuildPaletteOrder: 12
+		BuildPaletteOrder: 15
 		Queue: Fakestructure
 		Prerequisites: techcenter, ~player.france, ~techlevel.unrestricted
 		BuildLimit: 1
@@ -714,7 +714,7 @@ FGAP:
 	Inherits: ^FakeBuilding
 	Inherits@IDISABLE: ^DisableOnLowPower
 	Buildable:
-		BuildPaletteOrder: 14
+		BuildPaletteOrder: 10
 		Queue: Fakestructure
 		Prerequisites: atek, ~player.france, ~techlevel.high
 		Description: Looks like a Gap Generator
@@ -914,8 +914,7 @@ MGGF:
 	Inherits: MGG
 	Buildable:
 		BuildPaletteOrder: 15
-		#   Prerequisites: atek, ~player.france
-		Prerequisites: ~disabled
+		Prerequisites: techcenter, ~player.france
 		Description: Looks like a Mobile Gap Generator.
 		Icon: fake-icon
 	Tooltip:

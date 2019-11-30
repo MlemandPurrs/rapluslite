@@ -1,6 +1,6 @@
 Metadata:
 	Title: Red Alert Plus (Lite)
-	Version: release-20191117
+	Version: v1.3.2-beta
 	Website: https://www.openra.net
 	WebIcon32: https://www.openra.net/images/icons/ra_32x32.png
 
@@ -49,8 +49,9 @@ Packages:
     rapluslite|uibits
 
 MapFolders:
-    rapluslite|maps: System
-	  ~^maps/ra/release-20191117: User
+    ra|maps: System
+	rapluslite|maps: System
+	~^maps/rapluslite: User
 
 Rules:
 	ra|rules/misc.yaml
@@ -86,6 +87,9 @@ Sequences:
 	ra|sequences/misc.yaml
 	ra|sequences/decorations.yaml
     rapluslite|sequences.yaml
+	rapluslite|sequences-infantry.yaml
+	rapluslite|sequences-structures.yaml
+	rapluslite|sequences-misc.yaml
 
 TileSets:
 	rapluslite|tilesets/snow.yaml
@@ -234,7 +238,7 @@ MapGrid:
 	TileSize: 24,24
 	Type: Rectangular
 
-SupportsMapsFrom: ra, raplus
+SupportsMapsFrom: ra, rapluslite
 
 SoundFormats: Aud, Wav
 

@@ -15,14 +15,6 @@ LST:
 		Range: 6c0
 		RequiresCondition: mgg-inside
 	RenderShroudCircle:
-	#    RequiresCondition: !mgg-inside
-	# Jamming still not conditional...
-	# JamsMissiles:
-	#	Range: 5c0
-	#	DeflectionStances: Neutral, Enemy
-	#    RequiresCondition: mrj-inside
-	# RenderJammerCircle:
-	#    RequiresCondition: mrj-inside
 	Explodes@demotruck:
 		Weapon: MiniNuke
 		EmptyWeapon: MiniNuke
@@ -35,6 +27,7 @@ LST:
 PT:
 	Buildable:
 		BuildPaletteOrder: 2
+		Prerequisites: ~syrd, ~ships.allies, ~techlevel.low
 	-Turreted:
 	Turreted@PRIMARY:
 		Turret: primary
@@ -77,6 +70,65 @@ PT:
 	WithSpriteTurret@SECONDARY:
 		Turret: secondary
 		Sequence: turret-dc
+
+PT.Soviet:
+	Inherits: PT
+	Buildable:
+		Prerequisites: ~syrd, ~ships.soviet, ~techlevel.low
+		Description: Fast multi-role ship.\nCan detect submarines.\n  Strong vs Submarines, Vehicles, Infantry\n  Weak vs Aircraft
+	Tooltip:
+		Name: Rocket Boat
+	-Turreted@PRIMARY:
+	-Turreted@SECONDARY:
+	-Armament@PRIMARY:
+	-Armament@SECONDARY:
+	-Armament@TERTIARY:
+	-Armament@elite:
+	-AttackTurreted:
+	-WithSpriteTurret@PRIMARY:
+	-WithSpriteTurret@SECONDARY:
+	Turreted@PRIMARY:
+		Turret: primary
+		TurnSpeed: 7
+		Offset: 512,0,-148
+	Turreted@SECONDARY:
+		Turret: secondary
+		TurnSpeed: 5
+		Offset: -461,0,18	
+	Armament@PRIMARY:
+		Name: primary
+		Turret: primary
+		Weapon: APTusk
+		LocalOffset: 213,10,148, 213,-10,148
+		PauseOnCondition: empdisable
+	Armament@SECONDARY:
+		Name: secondary
+		Turret: secondary
+		Weapon: M60mg
+		LocalOffset: 128,0,43
+		MuzzleSequence: mg-muzzle
+		PauseOnCondition: empdisable
+	Armament@TERTIARY:
+		Name: secondary
+		Turret: secondary
+		Weapon: DepthCharge
+		PauseOnCondition: empdisable
+	AttackTurreted:
+		Armaments: primary, secondary, tertiary
+		Turrets: primary, secondary
+		PauseOnCondition: empdisable
+	WithSpriteTurret@PRIMARY:
+		Turret: primary
+		Sequence: turret
+	WithSpriteTurret@SECONDARY:
+		Turret: secondary
+		Sequence: turret-dc
+	DetectCloaked:
+		CloakTypes: Underwater
+		Range: 3c0
+	RenderDetectionCircle:
+	RenderSprites:
+		Image: ptsvyt
 
 RSHP:
 	Inherits: ^Ship
@@ -155,7 +207,7 @@ RSHP:
 DD:
 	Buildable:
 		BuildPaletteOrder: 3
-		Prerequisites: ~syrd, dome, ~!player.germany, ~techlevel.medium
+		Prerequisites: ~syrd, dome, ~ships.allies, ~!player.germany, ~techlevel.medium
 	Valued:
 		Cost: 900
 	-Turreted:
@@ -218,6 +270,66 @@ DD.Germany:
 		Prerequisites: techlevel.infonly
 		InitialLevels: 1
 	-MapEditorData:
+
+DD.Soviet:
+	Inherits: DD
+	Buildable:
+		Prerequisites: ~syrd, dome, ~ships.soviet, ~techlevel.medium
+		Description: Fire support ship.\n  Can attack Aircraft.\n  Strong vs Infantry, Aircraft\n  Weak vs Submarines, Defenses
+	Tooltip:
+		Name: Destroyer (Soviet)
+	-Turreted@PRIMARY:
+	-Turreted@SECONDARY:
+	-Armament@PRIMARY:
+	-Armament@SECONDARY:
+	-Armament@TERTIARY:
+	-Armament@primary-elite:
+	-Armament@secondary-elite:
+	-AttackTurreted:
+	-DetectCloaked:
+	-RenderDetectionCircle:
+	-WithSpriteTurret@PRIMARY:
+	-WithSpriteTurret@SECONDARY:
+	Turreted@PRIMARY:
+		TurnSpeed: 7
+		Offset: 512,0,128
+	Turreted@SECONDARY:
+		Turret: secondary
+		TurnSpeed: 5
+		Offset: -761,0,0
+	Armament@PRIMARY:
+		Weapon: 70mm
+		LocalOffset: 208,0,48
+		MuzzleSequence: muzzle
+		PauseOnCondition: empdisable
+	Armament@AA:
+		Name: secondary
+		Turret: secondary
+		Weapon: FLAK-23-AA
+		Recoil: 85
+		LocalOffset: 512,0,192
+		MuzzleSequence: muzzle
+		PauseOnCondition: empdisable
+	Armament@AG:
+		Name: tertiary
+		Turret: secondary
+		Weapon: FLAK-23-AG
+		Recoil: 85
+		LocalOffset: 512,0,192
+		MuzzleSequence: muzzle
+		PauseOnCondition: empdisable
+	AttackTurreted:
+		Armaments: primary, secondary, tertiary
+		Turrets: primary, secondary
+		PauseOnCondition: empdisable
+	WithSpriteTurret@PRIMARY:
+		Turret: primary
+		Sequence: turret
+	WithSpriteTurret@SECONDARY:
+		Turret: secondary
+		Sequence: turret-flak
+	RenderSprites:
+		Image: ddsvyt
 
 BSHP:
 	Inherits: ^Ship
@@ -314,6 +426,7 @@ CA:
 	Buildable:
 		BuildPaletteOrder: 4
 		BuildDurationModifier: 60
+		Prerequisites: ~syrd, atek, ~ships.allies, ~techlevel.high
 	Valued:
 		Cost: 2000
 	Armament@PRIMARY:
@@ -337,8 +450,8 @@ CA:
 		Turret: secondary
 		Weapon: 8Inch.elite
 		LocalOffset: 480,-100,40, 480,0,40, 480,100,40
-		Recoil: 171
-		RecoilRecovery: 34
+		Recoil: 85
+		RecoilRecovery: 17
 		MuzzleSequence: muzzle
 		PauseOnCondition: empdisable
 		RequiresCondition: rank-elite
@@ -362,6 +475,150 @@ CA:
 	RenderRangeCircle:
 	ReloadArmamentsBar:
 		Color: FFFF00
+
+CA.gap:
+	Inherits: CA
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Boat
+		BuildPaletteOrder: 5
+		Prerequisites: ~syrd, atek, ~player.spain, ~techlevel.high
+		Description: Very slow ship with extra capabilities.\nSpecial Ability: GAP Generator\nRegenerates the shroud nearby,\nobscuring the area.\n  Strong vs Buildings, Ground units\n  Weak vs Naval units, Aircraft
+	Valued:
+		Cost: 2400
+	Tooltip:
+		Name: GAP Cruiser
+	Health:
+		HP: 80000
+	-Armament@PRIMARY:
+	-Armament@SECONDARY:
+	Armament@PRIMARY:
+		Name: primary
+		Turret: secondary
+		Weapon: 8Inch
+		LocalOffset: 480,-100,40, 480,100,40
+		Recoil: 171
+		RecoilRecovery: 34
+		MuzzleSequence: muzzle
+		PauseOnCondition: empdisable
+	Armament@SECONDARY:
+		Name: secondary
+		Turret: primary
+		Weapon: 2Inch
+		LocalOffset: 208,0,48
+		MuzzleSequence: muzzle
+		PauseOnCondition: empdisable
+	-Armament@primary-elite:
+	-Armament@secondary-elite:
+	-AttackTurreted:
+	AttackTurreted:
+		Armaments: primary, secondary
+		Turrets: primary, secondary
+		PauseOnCondition: empdisable
+	WithIdleOverlay@SPINNER:
+		Offset: 0,0,171
+		Sequence: spinner
+	CreatesShroud:
+		Range: 6c0
+	RenderShroudCircle:
+	RenderSprites:
+		Image: advca
+	WithSpriteTurret@PRIMARY:
+		Sequence: turret-rear
+	-WithSpriteTurret@PRIMARYELITE:
+	-WithSpriteTurret@SECONDARYELITE:
+	-RenderRangeCircle:
+	ReloadArmamentsBar:
+		Armaments: primary
+
+CA.Soviet:
+	Inherits: CA
+	Buildable:
+		BuildPaletteOrder: 4
+		BuildDurationModifier: 60
+		Prerequisites: ~syrd, stek, ~ships.soviet, ~techlevel.high
+	Tooltip:
+		Name: Missile Cruiser
+	-Turreted@PRIMARY:
+	-Turreted@SECONDARY:
+	-Armament@PRIMARY:
+	-Armament@SECONDARY:
+	-AttackTurreted:
+	-WithSpriteTurret@PRIMARY:
+	-WithSpriteTurret@PRIMARYELITE:
+	-WithSpriteTurret@SECONDARY:
+	-WithSpriteTurret@SECONDARYELITE:
+	-WithMuzzleOverlay:
+	Turreted@PRIMARY:
+		Turret: primary
+		Offset: -896,0,128
+		TurnSpeed: 3
+	Turreted@SECONDARY:
+		Turret: secondary
+		Offset: 768,0,128
+		TurnSpeed: 3
+	Armament@PRIMARY:
+		Turret: primary
+		Weapon: HonestJohn
+		LocalOffset: 480,-100,40, 480,100,40
+		PauseOnCondition: empdisable
+	Armament@SECONDARY:
+		Name: secondary
+		Turret: secondary
+		Weapon: HonestJohn
+		LocalOffset: 480,-100,40, 480,100,40
+		PauseOnCondition: empdisable
+	AttackTurreted:
+		Turrets: primary, secondary
+		TargetFrozenActors: True
+		ForceFireIgnoresActors: True
+		PauseOnCondition: empdisable
+	WithSpriteTurret@Front:
+		Turret: primary
+		RequiresCondition: ammo.front > 1
+	WithSpriteTurret@OneMissileFront:
+		Turret: primary
+		RequiresCondition: ammo.front == 1
+		Sequence: turret1
+	WithSpriteTurret@NoMissilesFront:
+		Turret: primary
+		RequiresCondition: !ammo.front
+		Sequence: turret0
+	WithSpriteTurret@Back:
+		Turret: secondary
+		RequiresCondition: ammo.rear > 1
+	WithSpriteTurret@OneMissileBack:
+		Turret: secondary
+		RequiresCondition: ammo.rear == 1
+		Sequence: turret1
+	WithSpriteTurret@NoMissilesBack:
+		Turret: secondary
+		RequiresCondition: !ammo.rear
+		Sequence: turret0
+	AmmoPool@Front:
+		Name: frontammo
+		Armaments: primary
+		Ammo: 2
+		PipCount: 0
+		AmmoCondition: ammo.front
+	AmmoPool@Rear:
+		Name: rearammo
+		Armaments: secondary
+		Ammo: 2
+		PipCount: 0
+		AmmoCondition: ammo.rear
+	ReloadAmmoPool@Front:
+		AmmoPool: frontammo
+		Delay: 240
+		Count: 2
+		RequiresCondition: !ammo.front
+	ReloadAmmoPool@Rear:
+		AmmoPool: rearammo
+		Delay: 240
+		Count: 2
+		RequiresCondition: !ammo.rear
+	RenderSprites:
+		Image: casvyt
 
 CARR:
 	Inherits: ^Ship
@@ -445,7 +702,7 @@ CARR.Deployed:
 	Reservable:
 	WithDecoration@deployed:
 		Image: pips
-		Sequence: pip-deployed
+		Sequence: tag-deployed
 		ReferencePoint: Top
 		ZOffset: 256
 	Targetable:
@@ -463,9 +720,10 @@ SS:
 	Buildable:
 		BuildPaletteOrder: 2
 		Description: Submerged anti-ship unit\narmed with torpedoes.\nCan detect other submarines.\n  Strong vs Naval units\n  Weak vs Ground units, Aircraft\n  Special Ability: Submerge\nCan dive underwater to become invisible\nmove unseen and avoid damage of most weapons.\nCan be manually ordered to surface for Repairs.
-		Prerequisites: ~spen, ~!player.turkmen, ~techlevel.low
+		Prerequisites: ~spen, ~!player.karelia, ~techlevel.low
 	Valued:
 		Cost: 775
+	Mobile:
 	Armament:
 		PauseOnCondition: empdisable
 		RequiresCondition: !rank-elite
@@ -518,10 +776,10 @@ SS:
 	ExternalCondition@MINEHIT:
 		Condition: minehit
 
-SS.Turkmen:
+SS.Karelia:
 	Inherits: SS
 	Buildable:
-		Prerequisites: ~spen, ~player.turkmen, ~techlevel.low
+		Prerequisites: ~spen, ~player.karelia, ~techlevel.low
 	RenderSprites:
 		Image: ss
 	ProducibleWithLevel:
@@ -783,6 +1041,7 @@ FSUB:
 		TurnSpeed: 255
 		Offset: 525,0,50
 	WithSpriteTurret:
+		RequiresCondition: !underwater
 	AttackFrontal:
 		PauseOnCondition: empdisable
 	SelectionDecorations:
@@ -806,7 +1065,7 @@ FSUB:
 	Cloak:
 		CloakTypes: Underwater
 		InitialDelay: 0
-		CloakDelay: 50
+		CloakDelay: 55
 		CloakSound: subshow1.aud
 		UncloakSound: subshow1.aud
 		CloakedCondition: underwater
@@ -989,13 +1248,12 @@ HVRF:
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:
-		Queue: Ship
-		BuildPaletteOrder: 6
-		BuildAtProductionType: Boat
-		Prerequisites: dome, fix, ~vehicles.allies, ~player.spain, ~techlevel.high
+		Queue: Vehicle
+		BuildPaletteOrder: 9
+		Prerequisites: dome, fix, ~vehicles.allies, ~player.greece, ~techlevel.medium
 		Description: Amphibian anti-air unit with\ntoken Mg for ground support.\nCan carry one Infantry.\n  Strong vs Infantry, Aircraft\n  Weak vs Tanks, Ships
 	Valued:
-		Cost: 625
+		Cost: 700
 	Tooltip:
 		Name: Hover Flak
 	Health:
@@ -1047,3 +1305,93 @@ HVRF:
 		MaxWeight: 1
 		PipCount: 1
 		LoadingCondition: notmobile
+
+BSUB:
+	Inherits: ^Ship
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Submarine
+		BuildPaletteOrder: 6
+		Prerequisites: ~spen, stek, ~player.karelia, ~techlevel.high
+		Description: Submersible siege unit armed with\nanti-ground missile battery.\n  Strong vs Ships, Buildings\n  Weak vs attacks at close range.\n  Special Ability: Submerge\nCan dive underwater to become invisible\nmove unseen and avoid damage of most weapons.\nCan be manually ordered to surface for Repairs.
+	Valued:
+		Cost: 2400
+	Tooltip:
+		Name: Ballistic Submarine
+	Health:
+		HP: 85000
+	Armor:
+		Type: Light
+	Mobile:
+		TurnSpeed: 3
+		Speed: 42
+	Turreted:
+		TurnSpeed: 255
+	RevealsShroud:
+		Range: 8c0
+		RequiresCondition: !underwater
+		RevealGeneratedShroud: false
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+		RequiresCondition: !underwater
+	RevealsShroud@UNDERWATER:
+		Range: 4c0
+		RequiresCondition: underwater
+	Armament@PRIMARY:
+		Weapon: SubMissile.Barrage
+		LocalOffset: 375,-151,80, 450,151,80, 525,-151,80, 600,151,80
+		FireDelay: 2
+		PauseOnCondition: empdisable
+	AttackTurreted:
+		Armaments: primary
+		TargetFrozenActors: True
+		ForceFireIgnoresActors: True
+		PauseOnCondition: empdisable
+	SelectionDecorations:
+	DetectCloaked:
+		CloakTypes: Underwater
+		Range: 4c0
+	RenderDetectionCircle:
+	Selectable:
+		DecorationBounds: 68,38
+	RenderRangeCircle:
+    ReloadArmamentsBar:
+        Armaments: primary
+        Color: FFFF00
+	AutoTarget:
+		InitialStance: HoldFire
+		InitialStanceAI: HoldFire
+		ScanRadius: 15
+	RepairableNear:
+		RepairActors: spen, spen.russia
+	Cloak:
+		CloakTypes: Underwater
+		InitialDelay: 0
+		CloakDelay: 50
+		CloakSound: subshow1.aud
+		UncloakSound: subshow1.aud
+		CloakedCondition: underwater
+		Palette: submerged
+		UncloakOn: Attack, Heal, Dock, SelfHeal, Demolish
+		PauseOnCondition: cloak-force-disabled || shallowcrossing || empdisable || minehit
+        RequiresCondition: !deployed
+	Targetable:
+		TargetTypes: Ground, Water, Ship, Submarine, SeaDetonateAttack
+		RequiresCondition: !underwater
+	Targetable@UNDERWATER:
+		TargetTypes: Underwater, Submarine, SeaDetonateAttack
+		RequiresCondition: underwater
+    Targetable@REPAIR:
+		RequiresCondition: !underwater && damaged
+		TargetTypes: Repair
+	GrantConditionOnTerrain@CROSSINGFORD:
+		Condition: shallowcrossing
+		TerrainTypes: Shallow
+	GrantConditionOnDamageState@UNCLOAK:
+		Condition: cloak-force-disabled
+		ValidDamageStates: Critical
+    GrantConditionOnDeploy:
+        DeployedCondition: deployed
+	ExternalCondition@MINEHIT:
+		Condition: minehit

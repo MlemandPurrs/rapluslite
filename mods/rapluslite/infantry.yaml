@@ -15,6 +15,7 @@ E1:
 E2:
 	Buildable:
 		BuildPaletteOrder: 3
+		Prerequisites: ~barr, ~!player.uzbek, ~techlevel.infonly
 	Valued:
 		Cost: 150
 	Armament@PRIMARY:
@@ -36,6 +37,28 @@ E2:
 		Armaments: primary, elite
 	Passenger:
 		PipType: Green
+
+E2.Uzbek:
+	Inherits: E2
+	Buildable:
+		Prerequisites: ~barr, ~player.uzbek, ~!barracks.upgraded, ~techlevel.infonly
+	ProducibleWithLevel:
+		Prerequisites: techlevel.infonly
+		InitialLevels: 1
+	RenderSprites:
+		Image: e2
+	-MapEditorData:
+
+E2.UzbekR2:
+	Inherits: E2.Uzbek
+	Buildable:
+		Prerequisites: ~barr, ~player.uzbek, ~barracks.upgraded, ~techlevel.infonly
+		Icon: rank2-icon
+	ProducibleWithLevel:
+		Prerequisites: techlevel.infonly
+		InitialLevels: 2
+	RenderSprites:
+		Image: e2
 
 E3:
 	Buildable:
@@ -91,7 +114,10 @@ E4.UkraineR2:
 E6:
 	Buildable:
 		BuildPaletteOrder: 5
+		Prerequisites: ~barracks, ~!player.uzbek, ~techlevel.infonly
 		Description: Infiltrates and captures\nenemy structures.\nCan repair destroyed Bridges.\n  Unarmed
+	Valued:
+		Cost: 500
 	-GrantConditionOnPrerequisite@GLOBALREUSABLEENGINEER:
 	-Captures:
 	-Captures@REUSABLE:
@@ -106,6 +132,16 @@ E6:
 		CaptureDelay: 100
 	Passenger:
 		PipType: Blue
+
+E6.Uzbek:
+	Inherits: E6
+	Buildable:
+		Prerequisites: ~barracks, ~player.uzbek, ~techlevel.infonly
+		BuildDuration: 500
+	Valued:
+		Cost: 375
+	RenderSprites:
+		Image: e6
 
 MEDI:
 	Buildable:
@@ -212,11 +248,6 @@ E7:
 		StandSequences: swim_stand
 	WithDeathAnimation:
 		RequiresCondition: !swimming
-	# this doesnt accept condition, ühüü ;_;
-	# PortableChrono@elite:
-	#	 ChargeDelay: 125
-	#    RequiresCondition: rank-elite
-	#    PauseOnCondition: empdisable 
 	Passenger:
 		PipType: Red
 
@@ -278,7 +309,6 @@ VOLK:
 		Categories: Infantry
 	ProducibleWithLevel:
 		Prerequisites: barracks.upgraded
-	#summon Chitzkoi at elite ?
 
 SNIP:
 	Inherits: ^Soldier
@@ -744,7 +774,6 @@ RPG:
 	Buildable:
 		BuildPaletteOrder: 7
 		Prerequisites: ~barr, ftur, stek, ~player.uzbek, ~techlevel.medium
-		#   Prerequisites: ~disabled
 		Queue: Infantry
 		BuildAtProductionType: Soldier
 		Description: Soldier armed with thermobaric Napalm rockets.\nCannot attack Air units.\n  Strong vs clustered Infantry, Structures\n  Weak vs Anti-Infantry measures
@@ -817,40 +846,8 @@ TECN:
 DOG:
 	Buildable:
 		BuildPaletteOrder: 4
-		Prerequisites: kenn, ~!player.turkmen, ~techlevel.infonly
 	Passenger:
 		PipType: Green
-
-DOG.Turkmen:
-	Inherits: DOG
-	Buildable:
-		Prerequisites: kenn, ~player.turkmen, ~techlevel.infonly
-		Description: Anti-infantry unit.\nCan detect cloaked units and spies.\n  Special ability: Amphibian\nCan swim through sea and river.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
-	Mobile:
-		Locomotor: foot-amphibious
-	GrantConditionOnTerrain:
-		TerrainTypes: Water, River
-		Condition: swimming
-	Targetable:
-		RequiresCondition: !parachute && !swimming
-	Targetable@SEA:
-		TargetTypes: Ground, Water, Infantry
-		RequiresCondition: !parachute && swimming
-	WithInfantryBody:
-		RequiresCondition: !swimming
-	WithInfantryBody@RUN:
-		MoveSequence: run
-		RequiresCondition: run && !swimming
-	WithInfantryBody@SEA:
-		RequiresCondition: swimming
-		MoveSequence: swim
-		DefaultAttackSequence: swim_eat
-		IdleSequences: swim_idle
-		StandSequences: swim_stand
-	WithDeathAnimation:
-		RequiresCondition: !swimming
-	RenderSprites:
-		Image: dog
 
 Ant:
 	Buildable:
@@ -949,42 +946,137 @@ STNG:
 	Passenger:
 		PipType: Red
 
-MARK:
-	Inherits: ^Soldier
-	Valued:
-		Cost: 700
+FTRP:
+	Inherits: E3
+	Buildable:
+		BuildPaletteOrder: 7
+		Prerequisites: ~barracks, stek, ~player.karelia, ~techlevel.medium
+		Description: Infantry armed with Flak-Gun.\n  Strong vs Aircraft\n  Weak vs Ground units
 	Tooltip:
-		Name: Marksman
-	UpdatesPlayerStatistics:
-		AddToArmyValue: true
+		Name: Flak Trooper
+	Armament@PRIMARY:
+		Weapon: FLAK-INF-AG
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: FLAK-INF-AA
+		LocalOffset: 0,0,555
+	Armament@GARRISONED:
+		Weapon: FLAK-INF-AE
+	Valued:
+		Cost: 600
+
+CINF:
+	Inherits: ^Soldier
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 9
+		Prerequisites: ~tent, atek, ~player.italy, ~tech.stolen, ~techlevel.high
+		Description: High tech infantry unit capable of Teleporting.\nArmament shocks Vehicles, Ships and Structures\npreventing them from Movement or Fighting back.\n  Strong vs Everything on Ground\n  Weak vs Aircraft, Anti-Infantry
+	Valued:
+		Cost: 900
+	Tooltip:
+		Name: Chrono Soldier
+	Mobile:
+		Voice: Move
+	Health:
+		HP: 5000
+	Armament@PRIMARY:
+		Weapon: ChronoGun
+		LocalOffset: 427,0,341
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: ChronoGun
+	WithInfantryBody:
+		IdleSequences: idle, idle2
+		StandSequences: stand, stand2
+		DefaultAttackSequence: shoot
+		MoveSequence: run
+	AttackFrontal:
+		FacingTolerance: 12
+		Armaments: primary
+		Voice: Attack
+	RenderSprites:
+		Image: cinf
+	AttackMove:
+		Voice: Move
+	Passenger:
+		Voice: Move
+	Guard:
+		Voice: Move
+	PortableChrono:
+		ChargeDelay: 250
+		Voice: Move
+	Chronoshiftable:
+		ExplodeInstead: False
+		ChronoshiftSound: chrono2.aud
+		ReturnToOrigin: False
+		TimeBarColor: ABB7E4
+	Voiced:
+		VoiceSet: ShokVoice
+	Passenger:
+		PipType: Red
+	RenderSprites:
+		Scale: 0.8
+
+DSHK:
+	Inherits: E1
 	Buildable:
 		Queue: Infantry
 		BuildAtProductionType: Soldier
 		BuildPaletteOrder: 7
 		Prerequisites: ~barr, stek, ~player.turkmen, ~techlevel.high
-		Description: Infantry armed with an Sniper rifle.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
-	Health:
-		HP: 5000
+		Description: Infantry that can deploy into an MG-Nest.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
+		Icon: dshk-icon
+	Valued:
+		Cost: 700
+	Tooltip:
+		Name: Dushka Infantry
+	Mobile:
+		Speed: 50
+	Transforms:
+		IntoActor: mgnst
+		Offset: 0,0
+		Facing: 0
+		TransformSounds: mgnstdeploy.aud
+		NoTransformSounds: mgnstdeploy.aud
+		DeployCursor: deploy
+		DeployBlockedCursor: deploy-blocked
+		Voice: Action
 	Passenger:
 		PipType: Red
-	RevealsShroud:
-		Range: 6c0
-	AutoTarget:
-		InitialStance: HoldFire
-		InitialStanceAI: ReturnFire
-	AutoTargetPriority@DEFAULT:
-		ValidTargets: Infantry
+	RenderSprites:
+		Image: e1
+
+SHOT:
+	Inherits: ^Soldier
+	Inherits@EXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Valued:
+		Cost: 225
+	Tooltip:
+		Name: Shotgunner
+	Buildable:
+		BuildPaletteOrder: 9
+		Prerequisites: ~tent, fix, ~player.italy, ~techlevel.high
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		Description: Fast infantry armed with shotgun.\n  Strong vs Infantry\n  Weak vs anything Else
+	Mobile:
+		Speed: 71
+	Health:
+		HP: 5000
 	Armament@PRIMARY:
-		Weapon: Sniper
+		Weapon: Shotgun
 	Armament@GARRISONED:
 		Name: garrisoned
-		Weapon: Sniper
+		Weapon: Shotgun
+		FireDelay: 1
 		MuzzleSequence: garrison-muzzle
+	TakeCover:
 	AttackFrontal:
 	WithInfantryBody:
+		IdleSequences: idle1,idle2
 		DefaultAttackSequence: shoot
-	-MustBeDestroyed:
 	ProducibleWithLevel:
 		Prerequisites: barracks.upgraded
-	RenderSprites:
-		Image: e1sniper

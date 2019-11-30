@@ -133,6 +133,17 @@
 	Selectable:
 		Bounds: 18,18,0,-6
 		DecorationBounds: 12,17,0,-6
+	ExternalCondition@barracks:
+		Condition: barracks
+	GrantCondition@BARRACKSHEALING:
+		RequiresCondition: barracks && damaged
+		Condition: barracksheal
+	SelfHealing@BARRACKSHEALING:
+		Step: 500
+		Delay: 100
+		HealIfBelow: 100
+		DamageCooldown: 125
+		RequiresCondition: barracksheal
 	GrantConditionOnPrerequisite@HOSPITAL2:
 		Condition: hospital2
 		Prerequisites: hosp.buildable
@@ -141,6 +152,21 @@
 		Condition: hospitalheal
 	WithDecoration@REDCROSS:
 		ReferencePoint: Bottom, Right
+		RequiresCondition: ( barracksheal || hospitalheal )
+
+^Soldier:
+	GrantConditionOnFaction@TOUGHNESS:
+		Condition: turkeybonus
+		Factions: turkey
+	DamageMultiplier@TOUGHNESS:
+		Modifier: 95
+		RequiresCondition: turkeybonus
+	GrantConditionOnFaction@MOARDAMAGE:
+		Condition: turkmenbonus
+		Factions: turkmenistan
+	FirepowerMultiplier@MOARDAMAGE:
+		Modifier: 105
+		RequiresCondition: turkmenbonus
 
 ^Vehicle:
 	Inherits@93: ^AffectedByLeadership
@@ -168,18 +194,13 @@
 	Inherits@97: ^BuildingAffectedByEMP
 	RequiresBuildableArea:
 		Adjacent: 3
-	#		wtf burns isnt conditional, arrrgh !@#?/$!
-	#		Burns:
-	#		Damage: 200
-	#		PauseonCondition: !damaged-burn
-	#		GrantConditionOnDamageState@CATCHFIRE:
-	#		Condition: damaged-burn
-	#		ValidDamageStates: Critical
 	Capturable:
 		RequiresCondition: !build-incomplete
 		Types: building-sabotage
 
 ^Defense:
+	Building:
+		TerrainTypes: Clear,Road,Beach
 	RequiresBuildableArea:
 		Adjacent: 3
 
@@ -294,15 +315,6 @@
 	GrantCondition@EMPDISABLE:
 		RequiresCondition: empdisable
 		Condition: disabled
-	# this trait does not exists, wtf
-	#   ^AffectedByOilBonus:
-	#   CashTricklerMultiplier@OILBONUS:
-	#   RequiresCondition: oilbonus
-	#   Modifier: 125
-	#   GrantConditionOnPrerequisite@OILBONUS:
-	#   Condition: oilbonus
-	#   Prerequisites: player.turkmen
-
 
 ^DisableOnPowerDown:
 	WithColoredOverlay@IDISABLE:
@@ -342,6 +354,37 @@
 		RequiresCondition: global-scraps
 		Weapon: ScrapsExplosion
 
+^BuildingHusk:
+	Inherits@1: ^SpriteActor
+	Interactable:
+	AppearsOnRadar:
+	Building:
+		Dimensions: 1,1
+		Footprint: x
+	WithSpriteBody:
+	Health:
+		HP: 28000
+	Armor:
+		Type: Wood
+	Burns:
+		Damage: 200
+	HitShape:
+	OwnerLostAction:
+		Action: ChangeOwner
+	Targetable:
+		TargetTypes: Ground, BuildingHusk, NoAutoTarget
+		RequiresForceFire: true
+	Tooltip:
+		GenericName: Destroyed Building
+	HiddenUnderFog:
+		Type: CenterPosition
+		AlwaysVisibleStances: None
+	ScriptTriggers:
+	Explodes:
+		Weapon: BuildingExplode
+	MapEditorData:
+		Categories: Husk
+
 ^CivBuildingHusk:
 	Inherits@1: ^SpriteActor
 	Interactable:
@@ -375,7 +418,6 @@
 	-CapturableProgressBar:
 	-CapturableProgressBlink:
 	-WithMakeAnimation:
-	#	Condition: build-incomplete
 	WithGateSpriteBody:
 		PauseOnCondition: disabled
 	Tooltip:
@@ -550,6 +592,20 @@ RANKUPCRATE:
 		Image: scrate-rankup
 	-MapEditorData:
 
+HEALUPCRATE:
+	Inherits: ^Crate
+	Tooltip:
+		Name: Heal-up Crate
+		GenericName: Heal-up Crate
+		ShowOwnerRow: false
+	HealUnitsCrateAction:
+		Sound: heal2.aud
+		SelectionShares: 1
+		Sequence: heal
+	RenderSprites:
+		Image: scrate-healup
+	-MapEditorData:
+
 tech.stolen:
 	AlwaysVisible:
 	ProvidesPrerequisite:
@@ -558,6 +614,9 @@ MINS:
 	Inherits: ^Mine
 	Tooltip:
 		Name: Sea Mine
+	Health:
+		HP: 5000
+		NotifyAppliedDamage: false
 	Cloak:
 		CloakTypes: Underwater
 		InitialDelay: 0
@@ -604,3 +663,17 @@ MINS:
 		EjectInAir: true
 		AllowUnsuitableCell: false
 		RequiresCondition: rank-elite
+
+FLARE.dropzone:
+	Inherits: FLARE
+	RevealsShroud:
+		Range: 4c0
+		Type: CenterPosition
+	Tooltip:
+		Name: Dropzone Flare
+		ShowOwnerRow: false
+	FreeActorWithDelivery@2:
+		Actor: APC.reinforce
+		DeliveryOffset: -1,1
+		DeliveringActor: TRAN.reinforce
+		Facing: 0
