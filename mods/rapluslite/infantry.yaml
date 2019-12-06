@@ -63,12 +63,25 @@ E2.UzbekR2:
 E3:
 	Buildable:
 		BuildPaletteOrder: 2
+		Description: Anti-tank/Anti-aircraft infantry.\nWhen inside Pillboxes can attack only Ground units.\n  Strong vs Vehicles, Aircraft\n  Weak vs Infantry
 	Passenger:
 		PipType: Green
+	AmmoPool:
+		Ammo: 1
+		PipCount: 0
+		AmmoCondition: ammo
+	Armament@PRIMARY:
+		PauseOnCondition: !ammo
+	Armament@SECONDARY:
+		PauseOnCondition: !ammo
+	ReloadAmmoPool:
+		PauseOnCondition: ammo
+	AutoTarget:
+		ScanRadius: -1
 
 E4:
 	Buildable:
-		Prerequisites: ~barr, ftur, ~!player.ukraine, ~techlevel.low
+		Prerequisites: ~barr, dome, ~!player.ukraine, ~techlevel.low
 		BuildPaletteOrder: 9
 	Armament@PRIMARY:
 		RequiresCondition: !rank-elite
@@ -103,7 +116,7 @@ E4.Ukraine:
 E4.UkraineR2:
 	Inherits: E4.Ukraine
 	Buildable:
-		Prerequisites: ~barr, ftur, ~player.ukraine, ~barracks.upgraded, ~techlevel.low
+		Prerequisites: ~barr, dome, ~player.ukraine, ~barracks.upgraded, ~techlevel.low
 		Icon: rank2-icon
 	ProducibleWithLevel:
 		Prerequisites: techlevel.infonly
@@ -305,6 +318,9 @@ VOLK:
 	AnnounceOnKill:
 	Crushable:
 		CrushClasses: heavywall
+	Targetable:
+		RequiresCondition: !parachute
+		TargetTypes: Ground, Infantry, Disguise, Cyborg
 	MapEditorData:
 		Categories: Infantry
 	ProducibleWithLevel:
@@ -580,20 +596,16 @@ SHOK:
 	Buildable:
 		BuildPaletteOrder: 7
 		Prerequisites: ~barr, stek, ~player.russia, ~techlevel.high
+		Description: Infantry with portable Tesla coils.\nWeapon doesnt work from within Pillboxes\ndue to structural insulation.\n  Strong vs Infantry, Vehicles\n  Weak vs Aircraft
 	Valued:
 		Cost: 450
 	Armament@PRIMARY:
 		RequiresCondition: !rank-elite
-	Armament@GARRISONED:
-		RequiresCondition: !rank-elite
+	-Armament@GARRISONED:
 	Armament@elite:
 		Name: elite
 		Weapon: PortaTesla.elite
 		LocalOffset: 427,0,341
-		RequiresCondition: rank-elite
-	Armament@garrisoned-elite:
-		Name: garrisoned-elite
-		Weapon: PortaTesla.elite
 		RequiresCondition: rank-elite
 	AttackFrontal:
 		Armaments: primary, elite
@@ -846,6 +858,7 @@ TECN:
 DOG:
 	Buildable:
 		BuildPaletteOrder: 4
+		Prerequisites: kenn, ~techlevel.infonly
 	Passenger:
 		PipType: Green
 
@@ -920,7 +933,7 @@ STNG:
 		Prerequisites: ~tent, atek, ~player.spain, ~techlevel.high
 		Queue: Infantry
 		BuildAtProductionType: Soldier
-		Description: Anti-aircraft rocket infantry.\nCannot attack Ground units.\n  Strong vs Aircraft\n  Weak vs everything Else
+		Description: Anti-aircraft rocket infantry.\nCannot attack Ground units.\nCannot fire out of Pillboxes.\n  Strong vs Aircraft\n  Weak vs everything Else
 	Selectable:
 		Class: STNG
 	Mobile:
@@ -933,9 +946,6 @@ STNG:
 		Weapon: PortaNike
 		LocalOffset: 256,43,341
 		FireDelay: 5
-	Armament@GARRISONED:
-		Name: garrisoned
-		Weapon: PortaNike
 	TakeCover:
 		ProneOffset: 180,0,-200
 	AttackFrontal:
@@ -951,7 +961,7 @@ FTRP:
 	Buildable:
 		BuildPaletteOrder: 7
 		Prerequisites: ~barracks, stek, ~player.karelia, ~techlevel.medium
-		Description: Infantry armed with Flak-Gun.\n  Strong vs Aircraft\n  Weak vs Ground units
+		Description: Infantry armed with Flak-Gun.\nWhen inside Pillboxes can attack only Ground units.\n  Strong vs Aircraft\n  Weak vs Ground units
 	Tooltip:
 		Name: Flak Trooper
 	Armament@PRIMARY:
@@ -961,7 +971,7 @@ FTRP:
 		Weapon: FLAK-INF-AA
 		LocalOffset: 0,0,555
 	Armament@GARRISONED:
-		Weapon: FLAK-INF-AE
+		Weapon: FLAK-INF-AG
 	Valued:
 		Cost: 600
 

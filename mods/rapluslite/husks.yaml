@@ -296,20 +296,6 @@ BEHE.Husk:
 	RenderSprites:
 		Image: behe.destroyed
 
-HRTY.Husk:
-	Inherits: ^Husk
-	Tooltip:
-		Name: Husk (Heavy Artillery)
-	ThrowsParticle@turret:
-		Anim: turret
-	TransformOnCapture:
-		IntoActor: hrty
-	InfiltrateForTransform:
-		IntoActor: hrty
-	RenderSprites:
-		Image: hrty.destroyed
-	-MapEditorData:
-
 ATNK.Husk:
 	Inherits: ^Husk
 	Tooltip:
@@ -613,11 +599,11 @@ KENN.Husk:
 PROC.Husk:
 	Inherits: ^BuildingHusk
 	Interactable:
-		Bounds: 72,50,0,4
+		Bounds: 72,45,0,-14
 	Building:
-		Footprint: _X_ xxx X== ===
-		Dimensions: 3,4
-		LocalCenterOffset: 0,-512,0
+		Footprint: =Xx x== ===
+		Dimensions: 3,3
+		LocalCenterOffset: 0,0,0
 	Tooltip:
 		Name: Ore Refinery (Destroyed)
 
@@ -745,10 +731,10 @@ PDOX.Husk:
 IRON.Husk:
 	Inherits: ^BuildingHusk
 	Interactable:
-		Bounds: 48,48
+		Bounds: 48,28,0,2
 	Building:
-		Footprint: xx xx
-		Dimensions: 2,2
+		Footprint: xx
+		Dimensions: 2,1
 	Tooltip:
 		Name: Iron Curtain (Destroyed)
 
@@ -826,6 +812,9 @@ SAM.Husk:
 	Inherits: ^BuildingHusk
 	Interactable:
 		Bounds: 24,24
+	Building:
+		Footprint: xx
+		Dimensions: 2,1
 	Tooltip:
 		Name: SAM Site (Destroyed)
 
@@ -833,6 +822,9 @@ HSAM.Husk:
 	Inherits: ^BuildingHusk
 	Interactable:
 		Bounds: 24,24
+	Building:
+		Footprint: xx
+		Dimensions: 2,1
 	Tooltip:
 		Name: Camo SAM Site (Destroyed)
 

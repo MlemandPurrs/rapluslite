@@ -189,6 +189,10 @@
 	Repairable:
 		RepairActors: fix, fix.russia
 
+^Helicopter:
+	Aircraft:
+		Crushes: crate, mine, infantry, airmine
+		
 ^Building:
 	Inherits@94: ^LeavesScraps
 	Inherits@97: ^BuildingAffectedByEMP
@@ -230,7 +234,7 @@
 	Targetable:
 		TargetTypes: Ground, Water, Ship, SeaDetonateAttack
 	RepairableNear:
-		RepairActors: spen, syrd
+		RepairActors: spen, spen.russia, syrd, syrd.turkey
 
 ^AffectedByGPSScrambler:
 	Cloak@GPSCRAMBLER:
@@ -664,16 +668,9 @@ MINS:
 		AllowUnsuitableCell: false
 		RequiresCondition: rank-elite
 
-FLARE.dropzone:
-	Inherits: FLARE
-	RevealsShroud:
-		Range: 4c0
-		Type: CenterPosition
-	Tooltip:
-		Name: Dropzone Flare
-		ShowOwnerRow: false
-	FreeActorWithDelivery@2:
-		Actor: APC.reinforce
-		DeliveryOffset: -1,1
-		DeliveringActor: TRAN.reinforce
-		Facing: 0
+^NeutralPlane:
+	Aircraft:
+		Crushes: airmine
+	Targetable@AIRBORNE:
+		RequiresCondition: airborne
+		TargetTypes: Air, AirDetonateAttack

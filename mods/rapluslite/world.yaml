@@ -159,7 +159,7 @@
 		Name: Allies
 		InternalName: allies
 		Side: Allies
-		Description: Allies\nThe Allies is an military alliance of European nations, that hastily united against the imminent Soviet threat.\nUnder the leadership of the prominent nations of Europe, such as Britain, Germany, France, Spain and Greece\nthe Alliance finds support worldwide, chiefly being backed by the USA and regional allies such as Turkey.\nThey have divergent tactical options, possess a strong Navy and have access to many powerful technologies\nsuch as time travel, invisibility or prismatic laser weaponry, most are products of Prof. Einstein's genius.
+		Description: Allies\nThe Allies is an military alliance of European nations, that hastily united against the imminent Soviet threat.\nUnder the leadership of the prominent nations of Europe, such as Britain, Germany, France, Italy, Spain and Greece\nthe Alliance finds support worldwide, chiefly being backed by the USA and regional allies such as Turkey.\nThey have divergent tactical options, possess a strong Navy and have access to many powerful technologies\nsuch as time travel, invisibility or prismatic laser weaponry, most are products of Prof. Einstein's genius.
 		Selectable: False
 	Faction@1:
 		Name: Britain
@@ -185,7 +185,7 @@
 		Name: Italy
 		InternalName: italy
 		Side: Allies
-		Description: Italy\nSpecialization: Skirmishers\nThe forces of Italy utilize their experience in mobile warfare.\nFaction Variations:\n    - Tanks* are amphibian, capable of crossing open Sea and Rivers.\n*Those Tanks being the Light and Flak Tanks.\n    - Gun Turrets have +1 Range.\nVeterancy Bonus:\n    - APC gets built as Veteran.\nUnique Support Power:\n    - Field Aid\nAn B-52 drops an heal-up crate anywhere on the map.\nSpecial Units:\n    - Shotgunner (Infantry)\nFast recon Infantry that can oneshot most Infantry at close-range.\n    - Phase Tank (Vehicle)\nMedium Tank variant that is capable of cloaking when standing still.\n    - ???\nUnit description.\nTech Unit:\n    - Hospital (Building)\nCan build an clone of the neutral structure, with half health.
+		Description: Italy\nSpecialization: Mobility\nThe forces of Italy prefer an mobile force.\nFaction Variations:\n    - Tanks* are amphibian, capable of crossing open Sea and Rivers.\n*Those Tanks being the Light and Flak Tanks.\n    - Gun Turrets have +1 Range.\nVeterancy Bonus:\n    - APC gets built as Veteran.\nUnique Support Power:\n    - Field Aid\nAn B-52 drops an heal-up crate anywhere on the map.\nSpecial Units:\n    - Shotgunner (Infantry)\nFast recon Infantry that can oneshot most Infantry at close-range.\n    - Phase Tank (Vehicle)\nMedium Tank variant that is capable of cloaking when standing still.\n    - Baloon Mine (Aircraft)\nAn remote controlled, dirigible, parachuted mine in the sky.\nTech Unit:\n    - Hospital (Building)\nCan build an clone of the neutral structure, with half health.
 	Faction@6:
 		Name: Greece
 		InternalName: greece
@@ -195,7 +195,7 @@
 		Name: Turkey
 		InternalName: turkey
 		Side: Allies
-		Description: Turkey\nSpecialization: \nThe forces of Turkey .\nFaction Variations:\n    - Infantry is Tough, takes 5% less damage from all sources.\n    - Sonar Pulse initially available.\nVeterancy Bonus:\n    - Iroqouis Scout gets built as Veteran.\nUnique Support Power:\n    - Paranuke\nA fast plane drops an Paranuke on your target.\nThe bomb is more effective against units rather than structures.\nSpecial Units:\n    - Commando (Infantry)\nElite Infantry armed with assault rifle and C4.\n    - Assault APC (Vehicle)\nAPC with reduced carry capacity and grenadelaunchers.\n    - Guard Tower (Defense)\nDefensive structure that shoots Sniper rifle.\nTech Unit:\n    - Grand Cannon (Vehicle)\nHeavy artillery with extreme range.
+		Description: Turkey\nSpecialization: Toughness\nThe forces of Turkey are an tough nut to crack.\nFaction Variations:\n    - Production structures have Armor type Concrete instead Wood.\nThis results in those becoming much more durable.\n    - Infantry is Tough, takes 5% less damage from all sources.\nVeterancy Bonus:\n    - Iroqouis Scout gets built as Veteran.\nUnique Support Power:\n    - Paranuke\nA fast plane drops an Paranuke on your target.\nThe bomb is more effective against units rather than structures.\nSpecial Units:\n    - Commando (Infantry)\nElite Infantry armed with assault rifle and C4.\n    - Assault APC (Vehicle)\nAPC with reduced carry capacity and grenadelaunchers.\n    - Guard Tower (Defense)\nDefensive structure that shoots Sniper rifle.\nTech Unit:\n    - Grand Cannon (Vehicle)\nHeavy artillery with extreme range.
 	Faction@8:
 		Name: Soviet
 		InternalName: soviet
@@ -211,7 +211,7 @@
 		Name: Ukraine
 		InternalName: ukraine
 		Side: Soviet
-		Description: Ukraine\nSpecialization: Demolitions\nThe forces of Ukraine specialize in blowing their opponents to smithereens.\nFaction Variations:\n    - Tanks* move faster but are built slower.\n*Those Tanks being: Medium, Heavy and Mammoth Tanks.\nBuildDurationModifier is 70, speed marginally faster.\nMammoth Tank's turret turns one unit faster too.\n    - V2 Rockets travel 20% faster.\nMovespeed of 204 instead 170 on V2 rockets.\nVeterancy Bonus:\n    - Flame Trooper is trained as Veteran.\nUnique Support Power:\n    - Parabombs\nA trio of badgers drop parachuted bombs on your target.\nSpecial Units:\n    - Bomb Dog (Infantry)\nAn dog with an bomb vest, that is trained to run towards Vehicles.\n    - Demolition Truck (Vehicle)\nAn truck with a desperate driver, loaded with Nuclear explosives.\n    - Flame Submarine (Naval)\nThis submarine is capable of shooting the same projectile as Flame Tower.\nTech Unit:\n    - Flame Mammoth (Vehicle)\nUnique modification of Mammoth chassis sporting dual flamers.
+		Description: Ukraine\nSpecialization: Demolitions\nThe forces of Ukraine specialize in blowing their opponents to smithereens.\nFaction Variations:\n    - Tanks* move faster but are built slower.\n*Those Tanks being: Medium, Heavy and Mammoth Tanks.\nBuildDurationModifier is 70, speed marginally faster.\nMammoth Tank's turret turns one unit faster too.\n    - V2 Rockets travel 20% faster.\nMovespeed of 204 instead 170 on V2 rockets.\nVeterancy Bonus:\n    - Flamethrower is trained as Veteran.\nUnique Support Power:\n    - Parabombs\nA trio of badgers drop parachuted bombs on your target.\nSpecial Units:\n    - Bomb Dog (Infantry)\nAn dog with an bomb vest, that is trained to run towards Vehicles.\n    - Demolition Truck (Vehicle)\nAn truck with a desperate driver, loaded with Nuclear explosives.\n    - Flame Submarine (Naval)\nThis submarine is capable of shooting the same projectile as Flame Tower.\nTech Unit:\n    - Flame Mammoth (Vehicle)\nUnique modification of Mammoth chassis sporting dual flamers.
 	Faction@11:
 		Name: Belarus
 		InternalName: belarus
@@ -292,9 +292,6 @@
 		ValuePerUnit: 12
 		AllowedTerrainTypes: Clear,Road
 		AllowUnderActors: true
-	SubterraneanActorLayer:
-		TerrainType: Water
-		HeightOffset: -1c456
 
 World:
 	Inherits: ^BaseWorld
@@ -334,7 +331,7 @@ World:
 	MapBuildRadius:
 		AllyBuildRadiusCheckboxDisplayOrder: 4
 		BuildRadiusCheckboxDisplayOrder: 5
-		BuildRadiusCheckboxEnabled: False
+		BuildRadiusCheckboxEnabled: True
 	MapOptions:
 		ShortGameCheckboxDisplayOrder: 2
 		TechLevelDropdownDisplayOrder: 2

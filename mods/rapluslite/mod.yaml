@@ -51,7 +51,7 @@ Packages:
 MapFolders:
     ra|maps: System
 	rapluslite|maps: System
-	~^maps/rapluslite: User
+	~^maps/ra/release-20191117: User
 
 Rules:
 	ra|rules/misc.yaml

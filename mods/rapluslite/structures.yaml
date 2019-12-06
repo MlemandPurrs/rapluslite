@@ -45,6 +45,8 @@ FACT:
 		UseDeathTypeSuffix: false
 	SpawnActorOnDeath:
 		Actor: fact.husk
+	Armor:
+		Type: Concrete
 
 POWR:
 	Buildable:
@@ -99,7 +101,7 @@ POWR.Russia:
 APWR:
 	Buildable:
 		BuildPaletteOrder: 12
-		Prerequisites: dome, ~!player.greece, ~!player.russia, ~techlevel.medium
+		Prerequisites: dome, ~!player.turkey, ~!player.russia, ~techlevel.medium
 		Description: Provides double the Power of\na standard Power Plant.\nCan be Infiltrated by an Spy resulting\nin a temporary blackout.
 	Building:
 		Footprint: xxx Xxx
@@ -107,7 +109,7 @@ APWR:
 	Valued:
 		Cost: 600
 	WithIdleOverlay@SMOKE:
-		RequiresCondition: !build-incomplete
+		RequiresCondition: !build-incomplete && !disabled
 		Sequence: idle-smoke
 	WithDeathAnimation:
 		DeathSequence: dead
@@ -150,7 +152,7 @@ APWR.Russia:
 
 TENT:
 	Buildable:
-		Prerequisites: ~structures.allies, ~techlevel.infonly
+		Prerequisites: ~structures.allies, ~!player.turkey, ~techlevel.infonly
 		BuildPaletteOrder: 2
 		Description: Trains and Heals Infantry units.\nCan be Infiltrated by an Spy resulting\nin Veterancy for enemy Infantry.\n Special: Free Guards\nEach Barracks comes with two free Rifle Infantry.
 	WithDeathAnimation:
@@ -208,6 +210,19 @@ TENT:
 		Range: 2c512
 	WithRangeCircle:
 		Range: 2c512
+
+TENT.Turkey:
+	Inherits: TENT
+	Buildable:
+		Prerequisites: ~structures.allies, ~player.turkey, ~techlevel.infonly
+		BuildPaletteOrder: 2
+	Armor:
+		Type: Concrete
+	RenderSprites:
+		Image: tent
+	ProvidesPrerequisite@COPY:
+		Prerequisite: tent
+	-MapEditorData:
 
 BARR:
 	Buildable:
@@ -309,7 +324,7 @@ KENN.Russia:
 	Buildable:
 		Prerequisites: anypower, ~player.russia, ~techlevel.infonly
 	Valued:
-		Cost: 90
+		Cost: 180
 	RenderSprites:
 		Image: kenn
 	ProvidesPrerequisite@COPY:
@@ -467,7 +482,7 @@ WEAP:
 	Inherits@IDISABLE: ^DisableOnPowerDown
 	Buildable:
 		BuildPaletteOrder: 5
-		Prerequisites: proc, ~!player.russia, ~techlevel.low
+		Prerequisites: proc, ~!player.russia, ~!player.turkey, ~techlevel.low
 		Description: Produces Vehicle units.\nCan be Infiltrated by an Spy resulting\nin Veterancy for enemy Vehicles.
 	ProvidesPrerequisite@allies:
 		Factions: allies, england, france, germany, spain, greece, turkey, italy
@@ -559,6 +574,18 @@ WEAP.Russia:
 	Explodes@RUMALUS:
 		Weapon: Demolish
 		DamageThreshold: 10
+	-MapEditorData:
+
+WEAP.Turkey:
+	Inherits: WEAP
+	Buildable:
+		Prerequisites: proc, ~player.turkey, ~techlevel.low
+	Armor:
+		Type: Concrete
+	RenderSprites:
+		Image: weap
+	ProvidesPrerequisite@COPY:
+		Prerequisite: weap
 	-MapEditorData:
 
 FIX:
@@ -937,7 +964,7 @@ STEK:
 		OrderName: SovietEMP
 		Prerequisites: ~aircraft.soviet, player.russia
 		Icon: empbomb
-		ChargeInterval: 9000
+		ChargeInterval: 7500
 		SquadSize: 1
 		QuantizedFacings: 8
 		Description: EMP Bomb
@@ -1067,7 +1094,7 @@ STEK:
 		PauseOnCondition: disabled
 		Icon: airstrike
 		ChargeInterval: 7500
-		SquadSize: 3
+		SquadSize: 1
 		QuantizedFacings: 8
 		Description: Air Strike
 		LongDesc: Deploy an aerial napalm strike.\nBurns buildings and infantry along a line.
@@ -1188,6 +1215,24 @@ AFLD:
 	ProvidesPrerequisite@allies:
 		Factions: allies, england, france, germany, spain, greece, turkey, italy
 		Prerequisite: aircraft.allies
+	ProvidesPrerequisite@england:
+		Factions: england
+		Prerequisite: aircraft.england
+	ProvidesPrerequisite@englishstructure:
+		RequiresPrerequisites: structures.england
+		Prerequisite: aircraft.england
+	ProvidesPrerequisite@france:
+		Factions: france
+		Prerequisite: aircraft.france
+	ProvidesPrerequisite@frenchstructure:
+		RequiresPrerequisites: structures.france
+		Prerequisite: aircraft.france
+	ProvidesPrerequisite@germany:
+		Factions: germany
+		Prerequisite: aircraft.germany
+	ProvidesPrerequisite@germanstructure:
+		RequiresPrerequisites: structures.german
+		Prerequisite: aircraft.german
 	ProvidesPrerequisite@spain:
 		Factions: spain
 		Prerequisite: aircraft.spain
@@ -1368,7 +1413,7 @@ AFLD.Kazakh:
 HPAD:
 	Buildable:
 		BuildPaletteOrder: 7
-		Prerequisites: dome, ~structures.allies, ~techlevel.medium
+		Prerequisites: dome, ~structures.allies, ~!player.turkey, ~techlevel.medium
 		Description: Produces and reloads Helicopters.\nCan be Infiltrated by an Spy resulting\nin Veterancy for enemy Aircraft.\n  Special Ability: Paratroopers\nA Plane drops a squad of\nVeteran infantry anywhere on the map.
 	Building:
 		Footprint: xx ==
@@ -1410,6 +1455,18 @@ HPAD:
 	ProvidesPrerequisite@soviet:
 		Factions: soviet, russia, ukraine, belarus, kazakh, uzbek, turkmen, karelia
 		Prerequisite: aircraft.soviet
+	ProvidesPrerequisite@russia:
+		Factions: russia
+		Prerequisite: aircraft.russia
+	ProvidesPrerequisite@russianstructure:
+		RequiresPrerequisites: structures.russia
+		Prerequisite: aircraft.russia
+	ProvidesPrerequisite@ukraine:
+		Factions: ukraine
+		Prerequisite: aircraft.ukraine
+	ProvidesPrerequisite@ukrainianstructure:
+		RequiresPrerequisites: structures.ukraine
+		Prerequisite: aircraft.ukraine
 	ProvidesPrerequisite@belarus:
 		Factions: belarus
 		Prerequisite: aircraft.belarus
@@ -1531,10 +1588,23 @@ HPAD:
 	SpawnActorOnDeath:
 		Actor: hpad.husk
 
+HPAD.Turkey:
+	Inherits: HPAD
+	Buildable:
+		Prerequisites: dome, ~structures.allies, ~player.turkey, ~techlevel.medium
+	Armor:
+		Type: Concrete
+	RenderSprites:
+		Image: hpad
+	ProvidesPrerequisite@COPY:
+		Prerequisite: hpad
+	-MapEditorData:
+
 SYRD:
 	Buildable:
 		BuildPaletteOrder: 3
-		Description: Produces and repairs\nShips and Transports.
+		Prerequisites: anypower, ~structures.allies, ~!player.turkey, ~techlevel.low
+		Description: Produces and repairs\nShips and Transports.\n  Special Ability: Sonar Pulse\n Reveals all submarines in target\narea for a short time.
 	WithDeathAnimation:
 		DeathSequence: dead
 		UseDeathTypeSuffix: false
@@ -1577,35 +1647,118 @@ SYRD:
 	ProvidesPrerequisite@italianstructure:
 		RequiresPrerequisites: structures.italy
 		Prerequisite: ships.italy
-	SpawnActorPower@InitialSonar:
-		OrderName: SonarPulse
-		RequiresCondition: turkey.player
-		Icon: sonar
-		Description: Sonar Pulse
-		LongDesc: Reveals all submarines in the vicinity for a short time.
-		ChargeInterval: 750
-		EndChargeSpeechNotification: SonarPulseReady
-		SelectTargetSpeechNotification: SelectTarget
-		Actor: sonar
-		LifeTime: 250
-		DeploySound: sonpulse.aud
-		EffectImage: moveflsh
-		EffectPalette: moveflash
-		PauseOnCondition: disabled
-		SupportPowerPaletteOrder: 4
-	GrantConditionOnFaction@enablesonar:
-		Condition: turkey.player
-		Factions: turkey
-		ResetOnOwnerChange: True
+	ProvidesPrerequisite@soviet:
+		Factions: soviet, russia, ukraine, belarus, kazakh, uzbek, turkmen, karelia
+		Prerequisite: ships.soviet
+	ProvidesPrerequisite@russia:
+		Factions: russia
+		Prerequisite: ships.russia
+	ProvidesPrerequisite@russianstructure:
+		RequiresPrerequisites: structures.russia
+		Prerequisite: ships.russia
+	ProvidesPrerequisite@ukraine:
+		Factions: ukraine
+		Prerequisite: ships.ukraine
+	ProvidesPrerequisite@ukrainianstructure:
+		RequiresPrerequisites: structures.ukraine
+		Prerequisite: ships.ukraine
+	ProvidesPrerequisite@belarus:
+		Factions: belarus
+		Prerequisite: ships.belarus
+	ProvidesPrerequisite@belarussianstructure:
+		RequiresPrerequisites: structures.belarus
+		Prerequisite: ships.belarus
+	ProvidesPrerequisite@kazakhstan:
+		Factions: kazakh
+		Prerequisite: ships.kazakh
+	ProvidesPrerequisite@kazakhstructure:
+		RequiresPrerequisites: structures.kazakh
+		Prerequisite: ships.kazakh
+	ProvidesPrerequisite@uzbekistan:
+		Factions: uzbek
+		Prerequisite: ships.uzbek
+	ProvidesPrerequisite@uzbekstructure:
+		RequiresPrerequisites: structures.uzbek
+		Prerequisite: ships.uzbek
+	ProvidesPrerequisite@turkmenistan:
+		Factions: turkmen
+		Prerequisite: ships.turkmen
+	ProvidesPrerequisite@turkmenstructure:
+		RequiresPrerequisites: structures.turkmen
+		Prerequisite: ships.turkmen
+	ProvidesPrerequisite@karelia:
+		Factions: karelia
+		Prerequisite: ships.karelia
+	ProvidesPrerequisite@karelianstructure:
+		RequiresPrerequisites: structures.karelia
+		Prerequisite: ships.karelia
 	SupportPowerChargeBar:
+	-InfiltrateForSupportPower:
+
+SYRD.Turkey:
+	Inherits: SYRD
+	Buildable:
+		Prerequisites: anypower, ~structures.allies, ~player.turkey, ~techlevel.low
+	Armor:
+		Type: Concrete
+	RenderSprites:
+		Image: syrd
+	ProvidesPrerequisite@COPY:
+		Prerequisite: syrd
+	-MapEditorData:
 
 SPEN:
 	Buildable:
 		BuildPaletteOrder: 3
 		Prerequisites: anypower, ~structures.soviet, ~!player.russia, ~techlevel.low
-		Description: Produces and repairs\nSubmarines and Transports.\nCan be Infiltrated by an Spy for\nunlocking Sonar Pulse support power.
+		Description: Produces and repairs\nSubmarines and Transports.\n  Special Ability: Sonar Pulse\n Reveals all submarines in target\narea for a short time.
 	Valued:
 		Cost: 750
+	ProvidesPrerequisite@allies:
+		Factions: allies, england, france, germany, spain, greece, turkey, italy
+		Prerequisite: ships.allies
+	ProvidesPrerequisite@england:
+		Factions: england
+		Prerequisite: ships.england
+	ProvidesPrerequisite@englishstructure:
+		RequiresPrerequisites: structures.england
+		Prerequisite: ships.england
+	ProvidesPrerequisite@france:
+		Factions: france
+		Prerequisite: ships.france
+	ProvidesPrerequisite@frenchstructure:
+		RequiresPrerequisites: structures.france
+		Prerequisite: ships.france
+	ProvidesPrerequisite@germany:
+		Factions: germany
+		Prerequisite: ships.germany
+	ProvidesPrerequisite@germanstructure:
+		RequiresPrerequisites: structures.german
+		Prerequisite: ships.german
+	ProvidesPrerequisite@spain:
+		Factions: spain
+		Prerequisite: ships.spain
+	ProvidesPrerequisite@spanishstructure:
+		RequiresPrerequisites: structures.spain
+		Prerequisite: ships.spain
+	ProvidesPrerequisite@greece:
+		Factions: greece
+		Prerequisite: ships.greece
+	ProvidesPrerequisite@greekstructure:
+		RequiresPrerequisites: structures.greece
+		Prerequisite: ships.greece
+	ProvidesPrerequisite@turkey:
+		Factions: turkey
+		Prerequisite: ships.turkey
+	ProvidesPrerequisite@turkishstructure:
+		RequiresPrerequisites: structures.turkey
+		Prerequisite: ships.turkey
+	ProvidesPrerequisite@italy:
+		Factions: italy
+		Prerequisite: ships.italy
+	ProvidesPrerequisite@italianstructure:
+		RequiresPrerequisites: structures.italy
+		Prerequisite: ships.italy
 	ProvidesPrerequisite@soviet:
 		Factions: soviet, russia, ukraine, belarus, kazakh, uzbek, turkmen, karelia
 		Prerequisite: ships.soviet
@@ -1652,6 +1805,7 @@ SPEN:
 		Condition: replenishsmine
 		Range: 5c0
 		RequiresCondition: !disabled
+	-InfiltrateForSupportPower:
 
 SPEN.Russia:
 	Inherits: SPEN
@@ -1672,20 +1826,39 @@ GAP:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 10
-		Prerequisites: techcenter, ~fact, ~techlevel.high
+		Prerequisites: techcenter, ~fact, ~!player.russia, ~techlevel.high
 	Valued:
 		Cost: 1000
 	ProvidesPrerequisite@buildingname:
-	SpawnActorOnDeath:
-		Actor: gap.husk
+	#	SpawnActorOnDeath:
+	#	Actor: gap.husk
+
+GAP.Russia:
+	Inherits: GAP
+	Buildable:
+		Prerequisites: techcenter, ~fact, ~player.russia, ~techlevel.high
+	Valued:
+		Cost: 900
+	RenderSprites:
+		Image: gap
+	ProvidesPrerequisite@COPY:
+		Prerequisite: gap
+	Explodes@RUMALUS:
+		Weapon: Demolish
+		DamageThreshold: 10
+	-MapEditorData:	
 
 SBAG:
 	Buildable:
 		BuildPaletteOrder: 1
+	Armor:
+		Type: Concrete
 
 FENC:
 	Buildable:
 		BuildPaletteOrder: 1
+	Armor:
+		Type: Concrete
 
 BARB:
 	Inherits: ^Wall
@@ -1703,7 +1876,7 @@ BARB:
 	Health:
 		HP: 15000
 	Armor:
-		Type: Wood
+		Type: Concrete
 	LineBuild:
 		NodeTypes: barbwire
 	LineBuildNode:
@@ -1713,7 +1886,7 @@ BARB:
 
 BRIK:
 	Buildable:
-		BuildPaletteOrder: 2
+		BuildPaletteOrder: 10
 		Prerequisites: weap, ~!player.greece, ~techlevel.medium
 		Description: Stop units and blocks enemy fire.\nCan be crushed by Mammoth Tanks.
 
@@ -1809,8 +1982,13 @@ VGATE.Greece:
 
 PBOX:
 	Buildable:
-		BuildPaletteOrder: 4
+		BuildPaletteOrder: 2
+		Prerequisites: barracks, ~fact, ~!player.uzbek, ~techlevel.low
 		Description: Static defense with a fireport for\na garrisoned soldier.\nInitially has Rifle Infantry in it.\nCan detect cloaked units.\n  Strong vs Infantry, Light armor\n  Weak vs Tanks, Aircraft		
+	Valued:
+		Cost: 500
+	CustomSellValue:
+		Value: 400
 	AttackGarrisoned:
 		RequiresCondition: !build-incomplete
 		Armaments: garrisoned, garrisoned-elite
@@ -1821,6 +1999,18 @@ PBOX:
 		Range: 3c0
 		RequiresCondition: !disabled && !build-incomplete
 
+PBOX.Uzbek:
+	Inherits: PBOX
+	Buildable:
+		Prerequisites: barracks, ~fact, ~player.uzbek, ~techlevel.low
+	Health:
+		HP: 30000
+	Valued:
+		Cost: 450
+	RenderSprites:
+		Image: pbox
+	-MapEditorData:
+
 HBOX:
 	Buildable:
 		BuildPaletteOrder: 5
@@ -1828,6 +2018,8 @@ HBOX:
 		Description: Camouflaged static defense with a fireport\nfor a garrisoned soldier.\nInitially has Rocket Soldier in it.\nCan detect cloaked units.\n  Strong vs Infantry, Light armor\n  Weak vs Tanks, Aircraft
 	Valued:
 		Cost: 800
+	CustomSellValue:
+		Value: 650
 	Cargo:
 		InitialUnits: e3
 	AttackGarrisoned:
@@ -1844,11 +2036,38 @@ FTUR:
 	Inherits@IDISABLE: ^DisableOnPowerDown
 	Buildable:
 		BuildPaletteOrder: 4
-		Prerequisites: barr, ~structures.soviet, ~!player.uzbek, ~!player.karelia, ~techlevel.low
-	Armament:
+		Prerequisites: barr, dome, ~structures.soviet, ~!player.uzbek, ~!player.karelia, ~techlevel.low
+	Tooltip:
+		Name: Flame Turret
+	-Turreted:
+	-Armament:
+	Turreted@RANGE:
+		Turret: ranged-turret
+		TurnSpeed: 255
+		Offset: 0,0,112
+	Turreted@MELEE:
+		Turret: melee-turret
+		TurnSpeed: 255
+		Offset: 0,0,112
+	Armament@RANGE:
+		Name: primary
+		Weapon: FireballLauncher
+		LocalOffset: 512,0,0
+		Turret: ranged-turret
 		PauseOnCondition: disabled
+	Armament@MELEE:
+		Name: secondary
+		Weapon: Flamespray.dual
+		LocalOffset: 512,128,42, 512,-128,42
+		MuzzleSequence: muzzle-spray
+		Turret: melee-turret
+		PauseOnCondition: empdisable
 	AttackTurreted:
+		Armaments: primary, secondary
+		Turrets: ranged-turret, melee-turret
+		RequiresCondition: !build-incomplete
 		PauseOnCondition: disabled
+	WithMuzzleOverlay:
 	DetectCloaked:
 		Range: 3c0
 		RequiresCondition: !disabled && !build-incomplete
@@ -1935,10 +2154,12 @@ TSLA.karelia:
 
 GUN:
 	Buildable:
-		BuildPaletteOrder: 6
+		BuildPaletteOrder: 4
 		Prerequisites: weap, ~structures.allies, ~!player.italy, ~techlevel.medium
 	Tooltip:
 		Name: Gun Turret
+	Valued:
+		Cost: 700
 	DetectCloaked:
 		Range: 3c0
 		RequiresCondition: !disabled && !lowpower && !build-incomplete
@@ -1964,7 +2185,7 @@ GUN:
 GUN.Italy:
 	Inherits: GUN
 	Buildable:
-		BuildPaletteOrder: 6
+		BuildPaletteOrder: 4
 		Prerequisites: weap, ~structures.allies, ~player.italy, ~techlevel.medium	
 	-Armament:
 	Armament:
@@ -1973,13 +2194,15 @@ GUN.Italy:
 		MuzzleSequence: muzzle
 	RenderSprites:
 		Image: gun
+	-MapEditorData:
 
 HGUN:
 	Inherits: GUN
 	Buildable:
 		Queue: Defense
-		BuildPaletteOrder: 6
-		Prerequisites: weap, ~structures.soviet, ~!player.uzbek, ~techlevel.medium
+		BuildPaletteOrder: 4
+		#	Prerequisites: weap, ~structures.soviet, ~!player.uzbek, ~techlevel.medium
+		Prerequisites: ~disabled
 		Description: Anti-Armor base defense.\nCan detect cloaked units.\n  Strong vs Vehicles\n  Weak vs Infantry, Aircraft
 	Valued:
 		Cost: 900
@@ -2009,7 +2232,7 @@ GTUR:
 	Inherits@shape: ^2x2Shape
 	Buildable:
 		Queue: Defense
-		BuildPaletteOrder: 14
+		BuildPaletteOrder: 9
 		Prerequisites: atek, ~structures.allies, ~player.france, ~techlevel.high
 		Description: Triple-barreled Artillery base defense.\nCan detect cloaked units.\n  Strong vs Infantry, Vehicles, Ships\n  Weak vs Aircraft
 	Valued:
@@ -2057,14 +2280,14 @@ GTUR:
 
 PDOX:
 	Buildable:
-		BuildPaletteOrder: 8
+		BuildPaletteOrder: 7
 	-ProvidesPrerequisite@germany:
 	-ProvidesPrerequisite@germanstructure:
 	ChronoshiftPower@chronoshift:
 		OrderName: ChronoshiftPower
 		PauseOnCondition: disabled
 		Icon: chrono
-		ChargeInterval: 3000
+		ChargeInterval: 4500
 		Description: Chronoshift
 		LongDesc: Teleports a group of units across\nthe map for 20 seconds.
 		SelectTargetSpeechNotification: SelectTarget
@@ -2081,16 +2304,17 @@ PDOX:
 
 IRON:
 	Buildable:
-		BuildPaletteOrder: 8
+		BuildPaletteOrder: 7
 	ProvidesPrerequisite@buildingname:
 	GrantExternalConditionPower@IRONCURTAIN:
+		ChargeInterval: 4500
 		OrderName: IronCurtainPower
 		SupportPowerPaletteOrder: 5
 	-SpawnActorsOnSell:
 
 MSLO:
 	Buildable:
-		BuildPaletteOrder: 9
+		BuildPaletteOrder: 8
 	Cloak:
 		InitialDelay: 125
 		CloakDelay: 60
@@ -2164,12 +2388,12 @@ MSLO:
 
 AGUN:
 	Buildable:
-		BuildPaletteOrder: 7
+		BuildPaletteOrder: 6
 	-SpawnActorsOnSell:
 
 SAM:
 	Buildable:
-		BuildPaletteOrder: 7
+		BuildPaletteOrder: 6
 		Prerequisites: dome, ~structures.soviet, ~!player.uzbek, ~techlevel.medium
 	-SpawnActorsOnSell:
 
@@ -2189,7 +2413,7 @@ HSAM:
 	Inherits: SAM
 	Buildable:
 		Queue: Defense
-		BuildPaletteOrder: 10
+		BuildPaletteOrder: 9
 		Prerequisites: dome, stek, ~structures.soviet, ~!player.uzbek, ~techlevel.high
 		Description: Cloaked Anti-Air base defense.\n  Strong vs Aircraft.\n  Weak vs Ground units.
 	Tooltip:
@@ -2498,7 +2722,7 @@ GTWR:
 		Name: Guard Tower
 	Buildable:
 		Queue: Defense
-		BuildPaletteOrder: 14
+		BuildPaletteOrder: 9
 		Prerequisites: atek, ~structures.allies, ~player.turkey, ~techlevel.high
 		Description: Specialised anti-infantry defense structure.\nCan detect cloaked units.\n  Strong vs Infantry\n  Weak vs everything Else
 	Building:

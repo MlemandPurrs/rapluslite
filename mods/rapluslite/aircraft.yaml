@@ -39,6 +39,8 @@ TRAN:
 		Description: Fast Infantry Transport Helicopter.\n  Special Ability: Carryall\nCan carry light vehicles, one at a time.\n  Unarmed
 	Carryall:
 		LocalOffset: 0, 0, -128
+	Health:
+		HP: 20000
 
 TRAN.Soviet:
 	Inherits: TRAN
@@ -157,7 +159,7 @@ IROQ:
 	Selectable:
 		DecorationBounds: 38,32
 	Rearmable:
-		RearmActors: hpad, carr.deployed
+		RearmActors: hpad, hpad.turkey, carr.deployed
 
 IROQ.Turkey:
 	Inherits: IROQ
@@ -267,7 +269,7 @@ HELI:
 		AmmoCondition: ammogun
 	WithMuzzleOverlay:
 	Rearmable:
-		RearmActors: hpad, carr.deployed
+		RearmActors: hpad, hpad.turkey, carr.deployed
 
 HIND:
 	Buildable:
@@ -327,7 +329,7 @@ HIND:
 		Armaments: primary, secondary, tertiary, fourth, fifth
 		FacingTolerance: 20
 	Rearmable:
-		RearmActors: hpad, carr.deployed
+		RearmActors: hpad, hpad.turkey, carr.deployed
 	SpeedMultiplier:
 		Modifier: 110
 		RequiresCondition: kazakh.player
@@ -371,6 +373,8 @@ YAK:
 		BuildPaletteOrder: 1
 		Prerequisites: ~afld, ~aircraft.soviet, ~!player.belarus, ~!aitoodumb, ~techlevel.medium
 		Description: Strafing Attack Plane armed with\ndual machine guns.\nBombs Submarines with Depthcharges.\n  Strong vs Infantry, Light armor\n  Weak vs Tanks, Aircraft
+	Health:
+		HP: 8000
 	Aircraft:
 		TakeOffOnCreation: False
 	AttackAircraft:
@@ -430,6 +434,7 @@ YAK:
 		Factions: kazakh
 		ResetOnOwnerChange: True
 
+		
 YAK.Belarus:
 	Inherits: YAK
 	Buildable:
@@ -501,6 +506,8 @@ MIG:
 		BuildDurationModifier: 60
 		Prerequisites: ~afld, stek, ~aircraft.soviet, ~!aitoodumb, ~techlevel.high
 		Description: Fast Multi-Role Attack Plane.\n  Strong vs Buildings, Vehicles\n  Weak vs Infantry, Aircraft
+	Health:
+		HP: 10000
 	Aircraft:
 		TakeOffOnCreation: False
 		TakeoffSounds: migtoff1.aud
@@ -695,7 +702,7 @@ HARR:
 	ProducibleWithLevel:
 		Prerequisites: aircraft.upgraded
 	Rearmable:
-		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh, hpad, carr.deployed
+		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh, hpad, hpad.turkey, carr.deployed
 
 MH60:
 	Buildable:
@@ -752,3 +759,75 @@ FROG.Bomber:
 	GivesExperience:
 		Experience: 1000
 	Interactable:
+
+BMIN:
+	Inherits: ^Helicopter
+	Inherits@AUTOTARGET: ^AutoTargetAir
+	Buildable:
+		Queue: Aircraft
+		BuildAtProductionType: Helicopter
+		BuildPaletteOrder: 6
+		Prerequisites: ~hpad, fix, ~player.italy, ~techlevel.medium
+		Description: Dirigible, parachuted aerial Mine.\n  Strong vs Aircraft\n  Weak vs anything Else
+	Valued:
+		Cost: 650
+	Tooltip:
+		Name: Baloon Mine
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 5000
+		NotifyAppliedDamage: false
+	RevealsShroud:
+		Range: 3c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 1c0
+		Type: GroundPosition
+	Aircraft:
+		CruiseAltitude: 1908
+		TurnSpeed: 255
+		Speed: 64
+		AltitudeVelocity: 0c58
+		LandableTerrainTypes: none
+		Repulsable: True
+		IdealSeparation: 0c256
+	-Explodes:
+	Explodes@UNITEXPLODES:
+		Weapon: AAMine
+		DamageSource: Killer
+		Type: CenterPosition
+	AttackAircraft:
+		FacingTolerance: 128
+	SelectionDecorations:
+	Selectable:
+		DecorationBounds: 24,24
+	Armament@PRIMARY:
+		Weapon: AirMineTargeting
+	GrantConditionOnAttack:
+		Condition: triggered
+	GrantConditionOnDeploy:
+		DeployedCondition: triggered
+	KillsSelf:
+		RequiresCondition: triggered
+	-MustBeDestroyed:
+	Voiced:
+		VoiceSet: RoboticVoice
+	-SpawnActorOnDeath:
+	-Repairable:
+	WithIdleOverlay@CHUTE:
+		Offset: 0,0,85
+		Sequence: chute
+	Mine:
+		CrushClasses: airmine
+		DetonateClasses: airmine
+		AvoidFriendly: false
+		BlockFriendly: false
+	MineImmune:
+	-ActorLostNotification:
+	Targetable@AIRBORNE:
+		RequiresCondition: airborne
+		TargetTypes: Air, AirMine
+	RenderSprites:
+		Image: mina

@@ -267,6 +267,11 @@ TeslaZap.russia:
 	Inherits: TeslaZap
 	Range: 9c512
 
+FireballLauncher:
+	MinRange: 1c513
+	Projectile: Bullet
+		Blockable: false
+
 FireballLauncher.Sub:
 	Inherits: FireballLauncher
 	ReloadDelay: 65
@@ -336,10 +341,10 @@ BigFlamer:
 		Spread: 400
 		Damage: 8000
 		Versus:
-			None: 82
+			None: 80
 			Wood: 75
 			Light: 75
-			Heavy: 18
+			Heavy: 20
 
 Flamer.elite:
 	Inherits: Flamer
@@ -741,6 +746,11 @@ Grenade.triple:
 SilencedPPK.elite:
 	Inherits: SilencedPPK
 	Range: 4c768
+
+PortaTesla:
+	Warhead@1Dam: SpreadDamage
+		Versus:
+			Heavy: 80
 
 PortaTesla.elite:
 	Inherits: PortaTesla
@@ -1633,3 +1643,56 @@ MoleMine.decoy:
 MoleMine.decoy.zero:
 	Inherits: MoleMine.decoy
 	ReloadDelay: 1
+
+Flamespray.dual:
+	Inherits: ^FireWeapon
+	ReloadDelay: 50
+	Range: 1c512
+	Projectile: Bullet
+		Speed: 341
+	Burst: 2
+	BurstDelays: 25
+	InvalidTargets: Wall
+	Report: flamer2.aud
+	Warhead@1Dam: SpreadDamage
+		Spread: 400
+		Damage: 8000
+		Versus:
+			None: 82
+			Wood: 75
+			Light: 75
+			Heavy: 18
+	-Warhead@3Eff: CreateEffect
+
+Sniper:
+	Range: 9c0
+	Warhead@1Dam: SpreadDamage
+		Damage: 12000
+		InvalidTargets: Cyborg
+	Warhead@4Dam: SpreadDamage
+		Spread: 42
+		Damage: 6000
+		ValidTargets: Cyborg
+		#	InvalidTargets: Barrel, Infantry
+		DamageTypes: Prone50Percent, TriggerProne, DefaultDeath
+
+AirMineTargeting:
+	ValidTargets: AirDetonateAttack
+	Range: 0c768
+	Projectile: InstantHit
+	Warhead@1Dam: TargetDamage
+		ValidTargets: AirDetonateAttack
+
+AAMine:
+	ValidTargets: Air
+	Warhead@1Dam: SpreadDamage
+		Spread: 1c0
+		Damage: 7500
+		AffectsParent: true
+		InvalidTargets: AirMine
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+		ValidTargets: Air
+	Warhead@2Eff: CreateEffect
+		Explosions: med_explosion_air
+		ImpactSounds: mineblo1.aud
+		ValidTargets: Air

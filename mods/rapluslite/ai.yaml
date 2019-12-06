@@ -1029,18 +1029,18 @@ Player:
 		ConstructionYardTypes: fact
 		RefineryTypes: proc.ercc
 		PowerTypes: powr,apwr
-		BarracksTypes: tent
-		VehiclesFactoryTypes: weap
-		ProductionTypes: tent,weap,hpad
-		NavalProductionTypes: syrd
+		BarracksTypes: tent.turkey
+		VehiclesFactoryTypes: weap.turkey
+		ProductionTypes: tent.turkey,weap.turkey,hpad.turkey
+		NavalProductionTypes: syrd.turkey
 		SiloTypes: silo
 		BuildingLimits:
 			proc.ercc: 4
-			tent: 2
+			tent.turkey: 2
 			kenn: 4
 			dome: 1
-			weap: 3
-			syrd: 1
+			weap.turkey: 3
+			syrd.turkey: 1
 			hpad: 4
 			atek.turkey: 1
 			fix: 1
@@ -1054,12 +1054,12 @@ Player:
 			gtwr: 4
 		BuildingFractions:
 			proc.ercc: 15
-			tent: 2
+			tent.turkey: 2
 			kenn: 1
 			dome: 1
-			weap: 6
-			hpad: 4
-			syrd: 1
+			weap.turkey: 6
+			hpad.turkey: 4
+			syrd.turkey: 1
 			pbox: 7
 			hbox: 3
 			gtwr: 4
@@ -1147,7 +1147,6 @@ Player:
 			iron: 1
 			mslo: 1
 			ftur: 6
-			hgun: 4
 			tsla.russia: 4
 			sam: 4
 			hsam: 2
@@ -1159,7 +1158,6 @@ Player:
 			weap.russia: 6
 			spen.russia: 1
 			afld.russia: 4
-			hgun: 3
 			ftur: 10
 			tsla.russia: 5
 			fix: 1
@@ -1196,7 +1194,6 @@ Player:
 			iron: 1
 			mslo: 1
 			ftur: 6
-			hgun: 4
 			tsla: 4
 			sam: 4
 			hsam: 2
@@ -1208,7 +1205,6 @@ Player:
 			weap: 6
 			spen: 1
 			afld: 4
-			hgun: 3
 			ftur: 10
 			tsla: 5
 			fix: 1
@@ -1245,7 +1241,6 @@ Player:
 			iron: 1
 			mslo: 1
 			ftur: 6
-			hgun: 4
 			tsla: 4
 			sam: 4
 			hsam: 2
@@ -1257,7 +1252,6 @@ Player:
 			weap: 6
 			spen: 1
 			afld: 4
-			hgun: 3
 			ftur: 10
 			tsla: 5
 			fix: 1
@@ -1294,7 +1288,6 @@ Player:
 			iron: 1
 			mslo: 1
 			ftur: 6
-			hgun: 4
 			tsla: 4
 			sam: 4
 			hsam: 2
@@ -1306,7 +1299,6 @@ Player:
 			weap: 6
 			spen: 1
 			afld: 4
-			hgun: 3
 			ftur: 10
 			tsla: 5
 			fix: 1
@@ -1343,7 +1335,6 @@ Player:
 			iron: 1
 			mslo: 1
 			ftur.uzbek: 6
-			hgun.uzbek: 4
 			tsla.uzbek: 4
 			sam.uzbek: 4
 			hsam.uzbek: 2
@@ -1355,7 +1346,6 @@ Player:
 			weap: 6
 			spen: 1
 			afld: 4
-			hgun.uzbek: 3
 			ftur.uzbek: 10
 			tsla.uzbek: 5
 			fix: 1
@@ -1392,7 +1382,6 @@ Player:
 			iron: 1
 			mslo: 1
 			ftur: 6
-			hgun: 4
 			tsla: 4
 			sam: 4
 			hsam: 2
@@ -1404,7 +1393,6 @@ Player:
 			weap: 6
 			spen: 1
 			afld: 4
-			hgun: 3
 			ftur: 10
 			tsla: 5
 			fix: 1
@@ -1441,7 +1429,6 @@ Player:
 			iron: 1
 			mslo: 1
 			ftur: 6
-			hgun: 4
 			tsla: 4
 			sam: 4
 			hsam: 2
@@ -1453,7 +1440,6 @@ Player:
 			weap: 6
 			spen: 1
 			afld: 4
-			hgun: 3
 			ftur: 10
 			tsla: 5
 			fix: 1
@@ -1468,7 +1454,7 @@ Player:
 		RequiresCondition: enable-ai-player
 		McvTypes: mcv
 		ConstructionYardTypes: fact
-		McvFactoryTypes: weap,weap.russia
+		McvFactoryTypes: weap,weap.russia,weap.turkey
 	CaptureManagerBotModule@engineer:
 		RequiresCondition: enable-ai-player
 		CapturingActorTypes: e6,e6.uzbek
