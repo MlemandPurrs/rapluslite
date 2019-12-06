@@ -1,0 +1,173 @@
+
+beacon:
+	empbomb: empbombsmallicon
+		Length: *
+		Offset: 0,-42
+	rankcrate: rankcratesmallicon
+		Length: *
+		Offset: 0,-42
+	paratanks: paratanksmallicon
+		Length: *
+		Offset: 0,-42
+	airdrop: airdropsmallicon
+		Length: *
+		Offset: 0,-42
+	paranuke: paranukesmallicon
+		Length: *
+		Offset: 0,-42
+	healcrate: healcratesmallicon
+		Length: *
+		Offset: 0,-42
+
+icon:
+	fieldrepair: frepicon
+	rankcrate: rankcrateicon
+    decoyarmy: decoyarmyicon
+    gpsscrambler: gpsscricon
+    empbomb: empbombicon
+	radarscan: rdrscnicon
+	paratanks: paratankicon
+	airdrop: airdropicon
+    fturicon: fturicon
+    paramines: mnlyicon
+	paranuke: paranukeicon
+	healcrate: healcrateicon
+	airstrike: frogicon
+	reinforce: reinicon
+
+explosion:
+	pulse_explosion: pulsefx2
+		BlendMode: Additive
+		Tick: 80
+    small_chem: chemball
+    nuke_small: atomlight
+	microwave: microw
+
+emp-overlay:
+	emp-overlay: empfx01
+		Length: *
+		BlendMode: Additive
+		Offset: 0, 0
+		UseTilesetCode: false
+		UseTilesetExtension: false
+		ZOffset: 512
+
+maxichute:
+	open:
+		ZOffset: 512
+	idle:
+		Length: 20
+		ZOffset: 512
+
+scrate-rankup:
+	Defaults:
+		ZOffset: -511
+	idle:
+	land:
+		Start: 1
+	water:
+		Start: 2
+		Length: 4
+		Tick: 500
+
+scrate-healup:
+	Defaults:
+		ZOffset: -511
+	idle:
+	land:
+		Start: 1
+	water:
+		Start: 2
+		Length: 4
+		Tick: 500
+
+resources:
+	Defaults:
+		Length: *
+		UseTilesetExtension: true
+		TilesetOverrides:
+			INTERIOR: TEMPERAT
+	gold01: gold01
+	gold02: gold02
+	gold03: gold03
+	gold04: gold04
+	gem01: gem01
+	gem02: gem02
+	gem03: gem03
+	gem04: gem04
+	scrap01: scrap01
+	scrap02: scrap02
+	scrap03: scrap03
+	scrap04: scrap04
+	scrap05: scrap05
+	scrap06: scrap06
+	scrap07: scrap07
+	scrap08: scrap08
+	scrap09: scrap09
+	scrap10: scrap10
+	scrap11: scrap11
+	scrap12: scrap12
+	scrap13: scrap13
+	scrap14: scrap14
+	scrap15: scrap15
+	scrap16: scrap16
+	scrap17: scrap17
+	scrap18: scrap18
+	scrap19: scrap19
+	scrap20: scrap20
+
+drillmine:
+	Defaults:
+		UseTilesetExtension: false
+		Offset: -1, -16
+	idle:
+		Start: 0
+		Length: 1
+	active:
+		Start: 0
+		Length: 32
+		Tick: 160
+
+pips:
+	tag-hold:
+		Start: 4
+        Offset: 0, 2
+    tag-reload: tag-reload
+        Offset: 0, 2
+    tag-deployed: tag-deployed
+        Offset: 0, 2
+
+mins:
+	idle:
+		Length: *
+		ZOffset: -512
+		Tick: 250
+	icon: jmin
+
+mina:
+	idle:
+		Length: *
+	chute: parach
+		Start: 5
+		Length: 11
+		Tick: 120
+	icon: jmin
+
+hjm:
+	idle: missilenew
+		Facings: 32
+		ZOffset: 1023
+
+icbmmiss:
+	idle:
+		Facings: 32
+		ZOffset: 1023
+
+molemine:
+	idle: btr-tur
+		Facings: 32
+		ZOffset: -1023
+
+wake-infantry:
+	idle:
+		Length: *
