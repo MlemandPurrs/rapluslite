@@ -434,7 +434,6 @@ YAK:
 		Factions: kazakh
 		ResetOnOwnerChange: True
 
-		
 YAK.Belarus:
 	Inherits: YAK
 	Buildable:
@@ -638,7 +637,7 @@ HARR:
 		BuildAtProductionType: Helicopter
 		BuildPaletteOrder: 4
 		Prerequisites: ~hpad, ~atek, ~aircraft.allies, ~tech.stolen, ~player.england, ~techlevel.high
-		Description: Fast VTOL Attack Plane armed\nwith powerful air-to-ground missiles.\n  Strong vs Tanks, Ships\n  Weak vs Anti-Air, Defenses
+		Description: Fast VTOL Attack Plane armed\nwith powerful all-purpose missiles.\n  Strong vs Tanks, Ships\n  Weak vs Anti-Air, Defenses
 	Valued:
 		Cost: 1500
 	Tooltip:

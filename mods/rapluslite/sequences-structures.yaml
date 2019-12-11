@@ -44,6 +44,7 @@ apwr:
     Inherits: emp-overlay
 	place: apwrmake
 		Start: 12
+		Offset: 0,-10
 	make: apwrmake
 		Length: *
 		Tick: 80
@@ -291,6 +292,7 @@ dome:
 	dead:
 		Start: 1
 		Tick: 800
+		Offset: 0,-4
 
 dome.husk:
 	idle: dome-dead
@@ -510,6 +512,9 @@ gap:
 		Length: *
 		Offset: 0,-14
         Tick: 80
+	place: gapmake
+		Start: 12
+		Offset: 0,-14
 
 gap.husk:
 	idle: gap

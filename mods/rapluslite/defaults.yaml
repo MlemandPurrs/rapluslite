@@ -367,7 +367,7 @@
 		Footprint: x
 	WithSpriteBody:
 	Health:
-		HP: 28000
+		HP: 20000
 	Armor:
 		Type: Wood
 	Burns:

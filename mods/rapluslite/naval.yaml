@@ -1,7 +1,7 @@
 LST:
 	Buildable:
 		BuildPaletteOrder: 1
-		Description: General-purpose naval transport.\nCan carry up to 18 Infantry and Tanks.\nGets slowed down to half-speed\nwhen cargo occupied gets above 8.\n  Unarmed
+		Description: General-purpose naval transport.\nCan carry up to 16 Infantry and Tanks.\nGets slowed down to half-speed\nwhen cargo occupied gets above 8.\n  Unarmed
 	Cargo:
 		MaxWeight: 16
 		PipCount: 16
@@ -77,7 +77,7 @@ PT.Soviet:
 		Prerequisites: ~syrd, ~ships.soviet, ~techlevel.low
 		Description: Fast multi-role ship.\nCan detect submarines.\n  Strong vs Submarines, Vehicles, Infantry\n  Weak vs Aircraft
 	Tooltip:
-		Name: Rocket Boat
+		Name: Patrol Boat
 	-Turreted@PRIMARY:
 	-Turreted@SECONDARY:
 	-Armament@PRIMARY:
@@ -277,7 +277,7 @@ DD.Soviet:
 		Prerequisites: ~syrd, dome, ~ships.soviet, ~techlevel.medium
 		Description: Fire support ship.\n  Can attack Aircraft.\n  Strong vs Infantry, Aircraft\n  Weak vs Submarines, Defenses
 	Tooltip:
-		Name: Destroyer (Soviet)
+		Name: Frigate
 	-Turreted@PRIMARY:
 	-Turreted@SECONDARY:
 	-Armament@PRIMARY:

@@ -33,7 +33,6 @@ icon:
 	paranuke: paranukeicon
 	healcrate: healcrateicon
 	airstrike: frogicon
-	reinforce: reinicon
 
 explosion:
 	pulse_explosion: pulsefx2

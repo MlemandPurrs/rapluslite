@@ -630,7 +630,7 @@ FIX.Husk:
 	Interactable:
 		Bounds: 68,34,0,3
 	Building:
-		Footprint: _=_ xxx _=_
+		Footprint: === xxx ===
 		Dimensions: 3,3
 	Tooltip:
 		Name: Service Depot (Destroyed)

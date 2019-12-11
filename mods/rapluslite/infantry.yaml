@@ -344,9 +344,6 @@ SNIP:
 		HP: 8000
 	Mobile:
 		Speed: 56
-	Passenger:
-		PipType: Yellow
-		Weight: 2
 	RevealsShroud:
 		Range: 6c0
 	AutoTarget:

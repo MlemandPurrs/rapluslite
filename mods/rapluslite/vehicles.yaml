@@ -277,7 +277,7 @@ ZTNK:
 		Type: Light
 	Mobile:
 		TurnSpeed: 5
-		Speed: 85
+		Speed: 72
 	RevealsShroud:
 		Range: 6c0
 		RevealGeneratedShroud: False
@@ -762,9 +762,11 @@ LTNK:
 		BuildPaletteOrder: 9
 		Description: Fast tank, good for scouting.\n  Strong vs Light armor\n  Weak vs Infantry, Tanks, Aircraft
 	Valued:
-		Cost: 520
+		Cost: 630
 	Health:
 		HP: 19800
+	Mobile:
+		Speed: 85
 	Tooltip:
 		Name: Scout Tank
 	SpawnActorOnDeath:
@@ -1449,7 +1451,7 @@ ATNK:
 		Prerequisites: vehicles.upgraded
 	WithMuzzleOverlay:
 	DetectCloaked:
-		Range: 4c0
+		Range: 3c0
 		RequiresCondition: rank-elite
 	Carryable:
 		LocalOffset: 0,0,100
@@ -1827,7 +1829,6 @@ STNK:
 		Turret: secondary
 		TurnSpeed: 255
 		Offset: 0,0,0
-
 	AttackFrontal:
 		PauseOnCondition: empdisable
 	WithSpriteTurret:
@@ -2681,7 +2682,7 @@ BRDM.Scout:
 	Armament:
 		Weapon: M1Carbine
 		MuzzleSequence: muzzle
-		LocalOffset: 128,0,43
+		LocalOffset: 178,0,43
 	WithSpriteTurret:
 		Sequence: turret-mg
 	WithMuzzleOverlay:
@@ -2702,8 +2703,8 @@ BEHE:
 	Valued:
 		Cost: 3000
 	Tooltip:
-		Name: Behemoth Tank
-		GenericName: Tank
+		Name: Behemoth
+		GenericName: Super Tank
 	UpdatesPlayerStatistics:
 		AddToArmyValue: true
 	Health:
@@ -2749,7 +2750,7 @@ BEHE:
 		DecorationBounds: 34,34,0,-3
 	Passenger:
 		CargoType: Vehicle
-		Weight: 4
+		Weight: 8
 		PipType: Red
 	RenderRangeCircle:
 
@@ -2875,7 +2876,7 @@ ICBM:
 		Queue: Vehicle
 		BuildPaletteOrder: 200
 		BuildLimit: 1
-		Prerequisites: stek, ~vehicles.soviet, ~player.kazakh, ~tech.stolen, ~!enough.icbm, ~techlevel.high
+		Prerequisites: mslo, ~vehicles.soviet, ~player.kazakh, ~tech.stolen, ~!enough.icbm, ~techlevel.high
 		Description: Nuclear rocket artillery.\nMaximum 1 can be built.\nExplodes violently on death.\n  Strong vs Everything over distance\n  Weak vs attacks at close range\n  Requires an large minimum firing distance
 	Valued:
 		Cost: 2500

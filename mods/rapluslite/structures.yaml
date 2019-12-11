@@ -876,6 +876,8 @@ ATEK:
 		Types: SpyInfiltrate, ThiefInfiltrate
 	SpawnActorOnDeath:
 		Actor: atek.husk
+	Power:
+		Amount: -150
 
 ATEK.England:
 	Inherits: ATEK
@@ -1692,8 +1694,26 @@ SYRD:
 	ProvidesPrerequisite@karelianstructure:
 		RequiresPrerequisites: structures.karelia
 		Prerequisite: ships.karelia
+	SpawnActorPower:
+		Icon: sonar
+		Description: Sonar Pulse
+		LongDesc: Reveals all submarines in the vicinity for a \nshort time.
+		ChargeInterval: 750
+		EndChargeSpeechNotification: SonarPulseReady
+		SelectTargetSpeechNotification: SelectTarget
+		Actor: sonar
+		LifeTime: 250
+		DeploySound: sonpulse.aud
+		EffectImage: moveflsh
+		EffectPalette: moveflash
+		SupportPowerPaletteOrder: 7
+		PauseOnCondition: lowpower
 	SupportPowerChargeBar:
 	-InfiltrateForSupportPower:
+	GrantConditionOnPowerState@LOWPOWER:
+		Condition: lowpower
+		ValidPowerStates: Low, Critical
+
 
 SYRD.Turkey:
 	Inherits: SYRD
@@ -1805,7 +1825,25 @@ SPEN:
 		Condition: replenishsmine
 		Range: 5c0
 		RequiresCondition: !disabled
+	SpawnActorPower:
+		Icon: sonar
+		Description: Sonar Pulse
+		LongDesc: Reveals all submarines in the vicinity for a \nshort time.
+		ChargeInterval: 750
+		EndChargeSpeechNotification: SonarPulseReady
+		SelectTargetSpeechNotification: SelectTarget
+		Actor: sonar
+		LifeTime: 250
+		DeploySound: sonpulse.aud
+		EffectImage: moveflsh
+		EffectPalette: moveflash
+		SupportPowerPaletteOrder: 7
+		PauseOnCondition: lowpower
+	SupportPowerChargeBar:
 	-InfiltrateForSupportPower:
+	GrantConditionOnPowerState@LOWPOWER:
+		Condition: lowpower
+		ValidPowerStates: Low, Critical
 
 SPEN.Russia:
 	Inherits: SPEN
@@ -1830,8 +1868,12 @@ GAP:
 	Valued:
 		Cost: 1000
 	ProvidesPrerequisite@buildingname:
-	#	SpawnActorOnDeath:
-	#	Actor: gap.husk
+	SpawnActorOnDeath:
+		Actor: gap.husk
+	-ActorPreviewPlaceBuildingPreview:
+	SequencePlaceBuildingPreview:
+		Sequence: place
+		SequencePalette: placebuilding
 
 GAP.Russia:
 	Inherits: GAP
@@ -2752,7 +2794,7 @@ GTWR:
 	Turreted:
 		TurnSpeed: 255
 	Power:
-		Amount: -20
+		Amount: -30
 	RevealOnFire:
 		ArmamentNames: primary
 	-SpawnActorsOnSell:

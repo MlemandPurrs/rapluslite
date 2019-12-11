@@ -369,7 +369,6 @@ mrls:
 		Facings: 32
 		UseClassicFacingFudge: True
 	icon: mrlsicon
-    msam-icon: msamicon
 
 mnly:
     Inherits: emp-overlay

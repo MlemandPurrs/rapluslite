@@ -190,7 +190,7 @@
 		Name: Greece
 		InternalName: greece
 		Side: Allies
-		Description: Greece\nSpecialization: Fortifications\nThe forces of Greece are unyielding defenders.\nFaction Variations:\n    - Power Plants generate more Power at increased cost.\nPower Plant generates +25, Advanced Power Plant +50 Power.\nCost of PP increased by 50 and 100 of Adv. PP\n    - Concrete Walls and Gates have 50% increased Hitpoints.\nVeterancy Bonus:\n    - Light Tank & Flak Tank gets built as Veteran.\nUnique Support Power:\n    - Paratanks\nA B-52 drops an Veteran squad of two Light\nand a Medium Tank anywhere on the map.\nSpecial Units:\n    - ATGM Soldier (Infantry)\nInfantry armed with anti-tank rockets.\n    - Hover Flak (Vehicle)\nBasically an amphibian hybrid of Jeep and Flak\n    - Battleship (Naval)\nAn early design, single-barrel turreted cruiser.\nTech Unit:\n    - Mobile Bunker (Vehicle)\nThis slow moving armored platform houses an Pillbox atop it.
+		Description: Greece\nSpecialization: Fortifications\nThe forces of Greece are unyielding defenders.\nFaction Variations:\n    - Power Plants generate more Power at increased cost.\nPower Plant generates +25, Advanced Power Plant +50 Power.\nCost of PP increased by 50 and 100 of Adv. PP\n    - Concrete Walls and Gates have 50% increased Hitpoints.\nVeterancy Bonus:\n    - Light Tank & Flak Tank gets built as Veteran.\nUnique Support Power:\n    - Paratanks\nA B-52 drops an Veteran squad of two Light\nand a Medium Tank anywhere on the map.\nSpecial Units:\n    - ATGM Soldier (Infantry)\nInfantry armed with anti-tank rockets.\n    - Hover Flak (Vehicle)\nBasically an amphibian hybrid of Jeep and Flak.\n    - Battleship (Naval)\nAn early design, single-barrel turreted cruiser.\nTech Unit:\n    - Mobile Bunker (Vehicle)\nThis slow moving armored platform houses an Pillbox atop it.
 	Faction@7:
 		Name: Turkey
 		InternalName: turkey
@@ -237,7 +237,7 @@
 		Name: Turkmen.
 		InternalName: turkmen
 		Side: Soviet
-		Description: Turkmenistan\nSpecialization: Oil Barons\nThe forces of Turkmenistan employ many a different mercenaries with their wealth.\nFaction Variations:\n    - Infantry deals 5% more damage.\n    - Obtains 25% more income from Oil derricks.\nVeterancy Bonus:\n    - Medium Tank gets built as Veteran.\nUnique Support Power:\n    - Paramines\nA Badger plane delivers two Minelayers anywhere on the map.\nSpecial Units:\n    - Dushka Infantry (Infantry)\nThis Infantry is capable of deploying into an MG Nest.\n    - Self-Propelled Gun (Vehicle)\nVehicle that functions like an mobile turret.\n    - Magnetic Mine (Naval)\nThis dirigible Sea mine can be detonated against ships.\nTech Unit:\n    - Mobile AA (Vehicle)\nTank with Anti-Air gun mounted on it.
+		Description: Turkmenistan\nSpecialization: Oil Barons\nThe forces of Turkmenistan employ many a different mercenaries with their wealth.\nFaction Variations:\n    - Infantry deals 5% more damage.\n    - Obtains 25% more income from Oil derricks.\nVeterancy Bonus:\n    - Heavy Tank 1-B gets built as Veteran.\nUnique Support Power:\n    - Paramines\nA Badger plane delivers two Minelayers anywhere on the map.\nSpecial Units:\n    - Dushka Infantry (Infantry)\nThis Infantry is capable of deploying into an MG Nest.\n    - Self-Propelled Gun (Vehicle)\nVehicle that functions like an mobile turret.\n    - Magnetic Mine (Naval)\nThis dirigible Sea mine can be detonated against ships.\nTech Unit:\n    - Mobile AA (Vehicle)\nTank with Anti-Air gun mounted on it.
 	Faction@random:
 		Name: Any
 		InternalName: Random
