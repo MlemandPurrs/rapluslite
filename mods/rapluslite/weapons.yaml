@@ -1696,28 +1696,3 @@ AAMine:
 		Explosions: med_explosion_air
 		ImpactSounds: mineblo1.aud
 		ValidTargets: Air
-
-fueldummy:
-	#	ValidTargets: Fuelenabler
-	#	ValidStances: Ally
-	ReloadDelay: 1500
-	#	Range: 1c256
-	Projectile: InstantHit
-	Warhead@1Dam: TargetDamage
-		Damage: 0
-	#	Warhead@2Visual: GrantExternalCondition
-	#	AffectsParent = true
-	#	Condition: fuelgauge
-	#	Duration: 1500
-
-FuelGaugeApplier:
-	ValidTargets: HasFuel
-	ValidStances: Ally
-	ReloadDelay: 1
-	Range: 0c768
-	Projectile: InstantHit
-	Warhead@1Dam: TargetDamage
-		Damage: 0
-	Warhead@2Visual: GrantExternalCondition
-		Condition: fuelgauge
-		Duration: 1500

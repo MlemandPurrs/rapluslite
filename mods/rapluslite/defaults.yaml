@@ -592,6 +592,8 @@ RANKUPCRATE:
 		Range: 1c512
 		SelectionShares: 1
 		MaxExtraCollectors: 9
+	WithCrateBody:
+		XmasImages: scrate-rankup
 	RenderSprites:
 		Image: scrate-rankup
 	-MapEditorData:
@@ -606,6 +608,8 @@ HEALUPCRATE:
 		Sound: heal2.aud
 		SelectionShares: 1
 		Sequence: heal
+	WithCrateBody:
+		XmasImages: scrate-healup
 	RenderSprites:
 		Image: scrate-healup
 	-MapEditorData:

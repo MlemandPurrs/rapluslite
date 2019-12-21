@@ -4,6 +4,8 @@ HARV:
 		Prerequisites: proc, ~vehicles.allies, ~techlevel.infonly
 		BuildPaletteOrder: 1
 	Harvester:
+		Capacity: 30
+        PipCount: 9
 		Resources: Ore,Gems,Scraps
 	Valued:
 		Cost: 1200
@@ -721,12 +723,15 @@ BTR.crate:
 	Inherits: 1TNK
 	Buildable:
 		Prerequisites: ~vehicles.allies, ~player.italy, ~techlevel.low
-		Description: Fast tank, good for scouting.\n  Special ability: Amphibian\nCan swim through sea and river.\n  Strong vs Light armor\n  Weak vs Infantry, Tanks, Aircraft
+		Description: Fast tank, good for scouting.\n  Special ability: Amphibian\nCan swim through sea and river.\nTakes 20% more damage from all sources\nwhile in open water but not rivers.\n  Strong vs Light armor\n  Weak vs Infantry, Tanks, Aircraft
 	Mobile:
 		Locomotor: tracked-amphibious
 	GrantConditionOnTerrain@SEA:
 		TerrainTypes: Water, River
 		Condition: floating
+	GrantConditionOnTerrain@SEAMALUS:
+		TerrainTypes: Water
+		Condition: atsea
 	Targetable:
 		RequiresCondition: !floating
 	Targetable@SEA:
@@ -743,6 +748,9 @@ BTR.crate:
 		RequiresCondition: !floating
 	RenderSprites:
 		Image: 1tnk
+	DamageMultiplier:
+		Modifier: 120
+		RequiresCondition: atsea
 	-MapEditorData:
 
 1TNK.R1:
@@ -1579,12 +1587,15 @@ ATNK.Italy:
 	Inherits: ATNK
 	Buildable:
 		Prerequisites: dome, fix, ~vehicles.allies, ~player.italy, ~techlevel.high
-		Description: Mobile anti-air unit.\n  Special ability: Amphibian\nCan swim through sea and river.\n  Strong vs Infantry, Aircraft\n  Weak vs Tanks
+		Description: Mobile anti-air unit.\n  Special ability: Amphibian\nCan swim through sea and river.\nTakes 20% more damage from all sources\nwhile in open water but not rivers.\n  Strong vs Infantry, Aircraft\n  Weak vs Tanks
 	Mobile:
 		Locomotor: tracked-amphibious
 	GrantConditionOnTerrain@SEA:
 		TerrainTypes: Water, River
 		Condition: floating
+	GrantConditionOnTerrain@SEAMALUS:
+		TerrainTypes: Water
+		Condition: atsea
 	Targetable:
 		RequiresCondition: !floating
 	Targetable@SEA:
@@ -1601,6 +1612,9 @@ ATNK.Italy:
 		RequiresCondition: !floating
 	RenderSprites:
 		Image: atnk
+	DamageMultiplier:
+		Modifier: 120
+		RequiresCondition: atsea
 	-MapEditorData:
 
 TNKD:

@@ -779,16 +779,6 @@ GUN.Husk:
 	Tooltip:
 		Name: Gun Turret (Destroyed)
 
-HGUN.Husk:
-	Inherits: ^BuildingHusk
-	Turreted:
-		TurnSpeed: 12
-		InitialFacing: 56
-	-WithSpriteBody:
-	WithEmbeddedTurretSpriteBody:
-	Tooltip:
-		Name: Heavy Turret (Destroyed)
-
 TSLA.Husk:
 	Inherits: ^BuildingHusk
 	Interactable:

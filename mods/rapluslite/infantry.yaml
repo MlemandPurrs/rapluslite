@@ -21,16 +21,12 @@ E2:
 	Armament@PRIMARY:
 		RequiresCondition: !rank-elite
 	Armament@GARRISONED:
-		RequiresCondition: !rank-elite
+		Name: garrisoned
+		Weapon: GrenadeLauncher
 	Armament@elite:
 		Name: elite
 		Weapon: Grenade.triple
 		LocalOffset: 0,0,555
-		FireDelay: 15
-		RequiresCondition: rank-elite
-	Armament@garrisoned-elite:
-		Name: garrisoned.elite
-		Weapon: Grenade.triple
 		FireDelay: 15
 		RequiresCondition: rank-elite
 	AttackFrontal:
@@ -307,7 +303,7 @@ VOLK:
 		CloakTypes: Cloak, Hijacker
 	Chronoshiftable:
 	ProducibleWithLevel:
-		Prerequisites: infantry.upgraded
+		Prerequisites: barracks.upgraded
 	RenderSprites:
 		Image: VOLK
 	ExternalCondition@PRODUCED:
@@ -323,8 +319,6 @@ VOLK:
 		TargetTypes: Ground, Infantry, Disguise, Cyborg
 	MapEditorData:
 		Categories: Infantry
-	ProducibleWithLevel:
-		Prerequisites: barracks.upgraded
 
 SNIP:
 	Inherits: ^Soldier

@@ -630,44 +630,6 @@ gun.husk:
 		Offset: -1,-1
 		UseTilesetExtension: true
 
-hgun:
-    Inherits: emp-overlay
-	idle:
-		Facings: 32
-		UseClassicFacingFudge: True
-	recoil:
-		Start: 32
-		Facings: 32
-		UseClassicFacingFudge: True
-	make: hgunmake
-		Length: *
-        Tick: 70
-	damaged-idle:
-		Start: 64
-		Facings: 32
-		UseClassicFacingFudge: True
-	damaged-recoil:
-		Start: 96
-		Facings: 32
-		UseClassicFacingFudge: True
-	muzzle: gunfire2
-		Length: 5
-	bib: mbGUN
-		Length: *
-		Offset: -1,-1
-		UseTilesetExtension: true
-	icon: hgunicon
-
-hgun.husk:
-	idle: hgun
-		Start: 64
-		Facings: 32
-        UseClassicFacingFudge: True
-	bib: mbGUN
-		Length: *
-		Offset: -1,-1
-		UseTilesetExtension: true
-
 tsla:
     Inherits: emp-overlay
 	make: tslamake
@@ -923,3 +885,26 @@ mgnst:
 		Length: 6
 		Facings: 8
 	icon: mgnsticon	
+
+gun2:    
+	Inherits: emp-overlay
+	idle: blank32
+		Facings: 32
+		UseClassicFacingFudge: True
+	make: gunmake
+		Length: *
+		Tick: 70
+	turret-normal: gun
+		Facings: 32
+		UseClassicFacingFudge: True
+	turret-damaged: gun
+		Start: 64
+		Facings: 32
+		UseClassicFacingFudge: True	
+	muzzle: gunfire2
+		Length: 5
+	bib: mbGUN
+		Length: *
+		Offset: -1,-1
+		UseTilesetExtension: true
+	icon: gunicon

@@ -451,6 +451,8 @@ SILO:
 		Description: Stores excess refined Ore and Gems.\nThe stored resources are secured against Theft.\nSpecial: Periodic Income\nPeriodically generates minor income\naslong not low on power.
 	Valued:
 		Cost: 150
+	Tooltip:
+		Name: Ore Silo
 	GrantConditionOnPowerState@LOWPOWER:
 		Condition: lowpower
 		ValidPowerStates: Low, Critical
@@ -2205,66 +2207,87 @@ GUN:
 	DetectCloaked:
 		Range: 3c0
 		RequiresCondition: !disabled && !lowpower && !build-incomplete
-	Turreted:
+	Turreted@normal:
+		Turret: default-turret
+		TurnSpeed: 12
 		InitialFacing: 224
 		RequiresCondition: !lowpower
 		PauseOnCondition: lowpower
 	Turreted@lowpower:
-		Turret: primary
+		Turret: lowpower-turret
 		TurnSpeed: 6
 		InitialFacing: 224
 		RequiresCondition: lowpower
 		PauseOnCondition: !lowpower
-	Armament:
+	-Armament:
+	Armament@default:
+		Turret: default-turret
+		Weapon: TurretGun
+		LocalOffset: 512,0,112
+		MuzzleSequence: muzzle
 		PauseOnCondition: disabled
+		RequiresCondition: !lowpower
+	Armament@lowpower:
+		Turret: lowpower-turret
+		Weapon: TurretGun
+		LocalOffset: 512,0,112
+		MuzzleSequence: muzzle
+		PauseOnCondition: disabled
+		RequiresCondition: lowpower
 	AttackTurreted:
+		Turrets: default-turret, lowpower-turret
 		PauseOnCondition: disabled
+		RequiresCondition: !build-incomplete
 	GrantConditionOnPowerState@LOWPOWER:
 		Condition: lowpower
 		ValidPowerStates: Low, Critical
 	-SpawnActorsOnSell:
+	-WithEmbeddedTurretSpriteBody:
+	WithSpriteBody:
+	GrantConditionOnDamageState:
+		Condition:	damaged
+	WithSpriteTurret@NORMAL:
+		Sequence: turret-normal
+		Turret: default-turret
+		RequiresCondition: !build-incomplete && !damaged && !lowpower
+	WithSpriteTurret@NORMALLOWPOWER:
+		Sequence: turret-normal
+		Turret: lowpower-turret
+		RequiresCondition: !build-incomplete && !damaged && lowpower
+	WithSpriteTurret@DAMAGED:
+		Sequence: turret-damaged
+		Turret: default-turret
+		RequiresCondition: !build-incomplete && damaged && !lowpower
+	WithSpriteTurret@DAMAGEDLOWPOWER:
+		Sequence: turret-damaged
+		Turret: lowpower-turret
+		RequiresCondition: !build-incomplete && damaged && lowpower
+	RenderSprites: 
+		Image: gun2
 
 GUN.Italy:
 	Inherits: GUN
 	Buildable:
 		BuildPaletteOrder: 4
 		Prerequisites: weap, ~structures.allies, ~player.italy, ~techlevel.medium	
-	-Armament:
-	Armament:
+	-Armament@default:
+	-Armament@lowpower:	
+	Armament@default:
+		Turret: default-turret
 		Weapon: TurretGun.Italy
 		LocalOffset: 512,0,112
 		MuzzleSequence: muzzle
-	RenderSprites:
-		Image: gun
-	-MapEditorData:
-
-HGUN:
-	Inherits: GUN
-	Buildable:
-		Queue: Defense
-		BuildPaletteOrder: 4
-		#	Prerequisites: weap, ~structures.soviet, ~!player.uzbek, ~techlevel.medium
-		Prerequisites: ~disabled
-		Description: Anti-Armor base defense.\nCan detect cloaked units.\n  Strong vs Vehicles\n  Weak vs Infantry, Aircraft
-	Valued:
-		Cost: 900
-	Tooltip:
-		Name: Heavy Turret
-	Armament:
-		Weapon: TurretGun.dual
-		LocalOffset: 512,62,112, 512,-62,112
+		PauseOnCondition: disabled
+		RequiresCondition: !lowpower
+	Armament@lowpower:
+		Turret: lowpower-turret
+		Weapon: TurretGun.Italy
+		LocalOffset: 512,0,112
 		MuzzleSequence: muzzle
-
-HGUN.uzbek:
-	Inherits: HGUN
-	Buildable:
-		Prerequisites: weap, ~structures.soviet, ~player.uzbek, ~techlevel.medium
-	Health:
-		HP: 30000
-	Valued:
-		Cost: 810
+		PauseOnCondition: disabled
+		RequiresCondition: lowpower
 	RenderSprites:
-		Image: hgun
+		Image: gun2
 	-MapEditorData:
 
 GTUR:
@@ -2427,6 +2450,7 @@ MSLO:
 		Factions: kazakh
 		ResetOnOwnerChange: True
 	-SpawnActorsOnSell:
+	ProvidesPrerequisite@buildingname:
 
 AGUN:
 	Buildable:
