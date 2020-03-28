@@ -1702,3 +1702,9 @@ Chaingun.5tnk:
 	Burst: 3
 	BurstDelays: 5
 	ReloadDelay: 40
+
+203mm.2shot:
+	Inherits: 203mm
+	ReloadDelay: 105
+	Burst: 2
+	BurstDelays: 35
