@@ -252,12 +252,15 @@
 
 ^AffectedByEmergencyRepair:
 	SelfHealing@EMERGENCY_REPAIR:
-		PercentageStep: 5
-		Delay: 25
+		PercentageStep: 1
+		Delay: 6
 		HealIfBelow: 100
 		DamageCooldown: 0
 		RequiresCondition: emergency_repair
-		Step: 500
+		Step: 1
+	TimedConditionBar@EMERGENCY_REPAIR:
+		Color: BFFF80
+		Condition: emergency_repair
 	WithDecoration@EMERGENCY_REPAIR:
 		RequiresSelection: false
 		Image: allyrepair
@@ -270,6 +273,33 @@
 		RequiresCondition: emergency_repair
 	ExternalCondition@EMERGENCY_REPAIR:
 		Condition: emergency_repair
+
+CAMERA.fieldrepair:
+	Interactable:
+	EditorOnlyTooltip:
+		Name: (support power proxy camera)
+	AlwaysVisible:
+	WithSpriteBody:
+	RenderSpritesEditorOnly:
+		Image: camera
+	BodyOrientation:
+		QuantizedFacings: 1
+	Immobile:
+		OccupiesSpace: false
+	Health:
+		HP: 100000
+	HitShape:
+	ProximityExternalCondition:
+		Condition: emergency_repair
+		Range: 3c0
+	KillsSelf:
+		RemoveInstead: true
+		Delay: 750
+	AmbientSound:
+		SoundFiles: srepaira.aud
+		Interval: 20
+	MapEditorData:
+		Categories: System
 
 ^AffectedByLeadership:
 	FirepowerMultiplier@LEADERSHIP:
@@ -439,33 +469,6 @@
 		OpeningSound: cashturn.aud
 		ClosingSound: cashturn.aud
 		BlocksProjectilesHeight: 0
-
-CAMERA.fieldrepair:
-	Interactable:
-	EditorOnlyTooltip:
-		Name: (support power proxy camera)
-	AlwaysVisible:
-	WithSpriteBody:
-	RenderSpritesEditorOnly:
-		Image: camera
-	BodyOrientation:
-		QuantizedFacings: 1
-	Immobile:
-		OccupiesSpace: false
-	Health:
-		HP: 100000
-	HitShape:
-	ProximityExternalCondition:
-		Condition: emergency_repair
-		Range: 3c0
-	KillsSelf:
-		RemoveInstead: true
-		Delay: 151
-	AmbientSound:
-		SoundFiles: srepaira.aud
-		Interval: 20
-	MapEditorData:
-		Categories: System
 
 CAMERA.small:
 	Inherits: CAMERA

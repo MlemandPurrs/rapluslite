@@ -296,6 +296,19 @@ BEHE.Husk:
 	RenderSprites:
 		Image: behe.destroyed
 
+BEHE.tank.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Behemoth Tank)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: behe.tank
+	InfiltrateForTransform:
+		IntoActor: behe.tank
+	RenderSprites:
+		Image: behe.tank.destroyed
+
 ATNK.Husk:
 	Inherits: ^Husk
 	Tooltip:

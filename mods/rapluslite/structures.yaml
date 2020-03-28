@@ -101,7 +101,7 @@ POWR.Russia:
 APWR:
 	Buildable:
 		BuildPaletteOrder: 12
-		Prerequisites: dome, ~!player.turkey, ~!player.russia, ~techlevel.medium
+		Prerequisites: dome, ~!player.greece, ~!player.russia, ~techlevel.medium
 		Description: Provides double the Power of\na standard Power Plant.\nCan be Infiltrated by an Spy resulting\nin a temporary blackout.
 	Building:
 		Footprint: xxx Xxx
@@ -788,17 +788,20 @@ ATEK:
 		ReadyAudio: ReinforcementsArrived
 		BlockedAudio: NoBuild
 		SupportPowerPaletteOrder: 2
-	SpawnActorPower@FIELD_REPAIR:
-		PauseOnCondition: disabled
-		OrderName: FieldRepair
-		Actor: camera.fieldrepair
-		Prerequisites: player.germany
-		ChargeInterval: 6000
+	GrantExternalConditionPower@FieldRepairs:
+		OrderName: FieldRepairPower
+		Prerequisites: player.german
 		Icon: fieldrepair
-		Description: Field Repair
-		LongDesc: Repairs vehicles for 30% of their maximum health\nin a small area over time for an short duration.
-		StartFullyCharged: false
+		ChargeInterval: 6000
+		Range: 2
+		Duration: 375
+		Description: Field Repairs
+		LongDesc: Affected vehicles self-repair for 1% of their\nmaximum health per second over an 15 second duration.
+		SelectTargetSpeechNotification: SelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		Condition: emergency_repair
 		Cursor: goldwrench
+		Sequence: none
 		SupportPowerPaletteOrder: 2
 	ParatroopersPower@AlliedParaTanks:
 		OrderName: AlliedParaTanks
@@ -2138,7 +2141,6 @@ FTUR.karelia:
 	Building:
 		TerrainTypes: Clear, Road, Beach, Water
 	RequiresBuildableArea:
-		AreaTypes: Building, Naval
 		Adjacent: 3
 	RenderSprites:
 		Image: ftur
@@ -2188,7 +2190,6 @@ TSLA.karelia:
 	Building:
 		TerrainTypes: Clear, Road, Beach, Water
 	RequiresBuildableArea:
-		AreaTypes: Building, Naval
 		Adjacent: 3
 	RenderSprites:
 		Image: tsla

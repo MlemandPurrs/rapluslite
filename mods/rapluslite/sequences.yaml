@@ -322,9 +322,35 @@ behe.destroyed:
 		UseClassicFacingFudge: True
 		ZOffset: -512
 
+behe.tank:
+	Inherits: emp-overlay
+	idle: behe
+		Facings: 32
+		UseClassicFacingFudge: True
+	turret: 5tnk-tur
+		Facings: 32
+		UseClassicFacingFudge: True
+	muzzle: cruiser-muzzle
+		Length: 20
+		Facings: 8
+	muzzle-mg: minigun
+		Length: 6
+		Facings: 8
+	icon: 5tnkicon
+
+behe.tank.destroyed:
+	idle: behe
+		Facings: 32
+		UseClassicFacingFudge: True
+		ZOffset: -512
+	turret: 5tnk-tur
+		Facings: 32
+		UseClassicFacingFudge: True
+		ZOffset: -512
+
 mbun:
 	Inherits: emp-overlay
-	idle: harty
+	idle: batf
 		Facings: 32
         UseClassicFacingFudge: True
     turret: 4tnkpbox

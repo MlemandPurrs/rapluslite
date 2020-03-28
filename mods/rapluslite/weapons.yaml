@@ -1696,3 +1696,9 @@ AAMine:
 		Explosions: med_explosion_air
 		ImpactSounds: mineblo1.aud
 		ValidTargets: Air
+
+Chaingun.5tnk:
+	Inherits: ChainGun
+	Burst: 3
+	BurstDelays: 5
+	ReloadDelay: 40

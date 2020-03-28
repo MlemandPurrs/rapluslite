@@ -397,11 +397,16 @@ MBUN:
 	Mobile:
 		Speed: 56
 		PauseOnCondition: !(!empdisable && !notmobile && !being-captured)
+	AttackFrontal:
+		FacingTolerance: 20
+		PauseOnCondition: empdisable
 	Armament:
-		Weapon: M60mg
+		Weapon: ChainGun
 		MuzzleSequence: muzzle
-		LocalOffset: 128,0,43
+		LocalOffset: 712,0,196
 		RequiresCondition: !loaded
+		PauseOnCondition: empdisable
+		Turret: 
 	RevealsShroud:
 		Range: 8c0
 		RevealGeneratedShroud: False
@@ -409,13 +414,14 @@ MBUN:
 		Range: 4c0
 	Turreted:
 		TurnSpeed: 255
-		Offset: -32,0,160
+		Offset: 0,0,210
 	AttackGarrisoned:
 		Armaments: garrisoned
-		PortOffsets: 284,0,128, 124,-241,128, -124,-241,128, -284,0,128, -124,241,128, 124,241,128
+		PortOffsets: 568,0,128, 448,-682,128, -448,-682,128, -768,0,128, -448,682,128, 448,682,128
 		PortYaws: 0, 176, 341, 512, 682, 853
 		PortCones: 88, 88, 88, 88, 88, 88
 		PauseOnCondition: empdisable
+		RequiresCondition: loaded
 	WithSpriteTurret:
 	WithMuzzleOverlay:
 	Cargo:
@@ -2712,8 +2718,9 @@ BEHE:
 		Queue: Vehicle
 		BuildPaletteOrder: 14
 		BuildLimit: 1
-		Prerequisites: stek, ~vehicles.soviet, ~tech.stolen, ~player.belarus, ~techlevel.high
-		Description: Artillery tank of majestic proportions.\nMaximum one can be built.\nCan crush concrete walls.\nSelf-repairs when below 50% of maximum Health.\n  Strong vs Defenses, Vehicles, Infantry\n  Weak vs Aircraft, fast Units
+		#	Prerequisites: stek, ~vehicles.soviet, ~tech.stolen, ~player.belarus, ~techlevel.high
+		Prerequisites: ~disabled
+		Description: Artillery tank of majestic proportions.\nMaximum one can be built.\nCan crush concrete walls.\nSelf-repairs when below 50% of maximum Health.\nNuclear powered, detonates violently on death!\n  Strong vs Defenses, Vehicles, Infantry\n  Weak vs Aircraft, fast Units
 	Valued:
 		Cost: 3000
 	Tooltip:
@@ -2767,6 +2774,88 @@ BEHE:
 		Weight: 8
 		PipType: Red
 	RenderRangeCircle:
+	Explodes@UNITEXPLODES:
+		Weapon: MiniNuke
+		EmptyWeapon: MiniNuke
+		DamageSource: Killer
+
+BEHE.tank:
+	Inherits: ^TrackedVehicle
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 14
+		BuildLimit: 1
+		Prerequisites: stek, ~vehicles.soviet, ~tech.stolen, ~player.belarus, ~techlevel.high
+		Description: Tank of majestic proportions.\nMaximum one can be built.\nCan crush concrete walls.\nSelf-repairs when below 50% of maximum Health.\nNuclear powered, detonates violently on death!\n  Strong vs everything on Ground\n  Weak vs Aircraft, fast Units
+	Valued:
+		Cost: 3000
+	Tooltip:
+		Name: Behemoth Tank
+		GenericName: Super Tank
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 180000
+	Armor:
+		Type: Heavy
+	Mobile:
+		Speed: 56
+		TurnSpeed: 2
+		Locomotor: heavytracked
+	RevealsShroud:
+		Range: 6c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Turreted:
+		TurnSpeed: 2
+	Armament@PRIMARY:
+		Weapon: 203mm.2shot
+		LocalOffset: 900,180,340
+		MuzzleSequence: muzzle
+		Recoil: 43
+		PauseOnCondition: empdisable
+	Armament@SECONDARY:
+		Weapon: 203mm.2shot
+		LocalOffset: 900,-180,340
+		MuzzleSequence: muzzle
+		Recoil: 43
+		PauseOnCondition: empdisable
+	Armament@TERTIARY:
+		Name: tertiary
+		Weapon: ChainGun.5tnk
+		LocalOffset: -85,384,340, -85,-384,340
+		LocalYaw: -100,100
+		Recoil: 0
+		MuzzleSequence: muzzle-mg
+	AttackTurreted:
+		Armaments: primary, secondary, tertiary
+		PauseOnCondition: empdisable
+	WithMuzzleOverlay:
+	WithSpriteTurret:
+	SpawnActorOnDeath:
+		Actor: BEHE.tank.Husk
+	SelfHealing:
+		Step: 500
+		Delay: 10
+		HealIfBelow: 50
+		DamageCooldown: 150
+	ProducibleWithLevel:
+		Prerequisites: vehicles.upgraded
+	SelectionDecorations:
+	Selectable:
+		DecorationBounds: 34,34,0,-3
+	Passenger:
+		CargoType: Vehicle
+		Weight: 8
+		PipType: Red
+	RenderRangeCircle:
+	Explodes@UNITEXPLODES:
+		Weapon: MiniNuke
+		EmptyWeapon: MiniNuke
+		DamageSource: Killer
 
 HAPC:
 	Inherits: ^TrackedVehicle

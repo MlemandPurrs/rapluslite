@@ -102,7 +102,7 @@ Player:
 					TargetMetric: None
 					CheckRadius: 8c0
 			UseFieldRepairs:
-				OrderName: FieldRepair
+				OrderName: FieldRepairPower
 				MinimumAttractiveness: 1
 				Consideration@1:
 					Against: Ally
