@@ -1031,3 +1031,18 @@ ally-mig:
 frog:
 	idle:
 		Facings: 16
+
+mss:
+	Inherits: emp-overlay
+    idle: mgg
+        Facings: 32
+        UseClassicFacingFudge: True
+    turret: ssam
+        Facings: 32
+        UseClassicFacingFudge: False
+    muzzle: mgg
+        Length: 2
+    icon: mssicon
+
+badr:
+	icon: badricon

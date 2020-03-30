@@ -15,6 +15,78 @@ BADR.Crate:
 		Image: badr
 	-MapEditorData:
 
+BADR.buildable:
+	Inherits: ^Plane
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Queue: Aircraft
+		BuildAtProductionType: Plane
+		BuildPaletteOrder: 3
+		BuildLimit: 1
+		Prerequisites: ~afld, stek, ~aircraft.soviet, ~techlevel.high
+		Description: Badger variant modified to carry and fire 3 V2 rockets.\nMaximum 1 can be built.\n  Strong vs Buildings, Vehicles\n  Weak vs Infantry, Aircraft
+	Tooltip:
+		Name: Badger V2
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Valued:
+		Cost: 3000
+	Health:
+		HP: 30000
+	Armament:
+		Weapon: SCUD.badger
+		LocalOffset: 432,320,0, 432,0,0, 432,-320,0
+		LocalYaw: -40, 24
+		PauseOnCondition: !ammo
+	AttackAircraft:
+		FacingTolerance: 20
+		PersistentTargeting: false
+		AttackTurnDelay: 30
+	Aircraft:
+		CruiseAltitude: 2560
+		TurnSpeed: 3
+		Speed: 156
+		RepulsionSpeed: 40
+		MaximumPitch: 56
+	AutoTarget:
+		InitialStance: HoldFire
+		InitialStanceAI: HoldFire
+	AmmoPool:
+		Ammo: 3
+		AmmoCondition: ammo
+		ReloadDelay: 100
+	RevealsShroud:
+		Range: 13c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 11c0
+		Type: GroundPosition
+	Contrail@1:
+		Offset: -432,560,0
+	Contrail@2:
+		Offset: -432,-560,0
+	SpawnActorOnDeath:
+		Actor: BADR.Husk
+	SmokeTrailWhenDamaged@0:
+		Offset: -432,560,0
+		Interval: 2
+	SmokeTrailWhenDamaged@1:
+		Offset: -432,-560,0
+		Interval: 2
+	GivesExperience:
+		Experience: 1000
+	Selectable:
+		Bounds: 36,28,0,2
+		DecorationBounds: 40,29,0,1
+	SelectionDecorations:
+	ProducibleWithLevel:
+		Prerequisites: aircraft.upgraded
+	Rearmable:
+		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh
+	RenderSprites:
+		Image: badr
+
 B52:
 	Inherits: BADR
 	Tooltip:
@@ -217,7 +289,8 @@ MI2:
 		Queue: Aircraft
 		BuildAtProductionType: Helicopter
 		BuildPaletteOrder: 5
-		Prerequisites: ~hpad, ~aircraft.soviet, ~techlevel.medium
+		#	Prerequisites: ~hpad, ~aircraft.soviet, ~techlevel.medium
+		Prerequisites: ~disabled
 		Description: Light helicopter armed with dual chainguns.\n  Strong vs Infantry, Light vehicles\n  Weak vs Tanks, Aircraft
 	Valued:
 		Cost: 1200
@@ -236,6 +309,41 @@ MI2:
 		Condition: kazakh.player
 		Factions: kazakh
 		ResetOnOwnerChange: True
+
+#	MI2.scout:
+#	Inherits: MI2
+#	-Buildable:
+#	Buildable:
+#	Queue: Aircraft
+#	BuildAtProductionType: Plane
+#	BuildPaletteOrder: 7
+#	Prerequisites: ~afld, ~aircraft.soviet, ~player.uzbek, ~techlevel.medium
+#	Description: Fast and nimble light helicopter with\ngood sight-radius and detection.\Detects cloaked units in a close radius.\nSpecial Ability: Flaregun\nCan use Flaregun to fire Flares that illuminate\nwhere they land providing vision while they last.\nCan rearm on Service Depot.\n  Unarmed
+#	RenderSprites:
+#		Image: mi2
+#	-Armament@PRIMARY:
+#	-Armament@SECONDARY:
+#	-Armament@FOURTH:
+#	-Armament@FIFTH:
+#	-AmmoPool:
+#	DetectCloaked:
+#	Range: 4c0
+#	Armament:
+#	Weapon: FlareGun
+#	LocalOffset: 85,-213,-85, 85,213,-85
+#	MuzzleSequence: muzzle
+#	PauseOnCondition: !ammo
+#	AmmoPool:
+#	Ammo: 4
+#	PipCount: 2
+#	ReloadDelay: 9
+#	AmmoCondition: ammo
+#	AttackAircraft:
+#	Armaments: primary
+#	-ProducibleWithLevel:
+#	-Rearmable:
+#	Rearmable:
+#	RearmActors: fix, fix.russia
 
 HELI:
 	Buildable:
@@ -275,8 +383,9 @@ HIND:
 	Buildable:
 		BuildPaletteOrder: 6
 		BuildAtProductionType: Helicopter
-		Prerequisites: ~hpad, stek, ~aircraft.soviet, ~techlevel.high
-		Description: Helicopter gunship armed with dual chainguns\nand anti-ground rockets.\n  Strong vs Infantry, Light armor\n  Weak vs Tanks, Aircraft
+		#	Prerequisites: ~hpad, stek, ~aircraft.soviet, ~techlevel.high
+		Prerequisites: ~disabled
+		Description: Slow helicopter gunship armed with dual chainguns\nand anti-ground rockets.\nReloads on its own, but only when fully out of ammo.\n  Strong vs Infantry, Tanks\n  Weak vs fast Units, Aircraft
 	Tooltip:
 		Name: MI-24 Hind
 	Valued:
@@ -313,14 +422,16 @@ HIND:
 		PauseOnCondition: !ammorock
 	-AmmoPool:
 	AmmoPool@GUNS:
+		Name: guns
 		Armaments: primary, secondary, fourth, fifth
 		Ammo: 24
 		PipCount: 6
 		ReloadDelay: 9
 		AmmoCondition: ammo
 	AmmoPool@ROCKETS:
+		Name: rockets
 		Armaments: tertiary
-		Ammo: 7
+		Ammo: 8
 		PipCount: 4
 		ReloadDelay: 9
 		PipType: Red
@@ -337,6 +448,33 @@ HIND:
 		Condition: kazakh.player
 		Factions: kazakh
 		ResetOnOwnerChange: True
+
+HIND.gunship:
+	Inherits: HIND
+	Buildable:
+		BuildPaletteOrder: 5
+		BuildAtProductionType: Plane
+		Prerequisites: ~afld, stek, ~aircraft.soviet, ~techlevel.high
+	-Rearmable:
+	ReloadAmmoPool@1:
+		AmmoPool: guns
+		Delay: 225
+		Count: 24
+		RequiresCondition: !ammo && !ammorock
+	ReloadAmmoPool@2:
+		AmmoPool: rockets
+		Delay: 225
+		Count: 8
+		RequiresCondition: !ammo && !ammorock
+	WithDecoration@ammoreplenish:
+		RequiresSelection: false
+		Image: pips
+		Sequence: tag-reload
+		ReferencePoint: Top
+		ZOffset: 256
+		RequiresCondition: !ammo && !ammorock
+	RenderSprites:
+		Image: hind
 
 U2.emp:
 	Inherits: U2
@@ -554,7 +692,7 @@ COSSACK:
 	Buildable:
 		Queue: Aircraft
 		BuildAtProductionType: Plane
-		BuildPaletteOrder: 3
+		BuildPaletteOrder: 6
 		BuildLimit: 1
 		Prerequisites: ~afld, stek, ~aircraft.soviet, ~techlevel.high
 		Description: Superheavy cargo lifter plane.\nMaximum 1 can be built.\n Special Ability: Supertransport\nTransports up to 15 Infantry or Vehicles.\nDeploys those with a parachute (force fire to unload)\n  Unarmed

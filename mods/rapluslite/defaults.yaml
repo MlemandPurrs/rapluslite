@@ -681,3 +681,11 @@ MINS:
 	Targetable@AIRBORNE:
 		RequiresCondition: airborne
 		TargetTypes: Air, AirDetonateAttack
+
+FLARE.timed:
+	Inherits: FLARE
+	RevealsShroud:
+		Range: 4c0
+	KillsSelf:
+		Delay: 300
+	-MapEditorData:

@@ -265,7 +265,8 @@ ZTNK:
 	Buildable:
 		Queue: Vehicle
 		BuildPaletteOrder: 12
-		Prerequisites: stek, ~vehicles.soviet, ~tech.stolen, ~player.turkmen, ~techlevel.high
+		#	Prerequisites: stek, ~vehicles.soviet, ~tech.stolen, ~player.turkmen, ~techlevel.high
+		Prerequisites: ~disabled
 		Description: Tank with Anti-Air gun mounted on it.\nCan target only Air units.\n  Strong vs Aircraft\n  Weak vs anything Else
 	Valued:
 		Cost: 900
@@ -772,7 +773,7 @@ BTR.crate:
 LTNK:
 	Inherits: 1TNK
 	Buildable:
-		Prerequisites: ~vehicles.soviet, dome, ~player.belarus, ~techlevel.medium
+		Prerequisites: ~vehicles.soviet, dome, ~player.uzbek, ~techlevel.medium
 		BuildPaletteOrder: 9
 		Description: Fast tank, good for scouting.\n  Strong vs Light armor\n  Weak vs Infantry, Tanks, Aircraft
 	Valued:
@@ -2613,7 +2614,7 @@ DTRK:
 QTNK:
 	Buildable:
 		BuildPaletteOrder: 9
-		Prerequisites: stek, ~vehicles.soviet, ~player.uzbek, ~techlevel.high
+		Prerequisites: stek, ~vehicles.soviet, ~player.belarus, ~techlevel.high
 	Passenger:
 		Weight: 4
 		PipType: Red
@@ -3073,3 +3074,45 @@ PTNK:
 		PipType: Red
 	SpawnActorOnDeath:
 		Actor: PTNK.Husk
+
+MSS:
+    Inherits: ^Vehicle
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 12
+		Prerequisites: stek, ~vehicles.soviet, ~tech.stolen, ~player.turkmen, ~techlevel.high
+		Description: Mobile unit with mounted sam site.\nCan attack Aircraft only.\n  Strong vs Aircraft\n  Weak vs everything else
+	Valued:
+		Cost: 750
+	Tooltip:
+		Name: Mobile Sam
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 15000
+	Armor:
+		Type: Light
+	Mobile:
+		TurnSpeed: 10
+		Speed: 118
+	RevealsShroud:
+		Range: 6c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Turreted:
+        Offset: -260,0,320
+		TurnSpeed: 10
+	Armament:
+		Weapon: RedEye.volley
+		LocalOffset: 192,0,176
+	AttackTurreted:
+	WithMuzzleOverlay:
+	WithSpriteTurret:
+	SelectionDecorations:
+	ProducibleWithLevel:
+		Prerequisites: vehicles.upgraded
+	Selectable:
+		DecorationBounds: 28,28

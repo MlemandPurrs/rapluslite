@@ -170,3 +170,8 @@ molemine:
 wake-infantry:
 	idle:
 		Length: *
+
+smokland:
+	projectile: playersmoke
+		Start: 1
+		Length: 1

@@ -1123,9 +1123,9 @@ MortarNapalm:
 
 RedEye.volley:
 	Inherits: Nike
-	ReloadDelay: 100
-	Burst: 4
-	BurstDelays: 4
+	ReloadDelay: 90
+	Burst: 3
+	BurstDelays: 8
 	Projectile: Missile
 		Inaccuracy: 426
 		HorizontalRateOfTurn: 20
@@ -1708,3 +1708,30 @@ Chaingun.5tnk:
 	ReloadDelay: 105
 	Burst: 2
 	BurstDelays: 35
+
+SCUD.Badger:
+	Inherits: SCUD
+	Burst: 3
+	BurstDelays: 9, 9
+	Projectile: Bullet
+		Inaccuracy: 1c512
+		LaunchAngle: 0
+
+#  SpawnActorWarhead does not exist in mainline T_T
+#	FlareSpawner:
+#	Range: 5c0
+#	ValidTargets: Ground
+#	Projectile: Bullet
+#	Image: smokland
+#	Sequences: projectile
+#	Palette: player
+#	IsPlayerPalette: true
+#	Blockable: false
+#	Shadow: true
+#	Speed: 50
+#	LaunchAngle: 90
+#	Warhead@1Spa: SpawnActor
+#	Actors: flare.timed
+#	Range: 1
+#	ForceGround: false
+#	ValidTargets: Ground, Air
