@@ -128,6 +128,7 @@
 		Condition: invulnerability
 
 ^Infantry:
+	Inherits@91: ^AffectedByGas
 	Inherits@93: ^AffectedByLeadership
 	Inherits@96: ^AffectedByGPSScrambler
 	Selectable:
@@ -155,18 +156,30 @@
 		RequiresCondition: ( barracksheal || hospitalheal )
 
 ^Soldier:
-	GrantConditionOnFaction@TOUGHNESS:
+	GrantConditionOnFaction@TUFFGITZ:
 		Condition: turkeybonus
 		Factions: turkey
-	DamageMultiplier@TOUGHNESS:
+	DamageMultiplier@TUFFGITZ:
 		Modifier: 95
 		RequiresCondition: turkeybonus
-	GrantConditionOnFaction@MOARDAMAGE:
+	#	GrantConditionOnFaction@MOARDAMAGE:
+	#	Condition: turkmenbonus
+	#	Factions: turkmenistan
+	#	FirepowerMultiplier@MOARDAMAGE:
+	#	Modifier: 105
+	#	RequiresCondition: turkmenbonus
+	GrantConditionOnFaction@MOARDAKKA:
 		Condition: turkmenbonus
 		Factions: turkmenistan
-	FirepowerMultiplier@MOARDAMAGE:
-		Modifier: 105
+	ReloadDelayMultiplier@MOARDAKKA:
+		Modifier: 95
 		RequiresCondition: turkmenbonus
+	GrantConditionOnFaction@FASTARUNTZ:
+		Condition: italianbonus
+		Factions: italy
+	SpeedMultiplier@FASTARUNTZ:
+		Modifier: 105
+		RequiresCondition: italianbonus
 
 ^Vehicle:
 	Inherits@93: ^AffectedByLeadership
@@ -174,6 +187,8 @@
 	Inherits@95: ^AffectedByEmergencyRepair
 	Inherits@96: ^AffectedByGPSScrambler
 	Inherits@97: ^AffectedByEMP
+	Inherits@90: ^AffectedByRadioIntercept
+	Inherits@QtnkSlow: ^ThumpSnare
 	Mobile:
 		PauseOnCondition: !(!empdisable && !being-captured)
 	Passenger:
@@ -182,12 +197,13 @@
 		Image: maxichute
 	EdibleByLeap:
 	Repairable:
-		RepairActors: fix, fix.russia
+		RepairActors: fix, fix.russia, fix.ukraine, fix.karelia, fix.kazakh, fix.uzbek, fix.turkmen
+	TemporaryOwnerManager:
 
 ^Plane:
 	-EjectOnDeath:
 	Repairable:
-		RepairActors: fix, fix.russia
+		RepairActors: fix, fix.russia, fix.ukraine, fix.karelia, fix.kazakh, fix.uzbek, fix.turkmen
 
 ^Helicopter:
 	Aircraft:
@@ -207,6 +223,7 @@
 		TerrainTypes: Clear,Road,Beach
 	RequiresBuildableArea:
 		Adjacent: 3
+
 
 ^BasicHusk:
 	ConditionManager:
@@ -234,7 +251,60 @@
 	Targetable:
 		TargetTypes: Ground, Water, Ship, SeaDetonateAttack
 	RepairableNear:
-		RepairActors: spen, spen.russia, syrd, syrd.turkey
+		RepairActors: spen, spen.russia, syrd
+
+^Submarine:
+	Inherits: ^Ship
+	RevealsShroud:
+		Range: 6c0
+		RequiresCondition: !underwater
+		RevealGeneratedShroud: false
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+		RequiresCondition: !underwater
+	RevealsShroud@UNDERWATER:
+		Range: 3c0
+		RequiresCondition: underwater
+	RepairableNear:
+		RepairActors: spen, spen.russia
+	Cloak:
+		CloakTypes: Underwater
+		InitialDelay: 0
+		CloakDelay: 50
+		CloakSound: subshow1.aud
+		UncloakSound: subshow1.aud
+		CloakedCondition: underwater
+		Palette: submerged
+		UncloakOn: Attack, Heal, Dock, SelfHeal, Demolish
+		PauseOnCondition: cloak-force-disabled || shallowcrossing || empdisable || minehit
+		RequiresCondition: !deployed
+	GrantConditionOnDamageState@UNCLOAK:
+		Condition: cloak-force-disabled
+		ValidDamageStates: Critical
+	Targetable:
+		TargetTypes: Ground, Water, Ship, Submarine, SeaDetonateAttack
+		RequiresCondition: !underwater
+	Targetable@UNDERWATER:
+		TargetTypes: Underwater, Submarine, SeaDetonateAttack
+		RequiresCondition: underwater
+	Targetable@REPAIR:
+		RequiresCondition: !underwater && damaged
+		TargetTypes: Repair
+	GrantConditionOnTerrain@CROSSINGFORD:
+		Condition: shallowcrossing
+		TerrainTypes: Shallow
+	GrantConditionOnDeploy:
+		DeployedCondition: deployed
+	ExternalCondition@MINEHIT:
+		Condition: minehit
+	Explodes:
+		Weapon: UnitExplodeSubmarine
+		EmptyWeapon: UnitExplodeSubmarine
+	-MustBeDestroyed:
+	DetectCloaked:
+		CloakTypes: Underwater
+		Range: 3c0
+	RenderDetectionCircle:
 
 ^AffectedByGPSScrambler:
 	Cloak@GPSCRAMBLER:
@@ -349,6 +419,29 @@ CAMERA.fieldrepair:
 	GrantCondition@EMPDISABLE:
 		RequiresCondition: empdisable
 		Condition: disabled
+
+^AffectedByOvercharge:
+	PowerMultiplier@OVERCHARGE:
+		RequiresCondition: overcharged
+		Modifier: 200
+	TimedConditionBar@OVERCHARGE:
+		Color: BFFF80
+		Condition: overcharged
+	ExternalCondition@OVERCHARGE:
+		Condition: overcharged
+	SelfHealing@OVERCHARGE:
+		Delay: 6
+		HealIfBelow: 101
+		DamageCooldown: 0
+		RequiresCondition: overcharged
+		Step: -200
+	#	DamagedByTerrain@OVERCHARGE:
+	#	Damage: 200
+	#	DamageInterval: 6
+	#	Terrain: Clear, Road
+	#	DamageThreshold: 11
+	#	RequiresCondition: overcharged
+	#	DamageThreshold is not taking effect.
 
 ^DisableOnPowerDown:
 	WithColoredOverlay@IDISABLE:
@@ -483,91 +576,91 @@ CRATE:
 	GiveUnitCrateAction@jeep:
 		SelectionShares: 6
 		Units: jeep
-		ValidFactions: allies, england, france, germany, spain, greece, turkey
+		ValidFactions: allies, england, france, germany, spain, italy, greece, turkey
 		Prerequisites: techlevel.low
 	GiveUnitCrateAction@1tnk:
 		SelectionShares: 6
 		Units: 1tnk
-		ValidFactions: allies, england, france, germany, spain, greece, turkey
+		ValidFactions: allies, england, france, germany, spain, italy, greece, turkey
 		Prerequisites: techlevel.low
 	GiveUnitCrateAction@apc:
 		SelectionShares: 6
 		Units: apc.crate
-		ValidFactions: allies, england, france, germany, spain, greece, turkey
+		ValidFactions: allies, england, france, germany, spain, italy, greece, turkey
 		Prerequisites: techlevel.low
 	GiveUnitCrateAction@btr:
 		SelectionShares: 6
 		Units: btr.crate
-		ValidFactions: soviet, russia, ukraine, belarus, kazakh, uzbek, turkmen
+		ValidFactions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen
 		Prerequisites: techlevel.low
 	GiveUnitCrateAction@ftrk:
 		SelectionShares: 6
 		Units: ftrk
-		ValidFactions: soviet, russia, ukraine, belarus, kazakh, uzbek, turkmen
+		ValidFactions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen
 		Prerequisites: techlevel.low
 	GiveUnitCrateAction@arty:
 		SelectionShares: 5
 		Units: arty
-		ValidFactions: allies, england, france, germany, spain, greece, turkey
+		ValidFactions: allies, england, france, germany, spain, italy, greece, turkey
 		Prerequisites: techlevel.medium, dome
 	GiveUnitCrateAction@v2rl:
 		SelectionShares: 5
 		Units: v2rl
-		ValidFactions: soviet, russia, ukraine, belarus, kazakh, uzbek, turkmen
+		ValidFactions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen
 		Prerequisites: techlevel.medium, dome
 	GiveUnitCrateAction@2tnk:
 		SelectionShares: 4
 		Units: 2tnk
-		ValidFactions: allies, england, france, germany, spain, greece, turkey
+		ValidFactions: allies, england, france, germany, spain, italy, greece, turkey
 		Prerequisites: techlevel.medium, fix
 	GiveUnitCrateAction@2tnksvyt:
 		SelectionShares: 4
 		Units: 2tnk.soviet
-		ValidFactions: soviet, russia, ukraine, belarus, kazakh, uzbek, turkmen
+		ValidFactions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen
 		Prerequisites: techlevel.medium, fix
 	GiveUnitCrateAction@3tnk:
 		SelectionShares: 4
 		Units: 3tnk
-		ValidFactions: soviet, russia, ukraine, belarus, kazakh, uzbek, turkmen
+		ValidFactions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen
 		Prerequisites: techlevel.medium, fix
 	GiveUnitCrateAction@atnk:
 		SelectionShares: 6
 		Units: atnk
-		ValidFactions: allies, england, france, germany, spain, greece, turkey
+		ValidFactions: allies, england, france, germany, spain, italy, greece, turkey
 		Prerequisites: techlevel.high, dome
 	GiveUnitCrateAction@squadlight:
 		SelectionShares: 10
 		Units: e1,e1,e1,e3,e3
-		ValidFactions: allies, england, france, germany, spain, greece, turkey, soviet, russia, ukraine, belarus, kazakh, uzbek, turkmen
+		ValidFactions: allies, england, france, germany, spain, italy, greece, turkey, soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen
 	GiveUnitCrateAction@squadlightallies:
 		SelectionShares: 9
 		Units: e1,e1,e1,e3,e3,medi,jeep
-		ValidFactions: allies, england, france, germany, spain, greece, turkey
+		ValidFactions: allies, england, france, germany, spain, italy, greece, turkey
 		TimeDelay: 2250
 	GiveUnitCrateAction@squadlightsoviet:
 		SelectionShares: 9
 		Units: e1,e1,e1,e3,e3,e4,ftrk
-		ValidFactions: soviet, russia, ukraine, belarus, kazakh, uzbek, turkmen
+		ValidFactions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen
 		TimeDelay: 2250
 	GiveUnitCrateAction@squadheavyallies:
 		SelectionShares: 7
 		Units: e1,e1,e1,e1,e3,e3,e3,e6,medi
-		ValidFactions: allies, england, france, germany, spain, greece, turkey
+		ValidFactions: allies, england, france, germany, spain, italy, greece, turkey
 		TimeDelay: 4500
 	GiveUnitCrateAction@squadheavysoviet:
 		SelectionShares: 7
 		Units: e1,e1,e1,e4,e4,e3,e3,e3,e6
-		ValidFactions: soviet, russia, ukraine, belarus, kazakh, uzbek, turkmen
+		ValidFactions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen
 		TimeDelay: 4500
 	GiveUnitCrateAction@squadheavyalliesb:
 		SelectionShares: 6
 		Units: e1,e1,e1,medi,e3,e3,1tnk,1tnk,atnk
-		ValidFactions: allies, england, france, germany, spain, greece, turkey
+		ValidFactions: allies, england, france, germany, spain, italy, greece, turkey
 		TimeDelay: 4500
 	GiveUnitCrateAction@squadheavysovietb:
 		SelectionShares: 6
 		Units: e1,e1,e1,e4,e3,e3,ftrk,ftrk,2tnk.soviet
-		ValidFactions: soviet, russia, ukraine, belarus, kazakh, uzbek, turkmen
+		ValidFactions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen
 		TimeDelay: 4500
 	GrantExternalConditionCrateAction@invis:
 		SelectionShares: 5
@@ -617,6 +710,47 @@ HEALUPCRATE:
 		Image: scrate-healup
 	-MapEditorData:
 
+BOMBCRATE:
+	Inherits: ^Crate
+	#	Tooltip:
+	#	Name: Chrono Mine
+	#	GenericName: Mine
+	#	ShowOwnerRow: false
+	#	GenericVisibility: Enemy
+	Tooltip:
+		Name: Bomb Crate
+		GenericName: Crate
+		ShowOwnerRow: false
+	ExplodeCrateAction@boom:
+		Weapon: CrateExplosion
+		SelectionShares: 1
+	Health:
+		HP: 10000
+		NotifyAppliedDamage: false
+	Armor:
+		Type: Light
+	Targetable:
+		TargetTypes: Ground, Mine
+	HitShape:
+	RenderSprites:
+		Palette: effect
+		Image: scrate
+	WithCrateBody:
+		XmasImages: xcratea, xcrateb, xcratec, xcrated
+		LandSequence: land
+		WaterSequence: water
+	#	RenderSprites:
+	#	Palette: player
+	#	Image: minc
+	#	breaks explosion on Pickup
+	KillsSelf:
+		Delay: 750
+		RemoveInstead: false
+	Explodes:
+		Weapon: CrateExplosion
+		DamageSource: Killer
+	-MapEditorData:
+
 tech.stolen:
 	AlwaysVisible:
 	ProvidesPrerequisite:
@@ -644,6 +778,15 @@ MINS:
 	GrantExternalConditionToCrusher:
 		OnCrushCondition: minehit
 		OnCrushDuration: 50
+
+MINC:
+	Inherits: ^Mine
+	Tooltip:
+		Name: Chrono Mine
+	RenderSprites:
+		Image: minc
+	Explodes:
+		Weapon: CrateExplosion
 
 ^EjectsPilotOnAir:
 	EjectOnDeath@RANK-1:
@@ -689,3 +832,499 @@ FLARE.timed:
 	KillsSelf:
 		Delay: 300
 	-MapEditorData:
+
+^ThumpSnare:
+	WithColoredOverlay@THUMPSNARE:
+		RequiresCondition: thumpsnare
+		Palette: disabled
+	TimedConditionBar@THUMPSNARE:
+		Condition: thumpsnare
+		Color: FFFFFF
+	SpeedMultiplier@THUMPSNARE1:
+		Modifier: 97
+		RequiresCondition: thumpsnare == 1
+	SpeedMultiplier@THUMPSNARE2:
+		Modifier: 95
+		RequiresCondition: thumpsnare == 2
+	SpeedMultiplier@THUMPSNARE3:
+		Modifier: 92
+		RequiresCondition: thumpsnare == 3
+	SpeedMultiplier@THUMPSNARE4:
+		Modifier: 89
+		RequiresCondition: thumpsnare == 4
+	SpeedMultiplier@THUMPSNARE5:
+		Modifier: 86
+		RequiresCondition: thumpsnare == 5
+	SpeedMultiplier@THUMPSNARE6:
+		Modifier: 83
+		RequiresCondition: thumpsnare == 6
+	SpeedMultiplier@THUMPSNARE7:
+		Modifier: 80
+		RequiresCondition: thumpsnare == 7
+	SpeedMultiplier@THUMPSNARE8:
+		Modifier: 77
+		RequiresCondition: thumpsnare == 8
+	SpeedMultiplier@THUMPSNARE9:
+		Modifier: 75
+		RequiresCondition: thumpsnare == 9
+	SpeedMultiplier@THUMPSNARE10:
+		Modifier: 72
+		RequiresCondition: thumpsnare == 10
+	SpeedMultiplier@THUMPSNARE11:
+		Modifier: 69
+		RequiresCondition: thumpsnare == 11
+	SpeedMultiplier@THUMPSNARE12:
+		Modifier: 66
+		RequiresCondition: thumpsnare == 12
+	SpeedMultiplier@THUMPSNARE13:
+		Modifier: 63
+		RequiresCondition: thumpsnare == 13
+	SpeedMultiplier@THUMPSNARE14:
+		Modifier: 60
+		RequiresCondition: thumpsnare == 14
+	ExternalCondition@THUMPSNARE:
+		Condition: thumpsnare
+		TotalCap: 14
+
+Dummy.qtnk:
+	Interactable:
+	EditorOnlyTooltip:
+		Name: (dummy to workaround QTNK)
+	AlwaysVisible:
+	Immobile:
+		OccupiesSpace: false
+	RevealsShroud:
+		Range: 1c0
+		Type: CenterPosition
+	KillsSelf:
+		Delay: 144
+	BodyOrientation:
+		QuantizedFacings: 1
+	WithSpriteBody:
+	RenderSpritesEditorOnly:
+		Image: camera
+
+Dummy.delivery:
+	Interactable:
+	EditorOnlyTooltip:
+		Name: (dummy for instant delivery)
+	AlwaysVisible:
+	Immobile:
+		OccupiesSpace: false
+	RevealsShroud:
+		Range: 1c0
+		Type: CenterPosition
+	KillsSelf:
+		Delay: 144
+	BodyOrientation:
+		QuantizedFacings: 32
+	WithSpriteBody:
+	RenderSprites:
+		Image: dummy
+	ParaDrop:
+		DropRange: 0c0
+		ChuteSound: chute1.aud
+	Cargo:
+		MaxWeight: 1
+		Types: BuildingDelivery
+	Aircraft:
+		CruiseAltitude: 2
+		TurnSpeed: 999
+		Speed: 999
+		Repulsable: False
+		MaximumPitch: 999
+
+^DisguiseableTree:
+	Targetable:
+		TargetTypes: Trees, TreeDisguise
+
+T01:
+	Inherits@SPYMAST: ^DisguiseableTree
+
+T01.Husk:
+	Inherits@SPYMAST: ^DisguiseableTree
+
+T02:
+	Inherits@SPYMAST: ^DisguiseableTree
+	
+T02.Husk:
+	Inherits@SPYMAST: ^DisguiseableTree
+	
+T03:
+	Inherits@SPYMAST: ^DisguiseableTree
+
+T03.Husk:
+	Inherits@SPYMAST: ^DisguiseableTree
+
+T05:
+	Inherits@SPYMAST: ^DisguiseableTree
+
+T05.Husk:
+	Inherits@SPYMAST: ^DisguiseableTree
+
+T06:
+	Inherits@SPYMAST: ^DisguiseableTree
+	
+T06.Husk:
+	Inherits@SPYMAST: ^DisguiseableTree
+
+T07:
+	Inherits@SPYMAST: ^DisguiseableTree
+
+T07.Husk:
+	Inherits@SPYMAST: ^DisguiseableTree
+
+T08:
+	Inherits@SPYMAST: ^DisguiseableTree
+
+T08.Husk:
+	Inherits@SPYMAST: ^DisguiseableTree
+
+T10:
+	Inherits@SPYMAST: ^DisguiseableTree
+	
+T10.Husk:
+	Inherits@SPYMAST: ^DisguiseableTree
+
+T11:
+	Inherits@SPYMAST: ^DisguiseableTree
+
+T11.Husk:
+	Inherits@SPYMAST: ^DisguiseableTree
+
+T12:
+	Inherits@SPYMAST: ^DisguiseableTree
+
+T12.Husk:
+	Inherits@SPYMAST: ^DisguiseableTree
+
+T13:
+	Inherits@SPYMAST: ^DisguiseableTree
+
+T13.Husk:
+	Inherits@SPYMAST: ^DisguiseableTree
+
+T14:
+	Inherits@SPYMAST: ^DisguiseableTree
+
+T14.Husk:
+	Inherits@SPYMAST: ^DisguiseableTree
+
+T15:
+	Inherits@SPYMAST: ^DisguiseableTree
+
+T15.Husk:
+	Inherits@SPYMAST: ^DisguiseableTree
+
+T16:
+	Inherits@SPYMAST: ^DisguiseableTree
+
+T16.Husk:
+	Inherits@SPYMAST: ^DisguiseableTree
+
+T17:
+	Inherits@SPYMAST: ^DisguiseableTree
+
+T17.Husk:
+	Inherits@SPYMAST: ^DisguiseableTree
+
+^ScienceBuilding:
+	SpawnActorsOnSell:
+		ActorTypes: e1,e1,e1,tecn,tecn,e6
+
+^SummonBase:
+	Inherits@1: ^ExistsInWorld
+	Inherits@3: ^SpriteActor
+	Inherits@selection: ^SelectableCombatBuilding
+	Huntable:
+	OwnerLostAction:
+		Action: Kill
+	DrawLineToTarget:
+	UpdatesPlayerStatistics:
+	RepairableBuilding:
+		RepairStep: 700
+		PlayerExperience: 25
+		RepairingNotification: Repairing
+	EngineerRepairable:
+	Demolishable:
+		Condition: being-demolished
+	#	Sellable doesnt work for this.
+	#	Sellable:
+	#	RequiresCondition: !parachute && !being-captured && !being-demolished
+	#	SellSounds: cashturn.aud
+	WithBuildingRepairDecoration:
+		Image: allyrepair
+		Sequence: repair
+		ReferencePoint: Center
+		Palette: player
+		IsPlayerPalette: True
+	Mobile:
+		PauseOnCondition: !parachute
+		Locomotor: immobilepara
+		Speed: 0
+		TurnSpeed: 0
+	SelectionDecorations:
+	WithSpriteControlGroupDecoration:
+	Selectable:
+		Bounds: 24,24
+	Targetable:
+		RequiresCondition: !parachute
+		TargetTypes: Ground, C4, DetonateAttack, Structure, Defense
+	Passenger:
+		CargoType: Vehicle
+	HiddenUnderFog:
+	ActorLostNotification:
+	ProximityCaptor:
+		Types: Building
+	Guardable:
+		Range: 3c0
+	GpsDot:
+		String: Structure
+	WithDamageOverlay:
+	ShakeOnDeath:
+	Tooltip:
+		GenericName: Summoned Building
+	MustBeDestroyed:
+		RequiredForShortGame: false
+	Parachutable:
+		FallRate: 999
+		KilledOnImpassableTerrain: true
+		ParachutingCondition: parachute
+	SoundOnDamageTransition:
+		DamagedSounds: kaboom1.aud
+		DestroyedSounds: kaboom22.aud
+	Explodes:
+		Weapon: SmallBuildingExplode
+		EmptyWeapon: SmallBuildingExplode
+	WithFacingSpriteBody:
+	WithParachute:
+		ShadowImage: dummy
+		ShadowSequence: idle
+		Image: dummy
+		Sequence: idle
+		OpeningSequence: idle
+		Offset: 0,0,0
+		RequiresCondition: parachute
+	HitShape:
+
+^SummonerDummy:
+	Inherits@1: ^ExistsInWorld
+	Inherits@4: ^SpriteActor
+	OwnerLostAction:
+		Action: Kill
+	Armor:
+		Type: None
+	HiddenUnderFog:
+		Type: GroundPosition
+	ProximityCaptor:
+		Types: Plane
+	Tooltip:
+		GenericName: You shouldnt be seeing this...
+	WithShadow:
+		Offset: 43, 128, 0
+		ZOffset: -129
+	WithFacingSpriteBody:
+	MustBeDestroyed:
+	Voiced:
+		VoiceSet: GenericVoice
+	HitShape:
+	ParaDrop:
+		DropRange: 0c512
+	Health:
+		HP: 1
+	Aircraft:
+		CruiseAltitude: 2
+		TurnSpeed: 255
+		Speed: 999
+		Repulsable: False
+		MaximumPitch: 999
+	Cargo:
+		MaxWeight: 10
+	SelectionDecorations:
+		RenderSelectionBars: False
+	RejectsOrders:
+	Interactable:
+
+badr.summoner:
+	Inherits@SYSTEM: ^SummonerDummy
+	RenderSprites:
+		Image: dummy.visual
+
+camera.minimum:
+	Inherits: CAMERA
+	EditorOnlyTooltip:
+		Name: (support power proxy camera)
+	RevealsShroud:
+		Range: 1c0
+
+dummy.maintenance:
+	Inherits: CAMERA
+	EditorOnlyTooltip:
+		Name: (Maintenance sp proxy)
+	-RevealsShroud:
+	ProvidesPrerequisite@maintenance:
+		Prerequisite: maintenance
+	KillsSelf@maintenance:
+		Delay: 2250
+		RemoveInstead: true
+	CashTrickler@maintenance:
+		Amount: 3000
+		InitialDelay: 0
+		Interval: 2251
+
+^KilledWithoutAirfield:
+	SelfHealing@PLANE:
+		Step: 0
+		PercentageStep: -10
+		Delay: 25
+		HealIfBelow: 101
+		DamageCooldown: 0
+		RequiresCondition: !hasairfield
+	GrantConditionOnPrerequisite@AIRFIELD:
+		Prerequisites: afld
+		Condition: hasairfield
+
+#	this isnt going to work!
+#	your own units will reveal themselves to enemy, not enemy to you.
+#	its not working at all :/
+^AffectedByRadioIntercept:
+	RevealsShroud@COMMINTERCEPT:
+		ValidStances: Enemy
+		Range: 5c0
+		MinRange: 5c0
+		RequiresCondition: radiointercept
+		RevealGeneratedShroud: true
+		#	Type: CenterPosition
+	ExternalCondition@COMMINTERCEPT:
+		Condition: radiointercept
+
+dummy.radiohack:
+	Inherits: CAMERA
+	EditorOnlyTooltip:
+		Name: (Radio Intercept sp proxy)
+	-RevealsShroud:
+	#	ProvidesPrerequisite@radiointercept:
+	#	Prerequisite: radiointercept
+	#	Limit of 50c, grrr...
+	RevealsShroud:
+		Range: 50c0
+		MinRange: 50c0
+		Type: CenterPosition
+	#	whelp, it cant go over 50c no matter what
+	#	RevealsShroudMultiplier:
+	#	Modifier: 1000
+	KillsSelf@radiointercept:
+		Delay: 4500
+		RemoveInstead: true
+
+^AffectedByBombVests:
+	WithDecoration@BombVests:
+		RequiresSelection: false
+		Image: pips
+		Sequence: pip-bomb
+		ReferencePoint: Top
+		ZOffset: 256
+		RequiresCondition: desperateguy
+	ExternalCondition@BombVests:
+		Condition: desperateguy
+	Explodes@BombVests:
+		Weapon: UnitExplodeSmall
+		EmptyWeapon: UnitExplodeSmall
+		DamageSource: Killer
+		RequiresCondition: desperateguy
+
+^AffectedByBoobyTrap:
+	#	Delay given here is not taking effect, immediately blows up the moment Engineer touches it when at critical health.
+	#	how its supposed to be: waits until Engineer enters building then blows up at the moment entering Engineer has been discarded.
+	KillsSelf@BoobyTrap:
+		Delay: 25
+		RemoveInstead: false
+		RequiresCondition: being-captured && blowupinstead && capfailer
+	ExternalCondition@BoobyTrap:
+		Condition: blowupinstead
+	WithDecoration@BoobyTrap:
+		RequiresSelection: true
+		Image: pips
+		Sequence: tag-explosive
+		ReferencePoint: Center
+		ZOffset: 256
+		ValidStances: Ally
+		RequiresCondition: blowupinstead
+	GrantConditionOnDamageState@BoobyTrap:
+		Condition: capfailer
+		ValidDamageStates: Critical
+
+^AffectedByBoobyTrapNeutral:
+	CaptureManager:
+		BeingCapturedCondition: being-captured
+	KillsSelf@BoobyTrap:
+		Delay: 99
+		RemoveInstead: false
+		RequiresCondition: being-captured && blowupinstead
+	ExternalCondition@BoobyTrap:
+		Condition: blowupinstead
+	WithDecoration@BoobyTrap:
+		RequiresSelection: true
+		Image: pips
+		Sequence: tag-explosive
+		ReferencePoint: Center
+		ZOffset: 256
+		ValidStances: Enemy
+		RequiresCondition: blowupinstead
+
+^AffectedByBombVests:
+	WithDecoration@BombVests:
+		RequiresSelection: false
+		Image: pips
+		Sequence: pip-bomb
+		ReferencePoint: Top
+		ZOffset: 256
+		RequiresCondition: desperateguy
+	ExternalCondition@BombVests:
+		Condition: desperateguy
+	Explodes@BombVests:
+		Weapon: UnitExplodeSmall
+		EmptyWeapon: UnitExplodeSmall
+		DamageSource: Killer
+		RequiresCondition: desperateguy
+
+^AffectedByGas:
+	WithColoredOverlay@GAS:
+		RequiresCondition: gassed
+		Palette: mustard
+	ExternalCondition@GAS:
+		Condition: gassed
+	SelfHealing@GAS:
+		Delay: 6
+		HealIfBelow: 101
+		DamageCooldown: 0
+		RequiresCondition: gassed && !dontdie
+		Step: -1
+		PercentageStep: -1
+	GrantConditionOnDamageState@DisappearanceFixer:
+		Condition: dontdie
+		ValidDamageStates: Critical	
+
+#	camera.gps:
+#	Inherits: CAMERA
+#	ConditionManager:
+#	EditorOnlyTooltip:
+#		Name: (gps support power proxy camera)
+#	KillsSelf:
+#		RemoveInstead: True
+#		Delay: 375
+#	RevealsShroud:
+#		Range: 0c0
+#		RevealGeneratedShroud: False
+#		Type: CenterPosition
+#	DetectCloaked:
+#		Range: 0c0
+#		CloakTypes: Cloak, Thief, Underwater
+#	ExternalCondition@PRODUCED:
+#		Condition: produced
+#	VoiceAnnouncement:
+#		RequiresCondition: produced
+#		Voice: SatelliteLaunched
+#	ProximityExternalCondition:
+#		Condition: gps
+#		Range: 200c0

@@ -18,6 +18,12 @@ beacon:
 	healcrate: healcratesmallicon
 		Length: *
 		Offset: 0,-42
+	cstrike: cstrikeicon
+		Length: *
+		Offset: 0,-42
+	artystrikesmall: artystrikbcon
+		Length: *
+		Offset: 0,-42
 
 icon:
 	fieldrepair: frepicon
@@ -33,12 +39,29 @@ icon:
 	paranuke: paranukeicon
 	healcrate: healcrateicon
 	airstrike: frogicon
+	cmissicon: cmissicon
+	inteldrop: intldropicon
+	overcharge: overchargeicon
+	lpsummon: spmsticon
+	mainticon: mainticon
+	oilburn: ecosabicon
+	pboxicon: pboxicon
+	artystrike: artystrikeicon
+	u2jamicon: u2jamicon
+	radiohack: gpsruicon
+	bombvests: bombvesticon
+	despmeas: despmeasicon
+	scouts: 1tnksvyticon
+	gasicon: gasicon
+	mincicon: mincicon
 
 explosion:
 	pulse_explosion: pulsefx2
 		BlendMode: Additive
 		Tick: 80
     small_chem: chemball
+    medium_chem: chemball-medium
+    large_chem: chemball-large
     nuke_small: atomlight
 	microwave: microw
 
@@ -135,6 +158,9 @@ pips:
         Offset: 0, 2
     tag-deployed: tag-deployed
         Offset: 0, 2
+    tag-explosive: tag-explosive
+        Offset: 0, 2
+	pip-bomb: pip-bomb
 
 mins:
 	idle:
@@ -150,6 +176,16 @@ mina:
 		Start: 5
 		Length: 11
 		Tick: 120
+	icon: bminicon
+
+minc:
+	Defaults:
+		ZOffset: -512
+	idle:
+	land: minc
+	water: mins
+		Length: *
+		Tick: 250
 	icon: jmin
 
 hjm:
@@ -175,3 +211,29 @@ smokland:
 	projectile: playersmoke
 		Start: 1
 		Length: 1
+
+vchemical:
+	up: cmissup
+		Length: *
+		ZOffset: 1023
+	down: cmissdown
+		Length: *
+		ZOffset: 1023
+
+dummy:
+	idle: blank32
+		Facings: 32
+
+artillerystrike:
+	up: blank32
+		Length: *
+		ZOffset: 511
+	down: blank32
+		Length: *
+		ZOffset: 511
+
+poweroff:
+	charging:
+		Length: *
+		Tick: 160
+		ZOffset: 2047

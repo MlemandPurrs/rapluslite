@@ -966,6 +966,24 @@ U2.nuke.Husk:
 	RenderSprites:
 		Image: ally-u2
 
+U2.jam.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: Husk (Jammer Plane)
+	Aircraft:
+		TurnSpeed: 7
+		Speed: 373
+	Contrail@1:
+		Offset: -725,683,0
+	Contrail@2:
+		Offset: -725,-683,0
+	SmokeTrailWhenDamaged:
+		Offset: -1c43,0,0
+		Interval: 2
+		MinDamage: Undamaged
+	RenderSprites:
+		Image: smig
+
 TRAN.soviet.Husk:
 	Inherits: TRAN.Husk
 	Tooltip:
@@ -1005,3 +1023,53 @@ PTNK.Husk:
 	RenderSprites:
 		Image: ptnk.destroyed
 	-MapEditorData:
+
+YAK.Allies.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: Spitfire Attack Plane
+	Contrail:
+		Offset: -853,0,0
+	Aircraft:
+		TurnSpeed: 5
+		Speed: 149
+	SmokeTrailWhenDamaged:
+		Offset: -853,0,0
+		Interval: 2
+		MinDamage: Undamaged
+	RevealsShroud:
+		MinRange: 9c0
+		Range: 11c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 9c0
+		Type: GroundPosition
+	RenderSprites:
+		Image: ally-yak
+
+MIG.Allies.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: Tornado Attack Plane
+	Contrail@1:
+		Offset: -598,-683,0
+	Contrail@2:
+		Offset: -598,683,0
+	Aircraft:
+		TurnSpeed: 5
+		Speed: 186
+	SmokeTrailWhenDamaged:
+		Offset: -853,0,171
+		Interval: 2
+		MinDamage: Undamaged
+	RevealsShroud:
+		MinRange: 11c0
+		Range: 13c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 11c0
+		Type: GroundPosition
+	RenderSprites:
+		Image: ally-mig

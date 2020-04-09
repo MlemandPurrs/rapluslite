@@ -1,36 +1,35 @@
+^RottingInfantry:
+	WithDeathAnimation@ROT:
+		DeathSequence: rot
+		# DeathPaletteIsPlayerPalette: False
+		# DeathSequencePalette: effect
+		DeathTypes:
+			DefaultDeath: 1
+			BulletDeath: 2
+			SmallExplosionDeath: 3
+			ExplosionDeath: 4
+
 E1:
+	Inherits@ROT: ^RottingInfantry
+	Inherits@BOMBEQUIP: ^AffectedByBombVests
 	Buildable:
 		BuildPaletteOrder: 1
 	Armament@PRIMARY:
-		RequiresCondition: !rank-elite
-	Armament@elite:
-		Name: elite
-		Weapon: M60mg.Inf
-		RequiresCondition: rank-elite
-	AttackFrontal:
-		Armaments: primary, elite
 	Passenger:
 		PipType: Green
 
 E2:
+	Inherits@ROT: ^RottingInfantry
 	Buildable:
 		BuildPaletteOrder: 3
 		Prerequisites: ~barr, ~!player.uzbek, ~techlevel.infonly
 	Valued:
 		Cost: 150
-	Armament@PRIMARY:
-		RequiresCondition: !rank-elite
+	Health:
+		HP: 4500
 	Armament@GARRISONED:
 		Name: garrisoned
 		Weapon: GrenadeLauncher
-	Armament@elite:
-		Name: elite
-		Weapon: Grenade.triple
-		LocalOffset: 0,0,555
-		FireDelay: 15
-		RequiresCondition: rank-elite
-	AttackFrontal:
-		Armaments: primary, elite
 	Passenger:
 		PipType: Green
 
@@ -57,6 +56,8 @@ E2.UzbekR2:
 		Image: e2
 
 E3:
+	Inherits@ROT: ^RottingInfantry
+	Inherits@BOMBEQUIP: ^AffectedByBombVests
 	Buildable:
 		BuildPaletteOrder: 2
 		Description: Anti-tank/Anti-aircraft infantry.\nWhen inside Pillboxes can attack only Ground units.\n  Strong vs Vehicles, Aircraft\n  Weak vs Infantry
@@ -79,22 +80,6 @@ E4:
 	Buildable:
 		Prerequisites: ~barr, dome, ~!player.ukraine, ~techlevel.low
 		BuildPaletteOrder: 9
-	Armament@PRIMARY:
-		RequiresCondition: !rank-elite
-	Armament@GARRISONED:
-		RequiresCondition: !rank-elite
-	Armament@elite:
-		Name: elite
-		Weapon: Flamer.elite
-		LocalOffset: 700,0,500
-		FireDelay: 8
-		RequiresCondition: rank-elite
-	Armament@garrisonedelite:
-		Name: garrisoned-elite
-		Weapon: Flamer.elite
-		RequiresCondition: rank-elite
-	AttackFrontal:
-		Armaments: primary, elite
 	Passenger:
 		PipType: Green
 
@@ -121,6 +106,8 @@ E4.UkraineR2:
 		Image: e4
 
 E6:
+	Inherits@ROT: ^RottingInfantry
+	Inherits@BOMBEQUIP: ^AffectedByBombVests
 	Buildable:
 		BuildPaletteOrder: 5
 		Prerequisites: ~barracks, ~!player.uzbek, ~techlevel.infonly
@@ -130,15 +117,21 @@ E6:
 	-GrantConditionOnPrerequisite@GLOBALREUSABLEENGINEER:
 	-Captures:
 	-Captures@REUSABLE:
-	Captures@SABOTAGE:
+	Captures@CAPTURESPLAYER:
 		CaptureTypes: building-sabotage
-		SabotageThreshold: 25
-		SabotageHPRemoval: 25
-		PlayerExperience: 50
-	Captures@CAPTURES:
+		SabotageThreshold: 20
+		SabotageHPRemoval: 20
+		PlayerExperience: 0
+	Captures@CAPTURESNEUTRAL:
 		CaptureTypes: building, husk
-		PlayerExperience: 50
+		PlayerExperience: 0
 		CaptureDelay: 100
+		ConsumedByCapture: no
+	#	nope...
+	#	Captures@CAPTURESHUSK:
+	#	CaptureTypes: husk
+	#	PlayerExperience: 50
+	#	CaptureDelay: 100
 	Passenger:
 		PipType: Blue
 
@@ -153,12 +146,20 @@ E6.Uzbek:
 		Image: e6
 
 MEDI:
+	Inherits@ROT: ^RottingInfantry
+	Inherits@BOMBEQUIP: ^AffectedByBombVests
+	Health:
+		HP: 6000
 	Buildable:
 		BuildPaletteOrder: 3
 	Passenger:
 		PipType: Blue
 
 MECH:
+	Inherits@ROT: ^RottingInfantry
+	Inherits@BOMBEQUIP: ^AffectedByBombVests
+	Health:
+		HP: 6000
 	Buildable:
 		Prerequisites: ~tent, fix, ~!player.germany, ~techlevel.medium
 		BuildPaletteOrder: 6
@@ -180,20 +181,34 @@ MECH.Germany:
 	-MapEditorData:
 
 SPY:
+	Inherits@ROT: ^RottingInfantry
+	Inherits@BOMBEQUIP: ^AffectedByBombVests
 	Buildable:
 		Prerequisites: ~tent, dome, ~!player.england, ~techlevel.medium
 		BuildPaletteOrder: 7
-		Description: Agent of the Intelligence Service.\nCan detect cloaked units and spies.\n  Special Ability: Espionage\nInfiltrates enemy production structures for rank bonus.\nSteals enemy credits from Refineries.\nInfiltrates enemy Power Plants to cut off base power.\nInfiltrates Radar Domes to reset their exploration.\nInfiltrates Tech Centers to unlock your country's Tech Unit.\n  Special Ability: Disguise\nCan disguise as enemy Infantry.\nLoses disguise when attacking.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
-	Armament:
-		RequiresCondition: !rank-elite
-	Armament@elite:
-		Name: elite
-		Weapon: SilencedPPK.elite
-		RequiresCondition: rank-elite
-	AttackFrontal:
-		Armaments: primary, elite
+		Description: Agent of the Intelligence Service.\nCan detect cloaked units and spies.\n  Special Ability: Espionage\nInfiltrates enemy production structures for rank bonus.\nSteals enemy credits from Refineries.\nInfiltrates enemy Power Plants to cut off base power.\nInfiltrates Radar Domes to reset their exploration.\nInfiltrates Tech Centers to unlock your country's Tech Unit.\n  Special Ability: Disguise\nCan disguise as enemy Infantry.\nLoses disguise when attacking.\n  Special Ability: Hijacking\nSteals enemy vehicles by entering them.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
 	Passenger:
 		PipType: Yellow
+	#	neat.. this works.
+	#	AutoTarget:
+	#	HoldFireCondition: infiltrate
+	#	ReturnFireCondition: sabotage
+	#	Infiltrates:
+	#	RequiresCondition: infiltrate
+	CaptureManager:
+	#	Captures@SABOTAGE:
+	#	CaptureTypes: building-sabotage
+	#	SabotageThreshold: 1
+	#	SabotageHPRemoval: 20
+	#	PlayerExperience: 50
+	#	RequiresCondition: sabotage
+	Captures@VEHICLE:
+		CaptureTypes: vehicle
+		PlayerExperience: 50
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: SilencedPPK
+		MuzzleSequence: garrison-muzzle
 
 SPY.England:
 	Buildable:
@@ -219,15 +234,30 @@ SPY.England.R2:
 		InitialLevels: 2
 
 THF:
+	Inherits@ROT: ^RottingInfantry
+	Inherits@BOMBEQUIP: ^AffectedByBombVests
 	Buildable:
 		BuildPaletteOrder: 6
-		Description: Field operative of the Union.\n  Special Ability: Theft\nSteals enemy credits from Refineries.\nInfiltrates Tech Centers to unlock your country's Tech Unit.\n  Special Ability: Hijacking\nHijacks enemy vehicles.\n  Special Ability: Cloaking\nCloaks when standing still.\n  Unarmed
+		Description: Field operative of the Union.\n  Special Ability: Sabotage\nCan infiltrate enemy buildings to damage them.\nSteals enemy credits from Refineries.\nInfiltrates Tech Centers to unlock your country's Tech Unit.\n  Special Ability: Hijacking\nHijacks enemy vehicles.\n  Special Ability: Cloaking\nCloaks when standing still.\n  Unarmed
+	Tooltip:
+		Name: Saboteur
 	Health:
 		HP: 4500
 	Passenger:
 		PipType: Blue
+	CaptureManager:
+	Captures@SABOTAGE:
+		CaptureTypes: building-sabotage
+		SabotageThreshold: 1
+		SabotageHPRemoval: 20
+		PlayerExperience: 50
+	#	Cant make it blow up only bridges
+	#	Demolition:
+	#	DetonationDelay: 45
 
 E7:
+	Inherits@ROT: ^RottingInfantry
+	Inherits@BOMBEQUIP: ^AffectedByBombVests
 	Buildable:
 		BuildLimit: 1
 		Description: Elite commando infantry.\nArmed with dual pistols and C4.\nMaximum 1 can be trained.\n  Special ability: Amphibian\nCan swim through sea and river.\n  Strong vs Infantry, Buildings\n  Weak vs Vehicles, Aircraft
@@ -259,9 +289,13 @@ E7:
 		RequiresCondition: !swimming
 	Passenger:
 		PipType: Red
+	WithDeathAnimation@ROT:
+		RequiresCondition: !swimming
 
 VOLK:
+	Inherits@ROT: ^RottingInfantry
 	Inherits: GNRL
+	Inherits@BOMBEQUIP: ^AffectedByBombVests
 	Buildable:
 		Queue: Infantry
 		BuildAtProductionType: Soldier
@@ -321,9 +355,11 @@ VOLK:
 		Categories: Infantry
 
 SNIP:
+	Inherits@ROT: ^RottingInfantry
 	Inherits: ^Soldier
 	Inherits@EXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Inherits@BOMBEQUIP: ^AffectedByBombVests
 	Valued:
 		Cost: 900
 	Tooltip:
@@ -333,7 +369,7 @@ SNIP:
 		Queue: Infantry
 		BuildAtProductionType: Soldier
 		Prerequisites: ~tent, atek, ~infantry.allies, ~player.england, ~techlevel.high
-		Description: Sharpshooter infantry.\n Detects cloaked units at close range.\n  Special Ability: Cloaked\nCloaks when standing still.\n  Strong vs Infantry\n  Weak vs Anything Else
+		Description: Sharpshooter infantry.\nNeeds to reload after every 10 shots.\n Detects cloaked units at close range.\n  Special Ability: Camouflage\nCloaks when standing still. Can be ordered to crawl around unseen.\n  Strong vs Infantry\n  Weak vs Anything Else
 	Health:
 		HP: 8000
 	Mobile:
@@ -347,6 +383,23 @@ SNIP:
 		ValidTargets: Infantry
 	Armament@PRIMARY:
 		Weapon: Sniper
+		PauseOnCondition: !ammo
+	AmmoPool:
+		Armaments: primary
+		Ammo: 10
+		PipCount: 0
+		AmmoCondition: ammo
+	ReloadAmmoPool:
+		Delay: 125
+		Count: 10
+		RequiresCondition: !ammo
+	WithDecoration@ammoreplenish:
+		RequiresSelection: false
+		Image: pips
+		Sequence: tag-reload
+		ReferencePoint: Top
+		ZOffset: 256
+		RequiresCondition: !ammo
 	Armament@GARRISONED:
 		Name: garrisoned
 		Weapon: Sniper
@@ -354,31 +407,45 @@ SNIP:
 	AttackFrontal:
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
-		RequiresCondition: !parachute
+		RequiresCondition: !parachute && !iscrawling
 	WithInfantryBody@PARACHUTE:
 		StandSequences: parachute
 		RequiresCondition: parachute
-	Cloak:
+	WithInfantryBody@CRAWL:
+		RequiresCondition: !parachute && iscrawling
+		MoveSequence: prone-run
+		DefaultAttackSequence: prone-shoot
+		IdleSequences: prone-stand
+		StandSequences: prone-stand
+	Cloak@NORMAL:
 		InitialDelay: 250
 		CloakDelay: 120
 		CloakSound:
 		UncloakSound: appear1.aud
 		IsPlayerPalette: true
 		UncloakOn: Attack, Unload, Heal, Dock, SelfHeal, Demolish, Move
-		PauseOnCondition: !(!cloak-force-disabled)
-		RequiresCondition: !rank-elite
-	Cloak@elite:
+		PauseOnCondition: cloak-force-disabled
+		RequiresCondition: !iscrawling
+	Cloak@CRAWLING:
 		InitialDelay: 250
 		CloakDelay: 120
 		CloakSound:
 		UncloakSound: appear1.aud
 		IsPlayerPalette: true
-		UncloakOn: Attack, Unload, Dock, Demolish
-		PauseOnCondition: !(!cloak-force-disabled)
-		RequiresCondition: rank-elite
+		UncloakOn: Attack, Unload, Heal, Dock, SelfHeal, Demolish
+		PauseOnCondition: cloak-force-disabled
+		RequiresCondition: iscrawling
 	GrantConditionOnDamageState@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
+	TakeCover:
+		RequiresCondition: !iscrawling
+	GrantConditionOnDeploy:
+		DeployedCondition: iscrawling
+		SkipMakeAnimation: true
+	SpeedMultiplier@CRAWL:
+		Modifier: 50
+		RequiresCondition: iscrawling
 	DetectCloaked:
 		CloakTypes: Cloak, Thief
 		Range: 3c0
@@ -389,6 +456,16 @@ SNIP:
 		Image: snip
 	Passenger:
 		PipType: Red
+
+SNIP.r1:
+	Inherits: SNIP
+	RenderSprites:
+		Image: SNIP
+	ProducibleWithLevel:
+		Prerequisites: techlevel.infonly
+		InitialLevels: 1
+	-Buildable:
+	-MapEditorData:
 
 GREN:
 	Inherits: ^Soldier
@@ -408,22 +485,10 @@ GREN:
 	Armament@PRIMARY:
 		Weapon: GrenadeLauncher
 		LocalOffset: 100,0,500
-		RequiresCondition: !rank-elite
 	Armament@GARRISONED:
 		Name: garrisoned
 		Weapon: GrenadeLauncher
-		RequiresCondition: !rank-elite
-	Armament@elite:
-		Name: elite
-		Weapon: 155mm
-		LocalOffset: 100,0,500
-		RequiresCondition: rank-elite
-	Armament@garrisonedelite:
-		Name: garrisoned.elite
-		Weapon: 155mm
-		RequiresCondition: rank-elite
 	AttackFrontal:
-		Armaments: primary, elite
 	Explodes:
 		Weapon: UnitExplodeSmall
 		EmptyWeapon: UnitExplodeSmall
@@ -442,8 +507,10 @@ GREN:
 		PipType: Red
 
 MGI:
+	Inherits@ROT: ^RottingInfantry
 	Inherits: ^Soldier
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Inherits@BOMBEQUIP: ^AffectedByBombVests
 	Tooltip:
 		Name: Machine Gunner
 	Valued:
@@ -458,17 +525,11 @@ MGI:
 		Description: Infantry equipped with a rapid firing Machine Gun.\n  Strong vs Infantry\n  Weak vs Vehicles, Defenses
 	Armament@PRIMARY:
 		Weapon: M60mg.Inf
-		RequiresCondition: !rank-elite
 	Armament@GARRISONED:
 		Name: garrisoned
 		Weapon: Vulcan
 		MuzzleSequence: garrison-muzzle
-		RequiresCondition: !rank-elite
-	Armament@elite:
-		Weapon: Vulcan
-		RequiresCondition: rank-elite
 	AttackFrontal:
-		Armaments: primary, elite
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
 		RequiresCondition: !parachute
@@ -481,9 +542,11 @@ MGI:
 		PipType: Red
 
 ATGM:
+	Inherits@ROT: ^RottingInfantry
 	Inherits: ^Soldier
 	Inherits@EXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Inherits@BOMBEQUIP: ^AffectedByBombVests
 	Valued:
 		Cost: 600
 	Tooltip:
@@ -503,7 +566,7 @@ ATGM:
 	Armament@PRIMARY:
 		Weapon: Kornet
 		LocalOffset: 226,43,245
-		FireDelay: 10
+		FireDelay: 4
 	Armament@GARRISONED:
 		Name: garrisoned
 		Weapon: Kornet
@@ -511,15 +574,17 @@ ATGM:
 		ProneOffset: 180,0,-200
 	AttackFrontal:
 	WithInfantryBody:
-		DefaultAttackSequence: shoot
+		DefaultAttackSequence: throw
 	ProducibleWithLevel:
 		Prerequisites: barracks.upgraded
 	Passenger:
 		PipType: Red
 
 RMBO:
+	Inherits@ROT: ^RottingInfantry
 	Inherits: ^Soldier
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Inherits@BOMBEQUIP: ^AffectedByBombVests
 	Valued:
 		Cost: 1000
 	Tooltip:
@@ -529,7 +594,7 @@ RMBO:
 		BuildAtProductionType: Soldier
 		BuildPaletteOrder: 9
 		Prerequisites: ~tent, atek, ~infantry.allies, ~player.turkey, ~techlevel.high
-		Description: Elite commando infantry.\nArmed with assault rifle and C4.\n  Special Ability: Camouflage\nCloaks when standing still.\n  Strong vs Infantry, Buildings\n  Weak vs Vehicles, Aircraft
+		Description: Elite commando infantry.\nArmed with assault rifle and C4.\n  Special Ability: Camouflage\nCloaks when standing still. Can be ordered to crawl around unseen.\n  Strong vs Infantry, Buildings\n  Weak vs Vehicles, Aircraft
 	Mobile:
 		Speed: 71
 		Voice: Move
@@ -557,7 +622,7 @@ RMBO:
 	WithDeathAnimation:
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
-		IdleSequences: idle1,idle2,idle3
+		IdleSequences: idle1,idle2
 	ExternalCondition@PRODUCED:
 		Condition: produced
 	VoiceAnnouncement:
@@ -571,7 +636,7 @@ RMBO:
 	DetectCloaked:
 		CloakTypes: Cloak, Hijacker
 		Range: 3c0
-	Cloak:
+	Cloak@NORMAL:
 		InitialDelay: 250
 		CloakDelay: 120
 		CloakSound:
@@ -579,29 +644,67 @@ RMBO:
 		IsPlayerPalette: true
 		UncloakOn: Attack, Unload, Heal, Dock, SelfHeal, Demolish, Move
 		PauseOnCondition: cloak-force-disabled
+		RequiresCondition: !iscrawling
+	Cloak@CRAWLING:
+		InitialDelay: 250
+		CloakDelay: 120
+		CloakSound:
+		UncloakSound: appear1.aud
+		IsPlayerPalette: true
+		UncloakOn: Attack, Unload, Heal, Dock, SelfHeal, Demolish
+		PauseOnCondition: cloak-force-disabled
+		RequiresCondition: iscrawling
 	GrantConditionOnDamageState@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
+	TakeCover:
+		RequiresCondition: !iscrawling
+	GrantConditionOnDeploy:
+		DeployedCondition: iscrawling
+		SkipMakeAnimation: true
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		StandSequences: stand
+		RequiresCondition: !iscrawling
+	WithInfantryBody@CRAWL:
+		RequiresCondition: iscrawling
+		MoveSequence: prone-run
+		DefaultAttackSequence: prone-shoot
+		IdleSequences: prone-stand
+		StandSequences: prone-stand
+	SpeedMultiplier@CRAWL:
+		Modifier: 50
+		RequiresCondition: iscrawling
+	#	need to ensure stuff damaging with 50% on prone need to be duplicated for iscrawling
+	#	need extra Targetable for that during iscrawling, and to tweak every weapon with Prone50Percent
+	#	Targetable:
+	#	RequiresCondition: !parachute
+	#	TargetTypes: Ground, Infantry, Disguise
 
 SHOK:
+	Inherits@ROT: ^RottingInfantry
+	Inherits@BOMBEQUIP: ^AffectedByBombVests
 	Buildable:
 		BuildPaletteOrder: 7
 		Prerequisites: ~barr, stek, ~player.russia, ~techlevel.high
-		Description: Infantry with portable Tesla coils.\nWeapon doesnt work from within Pillboxes\ndue to structural insulation.\n  Strong vs Infantry, Vehicles\n  Weak vs Aircraft
+		Description: Infantry with portable Tesla coils.\nWeapon doesnt work from within Pillboxes\ndue to structural insulation.\nCan charge powerless Tesla Coils.\n  Strong vs Infantry, Vehicles\n  Weak vs Aircraft
 	Valued:
-		Cost: 450
-	Armament@PRIMARY:
-		RequiresCondition: !rank-elite
+		Cost: 475
+	Health:
+		HP: 7000
 	-Armament@GARRISONED:
-	Armament@elite:
-		Name: elite
-		Weapon: PortaTesla.elite
-		LocalOffset: 427,0,341
-		RequiresCondition: rank-elite
 	AttackFrontal:
-		Armaments: primary, elite
 	Passenger:
 		PipType: Red
+	Armament@SECONDARY:
+		Weapon: TeslaCharge
+		LocalOffset: 427,0,341
+		Cursor: powerdown
+		OutsideRangeCursor: powerdown
+		TargetStances: Ally
+		ForceTargetStances: None
+	RevealsShroud:
+		Range: 5c0
 
 DOG.Bomb:
 	Inherits: ^Soldier
@@ -610,6 +713,7 @@ DOG.Bomb:
 		BuildAtProductionType: Dog
 		BuildPaletteOrder: 7
 		Prerequisites: kenn, fix, ~player.ukraine, ~techlevel.medium
+		#	Prerequisites: ~disabled
 		Description: Dog carrying an Bomb vest\n  Is trained to run towards Vehicles.\n  Strong vs Infantry\n  Weak vs Vehicles, Defenses
 	Valued:
 		Cost: 625
@@ -688,7 +792,7 @@ E5:
 		BuildAtProductionType: Soldier
 		BuildPaletteOrder: 7
 		Prerequisites: ~barr, stek, ~player.belarus, ~techlevel.high
-		Description: Close range, anti-everything Infantry.\n  Strong vs all Ground units and Structures.\n  Weak vs Anti-Infantry Defenses, Aircraft.
+		Description: Close range, anti-everything Infantry.\nImmune to Mustard Gas.\n  Strong vs all Ground units and Structures.\n  Weak vs Anti-Infantry Defenses, Aircraft.
 	Valued:
 		Cost: 700
 	Tooltip:
@@ -727,6 +831,8 @@ E5:
 		Chance: 30
 	ProducibleWithLevel:
 		Prerequisites: barracks.upgraded
+	-ExternalCondition@GAS:
+	-SelfHealing@GAS:
 
 MRTR:
 	Inherits: ^Soldier
@@ -837,7 +943,8 @@ C10:
 
 TECN:
 	Inherits@1: ^CivInfantry
-	Inherits@2: ^ArmedCivilian
+	Inherits@2: ^ArmedCivilian	
+	Inherits@BOMBEQUIP: ^AffectedByBombVests
 	Tooltip:
 		Name: Technician
 	Passenger:
@@ -847,11 +954,14 @@ TECN:
 		Image: TECN
 
 DOG:
+	Inherits@BOMBEQUIP: ^AffectedByBombVests
 	Buildable:
 		BuildPaletteOrder: 4
 		Prerequisites: kenn, ~techlevel.infonly
 	Passenger:
 		PipType: Green
+	Health:
+		HP: 2000
 
 Ant:
 	Buildable:
@@ -862,9 +972,11 @@ Ant:
 		PlayerPalette: scoutant
 
 PLOT:
+	Inherits@ROT: ^RottingInfantry
 	Inherits@1: ^CivInfantry
 	Inherits@2: ^ArmedCivilian
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@BOMBEQUIP: ^AffectedByBombVests
 	Tooltip:
 		Name: Pilot
 	-ScaredyCat:
@@ -912,9 +1024,11 @@ PLOT.RE:
 	-MapEditorData:
 
 STNG:
+	Inherits@ROT: ^RottingInfantry
 	Inherits: ^Soldier
 	Inherits@EXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetAir
+	Inherits@BOMBEQUIP: ^AffectedByBombVests
 	Valued:
 		Cost: 900
 	Tooltip:
@@ -967,7 +1081,9 @@ FTRP:
 		Cost: 600
 
 CINF:
+	Inherits@ROT: ^RottingInfantry
 	Inherits: ^Soldier
+	Inherits@BOMBEQUIP: ^AffectedByBombVests
 	Buildable:
 		Queue: Infantry
 		BuildAtProductionType: Soldier
@@ -989,7 +1105,7 @@ CINF:
 		Name: garrisoned
 		Weapon: ChronoGun
 	WithInfantryBody:
-		IdleSequences: idle, idle2
+		IdleSequences: idle1, idle2
 		StandSequences: stand, stand2
 		DefaultAttackSequence: shoot
 		MoveSequence: run
@@ -1050,9 +1166,11 @@ DSHK:
 		Image: e1
 
 SHOT:
+	Inherits@ROT: ^RottingInfantry
 	Inherits: ^Soldier
 	Inherits@EXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Inherits@BOMBEQUIP: ^AffectedByBombVests
 	Valued:
 		Cost: 225
 	Tooltip:

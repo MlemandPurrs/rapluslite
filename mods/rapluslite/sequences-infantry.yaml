@@ -189,6 +189,9 @@ e5:
 				Offset: -3,2
 		Facings: 8
 		Length: 13
+	parachute:
+		Start: 588
+		Length: 2	
 	icon: e5icon
 
 e6:
@@ -203,6 +206,9 @@ mech:
 spy:
 	Inherits@PostDeath: ^Rot
 	rank2-icon: spyr2icon
+	garrison-muzzle: minigun
+		Length: 6
+		Facings: 8
 
 thf:
 	Inherits@PostDeath: ^Rot
@@ -213,6 +219,7 @@ dog.bomb:
 	icon: demodogicon
 
 e7:
+	Inherits@PostDeath: ^Rot
 	swim_idle: bikinitany
 		Start: 1
 		Facings: 8
@@ -309,6 +316,10 @@ rmbo:
 		Length: 7
 		Facings: 8
 	idle1:
+		Start: 232
+		Length: 30
+		Tick: 120
+	idle2:
 		Start: 232
 		Length: 30
 		Tick: 120

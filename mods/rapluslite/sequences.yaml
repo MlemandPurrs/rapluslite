@@ -379,18 +379,18 @@ v2rl:
 
 mrls:
 	Inherits: emp-overlay
-	idle: 
+	idle: 2tnk
 		Facings: 32
 		UseClassicFacingFudge: True
-	turret: 
-		Start: 32
-		Facings: 32
-		UseClassicFacingFudge: True
-	empty-aim: 
+	turret:
 		Start: 64
 		Facings: 32
 		UseClassicFacingFudge: True
-	aim: 
+	empty-aim:
+		Start: 32
+		Facings: 32
+		UseClassicFacingFudge: True
+	aim:
 		Start: 32
 		Facings: 32
 		UseClassicFacingFudge: True
@@ -398,6 +398,9 @@ mrls:
 
 mnly:
     Inherits: emp-overlay
+	muzzle: minigun
+		Length: 6
+		Facings: 8
 
 mnly.mole:
     Inherits: emp-overlay
@@ -417,9 +420,8 @@ hapc:
 	idle: mnly
 		Facings: 32
 		UseClassicFacingFudge: True
-	muzzle: minigun
-		Length: 6
-		Facings: 8
+	turret: hapc-tur
+		Facings: 32
 	open: mnly
 		Start: 32
 		Length: 3
@@ -453,18 +455,6 @@ atnk.destroyed:
 		Facings: 32
 		UseClassicFacingFudge: True
 		ZOffset: -512
-
-ztnk:
-    Inherits: emp-overlay
-	idle: 1tnk
-		Facings: 32
-		UseClassicFacingFudge: True
-	turret: zsutur
-		Facings: 32
-		UseClassicFacingFudge: True
-	muzzle: gunfire2
-		Length: 2
-	icon: zsuicon
 
 tnkd:
 	Inherits: emp-overlay
@@ -618,14 +608,14 @@ dtnk:
         Start: 32
 		Facings: 32
 		UseClassicFacingFudge: True
-	mrls-body: mrls
+	mrls-body: 2tnk
 		Facings: 32
 		UseClassicFacingFudge: True
 	turret-mrls: mrls
         Start: 32
 		Facings: 32
 		UseClassicFacingFudge: True
-	mbun-body: harty
+	mbun-body: batf
 		Facings: 32
 		UseClassicFacingFudge: True
 	turret-mbun:  4tnkpbox
@@ -820,8 +810,6 @@ bshp:
 		Facings: 16
 	turret: pttur
 		Facings: 32
-	turret-elite: turr
-		Facings: 32
 	muzzle: gunfire2
 		Length: 5
 	turret-dc: mgun
@@ -833,8 +821,6 @@ bshp:
 
 ca:
     Inherits: emp-overlay
-	turret-elite: triple-tur
-		Facings: 32
 
 casvyt:
     Inherits: emp-overlay
@@ -917,6 +903,17 @@ tbt:
 	spinner: tbttur
 		Length: 32
 	icon: tbticon
+
+pbt:
+	Inherits: emp-overlay
+	idle: tbt
+		Facings: 16
+	turret: pbttur
+		Facings: 32
+	muzzle: minigun
+		Length: 6
+		Facings: 8
+	icon: pbticon
 
 fsub:
 	Inherits: emp-overlay
@@ -1046,3 +1043,7 @@ mss:
 
 badr:
 	icon: badricon
+
+dummy.visual:
+	 idle: blank32
+		Facings: 32

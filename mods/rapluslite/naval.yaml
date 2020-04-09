@@ -40,7 +40,6 @@ PT:
 	Armament@PRIMARY:
 		Turret: primary
 		PauseOnCondition: empdisable
-		RequiresCondition: !rank-elite
 	Armament@SECONDARY:
 		Turret: secondary
 		PauseOnCondition: empdisable
@@ -51,16 +50,8 @@ PT:
 		LocalOffset: 128,0,43
 		MuzzleSequence: mg-muzzle
 		PauseOnCondition: empdisable
-	Armament@elite:
-		Name: elite
-		Turret: primary
-		Weapon: 2Inch.elite
-		LocalOffset: 208,0,48
-		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
-		RequiresCondition: rank-elite
 	AttackTurreted:
-		Armaments: primary, secondary, tertiary, elite
+		Armaments: primary, secondary, tertiary
 		Turrets: primary, secondary
 		PauseOnCondition: empdisable
 	-WithSpriteTurret:
@@ -83,7 +74,6 @@ PT.Soviet:
 	-Armament@PRIMARY:
 	-Armament@SECONDARY:
 	-Armament@TERTIARY:
-	-Armament@elite:
 	-AttackTurreted:
 	-WithSpriteTurret@PRIMARY:
 	-WithSpriteTurret@SECONDARY:
@@ -222,7 +212,6 @@ DD:
 	Armament@PRIMARY:
 		Turret: primary
 		PauseOnCondition: empdisable
-		RequiresCondition: !rank-elite
 	Armament@SECONDARY:
 		Name: secondary
 		Turret: secondary
@@ -232,23 +221,8 @@ DD:
 		Name: tertiary
 		Turret: primary
 		PauseOnCondition: empdisable
-		RequiresCondition: !rank-elite
-	Armament@primary-elite:
-		Name: primary.elite
-		Weapon: Stinger.elite
-		Turret: primary
-		LocalOffset: 0,-150,0, 0,-100,0, 0,100,0, 0,150,0
-		LocalYaw: 64, -64
-		RequiresCondition: rank-elite
-	Armament@secondary-elite:
-		Name: aa.elite
-		Weapon: StingerAA.elite
-		Turret: primary
-		LocalOffset: 0,-150,0, 0,-100,0, 0,100,0, 0,150,0
-		LocalYaw: 64, -64
-		RequiresCondition: rank-elite
 	AttackTurreted:
-		Armaments: primary, secondary, tertiary, primary.elite, aa.elite
+		Armaments: primary, secondary, tertiary
 		Turrets: primary, secondary
 		PauseOnCondition: empdisable
 	-WithSpriteTurret:
@@ -283,8 +257,6 @@ DD.Soviet:
 	-Armament@PRIMARY:
 	-Armament@SECONDARY:
 	-Armament@TERTIARY:
-	-Armament@primary-elite:
-	-Armament@secondary-elite:
 	-AttackTurreted:
 	-DetectCloaked:
 	-RenderDetectionCircle:
@@ -374,7 +346,6 @@ BSHP:
 		RecoilRecovery: 34
 		PauseOnCondition: empdisable
 		MuzzleSequence: muzzle
-		RequiresCondition: !rank-elite
 	Armament@SECONDARY:
 		Name: secondary
 		Turret: secondary
@@ -386,18 +357,8 @@ BSHP:
 		Weapon: Vulcan.ship
 		LocalOffset: 128,0,43
 		MuzzleSequence: mg-muzzle
-	Armament@ELITE:
-		Name: primary.elite
-		Turret: primary
-		Weapon: 8Inch
-		LocalOffset: 480,0,40
-		Recoil: 85
-		RecoilRecovery: 34
-		PauseOnCondition: empdisable
-		MuzzleSequence: muzzle
-		RequiresCondition: rank-elite
 	AttackTurreted:
-		Armaments: primary, secondary, primary.elite, tertiary
+		Armaments: primary, secondary
 		Turrets: primary, secondary
 		TargetFrozenActors: True
 		ForceFireIgnoresActors: True
@@ -406,11 +367,6 @@ BSHP:
 	WithSpriteTurret@PRIMARY:
 		Turret: primary
 		Sequence: turret
-		RequiresCondition: !rank-elite
-	WithSpriteTurret@PRIMARYELITE:
-		Sequence: turret-elite
-		Turret: primary
-		RequiresCondition: rank-elite
 	WithSpriteTurret@SECONDARY:
 		Turret: secondary
 		Sequence: turret-dc
@@ -431,47 +387,10 @@ CA:
 		Cost: 2000
 	Armament@PRIMARY:
 		PauseOnCondition: empdisable
-		RequiresCondition: !rank-elite
 	Armament@SECONDARY:
 		PauseOnCondition: empdisable
-		RequiresCondition: !rank-elite
-	Armament@primary-elite:
-		Name: elite.primary
-		Turret: primary
-		Weapon: 8Inch.elite
-		LocalOffset: 480,-100,40, 480,0,40, 480,100,40
-		Recoil: 171
-		RecoilRecovery: 34
-		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
-		RequiresCondition: rank-elite
-	Armament@secondary-elite:
-		Name: elite.secondary
-		Turret: secondary
-		Weapon: 8Inch.elite
-		LocalOffset: 480,-100,40, 480,0,40, 480,100,40
-		Recoil: 85
-		RecoilRecovery: 17
-		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
-		RequiresCondition: rank-elite
 	AttackTurreted:
-		Armaments: primary, secondary, elite.primary, elite.secondary
 		PauseOnCondition: empdisable
-	WithSpriteTurret@PRIMARY:
-		Turret: primary
-		RequiresCondition: !rank-elite
-	WithSpriteTurret@SECONDARY:
-		Turret: secondary
-		RequiresCondition: !rank-elite
-	WithSpriteTurret@PRIMARYELITE:
-		Sequence: turret-elite
-		Turret: primary
-		RequiresCondition: rank-elite
-	WithSpriteTurret@SECONDARYELITE:
-		Sequence: turret-elite
-		Turret: secondary
-		RequiresCondition: rank-elite
 	RenderRangeCircle:
 	ReloadArmamentsBar:
 		Color: FFFF00
@@ -508,13 +427,6 @@ CA.gap:
 		LocalOffset: 208,0,48
 		MuzzleSequence: muzzle
 		PauseOnCondition: empdisable
-	-Armament@primary-elite:
-	-Armament@secondary-elite:
-	-AttackTurreted:
-	AttackTurreted:
-		Armaments: primary, secondary
-		Turrets: primary, secondary
-		PauseOnCondition: empdisable
 	WithIdleOverlay@SPINNER:
 		Offset: 0,0,171
 		Sequence: spinner
@@ -525,8 +437,6 @@ CA.gap:
 		Image: advca
 	WithSpriteTurret@PRIMARY:
 		Sequence: turret-rear
-	-WithSpriteTurret@PRIMARYELITE:
-	-WithSpriteTurret@SECONDARYELITE:
 	-RenderRangeCircle:
 	ReloadArmamentsBar:
 		Armaments: primary
@@ -545,9 +455,7 @@ CA.Soviet:
 	-Armament@SECONDARY:
 	-AttackTurreted:
 	-WithSpriteTurret@PRIMARY:
-	-WithSpriteTurret@PRIMARYELITE:
 	-WithSpriteTurret@SECONDARY:
-	-WithSpriteTurret@SECONDARYELITE:
 	-WithMuzzleOverlay:
 	Turreted@PRIMARY:
 		Turret: primary
@@ -718,66 +626,53 @@ CARR.Deployed:
 
 SS:
 	Buildable:
+		Prerequisites: ~disabled
+
+#	clone of SS to circumvent bugs with it inheriting weird vision from somewhere
+SS.new:
+	Inherits: ^Submarine
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Submarine
 		BuildPaletteOrder: 2
-		Description: Submerged anti-ship unit\narmed with torpedoes.\nCan detect other submarines.\n  Strong vs Naval units\n  Weak vs Ground units, Aircraft\n  Special Ability: Submerge\nCan dive underwater to become invisible\nmove unseen and avoid damage of most weapons.\nCan be manually ordered to surface for Repairs.
 		Prerequisites: ~spen, ~!player.karelia, ~techlevel.low
+		Description: Submerged anti-ship unit\narmed with torpedoes.\nCan detect other submarines.\n  Strong vs Naval units\n  Weak vs Ground units, Aircraft\n  Special Ability: Submerge\nCan dive underwater to become invisible\nmove unseen and avoid damage of most weapons.\nCan be manually ordered to surface for Repairs.
 	Valued:
 		Cost: 775
+	Tooltip:
+		Name: Submarine
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 25000
+	Armor:
+		Type: Light
 	Mobile:
+		TurnSpeed: 4
+		Speed: 71
 	Armament:
-		PauseOnCondition: empdisable
-		RequiresCondition: !rank-elite
-	Armament@elite:
-		Name: elite
-		Weapon: TorpTube.elite
+		Weapon: TorpTube
 		LocalOffset: 0,-171,0, 0,171,0
 		FireDelay: 2
-		RequiresCondition: rank-elite
-	AttackFrontal:
-		Armaments: primary, elite
 		PauseOnCondition: empdisable
-	RevealsShroud:
-		Range: 6c0
-		RequiresCondition: !underwater
-		RevealGeneratedShroud: false
-	RevealsShroud@GAPGEN:
-		Range: 4c0
-		RequiresCondition: !underwater
-	RevealsShroud@UNDERWATER:
-		Range: 3c0
-		RequiresCondition: underwater
-	RepairableNear:
-		RepairActors: spen, spen.russia
-	Cloak:
-		CloakTypes: Underwater
-		InitialDelay: 0
-		CloakDelay: 50
-		CloakSound: subshow1.aud
-		UncloakSound: subshow1.aud
-		CloakedCondition: underwater
-		Palette: submerged
-		UncloakOn: Attack, Heal, Dock, SelfHeal, Demolish
-		PauseOnCondition: cloak-force-disabled || shallowcrossing || empdisable || minehit
-		RequiresCondition: !deployed
-	Targetable:
-		TargetTypes: Ground, Water, Ship, Submarine, SeaDetonateAttack
-		RequiresCondition: !underwater
-	Targetable@UNDERWATER:
-		TargetTypes: Underwater, Submarine, SeaDetonateAttack
-		RequiresCondition: underwater
-	Targetable@REPAIR:
-		RequiresCondition: !underwater && damaged
-		TargetTypes: Repair
-	GrantConditionOnTerrain@CROSSINGFORD:
-		Condition: shallowcrossing
-		TerrainTypes: Shallow
-	GrantConditionOnDeploy:
-		DeployedCondition: deployed
-	ExternalCondition@MINEHIT:
-		Condition: minehit
+	AttackFrontal:
+		PauseOnCondition: empdisable
+	SelectionDecorations:
+	AutoTarget:
+		InitialStance: Defend
+		InitialStanceAI: ReturnFire
+	AutoTargetPriority@DEFAULT:
+		ValidTargets: Water, Underwater
+	AutoTargetPriority@ATTACKANYTHING:
+		ValidTargets: Water, Underwater
+	Selectable:
+		DecorationBounds: 38,38
+	RenderSprites:
+		Image: ss
 
 SS.Karelia:
-	Inherits: SS
+	Inherits: SS.new
 	Buildable:
 		Prerequisites: ~spen, ~player.karelia, ~techlevel.low
 	RenderSprites:
@@ -788,7 +683,7 @@ SS.Karelia:
 	-MapEditorData:
 
 SS.AG:
-	Inherits: SS
+	Inherits: SS.new
 	Valued:
 		Cost: 950
 	Buildable:
@@ -812,7 +707,7 @@ SS.AG:
 		MuzzleSequence: muzzle
 		PauseOnCondition: empdisable
 	AttackFrontal:
-		Armaments: primary, elite, secondary
+		Armaments: primary, secondary
 	WithMuzzleOverlay:
 	WithMoveAnimation:
 		MoveSequence: move
@@ -840,75 +735,62 @@ SS.AG:
 
 MSUB:
 	Buildable:
+		Prerequisites: ~disabled
+
+#	clone of MSUB to circumvent bugs with it inheriting weird vision from somewhere
+MSUB.new:
+	Inherits: ^Submarine
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Submarine
 		BuildPaletteOrder: 4
+		Prerequisites: ~spen, stek, ~techlevel.high
 		Description: Submerged anti-ground siege unit.\nCan detect other submarines.\n  Strong vs Buildings, Ground units, Aircraft\n  Weak vs Naval units\n  Special Ability: Submerge\nCan dive underwater to become invisible\nmove unseen and avoid damage of most weapons.\nCan be manually ordered to surface for Repairs.
 		BuildDurationModifier: 60
+	Valued:
+		Cost: 1750
+	Tooltip:
+		Name: Missile Submarine
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 40000
+	Armor:
+		Type: Light
+	Mobile:
+		TurnSpeed: 3
+		Speed: 42
 	Armament@PRIMARY:
-		PauseOnCondition: empdisable
-		RequiresCondition: !rank-elite
-	Armament@elite:
-		Name: elite
-		Weapon: SubMissile.elite
+		Weapon: SubMissile
 		LocalOffset: 0,-171,0, 0,171,0
 		FireDelay: 2
 		PauseOnCondition: empdisable
-		RequiresCondition: rank-elite
 	AttackFrontal:
-		Armaments: primary, elite
+		TargetFrozenActors: True
+		ForceFireIgnoresActors: True
 		PauseOnCondition: empdisable
-	-Armament@SECONDARY:
-	Valued:
-		Cost: 1750
+	SelectionDecorations:
+	AutoTarget:
+		InitialStance: HoldFire
+		InitialStanceAI: ReturnFire
 	WithMoveAnimation:
 		MoveSequence: move
 		RequiresCondition: !underwater
 	RenderSprites:
 		Image: ADVMSUB
-	RevealsShroud:
-		Range: 8c0
-		RequiresCondition: !underwater
-		RevealGeneratedShroud: false
-	RevealsShroud@GAPGEN:
-		Range: 6c0
-		RequiresCondition: !underwater
-	RevealsShroud@UNDERWATER:
-		Range: 4c0
-		RequiresCondition: underwater
-	RepairableNear:
-		RepairActors: spen, spen.russia
-	Cloak:
-		CloakTypes: Underwater
-		InitialDelay: 0
-		CloakDelay: 50
-		CloakSound: subshow1.aud
-		UncloakSound: subshow1.aud
-		CloakedCondition: underwater
-		Palette: submerged
-		UncloakOn: Attack, Heal, Dock, SelfHeal, Demolish
-		PauseOnCondition: cloak-force-disabled || shallowcrossing || empdisable || minehit
-		RequiresCondition: !deployed
-	Targetable:
-		TargetTypes: Ground, Water, Ship, Submarine, SeaDetonateAttack
-		RequiresCondition: !underwater
-	Targetable@UNDERWATER:
-		TargetTypes: Underwater, Submarine, SeaDetonateAttack
-		RequiresCondition: underwater
-	Targetable@REPAIR:
-		RequiresCondition: !underwater && damaged
-		TargetTypes: Repair
-	GrantConditionOnTerrain@CROSSINGFORD:
-		Condition: shallowcrossing
-		TerrainTypes: Shallow
-	GrantConditionOnDeploy:
-		DeployedCondition: deployed
-	ExternalCondition@MINEHIT:
-		Condition: minehit
 	ReloadArmamentsBar:
 		Color: FFFF00
 	RenderRangeCircle:
-
+	RevealsShroud:
+		MinRange: 5c0
+		Range: 8c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 5c0
+	
 MSUB.AA:
-	Inherits: MSUB
+	Inherits: MSUB.new
 	Buildable:
 		BuildPaletteOrder: 3
 		Prerequisites: ~spen, dome, ~techlevel.medium
@@ -928,32 +810,13 @@ MSUB.AA:
 		LocalOffset: 0,-171,0, 0,171,0
 		FireDelay: 2
 		PauseOnCondition: empdisable
-		RequiresCondition: !rank-elite
-	-Armament@elite:
-	Armament@elite:
-		Name: elite
-		Weapon: SubMissileAA.elite
-		LocalOffset: 0,-171,0, 0,171,0
-		FireDelay: 2
-		PauseOnCondition: empdisable
-		RequiresCondition: rank-elite
 	-AttackFrontal:
 	AttackFrontal:
-		Armaments: primary, elite
+		Armaments: primary
 		PauseOnCondition: empdisable
 	-WithMoveAnimation:
 	RenderSprites:
 		Image: MSUB
-	RevealsShroud:
-		Range: 6c0
-		RequiresCondition: !underwater
-		RevealGeneratedShroud: false
-	RevealsShroud@GAPGEN:
-		Range: 4c0
-		RequiresCondition: !underwater
-	RevealsShroud@UNDERWATER:
-		Range: 3c0
-		RequiresCondition: underwater
 
 TBT:
 	Inherits: ^Ship
@@ -985,21 +848,95 @@ TBT:
 	Armament:
 		Weapon: TTankZap
 		LocalOffset: 85,0,128
-		RequiresCondition: !rank-elite
-	Armament@elite:
-		Name: elite
-		Weapon: TTankZap.elite
-		LocalOffset: 85,0,128
-		RequiresCondition: rank-elite
 	WithIdleOverlay@SPINNER:
 		Sequence: spinner
 	AttackTurreted:
-		Armaments: primary, elite
+		Armaments: primary
 	SelectionDecorations:
 	Selectable:
 		DecorationBounds: 36,36
 	RepairableNear:
 		RepairActors: syrd, spen, spen.russia
+
+PBT:
+	Inherits: ^Ship
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Buildable:
+		Queue: Ship
+		BuildPaletteOrder: 6
+		Prerequisites: fix, ~player.turkmen, ~techlevel.high
+		Description: Boat with MG carrying an pair of torpedoes.\n  Strong vs Infantry, Navy\n  Weak vs Tanks, Aircraft
+	Valued:
+		Cost: 600
+	Tooltip:
+		Name: Patrol Boat
+	Health:
+		HP: 20000
+	Armor:
+		Type: Heavy
+	Mobile:
+		TurnSpeed: 7
+		Speed: 92
+	RevealsShroud:
+		Range: 6c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	Turreted@PRIMARY:
+		Turret: primary
+		TurnSpeed: 255
+		Offset: 0,0,0
+	Turreted@SECONDARY:
+		Turret: secondary
+		TurnSpeed: 5
+		Offset: 1,0,170
+	AttackFrontal:
+		PauseOnCondition: empdisable
+	Armament@PRIMARY:
+		AmmoPool: torps
+		Weapon: TorpTube
+		LocalOffset: 0,-171,0, 0,171,0
+		FireDelay: 2
+		Turret: primary
+		PauseOnCondition: empdisable && !ammo
+	Armament@SECONDARY:
+		#	AmmoPool: none
+		Weapon: Vulcan.boat
+		LocalOffset: 85,0,128
+		MuzzleSequence: muzzle
+		PauseOnCondition: empdisable
+		Turret: secondary
+	WithSpriteTurret:
+		Turret: secondary
+		Sequence: turret
+	WithMuzzleOverlay:
+	SelectionDecorations:
+	Selectable:
+		DecorationBounds: 36,36
+	RepairableNear:
+		RepairActors: syrd, spen, spen.russia
+	AmmoPool:
+		Name: torps
+		Armaments: primary
+		Ammo: 2
+		PipCount: 1
+		RearmSound: minelay1.aud
+		AmmoCondition: ammo
+	ReloadAmmoPool:
+		AmmoPool: torps
+		Delay: 100
+		Count: 2
+		Sound: minelay1.aud
+		RequiresCondition: replenishsmine
+	WithDecoration@minereplenish:
+		RequiresSelection: true
+		Image: pips
+		Sequence: tag-reload
+		ReferencePoint: Top
+		ZOffset: 256
+		RequiresCondition: replenishsmine
+	ExternalCondition@MINEREPLENISH:
+		Condition: replenishsmine
 
 FSUB:
 	Inherits: ^Ship
@@ -1176,7 +1113,7 @@ MGNM:
 		Queue: Ship
 		BuildAtProductionType: Submarine
 		BuildPaletteOrder: 6
-		Prerequisites: ~spen, fix, ~player.turkmen, ~techlevel.medium
+		Prerequisites: ~spen, fix, ~player.karelia, ~techlevel.medium
 		Description: Dirigible sea-mine.\nCloaked when standing still.\n  Strong vs Naval units\n  Weak vs anything Else
 	Valued:
 		Cost: 625
@@ -1250,7 +1187,8 @@ HVRF:
 	Buildable:
 		Queue: Vehicle
 		BuildPaletteOrder: 9
-		Prerequisites: dome, fix, ~vehicles.allies, ~player.greece, ~techlevel.medium
+		#	Prerequisites: dome, fix, ~vehicles.allies, ~player.greece, ~techlevel.medium
+		Prerequisites: ~disabled
 		Description: Amphibian anti-air unit with\ntoken Mg for ground support.\nCan carry one Infantry.\n  Strong vs Infantry, Aircraft\n  Weak vs Tanks, Ships
 	Valued:
 		Cost: 700
@@ -1313,7 +1251,8 @@ BSUB:
 		Queue: Ship
 		BuildAtProductionType: Submarine
 		BuildPaletteOrder: 6
-		Prerequisites: ~spen, stek, ~player.karelia, ~techlevel.high
+		#	Prerequisites: ~spen, stek, ~player.karelia, ~techlevel.high
+		Prerequisites: ~disabled
 		Description: Submersible siege unit armed with\nanti-ground missile battery.\n  Strong vs Ships, Buildings\n  Weak vs attacks at close range.\n  Special Ability: Submerge\nCan dive underwater to become invisible\nmove unseen and avoid damage of most weapons.\nCan be manually ordered to surface for Repairs.
 	Valued:
 		Cost: 2400

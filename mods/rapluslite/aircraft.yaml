@@ -1,4 +1,6 @@
 BADR:
+	Health:
+		HP: 20000
 	SpeedMultiplier:
 		Modifier: 110
 		RequiresCondition: kazakh.player
@@ -18,13 +20,14 @@ BADR.Crate:
 BADR.buildable:
 	Inherits: ^Plane
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Inherits@AUTODAMAGE: ^KilledWithoutAirfield
 	Buildable:
 		Queue: Aircraft
 		BuildAtProductionType: Plane
 		BuildPaletteOrder: 3
 		BuildLimit: 1
 		Prerequisites: ~afld, stek, ~aircraft.soviet, ~techlevel.high
-		Description: Badger variant modified to carry and fire 3 V2 rockets.\nMaximum 1 can be built.\n  Strong vs Buildings, Vehicles\n  Weak vs Infantry, Aircraft
+		Description: Badger variant modified to carry and fire 4 V2 rockets.\nMaximum 1 can be built.\n  Strong vs Buildings, Vehicles\n  Weak vs Infantry, Aircraft
 	Tooltip:
 		Name: Badger V2
 	UpdatesPlayerStatistics:
@@ -32,7 +35,7 @@ BADR.buildable:
 	Valued:
 		Cost: 3000
 	Health:
-		HP: 30000
+		HP: 20000
 	Armament:
 		Weapon: SCUD.badger
 		LocalOffset: 432,320,0, 432,0,0, 432,-320,0
@@ -41,7 +44,6 @@ BADR.buildable:
 	AttackAircraft:
 		FacingTolerance: 20
 		PersistentTargeting: false
-		AttackTurnDelay: 30
 	Aircraft:
 		CruiseAltitude: 2560
 		TurnSpeed: 3
@@ -52,7 +54,7 @@ BADR.buildable:
 		InitialStance: HoldFire
 		InitialStanceAI: HoldFire
 	AmmoPool:
-		Ammo: 3
+		Ammo: 4
 		AmmoCondition: ammo
 		ReloadDelay: 100
 	RevealsShroud:
@@ -231,7 +233,7 @@ IROQ:
 	Selectable:
 		DecorationBounds: 38,32
 	Rearmable:
-		RearmActors: hpad, hpad.turkey, carr.deployed
+		RearmActors: hpad, carr.deployed
 
 IROQ.Turkey:
 	Inherits: IROQ
@@ -291,6 +293,7 @@ MI2:
 		BuildPaletteOrder: 5
 		#	Prerequisites: ~hpad, ~aircraft.soviet, ~techlevel.medium
 		Prerequisites: ~disabled
+		#	Prerequisites: ~afld, ~aircraft.soviet, ~player.uzbek, ~techlevel.medium
 		Description: Light helicopter armed with dual chainguns.\n  Strong vs Infantry, Light vehicles\n  Weak vs Tanks, Aircraft
 	Valued:
 		Cost: 1200
@@ -310,40 +313,49 @@ MI2:
 		Factions: kazakh
 		ResetOnOwnerChange: True
 
-#	MI2.scout:
-#	Inherits: MI2
-#	-Buildable:
-#	Buildable:
-#	Queue: Aircraft
-#	BuildAtProductionType: Plane
-#	BuildPaletteOrder: 7
-#	Prerequisites: ~afld, ~aircraft.soviet, ~player.uzbek, ~techlevel.medium
-#	Description: Fast and nimble light helicopter with\ngood sight-radius and detection.\Detects cloaked units in a close radius.\nSpecial Ability: Flaregun\nCan use Flaregun to fire Flares that illuminate\nwhere they land providing vision while they last.\nCan rearm on Service Depot.\n  Unarmed
-#	RenderSprites:
-#		Image: mi2
-#	-Armament@PRIMARY:
-#	-Armament@SECONDARY:
-#	-Armament@FOURTH:
-#	-Armament@FIFTH:
-#	-AmmoPool:
-#	DetectCloaked:
-#	Range: 4c0
-#	Armament:
-#	Weapon: FlareGun
-#	LocalOffset: 85,-213,-85, 85,213,-85
-#	MuzzleSequence: muzzle
-#	PauseOnCondition: !ammo
-#	AmmoPool:
-#	Ammo: 4
-#	PipCount: 2
-#	ReloadDelay: 9
-#	AmmoCondition: ammo
-#	AttackAircraft:
-#	Armaments: primary
-#	-ProducibleWithLevel:
-#	-Rearmable:
-#	Rearmable:
-#	RearmActors: fix, fix.russia
+MI2.scout:
+	Inherits: MI2
+	-Buildable:
+	Buildable:
+		Queue: Aircraft
+		BuildAtProductionType: Plane
+		BuildPaletteOrder: 7
+		Prerequisites: ~afld, ~aircraft.soviet, ~player.uzbek, ~techlevel.medium
+		#	Description: Fast and nimble light helicopter with\ngood sight-radius and detection.\nDetects cloaked units in a close radius.\nSpecial Ability: Flaregun\nCan use Flaregun to fire Flares that illuminate\nwhere they land providing vision while they last.\nCan rearm on Service Depot.\n  Unarmed
+		Description: Fast and nimble light helicopter with\ngood sight-radius and detection.\nDetects cloaked units in a close radius.\nCan transport one Infantry.\n  Unarmed
+	Valued:
+		Cost: 800
+	RenderSprites:
+		Image: mi2
+	-Armament@PRIMARY:
+	-Armament@SECONDARY:
+	-Armament@FOURTH:
+	-Armament@FIFTH:
+	-AmmoPool:
+	DetectCloaked:
+		Range: 3c0
+	#	Armament:
+	#	Weapon: FlareGun
+	#	LocalOffset: 85,-213,-85, 85,213,-85
+	#	MuzzleSequence: muzzle
+	#	PauseOnCondition: !ammo
+	#	AmmoPool:
+	#	Ammo: 4
+	#	PipCount: 2
+	#	ReloadDelay: 9
+	#	AmmoCondition: ammo
+	#	AttackAircraft:
+	#	Armaments: primary
+	#	-ProducibleWithLevel:
+	-Rearmable:
+	-WithMuzzleOverlay:
+	#	Rearmable:
+	#	RearmActors: fix, fix.russia
+	-ProducibleWithLevel:
+	Cargo:
+		Types: Infantry
+		MaxWeight: 1
+		PipCount: 1
 
 HELI:
 	Buildable:
@@ -353,6 +365,8 @@ HELI:
 		Description: Helicopter gunship with multi-purpose\nChainguns and Missiles.\n  Strong vs Everything\n  Weak vs Anti-Air, Aircraft
 	Tooltip:
 		Name: Apache
+	Health:
+		HP: 12000
 	Armament@TERTIARY:
 		Name: tertiary
 		Weapon: HeliAGGun
@@ -377,7 +391,7 @@ HELI:
 		AmmoCondition: ammogun
 	WithMuzzleOverlay:
 	Rearmable:
-		RearmActors: hpad, hpad.turkey, carr.deployed
+		RearmActors: hpad, carr.deployed
 
 HIND:
 	Buildable:
@@ -389,7 +403,7 @@ HIND:
 	Tooltip:
 		Name: MI-24 Hind
 	Valued:
-		Cost: 1800
+		Cost: 1500
 	Armament@PRIMARY:
 		Name: primary
 		Weapon: ChainGun
@@ -439,8 +453,11 @@ HIND:
 	AttackAircraft:
 		Armaments: primary, secondary, tertiary, fourth, fifth
 		FacingTolerance: 20
+	Aircraft:
+		Speed: 130
+		TurnSpeed: 5
 	Rearmable:
-		RearmActors: hpad, hpad.turkey, carr.deployed
+		RearmActors: hpad, carr.deployed
 	SpeedMultiplier:
 		Modifier: 110
 		RequiresCondition: kazakh.player
@@ -448,6 +465,8 @@ HIND:
 		Condition: kazakh.player
 		Factions: kazakh
 		ResetOnOwnerChange: True
+	Health:
+		HP: 12000
 
 HIND.gunship:
 	Inherits: HIND
@@ -488,6 +507,8 @@ U2.emp:
 		Name: Tesla Plane
 	SpawnActorOnDeath:
 		Actor: U2.emp.Husk
+	Aircraft:
+		Speed: 223
 	RenderSprites:
 		Image: smig
 
@@ -506,7 +527,28 @@ U2.nuke:
 	RenderSprites:
 		Image: ally-u2
 
+U2.jam:
+	Inherits: U2
+	Tooltip:
+		Name: Jammer Plane
+	ProximityExternalCondition@JAMMER:
+		Range: 18c0
+		ValidStances: Enemy, Neutral
+		Condition: jammed
+	WithRangeCircle@JAMMER:
+		Type: jammer
+		Range: 18c0
+		Color: 0000FF80
+		Visible: always
+	SpawnActorOnDeath:
+		Actor: U2.jam.Husk
+	Aircraft:
+		Speed: 223
+	RenderSprites:
+		Image: smig
+
 YAK:
+	Inherits@AUTODAMAGE: ^KilledWithoutAirfield
 	Buildable:
 		BuildPaletteOrder: 1
 		Prerequisites: ~afld, ~aircraft.soviet, ~!player.belarus, ~!aitoodumb, ~techlevel.medium
@@ -518,6 +560,7 @@ YAK:
 	AttackAircraft:
 		Armaments: primary, secondary, tertiary, fourth, fifth
 		FacingTolerance: 20
+		PersistentTargeting: false
 	Armament@PRIMARY:
 		Weapon: ChainGun.Yak.Left
 		LocalOffset: 256,-213,0
@@ -636,8 +679,12 @@ YAK.Allies:
 		Name: Spitfire Attack Plane
 	RenderSprites:
 		Image: ally-yak
+	-SpawnActorOnDeath:
+	SpawnActorOnDeath:
+		Actor: YAK.Allies.Husk
 
 MIG:
+	Inherits@AUTODAMAGE: ^KilledWithoutAirfield
 	Buildable:
 		BuildPaletteOrder: 2
 		BuildDurationModifier: 60
@@ -654,6 +701,8 @@ MIG:
 		Name: secondary
 		Weapon: MaverickAA
 		PauseOnCondition: !ammo
+	AttackAircraft:
+		PersistentTargeting: false
 	Rearmable:
 		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh
 	SpeedMultiplier:
@@ -686,9 +735,13 @@ MIG.Allies:
 		Name: Tornado Attack Plane
 	RenderSprites:
 		Image: ally-mig
+	-SpawnActorOnDeath:
+	SpawnActorOnDeath:
+		Actor: MIG.Allies.Husk
 
 COSSACK:
 	Inherits: ^Plane
+	Inherits@AUTODAMAGE: ^KilledWithoutAirfield
 	Buildable:
 		Queue: Aircraft
 		BuildAtProductionType: Plane
@@ -839,7 +892,7 @@ HARR:
 	ProducibleWithLevel:
 		Prerequisites: aircraft.upgraded
 	Rearmable:
-		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh, hpad, hpad.turkey, carr.deployed
+		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh, hpad, carr.deployed
 
 MH60:
 	Buildable:
