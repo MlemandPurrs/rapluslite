@@ -280,6 +280,9 @@ volk:
 	Defaults: gnrl
 	Inherits: gnrl
 	icon: volkicon
+	garrison-muzzle: minigun
+		Length: 6
+		Facings: 8
 
 rmbo:
 	Inherits@PostDeath: ^Rot

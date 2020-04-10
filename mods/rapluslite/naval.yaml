@@ -893,14 +893,14 @@ PBT:
 	AttackFrontal:
 		PauseOnCondition: empdisable
 	Armament@PRIMARY:
-		AmmoPool: torps
+		Name: primary
 		Weapon: TorpTube
 		LocalOffset: 0,-171,0, 0,171,0
 		FireDelay: 2
 		Turret: primary
-		PauseOnCondition: empdisable && !ammo
+		PauseOnCondition: empdisable || !ammo
 	Armament@SECONDARY:
-		#	AmmoPool: none
+		Name: secondary
 		Weapon: Vulcan.boat
 		LocalOffset: 85,0,128
 		MuzzleSequence: muzzle
@@ -915,7 +915,7 @@ PBT:
 		DecorationBounds: 36,36
 	RepairableNear:
 		RepairActors: syrd, spen, spen.russia
-	AmmoPool:
+	AmmoPool@1:
 		Name: torps
 		Armaments: primary
 		Ammo: 2
