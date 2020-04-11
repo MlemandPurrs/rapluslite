@@ -171,7 +171,7 @@
 		Name: Britain
 		InternalName: england
 		Side: Allies
-		Description: Britain\nSpecialization: Intelligence\nThe forces of Britain uphold their long tradition in Espionage.\nFaction Variations:\n    - Tanks* deal more damage but are costlier to build.\n*Those Tanks being the Light, Medium and Flak Tanks.\n+10% damage dealt at the cost of being 10% more expensive.\nOn Light and Flak Tanks rocket attack,\nOn Medium Tanks mg attack does not get affected by bonus.\n    - Sight and Detection radius bonus of +2 for Radar Domes.\nVeterancy Bonus:\n    - Spy is trained as Veteran.\nUnique Support Powers:\n    - Intel Drop (Radar Dome with Helipad)\nAn B-52 drops a Veteran Spy and Snipers anywhere on the map.\n    - GPS Scrambler (Tech Center)\nRenders an group of units invisible aslong they are not firing.\nSpecial Units:\n    - Sniper (Infantry)\nThis accomplished marksman is capable of one-shotting Infantry.\n    - ECM Jammer (Vehicle)\nThis vehicle is capable of jamming enemy missiles and radar.\n    - Helicraft Carrier (Naval)\nCapable of deploying into an Helipad at sea, resupplying Helicrafts.\nTech Unit:\n    - Harrier VTOL (Aircraft)\nVTOL jetcraft that attacks like an Airplane and rearms like an Helicopter.
+		Description: Britain\nSpecialization: Intelligence\nThe forces of Britain uphold their long tradition in Espionage.\nFaction Variations:\n    - Tanks* deal more damage but are costlier to build.\n*Those Tanks being the Light, Medium and Flak Tanks.\n+10% damage dealt at the cost of being 10% more expensive.\nOn Light and Flak Tanks rocket attack,\nOn Medium Tanks mg attack does not get affected by bonus.\n    - Sight and Detection radius bonus of +2 for Radar Domes.\nVeterancy Bonus:\n    - Spy is trained as Veteran.\nUnique Support Powers:\n    - Intel Drop (Radar Dome with Helipad)\nAn B-52 drops a Veteran Spy and two Snipers anywhere on the map.\n    - GPS Scrambler (Tech Center)\nRenders an group of units invisible aslong they are not firing.\nSpecial Units:\n    - Sniper (Infantry)\nThis accomplished marksman is capable of one-shotting Infantry.\n    - ECM Jammer (Vehicle)\nThis vehicle is capable of jamming enemy missiles and radar.\n    - Helicraft Carrier (Naval)\nCapable of deploying into an Helipad at sea, resupplying Helicrafts.\nTech Unit:\n    - Harrier VTOL (Aircraft)\nVTOL jetcraft that attacks like an Airplane and rearms like an Helicopter.
 	Faction@2:
 		Name: France
 		InternalName: france
@@ -240,7 +240,7 @@
 		Name: Uzbekist.
 		InternalName: uzbek
 		Side: Soviet
-		Description: Uzbekistan\nSpecialization: Engineering\nThe forces of Uzbekistan facilitate the Soviet expansion.\nFaction Variations:\n    - Defenses* are cheaper to build but have reduced Hitpoints.\n*Superweapons are not included.\n10% cheaper to build at the cost of having 10000 less Hitpoints.\n    - Engineer and MCV are 25% cheaper, but dont build any faster.\nThe MCV/Conyard at game begin remains unchanged for balance reasons.\nVeterancy Bonus:\n    - Grenadier gets trained as Veteran.\nUnique Support Powers:\n    - Lone Tower (Service Depot)\nA Flame Tower gets instantly built,\nchecking Terrain of build spot.\n    - Jammer Plane (Tech Center)\nAn plane traveling in a line across the map,\nthat jams enemy radar within radius.\nSpecial Units:\n    - RPG Trooper (Infantry)\nInfantry firing Thermobaric rocket that explodes like Flame Tower's projectile.\n    - MI-2 Scout (Aircraft)\nUnarmed and fast helicopter with good sight-range.\n    - Mobile Repair Truck (Vehicle)\nMechanized engineers that can repair and capture.\nTech Unit:\n    - Nuclear Reactor (Building)\nCan build an copy of the neutral structure with half reduced Hitpoints.
+		Description: Uzbekistan\nSpecialization: Engineering\nThe forces of Uzbekistan facilitate the Soviet expansion.\nFaction Variations:\n    - Defenses* are cheaper to build but have reduced Hitpoints.\n*Superweapons are not included.\n10% cheaper to build at the cost of having 10000 less Hitpoints.\n    - Engineer and MCV are 25% cheaper, but dont build any faster.\nThe MCV/Conyard at game begin remains unchanged for balance reasons.\nVeterancy Bonus:\n    - Grenadier gets trained as Veteran.\nUnique Support Powers:\n    - Lone Tower (Service Depot)\nA Flame Tower gets instantly built checking Terrain of build spot.\n    - Jammer Plane (Tech Center)\nAn plane traveling in a line across the map, jams enemy radar within radius.\nSpecial Units:\n    - RPG Trooper (Infantry)\nInfantry firing Thermobaric rocket that explodes like Flame Tower's projectile.\n    - MI-2 Scout (Aircraft)\nUnarmed and fast helicopter with good sight-range.\n    - Mobile Repair Truck (Vehicle)\nMechanized engineers that can repair and capture.\nTech Unit:\n    - Nuclear Reactor (Building)\nCan build an copy of the neutral structure with half reduced Hitpoints.
 	Faction@15:
 		Name: Turkmen.
 		InternalName: turkmen
@@ -349,12 +349,12 @@ World:
 	MPStartUnits@mcvonly:
 		Class: mcv
 		ClassName: MCV Only
-		Factions: allies, england, france, germany, spain, greece, turkey, italy, soviet, russia, ukraine, belarus, kazakh, uzbek, turkmen, karelia
+		Factions: allies, england, france, germany, spain, italy, greece, turkey, soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen
 		BaseActor: mcv
 	MPStartUnits@deployedallies:
 		Class: none
 		ClassName: Conyard + Scout
-		Factions: allies, england, france, germany, spain, greece, turkey, italy
+		Factions: allies, england, france, germany, spain, italy, greece, turkey
 		BaseActor: fact
 		SupportActors: jeep.scout
 		InnerSupportRadius: 3
@@ -362,7 +362,7 @@ World:
 	MPStartUnits@deployedsoviet:
 		Class: none
 		ClassName: Conyard + Scout
-		Factions: soviet, russia, ukraine, belarus, kazakh, uzbek, turkmen, karelia
+		Factions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen
 		BaseActor: fact
 		SupportActors: brdm.scout
 		InnerSupportRadius: 3
@@ -370,7 +370,7 @@ World:
 	MPStartUnits@lightalliesa:
 		Class: light
 		ClassName: Light Support
-		Factions: allies, england, france, germany, spain, greece, turkey, italy
+		Factions: allies, england, france, germany, spain, italy, greece, turkey
 		BaseActor: mcv
 		SupportActors: e1,e1,e1,e3,e3,jeep,1tnk
 		InnerSupportRadius: 3
@@ -378,7 +378,7 @@ World:
 	MPStartUnits@lightalliesb:
 		Class: light
 		ClassName: Light Support
-		Factions: allies, england, france, germany, spain, greece, turkey, italy
+		Factions: allies, england, france, germany, spain, italy, greece, turkey
 		BaseActor: mcv
 		SupportActors: e1,e1,e1,e3,e3,apc,jeep
 		InnerSupportRadius: 3
@@ -386,7 +386,7 @@ World:
 	MPStartUnits@lightsovieta:
 		Class: light
 		ClassName: Light Support
-		Factions: soviet, russia, ukraine, belarus, kazakh, uzbek, turkmen, karelia
+		Factions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen
 		BaseActor: mcv
 		SupportActors: e1,e1,e1,e3,e3,btr,ftrk
 		InnerSupportRadius: 3
@@ -394,7 +394,7 @@ World:
 	MPStartUnits@lightsovietb:
 		Class: light
 		ClassName: Light Support
-		Factions: soviet, russia, ukraine, belarus, kazakh, uzbek, turkmen, karelia
+		Factions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen
 		BaseActor: mcv
 		SupportActors: e1,e1,e1,e3,e3,ftrk,2tnk.soviet
 		InnerSupportRadius: 3
@@ -402,7 +402,7 @@ World:
 	MPStartUnits@heavyalliesa:
 		Class: heavy
 		ClassName: Heavy Support
-		Factions: allies, england, france, germany, spain, greece, turkey, italy
+		Factions: allies, england, france, germany, spain, italy, greece, turkey
 		BaseActor: mcv
 		SupportActors: e1,e1,e1,e3,e3,jeep,1tnk,2tnk,2tnk,2tnk
 		InnerSupportRadius: 3
@@ -410,7 +410,7 @@ World:
 	MPStartUnits@heavyalliesb:
 		Class: heavy
 		ClassName: Heavy Support
-		Factions: allies, england, france, germany, spain, greece, turkey, italy
+		Factions: allies, england, france, germany, spain, italy, greece, turkey
 		BaseActor: mcv
 		SupportActors: e1,e1,e1,e3,e3,apc,jeep,2tnk,2tnk,atnk
 		InnerSupportRadius: 3
@@ -418,7 +418,7 @@ World:
 	MPStartUnits@heavysovieta:
 		Class: heavy
 		ClassName: Heavy Support
-		Factions: soviet, russia, ukraine, belarus, kazakh, uzbek, turkmen, karelia
+		Factions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen
 		BaseActor: mcv
 		SupportActors: e1,e1,e1,e3,e3,ftrk,ftrk,2tnk.soviet,2tnk.soviet
 		InnerSupportRadius: 3
@@ -426,7 +426,7 @@ World:
 	MPStartUnits@heavysovietb:
 		Class: heavy
 		ClassName: Heavy Support
-		Factions: soviet, russia, ukraine, belarus, kazakh, uzbek, turkmen, karelia
+		Factions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen
 		BaseActor: mcv
 		SupportActors: e1,e1,e1,e3,e3,btr,ftrk,3tnk,3tnk
 		InnerSupportRadius: 3

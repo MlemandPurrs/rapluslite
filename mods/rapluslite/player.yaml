@@ -249,4 +249,11 @@ Player:
 		Enabled: False
 		DisplayOrder: 9
 		Prerequisites: global-scraps
+	LobbyPrerequisiteCheckbox@NAVYDISABLER:
+		ID: disablenavy
+		Label: Disable Navy
+		Description: Use this to fix spamming Cruisers in ponds.
+		Enabled: False
+		DisplayOrder: 12
+		Prerequisites: global-disablenavy
 	GameSaveViewportManager:

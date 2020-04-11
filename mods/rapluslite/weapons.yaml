@@ -448,7 +448,7 @@ DropDummy:
 
 GrenadeLauncher:
 	Inherits: Grenade
-	Range: 6c256
+	Range: 6c512
 	Projectile:
 		LaunchAngle: 42
 		ContrailLength: 10
@@ -459,6 +459,7 @@ GrenadeLauncher:
 
 GrenadeLauncher.sub:
 	Inherits: GrenadeLauncher
+	Range: 7c256
 	ReloadDelay: 49
 	Warhead@1Dam: SpreadDamage
 		Versus:
@@ -1720,3 +1721,8 @@ MustardGas:
 		Duration: 225
 		Condition: gassed
 		ValidTargets: Infantry
+
+Colt45:
+	ReloadDelay: 10
+	BurstDelays: 2
+	Burst: 10

@@ -411,7 +411,7 @@ Player:
 			tent: 2
 			kenn: 4
 			dome: 1
-			weap: 3
+			weap.germany: 3
 			syrd: 1
 			hpad: 4
 			atek.germany: 1
@@ -428,7 +428,7 @@ Player:
 			tent: 2
 			kenn: 1
 			dome: 1
-			weap: 6
+			weap.germany: 6
 			hpad: 4
 			syrd: 1
 			pbox: 7

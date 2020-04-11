@@ -172,6 +172,7 @@ FTRK.Kazakh.R2:
 
 FTRK.Repair:
 	Inherits: ^Vehicle
+	Inherits@selection: ^SelectableSupportUnit
 	Buildable:
 		Queue: Vehicle
 		BuildPaletteOrder: 9
@@ -1542,6 +1543,7 @@ MHQ:
 	Inherits: ^TrackedVehicle
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Inherits@selection: ^SelectableSupportUnit
 	Buildable:
 		Queue: Vehicle
 		BuildPaletteOrder: 9
@@ -2781,6 +2783,7 @@ TRUK:
 
 FIST:
 	Inherits: ^Vehicle
+	Inherits@selection: ^SelectableSupportUnit
 	Buildable:
 		Queue: Vehicle
 		BuildPaletteOrder: 13

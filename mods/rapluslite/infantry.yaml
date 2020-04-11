@@ -150,6 +150,8 @@ MEDI:
 	Inherits@BOMBEQUIP: ^AffectedByBombVests
 	Health:
 		HP: 6000
+	Valued:
+		Cost: 250
 	Buildable:
 		BuildPaletteOrder: 3
 	Passenger:
@@ -186,7 +188,7 @@ SPY:
 	Buildable:
 		Prerequisites: ~tent, dome, ~!player.england, ~techlevel.medium
 		BuildPaletteOrder: 7
-		Description: Agent of the Intelligence Service.\nCan detect cloaked units and spies.\n  Special Ability: Espionage\nInfiltrates enemy production structures for rank bonus.\nSteals enemy credits from Refineries.\nInfiltrates enemy Power Plants to cut off base power.\nInfiltrates Radar Domes to reset their exploration.\nInfiltrates Tech Centers to unlock your country's Tech Unit.\n  Special Ability: Disguise\nCan disguise as enemy Infantry.\nLoses disguise when attacking.\n  Special Ability: Hijacking\nSteals enemy vehicles by entering them.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
+		Description: Agent of the Intelligence Service.\nCan detect cloaked units and spies.\nCan steal enemy Vehicles when not disguised.\n  Special Ability: Espionage\nInfiltrates enemy production structures for rank bonus.\nSteals enemy credits from Refineries.\nInfiltrates enemy Power Plants to cut off base power.\nInfiltrates Radar Domes to reset their exploration.\nInfiltrates Tech Centers to unlock your country's Tech Unit.\n  Special Ability: Disguise\nCan disguise as enemy Infantry.\nLoses disguise when attacking.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
 	Passenger:
 		PipType: Yellow
 	#	neat.. this works.
@@ -205,6 +207,7 @@ SPY:
 	Captures@VEHICLE:
 		CaptureTypes: vehicle
 		PlayerExperience: 50
+		RequiresCondition: !disguise
 	Armament@GARRISONED:
 		Name: garrisoned
 		Weapon: SilencedPPK
@@ -952,6 +955,10 @@ TECN:
 		PipType: Blue
 	RenderSprites:
 		Image: TECN
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: M1Carbine
+		MuzzleSequence: garrison-muzzle
 
 DOG:
 	Inherits@BOMBEQUIP: ^AffectedByBombVests

@@ -68,7 +68,7 @@ PT.Soviet:
 		Prerequisites: ~syrd, ~ships.soviet, ~techlevel.low
 		Description: Fast multi-role ship.\nCan detect submarines.\n  Strong vs Submarines, Vehicles, Infantry\n  Weak vs Aircraft
 	Tooltip:
-		Name: Patrol Boat
+		Name: Gunboat (Soviet)
 	-Turreted@PRIMARY:
 	-Turreted@SECONDARY:
 	-Armament@PRIMARY:
@@ -122,6 +122,7 @@ PT.Soviet:
 
 RSHP:
 	Inherits: ^Ship
+	Inherits@selection: ^SelectableSupportUnit
 	Buildable:
 		Queue: Ship
 		BuildAtProductionType: Boat

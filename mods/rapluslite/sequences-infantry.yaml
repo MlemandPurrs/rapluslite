@@ -196,6 +196,12 @@ e5:
 
 e6:
 	Inherits@PostDeath: ^Rot
+	stand:
+		Start: 0
+		Facings: 8
+	stand2:
+		Start: 0
+		Facings: 8
 
 medi:
 	Inherits@PostDeath: ^Rot
@@ -935,6 +941,9 @@ tecn:
         TilesetOverrides:
 			DESERT: TEMPERAT
 			INTERIOR: TEMPERAT
+	garrison-muzzle: minigun
+		Length: 6
+		Facings: 8
 
 plot:
 	Inherits@PostDeath: ^Rot

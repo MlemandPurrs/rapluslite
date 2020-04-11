@@ -7,7 +7,7 @@ FACT:
 		Amount: 30
 	Production:
 		Produces: Building,Defense,Fakestructure
-		PauseOnCondition: disabled
+		PauseOnCondition: disabled || build-incomplete
 	ProvidesPrerequisite@allies:
 		Factions: allies, england, france, germany, spain, italy, greece, turkey
 		Prerequisite: structures.allies
@@ -89,6 +89,8 @@ POWR:
 	Building:
 		Footprint: xx xx
 		Dimensions: 2,2
+	Power:
+		RequiresCondition: !build-incomplete
 	WithIdleOverlay@SMOKE:
 		RequiresCondition: !build-incomplete && !disabled
 		Sequence: idle-smoke
@@ -145,6 +147,8 @@ APWR:
 		Dimensions: 3,2
 	Valued:
 		Cost: 600
+	Power:
+		RequiresCondition: !build-incomplete
 	WithIdleOverlay@SMOKE:
 		RequiresCondition: !build-incomplete && !disabled
 		Sequence: idle-smoke
@@ -200,7 +204,7 @@ TENT:
 		UseDeathTypeSuffix: false
 	Production:
 		Produces: Infantry, Soldier
-		PauseOnCondition: disabled
+		PauseOnCondition: disabled || build-incomplete
 	ProvidesPrerequisite@allies:
 		Factions: allies, england, france, germany, spain, italy, greece, turkey
 		Prerequisite: infantry.allies
@@ -308,7 +312,7 @@ BARR:
 		UseDeathTypeSuffix: false
 	Production:
 		Produces: Infantry, Soldier
-		PauseOnCondition: disabled
+		PauseOnCondition: disabled || build-incomplete
 	FreeActor@1:
 		Actor: E1
 		SpawnOffset: 0,2
@@ -356,7 +360,7 @@ KENN:
 		UseDeathTypeSuffix: false
 	Production:
 		Produces: Infantry, Dog
-		PauseOnCondition: disabled
+		PauseOnCondition: disabled || build-incomplete
 	SpawnActorOnDeath:
 		Actor: kenn.husk
 	-Capturable:
@@ -600,7 +604,7 @@ WEAP:
 		Prerequisite: afldorweap
 	Production:
 		Produces: Vehicle
-		PauseOnCondition: disabled
+		PauseOnCondition: disabled || build-incomplete
 	WithDeathAnimation:
 		DeathSequence: dead
 		UseDeathTypeSuffix: false
@@ -679,7 +683,7 @@ FIX:
 		DeathSequence: dead
 		UseDeathTypeSuffix: false
 	RepairsUnits:
-		PauseOnCondition: disabled
+		PauseOnCondition: disabled || build-incomplete
 	SpawnActorOnDeath:
 		Actor: fix.husk
 	GrantExternalConditionPower@Overcharge:
@@ -920,6 +924,8 @@ DOME:
 	WithDeathAnimation:
 		DeathSequence: dead
 		UseDeathTypeSuffix: false
+	ProvidesRadar:
+		RequiresCondition: !jammed && !disabled && !build-incomplete
 	SpawnActorOnDeath:
 		Actor: dome.husk
 	ParatroopersPower@IntelDrop:
@@ -1893,7 +1899,7 @@ AFLD:
 		UseDeathTypeSuffix: false
 	Production:
 		Produces: Aircraft, Plane
-		PauseOnCondition: disabled
+		PauseOnCondition: disabled || build-incomplete
 	SpawnActorOnDeath:
 		Actor: afld.husk
 	-ActorPreviewPlaceBuildingPreview:
@@ -1948,7 +1954,7 @@ HPAD:
 		UseDeathTypeSuffix: false
 	Production:
 		Produces: Aircraft, Helicopter
-		PauseOnCondition: disabled
+		PauseOnCondition: disabled || build-incomplete
 	ProvidesPrerequisite@allies:
 		Factions: allies, england, france, germany, spain, italy, greece, turkey
 		Prerequisite: aircraft.allies
@@ -2125,16 +2131,19 @@ HPAD:
 	#	-MapEditorData:
 
 SYRD:
+	#	GrantConditionOnPrerequisite@NAVYDISABLER:
+	#	Condition: global-disablenavy
+	#	Prerequisites: global-disablenavy
 	Buildable:
 		BuildPaletteOrder: 3
-		Prerequisites: anypower, ~structures.allies, ~techlevel.low
+		Prerequisites: anypower, ~structures.allies, ~techlevel.low, ~!global-disablenavy
 		Description: Produces and repairs\nShips and Transports.\n  Special Ability: Sonar Pulse\n Reveals all submarines in target\narea for a short time.
 	WithDeathAnimation:
 		DeathSequence: dead
 		UseDeathTypeSuffix: false
 	Production:
 		Produces: Ship, Boat
-		PauseOnCondition: disabled
+		PauseOnCondition: disabled || build-incomplete
 	DetectCloaked:
 		CloakTypes: Underwater
 		Range: 5c0
@@ -2251,7 +2260,7 @@ SYRD:
 SPEN:
 	Buildable:
 		BuildPaletteOrder: 3
-		Prerequisites: anypower, ~structures.soviet, ~!player.russia, ~techlevel.low
+		Prerequisites: anypower, ~structures.soviet, ~!player.russia, ~techlevel.low, ~!global-disablenavy
 		Description: Produces and repairs\nSubmarines and Transports.\n  Special Ability: Sonar Pulse\n Reveals all submarines in target\narea for a short time.
 	Valued:
 		Cost: 750
@@ -2338,7 +2347,7 @@ SPEN:
 		UseDeathTypeSuffix: false
 	Production:
 		Produces: Ship, Submarine
-		PauseOnCondition: disabled
+		PauseOnCondition: disabled || build-incomplete
 	DetectCloaked:
 		CloakTypes: Underwater
 		Range: 5c0
@@ -2369,7 +2378,7 @@ SPEN:
 SPEN.Russia:
 	Inherits: SPEN
 	Buildable:
-		Prerequisites: anypower, ~structures.soviet, ~player.russia, ~techlevel.low
+		Prerequisites: anypower, ~structures.soviet, ~player.russia, ~techlevel.low, ~!global-disablenavy
 	Valued:
 		Cost: 675
 	RenderSprites:
@@ -2394,6 +2403,7 @@ GAP:
 		Cost: 1000
 	CreatesShroud:
 		Range: 9c0
+		RequiresCondition: !disabled && !build-incomplete
 	ProvidesPrerequisite@buildingname:
 	SpawnActorOnDeath:
 		Actor: gap.husk
@@ -3048,6 +3058,8 @@ SAM:
 		BuildPaletteOrder: 6
 		Prerequisites: dome, ~structures.soviet, ~!player.uzbek, ~techlevel.medium
 	-SpawnActorsOnSell:
+	Turreted:
+		TurnSpeed: 15
 
 SAM.uzbek:
 	Inherits: SAM
@@ -3133,7 +3145,7 @@ FISTBUILD:
 		ExitDelay: 3
 	Production:
 		Produces: MWFVehicle
-		PauseOnCondition: disabled
+		PauseOnCondition: disabled || build-incomplete
 	ProductionQueue:
 		Type: MWFVehicle
 		Group: Vehicle

@@ -217,6 +217,8 @@
 	Capturable:
 		RequiresCondition: !build-incomplete
 		Types: building-sabotage
+	RepairableBuilding:
+		RepairStep: 1000
 
 ^Defense:
 	Building:
