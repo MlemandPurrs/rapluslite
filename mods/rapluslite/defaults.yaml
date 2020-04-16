@@ -127,7 +127,38 @@
 	ExternalCondition@INVULNERABILITY:
 		Condition: invulnerability
 
+	#	^GlobalBountyDuplicate:
+	#	GrantConditionOnPrerequisite@SOVIETBOUNTY:
+	#	Condition: soviet-bounty
+	#	Prerequisites: soviet-bounty
+	#	GivesBounty@replace:
+	#	RequiresCondition: !global-bounty && soviet-bounty
+
+^AffectedByBounty:
+	GivesBounty@SOVIETBOUNTY:
+		RequiresCondition: soviet-bounty
+		Percentage: 20
+	ExternalCondition@SOVIETBOUNTY:
+		Condition: soviet-bounty
+	TimedConditionBar@SOVIETBOUNTY:
+		Condition: soviet-bounty
+		Color: 1CE6B9
+
+^AffectedByInflation:
+	ProductionCostMultiplier@INFLATION:
+		Multiplier: 150
+		Prerequisites: moneyprinter
+
+^AffectedByGearChange:
+	ProductionTimeMultiplier@PRODUCTIONBOOST:
+		Multiplier: 75
+		Prerequisites: fasterbuild
+
 ^Infantry:
+	Inherits@84: ^AffectedByLeaflet
+	Inherits@85: ^AffectedByInflation
+	Inherits@88: ^AffectedByBounty
+	Inherits@89: ^AffectedBySmoke
 	Inherits@91: ^AffectedByGas
 	Inherits@93: ^AffectedByLeadership
 	Inherits@96: ^AffectedByGPSScrambler
@@ -162,15 +193,15 @@
 	DamageMultiplier@TUFFGITZ:
 		Modifier: 95
 		RequiresCondition: turkeybonus
-	#	GrantConditionOnFaction@MOARDAMAGE:
-	#	Condition: turkmenbonus
-	#	Factions: turkmenistan
-	#	FirepowerMultiplier@MOARDAMAGE:
-	#	Modifier: 105
-	#	RequiresCondition: turkmenbonus
+	GrantConditionOnFaction@MOARDAMAGE:
+		Condition: afghanbonus
+		Factions: afghan
+	FirepowerMultiplier@MOARDAMAGE:
+		Modifier: 105
+		RequiresCondition: afghanbonus
 	GrantConditionOnFaction@MOARDAKKA:
 		Condition: turkmenbonus
-		Factions: turkmenistan
+		Factions: turkmen
 	ReloadDelayMultiplier@MOARDAKKA:
 		Modifier: 95
 		RequiresCondition: turkmenbonus
@@ -180,14 +211,23 @@
 	SpeedMultiplier@FASTARUNTZ:
 		Modifier: 105
 		RequiresCondition: italianbonus
+	ProductionTimeMultiplier@USABonus:
+		Multiplier: 90
+		Prerequisites: player.usa
 
 ^Vehicle:
+	Inherits@82: ^AffectedByGearChange
+	Inherits@83: ^AffectedByFortify
+	Inherits@84: ^AffectedByLeaflet
+	Inherits@85: ^AffectedByInflation
+	Inherits@87: ^AffectedByTurbo
+	Inherits@88: ^AffectedByBounty
+	Inherits@89: ^AffectedBySmoke
 	Inherits@93: ^AffectedByLeadership
 	Inherits@94: ^LeavesScraps
-	Inherits@95: ^AffectedByEmergencyRepair
+	Inherits@95: ^AffectedByFieldRepair
 	Inherits@96: ^AffectedByGPSScrambler
 	Inherits@97: ^AffectedByEMP
-	Inherits@90: ^AffectedByRadioIntercept
 	Inherits@QtnkSlow: ^ThumpSnare
 	Mobile:
 		PauseOnCondition: !(!empdisable && !being-captured)
@@ -197,19 +237,32 @@
 		Image: maxichute
 	EdibleByLeap:
 	Repairable:
-		RepairActors: fix, fix.russia, fix.ukraine, fix.karelia, fix.kazakh, fix.uzbek, fix.turkmen
+		RepairActors: fix, fix.usa, fix.spain, fix.italy, fix.greece, fix.turkey, fix.russia, fix.ukraine, fix.belarus, fix.karelia, fix.kazakh, fix.uzbek, fix.turkmen, fix.afghan
 	TemporaryOwnerManager:
+	ProductionTimeMultiplier@USABonus:
+		Multiplier: 90
+		Prerequisites: player.usa
 
 ^Plane:
+	Inherits@82: ^AffectedByGearChange
+	Inherits@85: ^AffectedByInflation
 	-EjectOnDeath:
 	Repairable:
-		RepairActors: fix, fix.russia, fix.ukraine, fix.karelia, fix.kazakh, fix.uzbek, fix.turkmen
+		RepairActors: fix, fix.usa, fix.spain, fix.italy, fix.greece, fix.turkey, fix.russia, fix.ukraine, fix.belarus, fix.karelia, fix.kazakh, fix.uzbek, fix.turkmen, fix.afghan
+	ProductionTimeMultiplier@USABonus:
+		Multiplier: 90
+		Prerequisites: player.usa
 
 ^Helicopter:
 	Aircraft:
 		Crushes: crate, mine, infantry, airmine
-		
+
+^BasicBuilding:
+	#	Inherits@88: ^AffectedByBounty
+
 ^Building:
+	Inherits@84: ^AffectedByEmergencyRepair
+	Inherits@85: ^AffectedByInflation
 	Inherits@94: ^LeavesScraps
 	Inherits@97: ^BuildingAffectedByEMP
 	RequiresBuildableArea:
@@ -226,11 +279,11 @@
 	RequiresBuildableArea:
 		Adjacent: 3
 
-
 ^BasicHusk:
 	ConditionManager:
 
 ^FakeBuilding:
+	Inherits@85: ^AffectedByInflation
 	SelfHealing:
 		Step: -100
 		Delay: 3
@@ -244,16 +297,19 @@
 		AllowedTerrain: Clear, Rough, Road, Ore, Gems, Scraps, Beach, Shallow
 
 ^Ship:
+	Inherits@82: ^AffectedByGearChange
+	Inherits@85: ^AffectedByInflation
 	Inherits@93: ^AffectedByLeadership
-	Inherits@95: ^AffectedByEmergencyRepair
+	Inherits@95: ^AffectedByFieldRepair
 	Inherits@96: ^AffectedByGPSScrambler
 	Inherits@97: ^AffectedByEMP
+	Inherits@88: ^AffectedByBounty
 	Mobile:
 		PauseOnCondition: !(!empdisable)
 	Targetable:
 		TargetTypes: Ground, Water, Ship, SeaDetonateAttack
 	RepairableNear:
-		RepairActors: spen, spen.russia, syrd
+		RepairActors: spen, spen.russia, syrd, syrd.usa
 
 ^Submarine:
 	Inherits: ^Ship
@@ -268,7 +324,7 @@
 		Range: 3c0
 		RequiresCondition: underwater
 	RepairableNear:
-		RepairActors: spen, spen.russia
+		RepairActors: spen, spen.russia, syrd, syrd.usa
 	Cloak:
 		CloakTypes: Underwater
 		InitialDelay: 0
@@ -322,18 +378,18 @@
 	ExternalCondition@GPSCRAMBLER:
 		Condition: gps.scrambler
 
-^AffectedByEmergencyRepair:
-	SelfHealing@EMERGENCY_REPAIR:
+^AffectedByFieldRepair:
+	SelfHealing@FieldRepair:
 		PercentageStep: 1
 		Delay: 6
 		HealIfBelow: 100
 		DamageCooldown: 0
-		RequiresCondition: emergency_repair
+		RequiresCondition: fieldrepair
 		Step: 1
-	TimedConditionBar@EMERGENCY_REPAIR:
+	TimedConditionBar@FieldRepair:
 		Color: BFFF80
-		Condition: emergency_repair
-	WithDecoration@EMERGENCY_REPAIR:
+		Condition: fieldrepair
+	WithDecoration@FieldRepair:
 		RequiresSelection: false
 		Image: allyrepair
 		Sequence: repair
@@ -342,9 +398,9 @@
 		ReferencePoint: Center
 		ZOffset: 256
 		ValidStances: Ally, Neutral, Enemy
-		RequiresCondition: emergency_repair
-	ExternalCondition@EMERGENCY_REPAIR:
-		Condition: emergency_repair
+		RequiresCondition: fieldrepair
+	ExternalCondition@FieldRepair:
+		Condition: fieldrepair
 
 CAMERA.fieldrepair:
 	Interactable:
@@ -362,7 +418,7 @@ CAMERA.fieldrepair:
 		HP: 100000
 	HitShape:
 	ProximityExternalCondition:
-		Condition: emergency_repair
+		Condition: fieldrepair
 		Range: 3c0
 	KillsSelf:
 		RemoveInstead: true
@@ -578,91 +634,91 @@ CRATE:
 	GiveUnitCrateAction@jeep:
 		SelectionShares: 6
 		Units: jeep
-		ValidFactions: allies, england, france, germany, spain, italy, greece, turkey
+		ValidFactions: allies, usa, england, france, germany, spain, italy, greece, turkey
 		Prerequisites: techlevel.low
 	GiveUnitCrateAction@1tnk:
 		SelectionShares: 6
 		Units: 1tnk
-		ValidFactions: allies, england, france, germany, spain, italy, greece, turkey
+		ValidFactions: allies, usa, england, france, germany, spain, italy, greece, turkey
 		Prerequisites: techlevel.low
 	GiveUnitCrateAction@apc:
 		SelectionShares: 6
 		Units: apc.crate
-		ValidFactions: allies, england, france, germany, spain, italy, greece, turkey
+		ValidFactions: allies, usa, england, france, germany, spain, italy, greece, turkey
 		Prerequisites: techlevel.low
 	GiveUnitCrateAction@btr:
 		SelectionShares: 6
 		Units: btr.crate
-		ValidFactions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen
+		ValidFactions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen, afghan
 		Prerequisites: techlevel.low
 	GiveUnitCrateAction@ftrk:
 		SelectionShares: 6
 		Units: ftrk
-		ValidFactions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen
+		ValidFactions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen, afghan
 		Prerequisites: techlevel.low
 	GiveUnitCrateAction@arty:
 		SelectionShares: 5
 		Units: arty
-		ValidFactions: allies, england, france, germany, spain, italy, greece, turkey
+		ValidFactions: allies, usa, england, france, germany, spain, italy, greece, turkey
 		Prerequisites: techlevel.medium, dome
 	GiveUnitCrateAction@v2rl:
 		SelectionShares: 5
 		Units: v2rl
-		ValidFactions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen
+		ValidFactions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen, afghan
 		Prerequisites: techlevel.medium, dome
 	GiveUnitCrateAction@2tnk:
 		SelectionShares: 4
 		Units: 2tnk
-		ValidFactions: allies, england, france, germany, spain, italy, greece, turkey
+		ValidFactions: usa, allies, england, france, germany, spain, italy, greece, turkey
 		Prerequisites: techlevel.medium, fix
 	GiveUnitCrateAction@2tnksvyt:
 		SelectionShares: 4
 		Units: 2tnk.soviet
-		ValidFactions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen
+		ValidFactions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen, afghan
 		Prerequisites: techlevel.medium, fix
 	GiveUnitCrateAction@3tnk:
 		SelectionShares: 4
 		Units: 3tnk
-		ValidFactions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen
+		ValidFactions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen, afghan
 		Prerequisites: techlevel.medium, fix
 	GiveUnitCrateAction@atnk:
 		SelectionShares: 6
 		Units: atnk
-		ValidFactions: allies, england, france, germany, spain, italy, greece, turkey
+		ValidFactions: allies, usa, england, france, germany, spain, italy, greece, turkey
 		Prerequisites: techlevel.high, dome
 	GiveUnitCrateAction@squadlight:
 		SelectionShares: 10
 		Units: e1,e1,e1,e3,e3
-		ValidFactions: allies, england, france, germany, spain, italy, greece, turkey, soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen
+		ValidFactions: allies, usa, england, france, germany, spain, italy, greece, turkey, soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen, afghan
 	GiveUnitCrateAction@squadlightallies:
 		SelectionShares: 9
 		Units: e1,e1,e1,e3,e3,medi,jeep
-		ValidFactions: allies, england, france, germany, spain, italy, greece, turkey
+		ValidFactions: allies, usa, england, france, germany, spain, italy, greece, turkey
 		TimeDelay: 2250
 	GiveUnitCrateAction@squadlightsoviet:
 		SelectionShares: 9
 		Units: e1,e1,e1,e3,e3,e4,ftrk
-		ValidFactions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen
+		ValidFactions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen, afghan
 		TimeDelay: 2250
 	GiveUnitCrateAction@squadheavyallies:
 		SelectionShares: 7
 		Units: e1,e1,e1,e1,e3,e3,e3,e6,medi
-		ValidFactions: allies, england, france, germany, spain, italy, greece, turkey
+		ValidFactions: allies, usa, england, france, germany, spain, italy, greece, turkey
 		TimeDelay: 4500
 	GiveUnitCrateAction@squadheavysoviet:
 		SelectionShares: 7
 		Units: e1,e1,e1,e4,e4,e3,e3,e3,e6
-		ValidFactions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen
+		ValidFactions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen, afghan
 		TimeDelay: 4500
 	GiveUnitCrateAction@squadheavyalliesb:
 		SelectionShares: 6
 		Units: e1,e1,e1,medi,e3,e3,1tnk,1tnk,atnk
-		ValidFactions: allies, england, france, germany, spain, italy, greece, turkey
+		ValidFactions: allies, usa, england, france, germany, spain, italy, greece, turkey
 		TimeDelay: 4500
 	GiveUnitCrateAction@squadheavysovietb:
 		SelectionShares: 6
 		Units: e1,e1,e1,e4,e3,e3,ftrk,ftrk,2tnk.soviet
-		ValidFactions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen
+		ValidFactions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen, afghan
 		TimeDelay: 4500
 	GrantExternalConditionCrateAction@invis:
 		SelectionShares: 5
@@ -1174,6 +1230,48 @@ dummy.maintenance:
 		InitialDelay: 0
 		Interval: 2251
 
+dummy.moneyprinter:
+	Inherits: CAMERA
+	EditorOnlyTooltip:
+		Name: (Cashreserve sp proxy)
+	-RevealsShroud:
+	ProvidesPrerequisite@moneyprinter:
+		Prerequisite: moneyprinter
+	KillsSelf@moneyprinter:
+		Delay: 2250
+		RemoveInstead: true
+	CashTrickler@moneyprinter:
+		Amount: 3000
+		InitialDelay: 0
+		Interval: 2251
+
+dummy.conscription:
+	Inherits: CAMERA
+	EditorOnlyTooltip:
+		Name: (Conscription sp proxy)
+	-RevealsShroud:
+	ProvidesPrerequisite@conscription:
+		Prerequisite: conscription
+	ConditionManager:
+	KillsSelf@conscription:
+		Delay: 1500
+		RemoveInstead: true
+
+dummy.productionboost:
+	Inherits: CAMERA
+	EditorOnlyTooltip:
+		Name: (Production Boost sp proxy)
+	-RevealsShroud:
+	ProvidesPrerequisite@productionboost:
+		Prerequisite: fasterbuild
+	KillsSelf@productionboost:
+		Delay: 2250
+		RemoveInstead: true
+	CashTrickler@moneyprinter:
+		Amount: -3000
+		InitialDelay: 0
+		Interval: 2251
+
 ^KilledWithoutAirfield:
 	SelfHealing@PLANE:
 		Step: 0
@@ -1300,12 +1398,21 @@ dummy.radiohack:
 		Delay: 6
 		HealIfBelow: 101
 		DamageCooldown: 0
-		RequiresCondition: gassed && !dontdie
+		#	RequiresCondition: gassed && !dontdie
+		RequiresCondition: gassed
 		Step: -1
 		PercentageStep: -1
-	GrantConditionOnDamageState@DisappearanceFixer:
-		Condition: dontdie
-		ValidDamageStates: Critical	
+		DamageTypes: FireDeath
+
+^AffectedBySmoke:
+	WithColoredOverlay@SMOKE:
+		RequiresCondition: smoked
+		Palette: greysmoke
+	ExternalCondition@SMOKE:
+		Condition: smoked
+	RevealsShroudMultiplier@SMOKE:
+		Modifier: 50
+		RequiresCondition: smoked
 
 #	camera.gps:
 #	Inherits: CAMERA
@@ -1330,3 +1437,104 @@ dummy.radiohack:
 #	ProximityExternalCondition:
 #		Condition: gps
 #		Range: 200c0
+
+^AffectedByFrenzy:
+	WithColoredOverlay@FRENZY:
+		Palette: frenzy
+		RequiresCondition: frenzyison
+	TimedConditionBar@FRENZY:
+		Color: DCB9EB
+		Condition: frenzyison
+	ExternalCondition@FRENZY:
+		Condition: frenzyison
+	FirepowerMultiplier@FRENZY1:
+		RequiresCondition: !frenzy1disabler && frenzyison
+		Modifier: 110
+	GrantConditionOnDamageState@DAMAGED:
+		Condition: frenzy1disabler
+		ValidDamageStates: Light, Medium, Heavy, Critical
+	FirepowerMultiplier@FRENZY2:
+		RequiresCondition: frenzy2enabler && frenzyison
+		Modifier: 120
+	GrantConditionOnDamageState@FRENZY2:
+		Condition: frenzy2enabler
+		ValidDamageStates: Light
+	FirepowerMultiplier@FRENZY3:
+		RequiresCondition: frenzy3enabler && frenzyison
+		Modifier: 130
+	GrantConditionOnDamageState@FRENZY3:
+		Condition: frenzy3enabler
+		ValidDamageStates: Medium
+	FirepowerMultiplier@FRENZY4:
+		RequiresCondition: frenzy4enabler && frenzyison
+		Modifier: 140
+	GrantConditionOnDamageState@FRENZY4:
+		Condition: frenzy4enabler
+		ValidDamageStates: Heavy
+	FirepowerMultiplier@FRENZY5:
+		RequiresCondition: frenzy5enabler && frenzyison
+		Modifier: 150
+	GrantConditionOnDamageState@FRENZY5:
+		Condition: frenzy4enabler
+		ValidDamageStates: Critical
+
+^AffectedByTurbo:
+	WithColoredOverlay@TURBO:
+		Palette: turbo
+		RequiresCondition: turbo.on
+	TimedConditionBar@TURBO:
+		Color: F8E947
+		Condition: turbo.on
+	ExternalCondition@TURBO.on:
+		Condition: turbo.on
+	SelfHealing@TURBO:
+		Step: 0
+		PercentageStep: -20
+		HealIfBelow: 101
+		Delay: 376
+		DamageCooldown: 376
+		RequiresCondition: turbo.on
+	#	maybe keep it simple stupid
+	#	ReloadDelayMultiplier@TURBO
+	#	Modifier: 50
+	#	RequiresCondition: turbo.on
+	SpeedMultiplier@TURBO:
+		Modifier: 130
+		RequiresCondition: turbo.on
+
+^AffectedByFortify:
+	WithColoredOverlay@ARMOR:
+		Palette: armor
+		RequiresCondition: armor.on
+	TimedConditionBar@ARMOR:
+		Color: 0042FF
+		Condition: armor.on
+	ExternalCondition@ARMOR.on:
+		Condition: armor.on
+	DamageMultiplier@ARMOR:
+		Modifier: 80
+		RequiresCondition: armor.on
+	SpeedMultiplier@ARMOR:
+		Modifier: 70
+		RequiresCondition: armor.on
+
+^AffectedByLeaflet:
+	WithColoredOverlay@LEAFLET:
+		RequiresCondition: leaflet
+		Palette: disabled
+	TimedConditionBar@LEAFLET:
+		Condition: leaflet
+		Color: 333333
+	ExternalCondition@LEAFLET:
+		Condition: leaflet
+
+^AffectedByEmergencyRepair:
+	SelfHealing@EmergencyRepair:
+		Step: 0
+		PercentageStep: 20
+		HealIfBelow: 101
+		Delay: 1
+		DamageCooldown: 1
+		RequiresCondition: emergencyrepair
+	ExternalCondition@ER:
+		Condition: emergencyrepair

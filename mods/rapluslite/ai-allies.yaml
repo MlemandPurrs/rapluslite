@@ -1,4 +1,37 @@
 Player:
+	SupportPowerBotModule@usa:
+		RequiresCondition: enable-ai-player && player.usa
+		Decisions:
+			UseParatroopers:
+				OrderName: AlliedParatroopers
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			UseNuclear:
+				OrderName: NukeMissile
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
 	SupportPowerBotModule@england:
 		RequiresCondition: enable-ai-player && player.england
 		Decisions:
@@ -293,6 +326,55 @@ Player:
 					Attractiveness: 1
 					TargetMetric: Value
 					CheckRadius: 2c0
+	BaseBuilderBotModule@usa:
+		RequiresCondition: enable-ai-player && player.usa
+		MinimumExcessPower: 60
+		MaximumExcessPower: 160
+		ExcessPowerIncrement: 40
+		ExcessPowerIncreaseThreshold: 4
+		CheckForWaterRadius: 8
+		ConstructionYardTypes: fact
+		RefineryTypes: proc.ercc
+		PowerTypes: powr,apwr
+		BarracksTypes: tent.usa
+		VehiclesFactoryTypes: weap.usa
+		ProductionTypes: tent.usa,weap.usa,hpad.usa
+		NavalProductionTypes: syrd.usa
+		SiloTypes: silo
+		BuildingLimits:
+			proc.ercc: 4
+			tent.usa: 2
+			kenn: 4
+			dome: 1
+			weap.usa: 3
+			syrd.usa: 1
+			hpad.usa: 4
+			atek.usa: 1
+			fix.usa: 1
+			pdox: 1
+			mslo: 1
+			agun: 6
+			gun: 6
+			pbox: 8
+			hbox: 4
+			gap: 4
+		BuildingFractions:
+			proc.ercc: 15
+			tent.usa: 2
+			kenn: 1
+			dome: 1
+			weap.usa: 6
+			hpad.usa: 4
+			syrd.usa: 1
+			pbox: 7
+			hbox: 3
+			gun: 7
+			gap: 2
+			fix.usa: 1
+			agun: 5
+			atek.usa: 1
+			mslo: 1
+			pdox: 1
 	BaseBuilderBotModule@england:
 		RequiresCondition: enable-ai-player && player.england
 		MinimumExcessPower: 60
@@ -353,8 +435,8 @@ Player:
 		RefineryTypes: proc.ercc
 		PowerTypes: powr,apwr
 		BarracksTypes: tent
-		VehiclesFactoryTypes: weap
-		ProductionTypes: tent,weap,hpad
+		VehiclesFactoryTypes: weap.france
+		ProductionTypes: tent,weap.france,hpad
 		NavalProductionTypes: syrd
 		SiloTypes: silo
 		BuildingLimits:
@@ -362,7 +444,7 @@ Player:
 			tent: 2
 			kenn: 4
 			dome.france: 1
-			weap: 3
+			weap.france: 3
 			syrd: 1
 			hpad: 4
 			atek.france: 1
@@ -379,7 +461,7 @@ Player:
 			tent: 2
 			kenn: 1
 			dome.france: 1
-			weap: 6
+			weap.france: 6
 			hpad: 4
 			syrd: 1
 			pbox: 7
@@ -410,7 +492,7 @@ Player:
 			proc.ercc: 4
 			tent: 2
 			kenn: 4
-			dome: 1
+			dome.germany: 1
 			weap.germany: 3
 			syrd: 1
 			hpad: 4
@@ -427,7 +509,7 @@ Player:
 			proc.ercc: 15
 			tent: 2
 			kenn: 1
-			dome: 1
+			dome.germany: 1
 			weap.germany: 6
 			hpad: 4
 			syrd: 1
@@ -463,8 +545,8 @@ Player:
 			weap: 3
 			syrd: 1
 			hpad: 4
-			atek: 1
-			fix: 1
+			atek.spain: 1
+			fix.spain: 1
 			pdox: 1
 			mslo: 1
 			pbox: 8
@@ -484,9 +566,9 @@ Player:
 			hbox: 3
 			gun: 7
 			gap: 2
-			fix: 1
+			fix.spain: 1
 			agun: 5
-			atek: 1
+			atek.spain: 1
 			mslo: 1
 			pdox: 1
 	BaseBuilderBotModule@italy:
@@ -513,7 +595,7 @@ Player:
 			syrd: 1
 			hpad: 4
 			atek.italy: 1
-			fix: 1
+			fix.italy: 1
 			pdox: 1
 			mslo: 1
 			agun: 6
@@ -533,7 +615,7 @@ Player:
 			hbox: 3
 			gun: 7
 			gap: 2
-			fix: 1
+			fix.italy: 1
 			agun: 5
 			atek.italy: 1
 			mslo: 1
@@ -562,7 +644,7 @@ Player:
 			syrd: 1
 			hpad: 4
 			atek.greece: 1
-			fix: 1
+			fix.greece: 1
 			pdox: 1
 			mslo: 1
 			agun: 6
@@ -583,7 +665,7 @@ Player:
 			hbox: 3
 			gun: 7
 			gap: 2
-			fix: 1
+			fix.greece: 1
 			agun: 5
 			atek.greece: 1
 			mslo: 1
@@ -612,8 +694,8 @@ Player:
 			weap: 3
 			syrd: 1
 			hpad: 4
-			atek: 1
-			fix: 1
+			atek.turkey: 1
+			fix.turkey: 1
 			pdox: 1
 			mslo: 1
 			agun: 6
@@ -635,16 +717,42 @@ Player:
 			gtwr: 4
 			gun: 7
 			gap: 2
-			fix: 1
+			fix.turkey: 1
 			agun: 5
 			atek.turkey: 1
 			mslo: 1
 			pdox: 1
 	CaptureManagerBotModule@mech:
-		RequiresCondition: enable-ai-player && player.england || player.france || player.germany || player.spain || player.italy || player.greece || player.turkey
+		RequiresCondition: enable-ai-player && player.usa || player.england || player.france || player.germany || player.spain || player.italy || player.greece || player.turkey
 		CapturingActorTypes: mech,mech.germany
 		CheckCaptureTargetsForVisibility: true
 		MaximumCaptureTargetOptions: 15
+	SquadManagerBotModule@usa:
+		RequiresCondition: enable-ai-player && player.usa
+		SquadSize: 16
+		SquadSizeRandomBonus: 16
+		RushInterval: 400
+		AttackScanRadius: 16
+		ExcludeFromSquadsTypes: harv, mcv, dog, pt, dd, ca, heli, iroq.ai, e6, mech
+		ConstructionYardTypes: fact
+	SquadManagerBotModule@usa.sea:
+		RequiresCondition: enable-ai-player && player.usa
+		SquadSize: 4
+		SquadSizeRandomBonus: 4
+		RushInterval: 400
+		AttackScanRadius: 24
+		ExcludeFromSquadsTypes: harv, mcv, dog, e1, e3, snip, jeep, apc, 1tnk, 2tnk, arty, atnk, e7.usa, heli, iroq.ai, e6, mech
+		NavalUnitsTypes: pt,dd,ca
+		ConstructionYardTypes: fact
+		NavalProductionTypes: syrd
+	SquadManagerBotModule@usa.air:
+		RequiresCondition: enable-ai-player && player.usa
+		SquadSize: 2
+		SquadSizeRandomBonus: 2
+		RushInterval: 400
+		AttackScanRadius: 24
+		ExcludeFromSquadsTypes: harv, mcv, dog, e1, e3, snip, jeep, apc, 1tnk, 2tnk, arty, atnk, e7.usa, pt, dd, ca, e6, mech
+		ConstructionYardTypes: fact
 	SquadManagerBotModule@england:
 		RequiresCondition: enable-ai-player && player.england
 		SquadSize: 16
@@ -827,6 +935,52 @@ Player:
 		AttackScanRadius: 24
 		ExcludeFromSquadsTypes: harv, mcv, dog, e1, e3, rmbo, jeep, apc, mapc, 1tnk, 2tnk, arty, atnk, e7, pt, dd, ca, e6, mech
 		ConstructionYardTypes: fact
+	UnitBuilderBotModule@usa:
+		RequiresCondition: enable-ai-player && player.usa
+		UnitQueues: Vehicle, Infantry
+		UnitsToBuild:
+			e1: 65
+			e3: 30
+			dog: 15
+			harv: 15
+			jeep: 20
+			apc: 30
+			1tnk: 40
+			2tnk: 50
+			arty: 15
+			atnk: 5
+			e7.usa: 1
+			e6: 2
+			mech: 2
+		UnitLimits:
+			dog: 4
+			harv: 8
+			jeep: 4
+			e7.usa: 1
+			e6: 2
+			mech: 2
+	UnitBuilderBotModule@usa.sea:
+		RequiresCondition: enable-ai-player && player.usa
+		IdleBaseUnitsMaximum: 6
+		UnitQueues: Ship
+		UnitsToBuild:
+			pt: 50
+			dd: 30
+			ca: 20
+		UnitLimits:
+			pt: 8
+			dd: 6
+			ca: 4
+	UnitBuilderBotModule@usa.air:
+		RequiresCondition: enable-ai-player && player.usa
+		IdleBaseUnitsMaximum: 4
+		UnitQueues: Aircraft
+		UnitsToBuild:
+			iroq.ai: 40
+			heli: 60
+		UnitLimits:
+			iroq.ai: 4
+			heli: 6
 	UnitBuilderBotModule@england:
 		RequiresCondition: enable-ai-player && player.england
 		UnitQueues: Vehicle, Infantry

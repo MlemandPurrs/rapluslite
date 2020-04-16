@@ -151,6 +151,36 @@ BARF:
 		Sequence: place
 		SequencePalette: placebuilding
 
+KENF:
+	Inherits: ^FakeBuilding
+	Selectable:
+		Bounds: 24,24
+	Tooltip:
+		Name: Fake Kennel
+		GenericName: Kennel
+		GenericVisibility: Enemy
+		GenericStancePrefix: False
+	Buildable:
+		BuildPaletteOrder: 11
+		Queue: Fakestructure
+		Prerequisites: anypower, ~player.france, ~techlevel.infonly
+		Description: Looks like an Kennel.
+		Icon: fake-icon
+	Building:
+		Footprint: x
+		Dimensions: 1,1
+		LocalCenterOffset: 0,0,0
+	WithBuildingBib:
+		HasMinibib: True
+	RenderSprites:
+		Image: KENN
+	Valued:
+		Cost: 50
+	Health:
+		HP: 15000
+	Armor:
+		Type: Wood
+
 PROF:
 	Inherits: ^FakeBuilding
 	Inherits@infiltrate: ^InfiltratableFake
@@ -346,7 +376,7 @@ SYRF:
 	Buildable:
 		BuildPaletteOrder: 3
 		Queue: Fakestructure
-		Prerequisites: anypower, ~player.france, ~techlevel.medium
+		Prerequisites: anypower, ~player.france, ~techlevel.medium, ~!global-disablenavy
 		Description: Looks like a Naval Yard.
 		Icon: fake-icon
 	Tooltip:

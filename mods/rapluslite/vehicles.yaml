@@ -17,6 +17,27 @@ HARV:
 	Passenger:
 		PipType: Blue
 
+HARV.drop:
+	Inherits: HARV
+	-Buildable:
+	-Harvester:
+	-WithHarvestAnimation:
+	-WithDockingAnimation:
+	-SpawnActorOnDeath:
+	-HarvesterHuskModifier:
+	-SelfHealing:
+	-Explodes:
+	-WithHarvesterSpriteBody:
+	WithFacingSpriteBody:
+	SpawnActorOnDeath:
+		Actor: harv
+		RequiresCondition: !parachute
+	KillsSelf:
+		RequiresCondition: !parachute
+	RenderSprites:
+		Image: harv
+	-MapEditorData:
+
 HARV.Soviet:
 	Inherits: HARV
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
@@ -36,11 +57,11 @@ HARV.Soviet:
 		Weapon: M60mg
 		LocalOffset: 320,0,60
 		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	AttackTurreted:
 		Armaments: secondary
 		Turrets: secondary
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	WithSpriteTurret@SECONDARY:
 		Turret: secondary
 	WithMuzzleOverlay:
@@ -64,9 +85,9 @@ JEEP:
 	Tooltip:
 		Name: Jeep
 	Armament:
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	AttackTurreted:
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	Carryable:
 		LocalOffset: 0,0,100
 	Targetable:
@@ -131,11 +152,11 @@ FTRK:
 	Turreted:
 		TurnSpeed: 7
 	Armament@AA:
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	Armament@AG:
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	AttackTurreted:
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	Cargo:
 		Types: Infantry
 		MaxWeight: 1
@@ -201,14 +222,14 @@ FTRK.Repair:
 		TurnSpeed: 255
 		Offset: 0,0,450
 	AttackFrontal:
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	Armament:
 		Weapon: Repair.truk
 		Cursor: repair
 		OutsideRangeCursor: repair
 		TargetStances: Ally
 		ForceTargetStances: None
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	WithSpriteTurret:
 		Sequence: turret
 	CaptureManager:
@@ -236,9 +257,9 @@ APC:
 	Mobile:
 		PauseOnCondition: !(!empdisable && !notmobile && !being-captured)
 	Armament:
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	AttackFrontal:
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	Cargo:
 		Types: Infantry
 		MaxWeight: 5
@@ -318,13 +339,13 @@ MBUN:
 		PauseOnCondition: !(!empdisable && !notmobile && !being-captured)
 	AttackFrontal:
 		FacingTolerance: 20
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	Armament:
 		Weapon: ChainGun
 		MuzzleSequence: muzzle
 		LocalOffset: 712,0,196
 		RequiresCondition: !loaded
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 		Turret: 
 	RevealsShroud:
 		Range: 8c0
@@ -339,7 +360,7 @@ MBUN:
 		PortOffsets: 568,0,128, 448,-682,128, -448,-682,128, -768,0,128, -448,682,128, 448,682,128
 		PortYaws: 0, 176, 341, 512, 682, 853
 		PortCones: 88, 88, 88, 88, 88, 88
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 		RequiresCondition: loaded
 	WithSpriteTurret:
 	WithMuzzleOverlay:
@@ -398,9 +419,9 @@ BTR:
 		LocalOffset: 150,0,100
 		MuzzleSequence: muzzle
 		FireDelay: 8
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	AttackTurreted:
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	WithMuzzleOverlay:
 	WithSpriteTurret:
 	Cargo:
@@ -452,7 +473,7 @@ BTR.R1:
 		Prerequisites: techlevel.infonly
 		InitialLevels: 1
 	Cargo:
-		InitialUnits: E1R1, E3R1, E1R1
+		InitialUnits: E2R1, E1R1, E3R1, E1R1, E1R1
 	-Buildable:
 	-MapEditorData:
 
@@ -490,17 +511,17 @@ BTR.crate:
 		RecoilRecovery: 25
 		LocalOffset: 768,0,90
 		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	Armament@SECONDARY:
 		Name: secondary
 		Weapon: LtnkRockets
 		LocalOffset: 100,90,90
 		LocalYaw: -100, 100
 		Recoil: 10
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	AttackTurreted:
 		Armaments: primary, secondary
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	Carryable:
 		LocalOffset: 0,0,100
 	Targetable:
@@ -521,7 +542,7 @@ BTR.crate:
 		RecoilRecovery: 25
 		LocalOffset: 768,0,90
 		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	SpawnActorOnDeath:
 		Actor: 1TNK.England.Husk
 	RenderSprites:
@@ -538,7 +559,7 @@ BTR.crate:
 		RecoilRecovery: 25
 		LocalOffset: 768,0,90
 		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	SpawnActorOnDeath:
 		Actor: 1TNK.France.Husk
 	RenderSprites:
@@ -569,7 +590,7 @@ BTR.crate:
 		RecoilRecovery: 25
 		LocalOffset: 768,0,90
 		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	SpawnActorOnDeath:
 		Actor: 1TNK.Spain.Husk
 	RenderSprites:
@@ -632,15 +653,6 @@ BTR.crate:
 		RequiresCondition: atsea
 	-MapEditorData:
 
-1TNK.Greece.R1:
-	Inherits: 1TNK.Greece
-	RenderSprites:
-		Image: 1tnk
-	ProducibleWithLevel:
-		Prerequisites: techlevel.infonly
-		InitialLevels: 1
-	-Buildable:
-
 1TNK.R1:
 	Inherits: 1TNK
 	RenderSprites:
@@ -700,16 +712,16 @@ LTNK:
 		RecoilRecovery: 38
 		LocalOffset: 720,0,80
 		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	Armament@SECONDARY:
 		Name: secondary
 		Weapon: M1CTank
 		MuzzleSequence: mg-muzzle
 		LocalOffset: 286,3,90
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	AttackTurreted:
 		Armaments: primary, secondary
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	Targetable:
 		TargetTypes: Ground, Vehicle, VehicleDisguise
 		RequiresCondition: !parachute
@@ -729,7 +741,7 @@ LTNK:
 		RecoilRecovery: 38
 		LocalOffset: 720,0,80
 		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	SpawnActorOnDeath:
 		Actor: 2TNK.England.Husk
 	RenderSprites:
@@ -746,7 +758,7 @@ LTNK:
 		RecoilRecovery: 25
 		LocalOffset: 720,0,80
 		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	SpawnActorOnDeath:
 		Actor: 2TNK.France.Husk
 	RenderSprites:
@@ -777,7 +789,7 @@ LTNK:
 		RecoilRecovery: 25
 		LocalOffset: 720,0,80
 		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	SpawnActorOnDeath:
 		Actor: 2TNK.Spain.Husk
 	RenderSprites:
@@ -815,10 +827,10 @@ LTNK:
 		RecoilRecovery: 26
 		LocalOffset: 768,0,90
 		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	AttackTurreted:
 		Armaments: primary
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	SpawnActorOnDeath:
 		Actor: 2TNK.Soviet.Husk
 
@@ -878,9 +890,9 @@ LTNK:
 		Prerequisites: fix, ~vehicles.soviet, ~!player.ukraine, ~!player.belarus, ~techlevel.medium
 		Description: Soviet Main Battle Tank, with dual cannons.\n  Strong vs Vehicles\n  Weak vs Infantry, Aircraft
 	Armament:
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	AttackTurreted:
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	Passenger:
 		PipType: Yellow
 
@@ -931,11 +943,11 @@ LTNK:
 		Weight: 4
 		PipType: Red
 	Armament@PRIMARY:
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	Armament@SECONDARY:
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	AttackTurreted:
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 
 4TNK.Ukraine:
 	Inherits: 4TNK
@@ -983,14 +995,14 @@ LTNK:
 		LocalOffset: 900,0,340
 		Recoil: 43
 		RecoilRecovery: 30
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	Armament@SECONDARY:
 		Weapon: MammothTuskAA
 		LocalOffset: -85,384,340, -85,-384,340
 		LocalYaw: -100,100
 		Recoil: 43
 		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	SpawnActorOnDeath:
 		Actor: 4TNK.Tsla.Husk
 	-WithMuzzleOverlay:
@@ -1013,14 +1025,14 @@ LTNK:
 		Recoil: 171
 		RecoilRecovery: 30
 		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	Armament@SECONDARY:
 		Weapon: MammothTuskAT
 		LocalOffset: -85,384,340, -85,-384,340
 		LocalYaw: -100,100
 		Recoil: 43
 		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	SpawnActorOnDeath:
 		Actor: 4TNK.Flam.Husk
 
@@ -1030,10 +1042,10 @@ ARTY:
 		BuildPaletteOrder: 6
 		Prerequisites: dome, ~vehicles.allies, ~!player.france, ~techlevel.medium
 	Armament:
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	AttackFrontal:
 		Armaments: primary
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	Targetable:
 		TargetTypes: Ground, Vehicle, VehicleDisguise
 		RequiresCondition: !parachute
@@ -1118,10 +1130,10 @@ V2RL:
 		BuildPaletteOrder: 6
 		Prerequisites: dome, ~vehicles.soviet, ~!player.ukraine, ~techlevel.medium
 	Armament:
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	AttackFrontal:
 		Armaments: primary
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	RenderRangeCircle:
 	Passenger:
 		PipType: Yellow
@@ -1134,7 +1146,7 @@ V2RL.Ukraine:
 	Armament:
 		Weapon: SCUD.ukraine
 		ReloadingCondition: reloading
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	RenderSprites:
 		Image: v2rl
 	-MapEditorData:
@@ -1150,7 +1162,7 @@ MNLY:
 		TargetTypes: Ground, Vehicle, VehicleDisguise
 		RequiresCondition: !parachute
 	Rearmable:
-		RearmActors: fix, fix.russia, fix.ukraine, fix.karelia, fix.kazakh, fix.uzbek, fix.turkmen
+		RearmActors: fix, fix.usa, fix.spain, fix.italy, fix.greece, fix.turkey, fix.russia, fix.ukraine, fix.belarus, fix.karelia, fix.kazakh, fix.uzbek, fix.turkmen, fix.afghan
 	Passenger:
 		PipType: Blue
 
@@ -1168,9 +1180,9 @@ MNLY.Karelia:
 		Weapon: M60mg
 		LocalOffset: 85,0,171
 		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	AttackFrontal:
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	WithMuzzleOverlay:
 
 MNLY.Mole:
@@ -1197,16 +1209,16 @@ MNLY.Mole:
 		FireDelay: 2
 		MuzzleSequence: muzzle
 		MuzzlePalette: player
-		PauseOnCondition: empdisable || !ammo
+		PauseOnCondition: empdisable || !ammo || leaflet
 	Armament@ACTUAL:
 		Name: secondary
 		Weapon: MoleMine
 		LocalOffset: -82,0,-330
 		FireDelay: 2
-		PauseOnCondition: empdisable || !ammo
+		PauseOnCondition: empdisable || !ammo || leaflet
 	AttackTurreted:
 		PersistentTargeting: false
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	WithMuzzleOverlay:
 	WithSpriteTurret:
 	AmmoPool:
@@ -1249,21 +1261,21 @@ ATNK:
 		Weapon: FLAK-23-AA
 		LocalOffset: 262,160,160, 262,-160,160
 		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	Armament@SECONDARY:
 		Name: secondary
 		Weapon: FLAK-23-AG
 		LocalOffset: 262,160,160, 262,-160,160
 		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	Armament@TERTIARY:
 		Name: tertiary
 		Weapon: RedEye
 		LocalOffset: 196,160,160, 196,-160,160
-		PauseOnCondition: empdisable || !ammo
+		PauseOnCondition: empdisable || !ammo || leaflet
 	AttackTurreted:
 		Armaments: primary, secondary, tertiary
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	WithSpriteTurret:
 	ProducibleWithLevel:
 		Prerequisites: vehicles.upgraded
@@ -1301,13 +1313,13 @@ ATNK.England:
 		Weapon: FLAK-23-AA.britain
 		LocalOffset: 262,160,160, 262,-160,160
 		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	Armament@SECONDARY:
 		Name: secondary
 		Weapon: FLAK-23-AG.britain
 		LocalOffset: 262,160,160, 262,-160,160
 		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	SpawnActorOnDeath:
 		Actor: ATNK.England.Husk
 	RenderSprites:
@@ -1322,13 +1334,13 @@ ATNK.France:
 		Weapon: FLAK-23-AA.france
 		LocalOffset: 262,160,160, 262,-160,160
 		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	Armament@SECONDARY:
 		Name: secondary
 		Weapon: FLAK-23-AG.france
 		LocalOffset: 262,160,160, 262,-160,160
 		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	SpawnActorOnDeath:
 		Actor: ATNK.France.Husk
 	RenderSprites:
@@ -1357,13 +1369,13 @@ ATNK.Spain:
 		Weapon: FLAK-23-AA.spain
 		LocalOffset: 262,160,160, 262,-160,160
 		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	Armament@SECONDARY:
 		Name: secondary
 		Weapon: FLAK-23-AG.spain
 		LocalOffset: 262,160,160, 262,-160,160
 		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	SpawnActorOnDeath:
 		Actor: ATNK.Spain.Husk
 	RenderSprites:
@@ -1455,9 +1467,9 @@ TNKD:
 	Armament:
 		Weapon: 130mm
 		LocalOffset: 720,0,90
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	AttackFrontal:
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	WithAttackAnimation:
 		Sequence: shoot
 	SpawnActorOnDeath:
@@ -1509,9 +1521,9 @@ SPG:
 		Weapon: TurretGun.SPG
 		LocalOffset: 720,0,90
 		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	AttackFrontal:
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	WithMuzzleOverlay:
 	SpawnActorOnDeath:
 		Actor: SPG.Husk
@@ -1574,14 +1586,14 @@ MHQ:
 		Range: 4c0
 	Turreted:
 		TurnSpeed: 10
-		Offset: 225,0,168
+		Offset: 225,0,167
 	Armament:
 		Weapon: M60mg
 		MuzzleSequence: muzzle
 		LocalOffset: 128,0,41
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	AttackTurreted:
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	WithMuzzleOverlay:
 	WithSpriteTurret:
 	WithIdleOverlay@SPINNER:
@@ -1606,11 +1618,11 @@ CTNK:
 		Prerequisites: atek, ~vehicles.allies, ~player.germany, ~techlevel.high
 		BuildDurationModifier: 60
 	Armament@PRIMARY:
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	Armament@SECONDARY:
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	AttackFrontal:
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	PortableChrono:
 		ChargeDelay: 250
 	Targetable:
@@ -1646,13 +1658,13 @@ STNK:
 		Turret: secondary
 		Weapon: APTusk
 		LocalOffset: 85,384,176, 85,-384,176
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	Armament@SECONDARY:
 		Name: secondary
 		Turret: primary
 		Weapon: StingerAA
 		LocalOffset: 192,0,176
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	-Turreted:
 	Turreted@PRIMARY:
 		Turret: primary
@@ -1662,7 +1674,7 @@ STNK:
 		TurnSpeed: 255
 		Offset: 0,0,0
 	AttackFrontal:
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	WithSpriteTurret:
 		Turret: primary
 		Sequence: turret
@@ -1719,10 +1731,10 @@ HELL:
 		Weapon: Flamer
 		LocalOffset: 584,0,180
 		FireDelay: 8
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	AttackTurreted:
 		Armaments: primary
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	WithSpriteTurret:
 	Explodes:
 		Weapon: VisualExplode
@@ -1773,9 +1785,9 @@ MAPC:
 		RecoilRecovery: 18
 		LocalOffset: 85,85,299, 85,-85,299
 		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	AttackTurreted:
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	WithMuzzleOverlay:
 	WithSpriteTurret:
 	SpawnActorOnDeath:
@@ -1800,7 +1812,7 @@ MAPC:
 MGG:
 	Buildable:
 		BuildPaletteOrder: 12
-		Prerequisites: techcenter, ~weap, ~techlevel.high
+		Prerequisites: techcenter, ~weap, ~!player.afghan, ~techlevel.high
 		BuildDurationModifier: 60
 		Description: Regenerates the shroud nearby,\nobscuring the area.\n  Can be toggled on/off via deploy command.\n  Continues to function while in a Transport.\n  Unarmed
 	Valued:
@@ -1825,6 +1837,16 @@ MGG:
 		RequiresCondition: !parachute
 	Passenger:
 		PipType: Blue
+
+MGG.afghan:
+	Inherits: MGG
+	Buildable:
+		Prerequisites: dome, ~weap, ~player.afghan, ~techlevel.high
+	Valued:
+		Cost: 600
+	RenderSprites:
+		Image: mgg
+	-MapEditorData:
 
 #   Disguise Tank
 DTNK:
@@ -1952,7 +1974,7 @@ DTNK:
 		Turret: default-turret
 		LocalOffset: 768,0,90
 		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 		RequiresCondition: !jeep && !apc && !tnk1 && !tnk2 && !arty && !mnly && !atnk && !tnkd && !mrj && !stnk && !ctnk && !mcv && !harv && !truk && !mgg && !mrls && !mbun && !mapc && !gcan && !ptnk
 	Armament@jeep:
 		Name: jeeparm
@@ -1960,7 +1982,7 @@ DTNK:
 		Recoil: 0
 		Turret: jeep-turret
 		LocalOffset: 768,0,90
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 		RequiresCondition: jeep
 	Armament@tnk1:
 		Name: 1tnkarm
@@ -1968,7 +1990,7 @@ DTNK:
 		Recoil: 0
 		Turret: 1tnk-turret
 		LocalOffset: 768,0,90
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 		RequiresCondition: tnk1
 	Armament@tnk2:
 		Name: 2tnkarm
@@ -1976,7 +1998,7 @@ DTNK:
 		Recoil: 0
 		Turret: 2tnk-turret
 		LocalOffset: 768,0,90
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 		RequiresCondition: tnk2
 	Armament@atnk:
 		Name: atnkarm
@@ -1984,7 +2006,7 @@ DTNK:
 		Recoil: 0
 		Turret: atnk-turret
 		LocalOffset: 768,0,90
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 		RequiresCondition: atnk
 	Armament@stnk:
 		Name: stnkarm
@@ -1992,7 +2014,7 @@ DTNK:
 		Recoil: 0
 		Turret: stnk-turret
 		LocalOffset: 768,0,90
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 		RequiresCondition: stnk
 	Armament@invis:
 		Name: invisarm
@@ -2000,7 +2022,7 @@ DTNK:
 		Recoil: 0
 		Turret: invis-turret
 		LocalOffset: 768,0,90
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 		RequiresCondition: apc || arty || mnly || tnkd || mrj || ctnk || mcv || harv || truk || mgg || gcan
 	Armament@hell:
 		Name: hellarm
@@ -2008,7 +2030,7 @@ DTNK:
 		Recoil: 0
 		Turret: hell-turret
 		LocalOffset: 768,0,90
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 		RequiresCondition: hell
 	Armament@mrls:
 		Name: mrlsarm
@@ -2016,7 +2038,7 @@ DTNK:
 		Recoil: 0
 		Turret: mrls-turret
 		LocalOffset: 768,0,90
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 		RequiresCondition: mrls
 	Armament@mbun:
 		Name: mbunarm
@@ -2024,7 +2046,7 @@ DTNK:
 		Recoil: 0
 		Turret: mbun-turret
 		LocalOffset: 128,0,43
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 		RequiresCondition: mbun
 	Armament@mapc:
 		Name: mapcarm
@@ -2032,7 +2054,7 @@ DTNK:
 		Recoil: 0
 		Turret: mapc-turret
 		LocalOffset: 768,0,90
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 		RequiresCondition: mapc
 	Armament@ptnk:
 		Name: ptnkarm
@@ -2040,7 +2062,7 @@ DTNK:
 		Recoil: 0
 		Turret: ptnk-turret
 		LocalOffset: 768,0,90
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 		RequiresCondition: ptnk
 	SpawnActorOnDeath:
 		Actor: dtnk.husk
@@ -2064,9 +2086,10 @@ DTNK:
 			1tnk.france: tnk1
 			1tnk.germany: tnk1
 			1tnk.spain: tnk1
-			1tnk.greece: tnk1
-			1tnk.greece.r2: tnk1
 			1tnk.italy: tnk1
+			1tnk.italy.r2: tnk1
+			1tnk.greece: tnk1
+			1tnk.r1: tnk1
 			1tnf: tnk1
 			2tnk: tnk2
 			2tnk.england: tnk2
@@ -2074,6 +2097,7 @@ DTNK:
 			2tnk.germany: tnk2
 			2tnk.spain: tnk2
 			2tnf: tnk2
+			2tnk.r1: tnk2
 			arty: arty
 			arty.france: arty
 			arty.france.r2: arty
@@ -2084,9 +2108,9 @@ DTNK:
 			atnk.france: atnk
 			atnk.germany: atnk
 			atnk.spain: atnk
-			atnk.greece: atnk
-			atnk.greece.r2: atnk
 			atnk.italy: atnk
+			atnk.italy.r2: atnk
+			atnk.greece: atnk
 			tnkd: tnkd
 			mrj: mrj
 			stnk: stnk
@@ -2156,7 +2180,7 @@ DTNK:
 	AttackTurreted:
 		Armaments: defaultarm, jeeparm, 1tnkarm, 2tnkarm, atnkarm, stnkarm, invisarm, hellarm, mrlsarm, mbunarm, mapcarm, ptnkarm
 		Turrets: default-turret, jeep-turret, 1tnk-turret, 2tnk-turret, atnk-turret, stnk-turret, invis-turret, hell-turret, mrls-turret, mbun-turret, mapc-turret, ptnk-turret
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	WithMuzzleOverlay:
 	WithSpriteTurret@Default:
 		Sequence: turret-default
@@ -2308,11 +2332,11 @@ MRLS:
 	Valued:
 		Cost: 1350
 	Buildable:
-		BuildPaletteOrder: 12
-		Prerequisites: ~disabled
-		#	Prerequisites: atek, dome, ~vehicles.allies, ~player.greece, ~techlevel.high
+		BuildPaletteOrder: 9
+		#	Prerequisites: ~disabled
+		Prerequisites: stek, dome, ~player.afghan, ~techlevel.high
 		Queue: Vehicle
-		Description: Medium range rocket artillery firing in volleys.\nCannot attack Air units\n  Strong vs all Ground units\n  Weak vs Aircraft
+		Description: Long range rocket artillery.\nCan be toggled to fire in pairs or volleys.\nCannot attack Air units\n  Strong vs all Ground units\n  Weak vs Aircraft
 	-Tooltip:
 	Tooltip@sidebar:
 		Name: Multiple Rocket Launch System
@@ -2323,10 +2347,10 @@ MRLS:
 	ExternalCondition@PRODUCED:
 		Condition: produced
 	Mobile:
-		Speed: 85
+		Speed: 71
 		TurnSpeed: 2
 	Health:
-		HP: 12000
+		HP: 25000
 	Armor:
 		Type: Light
 	RevealsShroud:
@@ -2340,11 +2364,21 @@ MRLS:
 	Armament@PRIMARY:
 		Weapon: 227mm
 		LocalOffset: 213,128,0, 213,-128,0
-		PauseOnCondition: empdisable
-	AttackTurreted:
+		PauseOnCondition: empdisable || leaflet
+		RequiresCondition: !deployed
+	Armament@SECONDARY:
+		Name: secondary
+		Weapon: 227mm.2shot
+		LocalOffset: 213,-128,0, 213,128,0
+		PauseOnCondition: empdisable || leaflet
+		RequiresCondition: deployed
+	GrantConditionOnDeploy:
+		DeployedCondition: deployed
+		SkipMakeAnimation: true
+	AttackFrontal:
 		TargetFrozenActors: True
 		ForceFireIgnoresActors: True
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	WithSpriteTurret:
 	WithTurretAimAnimation:
 		Sequence: aim
@@ -2358,7 +2392,7 @@ MRLS:
 	Passenger:
 		PipType: Red
 	Targetable:
-		TargetTypes: Ground, Vehicle, VehicleDisguise
+		TargetTypes: Ground, Vehicle
 		RequiresCondition: !parachute
 
 TTNK:
@@ -2479,9 +2513,9 @@ BRDM:
 	Armament:
 		Weapon: APTusk.single
 		LocalOffset: 213,0,120
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	AttackTurreted:
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	WithSpriteTurret:
 	ProducibleWithLevel:
 		Prerequisites: vehicles.upgraded
@@ -2540,11 +2574,11 @@ BEHE:
 		Queue: Vehicle
 		BuildPaletteOrder: 14
 		BuildLimit: 1
-		#	Prerequisites: stek, ~vehicles.soviet, ~tech.stolen, ~player.belarus, ~techlevel.high
-		Prerequisites: ~disabled
+		Prerequisites: stek, ~vehicles.soviet, ~tech.stolen, ~player.afghan, ~techlevel.high
+		#	Prerequisites: ~disabled
 		Description: Artillery tank of majestic proportions.\nMaximum one can be built.\nCan crush concrete walls.\nSelf-repairs when below 50% of maximum Health.\nNuclear powered, detonates violently on death!\n  Strong vs Defenses, Vehicles, Infantry\n  Weak vs Aircraft, fast Units
 	Valued:
-		Cost: 3000
+		Cost: 3500
 	Tooltip:
 		Name: Behemoth
 		GenericName: Super Tank
@@ -2569,14 +2603,14 @@ BEHE:
 		Weapon: 203mm
 		LocalOffset: 0,180,340
 		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	Armament@SECONDARY:
 		Weapon: 203mm
 		LocalOffset: 0,-180,340
 		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	AttackTurreted:
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	WithMuzzleOverlay:
 	WithSpriteTurret:
 	SpawnActorOnDeath:
@@ -2638,13 +2672,13 @@ BEHE.tank:
 		LocalOffset: 900,180,340
 		MuzzleSequence: muzzle
 		Recoil: 43
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	Armament@SECONDARY:
 		Weapon: 203mm.2shot
 		LocalOffset: 900,-180,340
 		MuzzleSequence: muzzle
 		Recoil: 43
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	Armament@TERTIARY:
 		Name: tertiary
 		Weapon: ChainGun.5tnk
@@ -2654,7 +2688,7 @@ BEHE.tank:
 		MuzzleSequence: muzzle-mg
 	AttackTurreted:
 		Armaments: primary, secondary, tertiary
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	WithMuzzleOverlay:
 	WithSpriteTurret:
 	SpawnActorOnDeath:
@@ -2715,9 +2749,9 @@ HAPC:
 		Weapon: Flamer
 		LocalOffset: 768,0,171
 		#	MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	AttackFrontal:
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	Turreted:
 		TurnSpeed: 5
 	WithSpriteTurret:
@@ -2765,6 +2799,9 @@ MCV.uzbek:
 		Facing: 96
 		TransformSounds: placbldg.aud, build5.aud
 		NoTransformNotification: BuildingCannotPlaceAudio
+	-SpawnActorOnDeath:
+	SpawnActorOnDeath:
+		Actor: MCV.uzbek.Husk
 	RenderSprites:
 		Image: mcv
 	-MapEditorData:
@@ -2847,13 +2884,13 @@ ICBM:
 		Name: primary
 		Weapon: ICBM
 		ReloadingCondition: reloading
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	AutoTarget:
 		InitialStance: HoldFire
 		InitialStanceAI: HoldFire
 		ScanRadius: 15
 	AttackFrontal:
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	WithFacingSpriteBody:
 		RequiresCondition: !reloading
 		Name: loaded
@@ -2898,10 +2935,10 @@ PTNK:
 		RecoilRecovery: 17
 		LocalOffset: 720,0,80
 		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	AttackTurreted:
 		Armaments: primary
-		PauseOnCondition: empdisable
+		PauseOnCondition: empdisable || leaflet
 	AutoTarget:
 		InitialStance: HoldFire
 		InitialStanceAI: ReturnFire
@@ -2965,3 +3002,320 @@ MSS.soviet:
 		DecorationBounds: 28,28
 	RenderSprites:
 		Image: mss
+
+PRSM:
+	Inherits: ^TrackedVehicle
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 12
+		Prerequisites: atek, ~vehicles.allies, ~tech.stolen, ~player.usa, ~techlevel.high
+		Description: Experimental vehicle armed with an Laser.\n  Strong vs Vehicles, Buildings\n  Weak vs Infantry, Aircraft
+	Valued:
+		Cost: 1500
+	Tooltip:
+		Name: Prism Tank
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 32500
+	Armor:
+		Type: Heavy
+	Mobile:
+		Speed: 56
+	RevealsShroud:
+		Range: 6c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	SelectionDecorations:
+	Selectable:
+		DecorationBounds: 28,28
+	Passenger:
+		CargoType: Vehicle
+		Weight: 4
+	Turreted:
+		TurnSpeed: 5
+		Offset: 100,0,0
+	Armament:
+		Weapon: PrismLaser
+		LocalOffset: 100,0,140
+		PauseOnCondition: empdisable || leaflet
+	AttackTurreted:
+		TargetFrozenActors: True
+		OpportunityFire: False
+		PauseOnCondition: empdisable || leaflet
+	WithSpriteTurret:
+	ProducibleWithLevel:
+		Prerequisites: vehicles.upgraded
+
+IFV:
+	Inherits: ^Vehicle
+	Inherits@GAINSEXPERIENCE: ^GainsExperience
+	Buildable:
+		Queue: Vehicle
+		BuildPaletteOrder: 9
+		Prerequisites: fix, ~vehicles.allies, ~player.usa, ~techlevel.medium
+		Description: Adaptable infantry transport.\n Special Ability: Transformer\nAdapts a different purpose based on Passenger inside.\nArmament varies with Passenger inside.\nAt default:\n  Strong vs Infantry, Light armor\n  Weak vs Tanks, Aircraft
+	Valued:
+		Cost: 650
+	Tooltip:
+		Name: Infantry Fighting Vehicle
+	-Tooltip:
+	Tooltip@sidebar:
+		Name: Infantry Fighting Vehicle
+		RequiresCondition: !produced
+	Tooltip@ingame:
+		Name: IFV
+		RequiresCondition: produced
+	ExternalCondition@PRODUCED:
+		Condition: produced
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 28000
+	Armor:
+		Type: Light
+	Mobile:
+		Speed: 113
+		PauseOnCondition: notmobile || being-captured || empdisable
+	RevealsShroud:
+		Range: 5c0
+		RequiresCondition: !spyturr
+	RevealsShroud@SPY:
+		Range: 10c0
+		RequiresCondition: spyturr
+	Turreted:
+		TurnSpeed: 10
+		Offset: 20,0,60
+	Armament@DEFAULT:
+		Weapon: 25mm
+		LocalOffset: 768,0,90
+		MuzzleSequence: muzzle2
+		PauseOnCondition: empdisable || leaflet
+		RequiresCondition: !(gunturr || samturr || psamturr || commturr || flamturr || chemturr || spyturr || testurr || engturr || tecnturr || fragturr || snipturr || flakturr || medturr || volkturr)
+	Armament@TECN:
+		Weapon: M1Carbine
+		MuzzleSequence: muzzle
+		LocalOffset: 150,0,100
+		PauseOnCondition: empdisable || leaflet
+		RequiresCondition: tecnturr
+	Armament@E1:
+		Weapon: M60mg
+		MuzzleSequence: muzzle
+		LocalOffset: 150,0,100
+		PauseOnCondition: empdisable || leaflet
+		RequiresCondition: gunturr
+	Armament@E2:
+		Weapon: GrenadeLauncher
+		MuzzleSequence: muzzle
+		LocalOffset: 150,0,100
+		PauseOnCondition: empdisable || leaflet
+		RequiresCondition: fragturr
+	Armament@E3:
+		Weapon: Dragon.dual
+		LocalOffset: 192,70,376, 192,-70,376
+		PauseOnCondition: empdisable || leaflet
+		RequiresCondition: samturr
+	Armament@E3AA:
+		Name: secondary
+		Weapon: RedEye.dual
+		LocalOffset: 192,70,376, 192,-70,376
+		PauseOnCondition: empdisable || leaflet
+		RequiresCondition: samturr || psamturr
+	Armament@E4:
+		Weapon: FireballLauncher.single
+		LocalOffset: 768,0,90
+		MuzzleSequence: muzzle2
+		PauseOnCondition: empdisable || leaflet
+		RequiresCondition: flamturr
+	Armament@E5:
+		Weapon: Chemspray
+		LocalOffset: 768,0,90
+		MuzzleSequence: muzzle3
+		MuzzlePalette: desert
+		PauseOnCondition: empdisable || leaflet
+		RequiresCondition: chemturr
+	Armament@E7:
+		Weapon: Chaingun
+		MuzzleSequence: muzzle
+		LocalOffset: 150,0,100
+		PauseOnCondition: empdisable || leaflet
+		RequiresCondition: commturr
+	Armament@Shok:
+		Weapon: TTankZap
+		LocalOffset: 0,0,213
+		PauseOnCondition: empdisable || leaflet
+		RequiresCondition: testurr
+	Armament@Sniper:
+		Weapon: Sniper
+		MuzzleSequence: muzzle
+		LocalOffset: 150,0,100
+		PauseOnCondition: empdisable || leaflet
+		RequiresCondition: snipturr
+	Armament@FlakAA:
+		Weapon: FLAK-23-AA
+		LocalOffset: 262,160,160, 262,-160,160
+		MuzzleSequence: muzzle
+		PauseOnCondition: empdisable || leaflet
+		RequiresCondition: flakturr
+	Armament@FlakAG:
+		Weapon: FLAK-23-AG
+		LocalOffset: 262,160,160, 262,-160,160
+		MuzzleSequence: muzzle
+		PauseOnCondition: empdisable || leaflet
+		RequiresCondition: flakturr
+	Armament@VOLKOV:
+		Weapon: 105mm.Singular
+		LocalOffset: 768,0,90
+		MuzzleSequence: muzzle2
+		PauseOnCondition: empdisable || leaflet
+		RequiresCondition: volkturr
+	Armament@Repair:
+		Weapon: Repair
+		LocalOffset: 0,0,213
+		Cursor: repair
+		OutsideRangeCursor: repair
+		TargetStances: Ally
+		ForceTargetStances: None
+		PauseOnCondition: empdisable || leaflet
+		RequiresCondition: engturr
+	WithIdleOverlay@SPINNER:
+		Sequence: spinner
+		PauseOnCondition: empdisable || leaflet
+		RequiresCondition: spyturr
+		Offset: 0,0,200
+	DetectCloaked@SPY:
+		Range: 3c0
+		RequiresCondition: !empdisable && spyturr
+	RenderDetectionCircle:
+		RequiresCondition: !empdisable && spyturr
+	AttackTurreted:
+		PauseOnCondition: empdisable || leaflet
+		RequiresCondition: !spyturr && !medturr
+	WithMuzzleOverlay:
+	WithSpriteTurret@smolgun:
+		RequiresCondition: tecnturr
+		Sequence: turret6
+	WithSpriteTurret@gun:
+		RequiresCondition: gunturr || commturr
+		Sequence: turret
+	WithSpriteTurret@samturr:
+		RequiresCondition: samturr
+		Sequence: turret3
+	WithSpriteTurret@default:
+		Sequence: turret2
+		RequiresCondition: !(gunturr || commturr || psamturr || samturr || spyturr || testurr || medturr || engturr || tecnturr || flamturr || chemturr || flakturr || thfturr || snipturr || volkturr)
+	WithIdleOverlay@tes:
+		Sequence: turret4
+		RequiresCondition: testurr
+	WithSpriteTurret@rep:
+		Sequence: turret5
+		RequiresCondition: engturr
+	WithSpriteTurret@flame:
+		Sequence: turret7
+		RequiresCondition: flamturr || chemturr
+	WithSpriteTurret@flak:
+		Sequence: turret8
+		RequiresCondition: flakturr
+	WithSpriteTurret@samonly:
+		RequiresCondition: psamturr
+		Sequence: turret9
+	WithSpriteTurret@snipers:
+		RequiresCondition: snipturr
+		Sequence: turret10
+	WithSpriteTurret@volkov:
+		RequiresCondition: volkturr
+		Sequence: turret11
+	Cargo:
+		Types: Infantry
+		MaxWeight: 1
+		PipCount: 1
+		LoadingCondition: notmobile
+		PassengerConditions:
+			e1: gunturr
+			e1r1: gunturr
+			e1.marine: gunturr
+			mgi: gunturr
+			dshk: gunturr
+			shot: tecnturr
+			e2: fragturr
+			e2.uzbek: fragturr
+			e2.uzbekr2: fragturr
+			gren: fragturr
+			e3: samturr
+			e3r1: samturr
+			atgm: samturr
+			stng: psamturr
+			e4: flamturr
+			e4.ukraine: flamturr
+			e4.ukrainer2: flamturr
+			rpg: flamturr
+			e5: chemturr
+			e6: engturr
+			e6.uzbek: engturr
+			mech: engturr
+			mech.germany: engturr
+			mrtr: flamturr
+			shok: testurr
+			rmbo: commturr
+			e7: commturr
+			e7.usa: commturr
+			volk: volkturr
+			snip: snipturr
+			snip.r1: snipturr
+			mark: snipturr
+			spy: spyturr
+			spy.england: spyturr
+			spy.england.r2: spyturr
+			thf: thfturr
+			medi: medturr
+			tecn: tecnturr
+			cinf: tecnturr
+			ftrp: flakturr
+			#	todo make unique turret for cinf
+	ProducibleWithLevel:
+		Prerequisites: vehicles.upgraded
+	WithIdleOverlay@MEDIC:
+		Sequence: medic
+		PauseOnCondition: empdisable || leaflet
+		RequiresCondition: medturr
+		Offset: 0,0,40
+	ProximityExternalCondition@MEDIC:
+		RequiresCondition: medturr
+		EnableSound: heal2.aud
+		Condition: barracks
+		Range: 3c0
+	AutoTarget:
+		AttackAnythingCondition: stance-attackanything
+		ScanRadius: 6
+	AutoTargetPriority@DEFAULTAA:
+		ValidTargets: Infantry, Vehicle, Water, Underwater, Air, Defense
+		RequiresCondition: (!stance-attackanything && !assault-move) && (samturr || flakturr)
+	AutoTargetPriority@ATTACKANYTHINGAA:
+		ValidTargets: Infantry, Vehicle, Water, Underwater, Air, Structure, Defense
+		RequiresCondition: (stance-attackanything || assault-move) && (samturr || flakturr)
+	AutoTargetPriority@DEFAULTG:
+		RequiresCondition: (!stance-attackanything && !assault-move) && (fragturr || gunturr || flamturr || chemturr || testurr || commturr)
+		ValidTargets: Infantry, Vehicle, Water, Underwater, Defense
+	AutoTargetPriority@ATTACKANYTHINGG:
+		RequiresCondition: (stance-attackanything || assault-move) && (fragturr || gunturr || flamturr || chemturr || testurr || commturr)
+		ValidTargets: Infantry, Vehicle, Water, Underwater, Structure, Defense, Mine
+	AttackMove:
+		AssaultMoveCondition: assault-move
+	AutoTargetPriority@DEFAULTREPAIR:
+		ValidTargets: Vehicle, Ship
+		RequiresCondition: engturr
+	Cloak:
+		InitialDelay: 125
+		CloakDelay: 175
+		CloakSound: appear1.aud
+		UncloakSound: appear1.aud
+		UncloakOn: Attack, Unload, Heal, Dock, SelfHeal
+		IsPlayerPalette: true
+		PauseOnCondition: cloak-force-disabled && empdisable
+		RequiresCondition: thfturr
+	GrantConditionOnDamageState@UNCLOAK:
+		Condition: cloak-force-disabled
+		ValidDamageStates: Critical

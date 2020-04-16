@@ -379,7 +379,7 @@ v2rl:
 
 mrls:
 	Inherits: emp-overlay
-	idle: 2tnk
+	idle: 3tnk
 		Facings: 32
 		UseClassicFacingFudge: True
 	turret:
@@ -394,7 +394,7 @@ mrls:
 		Start: 32
 		Facings: 32
 		UseClassicFacingFudge: True
-	icon: mrlsicon
+	icon: mrlssvyticon
 
 mnly:
     Inherits: emp-overlay
@@ -1047,3 +1047,112 @@ badr:
 dummy.visual:
 	 idle: blank32
 		Facings: 32
+
+ifv:
+	Inherits: emp-overlay
+	idle: hell
+		Facings: 32
+	muzzle: minigun
+		Length: 6
+		Facings: 8
+	muzzle2: gunfire2
+		Length: 2
+	spinner: mrj
+		Start: 32
+		Length: 32
+	medic: mouse
+		Start: 194
+		Length: 1
+	turret: apc-tur3
+		Facings: 32
+		UseClassicFacingFudge: True
+	turret2: 1tnk
+		Start: 32
+		Facings: 32
+		UseClassicFacingFudge: True
+	turret3: ifv-tur
+		Facings: 32
+		UseClassicFacingFudge: True
+	turret4: tbttur
+		Length: 32
+	turret5: rep-tur
+		Facings: 32
+		UseClassicFacingFudge: True
+	turret6: btr-tur
+		Facings: 32
+		UseClassicFacingFudge: True
+	turret7: hapc-tur
+		Facings: 32
+		UseClassicFacingFudge: True
+	turret8: atnk-tur
+		Facings: 32
+		UseClassicFacingFudge: True
+	turret9: ssam
+		Facings: 32
+	turret10: 4tnkpbox
+	turret11: 2tnk
+		Start: 32
+		Facings: 32
+		UseClassicFacingFudge: True
+	muzzle3:
+		Combine:
+			chem-n:
+				Length: *
+				Offset: 1,2
+			chem-nw:
+				Length: *
+				Offset: 8,2
+			chem-w:
+				Length: *
+				Offset: 8,-3
+			chem-sw:
+				Length: *
+				Offset: 7,-6
+			chem-s:
+				Length: *
+				Offset: 1,-6
+			chem-se:
+				Length: *
+				Offset: -5,-6
+			chem-e:
+				Length: *
+				Offset: -7,-3
+			chem-ne:
+				Length: *
+				Offset: -3,2
+		Facings: 8
+		Length: 13
+	icon: ifvicon
+
+hind:
+	rank2-icon: hindr2icon
+
+prsm:
+	Inherits: emp-overlay
+	idle: prsm
+		Facings: 32
+		UseClassicFacingFudge: True
+	turret: prsm-tur
+		Facings: 32
+		UseClassicFacingFudge: True
+	icon: prsmicon
+
+prsm.destroyed:
+	idle: prsm
+		Facings: 32
+		UseClassicFacingFudge: True
+		ZOffset: -512
+	turret: prsm-tur
+		Facings: 32
+		UseClassicFacingFudge: True
+		ZOffset: -512
+
+carr.usa:
+	Inherits: emp-overlay
+	idle: acar
+		Facings: 32
+	icon: acaricon
+
+b2:
+	idle:
+		Facings: 16

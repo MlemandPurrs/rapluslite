@@ -24,6 +24,33 @@ beacon:
 	artystrikesmall: artystrikbcon
 		Length: *
 		Offset: 0,-42
+	uspb: uspbbcon
+		Length: *
+		Offset: 0,-42
+	ftursmol: ftursmallicon
+		Length: *
+		Offset: 0,-42
+	pboxsmol: pboxsmallicon
+		Length: *
+		Offset: 0,-42
+	harvsmol: harvsmallicon
+		Length: *
+		Offset: 0,-42
+	yaksmol: yaksmallicon
+		Length: *
+		Offset: 0,-42
+	fakeplane: badrficonsmall
+		Length: *
+		Offset: 0,-42
+	leafbcon: leafbcon
+		Length: *
+		Offset: 0,-42
+	precsmall: precisionsmallicon
+		Length: *
+		Offset: 0,-42
+	jeepbcon: jeepbcon
+		Length: *
+		Offset: 0,-42
 
 icon:
 	fieldrepair: frepicon
@@ -54,6 +81,28 @@ icon:
 	scouts: 1tnksvyticon
 	gasicon: gasicon
 	mincicon: mincicon
+	parashok: parashokicon
+	smokicon: smokicon
+	killbounty: kbsicon
+	cashicon: cashicon
+	stlthbombs: b2icon
+	delphi: delphiicon
+	yak: yakicon
+	turbo: turboicon
+	consicon: consicon
+	#	armor: armoricon
+	#	damage: firepowericon
+	harv: harvicon
+	recovery: rcvyicon
+	fakebdgr: badrficon
+	leaflet: leafleticon
+	precs: precsicon
+	erep: erepicon
+	jeep: jeepicon
+	paragren: paragrenicon
+	armor: comparmoricon
+	gearicon: prodboosticon
+	hijacker: hijackericon
 
 explosion:
 	pulse_explosion: pulsefx2
@@ -160,6 +209,8 @@ pips:
         Offset: 0, 2
     tag-explosive: tag-explosive
         Offset: 0, 2
+    tag-cloner: tag-cloner
+        Offset: 0, 2
 	pip-bomb: pip-bomb
 
 mins:
@@ -237,3 +288,18 @@ poweroff:
 		Length: *
 		Tick: 160
 		ZOffset: 2047
+
+patriot:
+	idle:
+		Facings: 32
+		ZOffset: 1023
+
+laserfire:
+	idle: veh-hit3
+		Length: *
+		ZOffset: 511
+
+skull-red: 
+	derp: rapid
+		Start: 4
+		Length: 16

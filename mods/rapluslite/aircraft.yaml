@@ -8,6 +8,8 @@ BADR:
 		Condition: kazakh.player
 		Factions: kazakh
 		ResetOnOwnerChange: True
+	Cargo:
+		MaxWeight: 15
 
 BADR.Crate:
 	Inherits: BADR
@@ -16,6 +18,13 @@ BADR.Crate:
 	RenderSprites:
 		Image: badr
 	-MapEditorData:
+
+BADR.decoy:
+	Inherits: BADR.Bomber
+	Armament:
+		Weapon: DummyBomb
+	RenderSprites:
+		Image: badr
 
 BADR.buildable:
 	Inherits: ^Plane
@@ -26,7 +35,7 @@ BADR.buildable:
 		BuildAtProductionType: Plane
 		BuildPaletteOrder: 3
 		BuildLimit: 1
-		Prerequisites: ~afld, stek, ~aircraft.soviet, ~techlevel.high
+		Prerequisites: ~afld, stek, ~aircraft.soviet, ~!player.ukraine, ~techlevel.high
 		Description: Badger variant modified to carry and fire 4 V2 rockets.\nMaximum 1 can be built.\n  Strong vs Buildings, Vehicles\n  Weak vs Infantry, Aircraft
 	Tooltip:
 		Name: Badger V2
@@ -38,7 +47,7 @@ BADR.buildable:
 		HP: 20000
 	Armament:
 		Weapon: SCUD.badger
-		LocalOffset: 432,320,0, 432,0,0, 432,-320,0
+		LocalOffset: 432,320,0, 432,-320,0
 		LocalYaw: -40, 24
 		PauseOnCondition: !ammo
 	AttackAircraft:
@@ -85,9 +94,21 @@ BADR.buildable:
 	ProducibleWithLevel:
 		Prerequisites: aircraft.upgraded
 	Rearmable:
-		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh
+		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh, carr.usa.deployed
 	RenderSprites:
 		Image: badr
+
+BADR.buildable.ukraine:
+	Inherits: BADR.buildable
+	Buildable:
+		Prerequisites: ~afld, stek, ~aircraft.soviet, ~player.ukraine, ~techlevel.high
+	-Armament:
+	Armament:
+		Weapon: SCUD.badger.ukraine
+		LocalOffset: 432,320,0, 432,-320,0
+		LocalYaw: -40, 24
+		PauseOnCondition: !ammo
+	-MapEditorData:
 
 B52:
 	Inherits: BADR
@@ -105,6 +126,42 @@ B52.Crate:
 	RenderSprites:
 		Image: ally-bdgr
 	-MapEditorData:
+
+B52.Bomber:
+	Inherits: BADR.Bomber
+	Tooltip:
+		Name: B-52
+	RenderSprites:
+		Image: ally-bdgr
+
+B2.Bomber:
+	Inherits: B52.Bomber
+	Tooltip:
+		Name: B-2
+	Health:
+		HP: 15000
+	-RenderSprites:
+	RenderSprites:
+		Image: b2
+	Cloak:
+		InitialDelay: 90
+		CloakDelay: 90
+		CloakSound: appear1.aud
+		UncloakSound: appear1.aud
+		IsPlayerPalette: true
+		PauseOnCondition: cloak-force-disabled || !airborne
+	GrantConditionOnDamageState@UNCLOAK:
+		Condition: cloak-force-disabled
+		ValidDamageStates: Critical
+
+B52.leaflet:
+	Inherits: B52.Bomber
+	Armament:
+		Weapon: parabomb.leaflet
+		PauseOnCondition: !ammo
+	AmmoPool:
+		Ammo: 5
+		AmmoCondition: ammo
 
 TRAN:
 	Buildable:
@@ -233,7 +290,7 @@ IROQ:
 	Selectable:
 		DecorationBounds: 38,32
 	Rearmable:
-		RearmActors: hpad, carr.deployed
+		RearmActors: hpad, hpad.usa, hpad.england, carr.deployed, carr.usa.deployed
 
 IROQ.Turkey:
 	Inherits: IROQ
@@ -391,7 +448,7 @@ HELI:
 		AmmoCondition: ammogun
 	WithMuzzleOverlay:
 	Rearmable:
-		RearmActors: hpad, carr.deployed
+		RearmActors: hpad ,hpad.usa, hpad.england, carr.deployed, carr.usa.deployed
 
 HIND:
 	Buildable:
@@ -457,7 +514,7 @@ HIND:
 		Speed: 130
 		TurnSpeed: 5
 	Rearmable:
-		RearmActors: hpad, carr.deployed
+		RearmActors: hpad, hpad.usa, hpad.england, carr.deployed, carr.usa.deployed
 	SpeedMultiplier:
 		Modifier: 110
 		RequiresCondition: kazakh.player
@@ -473,7 +530,7 @@ HIND.gunship:
 	Buildable:
 		BuildPaletteOrder: 5
 		BuildAtProductionType: Plane
-		Prerequisites: ~afld, stek, ~aircraft.soviet, ~techlevel.high
+		Prerequisites: ~afld, stek, ~aircraft.soviet, ~!player.afghan, ~techlevel.high
 	-Rearmable:
 	ReloadAmmoPool@1:
 		AmmoPool: guns
@@ -492,6 +549,28 @@ HIND.gunship:
 		ReferencePoint: Top
 		ZOffset: 256
 		RequiresCondition: !ammo && !ammorock
+	RenderSprites:
+		Image: hind
+
+HIND.afghan:
+	Inherits: HIND.gunship
+	Buildable:
+		Prerequisites: ~afld, stek, ~aircraft.soviet, ~player.afghan, ~!aircraft.upgraded, ~techlevel.high
+	ProducibleWithLevel:
+		Prerequisites: techlevel.infonly
+		InitialLevels: 1
+	RenderSprites:
+		Image: hind
+	-MapEditorData:	
+
+HIND.afghan.R2:
+	Inherits: HIND.afghan
+	Buildable:
+		Prerequisites: ~afld, stek, ~aircraft.soviet, ~player.afghan, ~aircraft.upgraded, ~techlevel.high
+		Icon: rank2-icon
+	ProducibleWithLevel:
+		Prerequisites: techlevel.infonly
+		InitialLevels: 2
 	RenderSprites:
 		Image: hind
 
@@ -524,6 +603,22 @@ U2.nuke:
 		Name: Nuke Plane
 	SpawnActorOnDeath:
 		Actor: U2.nuke.Husk
+	RenderSprites:
+		Image: ally-u2
+
+U2.strike:
+	Inherits: U2
+	Armament:
+		Weapon: Hellfire.airstrike
+		LocalOffset: 0,213,-85, 0,-213,-85
+		PauseOnCondition: !ammo
+	AmmoPool:
+		Ammo: 8
+		AmmoCondition: ammo
+	Tooltip:
+		Name: Interceptor
+	SpawnActorOnDeath:
+		Actor: U2.strike.Husk
 	RenderSprites:
 		Image: ally-u2
 
@@ -606,7 +701,7 @@ YAK:
 		ReloadDelay: 11
 		AmmoCondition: ammodc
 	Rearmable:
-		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh
+		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh, carr.usa.deployed
 	SpeedMultiplier:
 		Modifier: 110
 		RequiresCondition: kazakh.player
@@ -667,6 +762,7 @@ YAK.Belarus.AI:
 YAK.Allies:
 	Inherits: YAK
 	Buildable:
+		Queue: Plane, MWFAircraft
 		BuildPaletteOrder: 4
 		Prerequisites: ~afld, ~aircraft.allies, ~techlevel.medium
 	-Armament@TERTIARY:
@@ -682,6 +778,52 @@ YAK.Allies:
 	-SpawnActorOnDeath:
 	SpawnActorOnDeath:
 		Actor: YAK.Allies.Husk
+
+YAK.kamikaze:
+	Inherits: YAK
+	-Buildable:
+	-Valued:
+	Tooltip:
+		Name: Kamikaze Yak
+	#	Aircraft:
+	#	Speed: 160
+	-Armament@PRIMARY:
+	-Armament@SECONDARY:
+	-Armament@TERTIARY:
+	-Armament@FOURTH:
+	-Armament@FIFTH:
+	-AmmoPool@1:
+	-AmmoPool@2:
+	Armament@PRIMARY:
+		Weapon: DummyBomb
+	#	Armament@PRIMARY:
+	#	Weapon: KamikazeTargeting
+	#	LocalOffset: 0,0,0
+	-WithMuzzleOverlay:
+	-ProducibleWithLevel:
+	-Rearmable:
+	AttackAircraft:
+		Armaments: primary
+	AttackBomber:	
+	GrantConditionOnAttack:
+		Condition: triggered
+	KillsSelf:
+		RequiresCondition: triggered
+	SpawnActorOnDeath:
+		Actor: YAK.kamikaze.Husk
+	-SelfHealing@PLANE:
+	-GrantConditionOnPrerequisite@AIRFIELD:
+	-Selectable:
+	-Voiced:
+	RejectsOrders:	
+	Interactable:
+	-ActorLostNotification:
+	RenderSprites:
+		Image: yak
+	CashTrickler@usagecost:
+		Amount: -800
+		InitialDelay: 0
+		Interval: 9999
 
 MIG:
 	Inherits@AUTODAMAGE: ^KilledWithoutAirfield
@@ -704,7 +846,7 @@ MIG:
 	AttackAircraft:
 		PersistentTargeting: false
 	Rearmable:
-		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh
+		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh, carr.usa.deployed
 	SpeedMultiplier:
 		Modifier: 110
 		RequiresCondition: kazakh.player
@@ -726,6 +868,7 @@ MIG.AI:
 MIG.Allies:
 	Inherits: MIG
 	Buildable:
+		Queue: Plane, MWFAircraft
 		BuildPaletteOrder: 5
 		BuildDurationModifier: 60
 		Prerequisites: ~afld, atek, ~aircraft.allies, ~techlevel.high
@@ -810,7 +953,7 @@ COSSACK:
 	RenderSprites:
 		Image: cossack
 	Rearmable:
-		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh
+		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh, carr.usa.deployed
 	SpeedMultiplier:
 		Modifier: 110
 		RequiresCondition: kazakh.player
@@ -892,7 +1035,7 @@ HARR:
 	ProducibleWithLevel:
 		Prerequisites: aircraft.upgraded
 	Rearmable:
-		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh, hpad, carr.deployed
+		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh, hpad, hpad.usa, hpad.england, carr.deployed, carr.usa.deployed
 
 MH60:
 	Buildable:

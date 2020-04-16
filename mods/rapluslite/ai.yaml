@@ -18,7 +18,7 @@ Player:
 		RequiresCondition: enable-ai-player
 		McvTypes: mcv,mcv.uzbek
 		ConstructionYardTypes: fact,fact.uzbek
-		McvFactoryTypes: weap,weap.russia
+		McvFactoryTypes: weap,weap.russia,weap.usa,weap.france,weap.germany
 	CaptureManagerBotModule@engineer:
 		RequiresCondition: enable-ai-player
 		CapturingActorTypes: e6,e6.uzbek

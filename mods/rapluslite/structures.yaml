@@ -9,8 +9,11 @@ FACT:
 		Produces: Building,Defense,Fakestructure
 		PauseOnCondition: disabled || build-incomplete
 	ProvidesPrerequisite@allies:
-		Factions: allies, england, france, germany, spain, italy, greece, turkey
+		Factions: allies, usa, england, france, germany, spain, italy, greece, turkey
 		Prerequisite: structures.allies
+	ProvidesPrerequisite@usa:
+		Factions: usa
+		Prerequisite: structures.usa
 	ProvidesPrerequisite@spain:
 		Factions: spain
 		Prerequisite: structures.spain
@@ -24,7 +27,7 @@ FACT:
 		Factions: turkey
 		Prerequisite: structures.turkey
 	ProvidesPrerequisite@soviet:
-		Factions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen
+		Factions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen, afghan
 		Prerequisite: structures.soviet
 	ProvidesPrerequisite@belarus:
 		Factions: belarus
@@ -41,6 +44,9 @@ FACT:
 	ProvidesPrerequisite@turkmenistan:
 		Factions: turkmen
 		Prerequisite: structures.turkmen
+	ProvidesPrerequisite@afghan:
+		Factions: afghan
+		Prerequisite: structures.afghan
 	WithDeathAnimation:
 		DeathSequence: dead
 		UseDeathTypeSuffix: false
@@ -48,8 +54,21 @@ FACT:
 		Actor: fact.husk
 	Armor:
 		Type: Concrete
+	SpawnActorPower@CashReserves:
+		PauseOnCondition: disabled || lowpower
+		Prerequisites: ~atek, player.usa
+		Description: Cash Reserves
+		#	no money ? haha! moneyprinter goes brrrrrr...
+		LongDesc: Instantly gives 3000$ but everything is\n50% more expensive for 1.5 minutes.\nOil Derricks yield vastly reduced income,\nOre Silos produce no income at all. 
+		Icon: cashicon
+		Actor: dummy.moneyprinter
+		LifeTime: 2250
+		ChargeInterval: 12000
+		Cursor: dollar-target
+		OrderName: InstantCashPower
+		SupportPowerPaletteOrder: 2
 	SpawnActorPower@Maintenance:
-		PauseOnCondition: lowpower || disabled
+		PauseOnCondition: disabled || lowpower
 		Prerequisites: ~weap, ~fix, player.germany
 		Description: Maintenance
 		LongDesc: Instantly gives 3000$ but disables all War Factories for 1.5 minute.
@@ -58,6 +77,53 @@ FACT:
 		LifeTime: 2250
 		ChargeInterval: 6000
 		OrderName: MaintenancePower
+		SupportPowerPaletteOrder: 2	
+	#	ProduceActorPower@Maintenance:
+	#	PauseOnCondition: disabled || lowpower
+	#	Prerequisites: ~weap, ~fix, player.germany
+	#	Description: Maintenance
+	#	LongDesc: Instantly gives 3000$ but disables all War Factories for 1.5 minute.
+	#	Icon: mainticon
+	#	Actors: dummy.maintenance
+	#	Type: Building
+	#	LifeTime: 2250
+	#	ChargeInterval: 6000
+	#	OrderName: MaintenancePower
+	#	SupportPowerPaletteOrder: 2
+	ProduceActorPower@DecoyArmy:
+		PauseOnCondition: disabled || lowpower
+		OrderName: DecoyArmy
+		Prerequisites: ~weap, ~fix, player.france
+		Actors: 1tnf, 1tnf, 2tnf, 2tnf, artf
+		ChargeInterval: 6000
+		Icon: decoyarmy
+		Description: Decoy Army
+		LongDesc: Delivers an group of Fake units at your primary War Factory\nThose remote-controlled units armed with dummy weaponry\nwill look identical to real units for the opponent.
+		Type: Vehicle
+		ReadyAudio: ReinforcementsArrived
+		BlockedAudio: NoBuild
+		SupportPowerPaletteOrder: 2
+	SpawnActorPower@Conscription:
+		PauseOnCondition: disabled || lowpower
+		OrderName: Conscription
+		Prerequisites: ~barr, ~stek, player.kazakh
+		Description: Conscription
+		LongDesc: Basic Infantry types get produced in pairs for 1 minute.\nAffects Rifle Infantry, Grenadier and Rocket Soldier.
+		Icon: consicon
+		Actor: dummy.conscription
+		LifeTime: 1500
+		ChargeInterval: 7500
+		SupportPowerPaletteOrder: 2
+	SpawnActorPower@GearChange:
+		PauseOnCondition: disabled || lowpower
+		Prerequisites: ~stek, player.uzbek
+		Description: Gear Change
+		LongDesc: Instantly takes 3000$, all Vehicle, Aircraft\nand Ships gets built 25% faster for 1.5 minute.
+		Icon: gearicon
+		Actor: dummy.productionboost
+		LifeTime: 2250
+		ChargeInterval: 9000
+		OrderName: ProductionBoostPower
 		SupportPowerPaletteOrder: 2
 	SupportPowerChargeBar:
 	GrantConditionOnPowerState@LOWPOWER:
@@ -196,7 +262,7 @@ APWR.Russia:
 TENT:
 	Inherits@RIGEXPLOSIVE: ^AffectedByBoobyTrap
 	Buildable:
-		Prerequisites: ~structures.allies, ~techlevel.infonly
+		Prerequisites: ~structures.allies, ~!player.usa, ~techlevel.infonly
 		BuildPaletteOrder: 2
 		Description: Trains and Heals Infantry units.\nCan be Infiltrated by an Spy resulting\nin Veterancy for enemy Infantry.\n Special: Free Guards\nEach Barracks comes with two free Rifle Infantry.
 	WithDeathAnimation:
@@ -206,8 +272,11 @@ TENT:
 		Produces: Infantry, Soldier
 		PauseOnCondition: disabled || build-incomplete
 	ProvidesPrerequisite@allies:
-		Factions: allies, england, france, germany, spain, italy, greece, turkey
+		Factions: allies, usa, england, france, germany, spain, italy, greece, turkey
 		Prerequisite: infantry.allies
+	ProvidesPrerequisite@usa:
+		Factions: usa
+		Prerequisite: infantry.usa
 	ProvidesPrerequisite@spain:
 		Factions: spain
 		Prerequisite: infantry.spain
@@ -220,6 +289,9 @@ TENT:
 	ProvidesPrerequisite@turkey:
 		Factions: turkey
 		Prerequisite: infantry.turkey
+	ProvidesPrerequisite@americanstructure:
+		RequiresPrerequisites: structures.usa
+		Prerequisite: infantry.usa
 	ProvidesPrerequisite@spanishstructure:
 		RequiresPrerequisites: structures.spain
 		Prerequisite: infantry.spain
@@ -255,18 +327,17 @@ TENT:
 	WithRangeCircle:
 		Range: 2c512
 
-	#	TENT.Turkey:
-	#	Inherits: TENT
-	#	Buildable:
-	#	Prerequisites: ~structures.allies, ~player.turkey, ~techlevel.infonly
-	#	BuildPaletteOrder: 2
-	#	Armor:
-	#	Type: Concrete
-	#	RenderSprites:
-	#	Image: tent
-	#	ProvidesPrerequisite@COPY:
-	#	Prerequisite: tent
-	#	-MapEditorData:
+TENT.Usa:
+	Inherits: TENT
+	Buildable:
+		Prerequisites: ~structures.allies, ~player.usa, ~techlevel.infonly
+	RenderSprites:
+		Image: tent
+	ProvidesPrerequisite@COPY:
+		Prerequisite: tent
+	Power:
+		Amount: -30
+	-MapEditorData:
 
 BARR:
 	Inherits@RIGEXPLOSIVE: ^AffectedByBoobyTrap
@@ -275,7 +346,7 @@ BARR:
 		Prerequisites: ~structures.soviet, ~!player.russia, ~techlevel.infonly
 		Description: Trains and Heals Infantry units.\nCan be Infiltrated by an Spy resulting\nin Veterancy for enemy Infantry.\n Special: Free Guards\nEach Barracks comes with two free Rifle Infantry.
 	ProvidesPrerequisite@soviet:
-		Factions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen
+		Factions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen, afghan
 		Prerequisite: infantry.soviet
 	ProvidesPrerequisite@belarus:
 		Factions: belarus
@@ -292,6 +363,9 @@ BARR:
 	ProvidesPrerequisite@turkmenistan:
 		Factions: turkmen
 		Prerequisite: infantry.turkmen
+	ProvidesPrerequisite@afghanistan:
+		Factions: afghan
+		Prerequisite: infantry.afghan
 	ProvidesPrerequisite@belarussianstructure:
 		RequiresPrerequisites: structures.belarus
 		Prerequisite: infantry.belarus
@@ -307,6 +381,9 @@ BARR:
 	ProvidesPrerequisite@turkmenstructure:
 		RequiresPrerequisites: structures.turkmen
 		Prerequisite: infantry.turkmen
+	ProvidesPrerequisite@afghanstructure:
+		RequiresPrerequisites: structures.afghan
+		Prerequisite: infantry.afghan
 	WithDeathAnimation:
 		DeathSequence: dead
 		UseDeathTypeSuffix: false
@@ -358,6 +435,8 @@ KENN:
 	WithDeathAnimation:
 		DeathSequence: dead
 		UseDeathTypeSuffix: false
+	Valued:
+		Cost: 200
 	Production:
 		Produces: Infantry, Dog
 		PauseOnCondition: disabled || build-incomplete
@@ -367,6 +446,16 @@ KENN:
 	-CaptureManager:
 	-CapturableProgressBar:
 	-CapturableProgressBlink:
+	-Exit@1:
+	-Exit@2:
+	Exit@1:
+		SpawnOffset: -280,400,0
+		ExitCell: 0,1
+		ProductionTypes: Dog, Infantry
+	Exit@2:
+		SpawnOffset: -280,400,0
+		ExitCell: -1,0
+		ProductionTypes: Dog, Infantry
 	RevealsShroud:
 		Range: 3c0
 
@@ -513,11 +602,14 @@ SILO:
 		Interval: 600
 		InitialDelay: 600
 		Amount: 30
-		PauseOnCondition: lowpower || disabled
+		PauseOnCondition: lowpower || disabled || moneyprinter
 	CashTricklerBar:
 	-InfiltrateForCash:
 	SpawnActorOnDeath:
 		Actor: silo.husk
+	GrantConditionOnPrerequisite@moneyprinter:
+		Condition: moneyprinter
+		Prerequisites: moneyprinter
 
 SILO.Spain:
 	Inherits: SILO
@@ -528,7 +620,7 @@ SILO.Spain:
 		Interval: 400
 		InitialDelay: 400
 		Amount: 30
-		PauseOnCondition: lowpower || disabled
+		PauseOnCondition: lowpower || disabled || moneyprinter
 	RenderSprites:
 		Image: silo
 	-MapEditorData:
@@ -538,11 +630,17 @@ WEAP:
 	Inherits@RIGEXPLOSIVE: ^AffectedByBoobyTrap
 	Buildable:
 		BuildPaletteOrder: 5
-		Prerequisites: proc, ~!player.russia, ~!player.germany, ~techlevel.low
+		Prerequisites: proc, ~!player.russia, ~!player.usa, ~!player.france, ~!player.germany, ~techlevel.low
 		Description: Produces Vehicle units.\nCan be Infiltrated by an Spy resulting\nin Veterancy for enemy Vehicles.
 	ProvidesPrerequisite@allies:
-		Factions: allies, england, france, germany, spain, italy, greece, turkey
+		Factions: allies, usa, england, france, germany, spain, italy, greece, turkey
 		Prerequisite: vehicles.allies
+	ProvidesPrerequisite@usa:
+		Factions: usa
+		Prerequisite: vehicles.usa
+	ProvidesPrerequisite@americanstructure:
+		RequiresPrerequisites: structures.usa
+		Prerequisite: vehicles.usa
 	ProvidesPrerequisite@spain:
 		Factions: spain
 		Prerequisite: vehicles.spain
@@ -568,7 +666,7 @@ WEAP:
 		RequiresPrerequisites: structures.turkey
 		Prerequisite: vehicles.turkey
 	ProvidesPrerequisite@soviet:
-		Factions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen
+		Factions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen, afghan
 		Prerequisite: vehicles.soviet
 	ProvidesPrerequisite@belarus:
 		Factions: belarus
@@ -600,6 +698,12 @@ WEAP:
 	ProvidesPrerequisite@turkmenstructure:
 		RequiresPrerequisites: structures.turkmen
 		Prerequisite: vehicles.turkmen
+	ProvidesPrerequisite@afghanistan:
+		Factions: afgan
+		Prerequisite: vehicles.afghan
+	ProvidesPrerequisite@afghanstructure:
+		RequiresPrerequisites: structures.afghan
+		Prerequisite: vehicles.afghan
 	ProvidesPrerequisite@TECHPREQ:
 		Prerequisite: afldorweap
 	Production:
@@ -644,35 +748,46 @@ WEAP.Russia:
 		DamageThreshold: 10
 	-MapEditorData:
 
-WEAP.Germany:
+WEAP.France:
 	Inherits: WEAP
 	Buildable:
-		Prerequisites: proc, ~player.germany, ~techlevel.low
-		Description: Produces Vehicle units.\nCan be Infiltrated by an Spy resulting\nin Veterancy for enemy Vehicles.\n  Special Ability: Maintenance\nInstantly gives 3000 but disables all War Factories for 1.5 minute.
+		Prerequisites: proc, ~player.france, ~techlevel.low
+		Description: Produces Vehicle units.\nCan be Infiltrated by an Spy resulting\nin Veterancy for enemy Vehicles.\n  Special Ability: Decoy Army\nDelivers an group of Fake units at your primary War Factory\nThose remote-controlled units armed with dummy weaponry\nwill look identical to real units for the opponent.\n (requires Service Depot)
 	RenderSprites:
 		Image: weap
 	ProvidesPrerequisite@COPY:
 		Prerequisite: weap
 	-MapEditorData:
 
-	#	WEAP.Turkey:
-	#	Inherits: WEAP
-	#	Buildable:
-	#	Prerequisites: proc, ~player.turkey, ~techlevel.low
-	#	Armor:
-	#	Type: Concrete
-	#	RenderSprites:
-	#	Image: weap
-	#	ProvidesPrerequisite@COPY:
-	#	Prerequisite: weap
-	#	-MapEditorData:
+WEAP.Germany:
+	Inherits: WEAP
+	Buildable:
+		Prerequisites: proc, ~player.germany, ~techlevel.low
+		Description: Produces Vehicle units.\nCan be Infiltrated by an Spy resulting\nin Veterancy for enemy Vehicles.\n  Special Ability: Maintenance\nInstantly gives 3000 but disables all War Factories for 1.5 minute.\n (requires Service Depot)
+	RenderSprites:
+		Image: weap
+	ProvidesPrerequisite@COPY:
+		Prerequisite: weap
+	-MapEditorData:
+
+WEAP.Usa:
+	Inherits: WEAP
+	Buildable:
+		Prerequisites: proc, ~player.usa, ~techlevel.low
+	RenderSprites:
+		Image: weap
+	ProvidesPrerequisite@COPY:
+		Prerequisite: weap
+	Power:
+		Amount: -45
+	-MapEditorData:
 
 FIX:
 	Inherits@IDISABLE: ^DisableOnPowerDown
 	Inherits@RIGEXPLOSIVE: ^AffectedByBoobyTrap
 	Buildable:
 		BuildPaletteOrder: 8
-		Prerequisites: weap, ~!player.russia, ~!player.ukraine, ~!player.karelia, ~!player.kazakh, ~!player.uzbek, ~!player.turkmen, ~techlevel.medium
+		Prerequisites: weap, ~!player.usa, ~!player.spain, ~!player.italy, ~!player.greece, ~!player.turkey, ~!player.russia, ~!player.ukraine, ~!player.belarus, ~!player.karelia, ~!player.kazakh, ~!player.uzbek, ~!player.turkmen, ~!player.afghan, ~techlevel.medium
 		Description: Repairs Vehicles for credits.
 	Building:
 		Footprint: === xxx ===
@@ -686,6 +801,102 @@ FIX:
 		PauseOnCondition: disabled || build-incomplete
 	SpawnActorOnDeath:
 		Actor: fix.husk
+	GrantExternalConditionPower@FortifyArmor:
+		PauseOnCondition: disabled || lowpower
+		OrderName: FortifyArmor
+		Prerequisites: ~atek, player.usa
+		Icon: armor
+		ChargeInterval: 6000
+		Range: 1
+		Duration: 375
+		Description: Fortify Armor
+		LongDesc: Affected Vehicles take 20% reduced damage,\nand have their Movespeed decreased by 30% for 15 seconds.
+		SelectTargetSpeechNotification: SelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		Condition: armor.on
+		Cursor: armor-target
+		Sequence: none
+		SupportPowerPaletteOrder: 2
+	ParatroopersPower@HarvesterDrop:
+		PauseOnCondition:  disabled || lowpower
+		OrderName: HarvesterDrop
+		Prerequisites: ~aircraft.allies, player.spain
+		Icon: harv
+		ChargeInterval: 3750
+		Description: Harvester Drop
+		LongDesc: A B-52 drops one Harvester anywhere on the map.
+		DropItems: harv.drop
+		ReinforcementsArrivedSpeechNotification: ReinforcementsArrived
+		SelectTargetSpeechNotification: SelectTarget
+		AllowImpassableCells: false
+		QuantizedFacings: 8
+		CameraActor: camera.paradrop
+		UnitType: b52
+		DisplayBeacon: true
+		BeaconPoster: harvsmol
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+		Cursor: airdrop
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
+		SupportPowerPaletteOrder: 2
+	GrantExternalConditionPower@TurboBoost:
+		PauseOnCondition: disabled || lowpower
+		OrderName: TurboBoost
+		Prerequisites: player.italy
+		Icon: turbo
+		ChargeInterval: 6000
+		Range: 1
+		Duration: 375
+		Description: Turbo Boost
+		LongDesc: Affected Vehicles instantly take damage equal to 20% of their maximum Hitpoints,\nand have their Movespeed increased by 30% for 15 seconds.
+		SelectTargetSpeechNotification: SelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		Condition: turbo.on
+		Cursor: nitro-target
+		Sequence: none
+		SupportPowerPaletteOrder: 2
+	GrantExternalConditionPower@EmergencyRepair:
+		PauseOnCondition: disabled || lowpower
+		OrderName: EmergencyRepair
+		Prerequisites: ~structures.allies, player.greece
+		Icon: erep
+		ChargeInterval: 6000
+		Range: 1
+		Duration: 1
+		Description: Emergency Repair
+		LongDesc: Instantly repairs Buildings or Defenses\nfor 20% of maximum Hitpoints.
+		SelectTargetSpeechNotification: SelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		Condition: emergencyrepair
+		Cursor: wrenchtarget
+		Sequence: none
+		OnFireSound: fixit1.aud
+		SupportPowerPaletteOrder: 2
+		ValidStances: Ally
+	ParatroopersPower@InstantBunker:
+		PauseOnCondition: disabled
+		OrderName: InstantBunker
+		Prerequisites: ~structures.allies, player.turkey
+		Icon: pboxicon
+		ChargeInterval: 7500
+		Description: Instant Bunker
+		LongDesc: An empty Pillbox gets instantly constructed on the spot\nchecking Terrain of build spot.
+		DropItems: pbox.summon
+		ReinforcementsArrivedSpeechNotification: ReinforcementsArrived
+		SelectTargetSpeechNotification: SelectTarget
+		AllowImpassableCells: false
+		QuantizedFacings: 8
+		CameraActor: camera.minimum
+		UnitType: badr.summoner
+		DisplayBeacon: true
+		BeaconPoster: pboxsmol
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+		Cursor: generic-target
+		SupportPowerPaletteOrder: 2
 	GrantExternalConditionPower@Overcharge:
 		PauseOnCondition: disabled || lowpower
 		OrderName: OverchargeEnergy
@@ -742,6 +953,42 @@ FIX:
 		Sequence: none
 		SupportPowerPaletteOrder: 2
 		ValidStances: Ally
+	#	this works, however can do better...
+	#	IonCannonPower@WrackRecovery:
+	#	PauseOnCondition: disabled || lowpower
+	#	OrderName: RecoverWrack
+	#	Prerequisites: player.belarus
+	#	Icon: recovery
+	#	ChargeInterval: 6000
+	#	Description: Wrack Recovery
+	#	LongDesc: Targeted vehicle Husk gets instantly recovered into working condition.\nAn Husk that has already been recovered cannot be restored again.
+	#	CameraActor: camera.paradrop
+	#	OnFireSound: fixit1.aud
+	#	Cursor: airstrike
+	#	DisplayRadarPing: True
+	#	SupportPowerPaletteOrder: 2
+	#	Effect: smokland
+	#	EffectSequence: open
+	#	EffectPalette: turbo
+	#	Weapon: RecoverHusk
+	#	WeaponDelay: 0
+	GrantExternalConditionPower@WrackRecovery:
+		PauseOnCondition: disabled || lowpower
+		OrderName: RecoverWrack
+		Prerequisites: player.belarus
+		Icon: recovery
+		ChargeInterval: 6000
+		Description: Wrack Recovery
+		LongDesc: Targeted vehicle Husks get instantly recovered into working condition.
+		Duration: 0
+		Cursor: wrench-target
+		Range: 0
+		SelectTargetSpeechNotification: SelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		DisplayRadarPing: True
+		Condition: recovered
+		OnFireSound: fixit1.aud
+		SupportPowerPaletteOrder: 2
 	ParatroopersPower@ParaMines:
 		PauseOnCondition: disabled || lowpower
 		OrderName: SovietParaMines
@@ -756,30 +1003,6 @@ FIX:
 		AllowImpassableCells: false
 		QuantizedFacings: 8
 		CameraActor: camera.paradrop
-		DisplayBeacon: true
-		BeaconPoster: airdrop
-		ArrowSequence: arrow
-		ClockSequence: clock
-		CircleSequence: circles
-		Cursor: airdrop
-		UseDirectionalTarget: True
-		DirectionArrowAnimation: paradirection
-		SupportPowerPaletteOrder: 2
-	ParatroopersPower@SovietParaTanks:
-		PauseOnCondition: disabled || lowpower
-		OrderName: SovietParaTanks
-		Prerequisites: ~aircraft.soviet, player.kazakh
-		Icon: airdrop
-		ChargeInterval: 7500
-		Description: Airdrop
-		LongDesc: A Badger drops an Veteran squad of two Tank Hunters\nand an APC loaded with 3 Infantry anywhere on the map.
-		DropItems: BRDM.R1, BTR.R1, BRDM.R1
-		ReinforcementsArrivedSpeechNotification: ReinforcementsArrived
-		SelectTargetSpeechNotification: SelectTarget
-		AllowImpassableCells: false
-		QuantizedFacings: 8
-		CameraActor: camera.paradrop
-		UnitType: badr
 		DisplayBeacon: true
 		BeaconPoster: airdrop
 		ArrowSequence: arrow
@@ -805,13 +1028,34 @@ FIX:
 		CameraActor: camera.minimum
 		UnitType: badr.summoner
 		DisplayBeacon: true
+		BeaconPoster: ftursmol
 		ArrowSequence: arrow
+		ClockSequence: clock
 		CircleSequence: circles
 		SupportPowerPaletteOrder: 2
+		Cursor: generic-target
+	IonCannonPower@InstantHijacker:
+		PauseOnCondition: disabled || lowpower
+		OrderName: InstantHijacker
+		Prerequisites: ~stek, player.turkmen
+		Icon: hijacker
+		ChargeInterval: 10500
+		Description: Hijacker
+		LongDesc: Targeted enemy Vehicle changes\nside to your faction permanently.
+		CameraActor: dummy.qtnk
+		OnFireSound: fixit1.aud
+		Cursor: airstrike
+		DisplayRadarPing: True
+		SupportPowerPaletteOrder: 2
+		Effect: skull-red
+		EffectSequence: derp
+		EffectPalette: effect
+		Weapon: StealVehicle
+		WeaponDelay: 0
 	ProduceActorPower@SovietReserves:
 		PauseOnCondition: disabled || lowpower
 		OrderName: SovietReserves
-		Prerequisites: player.turkmen
+		Prerequisites: player.afghan
 		Actors: ltnk, brdm.scout, ltnk
 		ChargeInterval: 3000
 		Icon: scouts
@@ -825,6 +1069,61 @@ FIX:
 		Condition: lowpower
 		ValidPowerStates: Low, Critical
 	SupportPowerChargeBar:
+
+FIX.Usa:
+	Inherits: FIX
+	Buildable:
+		Prerequisites: weap, ~player.usa, ~techlevel.medium
+		Description: Repairs vehicles for credits.\n  Special Ability: Fortify Armor\nAffected Vehicles take 20% reduced damage,\nand have their Movespeed decreased by 30% for 15 seconds.\n (requires Tech Center)
+	RenderSprites:
+		Image: fix
+	ProvidesPrerequisite@COPY:
+		Prerequisite: fix
+	-MapEditorData:
+
+FIX.Spain:
+	Inherits: FIX
+	Buildable:
+		Prerequisites: weap, ~player.spain, ~techlevel.medium
+		Description: Repairs vehicles for credits.\n  Special Ability: Harvester Drop\nA B-52 drops one Harvester anywhere on the map.\n (requires Helipad)
+	RenderSprites:
+		Image: fix
+	ProvidesPrerequisite@COPY:
+		Prerequisite: fix
+	-MapEditorData:
+
+FIX.Italy:
+	Inherits: FIX
+	Buildable:
+		Prerequisites: weap, ~player.italy, ~techlevel.medium
+		Description: Repairs vehicles for credits.\n  Special Ability: Turbo Boost\nAffected Vehicles instantly take damage equal to 20% of their maximum Hitpoints,\nand have their Movespeed increased by 30% for 15 seconds.
+	RenderSprites:
+		Image: fix
+	ProvidesPrerequisite@COPY:
+		Prerequisite: fix
+	-MapEditorData:
+
+FIX.Greece:
+	Inherits: FIX
+	Buildable:
+		Prerequisites: weap, ~player.greece, ~techlevel.medium
+		Description: Repairs vehicles for credits.\n  Special Ability: Emergency Repair\nInstantly repairs Buildings or Defenses\nfor 20% of maximum Hitpoints.\n (requires Construction Yard)
+	RenderSprites:
+		Image: fix
+	ProvidesPrerequisite@COPY:
+		Prerequisite: fix
+	-MapEditorData:
+
+FIX.Turkey:
+	Inherits: FIX
+	Buildable:
+		Prerequisites: weap, ~player.turkey, ~techlevel.medium
+		Description: Repairs vehicles for credits.\n  Special Ability: Instant Bunker\nDeploys an empty Pillbox anywhere on the map.\n (requires Construction Yard)
+	RenderSprites:
+		Image: fix
+	ProvidesPrerequisite@COPY:
+		Prerequisite: fix
+	-MapEditorData:
 
 FIX.Russia:
 	Inherits: FIX
@@ -853,6 +1152,17 @@ FIX.Ukraine:
 		Prerequisite: fix
 	-MapEditorData:
 
+FIX.Belarus:
+	Inherits: FIX
+	Buildable:
+		Prerequisites: weap, ~player.belarus, ~techlevel.medium
+		Description: Repairs vehicles for credits.\n  Special Ability: Wrack Recovery\nTargeted vehicle Husk gets instantly recovered into working condition.\nAn Husk that has already been recovered cannot be restored again.
+	RenderSprites:
+		Image: fix
+	ProvidesPrerequisite@COPY:
+		Prerequisite: fix
+	-MapEditorData:
+
 FIX.Karelia:
 	Inherits: FIX
 	Buildable:
@@ -868,7 +1178,7 @@ FIX.Kazakh:
 	Inherits: FIX
 	Buildable:
 		Prerequisites: weap, ~player.kazakh, ~techlevel.medium
-		Description: Repairs vehicles for credits.\n  Special Ability: Airdrop\nA Badger drops an Veteran squad of two Tank Hunters\nand an APC loaded with 3 Infantry anywhere on the map.
+		Description: Repairs vehicles for credits.\n  Special Ability: Turbo Boost\nAffected Vehicles instantly take damage equal to 20% of their maximum Hitpoints,\nand have their Movespeed increased by 30% for 15 seconds.
 	RenderSprites:
 		Image: fix
 	ProvidesPrerequisite@COPY:
@@ -890,6 +1200,17 @@ FIX.Turkmen:
 	Inherits: FIX
 	Buildable:
 		Prerequisites: weap, ~player.turkmen, ~techlevel.medium
+		Description: Repairs vehicles for credits.\n  Special Ability: Hjiacker\nTargeted enemy Vehicle changes\nside to your faction permanently.\n (requires Tech Center)
+	RenderSprites:
+		Image: fix
+	ProvidesPrerequisite@COPY:
+		Prerequisite: fix
+	-MapEditorData:
+
+FIX.Afghan:
+	Inherits: FIX
+	Buildable:
+		Prerequisites: weap, ~player.afghan, ~techlevel.medium
 		Description: Repairs vehicles for credits.\n  Special Ability: Reserves\nDelivers an group of two Scout Tanks and one BRDM Scout at your primary War Factory.
 	RenderSprites:
 		Image: fix
@@ -903,7 +1224,7 @@ DOME:
 		Footprint: xx xx
 		Dimensions: 2,2
 	Buildable:
-		Prerequisites: proc, ~!structures.soviet, ~!player.england, ~!player.france, ~!player.italy, ~!player.spain, ~!player.greece, ~!player.turkey, ~techlevel.medium
+		Prerequisites: ~disabled
 		BuildPaletteOrder: 6
 		Description: Provides an overview\nof the battlefield.\nCan detect cloaked units.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.
 	Valued:
@@ -928,14 +1249,24 @@ DOME:
 		RequiresCondition: !jammed && !disabled && !build-incomplete
 	SpawnActorOnDeath:
 		Actor: dome.husk
+
+DOME.Allies:
+	Inherits: DOME
+	Buildable:
+		Prerequisites: proc, ~!structures.soviet, ~!player.england, ~!player.france, ~!player.germany, ~!player.italy, ~!player.spain, ~!player.greece, ~!player.turkey, ~techlevel.medium
+		Description: Provides an overview\nof the battlefield.\nCan detect cloaked units.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.
+	RenderSprites:
+		Image: dome
+	ProvidesPrerequisite@COPY:
+		Prerequisite: dome
 	ParatroopersPower@IntelDrop:
 		PauseOnCondition: disabled
 		OrderName: IntelligenceParatroopers
-		Prerequisites: ~aircraft.allies, player.england
+		Prerequisites: ~atek, player.england
 		Icon: inteldrop
 		ChargeInterval: 9000
 		Description: Intel Drop
-		LongDesc: An B-52 drops a Veteran Spy and Sniper anywhere on the map.
+		LongDesc: An B-52 drops a Veteran Spy and two Snipers anywhere on the map.
 		DropItems: snip.r1, spy.england, snip.r1
 		ReinforcementsArrivedSpeechNotification: ReinforcementsArrived
 		SelectTargetSpeechNotification: SelectTarget
@@ -970,6 +1301,31 @@ DOME:
 		DisplayBeacon: true
 		ArrowSequence: arrow
 		CircleSequence: circles
+		Cursor: generic-target
+		SupportPowerPaletteOrder: 2
+	ParatroopersPower@AlliedParaTanks:
+		PauseOnCondition: disabled
+		OrderName: AlliedParaTanks
+		Prerequisites: ~aircraft.allies, fix, player.germany
+		Icon: paratanks
+		ChargeInterval: 7500
+		Description: Paratanks
+		LongDesc: A B-52 drops an Veteran squad of two Light\nand a Medium Tank anywhere on the map.
+		DropItems: 1TNK.R1, 2TNK.R1, 1TNK.R1
+		ReinforcementsArrivedSpeechNotification: ReinforcementsArrived
+		SelectTargetSpeechNotification: SelectTarget
+		AllowImpassableCells: false
+		QuantizedFacings: 8
+		CameraActor: camera.paradrop
+		UnitType: b52
+		DisplayBeacon: true
+		BeaconPoster: paratanks
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+		Cursor: airdrop
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
 		SupportPowerPaletteOrder: 2
 	SpawnActorPower@RadarScan:
 		PauseOnCondition: disabled
@@ -983,7 +1339,7 @@ DOME:
 		LongDesc: Reveals an area of the map and cloaked enemy units there.
 		StartFullyCharged: false
 		SelectTargetSpeechNotification: SelectTarget
-		Cursor: chrono-select
+		Cursor: sonar-target
 	ParatroopersPower@FieldAid:
 		PauseOnCondition: disabled
 		OrderName: FieldAid
@@ -1006,15 +1362,38 @@ DOME:
 		CircleSequence: circles
 		Cursor: airdrop
 		SupportPowerPaletteOrder: 2
-	ParatroopersPower@AlliedParaTanks:
-		PauseOnCondition: disabled
-		OrderName: AlliedParaTanks
-		Prerequisites: ~aircraft.allies, fix, player.greece
-		Icon: paratanks
+	AirstrikePower@LeafletDrop:
+		PauseOnCondition: lowpower
+		OrderName: LeafletDrop
+		Prerequisites: aircraft.allies, ~atek, player.greece
+		Icon: leaflet
 		ChargeInterval: 7500
-		Description: Paratanks
-		LongDesc: A B-52 drops an Veteran squad of two Light\nand a Medium Tank anywhere on the map.
-		DropItems: 1TNK.Greece.R1, 2TNK.R1, 1TNK.Greece.R1
+		Description: Leaflet Drop
+		LongDesc: A B-52 drops Leaflets at the target area.\nAffected enemy Vehicle and Infantry\nhave their weapons disabled for 15 seconds.
+		#	LongDesc: A B-52 drops Leaflets at the target area, that have an chance to disable or convert units.\nThe leaflets have an 20% chance of disabling Vehicles and 10% chance of converting enemy Infantry.
+		SelectTargetSpeechNotification: SelectTarget
+		CameraActor: camera.paradrop
+		CameraRemoveDelay: 150
+		UnitType: b52.leaflet
+		QuantizedFacings: 8
+		DisplayBeacon: true
+		BeaconPoster: leafbcon
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+		Cursor: chrono-select
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
+		SupportPowerPaletteOrder: 2
+	ParatroopersPower@ParaJeeps:
+		PauseOnCondition:  disabled || lowpower
+		OrderName: ParaJeeps
+		Prerequisites: ~aircraft.allies, player.turkey
+		Icon: jeep
+		ChargeInterval: 3750
+		Description: Parascouts
+		LongDesc: A B-52 drops 2 Jeeps anywhere on the map.
+		DropItems: jeep, jeep
 		ReinforcementsArrivedSpeechNotification: ReinforcementsArrived
 		SelectTargetSpeechNotification: SelectTarget
 		AllowImpassableCells: false
@@ -1022,7 +1401,7 @@ DOME:
 		CameraActor: camera.paradrop
 		UnitType: b52
 		DisplayBeacon: true
-		BeaconPoster: paratanks
+		BeaconPoster: jeepbcon
 		ArrowSequence: arrow
 		ClockSequence: clock
 		CircleSequence: circles
@@ -1030,29 +1409,11 @@ DOME:
 		UseDirectionalTarget: True
 		DirectionArrowAnimation: paradirection
 		SupportPowerPaletteOrder: 2
-	ParatroopersPower@InstantBunker:
-		PauseOnCondition: disabled
-		OrderName: InstantBunker
-		Prerequisites: ~structures.allies, player.turkey
-		Icon: pboxicon
-		ChargeInterval: 7500
-		Description: Instant Shelter
-		LongDesc: An empty Pillbox gets instantly constructed on the spot\nchecking Terrain of build spot.
-		DropItems: pbox.summon
-		ReinforcementsArrivedSpeechNotification: ReinforcementsArrived
-		SelectTargetSpeechNotification: SelectTarget
-		AllowImpassableCells: false
-		QuantizedFacings: 8
-		CameraActor: camera.minimum
-		UnitType: badr.summoner
-		DisplayBeacon: true
-		ArrowSequence: arrow
-		CircleSequence: circles
-		SupportPowerPaletteOrder: 2
 	SupportPowerChargeBar:
+	-MapEditorData:
 
 DOME.England:
-	Inherits: DOME
+	Inherits: DOME.Allies
 	Buildable:
 		Prerequisites: proc, ~!structures.soviet, ~player.england, ~techlevel.medium
 		Description: Provides an overview\nof the battlefield.\nCan detect cloaked units.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.\n  Special Ability: Intel Drop\nAn B-52 drops a Veteran Spy and two Snipers anywhere on the map.\n (requires Helipad and Tech Center)
@@ -1073,10 +1434,9 @@ DOME.England:
 	DetectCloaked:
 		Range: 7c0
 		RequiresCondition: !disabled
-	-MapEditorData:
 
 DOME.France:
-	Inherits: DOME
+	Inherits: DOME.Allies
 	Buildable:
 		Prerequisites: proc, ~!structures.soviet, ~player.france, ~techlevel.medium
 		Description: Provides an overview\nof the battlefield.\nCan detect cloaked units.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.\n  Special Ability: Listening Post\nDeploys an Spy Mast anywhere on the map.\nThe Spy Mast provides vision and detects cloaked units in sight-radius.\nThe Spy Mast can disguise to appear as an Tree to the enemy.\n (requires Service Depot)
@@ -1084,10 +1444,19 @@ DOME.France:
 		Image: dome
 	ProvidesPrerequisite@COPY:
 		Prerequisite: dome
-	-MapEditorData:
+
+DOME.Germany:
+	Inherits: DOME.Allies
+	Buildable:
+		Prerequisites: proc, ~!structures.soviet, ~player.germany, ~techlevel.medium
+		Description: Provides an overview\nof the battlefield.\nCan detect cloaked units.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.\n  Special Ability: Paratanks\nA B-52 drops an Veteran squad of two Light\nand a Medium Tank anywhere on the map.\n (requires Helipad and Service Depot)
+	RenderSprites:
+		Image: dome
+	ProvidesPrerequisite@COPY:
+		Prerequisite: dome
 
 DOME.Spain:
-	Inherits: DOME
+	Inherits: DOME.Allies
 	Buildable:
 		Prerequisites: proc, ~!structures.soviet, ~player.spain, ~techlevel.medium
 		Description: Provides an overview\nof the battlefield.\nCan detect cloaked units.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.\n  Special Ability: Radar Scan\nReveals an area of the map\nand cloaked enemy units there.\n (requires Allied Tech Center)
@@ -1095,10 +1464,9 @@ DOME.Spain:
 		Image: dome
 	ProvidesPrerequisite@COPY:
 		Prerequisite: dome
-	-MapEditorData:
 
 DOME.Italy:
-	Inherits: DOME
+	Inherits: DOME.Allies
 	Buildable:
 		Prerequisites: proc, ~!structures.soviet, ~player.italy, ~techlevel.medium
 		Description: Provides an overview\nof the battlefield.\nCan detect cloaked units.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.\n  Special Ability: Field Aid\nA B-52 drops an Heal-up crate anywhere on the map.\nUnits can pick it up to get healed instantly.\n (requires Helipad)
@@ -1106,40 +1474,37 @@ DOME.Italy:
 		Image: dome
 	ProvidesPrerequisite@COPY:
 		Prerequisite: dome
-	-MapEditorData:
 
 DOME.Greece:
-	Inherits: DOME
+	Inherits: DOME.Allies
 	Buildable:
 		Prerequisites: proc, ~!structures.soviet, ~player.greece, ~techlevel.medium
-		Description: Provides an overview\nof the battlefield.\nCan detect cloaked units.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.\n  Special Ability: Paratanks\nA B-52 drops an Veteran squad of two Light\nand a Medium Tank anywhere on the map.
+		Description: Provides an overview\nof the battlefield.\nCan detect cloaked units.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.\n Special Ability: Leaflet Drop\nA B-52 drops Leaflets at the target area.\nAffected enemy Vehicle and Infantry\nhave their weapons disabled for 15 seconds.
 	RenderSprites:
 		Image: dome
 	ProvidesPrerequisite@COPY:
 		Prerequisite: dome
-	-MapEditorData:
 
 DOME.Turkey:
-	Inherits: DOME
+	Inherits: DOME.Allies
 	Buildable:
 		Prerequisites: proc, ~!structures.soviet, ~player.turkey, ~techlevel.medium
-		Description: Provides an overview\nof the battlefield.\nCan detect cloaked units.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.\n  Special Ability: Instant Bunker\nDeploys an empty Pillbox anywhere on the map.\n (requires Construction Yard)
+		Description: Provides an overview\nof the battlefield.\nCan detect cloaked units.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.\n Special Ability: Parascouts\nA B-52 drops 2 Jeep anywhere on the map.
 	RenderSprites:
 		Image: dome
 	ProvidesPrerequisite@COPY:
 		Prerequisite: dome
-	-MapEditorData:
 
 DOME.Soviet:
 	Inherits: DOME
 	Buildable:
-		Prerequisites: proc, ~structures.soviet, ~!player.russia, ~!player.belarus, ~techlevel.infonly
+		Prerequisites: proc, ~structures.soviet, ~!player.russia, ~!player.ukraine, ~!player.belarus, ~!player.karelia, ~!player.kazakh, ~!player.turkmen, ~techlevel.infonly
 		Description: Provides an overview\nof the battlefield.\nCan detect cloaked units.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.\nCan detect cloaked units.\n  Special Ability: Spy Plane\nReveals an area of the map\nand cloaked enemy units there.\n (requires Airfield)
 	RenderSprites:
 		Image: dome
 	ProvidesPrerequisite@COPY:
 		Prerequisite: dome
-	AirstrikePower@spyplane:
+	AirstrikePower@Spyplane:
 		PauseOnCondition: lowpower
 		OrderName: SovietSpyPlane
 		Prerequisites: aircraft.soviet
@@ -1160,6 +1525,69 @@ DOME.Soviet:
 		CircleSequence: circles
 		Cursor: chrono-select
 		SupportPowerPaletteOrder: 4
+	AirstrikePower@SpyplaneExtra:
+		PauseOnCondition: lowpower
+		OrderName: SovietSpyPlaneExtra
+		Prerequisites: aircraft.soviet, ~stek, player.karelia
+		Icon: spyplane
+		ChargeInterval: 3750
+		Description: Spy Plane (x2)
+		LongDesc: Reveals an area of the map\nand cloaked enemy units.
+		SelectTargetSpeechNotification: SelectTarget
+		EndChargeSpeechNotification: SpyPlaneReady
+		CameraActor: camera.spyplane
+		CameraRemoveDelay: 150
+		UnitType: u2
+		QuantizedFacings: 8
+		DisplayBeacon: true
+		BeaconPoster: camicon
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+		Cursor: chrono-select
+		SupportPowerPaletteOrder: 4
+		StartFullyCharged: true
+	ParatroopersPower@ShockParadrop:
+		PauseOnCondition: disabled
+		OrderName: ShockParadrop
+		Prerequisites: aircraft.soviet, ~stek, player.russia
+		Icon: parashok
+		ChargeInterval: 9000
+		Description: Storm Troopers
+		LongDesc: A Badger drops three Veteran Shock Troopers anywhere on the map.
+		DropItems: shok.r1, shok.r1, shok.r1
+		ReinforcementsArrivedSpeechNotification: ReinforcementsArrived
+		SelectTargetSpeechNotification: SelectTarget
+		AllowImpassableCells: false
+		QuantizedFacings: 8
+		CameraActor: camera.paradrop
+		DisplayBeacon: true
+		BeaconPoster: pinficon
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+		Cursor: airdrop
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
+		SupportPowerPaletteOrder: 2
+	IonCannonPower@SmokeScreen:
+		PauseOnCondition: disabled
+		OrderName: SmokeScreen
+		Prerequisites: player.ukraine
+		Icon: smokicon
+		ChargeInterval: 4500
+		Description: Smoke Screen
+		LongDesc: Fires an Smoking shell to targeted position.\nHalves the sight-radius of affected Infantry and Vehicles.
+		CameraActor: camera.paradrop
+		OnFireSound: hvygun10.aud
+		Cursor: airstrike
+		DisplayRadarPing: True
+		SupportPowerPaletteOrder: 2
+		Effect: smokland
+		EffectSequence: open
+		EffectPalette: greysmoke
+		Weapon: SmokeScreen
+		WeaponDelay: 28
 	ParatroopersPower@FieldPromotion:
 		PauseOnCondition: lowpower
 		OrderName: FieldPromotion
@@ -1182,6 +1610,115 @@ DOME.Soviet:
 		CircleSequence: circles
 		Cursor: airdrop
 		SupportPowerPaletteOrder: 2
+		#	Iron Curtain + this ? OP
+		#	GrantExternalConditionPower@FRENZY:
+		#	PauseOnCondition: disabled
+		#	Icon: frenzy
+		#	ChargeInterval: 3000
+		#	Description: Frenzy
+		#	LongDesc: Makes a group of units deal more damage,\nthat grows as they get damaged for 20 seconds.
+		#	Duration: 500
+		#	SelectTargetSpeechNotification: SelectTarget
+		#	InsufficientPowerSpeechNotification: InsufficientPower
+		#	DisplayRadarPing: True
+		#	Condition: frenzyison
+		#	OnFireSound: ironcur9.aud
+		#	SupportPowerPaletteOrder: 2
+	ParatroopersPower@SovietParaTanks:
+		PauseOnCondition: lowpower
+		OrderName: SovietParaTanks
+		Prerequisites: ~stek, player.kazakh
+		Icon: airdrop
+		ChargeInterval: 7500
+		Description: Airdrop
+		LongDesc: A Badger drops an Veteran squad of two Tank Hunters\nand an APC loaded with Infantry anywhere on the map.
+		DropItems: BRDM.R1, BTR.R1, BRDM.R1
+		ReinforcementsArrivedSpeechNotification: ReinforcementsArrived
+		SelectTargetSpeechNotification: SelectTarget
+		AllowImpassableCells: false
+		QuantizedFacings: 8
+		CameraActor: camera.paradrop
+		UnitType: badr
+		DisplayBeacon: true
+		BeaconPoster: airdrop
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+		Cursor: airdrop
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
+		SupportPowerPaletteOrder: 2
+	#	crazy op
+	#	AirstrikePower@FinalSquadron:
+	#	PauseOnCondition: lowpower
+	#	OrderName: KamikazePlanes
+	#	Prerequisites: ~aircraft.soviet, player.turkmen
+	#	Icon: yak
+	#	ChargeInterval: 9000
+	#	Description: Final Squadron
+	#	LongDesc: Costs 2400$ right after use.\nAn trio of kamikaze Yaks will crash on target area.
+	#	SelectTargetSpeechNotification: SelectTarget
+	#	CameraActor: camera
+	#	CameraRemoveDelay: 150
+	#	UnitType: yak.kamikaze
+	#	QuantizedFacings: 8
+	#	DisplayBeacon: true
+	#	BeaconPoster: yaksmol
+	#	ArrowSequence: arrow
+	#	ClockSequence: clock
+	#	CircleSequence: circles
+	#	SquadSize: 3
+	#	SquadOffset: 1792,1792,0
+	#	UseDirectionalTarget: True
+	#	DirectionArrowAnimation: paradirection
+	#	SupportPowerPaletteOrder: 2
+	ParatroopersPower@GrenParadrop:
+		PauseOnCondition: disabled
+		OrderName: GrenParadrop
+		Prerequisites: aircraft.soviet, ~stek, player.turkmen
+		Icon: paragren
+		ChargeInterval: 9000
+		Description: Paragrenadiers
+		LongDesc: A Badger drops an Veteran squad of Grenadiers anywhere on the map.
+		DropItems: E2R1,E2R1,E2R1,E2R1,E2R1
+		ReinforcementsArrivedSpeechNotification: ReinforcementsArrived
+		SelectTargetSpeechNotification: SelectTarget
+		AllowImpassableCells: false
+		QuantizedFacings: 8
+		CameraActor: camera.paradrop
+		DisplayBeacon: true
+		BeaconPoster: pinficon
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+		Cursor: airdrop
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
+		SupportPowerPaletteOrder: 2
+	AirstrikePower@DecoyPlane:
+		PauseOnCondition: disabled || lowpower
+		OrderName: DecoyPlane
+		Prerequisites: player.afghan
+		Icon: fakebdgr
+		ChargeInterval: 7500
+		Description: Decoy Plane
+		LongDesc: An fake Badger will fly to designated point, confusing the opponent.
+		SelectTargetSpeechNotification: SelectTarget
+		CameraActor: dummy.qtnk
+		CameraRemoveDelay: 150
+		UnitType: badr.decoy
+		QuantizedFacings: 8
+		SquadSize: 1
+		SquadOffset: 1792,1792,0
+		DisplayBeacon: true
+		BeaconPoster: fakeplane
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+		Cursor: airstrike
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
+		SupportPowerPaletteOrder: 2
 	SupportPowerChargeBar:
 	-MapEditorData:
 
@@ -1199,11 +1736,51 @@ DOME.Russia:
 		Weapon: Demolish
 		DamageThreshold: 10
 
+DOME.Ukraine:
+	Inherits: DOME.Soviet
+	Buildable:
+		Prerequisites: proc, ~structures.soviet, ~player.ukraine, ~techlevel.infonly
+		Description: Provides an overview\nof the battlefield.\nCan detect cloaked units.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.\nCan detect cloaked units.\n  Special Ability: Spy Plane\nReveals an area of the map\nand cloaked enemy units there.\n (requires Airfield)\n  Special Ability: Smoke Screen\nFires an Smoking shell to targeted position.\nHalves the sight-radius of affected Infantry and Vehicles.
+	RenderSprites:
+		Image: dome
+	ProvidesPrerequisite@COPY:
+		Prerequisite: dome
+
 DOME.Belarus:
 	Inherits: DOME.Soviet
 	Buildable:
 		Prerequisites: proc, ~structures.soviet, ~player.belarus, ~techlevel.infonly
 		Description: Provides an overview\nof the battlefield.\nCan detect cloaked units.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.\nCan detect cloaked units.\n  Special Ability: Spy Plane\nReveals an area of the map\nand cloaked enemy units there.\n (requires Airfield)\n  Special Ability: Field Promotion\nA Badger drops an Rank-up crate anywhere on the map.\nUnits can pick it up to gain one free level of veterancy.\n (requires Airfield)
+	RenderSprites:
+		Image: dome
+	ProvidesPrerequisite@COPY:
+		Prerequisite: dome
+
+DOME.Karelia:
+	Inherits: DOME.Soviet
+	Buildable:
+		Prerequisites: proc, ~structures.soviet, ~player.karelia, ~techlevel.infonly
+		Description: Provides an overview\nof the battlefield.\nCan detect cloaked units.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.\nCan detect cloaked units.\n  Special Ability: Spy Plane\nReveals an area of the map\nand cloaked enemy units there.\n (requires Airfield)\nYou can obtain an second Spy Plane with Tech Center.
+	RenderSprites:
+		Image: dome
+	ProvidesPrerequisite@COPY:
+		Prerequisite: dome
+
+DOME.Kazakh:
+	Inherits: DOME.Soviet
+	Buildable:
+		Prerequisites: proc, ~structures.soviet, ~player.kazakh, ~techlevel.infonly
+		Description: Provides an overview\nof the battlefield.\nCan detect cloaked units.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.\nCan detect cloaked units.\n  Special Ability: Spy Plane\nReveals an area of the map\nand cloaked enemy units there.\n (requires Airfield)\n  Special Ability: Airdrop\nA Badger drops an Veteran squad of two Tank Hunters\nand an APC loaded with Infantry anywhere on the map.\n (requires Tech Center)
+	RenderSprites:
+		Image: dome
+	ProvidesPrerequisite@COPY:
+		Prerequisite: dome
+
+DOME.Turkmen:
+	Inherits: DOME.Soviet
+	Buildable:
+		Prerequisites: proc, ~structures.soviet, ~player.turkmen, ~techlevel.infonly
+		Description: Provides an overview\nof the battlefield.\nCan detect cloaked units.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.\nCan detect cloaked units.\n  Special Ability: Spy Plane\nReveals an area of the map\nand cloaked enemy units there.\n (requires Airfield)\n  Special Ability: Paragrenadiers\nA Badger drops an Veteran squad of Grenadiers anywhere on the map.\n (requires Tech Center)
 	RenderSprites:
 		Image: dome
 	ProvidesPrerequisite@COPY:
@@ -1216,13 +1793,39 @@ ATEK:
 		Dimensions: 2,2
 	Buildable:
 		BuildLimit: 1
-		Prerequisites: weap, dome, ~structures.allies, ~!player.england, ~!player.france, ~!player.germany, ~!player.greece, ~!player.turkey, ~!player.italy, ~techlevel.high
+		Prerequisites: weap, dome, ~structures.allies, ~!player.usa, ~!player.england, ~!player.france, ~!player.germany, ~!player.spain, ~!player.greece, ~!player.turkey, ~!player.italy, ~techlevel.high
 		Description: Provides Allied advanced technologies.\nMaximum one can be built.\nCan be Infiltrated by an Spy or Thief for\nunlocking Tech unit production.\n  Special Ability: GPS Satellite\nReveals map terrain and provides tactical information\n (Requires power and active radar to operate)
 		BuildPaletteOrder: 9
 	Valued:
 		Cost: 2000
-	GrantExternalConditionPower@GPSSCRAMBLER:
-		PauseOnCondition: disabled
+	GpsPower:
+		PauseOnCondition: disabled || lowpower
+	AirstrikePower@AmericanParabombs:
+		PauseOnCondition: disabled || lowpower
+		OrderName: AmericanParabombs
+		Prerequisites: player.usa
+		Icon: stlthbombs
+		ChargeInterval: 7500
+		Description: Stealth Parabombs
+		LongDesc: A cloaked B-2 drops parachuted bombs on your target.
+		SelectTargetSpeechNotification: SelectTarget
+		CameraActor: camera
+		CameraRemoveDelay: 150
+		UnitType: b2.bomber
+		QuantizedFacings: 8
+		SquadSize: 1
+		SquadOffset: 1792,1792,0
+		DisplayBeacon: true
+		BeaconPoster: uspb
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+		Cursor: airstrike
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
+		SupportPowerPaletteOrder: 2
+	GrantExternalConditionPower@GPSScrambler:
+		PauseOnCondition: disabled || lowpower
 		OrderName: GPSScrambler
 		Prerequisites: player.england
 		Icon: gpsscrambler
@@ -1237,21 +1840,26 @@ ATEK:
 		Cursor: gps-target
 		Sequence: none
 		SupportPowerPaletteOrder: 2
-	ProduceActorPower@DECOYARMY:
-		PauseOnCondition: disabled
-		OrderName: DecoyArmy
+	IonCannonPower@MustardGas:
+		PauseOnCondition: disabled || lowpower
+		OrderName: MustardGas
 		Prerequisites: player.france
-		Actors: 1tnf, 1tnf, 2tnf, 2tnf, artf
-		ChargeInterval: 6000
-		Icon: decoyarmy
-		Description: Decoy Army
-		LongDesc: Delivers an group of Fake units at your primary War Factory\nThose remote-controlled units armed with dummy weaponry\nwill look identical to real units for the opponent.
-		Type: Vehicle
-		ReadyAudio: ReinforcementsArrived
-		BlockedAudio: NoBuild
+		Icon: gasicon
+		ChargeInterval: 4500
+		Description: Mustard Gas
+		LongDesc: Fires an Mustard gas shell to targeted position.\nCauses Infantry in radius to be supressed\nand take damage equal to 20% of their Health over time.\nDamage pauses when critical health to prevent a bug.
+		CameraActor: camera.paradrop
+		OnFireSound: hvygun10.aud
+		Cursor: airstrike
+		DisplayRadarPing: True
 		SupportPowerPaletteOrder: 2
+		Effect: smokland
+		EffectSequence: open
+		EffectPalette: player
+		Weapon: MustardGas
+		WeaponDelay: 28
 	GrantExternalConditionPower@FieldRepairs:
-		PauseOnCondition: disabled
+		PauseOnCondition: disabled || lowpower
 		OrderName: FieldRepairPower
 		Prerequisites: player.german
 		Icon: fieldrepair
@@ -1262,12 +1870,12 @@ ATEK:
 		LongDesc: Affected vehicles self-repair for 1% of their\nmaximum health per second over an 15 second duration.
 		SelectTargetSpeechNotification: SelectTarget
 		InsufficientPowerSpeechNotification: InsufficientPower
-		Condition: emergency_repair
-		Cursor: goldwrench
+		Condition: fieldrepair
+		Cursor: wrench-target
 		Sequence: none
 		SupportPowerPaletteOrder: 2
 	NukePower@ArtilleryStrike:
-		PauseOnCondition: disabled
+		PauseOnCondition: disabled || lowpower
 		OrderName: ArtilleryStrike
 		Icon: artystrike
 		Prerequisites: player.spain
@@ -1294,7 +1902,7 @@ ATEK:
 		TrailImage: smokey
 		TrailSequences: idle
 	ParatroopersPower@ChronoMine:
-		PauseOnCondition: disabled
+		PauseOnCondition: disabled || lowpower
 		OrderName: ChronoMine
 		Prerequisites: player.italy
 		Icon: mincicon
@@ -1313,26 +1921,25 @@ ATEK:
 		ArrowSequence: arrow
 		CircleSequence: circles
 		SupportPowerPaletteOrder: 2
-	IonCannonPower@MustardGas:
-		PauseOnCondition: disabled
-		OrderName: MustardGas
+	GrantExternalConditionPower@Inhibitor:
+		PauseOnCondition: disabled || lowpower
+		OrderName: TechInhibitor
 		Prerequisites: player.greece
-		Icon: gasicon
-		ChargeInterval: 4500
-		Description: Mustard Gas
-		LongDesc: Fires an Mustard gas shell to targeted position.\nCauses Infantry in radius to be supressed\nand take damage equal to 20% of their Health over time.\nDamage pauses when critical health to prevent a bug.
-		CameraActor: camera.paradrop
-		OnFireSound: hvygun10.aud
-		Cursor: airstrike
-		DisplayRadarPing: True
+		Icon: delphi
+		ChargeInterval: 12000
+		Range: 0
+		Duration: 4500
+		Description: Tech Inhibitor
+		LongDesc: Target your enemy's Tech Center to shut it down for 3 minutes duration.\nThe opponent will not able to create most advanced arsenal while it lasts.
+		SelectTargetSpeechNotification: SelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		Condition: techdisable
+		Cursor: gps-target
+		Sequence: none
 		SupportPowerPaletteOrder: 2
-		Effect: smokland
-		EffectSequence: open
-		EffectPalette: player
-		Weapon: MustardGas
-		WeaponDelay: 28
+		ValidStances: Enemy
 	AirstrikePower@AlliedParanuke:
-		PauseOnCondition: disabled
+		PauseOnCondition: disabled || lowpower
 		OrderName: AlliedParanuke
 		Prerequisites: player.turkey
 		Icon: paranuke
@@ -1365,6 +1972,28 @@ ATEK:
 		Actor: atek.husk
 	Power:
 		Amount: -150
+	WithColoredOverlay@IDISABLE:
+		RequiresCondition: disabled
+		Palette: disabled
+	GrantCondition@IDISABLE:
+		RequiresCondition: techdisable
+		Condition: disabled	
+	ExternalCondition@TECHDISABLE:
+		Condition: techdisable
+	Sellable:
+		RequiresCondition: !build-incomplete && !being-captured && !being-demolished && !disabled
+
+ATEK.Usa:
+	Inherits: ATEK
+	Buildable:
+		BuildLimit: 1
+		Prerequisites: weap, dome, ~structures.allies, ~player.usa, ~techlevel.high
+		Description: Provides Allied advanced technologies.\nMaximum one can be built.\nCan be Infiltrated by an Spy or Thief for\nunlocking Tech unit production.\n  Special Ability: Stealth Bomber\nReveals map terrain and provides tactical information\n (Requires power and active radar to operate)\n  Special Ability: Stealth Paraboms\nA cloaked B-2 drops parachuted bombs on your target.
+	RenderSprites:
+		Image: atek
+	ProvidesPrerequisite@COPY:
+		Prerequisite: atek
+	-MapEditorData:
 
 ATEK.England:
 	Inherits: ATEK
@@ -1383,7 +2012,7 @@ ATEK.France:
 	Buildable:
 		BuildLimit: 1
 		Prerequisites: weap, dome, ~structures.allies, ~player.france, ~techlevel.high
-		Description: Provides Allied advanced technologies.\nMaximum one can be built.\nCan be Infiltrated by an Spy or Thief for\nunlocking Tech unit production.\n  Special Ability: GPS Satellite\nReveals map terrain and provides tactical information\n (Requires power and active radar to operate)\n  Special Ability: Decoy Army\nDelivers an group of Fake units at your primary War Factory\nThose remote-controlled units armed with dummy weaponry\nwill look identical to real units for the opponent.
+		Description: Provides Allied advanced technologies.\nMaximum one can be built.\nCan be Infiltrated by an Spy or Thief for\nunlocking Tech unit production.\n  Special Ability: GPS Satellite\nReveals map terrain and provides tactical information\n (Requires power and active radar to operate)\n  Special Ability: Mustard Gas\nFires an Mustard gas shell to targeted position.\nCauses Infantry in radius to be supressed\nand take damage equal to 20% of their Health over time.
 	RenderSprites:
 		Image: atek
 	ProvidesPrerequisite@COPY:
@@ -1431,7 +2060,7 @@ ATEK.Greece:
 	Buildable:
 		BuildLimit: 1
 		Prerequisites: weap, dome, ~structures.allies, ~player.greece, ~techlevel.high
-		Description: Provides Allied advanced technologies.\nMaximum one can be built.\nCan be Infiltrated by an Spy or Thief for\nunlocking Tech unit production.\n  Special Ability: GPS Satellite\nReveals map terrain and provides tactical information\n (Requires power and active radar to operate)\n  Special Ability: Mustard Gas\nFires an Mustard gas shell to targeted position.\nCauses Infantry in radius to be supressed\nand take damage equal to 20% of their Health over time.\nDamage pauses when critical health to prevent a bug.
+		Description: Provides Allied advanced technologies.\nMaximum one can be built.\nCan be Infiltrated by an Spy or Thief for\nunlocking Tech unit production.\n  Special Ability: GPS Satellite\nReveals map terrain and provides tactical information\n (Requires power and active radar to operate)\n  Special Ability: Tech Inhibitor\nTarget your enemy's Tech Center to shut it down for 3 minutes duration.\nThe opponent will not able to create most advanced arsenal while it lasts.
 	RenderSprites:
 		Image: atek
 	ProvidesPrerequisite@COPY:
@@ -1458,7 +2087,7 @@ STEK:
 	Buildable:
 		BuildLimit: 1
 		Description: Provides Soviet advanced technologies.\nMaximum one can be built.\nCan be Infiltrated by an Spy or Thief for\nunlocking Tech unit production.
-		Prerequisites: afldorweap, dome, ~structures.soviet, ~!player.russia, ~!player.ukraine, ~!player.belarus, ~!player.kazakh, ~!player.uzbek, ~!player.turkmen, ~!player.karelia, ~techlevel.high
+		Prerequisites: afldorweap, dome, ~structures.soviet, ~!player.russia, ~!player.ukraine, ~!player.belarus, ~!player.karelia, ~!player.kazakh, ~!player.uzbek, ~!player.turkmen, ~!player.afghan, ~techlevel.high
 		BuildPaletteOrder: 9
 	Valued:
 		Cost: 2000
@@ -1508,9 +2137,9 @@ STEK:
 		UseDirectionalTarget: True
 		DirectionArrowAnimation: paradirection
 		SupportPowerPaletteOrder: 2
-	NukePower@ChemicalMissile:
+	NukePower@ChemicalStrike:
 		PauseOnCondition: disabled || lowpower
-		OrderName: ChemicalMissile
+		OrderName: ChemicalStrike
 		Prerequisites: player.belarus
 		Cursor: cmiss-target
 		Icon: cmissicon
@@ -1530,7 +2159,6 @@ STEK:
 		ClockSequence: clock
 		CircleSequence: circles
 		SupportPowerPaletteOrder: 2
-	#	doesnt do anything.
 	SpawnActorPower@RadioIntercept:
 		PauseOnCondition: disabled || lowpower
 		Prerequisites: player.kazakh
@@ -1578,27 +2206,6 @@ STEK:
 	#	Production@GPS:
 	#	Produces: GPSCamera
 	#	RequiresCondition: !disabled
-	AirstrikePower@JammerPlane:
-		PauseOnCondition: disabled || lowpower
-		OrderName: JammerPlane
-		Prerequisites: player.uzbek
-		Icon: u2jamicon
-		ChargeInterval: 7500
-		Description: Jammer Plane
-		LongDesc: An plane traveling in a line across the map\nthat jams enemy radar within radius.
-		SelectTargetSpeechNotification: SelectTarget
-		#	CameraActor: camera.spyplane
-		#	CameraRemoveDelay: 0
-		UnitType: u2.jam
-		QuantizedFacings: 32
-		DisplayBeacon: true
-		BeaconPoster: camicon
-		ArrowSequence: arrow
-		ClockSequence: clock
-		CircleSequence: circles
-		UseDirectionalTarget: True
-		DirectionArrowAnimation: paradirection
-		SupportPowerPaletteOrder: 2
 	AirstrikePower@Frogfoot:
 		PauseOnCondition: disabled || lowpower
 		OrderName: SovietAirstrike
@@ -1622,6 +2229,25 @@ STEK:
 		UseDirectionalTarget: True
 		DirectionArrowAnimation: paradirection
 		SupportPowerPaletteOrder: 2
+	AirstrikePower@JammerPlane:
+		PauseOnCondition: disabled || lowpower
+		OrderName: JammerPlane
+		Prerequisites: player.uzbek
+		Icon: u2jamicon
+		ChargeInterval: 7500
+		Description: Jammer Plane
+		LongDesc: An plane traveling in a line across the map\nthat jams enemy radar within radius.
+		SelectTargetSpeechNotification: SelectTarget
+		UnitType: u2.jam
+		QuantizedFacings: 32
+		DisplayBeacon: true
+		BeaconPoster: camicon
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
+		SupportPowerPaletteOrder: 2
 	GrantExternalConditionPower@ECOSABOTAGE:
 		PauseOnCondition: disabled || lowpower
 		OrderName: EcoSabotage
@@ -1639,6 +2265,23 @@ STEK:
 		Sequence: none
 		ValidStances: Neutral, Enemy
 		SupportPowerPaletteOrder: 2
+	GrantExternalConditionPower@SovietKillBounty:
+		PauseOnCondition: lowpower
+		OrderName: SovietKillBounty
+		Prerequisites: player.afghan
+		Icon: killbounty
+		ChargeInterval: 7500
+		Range: 1
+		Duration: 1500
+		Description: Kill Bounty
+		LongDesc: Targeted enemy units yield 20% of their value\nas income when killed for 1 min duration.
+		SelectTargetSpeechNotification: SelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		Condition: soviet-bounty
+		Cursor: sell2
+		Sequence: none
+		SupportPowerPaletteOrder: 2
+		ValidStances: Enemy
 	GrantConditionOnPowerState@LOWPOWER:
 		Condition: lowpower
 		ValidPowerStates: Low, Critical
@@ -1652,6 +2295,44 @@ STEK:
 		Types: SpyInfiltrate, ThiefInfiltrate
 	SpawnActorOnDeath:
 		Actor: stek.husk
+	WithColoredOverlay@IDISABLE:
+		RequiresCondition: disabled
+		Palette: disabled
+	GrantCondition@IDISABLE:
+		RequiresCondition: techdisable
+		Condition: disabled	
+	ExternalCondition@TECHDISABLE:
+		Condition: techdisable
+	Sellable:
+		RequiresCondition: !build-incomplete && !being-captured && !being-demolished && !disabled
+	#	RallyPoint:
+	Production:
+		Produces: Infantry, Soldier
+		PauseOnCondition: disabled
+		RequiresCondition: conscription
+	ClonesProducedUnits:
+		CloneableTypes: Soldier
+		RequiresCondition: conscription && !disabled
+	Exit@1:
+		RequiresCondition: !being-captured
+		SpawnOffset: -170,810,0
+		ExitCell: 0,0
+		ProductionTypes: Soldier, Infantry
+	Exit@2:
+		RequiresCondition: !being-captured
+		SpawnOffset: -725,640,0
+		ExitCell: 0,1
+		ProductionTypes: Soldier, Infantry
+	GrantConditionOnPrerequisite@CONSCRIPTION:
+		Prerequisites: conscription
+		Condition: conscription
+	WithDecoration@CONSCRIPTION:
+		RequiresSelection: true
+		Image: pips
+		Sequence: tag-cloner
+		ReferencePoint: Top
+		ZOffset: 256
+		RequiresCondition: conscription
 
 STEK.Russia:
 	Inherits: STEK
@@ -1725,7 +2406,18 @@ STEK.Turkmen:
 	Inherits: STEK
 	Buildable:
 		Prerequisites: afldorweap, dome, ~player.turkmen, ~techlevel.high
-		Description: Provides Soviet advanced technologies.\nMaximum one can be built.\nCan be Infiltrated by an Spy or Thief for\nunlocking Tech unit production.\n  Special Ability: Paramines\nA Badger drops two Minelayers anywhere on the map.
+		Description: Provides Soviet advanced technologies.\nMaximum one can be built.\nCan be Infiltrated by an Spy or Thief for\nunlocking Tech unit production.\n  Special Ability: Eco Sabotage\nTargeted Ore or Gem mine, or Oil Well halts production for 1 minute.\nDoes not affect Ore Refineries or Silos.
+	RenderSprites:
+		Image: stek
+	ProvidesPrerequisite@COPY:
+		Prerequisite: stek
+	-MapEditorData:
+
+STEK.Afghan:
+	Inherits: STEK
+	Buildable:
+		Prerequisites: afldorweap, dome, ~player.afghan, ~techlevel.high
+		Description: Provides Soviet advanced technologies.\nMaximum one can be built.\nCan be Infiltrated by an Spy or Thief for\nunlocking Tech unit production.\n  Special Ability: Kill Bounty\n Targeted enemy units yield 20% of their value\nas income when killed for 1 min duration.
 	RenderSprites:
 		Image: stek
 	ProvidesPrerequisite@COPY:
@@ -1742,8 +2434,14 @@ AFLD:
 		Footprint: xxx xx=
 		Dimensions: 3,2
 	ProvidesPrerequisite@allies:
-		Factions: allies, england, france, germany, spain, greece, turkey, italy
+		Factions: allies, usa, england, france, germany, spain, greece, turkey, italy
 		Prerequisite: aircraft.allies
+	ProvidesPrerequisite@usa:
+		Factions: usa
+		Prerequisite: aircraft.usa
+	ProvidesPrerequisite@americanstructure:
+		RequiresPrerequisites: structures.usa
+		Prerequisite: aircraft.usa
 	ProvidesPrerequisite@england:
 		Factions: england
 		Prerequisite: aircraft.england
@@ -1787,7 +2485,7 @@ AFLD:
 		RequiresPrerequisites: structures.italy
 		Prerequisite: aircraft.italy
 	ProvidesPrerequisite@soviet:
-		Factions: soviet, russia, ukraine, belarus, kazakh, uzbek, turkmen, karelia
+		Factions: soviet, russia, ukraine, belarus, kazakh, uzbek, turkmen, karelia, afghan
 		Prerequisite: aircraft.soviet
 	ProvidesPrerequisite@belarus:
 		Factions: belarus
@@ -1819,6 +2517,12 @@ AFLD:
 	ProvidesPrerequisite@karelianstructure:
 		RequiresPrerequisites: structures.karelia
 		Prerequisite: aircraft.karelia
+	ProvidesPrerequisite@afghan:
+		Factions: afghan
+		Prerequisite: aircraft.afghan
+	ProvidesPrerequisite@afghanstructure:
+		RequiresPrerequisites: structures.afghan
+		Prerequisite: aircraft.afghan
 	-AirstrikePower@spyplane:
 	-AirstrikePower@parabombs:
 	ParatroopersPower@paratroopers:
@@ -1852,7 +2556,7 @@ AFLD:
 		UseDirectionalTarget: True
 		DirectionArrowAnimation: paradirection
 		SupportPowerPaletteOrder: 3
-	ParatroopersPower@alliedparatroopers:
+	ParatroopersPower@AlliedParatroopers:
 		OrderName: AlliedParatroopers
 		Prerequisites: aircraft.allies
 		RequiresCondition: allied.player
@@ -1877,9 +2581,35 @@ AFLD:
 		UseDirectionalTarget: True
 		DirectionArrowAnimation: paradirection
 		SupportPowerPaletteOrder: 3
+	ParatroopersPower@AmericanParatroopers:
+		OrderName: AmericanParatroopers
+		Prerequisites: aircraft.allies
+		RequiresCondition: usa.player
+		Icon: paratroopers
+		ChargeInterval: 9750
+		Description: Paratroopers
+		LongDesc: Two B-52 each drops a squad of Infantry\nanywhere on the map.
+		DropItems: E1R1,E3R1,E1R1,E3R1,E1R1, E1R1,E3R1,E1R1,E3R1,E1R1
+		ReinforcementsArrivedSpeechNotification: ReinforcementsArrived
+		SelectTargetSpeechNotification: SelectTarget
+		AllowImpassableCells: false
+		QuantizedFacings: 8
+		CameraActor: camera.paradrop
+		UnitType: b52
+		SquadSize: 2
+		DisplayBeacon: true
+		BeaconPoster: pinficon
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+		PauseOnCondition: lowpower
+		Cursor: airdrop
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
+		SupportPowerPaletteOrder: 3
 	GrantConditionOnFaction@normal:
 		Condition: soviet.player
-		Factions: russia,ukraine,kazakh,uzbek,turkmen,karelia
+		Factions: russia,ukraine,karelia,kazakh,uzbek,turkmen,afghan
 		ResetOnOwnerChange: True
 	GrantConditionOnFaction@faster:
 		Condition: belarus.player
@@ -1887,7 +2617,11 @@ AFLD:
 		ResetOnOwnerChange: True
 	GrantConditionOnFaction@allied:
 		Condition: allied.player
-		Factions: england,france,germany,spain,greece,turkey,italy
+		Factions: england,france,germany,spain,italy,greece,turkey
+		ResetOnOwnerChange: True
+	GrantConditionOnFaction@double:
+		Condition: usa.player
+		Factions: usa
 		ResetOnOwnerChange: True
 	ProvidesPrerequisite@TECHPREQ:
 		Prerequisite: afldorweap
@@ -1943,7 +2677,7 @@ HPAD:
 	Inherits@RIGEXPLOSIVE: ^AffectedByBoobyTrap
 	Buildable:
 		BuildPaletteOrder: 7
-		Prerequisites: dome, ~structures.allies, ~techlevel.medium
+		Prerequisites: dome, ~structures.allies, ~!player.usa, ~!player.england, ~techlevel.medium
 		Description: Produces and reloads Helicopters.\nCan be Infiltrated by an Spy resulting\nin Veterancy for enemy Aircraft.\n  Special Ability: Paratroopers\nA Plane drops a squad of\nVeteran infantry anywhere on the map.
 	Building:
 		Footprint: xx ==
@@ -1956,8 +2690,14 @@ HPAD:
 		Produces: Aircraft, Helicopter
 		PauseOnCondition: disabled || build-incomplete
 	ProvidesPrerequisite@allies:
-		Factions: allies, england, france, germany, spain, italy, greece, turkey
+		Factions: allies, usa, england, france, germany, spain, italy, greece, turkey
 		Prerequisite: aircraft.allies
+	ProvidesPrerequisite@usa:
+		Factions: usa
+		Prerequisite: aircraft.usa
+	ProvidesPrerequisite@americanstructure:
+		RequiresPrerequisites: structures.usa
+		Prerequisite: aircraft.usa
 	ProvidesPrerequisite@spain:
 		Factions: spain
 		Prerequisite: aircraft.spain
@@ -1983,7 +2723,7 @@ HPAD:
 		RequiresPrerequisites: structures.turkey
 		Prerequisite: aircraft.turkey
 	ProvidesPrerequisite@soviet:
-		Factions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen
+		Factions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen, afghan
 		Prerequisite: aircraft.soviet
 	ProvidesPrerequisite@russia:
 		Factions: russia
@@ -2027,6 +2767,12 @@ HPAD:
 	ProvidesPrerequisite@turkmenstructure:
 		RequiresPrerequisites: structures.turkmen
 		Prerequisite: aircraft.turkmen
+	ProvidesPrerequisite@afghanistan:
+		Factions: afghan
+		Prerequisite: aircraft.afghan
+	ProvidesPrerequisite@afghanstructure:
+		RequiresPrerequisites: structures.afghan
+		Prerequisite: aircraft.afghan
 	ParatroopersPower@paratroopers:
 		OrderName: SovietParatroopers
 		Prerequisites: aircraft.soviet
@@ -2100,9 +2846,35 @@ HPAD:
 		UseDirectionalTarget: True
 		DirectionArrowAnimation: paradirection
 		SupportPowerPaletteOrder: 3
+	ParatroopersPower@doubleparatroopers:
+		OrderName: AlliedDoubleParatroopers
+		Prerequisites: aircraft.allies
+		RequiresCondition: usa.player
+		Icon: paratroopers
+		ChargeInterval: 7500
+		Description: Paratroopers
+		LongDesc: Two B-52 each drops a squad of Infantry\nanywhere on the map.
+		DropItems: E1R1,E3R1,E1R1,E3R1,E1R1, E1R1,E3R1,E1R1,E3R1,E1R1
+		ReinforcementsArrivedSpeechNotification: ReinforcementsArrived
+		SelectTargetSpeechNotification: SelectTarget
+		AllowImpassableCells: false
+		QuantizedFacings: 8
+		CameraActor: camera.paradrop
+		UnitType: b52
+		SquadSize: 2
+		DisplayBeacon: true
+		BeaconPoster: pinficon
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+		PauseOnCondition: lowpower
+		Cursor: airdrop
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
+		SupportPowerPaletteOrder: 3
 	GrantConditionOnFaction@soviet:
 		Condition: soviet.player
-		Factions: russia,ukraine,kazakh,uzbek,turkmen,karelia
+		Factions: russia,ukraine,karelia,kazakh,uzbek,turkmen,afghan
 		ResetOnOwnerChange: True
 	GrantConditionOnFaction@faster:
 		Condition: belarus.player
@@ -2110,25 +2882,62 @@ HPAD:
 		ResetOnOwnerChange: True
 	GrantConditionOnFaction@allied:
 		Condition: allied.player
-		Factions: england,france,germany,spain,greece,turkey,italy
+		Factions: england,france,germany,spain,italy,greece,turkey
 		ResetOnOwnerChange: True
+	GrantConditionOnFaction@double:
+		Condition: usa.player
+		Factions: usa
+		ResetOnOwnerChange: True
+	AirstrikePower@PrecisionStrike:
+		PauseOnCondition: disabled || lowpower
+		OrderName: PrecisionStrike
+		Prerequisites: ~atek, player.england
+		Icon: precs
+		ChargeInterval: 9000
+		SquadSize: 1
+		QuantizedFacings: 8
+		Description: Precision Strike
+		LongDesc: A fast plane delivers an rocket barrage on target.
+		SelectTargetSpeechNotification: SelectTarget
+		UnitType: u2.strike
+		CameraActor: camera.paradrop
+		DisplayBeacon: True
+		BeaconPoster: precsmall
+		ArrowSequence: arrow
+		ClockSequence: clock
+		CircleSequence: circles
+		Cursor: airstrike
+		UseDirectionalTarget: True
+		DirectionArrowAnimation: paradirection
+		SupportPowerPaletteOrder: 2
 	GrantConditionOnPowerState@LOWPOWER:
 		Condition: lowpower
 		ValidPowerStates: Low, Critical
 	SpawnActorOnDeath:
 		Actor: hpad.husk
 
-	#	HPAD.Turkey:
-	#	Inherits: HPAD
-	#	Buildable:
-	#	Prerequisites: dome, ~structures.allies, ~player.turkey, ~techlevel.medium
-	#	Armor:
-	#	Type: Concrete
-	#	RenderSprites:
-	#	Image: hpad
-	#	ProvidesPrerequisite@COPY:
-	#	Prerequisite: hpad
-	#	-MapEditorData:
+HPAD.Usa:
+	Inherits: HPAD
+	Buildable:
+		Prerequisites: dome, ~structures.allies, ~player.usa, ~techlevel.medium
+	RenderSprites:
+		Image: hpad
+	ProvidesPrerequisite@COPY:
+		Prerequisite: hpad
+	Power:
+		Amount: -20
+	-MapEditorData:
+
+HPAD.England:
+	Inherits: HPAD
+	Buildable:
+		Prerequisites: dome, ~structures.allies, ~player.england, ~techlevel.medium
+		Description: Produces and reloads Helicopters.\nCan be Infiltrated by an Spy resulting\nin Veterancy for enemy Aircraft.\n  Special Ability: Paratroopers\nA Plane drops a squad of\nVeteran infantry anywhere on the map.\n  Special Ability: Precision Strike\nA fast plane delivers an rocket barrage on target.\n (requires Tech Center)
+	RenderSprites:
+		Image: hpad
+	ProvidesPrerequisite@COPY:
+		Prerequisite: hpad
+	-MapEditorData:
 
 SYRD:
 	#	GrantConditionOnPrerequisite@NAVYDISABLER:
@@ -2136,7 +2945,7 @@ SYRD:
 	#	Prerequisites: global-disablenavy
 	Buildable:
 		BuildPaletteOrder: 3
-		Prerequisites: anypower, ~structures.allies, ~techlevel.low, ~!global-disablenavy
+		Prerequisites: anypower, ~structures.allies, ~!player.usa, ~techlevel.low, ~!global-disablenavy
 		Description: Produces and repairs\nShips and Transports.\n  Special Ability: Sonar Pulse\n Reveals all submarines in target\narea for a short time.
 	WithDeathAnimation:
 		DeathSequence: dead
@@ -2154,8 +2963,14 @@ SYRD:
 	Valued:
 		Cost: 750
 	ProvidesPrerequisite@allies:
-		Factions: allies, england, france, germany, spain, italy, greece, turkey
+		Factions: allies, usa, england, france, germany, spain, italy, greece, turkey
 		Prerequisite: ships.allies
+	ProvidesPrerequisite@usa:
+		Factions: usa
+		Prerequisite: ships.usa
+	ProvidesPrerequisite@americanstructure:
+		RequiresPrerequisites: structures.usa
+		Prerequisite: ships.usa
 	ProvidesPrerequisite@spain:
 		Factions: spain
 		Prerequisite: ships.spain
@@ -2181,7 +2996,7 @@ SYRD:
 		RequiresPrerequisites: structures.turkey
 		Prerequisite: ships.turkey
 	ProvidesPrerequisite@soviet:
-		Factions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen
+		Factions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen, afghan
 		Prerequisite: ships.soviet
 	ProvidesPrerequisite@russia:
 		Factions: russia
@@ -2225,10 +3040,16 @@ SYRD:
 	ProvidesPrerequisite@turkmenstructure:
 		RequiresPrerequisites: structures.turkmen
 		Prerequisite: ships.turkmen
-	SpawnActorPower:
+	ProvidesPrerequisite@afghanistan:
+		Factions: afghan
+		Prerequisite: ships.afghan
+	ProvidesPrerequisite@afghanstructure:
+		RequiresPrerequisites: structures.afghan
+		Prerequisite: ships.afghan
+	SpawnActorPower@SonarPulse:
 		Icon: sonar
 		Description: Sonar Pulse
-		LongDesc: Reveals all submarines in the vicinity for a \nshort time.
+		LongDesc: Reveals all submarines in the\nvicinity for a short time.
 		ChargeInterval: 750
 		EndChargeSpeechNotification: SonarPulseReady
 		SelectTargetSpeechNotification: SelectTarget
@@ -2239,23 +3060,24 @@ SYRD:
 		EffectPalette: moveflash
 		SupportPowerPaletteOrder: 7
 		PauseOnCondition: lowpower
+		Cursor: sonar-target
 	SupportPowerChargeBar:
 	-InfiltrateForSupportPower:
 	GrantConditionOnPowerState@LOWPOWER:
 		Condition: lowpower
 		ValidPowerStates: Low, Critical
 
-	#	SYRD.Turkey:
-	#	Inherits: SYRD
-	#	Buildable:
-	#	Prerequisites: anypower, ~structures.allies, ~player.turkey, ~techlevel.low
-	#	Armor:
-	#	Type: Concrete
-	#	RenderSprites:
-	#	Image: syrd
-	#	ProvidesPrerequisite@COPY:
-	#	Prerequisite: syrd
-	#	-MapEditorData:
+SYRD.Usa:
+	Inherits: SYRD
+	Buildable:
+		Prerequisites: anypower, ~structures.allies, ~player.usa, ~techlevel.low, ~!global-disablenavy
+	Power:
+		Amount: -45
+	RenderSprites:
+		Image: syrd
+	ProvidesPrerequisite@COPY:
+		Prerequisite: syrd
+	-MapEditorData:
 
 SPEN:
 	Buildable:
@@ -2265,8 +3087,14 @@ SPEN:
 	Valued:
 		Cost: 750
 	ProvidesPrerequisite@allies:
-		Factions: allies, england, france, germany, spain, italy, greece, turkey
+		Factions: allies, usa, england, france, germany, spain, italy, greece, turkey
 		Prerequisite: ships.allies
+	ProvidesPrerequisite@usa:
+		Factions: usa
+		Prerequisite: ships.usa
+	ProvidesPrerequisite@americanstructure:
+		RequiresPrerequisites: structures.usa
+		Prerequisite: ships.usa
 	ProvidesPrerequisite@england:
 		Factions: england
 		Prerequisite: ships.england
@@ -2310,7 +3138,7 @@ SPEN:
 		RequiresPrerequisites: structures.turkey
 		Prerequisite: ships.turkey
 	ProvidesPrerequisite@soviet:
-		Factions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen
+		Factions: soviet, russia, ukraine, belarus, karelia, kazakh, uzbek, turkmen, afghan
 		Prerequisite: ships.soviet
 	ProvidesPrerequisite@belarus:
 		Factions: belarus
@@ -2342,6 +3170,12 @@ SPEN:
 	ProvidesPrerequisite@turkmenstructure:
 		RequiresPrerequisites: structures.turkmen
 		Prerequisite: ships.turkmen
+	ProvidesPrerequisite@afghanistan:
+		Factions: afghan
+		Prerequisite: ships.afghan
+	ProvidesPrerequisite@afghanstructure:
+		RequiresPrerequisites: structures.afghan
+		Prerequisite: ships.afghan
 	WithDeathAnimation:
 		DeathSequence: dead
 		UseDeathTypeSuffix: false
@@ -2355,7 +3189,7 @@ SPEN:
 		Condition: replenishsmine
 		Range: 5c0
 		RequiresCondition: !disabled
-	SpawnActorPower:
+	SpawnActorPower@SonarPulse:	
 		Icon: sonar
 		Description: Sonar Pulse
 		LongDesc: Reveals all submarines in the vicinity for a \nshort time.
@@ -2369,6 +3203,7 @@ SPEN:
 		EffectPalette: moveflash
 		SupportPowerPaletteOrder: 7
 		PauseOnCondition: lowpower
+		Cursor: sonar-target
 	SupportPowerChargeBar:
 	-InfiltrateForSupportPower:
 	GrantConditionOnPowerState@LOWPOWER:
@@ -2398,12 +3233,14 @@ GAP:
 	Buildable:
 		Queue: Building
 		BuildPaletteOrder: 10
-		Prerequisites: techcenter, ~fact, ~!player.russia, ~techlevel.high
+		Prerequisites: techcenter, ~fact, ~!player.russia, ~!player.afghan, ~techlevel.high
 	Valued:
 		Cost: 1000
 	CreatesShroud:
 		Range: 9c0
-		RequiresCondition: !disabled && !build-incomplete
+		RequiresCondition: !disabled && !build-incomplete && !being-captured
+	WithSpriteBody:
+		PauseOnCondition: disabled || being-captured
 	ProvidesPrerequisite@buildingname:
 	SpawnActorOnDeath:
 		Actor: gap.husk
@@ -2426,6 +3263,18 @@ GAP.Russia:
 		Weapon: Demolish
 		DamageThreshold: 10
 	-MapEditorData:	
+
+GAP.Afghan:
+	Inherits: GAP
+	Buildable:
+		Prerequisites: dome, ~fact, ~player.afghan, ~techlevel.high
+	Valued:
+		Cost: 800
+	RenderSprites:
+		Image: gap
+	ProvidesPrerequisite@COPY:
+		Prerequisite: gap
+	-MapEditorData:
 
 SBAG:
 	Buildable:
@@ -2936,6 +3785,67 @@ GTUR:
 		RequiresCondition: !disabled && !build-incomplete
 	-SpawnActorsOnSell:
 
+PBAT:
+	Inherits: ^Defense
+	Inherits@AUTOTARGET: ^AutoTargetAir
+	Inherits@IDISABLE: ^DisableOnLowPowerOrPowerDown
+	Inherits@shape: ^2x2Shape
+	Buildable:
+		Queue: Defense
+		BuildPaletteOrder: 9
+		Prerequisites: atek, ~structures.allies, ~player.usa, ~techlevel.high
+		Description: Superior anti-air Defense.\nCan detect cloaked units.\n  Can attack Aircraft only.
+	Valued:
+		Cost: 1200
+	Tooltip:
+		Name: Patriot Battery
+	Selectable:
+		DecorationBounds: 34,34
+	SelectionDecorations:
+	Building:
+		Footprint: xx xx
+		Dimensions: 2,2
+	Health:
+		HP: 40000
+	Armor:
+		Type: Heavy
+	RevealsShroud:
+		Range: 8c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 6c0
+	Turreted:
+		TurnSpeed: 2
+		InitialFacing: 0
+		RealignDelay: -1
+	-WithSpriteBody:
+	WithEmbeddedTurretSpriteBody:
+	AttackTurreted:
+		PauseOnCondition: disabled
+		RequiresCondition: !build-incomplete
+	Armament:
+		Weapon: Patriot
+		LocalOffset: 768,-171,500, 768,171,500
+		PauseOnCondition: disabled || !ammo
+	AmmoPool:
+		Armaments: primary
+		Ammo: 4
+		PipCount: 4
+		AmmoCondition: ammo
+	ReloadAmmoPool:
+		Delay: 90
+		Count: 1
+		#	RequiresCondition: ammo > 4
+	WithMuzzleOverlay:
+	Power:
+		Amount: -80
+	BodyOrientation:
+		UseClassicFacingFudge: True
+	DetectCloaked:
+		Range: 3c0
+		RequiresCondition: !disabled && !build-incomplete
+	-SpawnActorsOnSell:
+
 PDOX:
 	Inherits@RIGEXPLOSIVE: ^AffectedByBoobyTrap
 	Buildable:
@@ -3156,11 +4066,11 @@ FISTBUILD:
 		CancelledAudio: Cancelled
 		LowPowerModifier: 300
 	ProvidesPrerequisite@allies:
-		Factions: allies, britain, france, germany, spain, greece, turkey, italy
+		Factions: allies, britain, france, germany, spain, italy, greece, turkey
 		Prerequisite: vehicles.allies
 		ResetOnOwnerChange: True
 	ProvidesPrerequisite@soviet:
-		Factions: soviet, russia, ukraine, belarus, kazakh, uzbek, turkmen, karelia
+		Factions: soviet, russia, ukraine, belarus, kazakh, karelia, uzbek, turkmen
 		Prerequisite: vehicles.soviet
 		ResetOnOwnerChange: True
 	ProductionBar:
@@ -3257,14 +4167,18 @@ DRILLMINE:
 OILB:
 	Inherits@RIGEXPLOSIVE: ^AffectedByBoobyTrapNeutral
 	-CashTrickler:
+	CashTrickler@REDUCED:
+		Interval: 375
+		Amount: 50
+		RequiresCondition: !owner.is.turkmen && !ecosabotage && moneyprinter
 	CashTrickler@NORMAL:
 		Interval: 375
 		Amount: 100
-		RequiresCondition: !owner.is.turkmen && !ecosabotage
+		RequiresCondition: !owner.is.turkmen && !ecosabotage && !moneyprinter
 	CashTrickler@BOOSTED:
 		Interval: 375
 		Amount: 125
-		RequiresCondition: owner.is.turkmen && !ecosabotage
+		RequiresCondition: owner.is.turkmen && !ecosabotage && !moneyprinter
 	GrantConditionOnFaction@incomeboost:
 		Condition: owner.is.turkmen
 		Factions: turkmen
@@ -3279,6 +4193,9 @@ OILB:
 		Condition: ecosabotage
 	ExternalCondition@ECOSABOTAGE:
 		Condition: ecosabotage
+	GrantConditionOnPrerequisite@moneyprinter:
+		Condition: moneyprinter
+		Prerequisites: moneyprinter
 
 MISS:
 	Inherits@RIGEXPLOSIVE: ^AffectedByBoobyTrapNeutral
@@ -3521,7 +4438,6 @@ MGNST:
 		QuantizedFacings: 28
 	-EngineerRepairable:
 	-CaptureManager:
-	#	BeingCapturedCondition: none
 	-Capturable:
 	-CapturableProgressBar:
 	-CapturableProgressBlink:
@@ -3530,6 +4446,8 @@ MGNST:
 	-TimedConditionBar@EMPDISABLE:
 	-WithIdleOverlay@EMPDISABLE:
 	-ExternalCondition@EMPDISABLE:
+	-PowerMultiplier@EMPDISABLE:
+	-GrantCondition@EMPDISABLE:
 	Transforms:
 		IntoActor: dshk
 		Offset: 0,0

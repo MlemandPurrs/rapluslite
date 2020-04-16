@@ -15,8 +15,56 @@ E1:
 	Buildable:
 		BuildPaletteOrder: 1
 	Armament@PRIMARY:
+		PauseOnCondition: leaflet
 	Passenger:
 		PipType: Green
+	Cloneable:
+		Types: Soldier
+
+E1.Marine:
+	Inherits: E1
+	Buildable:
+		BuildPaletteOrder: 9
+		BuildAtProductionType: Soldier
+		Prerequisites: ~dome, ~player.usa, ~techlevel.medium
+		Description: Toughened General-purpose infantry.\n  Special ability: Amphibian\nCan swim through sea and river.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
+	Tooltip:
+		Name: Marine
+	Valued:
+		Cost: 450
+	Health:
+		HP: 7000
+	Mobile:
+		Locomotor: foot-amphibious
+	GrantConditionOnTerrain:
+		TerrainTypes: Water, River
+		Condition: swimming
+	Targetable:
+		RequiresCondition: !parachute && !swimming
+	Targetable@SEA:
+		TargetTypes: Ground, Water, Infantry
+		RequiresCondition: !parachute && swimming
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+		StandSequences: stand
+		RequiresCondition: !swimming
+	WithInfantryBody@SEA:
+		RequiresCondition: !parachute && swimming
+		MoveSequence: swim
+		DefaultAttackSequence: swim_shoot
+		IdleSequences: swim_idle
+		StandSequences: swim_stand
+	WithDeathAnimation:
+		RequiresCondition: !swimming
+	WithIdleOverlay@WAVES:
+		Offset: 0,0,0
+		Sequence: wake
+		RequiresCondition: !parachute && swimming
+	RenderSprites:
+		Image: e1.marine
+	WithDeathAnimation@ROT:
+		RequiresCondition: !swimming
+	-Cloneable:
 
 E2:
 	Inherits@ROT: ^RottingInfantry
@@ -27,11 +75,15 @@ E2:
 		Cost: 150
 	Health:
 		HP: 4500
+	Armament@PRIMARY:
+		PauseOnCondition: leaflet
 	Armament@GARRISONED:
 		Name: garrisoned
 		Weapon: GrenadeLauncher
 	Passenger:
 		PipType: Green
+	Cloneable:
+		Types: Soldier
 
 E2.Uzbek:
 	Inherits: E2
@@ -55,6 +107,15 @@ E2.UzbekR2:
 	RenderSprites:
 		Image: e2
 
+E2R1:
+	Inherits: E2
+	RenderSprites:
+		Image: E2
+	ProducibleWithLevel:
+		Prerequisites: techlevel.infonly
+		InitialLevels: 1
+	-Buildable:
+
 E3:
 	Inherits@ROT: ^RottingInfantry
 	Inherits@BOMBEQUIP: ^AffectedByBombVests
@@ -68,18 +129,22 @@ E3:
 		PipCount: 0
 		AmmoCondition: ammo
 	Armament@PRIMARY:
-		PauseOnCondition: !ammo
+		PauseOnCondition: !ammo || leaflet
 	Armament@SECONDARY:
-		PauseOnCondition: !ammo
+		PauseOnCondition: !ammo || leaflet
 	ReloadAmmoPool:
 		PauseOnCondition: ammo
 	AutoTarget:
 		ScanRadius: -1
+	Cloneable:
+		Types: Soldier
 
 E4:
 	Buildable:
 		Prerequisites: ~barr, dome, ~!player.ukraine, ~techlevel.low
 		BuildPaletteOrder: 9
+	Armament@PRIMARY:
+		PauseOnCondition: leaflet
 	Passenger:
 		PipType: Green
 
@@ -188,7 +253,7 @@ SPY:
 	Buildable:
 		Prerequisites: ~tent, dome, ~!player.england, ~techlevel.medium
 		BuildPaletteOrder: 7
-		Description: Agent of the Intelligence Service.\nCan detect cloaked units and spies.\nCan steal enemy Vehicles when not disguised.\n  Special Ability: Espionage\nInfiltrates enemy production structures for rank bonus.\nSteals enemy credits from Refineries.\nInfiltrates enemy Power Plants to cut off base power.\nInfiltrates Radar Domes to reset their exploration.\nInfiltrates Tech Centers to unlock your country's Tech Unit.\n  Special Ability: Disguise\nCan disguise as enemy Infantry.\nLoses disguise when attacking.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
+		Description: Agent of the Intelligence Service.\nCan detect cloaked units and spies.\n  Special Ability: Hijacking\nCan steal enemy Vehicles when not disguised.\n  Special Ability: Espionage\nInfiltrates enemy production structures for rank bonus.\nSteals enemy credits from Refineries.\nInfiltrates enemy Power Plants to cut off base power.\nInfiltrates Radar Domes to reset their exploration.\nInfiltrates Tech Centers to unlock your country's Tech Unit.\n  Special Ability: Disguise\nCan disguise as enemy Infantry.\nLoses disguise when attacking.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
 	Passenger:
 		PipType: Yellow
 	#	neat.. this works.
@@ -208,6 +273,8 @@ SPY:
 		CaptureTypes: vehicle
 		PlayerExperience: 50
 		RequiresCondition: !disguise
+	Armament:
+		PauseOnCondition: leaflet
 	Armament@GARRISONED:
 		Name: garrisoned
 		Weapon: SilencedPPK
@@ -265,11 +332,17 @@ E7:
 		BuildLimit: 1
 		Description: Elite commando infantry.\nArmed with dual pistols and C4.\nMaximum 1 can be trained.\n  Special ability: Amphibian\nCan swim through sea and river.\n  Strong vs Infantry, Buildings\n  Weak vs Vehicles, Aircraft
 		BuildPaletteOrder: 8
-		Prerequisites: ~tent, atek, ~infantry.allies, ~techlevel.high
+		Prerequisites: ~tent, atek, ~infantry.allies, ~!player.usa, ~techlevel.high
 	Mobile:
 		Locomotor: foot-amphibious
 		Speed: 71
 		Voice: Move
+	Health:
+		HP: 5000
+	Armament@PRIMARY:
+		PauseOnCondition: leaflet
+	Armament@SECONDARY:
+		PauseOnCondition: leaflet
 	GrantConditionOnTerrain:
 		TerrainTypes: Water, River
 		Condition: swimming
@@ -294,6 +367,17 @@ E7:
 		PipType: Red
 	WithDeathAnimation@ROT:
 		RequiresCondition: !swimming
+
+E7.usa:
+	Inherits: E7
+	Buildable:
+		Prerequisites: ~tent, atek, ~infantry.allies, ~player.usa, ~techlevel.high
+	RenderSprites:
+		Image: E7
+	ProducibleWithLevel:
+		Prerequisites: techlevel.infonly
+		InitialLevels: 1
+	-MapEditorData:
 
 VOLK:
 	Inherits@ROT: ^RottingInfantry
@@ -332,6 +416,7 @@ VOLK:
 		VoiceSet: VolkovVoice
 	Armament:
 		Weapon: VolkovGun
+		PauseOnCondition: leaflet
 	Armament@GARRISONED:
 		Name: garrisoned
 		Weapon: VolkovGun
@@ -386,7 +471,7 @@ SNIP:
 		ValidTargets: Infantry
 	Armament@PRIMARY:
 		Weapon: Sniper
-		PauseOnCondition: !ammo
+		PauseOnCondition: !ammo || leaflet
 	AmmoPool:
 		Armaments: primary
 		Ammo: 10
@@ -470,6 +555,63 @@ SNIP.r1:
 	-Buildable:
 	-MapEditorData:
 
+MARK:
+	Inherits: ^Soldier
+	Valued:
+		Cost: 700
+	Tooltip:
+		Name: Marksman
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Buildable:
+		Queue: Infantry
+		BuildAtProductionType: Soldier
+		BuildPaletteOrder: 7
+		Prerequisites: ~barr, dome, ~player.afghan, ~techlevel.medium
+		Description: Infantry armed with an Sniper rifle.\nShoots Poison-coated rounds.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
+	Health:
+		HP: 5000
+	Passenger
+		PipType: Yellow
+	RevealsShroud:
+		Range: 6c0
+	AutoTarget:
+		InitialStance: Defend
+		InitialStanceAI: ReturnFire
+	AutoTargetPriority@DEFAULT:
+		ValidTargets: Infantry
+	Armament@PRIMARY:
+		Weapon: Sniper.chem
+		PauseOnCondition: !ammo || leaflet
+	Armament@GARRISONED:
+		Name: garrisoned
+		Weapon: Sniper.chem
+		MuzzleSequence: garrison-muzzle
+	AmmoPool:
+		Armaments: primary
+		Ammo: 5
+		PipCount: 0
+		AmmoCondition: ammo
+	ReloadAmmoPool:
+		Delay: 125
+		Count: 5
+		RequiresCondition: !ammo
+	WithDecoration@ammoreplenish:
+		RequiresSelection: false
+		Image: pips
+		Sequence: tag-reload
+		ReferencePoint: Top
+		ZOffset: 256
+		RequiresCondition: !ammo
+	AttackFrontal:
+	WithInfantryBody:
+		DefaultAttackSequence: shoot
+	-MustBeDestroyed:
+	ProducibleWithLevel:
+		Prerequisites: barracks.upgraded
+    RenderSprites:
+        Image: e1sniper
+
 GREN:
 	Inherits: ^Soldier
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
@@ -488,6 +630,7 @@ GREN:
 	Armament@PRIMARY:
 		Weapon: GrenadeLauncher
 		LocalOffset: 100,0,500
+		PauseOnCondition: leaflet
 	Armament@GARRISONED:
 		Name: garrisoned
 		Weapon: GrenadeLauncher
@@ -528,6 +671,7 @@ MGI:
 		Description: Infantry equipped with a rapid firing Machine Gun.\n  Strong vs Infantry\n  Weak vs Vehicles, Defenses
 	Armament@PRIMARY:
 		Weapon: M60mg.Inf
+		PauseOnCondition: leaflet
 	Armament@GARRISONED:
 		Name: garrisoned
 		Weapon: Vulcan
@@ -570,6 +714,7 @@ ATGM:
 		Weapon: Kornet
 		LocalOffset: 226,43,245
 		FireDelay: 4
+		PauseOnCondition: leaflet
 	Armament@GARRISONED:
 		Name: garrisoned
 		Weapon: Kornet
@@ -615,6 +760,7 @@ RMBO:
 		Voice: Demolish
 	Armament:
 		Weapon: M1Carbine
+		PauseOnCondition: leaflet
 	Armament@GARRISONED:
 		Name: garrisoned
 		Weapon: Vulcan
@@ -699,6 +845,8 @@ SHOK:
 	AttackFrontal:
 	Passenger:
 		PipType: Red
+	Armament@PRIMARY:
+		PauseOnCondition: leaflet
 	Armament@SECONDARY:
 		Weapon: TeslaCharge
 		LocalOffset: 427,0,341
@@ -706,8 +854,19 @@ SHOK:
 		OutsideRangeCursor: powerdown
 		TargetStances: Ally
 		ForceTargetStances: None
+		PauseOnCondition: leaflet
 	RevealsShroud:
 		Range: 5c0
+
+SHOK.r1:	
+	Inherits: SHOK
+	-Buildable:
+	RenderSprites:
+		Image: SHOK
+	ProducibleWithLevel:
+		Prerequisites: techlevel.infonly
+		InitialLevels: 1
+	-MapEditorData:
 
 DOG.Bomb:
 	Inherits: ^Soldier
@@ -811,6 +970,7 @@ E5:
 		FireDelay: 3
 		MuzzleSequence: muzzle
 		MuzzlePalette: desert
+		PauseOnCondition: leaflet
 	Armament@GARRISONED:
 		Name: garrisoned
 		Weapon: Chemspray
@@ -834,8 +994,12 @@ E5:
 		Chance: 30
 	ProducibleWithLevel:
 		Prerequisites: barracks.upgraded
+	-WithColoredOverlay@GAS:
 	-ExternalCondition@GAS:
 	-SelfHealing@GAS:
+	Targetable:
+		RequiresCondition: !parachute
+		TargetTypes: Ground, Infantry, Disguise, Chem
 
 MRTR:
 	Inherits: ^Soldier
@@ -859,6 +1023,7 @@ MRTR:
 		Weapon: MortarNapalm
 		LocalOffset: 0,0,155
 		FireDelay: 15
+		PauseOnCondition: leaflet
 	Armament@GARRISONED:
 		Name: garrisoned
 		Weapon: MortarNapalm
@@ -899,6 +1064,7 @@ RPG:
 		Weapon: Thermobaric
 		LocalOffset: 256,43,341
 		FireDelay: 5
+		PauseOnCondition: leaflet
 	Armament@GARRISONED:
 		Name: garrisoned
 		Weapon: Thermobaric
@@ -955,6 +1121,8 @@ TECN:
 		PipType: Blue
 	RenderSprites:
 		Image: TECN
+	Armament:
+		PauseOnCondition: leaflet
 	Armament@GARRISONED:
 		Name: garrisoned
 		Weapon: M1Carbine
@@ -1058,6 +1226,7 @@ STNG:
 		Weapon: PortaNike
 		LocalOffset: 256,43,341
 		FireDelay: 5
+		PauseOnCondition: leaflet
 	TakeCover:
 		ProneOffset: 180,0,-200
 	AttackFrontal:
@@ -1086,6 +1255,7 @@ FTRP:
 		Weapon: FLAK-INF-AG
 	Valued:
 		Cost: 600
+	-Cloneable:
 
 CINF:
 	Inherits@ROT: ^RottingInfantry
@@ -1108,6 +1278,7 @@ CINF:
 	Armament@PRIMARY:
 		Weapon: ChronoGun
 		LocalOffset: 427,0,341
+		PauseOnCondition: leaflet
 	Armament@GARRISONED:
 		Name: garrisoned
 		Weapon: ChronoGun
@@ -1194,6 +1365,7 @@ SHOT:
 		HP: 5000
 	Armament@PRIMARY:
 		Weapon: Shotgun
+		PauseOnCondition: leaflet
 	Armament@GARRISONED:
 		Name: garrisoned
 		Weapon: Shotgun

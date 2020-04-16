@@ -413,6 +413,57 @@ Player:
 					Attractiveness: 1
 					TargetMetric: None
 					CheckRadius: 2c0
+	SupportPowerBotModule@afghan:
+		RequiresCondition: enable-ai-player && player.afghan
+		Decisions:
+			UseSpyPlane:
+				OrderName: SovietSpyPlane
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			UseParatroopers:
+				OrderName: SovietParatroopers
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			UseNuclear:
+				OrderName: NukeMissile
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0
+			UseInvulnerability:
+				OrderName: IronCurtainPower
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Ally
+					Types: Tank, Vehicle, Ship
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 2c0
 	#	HarvesterBotModule@soviet:
 	#	RequiresCondition: enable-ai-player && player.russia || player.ukraine || player.belarus || player.karelia || player.kazakh || player.uzbek || player.turkmen
 	#	HarvesterTypes: harv.soviet
@@ -483,7 +534,7 @@ Player:
 			proc.soviet: 4
 			barr: 2
 			kenn: 4
-			dome.soviet: 1
+			dome.ukraine: 1
 			weap: 3
 			spen: 1
 			afld: 4
@@ -499,7 +550,7 @@ Player:
 			proc.soviet: 15
 			barr: 2
 			kenn: 1
-			dome.soviet: 1
+			dome.ukraine: 1
 			weap: 6
 			spen: 1
 			afld: 4
@@ -535,7 +586,7 @@ Player:
 			spen: 1
 			afld: 4
 			stek.belarus: 1
-			fix: 1
+			fix.belarus: 1
 			iron: 1
 			mslo: 1
 			ftur: 6
@@ -552,7 +603,7 @@ Player:
 			afld: 4
 			ftur: 10
 			tsla: 5
-			fix: 1
+			fix.belarus: 1
 			sam: 3
 			hsam: 1
 			stek.belarus: 1
@@ -577,7 +628,7 @@ Player:
 			proc.soviet: 4
 			barr: 2
 			kenn: 4
-			dome.soviet: 1
+			dome.karelia: 1
 			weap: 3
 			spen: 1
 			afld: 4
@@ -593,7 +644,7 @@ Player:
 			proc.soviet: 15
 			barr: 2
 			kenn: 1
-			dome.soviet: 1
+			dome.karelia: 1
 			weap: 6
 			spen: 1
 			afld: 4
@@ -624,7 +675,7 @@ Player:
 			proc.soviet: 4
 			barr: 2
 			kenn: 4
-			dome.soviet: 1
+			dome.kazakh: 1
 			weap: 3
 			spen: 1
 			afld: 4
@@ -640,7 +691,7 @@ Player:
 			proc.soviet: 15
 			barr: 2
 			kenn: 1
-			dome.soviet: 1
+			dome.kazakh: 1
 			weap: 6
 			spen: 1
 			afld: 4
@@ -659,7 +710,7 @@ Player:
 		ExcessPowerIncrement: 40
 		ExcessPowerIncreaseThreshold: 4
 		CheckForWaterRadius: 8
-		ConstructionYardTypes: fact
+		ConstructionYardTypes: fact,fact.uzbek
 		RefineryTypes: proc.soviet
 		PowerTypes: powr,apwr
 		BarracksTypes: barr
@@ -718,12 +769,59 @@ Player:
 			proc.soviet: 4
 			barr: 2
 			kenn: 4
-			dome.soviet: 1
+			dome.turkmen: 1
 			weap: 3
 			spen: 1
 			afld: 4
 			stek.turkmen: 1
 			fix.turkmen: 1
+			iron: 1
+			mslo: 1
+			ftur: 6
+			tsla: 4
+			sam: 4
+			hsam: 2
+		BuildingFractions:
+			proc.soviet: 15
+			barr: 2
+			kenn: 1
+			dome.turkmen: 1
+			weap: 6
+			spen: 1
+			afld: 4
+			ftur: 10
+			tsla: 5
+			fix.turkmen: 1
+			sam: 3
+			hsam: 1
+			stek.turkmen: 1
+			mslo: 1
+			iron: 1
+	BaseBuilderBotModule@afghan:
+		RequiresCondition: enable-ai-player && player.afghan
+		MinimumExcessPower: 60
+		MaximumExcessPower: 200
+		ExcessPowerIncrement: 40
+		ExcessPowerIncreaseThreshold: 4
+		CheckForWaterRadius: 8
+		ConstructionYardTypes: fact
+		RefineryTypes: proc.soviet
+		PowerTypes: powr,apwr
+		BarracksTypes: barr
+		VehiclesFactoryTypes: weap
+		ProductionTypes: barr,weap,afld
+		NavalProductionTypes: spen
+		SiloTypes: silo
+		BuildingLimits:
+			proc.soviet: 4
+			barr: 2
+			kenn: 4
+			dome.soviet: 1
+			weap: 3
+			spen: 1
+			afld: 4
+			stek.afghan: 1
+			fix.afghan: 1
 			iron: 1
 			mslo: 1
 			ftur: 6
@@ -740,14 +838,14 @@ Player:
 			afld: 4
 			ftur: 10
 			tsla: 5
-			fix.turkmen: 1
+			fix.afghan: 1
 			sam: 3
 			hsam: 1
-			stek.turkmen: 1
+			stek.afghan: 1
 			mslo: 1
 			iron: 1
 	CaptureManagerBotModule@thf:
-		RequiresCondition: enable-ai-player && player.russia || player.ukraine || player.belarus || player.karelia || player.kazakh || player.uzbek || player.turkmen
+		RequiresCondition: enable-ai-player && player.russia || player.ukraine || player.belarus || player.karelia || player.kazakh || player.uzbek || player.turkmen || player.afghan
 		CapturingActorTypes: thf
 		CapturableActorTypes: harv,harv.soviet,mcv,v2rl,v2rl.ukraine,arty,arty.france,4tnk,4tnk.ukraine,4tnk.belarus,ttnk,ctnk
 		CheckCaptureTargetsForVisibility: true
@@ -889,7 +987,7 @@ Player:
 		RushInterval: 400
 		AttackScanRadius: 16
 		ExcludeFromSquadsTypes: harv.soviet, mcv.uzbek, dog, ss, ss.ag, msub, msub.aa, yak.ai, mig.ai, e6.uzbek, thf
-		ConstructionYardTypes: fact
+		ConstructionYardTypes: fact,fact.uzbek
 	SquadManagerBotModule@uzbekistan.sea:
 		RequiresCondition: enable-ai-player && player.uzbek
 		SquadSize: 4
@@ -898,7 +996,7 @@ Player:
 		AttackScanRadius: 24
 		ExcludeFromSquadsTypes: harv.soviet, mcv.uzbek, dog, e1, e2.uzbek, e3, e4, volk, rpg, ftrk, btr, 2tnk.soviet, 3tnk, 4tnk, v2rl, yak.ai, mig.ai, e6.uzbek, thf
 		NavalUnitsTypes: ss,ss.ag,msub,msub.aa
-		ConstructionYardTypes: fact
+		ConstructionYardTypes: fact,fact.uzbek
 		NavalProductionTypes: spen
 	SquadManagerBotModule@uzbekistan.air:
 		RequiresCondition: enable-ai-player && player.uzbek
@@ -907,7 +1005,7 @@ Player:
 		RushInterval: 400
 		AttackScanRadius: 24
 		ExcludeFromSquadsTypes: harv.soviet, mcv.uzbek, dog, e1, e2.uzbek, e3, e4, volk, rpg, ftrk, btr, 2tnk.soviet, 3tnk, 4tnk, v2rl, ss, ss.ag, msub, msub.aa, e6.uzbek, thf
-		ConstructionYardTypes: fact
+		ConstructionYardTypes: fact,fact.uzbek
 	SquadManagerBotModule@turkmenistan:
 		RequiresCondition: enable-ai-player && player.turkmen
 		SquadSize: 16
@@ -933,6 +1031,32 @@ Player:
 		RushInterval: 400
 		AttackScanRadius: 24
 		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e3, e4, volk, mark, ftrk, btr, 2tnk.turkmen, 3tnk, 4tnk, v2rl, spg, ss, ss.ag, msub, msub.aa, e6, thf
+		ConstructionYardTypes: fact
+	SquadManagerBotModule@afghanistan:
+		RequiresCondition: enable-ai-player && player.afghan
+		SquadSize: 16
+		SquadSizeRandomBonus: 16
+		RushInterval: 400
+		AttackScanRadius: 16
+		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, ss, ss.ag, msub, msub.aa, yak.ai, mig.ai, e6, thf
+		ConstructionYardTypes: fact
+	SquadManagerBotModule@afghanistan.sea:
+		RequiresCondition: enable-ai-player && player.afghan
+		SquadSize: 4
+		SquadSizeRandomBonus: 4
+		RushInterval: 400
+		AttackScanRadius: 24
+		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e3, e4, volk, shok, ftrk, btr, 2tnk.soviet, 3tnk, 4tnk, v2rl, ttnk, yak.ai, mig.ai, e6, thf
+		NavalUnitsTypes: ss,ss.ag,msub,msub.aa,tbt
+		ConstructionYardTypes: fact
+		NavalProductionTypes: spen.russia
+	SquadManagerBotModule@afghan.air:
+		RequiresCondition: enable-ai-player && player.afghan
+		SquadSize: 2
+		SquadSizeRandomBonus: 2
+		RushInterval: 400
+		AttackScanRadius: 24
+		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e3, e4, volk, shok, ftrk, btr, 2tnk.soviet, 3tnk, 4tnk, v2rl, ttnk, ss, ss.ag, msub, msub.aa, e6, thf
 		ConstructionYardTypes: fact
 	UnitBuilderBotModule@russia:
 		RequiresCondition: enable-ai-player && player.russia
@@ -1293,6 +1417,56 @@ Player:
 			msub.aa: 2
 	UnitBuilderBotModule@turkmenistan.air:
 		RequiresCondition: enable-ai-player && player.turkmen
+		IdleBaseUnitsMaximum: 4
+		UnitQueues: Aircraft
+		UnitsToBuild:
+			yak.ai: 60
+			mig.ai: 40
+		UnitLimits:
+			yak.ai: 6
+			mig.ai: 4
+	UnitBuilderBotModule@afghanistan:
+		RequiresCondition: enable-ai-player && player.afghan
+		UnitQueues: Vehicle, Infantry
+		UnitsToBuild:
+			e1: 65
+			e2: 15
+			e3: 30
+			e4: 15
+			dog: 15
+			harv.soviet: 15
+			ftrk: 30
+			btr: 15
+			2tnk: 45
+			3tnk: 35
+			v2rl: 40
+			4tnk: 25
+			volk: 1
+			e6: 2
+			thf: 2
+		UnitLimits:
+			dog: 4
+			harv.soviet: 8
+			ftrk: 6
+			volk: 1
+			e6: 2
+			thf: 2
+	UnitBuilderBotModule@afghanistan.sea:
+		RequiresCondition: enable-ai-player && player.afghan
+		IdleBaseUnitsMaximum: 6
+		UnitQueues: Ship
+		UnitsToBuild:
+			ss: 30
+			ss.ag: 30
+			msub: 20
+			msub.aa: 20
+		UnitLimits:
+			ss: 4
+			ss.ag: 6
+			msub: 4
+			msub.aa: 2
+	UnitBuilderBotModule@afghanistan.air:
+		RequiresCondition: enable-ai-player && player.afghan
 		IdleBaseUnitsMaximum: 4
 		UnitQueues: Aircraft
 		UnitsToBuild:

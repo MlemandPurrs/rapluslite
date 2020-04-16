@@ -62,6 +62,61 @@ e1:
 	Inherits@PostDeath: ^Rot
 	dshk-icon: dshkicon
 
+e1.marine:
+	Inherits: e1
+	Defaults: e1
+	swim_idle: tnkgunnr
+		Start: 64
+		Facings: 8
+		Length: 1
+		Offset: 0, -7
+	swim_stand: tnkgunnr
+		Start: 64
+		Facings: 8
+		Length: 1
+		Offset: 0, -7
+	swim: tnkgunnr
+		Start: 64
+		Facings: 8
+		Length: 1
+		Offset: 0, -7
+	swim_shoot: tnkgunnr
+		Start: 0
+		Facings: 8
+		Length: 8
+		Offset: 0, -7
+	prone-swim_shoot: tnkgunnr
+		Start: 1
+		Facings: 8
+		Length: 8
+		Offset: 0, -7
+	prone-swim: tnkgunnr
+		Start: 64
+		Facings: 8
+		Length: 1
+		Offset: 0, -7
+	prone-swim_stand: tnkgunnr
+		Start: 64
+		Facings: 8
+		Length: 1
+		Offset: 0, -7
+	liedown: tnkgunnr
+		Start: 64
+		Facings: 8
+		Length: 1
+		Offset: 0, -7
+	standup: tnkgunnr
+		Start: 64
+		Facings: 8
+		Length: 1
+		Offset: 0, -7
+	wake: wake-infantry
+		Start: 1
+		Length: *
+		Tick: 150
+		Offset: 0, -4
+	icon: e1swimicon
+
 e2:
 	Inherits@PostDeath: ^Rot
 	rank2-icon: e2r2icon
@@ -1411,7 +1466,7 @@ mrtr:
 		Tick: 120
 	die1:
 		Start: 416
-		Length: 9
+		Length: 8
 		Tick: 80
 	die2:
 		Start: 424
@@ -1693,3 +1748,88 @@ shot:
 		Length: 6
 		Facings: 8
 	icon: shoticon
+
+e1sniper:
+	Inherits@PostDeath: ^Rot
+	stand:
+		Facings: 8
+	stand2:
+		Start: 8
+		Facings: 8
+	run:
+		Start: 16
+		Length: 6
+		Facings: 8
+		Tick: 100
+	shoot:
+		Start: 64
+		Length: 8
+		Facings: 8
+	prone-stand:
+		Start: 144
+		Stride: 4
+		Facings: 8
+	prone-stand2:
+		Start: 144
+		Stride: 4
+		Facings: 8
+	prone-run:
+		Start: 144
+		Length: 4
+		Facings: 8
+		Tick: 100
+	liedown:
+		Start: 128
+		Length: 2
+		Facings: 8
+	standup:
+		Start: 176
+		Length: 2
+		Facings: 8
+	prone-shoot:
+		Start: 192
+		Length: 8
+		Facings: 8
+	parachute:
+		Start: 377
+	idle1:
+		Start: 256
+		Length: 16
+		Tick: 120
+	idle2:
+		Start: 272
+		Length: 16
+		Tick: 120
+	die1:
+		Start: 288
+		Length: 8
+	die2:
+		Start: 296
+		Length: 8
+	die3:
+		Start: 304
+		Length: 8
+	die4:
+		Start: 312
+		Length: 12
+	die5:
+		Start: 324
+		Length: 18
+	die6: electro
+		Length: *
+		UseTilesetExtension: true
+		TilesetOverrides:
+			DESERT: TEMPERAT
+			INTERIOR: TEMPERAT
+	die-crushed: corpse1
+		Length: *
+		Tick: 1600
+		ZOffset: -511
+		UseTilesetExtension: true
+		TilesetOverrides:
+			DESERT: TEMPERAT
+			INTERIOR: TEMPERAT
+	garrison-muzzle: minigun
+		Length: 6
+		Facings: 8
+	icon: markicon

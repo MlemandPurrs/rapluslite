@@ -571,25 +571,22 @@ flags: buttons.png
 	RandomAllies: 30,172,30,15
 	RandomSoviet: 0,172,30,15
 	spectator: 60,112,30,15
-
 	russia: 0,127,30,15
 	ukraine: 30,127,30,15
 	england: 60,127,30,15
-
 	germany: 0,142,30,15
 	spain: 30,142,30,15
 	france: 60,142,30,15
-
 	turkey: 0,157,30,15
 	greece: 30,157,30,15
     belarus: 60,157,30,15
-
     kazakh: 90,112,30,15
     uzbek: 120,112,30,15
     turkmen: 120,97,30,15
-
 	italy: 150,112,30,15
 	karelia: 150,97,30,15
+	usa: 180,112,30,15
+	afghan: 180,97,30,15
 
 music: buttons.png
 	pause: 0,193,25,25

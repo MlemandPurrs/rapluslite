@@ -1,3 +1,21 @@
+HARV.FullHusk:
+	SpawnActorOnDeath@recovery:
+		Actor: harv
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
+
+HARV.EmptyHusk:
+	SpawnActorOnDeath@recovery:
+		Actor: harv
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
+
 HARV.Soviet.FullHusk:
 	Inherits: ^Husk
 	Tooltip:
@@ -8,6 +26,13 @@ HARV.Soviet.FullHusk:
 		IntoActor: harv.soviet
 	RenderSprites:
 		Image: hhusk.soviet
+	SpawnActorOnDeath@recovery:
+		Actor: harv.soviet
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 
 HARV.Soviet.EmptyHusk:
 	Inherits: ^Husk
@@ -19,6 +44,22 @@ HARV.Soviet.EmptyHusk:
 		IntoActor: harv.soviet
 	RenderSprites:
 		Image: hhusk2.soviet
+	SpawnActorOnDeath@recovery:
+		Actor: harv.soviet
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
+
+1TNK.Husk:
+	SpawnActorOnDeath@recovery:
+		Actor: 1tnk
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 
 1TNK.England.Husk:
 	Inherits: ^Husk
@@ -32,6 +73,13 @@ HARV.Soviet.EmptyHusk:
 		IntoActor: 1tnk.England
 	RenderSprites:
 		Image: 1tnk.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: 1tnk.England
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 	-MapEditorData:
 
 1TNK.France.Husk:
@@ -46,6 +94,13 @@ HARV.Soviet.EmptyHusk:
 		IntoActor: 1tnk.France
 	RenderSprites:
 		Image: 1tnk.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: 1tnk.France
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 	-MapEditorData:
 
 1TNK.Germany.Husk:
@@ -60,6 +115,13 @@ HARV.Soviet.EmptyHusk:
 		IntoActor: 1tnk.Germany
 	RenderSprites:
 		Image: 1tnk.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: 1tnk.Germany
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 	-MapEditorData:
 
 1TNK.Spain.Husk:
@@ -74,6 +136,13 @@ HARV.Soviet.EmptyHusk:
 		IntoActor: 1tnk.Spain
 	RenderSprites:
 		Image: 1tnk.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: 1tnk.Spain
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 	-MapEditorData:
 
 1TNK.Italy.Husk:
@@ -88,6 +157,13 @@ HARV.Soviet.EmptyHusk:
 		IntoActor: 1tnk.Italy
 	RenderSprites:
 		Image: 1tnk.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: 1tnk.Italy
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 	-MapEditorData:
 
 LTNK.Husk:
@@ -102,7 +178,23 @@ LTNK.Husk:
 		IntoActor: ltnk
 	RenderSprites:
 		Image: ltnk.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: ltnk
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 	-MapEditorData:
+
+2TNK.Husk:
+	SpawnActorOnDeath@recovery:
+		Actor: 2tnk
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 
 2TNK.England.Husk:
 	Inherits: ^Husk
@@ -116,6 +208,13 @@ LTNK.Husk:
 		IntoActor: 2tnk.England
 	RenderSprites:
 		Image: 2tnk.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: 2tnk.England
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 	-MapEditorData:
 
 2TNK.France.Husk:
@@ -130,6 +229,13 @@ LTNK.Husk:
 		IntoActor: 2tnk.France
 	RenderSprites:
 		Image: 2tnk.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: 2tnk.France
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 	-MapEditorData:
 
 2TNK.Germany.Husk:
@@ -144,6 +250,13 @@ LTNK.Husk:
 		IntoActor: 2tnk.Germany
 	RenderSprites:
 		Image: 2tnk.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: 2tnk.Germany
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 	-MapEditorData:
 
 2TNK.Spain.Husk:
@@ -158,6 +271,13 @@ LTNK.Husk:
 		IntoActor: 2tnk.Spain
 	RenderSprites:
 		Image: 2tnk.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: 2tnk.Spain
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 	-MapEditorData:
 
 2TNK.Soviet.Husk:
@@ -172,6 +292,13 @@ LTNK.Husk:
 		IntoActor: 2tnk.Soviet
 	RenderSprites:
 		Image: 2tnk.soviet.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: 2tnk.Soviet
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 
 2TNK.Ukraine.Husk:
 	Inherits: ^Husk
@@ -185,6 +312,13 @@ LTNK.Husk:
 		IntoActor: 2tnk.Ukraine
 	RenderSprites:
 		Image: 2tnk.soviet.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: 2tnk.ukraine
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 	-MapEditorData:
 
 2TNK.Belarus.Husk:
@@ -199,7 +333,23 @@ LTNK.Husk:
 		IntoActor: 2tnk.Belarus
 	RenderSprites:
 		Image: 2tnk.soviet.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: 2tnk.belarus
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 	-MapEditorData:
+
+3TNK.Husk:
+	SpawnActorOnDeath@recovery:
+		Actor: 3tnk
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 
 3TNK.Ukraine.Husk:
 	Inherits: ^Husk
@@ -213,6 +363,13 @@ LTNK.Husk:
 		IntoActor: 3tnk.Ukraine
 	RenderSprites:
 		Image: 3tnk.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: 3tnk.Ukraine
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 	-MapEditorData:
 
 3TNK.Belarus.Husk:
@@ -227,7 +384,23 @@ LTNK.Husk:
 		IntoActor: 3tnk.Belarus
 	RenderSprites:
 		Image: 3tnk.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: 3tnk.Belarus
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 	-MapEditorData:
+
+4TNK.Husk:
+	SpawnActorOnDeath@recovery:
+		Actor: 4tnk
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 
 4TNK.Ukraine.Husk:
 	Inherits: ^Husk
@@ -241,6 +414,13 @@ LTNK.Husk:
 		IntoActor: 4tnk.Ukraine
 	RenderSprites:
 		Image: 4tnk.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: 4tnk.ukraine
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 	-MapEditorData:
 
 4TNK.Belarus.Husk:
@@ -255,6 +435,13 @@ LTNK.Husk:
 		IntoActor: 4tnk.Belarus
 	RenderSprites:
 		Image: 4tnk.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: 4tnk.belarus
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 	-MapEditorData:
 
 4TNK.Tsla.Husk:
@@ -269,6 +456,13 @@ LTNK.Husk:
 		IntoActor: 4tnk.tsla
 	RenderSprites:
 		Image: 4tnk.tsla.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: 4tnk.tsla
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 
 4TNK.Flam.Husk:
 	Inherits: ^Husk
@@ -282,6 +476,13 @@ LTNK.Husk:
 		IntoActor: 4tnk.flam
 	RenderSprites:
 		Image: 4tnk.flam.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: 4tnk.flam
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 
 BEHE.Husk:
 	Inherits: ^Husk
@@ -295,6 +496,13 @@ BEHE.Husk:
 		IntoActor: behe
 	RenderSprites:
 		Image: behe.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: behe
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 
 BEHE.tank.Husk:
 	Inherits: ^Husk
@@ -308,6 +516,13 @@ BEHE.tank.Husk:
 		IntoActor: behe.tank
 	RenderSprites:
 		Image: behe.tank.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: behe.tank
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 
 ATNK.Husk:
 	Inherits: ^Husk
@@ -321,6 +536,13 @@ ATNK.Husk:
 		IntoActor: atnk
 	RenderSprites:
 		Image: atnk.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: atnk
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 
 ATNK.England.Husk:
 	Inherits: ^Husk
@@ -334,6 +556,14 @@ ATNK.England.Husk:
 		IntoActor: atnk.england
 	RenderSprites:
 		Image: atnk.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: atnk.england
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
+	-MapEditorData:
 
 ATNK.France.Husk:
 	Inherits: ^Husk
@@ -347,6 +577,14 @@ ATNK.France.Husk:
 		IntoActor: atnk.france
 	RenderSprites:
 		Image: atnk.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: atnk.france
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
+	-MapEditorData:
 
 ATNK.Germany.Husk:
 	Inherits: ^Husk
@@ -360,6 +598,14 @@ ATNK.Germany.Husk:
 		IntoActor: atnk.germany
 	RenderSprites:
 		Image: atnk.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: atnk.germany
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
+	-MapEditorData:
 
 ATNK.Spain.Husk:
 	Inherits: ^Husk
@@ -373,6 +619,14 @@ ATNK.Spain.Husk:
 		IntoActor: atnk.spain
 	RenderSprites:
 		Image: atnk.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: atnk.spain
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
+	-MapEditorData:
 
 ATNK.Italy.Husk:
 	Inherits: ^Husk
@@ -386,6 +640,14 @@ ATNK.Italy.Husk:
 		IntoActor: atnk.italy
 	RenderSprites:
 		Image: atnk.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: atnk.italy
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
+	-MapEditorData:
 
 TNKD.Husk:
 	Inherits: ^Husk
@@ -397,6 +659,13 @@ TNKD.Husk:
 		IntoActor: tnkd
 	RenderSprites:
 		Image: tnkd.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: tnkd
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 
 DTNK.Husk:
 	Inherits: ^Husk
@@ -410,6 +679,13 @@ DTNK.Husk:
 		IntoActor: dtnk
 	RenderSprites:
 		Image: dtnk.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: dtnk
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 
 FIST.Husk:
 	Inherits: ^Husk
@@ -421,6 +697,13 @@ FIST.Husk:
 		IntoActor: fist
 	RenderSprites:
 		Image: fist.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: fist
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 
 IROQ.Husk:
 	Inherits: ^HelicopterHusk
@@ -916,6 +1199,13 @@ SPG.Husk:
 		IntoActor: spg
 	RenderSprites:
 		Image: spg.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: spg
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 
 MAPC.Husk:
 	Inherits: ^Husk
@@ -929,6 +1219,13 @@ MAPC.Husk:
 		IntoActor: mapc
 	RenderSprites:
 		Image: mapc.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: mapc
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
 
 U2.emp.Husk:
 	Inherits: ^PlaneHusk
@@ -952,6 +1249,24 @@ U2.nuke.Husk:
 	Inherits: ^PlaneHusk
 	Tooltip:
 		Name: Husk (Nuke Plane)
+	Aircraft:
+		TurnSpeed: 7
+		Speed: 373
+	Contrail@1:
+		Offset: -725,683,0
+	Contrail@2:
+		Offset: -725,-683,0
+	SmokeTrailWhenDamaged:
+		Offset: -1c43,0,0
+		Interval: 2
+		MinDamage: Undamaged
+	RenderSprites:
+		Image: ally-u2
+
+U2.strike.Husk:
+	Inherits: ^PlaneHusk
+	Tooltip:
+		Name: Husk (Interceptor)
 	Aircraft:
 		TurnSpeed: 7
 		Speed: 373
@@ -1022,7 +1337,18 @@ PTNK.Husk:
 		IntoActor: ptnk
 	RenderSprites:
 		Image: ptnk.destroyed
-	-MapEditorData:
+	SpawnActorOnDeath@recovery:
+		Actor: ptnk
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
+
+YAK.Kamikaze.Husk:
+	Inherits: YAK.Husk
+	Tooltip:
+		Name: Kamikaze Plane
+	RenderSprites:
+		Image: yak
 
 YAK.Allies.Husk:
 	Inherits: ^PlaneHusk
@@ -1073,3 +1399,59 @@ MIG.Allies.Husk:
 		Type: GroundPosition
 	RenderSprites:
 		Image: ally-mig
+
+PRSM.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Prism Tank)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: prsm
+	InfiltrateForTransform:
+		IntoActor: prsm
+	RenderSprites:
+		Image: prsm.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: prsm
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
+
+MCV.Husk:
+	Tooltip:
+		Name: Husk (MCV)
+	SpawnActorOnDeath@recovery:
+		Actor: mcv
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
+
+MCV.uzbek.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (MCV)
+	TransformOnCapture:
+		IntoActor: mcv.uzbek
+	InfiltrateForTransform:
+		IntoActor: mcv.uzbek
+	SpawnActorOnDeath@recovery:
+		Actor: mcv.uzbek
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
+
+MGG.Husk:
+	SpawnActorOnDeath@recovery:
+		Actor: mgg
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered

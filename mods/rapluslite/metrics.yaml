@@ -11,6 +11,7 @@ Metrics:
 	FactionSuffix-greece: allies
 	FactionSuffix-turkey: allies
 	FactionSuffix-italy: allies
+	FactionSuffix-usa: allies
 	FactionSuffix-russia: soviet
 	FactionSuffix-soviet: soviet
 	FactionSuffix-ukraine: soviet
@@ -19,6 +20,7 @@ Metrics:
     FactionSuffix-uzbek: soviet
     FactionSuffix-turkmen: soviet
     FactionSuffix-karelia: soviet
+	FactionSuffix-afghan: soviet
 	IncompatibleProtectedGameColor: B22222
 	IncompatibleVersionColor: D3D3D3
 	TextfieldColorHighlight: 562020

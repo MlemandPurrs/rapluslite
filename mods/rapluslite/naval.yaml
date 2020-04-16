@@ -559,6 +559,8 @@ CARR:
 	Transforms:
 		IntoActor: carr.deployed
 		Offset: 0,0
+	RenderSprites:
+		Scale: 1.5
 
 CARR.Deployed:
 	Inherits: ^Building
@@ -624,6 +626,137 @@ CARR.Deployed:
 		HealIfBelow: 100
 		DamageCooldown: 0
 		RequiresCondition: disabled
+	RenderSprites:
+		Scale: 1.5
+
+CARR.usa:
+	Inherits: CARR
+	Buildable:
+		Queue: Ship
+		BuildAtProductionType: Boat
+		BuildPaletteOrder: 5
+		Prerequisites: ~syrd, hpad, ~player.england, ~techlevel.medium
+		Description: Nautical Support vessel.\nCan be deployed, becoming immobile\nto produce, repair and rearm\nAirplanes at Sea.\n  Unarmed
+	Valued:
+		Cost: 2000
+	Tooltip:
+		Name: Aircraft Carrier
+	Health:
+		HP: 100000
+	Armor:
+		Type: Heavy
+	Mobile:
+		TurnSpeed: 3
+		Speed: 42
+	RevealsShroud:
+		Range: 6c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	SelectionDecorations:
+	Selectable:
+		DecorationBounds: 72,48
+	Transforms:
+		IntoActor: carr.usa.deployed
+		Offset: 0,0
+		Facing: 192
+
+CARR.usa.Deployed:
+	Inherits: ^Building
+	Selectable:
+		Class: afld
+		Bounds: 72,48
+	-GivesBuildableArea:
+	-RepairableBuilding:
+	-WithBuildingRepairDecoration:
+	-EngineerRepairable:
+	-AcceptsDeliveredCash:
+	-WithMakeAnimation:
+	-CaptureManager:
+	-Capturable:
+	-CapturableProgressBar:
+	-CapturableProgressBlink:
+	-SpawnActorsOnSell:
+	-GpsDot:
+	GpsDot:
+		String: Ship
+	-Demolishable:
+	-Sellable:
+	-Explodes:
+	Explodes:
+		Weapon: UnitExplodeShip
+		EmptyWeapon: UnitExplodeShip
+	Selectable:
+		Bounds: 48,48
+	Valued:
+		Cost: 2000
+	Tooltip:
+		Name: Aircraft Carrier
+	Building:
+		TerrainTypes: Water
+		RequiresBaseProvider: False
+	-RequiresBuildableArea:
+	-ShakeOnDeath:
+	Health:
+		HP: 100000
+	Armor:
+		Type: Heavy
+	RevealsShroud:
+		Range: 6c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	SelectionDecorations:
+	Selectable:
+		DecorationBounds: 48,48
+	Transforms:
+		IntoActor: carr.usa
+		Offset: 0,0
+	Reservable:
+	WithDecoration@deployed:
+		Image: pips
+		Sequence: tag-deployed
+		ReferencePoint: Top
+		ZOffset: 256
+	Targetable:
+		TargetTypes: Ground, Water, Ship
+	WithResupplyAnimation:
+	-MapEditorData:
+	SelfHealing:
+		Step: -100
+		Delay: 3
+		HealIfBelow: 100
+		DamageCooldown: 0
+		RequiresCondition: disabled
+	Exit@1:
+		SpawnOffset: 0,-256,0
+		ExitCell: 1,2
+		ExitDelay: 3
+		Facing: 192
+	Production:
+		Produces: MWFAircraft
+		PauseOnCondition: disabled || build-incomplete
+	ProductionQueue:
+		Type: MWFAircraft
+		Group: Plane
+		ReadyAudio: UnitReady
+		BlockedAudio: NoBuild
+		QueuedAudio: Training
+		OnHoldAudio: OnHold
+		CancelledAudio: Cancelled
+		LowPowerModifier: 300
+	ProvidesPrerequisite@allies:
+		Factions: allies, usa, britain, france, germany, spain, italy, greece, turkey
+		Prerequisite: aircraft.allies
+		ResetOnOwnerChange: True
+	ProvidesPrerequisite@soviet:
+		Factions: soviet, russia, ukraine, belarus, kazakh, karelia, uzbek, turkmen, afghan
+		Prerequisite: aircraft.soviet
+		ResetOnOwnerChange: True
+	ProductionBar:
+		ProductionType: MWFAircraft
+	ProvidesPrerequisite@ISAIRFIELD:
+		Prerequisite: afld
 
 SS:
 	Buildable:
@@ -1186,10 +1319,10 @@ HVRF:
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:
-		Queue: Vehicle
-		BuildPaletteOrder: 9
-		#	Prerequisites: dome, fix, ~vehicles.allies, ~player.greece, ~techlevel.medium
-		Prerequisites: ~disabled
+		Queue: Ship
+		BuildPaletteOrder: 6
+		Prerequisites: dome, fix, ~vehicles.soviet, ~player.afghan, ~techlevel.medium
+		#	Prerequisites: ~disabled
 		Description: Amphibian anti-air unit with\ntoken Mg for ground support.\nCan carry one Infantry.\n  Strong vs Infantry, Aircraft\n  Weak vs Tanks, Ships
 	Valued:
 		Cost: 700

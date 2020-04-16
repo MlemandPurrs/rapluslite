@@ -239,6 +239,7 @@ kenn:
 	dead:
 		Start: 1
 		Tick: 800
+	fake-icon: kenficon
 
 kenn.husk:
 	idle: kenn
@@ -1198,3 +1199,23 @@ gmine:
 spmst.summon:
 	Inherits: spmst
 	Defaults: spmst
+
+pbat:
+    Inherits: emp-overlay
+	idle:
+		Facings: 32
+		UseClassicFacingFudge: True
+		Offset: 0,-11
+	damaged-idle:
+		Start: 0
+		Facings: 32
+		UseClassicFacingFudge: True
+		Offset: 0,-11
+	make: blank32
+		Length: *
+		Offset: 0,-11
+	bib: mbSAM
+		Length: *
+		Offset: 0,1
+		UseTilesetExtension: true
+	icon: pbaticon
