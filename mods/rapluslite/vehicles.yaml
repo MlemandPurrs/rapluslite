@@ -28,6 +28,7 @@ HARV.drop:
 	-SelfHealing:
 	-Explodes:
 	-WithHarvesterSpriteBody:
+	-ActorLostNotification:
 	WithFacingSpriteBody:
 	SpawnActorOnDeath:
 		Actor: harv

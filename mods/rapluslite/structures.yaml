@@ -446,16 +446,6 @@ KENN:
 	-CaptureManager:
 	-CapturableProgressBar:
 	-CapturableProgressBlink:
-	-Exit@1:
-	-Exit@2:
-	Exit@1:
-		SpawnOffset: -280,400,0
-		ExitCell: 0,1
-		ProductionTypes: Dog, Infantry
-	Exit@2:
-		SpawnOffset: -280,400,0
-		ExitCell: -1,0
-		ProductionTypes: Dog, Infantry
 	RevealsShroud:
 		Range: 3c0
 
@@ -870,7 +860,7 @@ FIX:
 		SelectTargetSpeechNotification: SelectTarget
 		InsufficientPowerSpeechNotification: InsufficientPower
 		Condition: emergencyrepair
-		Cursor: wrenchtarget
+		Cursor: wrench-target
 		Sequence: none
 		OnFireSound: fixit1.aud
 		SupportPowerPaletteOrder: 2
@@ -1034,16 +1024,18 @@ FIX:
 		CircleSequence: circles
 		SupportPowerPaletteOrder: 2
 		Cursor: generic-target
+	#	temporarily disabling due to converting everything bug
 	IonCannonPower@InstantHijacker:
 		PauseOnCondition: disabled || lowpower
 		OrderName: InstantHijacker
-		Prerequisites: ~stek, player.turkmen
+		#	Prerequisites: ~stek, player.turkmen
+		Prerequisites: ~disabled
 		Icon: hijacker
 		ChargeInterval: 10500
 		Description: Hijacker
 		LongDesc: Targeted enemy Vehicle changes\nside to your faction permanently.
 		CameraActor: dummy.qtnk
-		OnFireSound: fixit1.aud
+		OnFireSound: smout1.aud
 		Cursor: airstrike
 		DisplayRadarPing: True
 		SupportPowerPaletteOrder: 2
@@ -1847,7 +1839,7 @@ ATEK:
 		Icon: gasicon
 		ChargeInterval: 4500
 		Description: Mustard Gas
-		LongDesc: Fires an Mustard gas shell to targeted position.\nCauses Infantry in radius to be supressed\nand take damage equal to 20% of their Health over time.\nDamage pauses when critical health to prevent a bug.
+		LongDesc: Fires an Mustard gas shell to targeted position.\nCauses Infantry in radius to be supressed\nand take damage equal to 20% of their Health over time.
 		CameraActor: camera.paradrop
 		OnFireSound: hvygun10.aud
 		Cursor: airstrike

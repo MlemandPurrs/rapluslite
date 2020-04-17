@@ -1979,19 +1979,9 @@ Hellfire.airstrike:
 
 StealVehicle:
 	ValidTargets: Vehicle
-	Warhead@1Dam: SpreadDamage
-		Spread: 0c0
-		Damage: 1
-		ValidTargets: Vehicle
-		Delay: 0
-		Versus:
-			None: 0
-			Wood: 0
-			Light: 0
-			Heavy: 0
-			Concrete: 0
+	InvalidTargets: Infantry, Structure, Ship, Aircraft
 	Warhead@2OwnerChange: ChangeOwner
 		Range: 0c512
 		Duration: 0
 		ValidTargets: Vehicle
-		InvalidTargets: Building, Infantry, Ship, Aircraft
+		InvalidTargets: Infantry, Structure, Ship, Aircraft
