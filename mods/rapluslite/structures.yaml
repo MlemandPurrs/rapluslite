@@ -176,6 +176,7 @@ POWR.Greece:
 	Inherits: POWR
 	Buildable:
 		Prerequisites: ~player.greece, ~techlevel.infonly
+		BuildDuration: 300
 	Valued:
 		Cost: 350
 	Power:
@@ -234,6 +235,7 @@ APWR.Greece:
 	Inherits: APWR
 	Buildable:
 		Prerequisites: dome, ~player.greece, ~techlevel.medium
+		BuildDuration: 600
 	Power:
 		Amount: 250
 	Valued:

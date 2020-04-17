@@ -3080,6 +3080,7 @@ IFV:
 		Type: Light
 	Mobile:
 		Speed: 113
+		Locomotor: heavywheeled
 		PauseOnCondition: notmobile || being-captured || empdisable
 	RevealsShroud:
 		Range: 5c0

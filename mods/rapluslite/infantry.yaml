@@ -1378,3 +1378,8 @@ SHOT:
 		DefaultAttackSequence: shoot
 	ProducibleWithLevel:
 		Prerequisites: barracks.upgraded
+
+#	was never supposed to be buildable, wtf
+Zombie:
+	Buildable:
+		Prerequisites: ~disabled
