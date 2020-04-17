@@ -812,7 +812,7 @@ FIX:
 		OrderName: HarvesterDrop
 		Prerequisites: ~aircraft.allies, player.spain
 		Icon: harv
-		ChargeInterval: 3750
+		ChargeInterval: 6000
 		Description: Harvester Drop
 		LongDesc: A B-52 drops one Harvester anywhere on the map.
 		DropItems: harv.drop
