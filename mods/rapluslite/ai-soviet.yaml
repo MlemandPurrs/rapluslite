@@ -26,6 +26,21 @@ Player:
 					Attractiveness: -5
 					TargetMetric: None
 					CheckRadius: 8c0
+			UseShockTroopers:
+				OrderName: ShockParadrop
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
 			UseNuclear:
 				OrderName: NukeMissile
 				MinimumAttractiveness: 3000
@@ -146,15 +161,21 @@ Player:
 					Attractiveness: -5
 					TargetMetric: None
 					CheckRadius: 8c0
-			SovietParabombs:
-				OrderName: SovietParabombs
-				MinimumAttractiveness: 1
+			UseChemicalStrike:
+				OrderName: ChemicalStrike
+				MinimumAttractiveness: 3000
 				Consideration@1:
 					Against: Enemy
-					Types: Structure
+					Types: Vehicle
 					Attractiveness: 1
-					TargetMetric: None
+					TargetMetric: Value
 					CheckRadius: 5c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 7c0			
 			UseNuclear:
 				OrderName: NukeMissile
 				MinimumAttractiveness: 3000
@@ -184,6 +205,15 @@ Player:
 		Decisions:
 			UseSpyPlane:
 				OrderName: SovietSpyPlane
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			UseExtraSpyPlane:
+				OrderName: SovietSpyPlaneExtra
 				MinimumAttractiveness: 1
 				Consideration@1:
 					Against: Enemy
@@ -362,6 +392,15 @@ Player:
 					Attractiveness: 1
 					TargetMetric: None
 					CheckRadius: 2c0
+			UseJammerPlane:
+				OrderName: JammerPlane
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
 	SupportPowerBotModule@turkmenistan:
 		RequiresCondition: enable-ai-player && player.turkmen
 		Decisions:
@@ -404,6 +443,21 @@ Player:
 					Attractiveness: -10
 					TargetMetric: Value
 					CheckRadius: 7c0
+			UseParagrenadiers:
+				OrderName: GrenParadrop
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
 			UseInvulnerability:
 				OrderName: IronCurtainPower
 				MinimumAttractiveness: 1
@@ -440,6 +494,15 @@ Player:
 					Attractiveness: -5
 					TargetMetric: None
 					CheckRadius: 8c0
+			UseDecoyPlane:
+				OrderName: DecoyPlane
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
 			UseNuclear:
 				OrderName: NukeMissile
 				MinimumAttractiveness: 3000
@@ -471,7 +534,7 @@ Player:
 	BaseBuilderBotModule@russia:
 		RequiresCondition: enable-ai-player && player.russia
 		MinimumExcessPower: 60
-		MaximumExcessPower: 200
+		MaximumExcessPower: 160
 		ExcessPowerIncrement: 40
 		ExcessPowerIncreaseThreshold: 4
 		CheckForWaterRadius: 8
@@ -483,6 +546,14 @@ Player:
 		ProductionTypes: barr.russia,weap.russia,afld.russia
 		NavalProductionTypes: spen.russia
 		SiloTypes: silo
+		PlaceDefenseTowardsEnemyChance: 75
+		MaxBaseRadius: 26
+		BuildingDelays:
+			spen.russia: 4500
+			tsla.russia: 3000
+			sam: 6000
+			hsam: 9000
+			stek.russia: 7500
 		BuildingLimits:
 			proc.russia: 4
 			barr.russia: 2
@@ -517,10 +588,10 @@ Player:
 			iron: 1
 	BaseBuilderBotModule@ukraine:
 		RequiresCondition: enable-ai-player && player.ukraine
-		MinimumExcessPower: 60
-		MaximumExcessPower: 200
-		ExcessPowerIncrement: 40
-		ExcessPowerIncreaseThreshold: 4
+		MinimumExcessPower: 50
+		MaximumExcessPower: 300
+		ExcessPowerIncrement: 10
+		ExcessPowerIncreaseThreshold: 1
 		CheckForWaterRadius: 8
 		ConstructionYardTypes: fact
 		RefineryTypes: proc.soviet
@@ -530,6 +601,14 @@ Player:
 		ProductionTypes: barr,weap,afld
 		NavalProductionTypes: spen
 		SiloTypes: silo
+		PlaceDefenseTowardsEnemyChance: 75
+		MaxBaseRadius: 26
+		BuildingDelays:
+			spen: 4500
+			tsla: 3000
+			sam: 6000
+			hsam: 9000
+			stek.ukraine: 7500
 		BuildingLimits:
 			proc.soviet: 4
 			barr: 2
@@ -565,7 +644,7 @@ Player:
 	BaseBuilderBotModule@belarus:
 		RequiresCondition: enable-ai-player && player.belarus
 		MinimumExcessPower: 60
-		MaximumExcessPower: 200
+		MaximumExcessPower: 160
 		ExcessPowerIncrement: 40
 		ExcessPowerIncreaseThreshold: 4
 		CheckForWaterRadius: 8
@@ -577,8 +656,16 @@ Player:
 		ProductionTypes: barr,weap,afld
 		NavalProductionTypes: spen
 		SiloTypes: silo
+		PlaceDefenseTowardsEnemyChance: 75
+		MaxBaseRadius: 26
+		BuildingDelays:
+			spen: 4500
+			tsla: 3000
+			sam: 6000
+			hsam: 9000
+			stek.belarus: 7500
 		BuildingLimits:
-			proc.belarus: 4
+			proc.soviet: 4
 			barr: 2
 			kenn: 4
 			dome.belarus: 1
@@ -594,7 +681,7 @@ Player:
 			sam: 4
 			hsam: 2
 		BuildingFractions:
-			proc.belarus: 15
+			proc.soviet: 15
 			barr: 2
 			kenn: 1
 			dome.belarus: 1
@@ -612,7 +699,7 @@ Player:
 	BaseBuilderBotModule@karelia:
 		RequiresCondition: enable-ai-player && player.karelia
 		MinimumExcessPower: 60
-		MaximumExcessPower: 200
+		MaximumExcessPower: 160
 		ExcessPowerIncrement: 40
 		ExcessPowerIncreaseThreshold: 4
 		CheckForWaterRadius: 8
@@ -624,6 +711,14 @@ Player:
 		ProductionTypes: barr,weap,afld
 		NavalProductionTypes: spen
 		SiloTypes: silo
+		PlaceDefenseTowardsEnemyChance: 75
+		MaxBaseRadius: 26
+		BuildingDelays:
+			spen: 4500
+			tsla.karelia: 3000
+			sam: 6000
+			hsam: 9000
+			stek.karelia: 7500
 		BuildingLimits:
 			proc.soviet: 4
 			barr: 2
@@ -659,7 +754,7 @@ Player:
 	BaseBuilderBotModule@kazakhstan:
 		RequiresCondition: enable-ai-player && player.kazakh
 		MinimumExcessPower: 60
-		MaximumExcessPower: 200
+		MaximumExcessPower: 160
 		ExcessPowerIncrement: 40
 		ExcessPowerIncreaseThreshold: 4
 		CheckForWaterRadius: 8
@@ -671,6 +766,14 @@ Player:
 		ProductionTypes: barr,weap,afld.kazakh
 		NavalProductionTypes: spen
 		SiloTypes: silo
+		PlaceDefenseTowardsEnemyChance: 75
+		MaxBaseRadius: 26
+		BuildingDelays:
+			spen: 4500
+			tsla: 3000
+			sam: 6000
+			hsam: 9000
+			stek.kazakh: 7500
 		BuildingLimits:
 			proc.soviet: 4
 			barr: 2
@@ -706,7 +809,7 @@ Player:
 	BaseBuilderBotModule@uzbekistan:
 		RequiresCondition: enable-ai-player && player.uzbek
 		MinimumExcessPower: 60
-		MaximumExcessPower: 200
+		MaximumExcessPower: 160
 		ExcessPowerIncrement: 40
 		ExcessPowerIncreaseThreshold: 4
 		CheckForWaterRadius: 8
@@ -718,6 +821,14 @@ Player:
 		ProductionTypes: barr,weap,afld
 		NavalProductionTypes: spen
 		SiloTypes: silo
+		PlaceDefenseTowardsEnemyChance: 75
+		MaxBaseRadius: 26
+		BuildingDelays:
+			spen: 4500
+			tsla.uzbek: 3000
+			sam: 6000
+			hsam: 9000
+			stek.uzbek: 7500
 		BuildingLimits:
 			proc.soviet: 4
 			barr: 2
@@ -753,7 +864,7 @@ Player:
 	BaseBuilderBotModule@turkmenistan:
 		RequiresCondition: enable-ai-player && player.turkmen
 		MinimumExcessPower: 60
-		MaximumExcessPower: 200
+		MaximumExcessPower: 160
 		ExcessPowerIncrement: 40
 		ExcessPowerIncreaseThreshold: 4
 		CheckForWaterRadius: 8
@@ -765,6 +876,14 @@ Player:
 		ProductionTypes: barr,weap,afld
 		NavalProductionTypes: spen
 		SiloTypes: silo
+		PlaceDefenseTowardsEnemyChance: 75
+		MaxBaseRadius: 26
+		BuildingDelays:
+			spen: 4500
+			tsla: 3000
+			sam: 6000
+			hsam: 9000
+			stek.turkmen: 7500
 		BuildingLimits:
 			proc.soviet: 4
 			barr: 2
@@ -800,7 +919,7 @@ Player:
 	BaseBuilderBotModule@afghan:
 		RequiresCondition: enable-ai-player && player.afghan
 		MinimumExcessPower: 60
-		MaximumExcessPower: 200
+		MaximumExcessPower: 160
 		ExcessPowerIncrement: 40
 		ExcessPowerIncreaseThreshold: 4
 		CheckForWaterRadius: 8
@@ -812,6 +931,14 @@ Player:
 		ProductionTypes: barr,weap,afld
 		NavalProductionTypes: spen
 		SiloTypes: silo
+		PlaceDefenseTowardsEnemyChance: 75
+		MaxBaseRadius: 26
+		BuildingDelays:
+			spen: 4500
+			tsla: 3000
+			sam: 6000
+			hsam: 9000
+			stek.afghan: 7500
 		BuildingLimits:
 			proc.soviet: 4
 			barr: 2

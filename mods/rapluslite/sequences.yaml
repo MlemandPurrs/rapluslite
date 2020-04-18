@@ -922,7 +922,7 @@ fsub:
 	turret: ftnk-tur
 		Facings: 32
 		UseClassicFacingFudge: True
-	icon: ssicon
+	icon: fsubicon
 
 scrp:
 	Inherits: emp-overlay

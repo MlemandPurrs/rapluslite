@@ -500,6 +500,7 @@ PROC:
 
 PROC.ERCC:
 	Inherits: PROC
+	Inherits@AI: ^IncomeAIBoost
 	Buildable:
 		Prerequisites: ~structures.allies, ~techlevel.infonly
 		BuildPaletteOrder: 4

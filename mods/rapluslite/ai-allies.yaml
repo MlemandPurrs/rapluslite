@@ -3,7 +3,7 @@ Player:
 		RequiresCondition: enable-ai-player && player.usa
 		Decisions:
 			UseParatroopers:
-				OrderName: AlliedParatroopers
+				OrderName: AmericanParatroopers
 				MinimumAttractiveness: 5
 				Consideration@1:
 					Against: Enemy
@@ -32,6 +32,24 @@ Player:
 					Attractiveness: -10
 					TargetMetric: Value
 					CheckRadius: 7c0
+			UseStealthParabombs:
+				OrderName: AmericanParabombs
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 5c0
+			UseArmorBoost:
+				OrderName: FortifyArmor
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Ally
+					Types: Tank, Vehicle
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 1c0
 	SupportPowerBotModule@england:
 		RequiresCondition: enable-ai-player && player.england
 		Decisions:
@@ -74,6 +92,48 @@ Player:
 					Attractiveness: 1
 					TargetMetric: None
 					CheckRadius: 2c0
+			UseIntelDrop:
+				OrderName: IntelligenceParatroopers
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
+			UsePrecisionStrike:
+				OrderName: PrecisionStrike
+				MinimumAttractiveness: 2000
+				Consideration@1:
+					Against: Enemy
+					Types: Defense
+					Attractiveness: 3
+					TargetMetric: Value
+					CheckRadius: 1c0
+				Consideration@2:
+					Against: Enemy
+					Types: Vehicle
+					Attractiveness: 2
+					TargetMetric: Value
+					CheckRadius: 1c0
+				Consideration@3:
+					Against: Enemy
+					Types: Infantry
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 1c0
+				Consideration@4:
+					Against: Ally
+					Types: Ground, Water
+					Attractiveness: -20
+					TargetMetric: Value
+					CheckRadius: 1c0
 	SupportPowerBotModule@france:
 		RequiresCondition: enable-ai-player && player.france
 		Decisions:
@@ -107,6 +167,22 @@ Player:
 					Attractiveness: -10
 					TargetMetric: Value
 					CheckRadius: 7c0
+			UseMustardGas:
+				OrderName: MustardGas
+				MinimumAttractiveness: 1000
+				FineScanRadius: 2
+				Consideration@1:
+					Against: Enemy
+					Types: Infantry
+					Attractiveness: 2
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@2:
+					Against: Ally
+					Types: Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 3c0				
 	SupportPowerBotModule@germany:
 		RequiresCondition: enable-ai-player && player.germany
 		Decisions:
@@ -149,6 +225,21 @@ Player:
 					Attractiveness: -10
 					TargetMetric: Value
 					CheckRadius: 7c0
+			UseParatanks:
+				OrderName: AlliedParaTanks
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
 	SupportPowerBotModule@spain:
 		RequiresCondition: enable-ai-player && player.spain
 		Decisions:
@@ -191,6 +282,21 @@ Player:
 					Attractiveness: -10
 					TargetMetric: Value
 					CheckRadius: 7c0
+			UseClusterShell:
+				OrderName: ArtilleryStrike
+				MinimumAttractiveness: 3000
+				Consideration@1:
+					Against: Enemy
+					Types: Vehicle
+					Attractiveness: 1
+					TargetMetric: Value
+					CheckRadius: 2c0
+				Consideration@2:
+					Against: Ally
+					Types: Air, Ground, Water
+					Attractiveness: -10
+					TargetMetric: Value
+					CheckRadius: 2c0
 	SupportPowerBotModule@italy:
 		RequiresCondition: enable-ai-player && player.italy
 		Decisions:
@@ -224,6 +330,15 @@ Player:
 					Attractiveness: -10
 					TargetMetric: Value
 					CheckRadius: 7c0
+			UseTurbo:
+				OrderName: TurboBoost
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Ally
+					Types: Tank, Vehicle
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 1c0
 	SupportPowerBotModule@greece:
 		RequiresCondition: enable-ai-player && player.greece
 		Decisions:
@@ -257,21 +372,24 @@ Player:
 					Attractiveness: -10
 					TargetMetric: Value
 					CheckRadius: 7c0
-			UseParatanks:
-				OrderName: AlliedParaTanks
-				MinimumAttractiveness: 5
+			UseLeaflet:
+				OrderName: LeafletDrop
+				MinimumAttractiveness: 1
 				Consideration@1:
 					Against: Enemy
 					Types: Structure
 					Attractiveness: 1
 					TargetMetric: None
-					CheckRadius: 8c0
-				Consideration@2:
-					Against: Enemy
-					Types: Water
-					Attractiveness: -5
+					CheckRadius: 5c0
+			UseEmergencyRepairs:
+				OrderName: EmergencyRepair
+				MinimumAttractiveness: 1
+				Consideration@1:
+					Against: Ally
+					Types: Defense
+					Attractiveness: 1
 					TargetMetric: None
-					CheckRadius: 8c0
+					CheckRadius: 1c0
 	SupportPowerBotModule@turkey:
 		RequiresCondition: enable-ai-player && player.turkey
 		Decisions:
@@ -326,6 +444,21 @@ Player:
 					Attractiveness: 1
 					TargetMetric: Value
 					CheckRadius: 2c0
+			UseParascouts:
+				OrderName: ParaJeeps
+				MinimumAttractiveness: 5
+				Consideration@1:
+					Against: Enemy
+					Types: Structure
+					Attractiveness: 1
+					TargetMetric: None
+					CheckRadius: 8c0
+				Consideration@2:
+					Against: Enemy
+					Types: Water
+					Attractiveness: -5
+					TargetMetric: None
+					CheckRadius: 8c0
 	BaseBuilderBotModule@usa:
 		RequiresCondition: enable-ai-player && player.usa
 		MinimumExcessPower: 60
@@ -341,6 +474,12 @@ Player:
 		ProductionTypes: tent.usa,weap.usa,hpad.usa
 		NavalProductionTypes: syrd.usa
 		SiloTypes: silo
+		PlaceDefenseTowardsEnemyChance: 75
+		MaxBaseRadius: 26
+		BuildingDelays:
+			syrd.usa: 4500
+			agun: 6000
+			atek.usa: 7500
 		BuildingLimits:
 			proc.ercc: 4
 			tent.usa: 2
@@ -390,6 +529,12 @@ Player:
 		ProductionTypes: tent,weap,hpad
 		NavalProductionTypes: syrd
 		SiloTypes: silo
+		PlaceDefenseTowardsEnemyChance: 75
+		MaxBaseRadius: 26
+		BuildingDelays:
+			syrd: 4500
+			agun: 6000
+			atek.england: 7500
 		BuildingLimits:
 			proc.ercc: 4
 			tent: 2
@@ -439,6 +584,12 @@ Player:
 		ProductionTypes: tent,weap.france,hpad
 		NavalProductionTypes: syrd
 		SiloTypes: silo
+		PlaceDefenseTowardsEnemyChance: 75
+		MaxBaseRadius: 26
+		BuildingDelays:
+			syrd: 4500
+			agun: 6000
+			atek.france: 7500
 		BuildingLimits:
 			proc.ercc: 4
 			tent: 2
@@ -488,6 +639,12 @@ Player:
 		ProductionTypes: tent,weap.germany,hpad
 		NavalProductionTypes: syrd
 		SiloTypes: silo
+		PlaceDefenseTowardsEnemyChance: 75
+		MaxBaseRadius: 26
+		BuildingDelays:
+			syrd: 4500
+			agun: 6000
+			atek.germany: 7500
 		BuildingLimits:
 			proc.ercc: 4
 			tent: 2
@@ -536,7 +693,13 @@ Player:
 		VehiclesFactoryTypes: weap
 		ProductionTypes: tent,weap,hpad
 		NavalProductionTypes: syrd
-		SiloTypes: silo
+		SiloTypes: silo.spain
+		PlaceDefenseTowardsEnemyChance: 75
+		MaxBaseRadius: 26
+		BuildingDelays:
+			syrd: 4500
+			agun: 6000
+			atek.spain: 7500
 		BuildingLimits:
 			proc.ercc: 4
 			tent: 2
@@ -586,6 +749,12 @@ Player:
 		ProductionTypes: tent,weap,hpad
 		NavalProductionTypes: syrd
 		SiloTypes: silo
+		PlaceDefenseTowardsEnemyChance: 75
+		MaxBaseRadius: 26
+		BuildingDelays:
+			syrd: 4500
+			agun: 6000
+			atek.italy: 7500
 		BuildingLimits:
 			proc.ercc: 4
 			tent: 2
@@ -635,6 +804,12 @@ Player:
 		ProductionTypes: tent,weap,hpad
 		NavalProductionTypes: syrd
 		SiloTypes: silo
+		PlaceDefenseTowardsEnemyChance: 75
+		MaxBaseRadius: 26
+		BuildingDelays:
+			syrd: 4500
+			agun: 6000
+			atek.greece: 7500
 		BuildingLimits:
 			proc.ercc: 4
 			tent: 2
@@ -686,6 +861,12 @@ Player:
 		ProductionTypes: tent.turkey,weap.turkey,hpad.turkey
 		NavalProductionTypes: syrd.turkey
 		SiloTypes: silo
+		PlaceDefenseTowardsEnemyChance: 75
+		MaxBaseRadius: 26
+		BuildingDelays:
+			syrd: 4500
+			agun: 6000
+			atek.turkey: 7500
 		BuildingLimits:
 			proc.ercc: 4
 			tent: 2

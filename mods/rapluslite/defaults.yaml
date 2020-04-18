@@ -215,7 +215,30 @@
 		Multiplier: 90
 		Prerequisites: player.usa
 
+^IncomeAIBoost:
+	ResourcePurifier@incomeaiboost:
+		Modifier: 20
+		RequiresCondition: owned-by-ai
+		#	RequiresCondition: enable-ai-player
+		ShowTicks: False
+		#	ShowTicks: True
+	GrantConditionOnBotOwner@incomeaiboost:
+		Condition: owned-by-ai
+		Bots: normal
+
+^ProductionAIBoost:
+	ProductionTimeMultiplier@hardbonus:
+		Multiplier: 120
+		Prerequisites: owned-by-ai
+	ProductionCostMultiplier@brutalbonus:
+		Multiplier: 80
+		Prerequisites: owned-by-ai
+	GrantConditionOnBotOwner@incomeaiboost:
+		Condition: owned-by-ai
+		Bots: normal
+
 ^Vehicle:
+	Inherits@AI: ^ProductionAIBoost
 	Inherits@82: ^AffectedByGearChange
 	Inherits@83: ^AffectedByFortify
 	Inherits@84: ^AffectedByLeaflet
@@ -244,6 +267,7 @@
 		Prerequisites: player.usa
 
 ^Plane:
+	Inherits@AI: ^ProductionAIBoost
 	Inherits@82: ^AffectedByGearChange
 	Inherits@85: ^AffectedByInflation
 	-EjectOnDeath:
@@ -261,6 +285,7 @@
 	#	Inherits@88: ^AffectedByBounty
 
 ^Building:
+	Inherits@AI: ^ProductionAIBoost
 	Inherits@84: ^AffectedByEmergencyRepair
 	Inherits@85: ^AffectedByInflation
 	Inherits@94: ^LeavesScraps
@@ -274,6 +299,7 @@
 		RepairStep: 1000
 
 ^Defense:
+	Inherits@AI: ^ProductionAIBoost
 	Building:
 		TerrainTypes: Clear,Road,Beach
 	RequiresBuildableArea:
@@ -297,6 +323,7 @@
 		AllowedTerrain: Clear, Rough, Road, Ore, Gems, Scraps, Beach, Shallow
 
 ^Ship:
+	Inherits@AI: ^ProductionAIBoost
 	Inherits@82: ^AffectedByGearChange
 	Inherits@85: ^AffectedByInflation
 	Inherits@93: ^AffectedByLeadership
@@ -557,7 +584,7 @@ CAMERA.fieldrepair:
 	OwnerLostAction:
 		Action: ChangeOwner
 	Targetable:
-		TargetTypes: Ground, BuildingHusk, NoAutoTarget
+		TargetTypes: Ground, NoAutoTarget
 		RequiresForceFire: true
 	Tooltip:
 		GenericName: Destroyed Building
