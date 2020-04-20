@@ -261,7 +261,7 @@ Cursors:
 			Length: 16
 	stealth2.shp: cursor
 		grid-target:
-			Start: 13
+			Start: 12
 			Length: 3
 	speed.shp: cursor
 		nitro-target:

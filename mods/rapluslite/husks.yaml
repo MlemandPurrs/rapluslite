@@ -1233,7 +1233,7 @@ U2.emp.Husk:
 		Name: Husk (Tesla Plane)
 	Aircraft:
 		TurnSpeed: 7
-		Speed: 373
+		Speed: 223
 	Contrail@1:
 		Offset: -725,683,0
 	Contrail@2:
@@ -1287,7 +1287,7 @@ U2.jam.Husk:
 		Name: Husk (Jammer Plane)
 	Aircraft:
 		TurnSpeed: 7
-		Speed: 373
+		Speed: 223
 	Contrail@1:
 		Offset: -725,683,0
 	Contrail@2:

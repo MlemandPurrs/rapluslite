@@ -134,7 +134,8 @@ ercc-proc:
 		Tick: 800
 		Offset: 2, -9
 	bib: bib2
-        Offset: 2, 10
+        Offset: 2, 8
+		ZOffset: -1c612
 		Length: *
 		UseTilesetExtension: true
 		TilesetOverrides:
@@ -941,6 +942,7 @@ gun2:
 	icon: gunicon
 
 spmst:
+    Inherits: emp-overlay
 	idle:
 		Offset: 0,-14
 	damaged-idle:
@@ -954,9 +956,6 @@ spmst:
 		Start: 1
 		Tick: 800
 		Offset: 0,-14
-	#	bib: mbSILO
-	#	Length: *
-	#	UseTilesetExtension: true
 	tree01: t01
 		idle:
 		UseTilesetExtension: true
@@ -1195,10 +1194,6 @@ gmine:
 		TilesetOverrides:
 			INTERIOR: TEMPERAT
 		Offset: 0, -12
-
-spmst.summon:
-	Inherits: spmst
-	Defaults: spmst
 
 pbat:
     Inherits: emp-overlay

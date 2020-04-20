@@ -97,7 +97,7 @@ Player:
 		LeaveNotification: Leave
 	ConquestVictoryConditions:
 	PowerManager:
-		AdviceInterval: 400
+		AdviceInterval: 750
 		SpeechNotification: LowPower
 	AllyRepair:
 	PlayerResources:
@@ -155,7 +155,7 @@ Player:
 		Image: iconchevrons
 		Sequence: veteran
 	ResourceStorageWarning:
-		AdviceInterval: 400
+		AdviceInterval: 750
 	PlayerExperience:
 	ConditionManager:
 	ProvidesPrerequisite@Usa:

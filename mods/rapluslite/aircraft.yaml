@@ -574,6 +574,10 @@ HIND.afghan.R2:
 	RenderSprites:
 		Image: hind
 
+U2:
+	Health:
+		HP: 15000
+
 U2.emp:
 	Inherits: U2
 	Armament:
@@ -588,6 +592,9 @@ U2.emp:
 		Actor: U2.emp.Husk
 	Aircraft:
 		Speed: 223
+	Targetable@AIRBORNE:
+		RequiresCondition: airborne
+		TargetTypes: Air
 	RenderSprites:
 		Image: smig
 
@@ -603,6 +610,9 @@ U2.nuke:
 		Name: Nuke Plane
 	SpawnActorOnDeath:
 		Actor: U2.nuke.Husk
+	Targetable@AIRBORNE:
+		RequiresCondition: airborne
+		TargetTypes: Air
 	RenderSprites:
 		Image: ally-u2
 
@@ -619,6 +629,9 @@ U2.strike:
 		Name: Interceptor
 	SpawnActorOnDeath:
 		Actor: U2.strike.Husk
+	Targetable@AIRBORNE:
+		RequiresCondition: airborne
+		TargetTypes: Air
 	RenderSprites:
 		Image: ally-u2
 
@@ -639,6 +652,9 @@ U2.jam:
 		Actor: U2.jam.Husk
 	Aircraft:
 		Speed: 223
+	Targetable@AIRBORNE:
+		RequiresCondition: airborne
+		TargetTypes: Air
 	RenderSprites:
 		Image: smig
 
@@ -1103,7 +1119,7 @@ BMIN:
 		Prerequisites: ~hpad, fix, ~player.italy, ~techlevel.medium
 		Description: Dirigible, parachuted aerial Mine.\n  Strong vs Aircraft\n  Weak vs anything Else
 	Valued:
-		Cost: 650
+		Cost: 450
 	Tooltip:
 		Name: Baloon Mine
 	UpdatesPlayerStatistics:

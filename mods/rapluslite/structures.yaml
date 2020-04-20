@@ -6,7 +6,7 @@ FACT:
 	Power:
 		Amount: 30
 	Production:
-		Produces: Building,Defense,Fakestructure
+		Produces: Building,Defense,Fakestructure,Dummy
 		PauseOnCondition: disabled || build-incomplete
 	ProvidesPrerequisite@allies:
 		Factions: allies, usa, england, france, germany, spain, italy, greece, turkey
@@ -54,42 +54,56 @@ FACT:
 		Actor: fact.husk
 	Armor:
 		Type: Concrete
-	SpawnActorPower@CashReserves:
+	#	SpawnActorPower@CashReserves:
+	#	PauseOnCondition: disabled || lowpower
+	#	Prerequisites: ~atek, player.usa
+	#	Description: Cash Reserves
+	#	no money ? haha! moneyprinter goes brrrrrr...
+	#	LongDesc: Instantly gives 3000$ but everything is\n50% more expensive for 1.5 minutes.\nOil Derricks yield vastly reduced income,\nOre Silos produce no income at all. 
+	#	Icon: cashicon
+	#	Actor: dummy.moneyprinter
+	#	LifeTime: 2250
+	#	ChargeInterval: 12000
+	#	Cursor: dollar-target
+	#	OrderName: InstantCashPower
+	#	SupportPowerPaletteOrder: 2
+	ProduceActorPower@CashReserves:
 		PauseOnCondition: disabled || lowpower
+		OrderName: CashReserveUse
 		Prerequisites: ~atek, player.usa
-		Description: Cash Reserves
-		#	no money ? haha! moneyprinter goes brrrrrr...
-		LongDesc: Instantly gives 3000$ but everything is\n50% more expensive for 1.5 minutes.\nOil Derricks yield vastly reduced income,\nOre Silos produce no income at all. 
-		Icon: cashicon
-		Actor: dummy.moneyprinter
-		LifeTime: 2250
+		Actors: dummy.moneyprinter
 		ChargeInterval: 12000
-		Cursor: dollar-target
-		OrderName: InstantCashPower
+		Icon: cashicon
+		Description: Cash Reserves
+		LongDesc: Instantly gives 3000$ but everything is\n50% more expensive for 1.5 minutes.\nOil Derricks yield vastly reduced income,\nOre Silos produce no income at all. 
+		Type: Dummy
+		#	ReadyAudio: ReinforcementsArrived
+		#	BlockedAudio: NoBuild
 		SupportPowerPaletteOrder: 2
-	SpawnActorPower@Maintenance:
-		PauseOnCondition: disabled || lowpower
-		Prerequisites: ~weap, ~fix, player.germany
-		Description: Maintenance
-		LongDesc: Instantly gives 3000$ but disables all War Factories for 1.5 minute.
-		Icon: mainticon
-		Actor: dummy.maintenance
-		LifeTime: 2250
-		ChargeInterval: 6000
-		OrderName: MaintenancePower
-		SupportPowerPaletteOrder: 2	
-	#	ProduceActorPower@Maintenance:
+	#	SpawnActorPower@Maintenance:
 	#	PauseOnCondition: disabled || lowpower
 	#	Prerequisites: ~weap, ~fix, player.germany
 	#	Description: Maintenance
 	#	LongDesc: Instantly gives 3000$ but disables all War Factories for 1.5 minute.
 	#	Icon: mainticon
-	#	Actors: dummy.maintenance
-	#	Type: Building
+	#	Actor: dummy.maintenance
 	#	LifeTime: 2250
 	#	ChargeInterval: 6000
 	#	OrderName: MaintenancePower
-	#	SupportPowerPaletteOrder: 2
+	#	SupportPowerPaletteOrder: 2	
+	ProduceActorPower@Maintenance:
+		PauseOnCondition: disabled || lowpower
+		OrderName: MaintenanceUse
+		Prerequisites: ~weap, ~fix, player.germany
+		Actors: dummy.maintenance
+		ChargeInterval: 7500
+		Icon: mainticon
+		Description: Maintenance
+		LongDesc: Instantly gives 3000$ but disables all War Factories for 1.5 minute.
+		Type: Dummy
+		#	ReadyAudio: ReinforcementsArrived
+		#	BlockedAudio: NoBuild
+		SupportPowerPaletteOrder: 2
 	ProduceActorPower@DecoyArmy:
 		PauseOnCondition: disabled || lowpower
 		OrderName: DecoyArmy
@@ -103,32 +117,60 @@ FACT:
 		ReadyAudio: ReinforcementsArrived
 		BlockedAudio: NoBuild
 		SupportPowerPaletteOrder: 2
-	SpawnActorPower@Conscription:
+	#	SpawnActorPower@Conscription:
+	#	PauseOnCondition: disabled || lowpower
+	#	OrderName: Conscription
+	#	Prerequisites: ~barr, ~stek, player.kazakh
+	#	Description: Conscription
+	#	LongDesc: Basic Infantry types get produced in pairs for 1 minute.\nAffects Rifle Infantry, Grenadier and Rocket Soldier.
+	#	Icon: consicon
+	#	Actor: dummy.conscription
+	#	LifeTime: 1500
+	#	ChargeInterval: 7500
+	#	SupportPowerPaletteOrder: 2
+	ProduceActorPower@Conscription:
 		PauseOnCondition: disabled || lowpower
-		OrderName: Conscription
+		OrderName: ConscriptionUse
 		Prerequisites: ~barr, ~stek, player.kazakh
+		Actors: dummy.conscription
+		ChargeInterval: 7500
+		Icon: consicon
 		Description: Conscription
 		LongDesc: Basic Infantry types get produced in pairs for 1 minute.\nAffects Rifle Infantry, Grenadier and Rocket Soldier.
-		Icon: consicon
-		Actor: dummy.conscription
-		LifeTime: 1500
-		ChargeInterval: 7500
+		Type: Dummy
+		#	ReadyAudio: ReinforcementsArrived
+		#	BlockedAudio: NoBuild
 		SupportPowerPaletteOrder: 2
-	SpawnActorPower@GearChange:
+	#	SpawnActorPower@GearChange:
+	#	PauseOnCondition: disabled || lowpower
+	#	Prerequisites: ~stek, player.uzbek
+	#	Description: Gear Change
+	#	LongDesc: Instantly takes 3000$, all Vehicle, Aircraft\nand Ships gets built 25% faster for 1.5 minute.
+	#	Icon: gearicon
+	#	Actor: dummy.productionboost
+	#	LifeTime: 2250
+	#	ChargeInterval: 9000
+	#	OrderName: ProductionBoostPower
+	#	SupportPowerPaletteOrder: 2
+	ProduceActorPower@GearChange:
 		PauseOnCondition: disabled || lowpower
+		OrderName: ProductionBoostUse
 		Prerequisites: ~stek, player.uzbek
+		Actors: dummy.productionboost
+		ChargeInterval: 9000
+		Icon: gearicon
 		Description: Gear Change
 		LongDesc: Instantly takes 3000$, all Vehicle, Aircraft\nand Ships gets built 25% faster for 1.5 minute.
-		Icon: gearicon
-		Actor: dummy.productionboost
-		LifeTime: 2250
-		ChargeInterval: 9000
-		OrderName: ProductionBoostPower
+		Type: Dummy
+		#	ReadyAudio: ReinforcementsArrived
+		#	BlockedAudio: NoBuild
 		SupportPowerPaletteOrder: 2
 	SupportPowerChargeBar:
 	GrantConditionOnPowerState@LOWPOWER:
 		Condition: lowpower
 		ValidPowerStates: Low, Critical
+	Exit@1:
+	ExitsDebugOverlay:
 
 FACT.uzbek:
 	Inherits: FACT
@@ -414,6 +456,19 @@ BARR:
 		Range: 2c512
 	WithRangeCircle:
 		Range: 2c512
+	#	GrantConditionOnPrerequisite@CONSCRIPTION:
+	#	Prerequisites: conscription
+	#	Condition: conscription
+	#	ClonesProducedUnits@CONSCRIPTION:
+	#	CloneableTypes: Soldier
+	#	RequiresCondition: conscription && primary
+	#	WithDecoration@CONSCRIPTION:
+	#	RequiresSelection: true
+	#	Image: pips
+	#	Sequence: tag-cloner
+	#	ReferencePoint: Center
+	#	ZOffset: 256
+	#	RequiresCondition: conscription && primary
 
 BARR.Russia:
 	Inherits: BARR
@@ -811,7 +866,7 @@ FIX:
 		Sequence: none
 		SupportPowerPaletteOrder: 2
 	ParatroopersPower@HarvesterDrop:
-		PauseOnCondition:  disabled || lowpower
+		PauseOnCondition: disabled || lowpower
 		OrderName: HarvesterDrop
 		Prerequisites: ~aircraft.allies, player.spain
 		Icon: harv
@@ -869,7 +924,7 @@ FIX:
 		SupportPowerPaletteOrder: 2
 		ValidStances: Ally
 	ParatroopersPower@InstantBunker:
-		PauseOnCondition: disabled
+		PauseOnCondition: disabled || lowpower
 		OrderName: InstantBunker
 		Prerequisites: ~structures.allies, player.turkey
 		Icon: pboxicon
@@ -1294,7 +1349,9 @@ DOME.Allies:
 		CameraActor: camera.minimum
 		UnitType: badr.summoner
 		DisplayBeacon: true
+		BeaconPoster: sonrbcon
 		ArrowSequence: arrow
+		ClockSequence: clock
 		CircleSequence: circles
 		Cursor: generic-target
 		SupportPowerPaletteOrder: 2
@@ -1338,11 +1395,11 @@ DOME.Allies:
 	ParatroopersPower@FieldAid:
 		PauseOnCondition: disabled
 		OrderName: FieldAid
-		Prerequisites: ~aircraft.allies, player.italy
+		Prerequisites: ~fix, player.italy
 		Icon: healcrate
-		ChargeInterval: 9000
+		ChargeInterval: 7500
 		Description: Field Aid
-		LongDesc: A B-52 drops an Heal-up crate anywhere on the map.\nUnits can pick it up to get healed instantly.
+		LongDesc: A B-52 drops an Heal-up crate anywhere on the map.\nInfantry can pick it up to gain self-Healing for 30sec.\nAn Vehicle or Ship can pick it up to get Repaired instantly.
 		DropItems: HEALUPCRATE
 		ReinforcementsArrivedSpeechNotification: ReinforcementsArrived
 		SelectTargetSpeechNotification: SelectTarget
@@ -1464,7 +1521,7 @@ DOME.Italy:
 	Inherits: DOME.Allies
 	Buildable:
 		Prerequisites: proc, ~!structures.soviet, ~player.italy, ~techlevel.medium
-		Description: Provides an overview\nof the battlefield.\nCan detect cloaked units.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.\n  Special Ability: Field Aid\nA B-52 drops an Heal-up crate anywhere on the map.\nUnits can pick it up to get healed instantly.\n (requires Helipad)
+		Description: Provides an overview\nof the battlefield.\nCan detect cloaked units.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.\n  Special Ability: Field Aid\nA B-52 drops an Heal-up crate anywhere on the map.\nInfantry can pick it up to gain self-Healing for 30sec.\nAn Vehicle or Ship can pick it up to get Repaired instantly.\n (requires Service Depot)
 	RenderSprites:
 		Image: dome
 	ProvidesPrerequisite@COPY:
@@ -1883,7 +1940,6 @@ ATEK:
 		MissileWeapon: artillerystrike
 		SkipAscent: true
 		LaunchSound: hvygun10.aud
-		DisplayBeacon: True
 		SpawnOffset: 1024,80,0
 		DetonationAltitude: 3c0
 		RemoveMissileOnDetonation: True
@@ -1891,8 +1947,11 @@ ATEK:
 		FlightVelocity: 0c624
 		DisplayRadarPing: True
 		DisplayTimerStances: None
-		CameraRange: 10c0
+		CameraRange: 3c0
+		BeaconPoster: artybcon
+		DisplayBeacon: true
 		ArrowSequence: arrow
+		ClockSequence: clock
 		CircleSequence: circles
 		TrailImage: smokey
 		TrailSequences: idle
@@ -1912,8 +1971,10 @@ ATEK:
 		QuantizedFacings: 8
 		CameraActor: camera.minimum
 		UnitType: badr.summoner
+		BeaconPoster: dtrkbcon
 		DisplayBeacon: true
 		ArrowSequence: arrow
+		ClockSequence: clock
 		CircleSequence: circles
 		SupportPowerPaletteOrder: 2
 	GrantExternalConditionPower@Inhibitor:
@@ -2241,6 +2302,7 @@ STEK:
 		ClockSequence: clock
 		CircleSequence: circles
 		UseDirectionalTarget: True
+		Cursor: grid-target
 		DirectionArrowAnimation: paradirection
 		SupportPowerPaletteOrder: 2
 	GrantExternalConditionPower@ECOSABOTAGE:
@@ -3234,6 +3296,8 @@ GAP:
 	CreatesShroud:
 		Range: 9c0
 		RequiresCondition: !disabled && !build-incomplete && !being-captured
+	Power:
+		Amount: -80
 	WithSpriteBody:
 		PauseOnCondition: disabled || being-captured
 	ProvidesPrerequisite@buildingname:
@@ -3477,6 +3541,8 @@ FTUR:
 		Prerequisites: barr, dome, ~structures.soviet, ~!player.uzbek, ~!player.karelia, ~techlevel.low
 	Tooltip:
 		Name: Flame Turret
+	Power:
+		Amount: -40
 	-Turreted:
 	-Armament:
 	Turreted@RANGE:
@@ -3706,7 +3772,9 @@ GUN.Italy:
 	Inherits: GUN
 	Buildable:
 		BuildPaletteOrder: 4
-		Prerequisites: weap, ~structures.allies, ~player.italy, ~techlevel.medium	
+		Prerequisites: weap, ~structures.allies, ~player.italy, ~techlevel.medium
+	Power:
+		Amount: -30		
 	-Armament@default:
 	-Armament@lowpower:	
 	Armament@default:
@@ -4457,8 +4525,8 @@ MGNST:
 	-RepairableBuilding:
 	-WithBuildingRepairDecoration:
 
-SPMST.summon:
-	Inherits: ^SummonBase
+SPMST:
+	Inherits: ^Building
 	Valued:
 		Cost: 500
 	Tooltip:
@@ -4471,9 +4539,9 @@ SPMST.summon:
 		HP: 25000
 	Armor:
 		Type: Wood
-	RevealsShroud:
-		MinRange: 5c0
-		Range: 5c0
+	Power:
+		Amount: -10
+	-SpawnActorsOnSell:
 	-ShakeOnDeath:
 	-RepairableBuilding:
 	-EngineerRepairable:
@@ -4481,15 +4549,20 @@ SPMST.summon:
 	-GpsDot:
 	-Demolishable:
 	-SoundOnDamageTransition:
+	-Sellable:
+	Explodes:
+		Weapon: SmallBuildingExplode
+		EmptyWeapon: SmallBuildingExplode
 	RevealsShroud:
-		MinRange: 6c0
-		Range: 6c0
-		RevealGeneratedShroud: False
-	RevealsShroud@GAPGEN:
-		Range: 6c0
+		MinRange: 5c0
+		Range: 5c0
+		#	RequiresCondition: !lowpower
 	DetectCloaked:
 		Range: 3c0
-		RequiresCondition: !parachute
+		#	RequiresCondition: !lowpower
+	#	GrantConditionOnPowerState@LOWPOWER:
+	#	Condition: lowpower
+	#	ValidPowerStates: Low, Critical
 	RenderDetectionCircle:
 	Disguise:
 		DisguisedCondition: disguised
@@ -4547,7 +4620,6 @@ SPMST.summon:
 	Targetable@disguised:
 		TargetTypes: Tree
 		RequiresCondition: disguised && !parachute
-	-WithFacingSpriteBody:
 	WithSpriteBody@Default:
 		PauseOnCondition: isatree01 && isatree02 && isatree03 && isatree05 && isatree06 && isatree07 && isatree08 && isatree10 && isatree11 && isatree12 && isatree13 && isatree14 && isatree15 && isatree16 && isatree17 && isatree01husk && isatree02husk && isatree03husk && isatree05husk && isatree06husk && isatree07husk && isatree08husk && isatree10husk && isatree11husk && isatree12husk && isatree13husk && isatree14husk && isatree15husk && isatree16husk && isatree17husk
 		RequiresCondition: !isatree01 && !isatree02 && !isatree03 && !isatree05 && !isatree06 && !isatree07 && !isatree08 && !isatree10 && !isatree11 && !isatree12 && !isatree13 && !isatree14 && !isatree15 && !isatree16 && !isatree17 && !isatree01husk && !isatree02husk && !isatree03husk && !isatree05husk && !isatree06husk && !isatree07husk && !isatree08husk && !isatree10husk && !isatree11husk && !isatree12husk && !isatree13husk && !isatree14husk && !isatree15husk && !isatree16husk && !isatree17husk
@@ -4678,138 +4750,44 @@ SPMST.summon:
 	Selectable:
 		Bounds: 24,48,0,-12
 
-FTUR.summon:
+SPMST.summon:
 	Inherits: ^SummonBase
-	Inherits@AUTOTARGET: ^AutoTargetGround
-	Inherits@IDISABLE: ^DisableOnPowerDown
-	Selectable:
-		Bounds: 24,24
-	Valued:
-		Cost: 800
-	Tooltip:
-		Name: Flame Turret
-		GenericName: Defense
-	UpdatesPlayerStatistics:
-		AddToArmyValue: true
-	Health:
-		HP: 30000
-	Armor:
-		Type: Heavy
-	Mobile:
-		Locomotor: immobilepara
-		Speed: 0
-	RevealsShroud:
-		MinRange: 4c0
-		Range: 6c0
-		RevealGeneratedShroud: False
-	RevealsShroud@GAPGEN:
-		Range: 4c0
-	#	WithEmbeddedTurretSpriteBody:
-	Turreted@RANGE:
-		Turret: ranged-turret
-		TurnSpeed: 255
-		Offset: 0,0,112
-	#	RealignDelay: -1
-	Turreted@MELEE:
-		Turret: melee-turret
-		TurnSpeed: 255
-		Offset: 0,0,112
-	#	RealignDelay: -1
-	Armament@RANGE:
-		Name: primary
-		Weapon: FireballLauncher
-		LocalOffset: 512,0,0
-		Turret: ranged-turret
-		PauseOnCondition: disabled
-	Armament@MELEE:
-		Name: secondary
-		Weapon: Flamespray.dual
-		LocalOffset: 512,128,42, 512,-128,42
-		MuzzleSequence: muzzle-spray
-		Turret: melee-turret
-		PauseOnCondition: disabled
-	#	this wont work, requires a Building. if is Building cant chute.
-	#	AttackPopupTurreted:
-	#	CloseDelay: 75
-	#	Armaments: primary, secondary
-	#	Turrets: ranged-turret, melee-turret
-	#	RequiresCondition: !parachute
-	#	PauseOnCondition: disabled || empdisable
-	AttackTurreted:
-		Armaments: primary, secondary
-		Turrets: ranged-turret, melee-turret
+	SpawnActorOnDeath:
+		Actor: spmst
 		RequiresCondition: !parachute
-		PauseOnCondition: disabled
-	WithMuzzleOverlay:
-	DetectCloaked:
-		Range: 3c0
+	KillsSelf:
 		RequiresCondition: !parachute
 	RenderSprites:
-		Image: ftur
-	ProvidesPrerequisite@COPY:
-		Prerequisite: ftur
-	DrawLineToTarget:
-	RenderRangeCircle:
+		Image: dummy
+
+FTUR.summon:
+	Inherits: ^SummonBase
+	SpawnActorOnDeath:
+		Actor: ftur
+		RequiresCondition: !parachute
+	KillsSelf:
+		RequiresCondition: !parachute
+	RenderSprites:
+		Image: dummy
 
 PBOX.summon:
 	Inherits: ^SummonBase
-	Inherits@AUTOTARGET: ^AutoTargetAll
-	Inherits@IDISABLE: ^DisableOnPowerDown
-	Selectable:
-		Bounds: 24,24
-	Valued:
-		Cost: 500
-	Tooltip:
-		Name: Pillbox
-		GenericName: Defense
-	UpdatesPlayerStatistics:
-		AddToArmyValue: true
-	Health:
-		HP: 40000
-	Armor:
-		Type: Heavy
-	RevealsShroud:
-		MinRange: 5c0
-		Range: 6c0
-		RevealGeneratedShroud: False
-	RevealsShroud@GAPGEN:
-		Range: 5c0
-	Turreted:
-		TurnSpeed: 255
-	Armament@dummy:
-		Name: nothing
-		Weapon: 90mm.decoy.zero
-		Recoil: 0
-		Turret:
-		LocalOffset: 0,0,0
-		RequiresCondition: parachute && !hasinside
-	-QuantizeFacingsFromSequence:
-	BodyOrientation:
-		QuantizedFacings: 8
-	Mobile:
-		Locomotor: immobilepara
-		Speed: 0
-		PauseOnCondition: notmobile
+	SpawnActorOnDeath:
+		Actor: pbox.empty
+		RequiresCondition: !parachute
+	KillsSelf:
+		RequiresCondition: !parachute
+	RenderSprites:
+		Image: dummy
+
+PBOX.empty:
+	Inherits: PBOX
+	-Buildable:
+	-Cargo:
 	Cargo:
 		Types: Infantry
 		MaxWeight: 1
 		PipCount: 1
 		LoadedCondition: hasinside
-		LoadingCondition: notmobile
-	AttackGarrisoned:
-		RequiresCondition: !parachute
-		Armaments: garrisoned
-		PortOffsets: 384,0,128, 224,-341,128, -224,-341,128, -384,0,128, -224,341,128, 224,341,128
-		PortYaws: 0, 176, 341, 512, 682, 853
-		PortCones: 88, 88, 88, 88, 88, 88
-	WithMuzzleOverlay:
-	DetectCloaked:
-		Range: 3c0
-		RequiresCondition: hasinside && !parachute
 	RenderSprites:
 		Image: pbox
-	DrawLineToTarget:
-	RenderRangeCircle:
-		FallbackRange: 6c0
-	Power:
-		Amount: -20

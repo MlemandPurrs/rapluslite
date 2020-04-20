@@ -51,6 +51,15 @@ beacon:
 	jeepbcon: jeepbcon
 		Length: *
 		Offset: 0,-42
+	dtrkbcon: dtrkbcon
+		Length: *
+		Offset: 0,-42
+	sonrbcon: sonrbcon
+		Length: *
+		Offset: 0,-42
+	artybcon: artybcon
+		Length: *
+		Offset: 0,-42
 
 icon:
 	fieldrepair: frepicon

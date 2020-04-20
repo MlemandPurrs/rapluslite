@@ -1548,8 +1548,10 @@ Sniper:
 Sniper.chem:
 	Inherits: Sniper
 	Warhead@1Dam: SpreadDamage
-		Damage: 6000
-	Warhead@3: GrantExternalCondition
+		Damage: 3000
+	Warhead@4Dam: SpreadDamage
+		Damage: 1500
+	Warhead@5: GrantExternalCondition
 		Range: 0c128
 		Duration: 125
 		Condition: gassed
@@ -1985,3 +1987,10 @@ StealVehicle:
 		Duration: 0
 		ValidTargets: Vehicle
 		InvalidTargets: Infantry, Structure, Ship, Aircraft
+
+CrateExplosionBeep:
+	Inherits: CrateExplosion
+	Warhead@4Eff: CreateEffect
+		Explosions: piff
+		ImpactSounds: gdembeep.aud
+		ValidTargets: Ground, Air, Ship, Trees

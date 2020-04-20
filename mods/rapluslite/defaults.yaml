@@ -265,6 +265,15 @@
 	ProductionTimeMultiplier@USABonus:
 		Multiplier: 90
 		Prerequisites: player.usa
+	SelfHealing@InstaRep:
+		Step: 0
+		PercentageStep: 100
+		HealIfBelow: 101
+		Delay: 1
+		DamageCooldown: 1
+		RequiresCondition: instarepair
+	ExternalCondition@InstaRep:
+		Condition: instarepair
 
 ^Plane:
 	Inherits@AI: ^ProductionAIBoost
@@ -337,6 +346,15 @@
 		TargetTypes: Ground, Water, Ship, SeaDetonateAttack
 	RepairableNear:
 		RepairActors: spen, spen.russia, syrd, syrd.usa
+	SelfHealing@InstaRep:
+		Step: 0
+		PercentageStep: 100
+		HealIfBelow: 101
+		Delay: 1
+		DamageCooldown: 1
+		RequiresCondition: instarepair
+	ExternalCondition@InstaRep:
+		Condition: instarepair
 
 ^Submarine:
 	Inherits: ^Ship
@@ -785,10 +803,25 @@ HEALUPCRATE:
 		Name: Heal-up Crate
 		GenericName: Heal-up Crate
 		ShowOwnerRow: false
-	HealUnitsCrateAction:
-		Sound: heal2.aud
+	#	overpowered, instant heals everything.
+	#	HealUnitsCrateAction:
+	#	Sound: heal2.aud
+	#	SelectionShares: 1
+	#	Sequence: heal
+	GrantExternalConditionCrateAction@1:
 		SelectionShares: 1
 		Sequence: heal
+		Sound: heal2.aud
+		Condition: barracks
+		Duration: 750
+		Range: 1c512
+		MaxExtraCollectors: 24
+	GrantExternalConditionCrateAction@2:
+		SelectionShares: 1
+		Sequence: heal
+		Sound: heal2.aud
+		Condition: instarepair
+		Duration: 2
 	WithCrateBody:
 		XmasImages: scrate-healup
 	RenderSprites:
@@ -807,7 +840,7 @@ BOMBCRATE:
 		GenericName: Crate
 		ShowOwnerRow: false
 	ExplodeCrateAction@boom:
-		Weapon: CrateExplosion
+		Weapon: CrateExplosionBeep
 		SelectionShares: 1
 	Health:
 		HP: 10000
@@ -815,7 +848,7 @@ BOMBCRATE:
 	Armor:
 		Type: Light
 	Targetable:
-		TargetTypes: Ground, Mine
+		TargetTypes: Ground, Mine, NoAutoTarget
 	HitShape:
 	RenderSprites:
 		Palette: effect
@@ -832,8 +865,16 @@ BOMBCRATE:
 		Delay: 750
 		RemoveInstead: false
 	Explodes:
-		Weapon: CrateExplosion
+		Weapon: CrateExplosionBeep
 		DamageSource: Killer
+	WithParachute:
+		ShadowImage: dummy
+		ShadowSequence: idle
+		Image: dummy
+		Sequence: idle
+		OpeningSequence: idle
+		Offset: 0,0,0
+		RequiresCondition: parachute
 	-MapEditorData:
 
 tech.stolen:
@@ -1120,67 +1161,29 @@ T17.Husk:
 ^SummonBase:
 	Inherits@1: ^ExistsInWorld
 	Inherits@3: ^SpriteActor
-	Inherits@selection: ^SelectableCombatBuilding
 	Huntable:
 	OwnerLostAction:
 		Action: Kill
-	DrawLineToTarget:
-	UpdatesPlayerStatistics:
-	RepairableBuilding:
-		RepairStep: 700
-		PlayerExperience: 25
-		RepairingNotification: Repairing
-	EngineerRepairable:
-	Demolishable:
-		Condition: being-demolished
-	#	Sellable doesnt work for this.
-	#	Sellable:
-	#	RequiresCondition: !parachute && !being-captured && !being-demolished
-	#	SellSounds: cashturn.aud
-	WithBuildingRepairDecoration:
-		Image: allyrepair
-		Sequence: repair
-		ReferencePoint: Center
-		Palette: player
-		IsPlayerPalette: True
+	SelectionDecorations:
+		RenderSelectionBars: False
 	Mobile:
 		PauseOnCondition: !parachute
 		Locomotor: immobilepara
 		Speed: 0
 		TurnSpeed: 0
-	SelectionDecorations:
-	WithSpriteControlGroupDecoration:
-	Selectable:
-		Bounds: 24,24
-	Targetable:
-		RequiresCondition: !parachute
-		TargetTypes: Ground, C4, DetonateAttack, Structure, Defense
+	Health:
+		HP: 1
 	Passenger:
 		CargoType: Vehicle
 	HiddenUnderFog:
-	ActorLostNotification:
-	ProximityCaptor:
-		Types: Building
-	Guardable:
-		Range: 3c0
-	GpsDot:
-		String: Structure
-	WithDamageOverlay:
-	ShakeOnDeath:
 	Tooltip:
-		GenericName: Summoned Building
+		GenericName: Summoned Actor
 	MustBeDestroyed:
 		RequiredForShortGame: false
 	Parachutable:
 		FallRate: 999
 		KilledOnImpassableTerrain: true
 		ParachutingCondition: parachute
-	SoundOnDamageTransition:
-		DamagedSounds: kaboom1.aud
-		DestroyedSounds: kaboom22.aud
-	Explodes:
-		Weapon: SmallBuildingExplode
-		EmptyWeapon: SmallBuildingExplode
 	WithFacingSpriteBody:
 	WithParachute:
 		ShadowImage: dummy
@@ -1191,6 +1194,8 @@ T17.Husk:
 		Offset: 0,0,0
 		RequiresCondition: parachute
 	HitShape:
+	Interactable:
+	RejectsOrders:
 
 ^SummonerDummy:
 	Inherits@1: ^ExistsInWorld
@@ -1244,6 +1249,8 @@ camera.minimum:
 
 dummy.maintenance:
 	Inherits: CAMERA
+	Buildable:
+		Queue: Dummy
 	EditorOnlyTooltip:
 		Name: (Maintenance sp proxy)
 	-RevealsShroud:
@@ -1259,6 +1266,8 @@ dummy.maintenance:
 
 dummy.moneyprinter:
 	Inherits: CAMERA
+	Buildable:
+		Queue: Dummy
 	EditorOnlyTooltip:
 		Name: (Cashreserve sp proxy)
 	-RevealsShroud:
@@ -1274,6 +1283,10 @@ dummy.moneyprinter:
 
 dummy.conscription:
 	Inherits: CAMERA
+	Buildable:
+		Queue: Dummy
+	#	Tooltip:
+	#	Name: (Conscription sp proxy)
 	EditorOnlyTooltip:
 		Name: (Conscription sp proxy)
 	-RevealsShroud:
@@ -1286,6 +1299,8 @@ dummy.conscription:
 
 dummy.productionboost:
 	Inherits: CAMERA
+	Buildable:
+		Queue: Dummy
 	EditorOnlyTooltip:
 		Name: (Production Boost sp proxy)
 	-RevealsShroud:
