@@ -147,7 +147,7 @@ FTRK:
 	Tooltip:
 		Name: Flak Truck
 	Valued:
-		Cost: 500
+		Cost: 600
 	Mobile:
 		PauseOnCondition: !(!empdisable && !notmobile && !being-captured)
 	Turreted:
@@ -1163,7 +1163,7 @@ MNLY:
 		TargetTypes: Ground, Vehicle, VehicleDisguise
 		RequiresCondition: !parachute
 	Rearmable:
-		RearmActors: fix, fix.usa, fix.spain, fix.italy, fix.greece, fix.turkey, fix.russia, fix.ukraine, fix.belarus, fix.karelia, fix.kazakh, fix.uzbek, fix.turkmen, fix.afghan
+		RearmActors: fix, fix.usa, fix.spain, fix.italy, fix.greece, fix.turkey, fix.russia, fix.ukraine, fix.karelia, fix.kazakh, fix.uzbek, fix.turkmen, fix.afghan
 	Passenger:
 		PipType: Blue
 

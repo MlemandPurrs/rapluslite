@@ -999,6 +999,20 @@ smig:
 ally-bdgr:
 	idle:
 		Facings: 16
+	turret1: btr-tur-flip
+		Start: 0
+		Facings: 32
+		ZOffset: -24
+	turret2: apc-tur-flip
+		Start: 0
+		Facings: 32
+		ZOffset: -24
+	muzzle: gunfire2
+		Length: 2
+	muzzle-mg: minigun
+		Length: 6
+		Facings: 8
+	icon: b52icon
 
 ally-u2:
 	idle:
@@ -1015,9 +1029,6 @@ cossack:
 ally-yak:
 	idle:
 		Facings: 16
-	muzzle: minigun
-		Length: 6
-		Facings: 8
 	icon: yakallyicon
 
 ally-mig:
@@ -1152,6 +1163,14 @@ carr.usa:
 	idle: acar
 		Facings: 32
 	icon: acaricon
+
+carr.usa.deployed:
+    Inherits: emp-overlay
+	idle: acar
+		Start: 24
+		Length: 1
+		ZOffset: -1023	
+	icon: carricon
 
 b2:
 	idle:

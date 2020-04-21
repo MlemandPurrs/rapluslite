@@ -527,10 +527,6 @@ Player:
 					Attractiveness: 1
 					TargetMetric: None
 					CheckRadius: 2c0
-	#	HarvesterBotModule@soviet:
-	#	RequiresCondition: enable-ai-player && player.russia || player.ukraine || player.belarus || player.karelia || player.kazakh || player.uzbek || player.turkmen
-	#	HarvesterTypes: harv.soviet
-	#	RefineryTypes: proc.soviet, proc.russia
 	BaseBuilderBotModule@russia:
 		RequiresCondition: enable-ai-player && player.russia
 		MinimumExcessPower: 60
@@ -539,29 +535,29 @@ Player:
 		ExcessPowerIncreaseThreshold: 4
 		CheckForWaterRadius: 8
 		ConstructionYardTypes: fact
-		RefineryTypes: proc.russia
-		PowerTypes: powr.russia,apwr.russia
-		BarracksTypes: barr.russia
-		VehiclesFactoryTypes: weap.russia
-		ProductionTypes: barr.russia,weap.russia,afld.russia
-		NavalProductionTypes: spen.russia
+		RefineryTypes: proc.soviet
+		PowerTypes: powr,apwr
+		BarracksTypes: barr
+		VehiclesFactoryTypes: weap
+		ProductionTypes: barr,weap,afld
+		NavalProductionTypes: spen
 		SiloTypes: silo
 		PlaceDefenseTowardsEnemyChance: 75
 		MaxBaseRadius: 26
 		BuildingDelays:
-			spen.russia: 4500
+			spen: 4500
 			tsla.russia: 3000
 			sam: 6000
 			hsam: 9000
-			stek.russia: 7500
+			stek: 7500
 		BuildingLimits:
-			proc.russia: 4
-			barr.russia: 2
-			kenn.russia: 4
+			proc.soviet: 4
+			barr: 2
+			kenn: 4
 			dome.russia: 1
-			weap.russia: 3
-			spen.russia: 1
-			afld.russia: 4
+			weap: 3
+			spen: 1
+			afld: 4
 			stek.russia: 1
 			fix.russia: 1
 			iron: 1
@@ -571,13 +567,13 @@ Player:
 			sam: 4
 			hsam: 2
 		BuildingFractions:
-			proc.russia: 15
-			barr.russia: 2
-			kenn.russia: 1
+			proc.soviet: 15
+			barr: 2
+			kenn: 1
 			dome.russia: 1
-			weap.russia: 6
-			spen.russia: 1
-			afld.russia: 4
+			weap: 6
+			spen: 1
+			afld: 4
 			ftur: 10
 			tsla.russia: 5
 			fix: 1
@@ -673,7 +669,7 @@ Player:
 			spen: 1
 			afld: 4
 			stek.belarus: 1
-			fix.belarus: 1
+			fix: 1
 			iron: 1
 			mslo: 1
 			ftur: 6
@@ -690,7 +686,7 @@ Player:
 			afld: 4
 			ftur: 10
 			tsla: 5
-			fix.belarus: 1
+			fix: 1
 			sam: 3
 			hsam: 1
 			stek.belarus: 1
@@ -763,7 +759,7 @@ Player:
 		PowerTypes: powr,apwr
 		BarracksTypes: barr
 		VehiclesFactoryTypes: weap
-		ProductionTypes: barr,weap,afld.kazakh
+		ProductionTypes: barr,weap,afld
 		NavalProductionTypes: spen
 		SiloTypes: silo
 		PlaceDefenseTowardsEnemyChance: 75

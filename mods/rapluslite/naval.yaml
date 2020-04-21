@@ -10,7 +10,7 @@ LST:
 			dtrk: demo-inside
 		LoadedCondition: Loaded
 	RepairableNear:
-		RepairActors: syrd, spen, spen.russia
+		RepairActors: syrd, spen
 	CreatesShroud:
 		Range: 6c0
 		RequiresCondition: mgg-inside
@@ -660,6 +660,8 @@ CARR.usa:
 		IntoActor: carr.usa.deployed
 		Offset: 0,0
 		Facing: 192
+	RenderSprites:
+		Scale: 0.9
 
 CARR.usa.Deployed:
 	Inherits: ^Building
@@ -712,6 +714,7 @@ CARR.usa.Deployed:
 	Transforms:
 		IntoActor: carr.usa
 		Offset: 0,0
+		Facing: 192
 	Reservable:
 	WithDecoration@deployed:
 		Image: pips
@@ -757,6 +760,8 @@ CARR.usa.Deployed:
 		ProductionType: MWFAircraft
 	ProvidesPrerequisite@ISAIRFIELD:
 		Prerequisite: afld
+	RenderSprites:
+		Scale: 0.9
 
 SS:
 	Buildable:
@@ -990,7 +995,7 @@ TBT:
 	Selectable:
 		DecorationBounds: 36,36
 	RepairableNear:
-		RepairActors: syrd, spen, spen.russia
+		RepairActors: syrd, spen
 
 PBT:
 	Inherits: ^Ship
@@ -1048,7 +1053,7 @@ PBT:
 	Selectable:
 		DecorationBounds: 36,36
 	RepairableNear:
-		RepairActors: syrd, spen, spen.russia
+		RepairActors: syrd, spen
 	AmmoPool@1:
 		Name: torps
 		Armaments: primary
@@ -1132,7 +1137,7 @@ FSUB:
 	Selectable:
 		DecorationBounds: 38,38
 	RepairableNear:
-		RepairActors: spen, spen.russia
+		RepairActors: spen
 	Cloak:
 		CloakTypes: Underwater
 		InitialDelay: 0
@@ -1238,7 +1243,7 @@ SCRP:
 	ExternalCondition@MINEREPLENISH:
 		Condition: replenishsmine
 	RepairableNear:
-		RepairActors: syrd, spen, spen.russia
+		RepairActors: syrd, spen
 
 MGNM:
 	Inherits: ^Ship
@@ -1437,7 +1442,7 @@ BSUB:
 		InitialStanceAI: HoldFire
 		ScanRadius: 15
 	RepairableNear:
-		RepairActors: spen, spen.russia
+		RepairActors: spen
 	Cloak:
 		CloakTypes: Underwater
 		InitialDelay: 0

@@ -994,7 +994,7 @@ ATEK.Husk:
 		Dimensions: 2,2
 		LocalCenterOffset: 0,-512,0
 	Tooltip:
-		Name: Allied Tech Center (Destroyed)
+		Name: Space Program (Destroyed)
 
 STEK.Husk:
 	Inherits: ^BuildingHusk
@@ -1006,6 +1006,17 @@ STEK.Husk:
 		LocalCenterOffset: 0,-512,0
 	Tooltip:
 		Name: Soviet Tech Center (Destroyed)
+
+ATEKNEW.Husk:
+	Inherits: ^BuildingHusk
+	Interactable:
+		Bounds: 72,48
+	Building:
+		Footprint: XxX XxX
+		Dimensions: 3,2
+		LocalCenterOffset: 0,-512,0
+	Tooltip:
+		Name: Allied Tech Center (Destroyed)
 
 GAP.Husk:
 	Inherits: ^BuildingHusk

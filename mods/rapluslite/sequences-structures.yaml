@@ -360,9 +360,32 @@ atek:
 		Tick: 800
 	none: blank32
 		Length: 1
+	icon: sproicon
 
 atek.husk:
 	idle: atek-dead
+
+ateknew:
+    Inherits: emp-overlay
+	idle: atek2
+	damaged-idle: atek2
+		Start: 1
+	make: atek2make
+		Length: *
+		Tick: 80	
+	bib: bib2
+		Length: *
+		UseTilesetExtension: true
+		TilesetOverrides:
+			INTERIOR: TEMPERAT
+	dead: atek2
+		Start: 1
+		Tick: 800
+	icon: ateknewicon
+
+ateknew.husk:
+	idle: atek2
+		Start: 1
 
 stek:
     Inherits: emp-overlay
@@ -378,6 +401,48 @@ stek:
 stek.husk:
 	idle: stek-dead
 		Start: 0
+		Length: 1
+
+steknew:
+	Inherits: emp-overlay
+	idle:
+	damaged-idle:
+		Start: 1
+	roof: steknew-roof
+		ZOffset: 1250
+	damaged-roof: steknew-roof
+		Start: 5
+		ZOffset: 1250
+	make: stekmake
+		Length: *
+		Tick: 80
+	bib: bib2
+		Length: *
+		UseTilesetExtension: true
+		TilesetOverrides:
+			INTERIOR: TEMPERAT
+	build-top: steknew-roof
+		Length: 5
+		ZOffset: 1250
+	damaged-build-top: steknew-roof
+		Start: 5
+		ZOffset: 1250
+	build-door: steknew-roof
+		Length: 5
+		ZOffset: 1250
+	damaged-build-door: steknew-roof
+		Start: 5
+		ZOffset: 1250
+	idle-top: steknew-roof
+		ZOffset: 1250
+	damaged-idle-top: steknew-roof
+		Start: 5
+		ZOffset: 1250
+	dead: stek-dead
+		Tick: 800
+	icon: stekicon
+    fake-icon: steficon
+	none: blank32
 		Length: 1
 
 syrd:
@@ -594,27 +659,50 @@ ftur:
 				Offset: -7,8
 		Facings: 8
 		Length: 13
+
+ftur.hidden:
+    Inherits: emp-overlay
+	make: fturmake
+		Length: *
+		Offset: 0,-2
+        Tick: 60
+	idle: ftur-sub-extra
+		Start: 0
+		Facings: 32
+		Offset: 0,-2
+	damaged-idle: ftur-sub-extra
+		Start: 32
+		Facings: 32
+		Offset: 0,-2
 	closed-idle: ftur-sub
 		Start: 0
 		Length: 1
+		Offset: 0,-2
 	damaged-closed-idle: ftur-sub
 		Start: 57
 		Length: 1
+		Offset: 0,-2
 	opening: ftur-sub
+		Start: 0
 		Length: 20
-		Tick: 50
+		Tick: 60
+		Offset: 0,-2
 	damaged-opening: ftur-sub
 		Start: 29
 		Length: 20
-		Tick: 50
+		Tick: 60
+		Offset: 0,-2
 	closing: ftur-sub
 		Start: 21
 		Length: 8
-		Tick: 50
+		Tick: 60
+		Offset: 0,-2
 	damaged-closing: ftur-sub
 		Start: 50
 		Length: 8
-		Tick: 50
+		Tick: 60
+		Offset: 0,-2
+	icon: fturicon
 
 ftur.husk:
 	idle: ftur

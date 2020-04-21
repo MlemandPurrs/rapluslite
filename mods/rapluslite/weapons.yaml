@@ -17,6 +17,14 @@
 	ReloadDelay: 24
 	Range: 5c768
 
+25mm.burst:
+	Inherits: 25mm
+	ReloadDelay: 27
+    Burst: 3
+	BurstDelays: 9
+	Projectile:
+		Inaccuracy: 0c768
+
 70mm:
 	Inherits: ^Cannon
 	ReloadDelay: 30
@@ -827,7 +835,40 @@ HellfireAA.rapid:
 	Inherits: HellfireAA
 	Burst: 2
 	BurstDelays: 7
-	
+
+BombingRun.ag:
+	ReloadDelay: 60
+	Burst: 5
+	BurstDelays: 6
+	Range: 2c512
+	Projectile: GravityBomb
+		Velocity: 72, 0, -90
+		Acceleration: 0, 0, -8
+		Image: BOMB
+		Shadow: true
+	Warhead@1Dam: SpreadDamage
+		Spread: 128
+		Damage: 8000
+		Versus:
+			None: 100
+			Wood: 100
+			Light: 80
+			Heavy: 40
+			Concrete: 100
+		DamageTypes: Prone100Percent, TriggerProne, ExplosionDeath
+	Warhead@2Eff: CreateEffect
+		Explosions: artillery_explosion
+		ImpactSounds: kaboom15.aud
+		ValidTargets: Ground, Ship, Trees
+	Warhead@3EffWater: CreateEffect
+		Explosions: large_splash
+		ImpactSounds: splashl1.aud, splashl2.aud
+		ValidTargets: Water, Underwater
+		InvalidTargets: Ship, Structure, Bridge
+	Warhead@4Smu: LeaveSmudge
+		SmudgeType: Crater
+		InvalidTargets: Vehicle, Building, Wall
+
 BombingRun.dc:
 	ReloadDelay: 60
 	Burst: 5

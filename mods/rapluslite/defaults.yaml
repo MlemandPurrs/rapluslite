@@ -219,18 +219,16 @@
 	ResourcePurifier@incomeaiboost:
 		Modifier: 20
 		RequiresCondition: owned-by-ai
-		#	RequiresCondition: enable-ai-player
 		ShowTicks: False
-		#	ShowTicks: True
 	GrantConditionOnBotOwner@incomeaiboost:
 		Condition: owned-by-ai
 		Bots: normal
 
 ^ProductionAIBoost:
-	ProductionTimeMultiplier@hardbonus:
+	ProductionTimeMultiplier@productionboost:
 		Multiplier: 120
 		Prerequisites: owned-by-ai
-	ProductionCostMultiplier@brutalbonus:
+	ProductionCostMultiplier@productionboost:
 		Multiplier: 80
 		Prerequisites: owned-by-ai
 	GrantConditionOnBotOwner@incomeaiboost:
@@ -260,7 +258,7 @@
 		Image: maxichute
 	EdibleByLeap:
 	Repairable:
-		RepairActors: fix, fix.usa, fix.spain, fix.italy, fix.greece, fix.turkey, fix.russia, fix.ukraine, fix.belarus, fix.karelia, fix.kazakh, fix.uzbek, fix.turkmen, fix.afghan
+		RepairActors: fix, fix.usa, fix.spain, fix.italy, fix.greece, fix.turkey, fix.russia, fix.ukraine, fix.karelia, fix.kazakh, fix.uzbek, fix.turkmen, fix.afghan
 	TemporaryOwnerManager:
 	ProductionTimeMultiplier@USABonus:
 		Multiplier: 90
@@ -280,15 +278,19 @@
 	Inherits@82: ^AffectedByGearChange
 	Inherits@85: ^AffectedByInflation
 	-EjectOnDeath:
-	Repairable:
-		RepairActors: fix, fix.usa, fix.spain, fix.italy, fix.greece, fix.turkey, fix.russia, fix.ukraine, fix.belarus, fix.karelia, fix.kazakh, fix.uzbek, fix.turkmen, fix.afghan
+	#	Repairable:
+	#	RepairActors: fix, fix.usa, fix.spain, fix.italy, fix.greece, fix.turkey, fix.russia, fix.ukraine, fix.belarus, fix.karelia, fix.kazakh, fix.uzbek, fix.turkmen, fix.afghan
 	ProductionTimeMultiplier@USABonus:
 		Multiplier: 90
 		Prerequisites: player.usa
+	Repairable:
+		RepairActors: afld
 
 ^Helicopter:
 	Aircraft:
 		Crushes: crate, mine, infantry, airmine
+	Repairable:
+		RepairActors: hpad, hpad.usa
 
 ^BasicBuilding:
 	#	Inherits@88: ^AffectedByBounty
@@ -345,7 +347,7 @@
 	Targetable:
 		TargetTypes: Ground, Water, Ship, SeaDetonateAttack
 	RepairableNear:
-		RepairActors: spen, spen.russia, syrd, syrd.usa
+		RepairActors: spen, syrd, syrd.usa
 	SelfHealing@InstaRep:
 		Step: 0
 		PercentageStep: 100
@@ -369,7 +371,7 @@
 		Range: 3c0
 		RequiresCondition: underwater
 	RepairableNear:
-		RepairActors: spen, spen.russia, syrd, syrd.usa
+		RepairActors: spen, syrd, syrd.usa
 	Cloak:
 		CloakTypes: Underwater
 		InitialDelay: 0
@@ -631,6 +633,10 @@ CAMERA.fieldrepair:
 	ScriptTriggers:
 	MapEditorData:
 		Categories: Husk
+
+^Wall:
+	LineBuild:
+		Range: 8
 
 ^Gate:
 	Inherits: ^Building
@@ -1326,37 +1332,19 @@ dummy.productionboost:
 		Prerequisites: afld
 		Condition: hasairfield
 
-#	this isnt going to work!
-#	your own units will reveal themselves to enemy, not enemy to you.
-#	its not working at all :/
-^AffectedByRadioIntercept:
-	RevealsShroud@COMMINTERCEPT:
-		ValidStances: Enemy
-		Range: 5c0
-		MinRange: 5c0
-		RequiresCondition: radiointercept
-		RevealGeneratedShroud: true
-		#	Type: CenterPosition
-	ExternalCondition@COMMINTERCEPT:
-		Condition: radiointercept
-
 dummy.radiohack:
 	Inherits: CAMERA
 	EditorOnlyTooltip:
 		Name: (Radio Intercept sp proxy)
 	-RevealsShroud:
-	#	ProvidesPrerequisite@radiointercept:
-	#	Prerequisite: radiointercept
-	#	Limit of 50c, grrr...
-	RevealsShroud:
-		Range: 50c0
-		MinRange: 50c0
+	CreatesShroud:
+		ValidStances: Enemy, Neutral
+		Range: 12c0
+		MinRange: 12c0
 		Type: CenterPosition
-	#	whelp, it cant go over 50c no matter what
-	#	RevealsShroudMultiplier:
-	#	Modifier: 1000
+	RenderShroudCircle:
 	KillsSelf@radiointercept:
-		Delay: 4500
+		Delay: 3000
 		RemoveInstead: true
 
 ^AffectedByBombVests:

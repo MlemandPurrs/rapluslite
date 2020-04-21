@@ -86,7 +86,7 @@ BADR.buildable:
 		Offset: -432,-560,0
 		Interval: 2
 	GivesExperience:
-		Experience: 1000
+		Experience: 1500
 	Selectable:
 		Bounds: 36,28,0,2
 		DecorationBounds: 40,29,0,1
@@ -94,7 +94,7 @@ BADR.buildable:
 	ProducibleWithLevel:
 		Prerequisites: aircraft.upgraded
 	Rearmable:
-		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh, carr.usa.deployed
+		RearmActors: afld, afld.usa, afld.england, carr.usa.deployed
 	RenderSprites:
 		Image: badr
 
@@ -131,6 +131,105 @@ B52.Bomber:
 	Inherits: BADR.Bomber
 	Tooltip:
 		Name: B-52
+	RenderSprites:
+		Image: ally-bdgr
+
+B52.buildable:
+	Inherits: ^Plane
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Inherits@AUTODAMAGE: ^KilledWithoutAirfield
+	Buildable:
+		Queue: Aircraft
+		BuildAtProductionType: Plane
+		BuildPaletteOrder: 6
+		BuildLimit: 1
+		Prerequisites: ~afld, atek, ~aircraft.allies, ~techlevel.high
+		Description: B-52 variant modified to function as Gunship.\nMaximum 1 can be built.\n  Strong vs Buildings, Vehicles\n  Weak vs Infantry, Aircraft
+	Tooltip:
+		Name: B-52 Gunship
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Valued:
+		Cost: 3000
+	Health:
+		HP: 20000
+	Armament@PRIMARY:
+		Name: primary
+		Turret: turret-mg
+		Weapon: ChainGun
+		LocalOffset: 320,0,-60
+		MuzzleSequence: muzzle-mg
+		PauseOnCondition: !ammo
+	Armament@SECONDARY:
+		Name: secondary
+		Turret: turret-cannon
+		Weapon: 25mm.burst
+		LocalOffset: 720,0,-80
+		MuzzleSequence: muzzle
+		PauseOnCondition: !ammo
+	AttackAircraft:
+		FacingTolerance: 120
+		PersistentTargeting: false
+	#	AttackTurreted:
+	Turreted@1:
+		Turret: turret-mg
+		TurnSpeed: 255
+		Offset: 468,0,-96
+	Turreted@2:
+		Turret: turret-cannon
+		TurnSpeed: 255
+		Offset: 396,0,-96
+	WithSpriteTurret@1:
+		Sequence: turret1
+		Turret: turret-mg
+	WithSpriteTurret@2:
+		Sequence: turret2
+		Turret: turret-cannon	
+	WithMuzzleOverlay:
+	Aircraft:
+		CruiseAltitude: 2560
+		TurnSpeed: 3
+		Speed: 156
+		RepulsionSpeed: 40
+		MaximumPitch: 56
+	AutoTarget:
+		InitialStance: HoldFire
+		InitialStanceAI: HoldFire
+	AmmoPool:
+		Armaments: secondary
+		Ammo: 15
+		PipCount: 5
+		AmmoCondition: ammo
+		ReloadDelay: 25
+	RevealsShroud:
+		Range: 13c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 11c0
+		Type: GroundPosition
+	Contrail@1:
+		Offset: -432,560,0
+	Contrail@2:
+		Offset: -432,-560,0
+	SpawnActorOnDeath:
+		Actor: B52.Husk
+	SmokeTrailWhenDamaged@0:
+		Offset: -432,560,0
+		Interval: 2
+	SmokeTrailWhenDamaged@1:
+		Offset: -432,-560,0
+		Interval: 2
+	GivesExperience:
+		Experience: 1500
+	Selectable:
+		Bounds: 36,28,0,2
+		DecorationBounds: 40,29,0,1
+	SelectionDecorations:
+	ProducibleWithLevel:
+		Prerequisites: aircraft.upgraded
+	Rearmable:
+		RearmActors: afld, afld.usa, afld.england, carr.usa.deployed
 	RenderSprites:
 		Image: ally-bdgr
 
@@ -177,8 +276,8 @@ TRAN.Soviet:
 	Inherits: TRAN
 	Buildable:
 		BuildPaletteOrder: 4
-		BuildAtProductionType: Plane
-		Prerequisites: ~afld, ~aircraft.soviet, ~techlevel.medium
+		#	BuildAtProductionType: Plane
+		Prerequisites: ~hpad, ~aircraft.soviet, ~techlevel.medium
 		Icon: svyt-icon
 	Tooltip:
 		Name: Yak 24
@@ -290,7 +389,7 @@ IROQ:
 	Selectable:
 		DecorationBounds: 38,32
 	Rearmable:
-		RearmActors: hpad, hpad.usa, hpad.england, carr.deployed, carr.usa.deployed
+		RearmActors: hpad, hpad.usa, carr.deployed
 
 IROQ.Turkey:
 	Inherits: IROQ
@@ -375,9 +474,9 @@ MI2.scout:
 	-Buildable:
 	Buildable:
 		Queue: Aircraft
-		BuildAtProductionType: Plane
+		BuildAtProductionType: Helicopter
 		BuildPaletteOrder: 7
-		Prerequisites: ~afld, ~aircraft.soviet, ~player.uzbek, ~techlevel.medium
+		Prerequisites: ~hpad, ~aircraft.soviet, ~player.uzbek, ~techlevel.medium
 		#	Description: Fast and nimble light helicopter with\ngood sight-radius and detection.\nDetects cloaked units in a close radius.\nSpecial Ability: Flaregun\nCan use Flaregun to fire Flares that illuminate\nwhere they land providing vision while they last.\nCan rearm on Service Depot.\n  Unarmed
 		Description: Fast and nimble light helicopter with\ngood sight-radius and detection.\nDetects cloaked units in a close radius.\nCan transport one Infantry.\n  Unarmed
 	Valued:
@@ -448,15 +547,15 @@ HELI:
 		AmmoCondition: ammogun
 	WithMuzzleOverlay:
 	Rearmable:
-		RearmActors: hpad ,hpad.usa, hpad.england, carr.deployed, carr.usa.deployed
+		RearmActors: hpad ,hpad.usa, carr.deployed
 
 HIND:
 	Buildable:
 		BuildPaletteOrder: 6
 		BuildAtProductionType: Helicopter
-		#	Prerequisites: ~hpad, stek, ~aircraft.soviet, ~techlevel.high
-		Prerequisites: ~disabled
-		Description: Slow helicopter gunship armed with dual chainguns\nand anti-ground rockets.\nReloads on its own, but only when fully out of ammo.\n  Strong vs Infantry, Tanks\n  Weak vs fast Units, Aircraft
+		Prerequisites: ~hpad, stek, ~aircraft.soviet, ~!player.afghan, ~techlevel.high
+		#	Prerequisites: ~disabled
+		Description: Slow helicopter gunship armed with dual chainguns\nand anti-ground rockets.\n  Strong vs Infantry, Tanks\n  Weak vs fast Units, Aircraft
 	Tooltip:
 		Name: MI-24 Hind
 	Valued:
@@ -514,7 +613,7 @@ HIND:
 		Speed: 130
 		TurnSpeed: 5
 	Rearmable:
-		RearmActors: hpad, hpad.usa, hpad.england, carr.deployed, carr.usa.deployed
+		RearmActors: hpad, hpad.usa, carr.deployed
 	SpeedMultiplier:
 		Modifier: 110
 		RequiresCondition: kazakh.player
@@ -530,7 +629,8 @@ HIND.gunship:
 	Buildable:
 		BuildPaletteOrder: 5
 		BuildAtProductionType: Plane
-		Prerequisites: ~afld, stek, ~aircraft.soviet, ~!player.afghan, ~techlevel.high
+		#	Prerequisites: ~afld, stek, ~aircraft.soviet, ~!player.afghan, ~techlevel.high
+		Prerequisites: ~disabled
 	-Rearmable:
 	ReloadAmmoPool@1:
 		AmmoPool: guns
@@ -553,9 +653,10 @@ HIND.gunship:
 		Image: hind
 
 HIND.afghan:
-	Inherits: HIND.gunship
+	#	Inherits: HIND.gunship
+	Inherits: HIND
 	Buildable:
-		Prerequisites: ~afld, stek, ~aircraft.soviet, ~player.afghan, ~!aircraft.upgraded, ~techlevel.high
+		Prerequisites: ~hpad, stek, ~aircraft.soviet, ~player.afghan, ~!aircraft.upgraded, ~techlevel.high
 	ProducibleWithLevel:
 		Prerequisites: techlevel.infonly
 		InitialLevels: 1
@@ -566,7 +667,7 @@ HIND.afghan:
 HIND.afghan.R2:
 	Inherits: HIND.afghan
 	Buildable:
-		Prerequisites: ~afld, stek, ~aircraft.soviet, ~player.afghan, ~aircraft.upgraded, ~techlevel.high
+		Prerequisites: ~hpad, stek, ~aircraft.soviet, ~player.afghan, ~aircraft.upgraded, ~techlevel.high
 		Icon: rank2-icon
 	ProducibleWithLevel:
 		Prerequisites: techlevel.infonly
@@ -717,7 +818,7 @@ YAK:
 		ReloadDelay: 11
 		AmmoCondition: ammodc
 	Rearmable:
-		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh, carr.usa.deployed
+		RearmActors: afld, afld.usa, afld.england, carr.usa.deployed
 	SpeedMultiplier:
 		Modifier: 110
 		RequiresCondition: kazakh.player
@@ -775,26 +876,6 @@ YAK.Belarus.AI:
 	AttackAircraft:
 		Armaments: primary, secondary
 
-YAK.Allies:
-	Inherits: YAK
-	Buildable:
-		Queue: Plane, MWFAircraft
-		BuildPaletteOrder: 4
-		Prerequisites: ~afld, ~aircraft.allies, ~techlevel.medium
-	-Armament@TERTIARY:
-	-AmmoPool@2:
-	AttackAircraft:
-		Armaments: primary, secondary
-	Valued:
-		Cost: 800
-	Tooltip:
-		Name: Spitfire Attack Plane
-	RenderSprites:
-		Image: ally-yak
-	-SpawnActorOnDeath:
-	SpawnActorOnDeath:
-		Actor: YAK.Allies.Husk
-
 YAK.kamikaze:
 	Inherits: YAK
 	-Buildable:
@@ -841,6 +922,74 @@ YAK.kamikaze:
 		InitialDelay: 0
 		Interval: 9999
 
+SPIT:
+	Inherits: ^Plane
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Inherits@AUTODAMAGE: ^KilledWithoutAirfield
+	Buildable:
+		Queue: Aircraft
+		BuildAtProductionType: Plane
+		BuildPaletteOrder: 4
+		Prerequisites: ~afld, ~aircraft.allies, ~techlevel.medium
+		Description: Ground attack bomber.\nCannot attack Aircraft.\n  Strong vs Infantry, Light armor\n  Weak vs Tanks, Aircraft
+	Valued:
+		Cost: 900
+	Tooltip:
+		Name: Spitfire Attack Bomber
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 6000
+	RevealsShroud:
+		MinRange: 9c0
+		Range: 11c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 9c0
+		Type: GroundPosition
+	Armament:
+		Name: primary
+		Weapon: BombingRun.ag
+		LocalOffset: 300,0,0
+		PauseOnCondition: !ammo	
+	AttackAircraft:
+		FacingTolerance: 20
+		PersistentTargeting: false
+		OpportunityFire: False
+	Aircraft:
+		CruiseAltitude: 2560
+		InitialFacing: 192
+		TurnSpeed: 4
+		Speed: 178
+		RepulsionSpeed: 40
+		MaximumPitch: 56
+	AutoTarget:
+		InitialStance: HoldFire
+		InitialStanceAI: HoldFire
+	AmmoPool:
+		Ammo: 6
+		PipCount: 2
+		ReloadDelay: 11
+		AmmoCondition: ammo
+	SelectionDecorations:
+	WithMuzzleOverlay:
+	Contrail:
+		Offset: -853,0,0
+	SpawnActorOnDeath:
+		Actor: YAK.Allies.Husk
+	SmokeTrailWhenDamaged:
+		Offset: -853,0,0
+		Interval: 2
+	ProducibleWithLevel:
+		Prerequisites: aircraft.upgraded
+	Selectable:
+		DecorationBounds: 30,28,0,2
+	Rearmable:
+		RearmActors: afld, afld.usa, afld.england, carr.usa.deployed
+	RenderSprites:
+		Image: ally-yak
+
 MIG:
 	Inherits@AUTODAMAGE: ^KilledWithoutAirfield
 	Buildable:
@@ -862,7 +1011,7 @@ MIG:
 	AttackAircraft:
 		PersistentTargeting: false
 	Rearmable:
-		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh, carr.usa.deployed
+		RearmActors: afld, afld.usa, afld.england, carr.usa.deployed
 	SpeedMultiplier:
 		Modifier: 110
 		RequiresCondition: kazakh.player
@@ -881,22 +1030,73 @@ MIG.AI:
 		Image: mig
 	-MapEditorData:
 
-MIG.Allies:
-	Inherits: MIG
+TORN:
+	Inherits: ^Plane
+	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
+	Inherits@AUTODAMAGE: ^KilledWithoutAirfield
 	Buildable:
-		Queue: Plane, MWFAircraft
+		Queue: Aircraft
+		BuildAtProductionType: Plane
 		BuildPaletteOrder: 5
-		BuildDurationModifier: 60
 		Prerequisites: ~afld, atek, ~aircraft.allies, ~techlevel.high
+		Description: Fast Interceptor Plane\nwith Anti-air missiles.\nCannot attack Ground units.\n  Strong vs Buildings, Vehicles\n  Weak vs Infantry, Aircraft
 	Valued:
-		Cost: 1200
+		Cost: 1500
 	Tooltip:
-		Name: Tornado Attack Plane
-	RenderSprites:
-		Image: ally-mig
-	-SpawnActorOnDeath:
+		Name: Tornado Interceptor
+	UpdatesPlayerStatistics:
+		AddToArmyValue: true
+	Health:
+		HP: 10000
+	RevealsShroud:
+		MinRange: 11c0
+		Range: 13c0
+		Type: GroundPosition
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 11c0
+		Type: GroundPosition
+	Armament:
+		Weapon: HellfireAA.rapid
+		LocalOffset: 0,-640,0, 0,640,0
+		LocalYaw: -40, 24
+		PauseOnCondition: !ammo	
+	AttackAircraft:
+		FacingTolerance: 20
+		PersistentTargeting: false
+		OpportunityFire: False
+	Aircraft:
+		CruiseAltitude: 2560
+		InitialFacing: 192
+		TurnSpeed: 4
+		Speed: 223
+		RepulsionSpeed: 40
+		MaximumPitch: 56
+	AutoTarget:
+		InitialStance: HoldFire
+		InitialStanceAI: HoldFire
+	AmmoPool:
+		Ammo: 6
+		AmmoCondition: ammo
+	Selectable:
+		Bounds: 36,28,0,2
+		DecorationBounds: 40,29,0,1
+	SelectionDecorations:
+	Contrail@1:
+		Offset: -598,-683,0
+	Contrail@2:
+		Offset: -598,683,0
 	SpawnActorOnDeath:
 		Actor: MIG.Allies.Husk
+	SmokeTrailWhenDamaged:
+		Offset: -853,0,171
+		Interval: 2
+	ProducibleWithLevel:
+		Prerequisites: aircraft.upgraded
+	Rearmable:
+		RearmActors: afld, afld.usa, afld.england, carr.usa.deployed
+	RenderSprites:
+		Image: ally-mig
 
 COSSACK:
 	Inherits: ^Plane
@@ -969,7 +1169,7 @@ COSSACK:
 	RenderSprites:
 		Image: cossack
 	Rearmable:
-		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh, carr.usa.deployed
+		RearmActors: afld, afld.usa, afld.england, carr.usa.deployed
 	SpeedMultiplier:
 		Modifier: 110
 		RequiresCondition: kazakh.player
@@ -1051,7 +1251,7 @@ HARR:
 	ProducibleWithLevel:
 		Prerequisites: aircraft.upgraded
 	Rearmable:
-		RearmActors: afld, afld.russia, afld.ukraine, afld.kazakh, hpad, hpad.usa, hpad.england, carr.deployed, carr.usa.deployed
+		RearmActors: afld, afld.usa, afld.england, hpad, hpad.usa, carr.deployed, carr.usa.deployed
 
 MH60:
 	Buildable:

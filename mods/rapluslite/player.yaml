@@ -121,7 +121,7 @@ Player:
 	LobbyPrerequisiteCheckbox@GLOBALFACTUNDEPLOY:
 		ID: factundeploy
 		Label: Redeployable MCVs
-		Description: Allow undeploying Construction Yard.
+		Description: Allow undeploying Construction Yard
 		Enabled: True
 		DisplayOrder: 7
 		Prerequisites: global-factundeploy
@@ -264,7 +264,7 @@ Player:
 	LobbyPrerequisiteCheckbox@NAVYDISABLER:
 		ID: disablenavy
 		Label: Disable Navy
-		Description: Use this to fix spamming Cruisers in ponds.
+		Description: Use this to fix spamming Cruisers in ponds
 		Enabled: False
 		DisplayOrder: 12
 		Prerequisites: global-disablenavy

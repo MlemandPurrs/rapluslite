@@ -143,6 +143,8 @@ E4:
 	Buildable:
 		Prerequisites: ~barr, dome, ~!player.ukraine, ~techlevel.low
 		BuildPaletteOrder: 9
+	Valued:
+		Cost: 400
 	Armament@PRIMARY:
 		PauseOnCondition: leaflet
 	Passenger:
