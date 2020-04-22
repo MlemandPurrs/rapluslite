@@ -125,9 +125,10 @@ ercc-proc:
 		Offset: 5, -13
 		Length: *
         Tick: 80
-	place: ercc-make
+	place: ercc-bot
 		Offset: 5, -13
-		Start: 8
+		Start: 0
+		Length: 1
 	dead: ercc-bot
 		Start: 1
 		Length: 1

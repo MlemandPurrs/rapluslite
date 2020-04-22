@@ -549,7 +549,7 @@ Player:
 			tsla.russia: 3000
 			sam: 6000
 			hsam: 9000
-			stek: 7500
+			stek.russia: 7500
 		BuildingLimits:
 			proc.soviet: 4
 			barr: 2

@@ -254,7 +254,7 @@ Cursors:
 	sonarbox.shp: cursor
 		sonar-target:
 			Start: 6
-			Length: 10
+			Length: 9
 	armor.shp: cursor
 		armor-target:
 			Start: 4
