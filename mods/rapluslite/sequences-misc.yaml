@@ -309,3 +309,20 @@ skull-red:
 	derp: rapid
 		Start: 4
 		Length: 16
+
+fire:
+	Defaults:
+		Length: *
+		Offset: 0,-3
+		Tick: 105	
+		ZOffset: 511
+	1: fire1
+	2: fire2
+	3: fire7
+	4: fire4
+	5: fire5
+	6: fire6
+	7: fire6
+		FlipX: true
+	8: fire7
+		FlipX: true

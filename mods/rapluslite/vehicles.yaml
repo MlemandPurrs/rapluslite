@@ -2812,7 +2812,7 @@ MCV:
 MCV.ai:
 	Inherits: MCV
 	Buildable:
-		BuildLimit: 3
+		BuildLimit: 2
 		Prerequisites: fix, ~!player.uzbek, ~aitoodumb, ~techlevel.medium
 	RenderSprites:
 		Image: mcv
@@ -2844,7 +2844,7 @@ MCV.uzbek:
 MCV.uzbek.ai:
 	Inherits: MCV.uzbek
 	Buildable:
-		BuildLimit: 3
+		BuildLimit: 2
 		Prerequisites: fix, ~player.uzbek, ~aitoodumb, ~techlevel.medium
 	RenderSprites:
 		Image: mcv

@@ -103,6 +103,13 @@ APTusk.single:
 	Inherits: APTusk
 	-Burst:
 
+SCUD:
+	Warhead@Flames: FireCluster
+		Weapon: BurnFx
+		RandomClusterCount: 3
+		Dimensions: 3,3
+		Footprint: xxx xxx xxx
+
 SCUD.ukraine:
 	Inherits: SCUD
 	-Projectile:
@@ -133,6 +140,11 @@ FireballLauncher:
 	MinRange: 1c513
 	Projectile: Bullet
 		Blockable: false
+	Warhead@Flames: FireCluster
+		Weapon: BurnFx
+		RandomClusterCount: 3
+		Dimensions: 3,3
+		Footprint: xxx xxx xxx
 
 FireballLauncher.Sub:
 	Inherits: FireballLauncher
@@ -208,6 +220,13 @@ UnitExplodeChemSmall:
 		SmudgeType: Scorch
 		InvalidTargets: Structure, Wall, Trees
 
+Flamer:
+	Warhead@Flames: FireCluster
+		Weapon: BurnFx
+		RandomClusterCount: 1
+		Dimensions: 1,1
+		Footprint: x
+
 BigFlamer:
 	Inherits: ^FireWeapon
 	ReloadDelay: 50
@@ -221,6 +240,11 @@ BigFlamer:
 			Wood: 75
 			Light: 75
 			Heavy: 20
+	Warhead@Flames: FireCluster
+		Weapon: BurnFx
+		RandomClusterCount: 1
+		Dimensions: 1,1
+		Footprint: x
 
 Repair:
 	Warhead@1Dam: SpreadDamage
@@ -765,6 +789,11 @@ KVFlame:
 	Warhead@3Eff: CreateEffect
 		Explosions: small_napalm
 		ImpactSounds: firebl3.aud
+	Warhead@Flames: FireCluster
+		Weapon: BurnFx
+		RandomClusterCount: 1
+		Dimensions: 1,1
+		Footprint: x
 
 MammothTuskAT:
 	Inherits: ^AntiGroundMissile
@@ -2069,3 +2098,15 @@ CrateExplosionBeep:
 	#	Sequence: idle
 	#	ValidTargets: Air, Ground, Water
 	#	Warhead@3Flash: ChronoFlashEffect
+
+BurnFX:
+	ValidTargets: Ground, Water, Trees
+	InvalidTargets: Air
+	ReloadDelay: 20
+	Range: 0c128
+	Projectile: Bullet
+		Speed: 85
+		Blockable: false
+	Warhead@3Eff: CreateEffect
+		Image: fire
+		Explosions: 3, 6, 7, 8

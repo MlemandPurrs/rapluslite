@@ -173,6 +173,9 @@ FACT:
 		ValidPowerStates: Low, Critical
 	Exit@1:
 	ExitsDebugOverlay:
+	ProvidesPrerequisite@MCVLIMITER:
+		Prerequisite: mcv.ai
+		RequiresPrerequisites: aitoodumb
 
 FACT.uzbek:
 	Inherits: FACT
@@ -187,6 +190,10 @@ FACT.uzbek:
 		Facing: 96
 	RenderSprites:
 		Image: fact
+	-ProvidesPrerequisite@MCVLIMITER:
+	ProvidesPrerequisite@MCVLIMITER:
+		Prerequisite: mcv.uzbek.ai
+		RequiresPrerequisites: aitoodumb
 	-MapEditorData:
 
 POWR:
