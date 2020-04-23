@@ -535,8 +535,10 @@ BTR.crate:
 	Inherits: 1TNK
 	Buildable:
 		Prerequisites: ~vehicles.allies, ~player.england, ~techlevel.low
-	Valued:
-		Cost: 650
+	ProductionCostMultiplier@NationBonus:
+		Multiplier: 110
+	#	Valued:
+	#	Cost: 650
 	Armament@PRIMARY:
 		Weapon: 25mm.britain
 		Recoil: 85
@@ -733,8 +735,10 @@ LTNK:
 	Inherits: 2TNK
 	Buildable:
 		Prerequisites: fix, ~vehicles.allies, ~player.england, ~techlevel.medium
-	Valued:
-		Cost: 775
+	ProductionCostMultiplier@NationBonus:
+		Multiplier: 110
+	#	Valued:
+	#	Cost: 775
 	Armament@PRIMARY:
 		Name: primary
 		Weapon: 90mm.britain
@@ -815,8 +819,8 @@ LTNK:
 		Description: Soviet Main Battle Tank.\n  Strong vs Vehicles\n  Weak vs Infantry, Aircraft
 	Tooltip:
 		Name: Heavy Tank 1-B
-	Valued:
-		Cost: 850
+	#	Valued:
+	#	Cost: 850
 	Mobile:
 		Speed: 71
 	-Armament@PRIMARY:
@@ -854,8 +858,14 @@ LTNK:
 		Prerequisites: fix, ~vehicles.soviet, ~player.belarus, ~techlevel.medium
 	Health:
 		HP: 40500
-	Valued:
-		Cost: 765
+	ProductionCostMultiplier@NationBonus:
+		Multiplier: 90
+		Prerequisites: !indp
+	ProductionCostMultiplier@NationBonusExtra:
+		Multiplier: 90
+		Prerequisites: indp, indplowpower
+	#	Valued:
+	#	Cost: 765
 	SpawnActorOnDeath:
 		Actor: 2TNK.Belarus.Husk
 	RenderSprites:
@@ -916,8 +926,14 @@ LTNK:
 		Prerequisites: fix, ~vehicles.soviet, ~player.belarus, ~techlevel.medium
 	Health:
 		HP: 54000
-	Valued:
-		Cost: 1035
+	ProductionCostMultiplier@NationBonus:
+		Multiplier: 90
+		Prerequisites: !indp
+	ProductionCostMultiplier@NationBonusExtra:
+		Multiplier: 90
+		Prerequisites: indp, indplowpower
+	#	Valued:
+	#	Cost: 1035
 	SpawnActorOnDeath:
 		Actor: 3TNK.Belarus.Husk
 	RenderSprites:
@@ -968,8 +984,14 @@ LTNK:
 	Inherits: 4TNK
 	Buildable:
 		Prerequisites: fix, stek, ~vehicles.soviet, ~player.belarus, ~techlevel.high
-	Valued:
-		Cost: 1800
+	#	Valued:
+	#	Cost: 1800
+	ProductionCostMultiplier@NationBonus:
+		Multiplier: 90
+		Prerequisites: !indp
+	ProductionCostMultiplier@NationBonusExtra:
+		Multiplier: 90
+		Prerequisites: indp, indplowpower
 	Health:
 		HP: 81000
 	SpawnActorOnDeath:
@@ -1241,7 +1263,7 @@ ATNK:
 		Prerequisites: dome, fix, ~vehicles.allies, ~!player.england, ~!player.france, ~!player.germany, ~!player.spain, ~!player.greece, ~!player.italy, ~techlevel.high
 		Description: Mobile anti-air unit.\n  Strong vs Infantry, Aircraft\n  Weak vs Tanks
 	Valued:
-		Cost: 700
+		Cost: 650
 	Tooltip:
 		Name: Flak Tank
 	Health:
@@ -1308,8 +1330,10 @@ ATNK.England:
 	Inherits: ATNK
 	Buildable:
 		Prerequisites: dome, fix, ~vehicles.allies, ~player.england, ~techlevel.high
-	Valued:
-		Cost: 775
+	#	Valued:
+	#	Cost: 775
+	ProductionCostMultiplier@NationBonus:
+		Multiplier: 110
 	Armament@PRIMARY:
 		Weapon: FLAK-23-AA.britain
 		LocalOffset: 262,160,160, 262,-160,160
@@ -2400,7 +2424,7 @@ TTNK:
 	Buildable:
 		BuildPaletteOrder: 9
 		Prerequisites: stek, ~vehicles.soviet, ~player.russia, ~techlevel.high
-		Description: Tank with mounted Tesla coil.\n  Immune to EMP\n  Strong vs Infantry, Vehicles, Buildings\n  Weak vs Aircraft
+		Description: Tank with mounted Tesla coil.\nTesla briefly short-circuits Vehicle and Ships.\n  Immune to EMP\n  Strong vs Infantry, Vehicles, Buildings\n  Weak vs Aircraft
 		BuildDurationModifier: 60
 	Mobile:
 		PauseOnCondition: !(!being-captured)
@@ -2775,7 +2799,7 @@ MCV:
 	Buildable:
 		BuildPaletteOrder: 10
 		BuildDurationModifier: 60
-		Prerequisites: fix, ~!player.uzbek, ~techlevel.medium
+		Prerequisites: fix, ~!player.uzbek, ~!aitoodumb, ~techlevel.medium
 	Valued:
 		Cost: 2500
 	Passenger:
@@ -2785,10 +2809,19 @@ MCV:
 		TargetTypes: Ground, Vehicle, VehicleDisguise
 		RequiresCondition: !parachute
 
+MCV.ai:
+	Inherits: MCV
+	Buildable:
+		BuildLimit: 3
+		Prerequisites: fix, ~!player.uzbek, ~aitoodumb, ~techlevel.medium
+	RenderSprites:
+		Image: mcv
+	-MapEditorData:
+
 MCV.uzbek:
 	Inherits: MCV
 	Buildable:
-		Prerequisites: fix, ~player.uzbek, ~techlevel.medium
+		Prerequisites: fix, ~player.uzbek, ~!aitoodumb, ~techlevel.medium
 		BuildDuration: 2500
 	Valued:
 		Cost: 1875
@@ -2806,6 +2839,15 @@ MCV.uzbek:
 	RenderSprites:
 		Image: mcv
 	-MapEditorData:
+	-ProductionCostMultiplier@IndustrialPlant:
+
+MCV.uzbek.ai:
+	Inherits: MCV.uzbek
+	Buildable:
+		BuildLimit: 3
+		Prerequisites: fix, ~player.uzbek, ~aitoodumb, ~techlevel.medium
+	RenderSprites:
+		Image: mcv
 
 TRUK:
 	Buildable:
@@ -2818,6 +2860,7 @@ TRUK:
 		RequiresCondition: !parachute
 	Passenger:
 		PipType: Blue
+	-ProductionCostMultiplier@IndustrialPlant:
 
 FIST:
 	Inherits: ^Vehicle

@@ -21,9 +21,6 @@ beacon:
 	cstrike: cstrikeicon
 		Length: *
 		Offset: 0,-42
-	artystrikesmall: artystrikbcon
-		Length: *
-		Offset: 0,-42
 	uspb: uspbbcon
 		Length: *
 		Offset: 0,-42

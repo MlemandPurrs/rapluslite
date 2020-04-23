@@ -118,6 +118,12 @@ SCUD.ukraine:
 
 TeslaZap:
 	Range: 8c0	
+	InvalidTargets: EMPTank
+	Warhead@2: GrantExternalCondition
+		Range: 0c256
+		Duration: 25
+		Condition: empdisable
+		ValidTargets: Vehicle, Ship, Submarine
 
 TeslaZap.russia:
 	Inherits: TeslaZap
@@ -400,7 +406,7 @@ EmpBomb:
 		Acceleration: 0, 0, 0
 		Shadow: False
 	Warhead@1Dam: SpreadDamage
-		Spread: 3c512
+		Spread: 4c512
 		Damage: 3600
 		Versus:
 			None: 100
@@ -413,12 +419,12 @@ EmpBomb:
 		Explosions: pulse_explosion
 		ImpactSounds: ion1.aud
 	Warhead@emp: GrantExternalCondition
-		Range: 3c512
+		Range: 4c512
 		Duration: 500
 		Condition: empdisable
 		ValidTargets: Vehicle, Ship, Submarine
 	Warhead@empbuilding: GrantExternalCondition
-		Range: 3c512
+		Range: 4c512
 		Duration: 500
 		Condition: empdisable
 		ValidTargets: Structure
@@ -474,7 +480,6 @@ GrenadeLauncher:
 GrenadeLauncher.sub:
 	Inherits: GrenadeLauncher
 	Range: 7c256
-	ReloadDelay: 49
 	Warhead@1Dam: SpreadDamage
 		Versus:
 			Light: 50
@@ -708,14 +713,28 @@ MaverickAA:
 	Burst: 6
 	BurstDelays: 8, 16, 8, 16, 8
 
+TTankZap:
+	InvalidTargets: EMPTank
+	Warhead@2: GrantExternalCondition
+		Range: 0c256
+		Duration: 25
+		Condition: empdisable
+		ValidTargets: Vehicle, Ship, Submarine
+
 TTankZapHeavy:
 	Inherits: ^TeslaWeapon
 	ReloadDelay: 120
 	Range: 4c768
-	Warhead@1Dam: SpreadDamage
-		Damage: 7000
 	Burst: 3
 	BurstDelays: 22
+	InvalidTargets: EMPTank
+	Warhead@1Dam: SpreadDamage
+		Damage: 7000
+	Warhead@2: GrantExternalCondition
+		Range: 0c256
+		Duration: 25
+		Condition: empdisable
+		ValidTargets: Vehicle, Ship, Submarine
 
 KVFlame:
 	ReloadDelay: 90
@@ -2035,3 +2054,18 @@ CrateExplosionBeep:
 		Explosions: piff
 		ImpactSounds: gdembeep.aud
 		ValidTargets: Ground, Air, Ship, Trees
+
+	#	ChronoAI:
+	#	ReloadDelay: 1
+	#	Projectile: InstantExplode
+	#	Warhead@2Eff: CreateEffect
+	#	Explosions: piff
+	#	ValidTargets: Ground, Air, Water
+	#	ImpactSounds: chrono2.aud
+	#	Warhead@teleport: SpawnActor
+	#	Actors: 1tnk, 2tnk, arty, 2tnk, 1tnk
+	#	Range: 5
+	#	Image: chronoappear
+	#	Sequence: idle
+	#	ValidTargets: Air, Ground, Water
+	#	Warhead@3Flash: ChronoFlashEffect

@@ -869,7 +869,13 @@ SS.AG:
 		CloakedCondition: underwater
 		Palette: submerged
 		UncloakOn: Attack, Heal, Unload, Dock, SelfHeal, Demolish
-		PauseOnCondition: cloak-force-disabled || shallowcrossing || empdisable || minehit
+		PauseOnCondition: cloak-force-disabled || shallowcrossing || empdisable || minehit || is-shooting
+	GrantConditionOnAttack@UNCLOAK:
+		Condition: is-shooting
+		ArmamentNames: secondary
+		RevokeDelay: 50
+	#	GrantConditionWhileAiming@UNCLOAK:
+	#	Condition: is-shooting
 	-GrantConditionOnDeploy:
 
 MSUB:
@@ -964,7 +970,7 @@ TBT:
 		Queue: Ship
 		BuildPaletteOrder: 6
 		Prerequisites: tsla, stek, ~player.russia, ~techlevel.high
-		Description: Ship with mounted Tesla coil.\n  Immune to EMP\n  Strong vs Infantry, Navy\n  Weak vs Tanks, Aircraft
+		Description: Ship with mounted Tesla coil.\nTesla briefly short-circuits Vehicle and Ships.\n  Immune to EMP\n  Strong vs Infantry, Navy\n  Weak vs Tanks, Aircraft
 	Valued:
 		Cost: 850
 	Tooltip:

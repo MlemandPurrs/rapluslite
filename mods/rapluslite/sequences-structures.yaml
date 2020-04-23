@@ -1303,3 +1303,50 @@ pbat:
 		Offset: 0,1
 		UseTilesetExtension: true
 	icon: pbaticon
+
+rresf:
+    Inherits: emp-overlay
+	idle:
+	damaged-idle:
+		Start: 1
+	dead:
+		Start: 1
+		Tick: 800
+	make: rresf-make
+		Length: *
+		Tick: 80
+	bib: bib2
+		Length: *
+		UseTilesetExtension: true
+		TilesetOverrides:
+			INTERIOR: TEMPERAT
+	icon: rresficon
+
+indp:
+    Inherits: emp-overlay
+	idle: indp
+		Length: 4
+		Tick: 200
+		Offset: 0,-10
+	damaged-idle: indp
+		Start: 4
+		Length: 4
+		Tick: 200
+		Offset: 0,-10
+	make: indpmake
+		Length: *
+		Offset: 0,-10
+	place: indpmake
+		Start: 20
+		Length: 1
+		Offset: 0,-10
+	dead: indp
+		Start: 4
+		Tick: 800
+		Offset: 0,-10
+	bib: bib2
+		Length: *
+		UseTilesetExtension: true
+		TilesetOverrides:
+			INTERIOR: TEMPERAT
+	icon: indpicon

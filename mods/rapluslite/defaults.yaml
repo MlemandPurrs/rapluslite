@@ -235,8 +235,17 @@
 		Condition: owned-by-ai
 		Bots: normal
 
+^ProductionPlayerBoost:
+	ProductionCostMultiplier@IndustrialPlant:
+		Multiplier: 80
+		Prerequisites: indp, !indplowpower
+	ProductionTimeMultiplier@IndustrialPlant:
+		Multiplier: 90
+		Prerequisites: indp, !indplowpower
+
 ^Vehicle:
 	Inherits@AI: ^ProductionAIBoost
+	Inherits@80: ^ProductionPlayerBoost
 	Inherits@82: ^AffectedByGearChange
 	Inherits@83: ^AffectedByFortify
 	Inherits@84: ^AffectedByLeaflet
@@ -272,9 +281,15 @@
 		RequiresCondition: instarepair
 	ExternalCondition@InstaRep:
 		Condition: instarepair
+	Targetable@EMPTargeting:
+		TargetTypes: EMPTank
+		RequiresCondition: empdisable
+	ExternalCondition@EMPTargeting:
+		Condition: EMPTank
 
 ^Plane:
 	Inherits@AI: ^ProductionAIBoost
+	Inherits@80: ^ProductionPlayerBoost
 	Inherits@82: ^AffectedByGearChange
 	Inherits@85: ^AffectedByInflation
 	-EjectOnDeath:
@@ -335,6 +350,7 @@
 
 ^Ship:
 	Inherits@AI: ^ProductionAIBoost
+	Inherits@80: ^ProductionPlayerBoost
 	Inherits@82: ^AffectedByGearChange
 	Inherits@85: ^AffectedByInflation
 	Inherits@93: ^AffectedByLeadership
@@ -357,6 +373,11 @@
 		RequiresCondition: instarepair
 	ExternalCondition@InstaRep:
 		Condition: instarepair
+	Targetable@EMPTargeting:
+		TargetTypes: EMPTank
+		RequiresCondition: empdisable
+	ExternalCondition@EMPTargeting:
+		Condition: EMPTank
 
 ^Submarine:
 	Inherits: ^Ship
@@ -629,10 +650,15 @@ CAMERA.fieldrepair:
 		GenericName: Civilian Building (Destroyed)
 		GenericStancePrefix: false
 		ShowOwnerRow: false
+	Targetable:
+		TargetTypes: Ground, NoAutoTarget
+		RequiresForceFire: true
 	FrozenUnderFog:
 	ScriptTriggers:
 	MapEditorData:
 		Categories: Husk
+	OwnerLostAction:
+		Action: ChangeOwner
 
 ^Wall:
 	LineBuild:

@@ -566,6 +566,7 @@ Player:
 			tsla.russia: 4
 			sam: 4
 			hsam: 2
+			fact: 3
 		BuildingFractions:
 			proc.soviet: 15
 			barr: 2
@@ -621,6 +622,7 @@ Player:
 			tsla: 4
 			sam: 4
 			hsam: 2
+			fact: 3
 		BuildingFractions:
 			proc.soviet: 15
 			barr: 2
@@ -676,6 +678,7 @@ Player:
 			tsla: 4
 			sam: 4
 			hsam: 2
+			fact: 3
 		BuildingFractions:
 			proc.soviet: 15
 			barr: 2
@@ -731,6 +734,7 @@ Player:
 			tsla: 4
 			sam: 4
 			hsam: 2
+			fact: 3
 		BuildingFractions:
 			proc.soviet: 15
 			barr: 2
@@ -786,6 +790,7 @@ Player:
 			tsla: 4
 			sam: 4
 			hsam: 2
+			fact: 3
 		BuildingFractions:
 			proc.soviet: 15
 			barr: 2
@@ -841,6 +846,7 @@ Player:
 			tsla.uzbek: 4
 			sam.uzbek: 4
 			hsam.uzbek: 2
+			fact.uzbek: 2
 		BuildingFractions:
 			proc.soviet: 15
 			barr: 2
@@ -896,6 +902,7 @@ Player:
 			tsla: 4
 			sam: 4
 			hsam: 2
+			fact: 3
 		BuildingFractions:
 			proc.soviet: 15
 			barr: 2
@@ -951,6 +958,7 @@ Player:
 			tsla: 4
 			sam: 4
 			hsam: 2
+			fact: 3
 		BuildingFractions:
 			proc.soviet: 15
 			barr: 2
@@ -979,7 +987,7 @@ Player:
 		SquadSizeRandomBonus: 16
 		RushInterval: 400
 		AttackScanRadius: 16
-		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, ss, ss.ag, msub, msub.aa, tbt, yak.ai, mig.ai, e6, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv, mcv.ai, dog, ss, ss.ag, msub, msub.aa, tbt, yak.ai, mig.ai, e6, thf
 		ConstructionYardTypes: fact
 	SquadManagerBotModule@russia.sea:
 		RequiresCondition: enable-ai-player && player.russia
@@ -987,7 +995,7 @@ Player:
 		SquadSizeRandomBonus: 4
 		RushInterval: 400
 		AttackScanRadius: 24
-		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e3, e4, volk, shok, ftrk, btr.russia, 2tnk.soviet, 3tnk, 4tnk, v2rl, ttnk, yak.ai, mig.ai, e6, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv, mcv.ai, dog, e1, e3, e4, volk, shok, ftrk, btr.russia, 2tnk.soviet, 3tnk, 4tnk, v2rl, ttnk, yak.ai, mig.ai, e6, thf
 		NavalUnitsTypes: ss,ss.ag,msub,msub.aa,tbt
 		ConstructionYardTypes: fact
 		NavalProductionTypes: spen.russia
@@ -997,7 +1005,7 @@ Player:
 		SquadSizeRandomBonus: 2
 		RushInterval: 400
 		AttackScanRadius: 24
-		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e3, e4, volk, shok, ftrk, btr.russia, 2tnk.soviet, 3tnk, 4tnk, v2rl, ttnk, ss, ss.ag, msub, msub.aa, tbt, e6, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv, mcv.ai, dog, e1, e3, e4, volk, shok, ftrk, btr.russia, 2tnk.soviet, 3tnk, 4tnk, v2rl, ttnk, ss, ss.ag, msub, msub.aa, tbt, e6, thf
 		ConstructionYardTypes: fact
 	SquadManagerBotModule@ukraine:
 		RequiresCondition: enable-ai-player && player.ukraine
@@ -1005,7 +1013,7 @@ Player:
 		SquadSizeRandomBonus: 16
 		RushInterval: 400
 		AttackScanRadius: 16
-		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, ss, ss.ag, msub, msub.aa, fsub, yak.ai, mig.ai, e6, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv, mcv.ai, dog, ss, ss.ag, msub, msub.aa, fsub, yak.ai, mig.ai, e6, thf
 		ConstructionYardTypes: fact
 	SquadManagerBotModule@ukraine.sea:
 		RequiresCondition: enable-ai-player && player.ukraine
@@ -1013,7 +1021,7 @@ Player:
 		SquadSizeRandomBonus: 4
 		RushInterval: 400
 		AttackScanRadius: 24
-		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e3, e4.ukraine, volk, ftrk, btr, 2tnk.ukraine, 3tnk.ukraine, 4tnk.ukraine, v2rl.ukraine, yak.ai, mig.ai, e6, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv, mcv.ai, dog, e1, e3, e4.ukraine, volk, ftrk, btr, 2tnk.ukraine, 3tnk.ukraine, 4tnk.ukraine, v2rl.ukraine, yak.ai, mig.ai, e6, thf
 		NavalUnitsTypes: ss,ss.ag,msub,msub.aa,fsub
 		ConstructionYardTypes: fact
 		NavalProductionTypes: spen
@@ -1023,7 +1031,7 @@ Player:
 		SquadSizeRandomBonus: 2
 		RushInterval: 400
 		AttackScanRadius: 24
-		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e3, e4.ukraine, volk, ftrk, btr, 2tnk.ukraine, 3tnk.ukraine, 4tnk.ukraine, v2rl.ukraine, ss, ss.ag, msub, msub.aa, fsub, e6, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv, mcv.ai, dog, e1, e3, e4.ukraine, volk, ftrk, btr, 2tnk.ukraine, 3tnk.ukraine, 4tnk.ukraine, v2rl.ukraine, ss, ss.ag, msub, msub.aa, fsub, e6, thf
 		ConstructionYardTypes: fact
 	SquadManagerBotModule@belarus:
 		RequiresCondition: enable-ai-player && player.belarus
@@ -1031,7 +1039,7 @@ Player:
 		SquadSizeRandomBonus: 16
 		RushInterval: 400
 		AttackScanRadius: 16
-		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, ss, ss.ag, msub, msub.aa, yak.ai, mig.ai, e6, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv, mcv.ai, dog, ss, ss.ag, msub, msub.aa, yak.ai, mig.ai, e6, thf
 		ConstructionYardTypes: fact
 	SquadManagerBotModule@belarus.sea:
 		RequiresCondition: enable-ai-player && player.belarus
@@ -1039,7 +1047,7 @@ Player:
 		SquadSizeRandomBonus: 4
 		RushInterval: 400
 		AttackScanRadius: 24
-		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e3, e4, e5, volk, ftrk, btr, 2tnk.belarus, 3tnk.belarus, 4tnk.belarus, v2rl, yak.belarus.ai, mig.ai, e6, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv, mcv.ai, dog, e1, e3, e4, e5, volk, ftrk, btr, 2tnk.belarus, 3tnk.belarus, 4tnk.belarus, v2rl, yak.belarus.ai, mig.ai, e6, thf
 		NavalUnitsTypes: ss,ss.ag,msub,msub.aa
 		ConstructionYardTypes: fact
 		NavalProductionTypes: spen
@@ -1049,7 +1057,7 @@ Player:
 		SquadSizeRandomBonus: 2
 		RushInterval: 400
 		AttackScanRadius: 24
-		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e3, e4, e5, volk, ftrk, btr, 2tnk.belarus, 3tnk.belarus, 4tnk.belarus, v2rl, ss, ss.ag, msub, msub.aa, e6, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv, mcv.ai, dog, e1, e3, e4, e5, volk, ftrk, btr, 2tnk.belarus, 3tnk.belarus, 4tnk.belarus, v2rl, ss, ss.ag, msub, msub.aa, e6, thf
 		ConstructionYardTypes: fact
 	SquadManagerBotModule@karelia:
 		RequiresCondition: enable-ai-player && player.karelia
@@ -1057,7 +1065,7 @@ Player:
 		SquadSizeRandomBonus: 16
 		RushInterval: 400
 		AttackScanRadius: 16
-		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, ss, ss.ag, msub, msub.aa, fsub, yak.ai, mig.ai, e6, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv, mcv.ai, dog, ss, ss.ag, msub, msub.aa, fsub, yak.ai, mig.ai, e6, thf
 		ConstructionYardTypes: fact
 	SquadManagerBotModule@karelia.sea:
 		RequiresCondition: enable-ai-player && player.karelia
@@ -1065,7 +1073,7 @@ Player:
 		SquadSizeRandomBonus: 4
 		RushInterval: 400
 		AttackScanRadius: 24
-		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e3, e4, volk, ftrk, btr, 2tnk, 3tnk, 4tnk, v2rl, yak.ai, mig.ai, e6, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv, mcv.ai, dog, e1, e3, e4, volk, ftrk, btr, 2tnk, 3tnk, 4tnk, v2rl, yak.ai, mig.ai, e6, thf
 		NavalUnitsTypes: ss,ss.ag,msub,msub.aa,fsub
 		ConstructionYardTypes: fact
 		NavalProductionTypes: spen
@@ -1075,7 +1083,7 @@ Player:
 		SquadSizeRandomBonus: 2
 		RushInterval: 400
 		AttackScanRadius: 24
-		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e3, e4, volk, ftrk, btr, 2tnk, 3tnk, 4tnk, v2rl, ss, ss.ag, msub, msub.aa, fsub, e6, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv, mcv.ai, dog, e1, e3, e4, volk, ftrk, btr, 2tnk, 3tnk, 4tnk, v2rl, ss, ss.ag, msub, msub.aa, fsub, e6, thf
 		ConstructionYardTypes: fact
 	SquadManagerBotModule@kazakhstan:
 		RequiresCondition: enable-ai-player && player.kazakh
@@ -1083,7 +1091,7 @@ Player:
 		SquadSizeRandomBonus: 16
 		RushInterval: 400
 		AttackScanRadius: 16
-		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, ss, ss.ag, msub, msub.aa, scrp, yak.ai, mig.ai, e6, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv, mcv.ai, dog, ss, ss.ag, msub, msub.aa, scrp, yak.ai, mig.ai, e6, thf
 		ConstructionYardTypes: fact
 	SquadManagerBotModule@kazakhstan.sea:
 		RequiresCondition: enable-ai-player && player.kazakh
@@ -1091,7 +1099,7 @@ Player:
 		SquadSizeRandomBonus: 4
 		RushInterval: 400
 		AttackScanRadius: 24
-		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e3, e4, volk, mrtr, ftrk.kazakh, btr, 2tnk.soviet, 3tnk, 4tnk, v2rl, brdm, yak.ai, mig.ai, e6, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv, mcv.ai, dog, e1, e3, e4, volk, mrtr, ftrk.kazakh, btr, 2tnk.soviet, 3tnk, 4tnk, v2rl, brdm, yak.ai, mig.ai, e6, thf
 		NavalUnitsTypes: ss,ss.ag,msub,msub.aa,scrp
 		ConstructionYardTypes: fact
 		NavalProductionTypes: spen
@@ -1101,7 +1109,7 @@ Player:
 		SquadSizeRandomBonus: 2
 		RushInterval: 400
 		AttackScanRadius: 24
-		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e3, e4, volk, mrtr, ftrk.kazakh, btr, 2tnk.soviet, 3tnk, 4tnk, v2rl, brdm, ss, ss.ag, msub, msub.aa, scrp, e6, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv, mcv.ai, dog, e1, e3, e4, volk, mrtr, ftrk.kazakh, btr, 2tnk.soviet, 3tnk, 4tnk, v2rl, brdm, ss, ss.ag, msub, msub.aa, scrp, e6, thf
 		ConstructionYardTypes: fact
 	SquadManagerBotModule@uzbekistan:
 		RequiresCondition: enable-ai-player && player.uzbek
@@ -1109,7 +1117,7 @@ Player:
 		SquadSizeRandomBonus: 16
 		RushInterval: 400
 		AttackScanRadius: 16
-		ExcludeFromSquadsTypes: harv.soviet, mcv.uzbek, dog, ss, ss.ag, msub, msub.aa, yak.ai, mig.ai, e6.uzbek, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv.uzbek, mcv.uzbek.ai, dog, ss, ss.ag, msub, msub.aa, yak.ai, mig.ai, e6.uzbek, thf
 		ConstructionYardTypes: fact,fact.uzbek
 	SquadManagerBotModule@uzbekistan.sea:
 		RequiresCondition: enable-ai-player && player.uzbek
@@ -1117,7 +1125,7 @@ Player:
 		SquadSizeRandomBonus: 4
 		RushInterval: 400
 		AttackScanRadius: 24
-		ExcludeFromSquadsTypes: harv.soviet, mcv.uzbek, dog, e1, e2.uzbek, e3, e4, volk, rpg, ftrk, btr, 2tnk.soviet, 3tnk, 4tnk, v2rl, yak.ai, mig.ai, e6.uzbek, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv.uzbek, mcv.uzbek.ai, dog, e1, e2.uzbek, e3, e4, volk, rpg, ftrk, btr, 2tnk.soviet, 3tnk, 4tnk, v2rl, yak.ai, mig.ai, e6.uzbek, thf
 		NavalUnitsTypes: ss,ss.ag,msub,msub.aa
 		ConstructionYardTypes: fact,fact.uzbek
 		NavalProductionTypes: spen
@@ -1127,7 +1135,7 @@ Player:
 		SquadSizeRandomBonus: 2
 		RushInterval: 400
 		AttackScanRadius: 24
-		ExcludeFromSquadsTypes: harv.soviet, mcv.uzbek, dog, e1, e2.uzbek, e3, e4, volk, rpg, ftrk, btr, 2tnk.soviet, 3tnk, 4tnk, v2rl, ss, ss.ag, msub, msub.aa, e6.uzbek, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv.uzbek, mcv.uzbek.ai, dog, e1, e2.uzbek, e3, e4, volk, rpg, ftrk, btr, 2tnk.soviet, 3tnk, 4tnk, v2rl, ss, ss.ag, msub, msub.aa, e6.uzbek, thf
 		ConstructionYardTypes: fact,fact.uzbek
 	SquadManagerBotModule@turkmenistan:
 		RequiresCondition: enable-ai-player && player.turkmen
@@ -1135,7 +1143,7 @@ Player:
 		SquadSizeRandomBonus: 16
 		RushInterval: 400
 		AttackScanRadius: 16
-		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, ss, ss.ag, msub, msub.aa, yak.ai, mig.ai, e6, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv, mcv.ai, dog, ss, ss.ag, msub, msub.aa, yak.ai, mig.ai, e6, thf
 		ConstructionYardTypes: fact
 	SquadManagerBotModule@turkmenistan.sea:
 		RequiresCondition: enable-ai-player && player.turkmen
@@ -1143,7 +1151,7 @@ Player:
 		SquadSizeRandomBonus: 4
 		RushInterval: 400
 		AttackScanRadius: 24
-		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e3, e4, volk, mark, ftrk, btr, 2tnk.turkmen, 3tnk, 4tnk, v2rl, spg, yak.ai, mig.ai, e6, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv, mcv.ai, dog, e1, e3, e4, volk, mark, ftrk, btr, 2tnk.turkmen, 3tnk, 4tnk, v2rl, spg, yak.ai, mig.ai, e6, thf
 		NavalUnitsTypes: ss,ss.ag,msub,msub.aa
 		ConstructionYardTypes: fact
 		NavalProductionTypes: spen
@@ -1153,7 +1161,7 @@ Player:
 		SquadSizeRandomBonus: 2
 		RushInterval: 400
 		AttackScanRadius: 24
-		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e3, e4, volk, mark, ftrk, btr, 2tnk.turkmen, 3tnk, 4tnk, v2rl, spg, ss, ss.ag, msub, msub.aa, e6, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv, mcv.ai, dog, e1, e3, e4, volk, mark, ftrk, btr, 2tnk.turkmen, 3tnk, 4tnk, v2rl, spg, ss, ss.ag, msub, msub.aa, e6, thf
 		ConstructionYardTypes: fact
 	SquadManagerBotModule@afghanistan:
 		RequiresCondition: enable-ai-player && player.afghan
@@ -1161,7 +1169,7 @@ Player:
 		SquadSizeRandomBonus: 16
 		RushInterval: 400
 		AttackScanRadius: 16
-		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, ss, ss.ag, msub, msub.aa, yak.ai, mig.ai, e6, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv, mcv.ai, dog, ss, ss.ag, msub, msub.aa, yak.ai, mig.ai, e6, thf
 		ConstructionYardTypes: fact
 	SquadManagerBotModule@afghanistan.sea:
 		RequiresCondition: enable-ai-player && player.afghan
@@ -1169,7 +1177,7 @@ Player:
 		SquadSizeRandomBonus: 4
 		RushInterval: 400
 		AttackScanRadius: 24
-		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e3, e4, volk, shok, ftrk, btr, 2tnk.soviet, 3tnk, 4tnk, v2rl, ttnk, yak.ai, mig.ai, e6, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv, mcv.ai, dog, e1, e3, e4, volk, shok, ftrk, btr, 2tnk.soviet, 3tnk, 4tnk, v2rl, ttnk, yak.ai, mig.ai, e6, thf
 		NavalUnitsTypes: ss,ss.ag,msub,msub.aa,tbt
 		ConstructionYardTypes: fact
 		NavalProductionTypes: spen.russia
@@ -1179,7 +1187,7 @@ Player:
 		SquadSizeRandomBonus: 2
 		RushInterval: 400
 		AttackScanRadius: 24
-		ExcludeFromSquadsTypes: harv.soviet, mcv, dog, e1, e3, e4, volk, shok, ftrk, btr, 2tnk.soviet, 3tnk, 4tnk, v2rl, ttnk, ss, ss.ag, msub, msub.aa, e6, thf
+		ExcludeFromSquadsTypes: harv.soviet, mcv, mcv.ai, dog, e1, e3, e4, volk, shok, ftrk, btr, 2tnk.soviet, 3tnk, 4tnk, v2rl, ttnk, ss, ss.ag, msub, msub.aa, e6, thf
 		ConstructionYardTypes: fact
 	UnitBuilderBotModule@russia:
 		RequiresCondition: enable-ai-player && player.russia
@@ -1202,6 +1210,7 @@ Player:
 			volk: 1
 			e6: 2
 			thf: 2
+			mcv.ai: 1
 		UnitLimits:
 			dog: 4
 			harv.soviet: 8
@@ -1209,6 +1218,7 @@ Player:
 			volk: 1
 			e6: 2
 			thf: 2
+			mcv.ai: 1
 	UnitBuilderBotModule@russia.sea:
 		RequiresCondition: enable-ai-player && player.russia
 		IdleBaseUnitsMaximum: 6
@@ -1254,6 +1264,7 @@ Player:
 			volk: 1
 			e6: 2
 			thf: 2
+			mcv.ai: 1
 		UnitLimits:
 			dog: 4
 			harv.soviet: 8
@@ -1261,6 +1272,7 @@ Player:
 			volk: 1
 			e6: 2
 			thf: 2
+			mcv.ai: 1
 	UnitBuilderBotModule@ukraine.sea:
 		RequiresCondition: enable-ai-player && player.ukraine
 		IdleBaseUnitsMaximum: 6
@@ -1307,6 +1319,7 @@ Player:
 			volk: 1
 			e6: 2
 			thf: 2
+			mcv.ai: 1
 		UnitLimits:
 			dog: 4
 			harv.belarus: 8
@@ -1315,6 +1328,7 @@ Player:
 			e6: 2
 			e5: 3
 			thf: 2
+			mcv.ai: 1
 	UnitBuilderBotModule@belarus.sea:
 		RequiresCondition: enable-ai-player && player.belarus
 		IdleBaseUnitsMaximum: 6
@@ -1358,6 +1372,7 @@ Player:
 			volk: 1
 			e6: 2
 			thf: 2
+			mcv.ai: 1
 		UnitLimits:
 			dog: 4
 			harv.soviet: 8
@@ -1365,6 +1380,7 @@ Player:
 			volk: 1
 			e6: 2
 			thf: 2
+			mcv.ai: 1
 	UnitBuilderBotModule@karelia.sea:
 		RequiresCondition: enable-ai-player && player.karelia
 		IdleBaseUnitsMaximum: 6
@@ -1412,6 +1428,7 @@ Player:
 			volk: 1
 			e6: 2
 			thf: 2
+			mcv.ai: 1
 		UnitLimits:
 			dog: 4
 			harv.soviet: 8
@@ -1419,6 +1436,7 @@ Player:
 			volk: 1
 			e6: 2
 			thf: 2
+			mcv.ai: 1
 	UnitBuilderBotModule@kazakhstan.sea:
 		RequiresCondition: enable-ai-player && player.kazakh
 		IdleBaseUnitsMaximum: 6
@@ -1465,6 +1483,7 @@ Player:
 			volk: 1
 			e6.uzbek: 2
 			thf: 2
+			mcv.uzbek.ai: 1
 		UnitLimits:
 			dog: 4
 			harv.soviet: 8
@@ -1473,6 +1492,7 @@ Player:
 			e6.uzbek: 2
 			thf: 2
 			rpg: 3
+			mcv.uzbek.ai: 1
 	UnitBuilderBotModule@uzbekistan.sea:
 		RequiresCondition: enable-ai-player && player.uzbek
 		IdleBaseUnitsMaximum: 6
@@ -1517,6 +1537,7 @@ Player:
 			volk: 1
 			e6: 2
 			thf: 2
+			mcv.ai: 1
 		UnitLimits:
 			dog: 4
 			harv.soviet: 8
@@ -1524,6 +1545,7 @@ Player:
 			volk: 1
 			e6: 2
 			thf: 2
+			mcv.ai: 1
 	UnitBuilderBotModule@turkmenistan.sea:
 		RequiresCondition: enable-ai-player && player.turkmen
 		IdleBaseUnitsMaximum: 6
@@ -1567,6 +1589,7 @@ Player:
 			volk: 1
 			e6: 2
 			thf: 2
+			mcv.ai: 1
 		UnitLimits:
 			dog: 4
 			harv.soviet: 8
@@ -1574,6 +1597,7 @@ Player:
 			volk: 1
 			e6: 2
 			thf: 2
+			mcv.ai: 1
 	UnitBuilderBotModule@afghanistan.sea:
 		RequiresCondition: enable-ai-player && player.afghan
 		IdleBaseUnitsMaximum: 6

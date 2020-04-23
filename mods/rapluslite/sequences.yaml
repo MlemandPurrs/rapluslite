@@ -1175,3 +1175,7 @@ carr.usa.deployed:
 b2:
 	idle:
 		Facings: 16
+
+chronoappear:
+	idle: chronofade
+		Length: *

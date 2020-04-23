@@ -53,6 +53,7 @@ FACT:
 		UseDeathTypeSuffix: false
 	SpawnActorOnDeath:
 		Actor: fact.husk
+		OwnerType: InternalName
 	Armor:
 		Type: Concrete
 	#	SpawnActorPower@CashReserves:
@@ -208,6 +209,7 @@ POWR:
 		UseDeathTypeSuffix: false
 	SpawnActorOnDeath:
 		Actor: powr.husk
+		OwnerType: InternalName
 	-ActorPreviewPlaceBuildingPreview:
 	SequencePlaceBuildingPreview:
 		Sequence: place
@@ -262,6 +264,7 @@ APWR:
 		UseDeathTypeSuffix: false
 	SpawnActorOnDeath:
 		Actor: apwr.husk
+		OwnerType: InternalName
 	-ActorPreviewPlaceBuildingPreview:
 	SequencePlaceBuildingPreview:
 		Sequence: place
@@ -353,6 +356,7 @@ TENT:
 		RequiresCondition: !build-incomplete
 	SpawnActorOnDeath:
 		Actor: tent.husk
+		OwnerType: InternalName
 	-ActorPreviewPlaceBuildingPreview:
 	SequencePlaceBuildingPreview:
 		Sequence: place
@@ -441,6 +445,7 @@ BARR:
 		RequiresCondition: !build-incomplete
 	SpawnActorOnDeath:
 		Actor: barr.husk
+		OwnerType: InternalName
 	-ActorPreviewPlaceBuildingPreview:
 	SequencePlaceBuildingPreview:
 		Sequence: place
@@ -491,6 +496,7 @@ KENN:
 		PauseOnCondition: disabled || build-incomplete
 	SpawnActorOnDeath:
 		Actor: kenn.husk
+		OwnerType: InternalName
 	-Capturable:
 	-CaptureManager:
 	-CapturableProgressBar:
@@ -583,6 +589,14 @@ PROC.ERCC:
 		Prerequisite: proc
 	SpawnActorOnDeath:
 		Actor: proc.husk
+		OwnerType: InternalName
+	ResourcePurifier@incomeplayerboost:
+		Modifier: 20
+		RequiresCondition: ore-purifier-on
+		ShowTicks: False
+	GrantConditionOnPrerequisite@incomeplayerboost:
+		Condition: ore-purifier-on
+		Prerequisites: oprf
 
 PROC.Soviet:
 	Inherits: PROC.ERCC
@@ -640,12 +654,60 @@ SILO:
 	-InfiltrateForCash:
 	SpawnActorOnDeath:
 		Actor: silo.husk
+		OwnerType: InternalName
 	GrantConditionOnPrerequisite@moneyprinter:
 		Condition: moneyprinter
 		Prerequisites: moneyprinter
 	GrantConditionOnPrerequisite@SPAINBONUS:
 		Condition: is.spanish
 		Prerequisites: player.spain
+
+OPRF:
+	Inherits: ^ScienceBuilding
+	Inherits@shape: ^3x2Shape
+	Selectable:
+		Bounds: 72,56
+		DecorationBounds: 73,72
+	HitShape:
+		TargetableOffsets: 420,-768,0, 420,768,0, -770,-768,0, -770,768,0
+	Buildable:
+		Queue: Building
+		BuildPaletteOrder: 16
+		BuildLimit: 1
+		Prerequisites: techcenter, ~structures.allies, ~techlevel.high
+		Description: Refines Ore, Scrap and Gems\nincreasing your income by 20%\nMaximum 1 can be built.\nRequires Power to operate.
+	Valued:
+		Cost: 2500
+	Tooltip:
+		Name: Ore Purifier
+	ProvidesPrerequisite@OREPURIFIER:
+		Prerequisites: oprf
+		RequiresCondition: disabled || empdisable
+	Building:
+		Footprint: XxX XxX
+		Dimensions: 3,2
+		LocalCenterOffset: 0,-512,0
+	Health:
+		HP: 80000
+	Armor:
+		Type: Wood
+	RevealsShroud:
+		Range: 5c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	WithBuildingBib:
+	#	ResourcePurifier:
+	#	Modifier: 25
+	#	RequiresCondition: !disabled
+	Power:
+		Amount: -150
+	WithDeathAnimation:
+		DeathSequence: dead
+		UseDeathTypeSuffix: false
+	RenderSprites:
+		Image: rresf
+	-MapEditorData:
 
 WEAP:
 	Inherits@IDISABLE: ^DisableOnPowerDown
@@ -742,6 +804,7 @@ WEAP:
 		Condition: produced
 	SpawnActorOnDeath:
 		Actor: weap.husk
+		OwnerType: InternalName
 	GrantConditionOnPrerequisite@MAINTENANCE:
 		Condition: maintenance
 		Prerequisites: maintenance
@@ -820,6 +883,7 @@ FIX:
 		PauseOnCondition: disabled || build-incomplete
 	SpawnActorOnDeath:
 		Actor: fix.husk
+		OwnerType: InternalName
 	GrantExternalConditionPower@FortifyArmor:
 		PauseOnCondition: disabled || lowpower
 		OrderName: FortifyArmor
@@ -929,7 +993,7 @@ FIX:
 		SelectTargetSpeechNotification: SelectTarget
 		InsufficientPowerSpeechNotification: InsufficientPower
 		Condition: overcharged
-		Cursor: gps-target
+		Cursor: nitro-target
 		Sequence: none
 		SupportPowerPaletteOrder: 2
 	#	why have an dedicated suicide bomber unit when you can turn any infantry into suicide bombers.
@@ -1211,6 +1275,68 @@ FIX.Afghan:
 		Prerequisite: fix
 	-MapEditorData:
 
+INDP:
+	Inherits: ^ScienceBuilding
+	Inherits@IDISABLE: ^DisableOnLowPower
+	Inherits@shape: ^3x2Shape
+	Selectable:
+		Bounds: 72,56
+		DecorationBounds: 73,72
+	HitShape:
+		UseTargetableCellsOffsets: false
+		TargetableOffsets: 0,0,0, 640,-384,0, 640,512,0, -710,-512,0, -710,512,0
+	Buildable:
+		Queue: Building
+		BuildPaletteOrder: 16
+		BuildLimit: 1
+		Prerequisites: techcenter, ~structures.soviet, ~techlevel.high
+		Description: Industrial production facility.\nReduces cost of Vehicle, Ship and Aircraft by 20%\nand increases production speed by 10%\nMaximum one can be built.\nRequires Power to operate.
+	Valued:
+		Cost: 2500
+	Tooltip:
+		Name: Industrial Plant
+	Building:
+		Footprint: XxX XxX
+		Dimensions: 3,2
+		LocalCenterOffset: 0,-512,0
+	Health:
+		HP: 80000
+	Armor:
+		Type: Wood
+	RevealsShroud:
+		Range: 5c0
+		RevealGeneratedShroud: False
+	RevealsShroud@GAPGEN:
+		Range: 4c0
+	WithBuildingBib:
+	Power:
+		Amount: -150
+	ProvidesPrerequisite@buildingname:
+	WithDeathAnimation:
+		DeathSequence: dead
+		UseDeathTypeSuffix: false
+	WithSpriteBody:
+		PauseOnCondition: disabled
+	RenderSprites:
+		Image: indp
+	-ActorPreviewPlaceBuildingPreview:
+	SequencePlaceBuildingPreview:
+		Sequence: place
+		SequencePalette: placebuilding
+	ProvidesPrerequisite@disabled:
+		Prerequisite: indplowpower
+		RequiresCondition: disabled || empdisable
+	ProductionCostMultiplier@Russia:
+		Multiplier: 90
+		Prerequisites: player.russia
+	Explodes@RUMALUS:
+		Weapon: Demolish
+		DamageThreshold: 10
+		RequiresCondition: is.russian 
+	GrantConditionOnPrerequisite@RUMALUS:
+		Condition: is.russian
+		Prerequisites: player.russia
+
 DOME:
 	Inherits@RIGEXPLOSIVE: ^AffectedByBoobyTrap
 	Building:
@@ -1242,6 +1368,7 @@ DOME:
 		RequiresCondition: !jammed && !disabled && !build-incomplete
 	SpawnActorOnDeath:
 		Actor: dome.husk
+		OwnerType: InternalName
 	Power:
 		RequiresCondition: !build-incomplete
 
@@ -1805,7 +1932,7 @@ ATEK:
 		Description: Provides Allied advanced technologies.\nMaximum one can be built.\nCan be Infiltrated by an Spy or Thief for\nunlocking Tech unit production.
 		BuildPaletteOrder: 12
 	Valued:
-		Cost: 1500
+		Cost: 2000
 	Tooltip:
 		Name: Allied Tech Center
 	ProvidesPrerequisite:
@@ -2007,6 +2134,7 @@ ATEK:
 		Types: SpyInfiltrate, ThiefInfiltrate
 	SpawnActorOnDeath:
 		Actor: ateknew.husk
+		OwnerType: InternalName
 	WithColoredOverlay@IDISABLE:
 		RequiresCondition: disabled
 		Palette: disabled
@@ -2024,7 +2152,7 @@ ATEK.Usa:
 	Inherits: ATEK
 	Buildable:
 		BuildLimit: 1
-		Prerequisites: weap, dome, ~structures.allies, ~player.usa, ~techlevel.high
+		Prerequisites: afldorweap, dome, ~structures.allies, ~player.usa, ~techlevel.high
 		Description: Provides Allied advanced technologies.\nMaximum one can be built.\nCan be Infiltrated by an Spy or Thief for\nunlocking Tech unit production.\n  Special Ability: Stealth Bomber\nReveals map terrain and provides tactical information\n (Requires power and active radar to operate)\n  Special Ability: Stealth Paraboms\nA cloaked B-2 drops parachuted bombs on your target.
 	RenderSprites:
 		Image: ateknew
@@ -2036,7 +2164,7 @@ ATEK.England:
 	Inherits: ATEK
 	Buildable:
 		BuildLimit: 1
-		Prerequisites: weap, dome, ~structures.allies, ~player.england, ~techlevel.high
+		Prerequisites: afldorweap, dome, ~structures.allies, ~player.england, ~techlevel.high
 		Description: Provides Allied advanced technologies.\nMaximum one can be built.\nCan be Infiltrated by an Spy or Thief for\nunlocking Tech unit production.\n  Special Ability: GPS Scrambler\n Renders an group of units temporarily\nInvisible aslong they are not firing.
 	RenderSprites:
 		Image: ateknew
@@ -2048,7 +2176,7 @@ ATEK.France:
 	Inherits: ATEK
 	Buildable:
 		BuildLimit: 1
-		Prerequisites: weap, dome, ~structures.allies, ~player.france, ~techlevel.high
+		Prerequisites: afldorweap, dome, ~structures.allies, ~player.france, ~techlevel.high
 		Description: Provides Allied advanced technologies.\nMaximum one can be built.\nCan be Infiltrated by an Spy or Thief for\nunlocking Tech unit production.\n  Special Ability: Mustard Gas\nFires an Mustard gas shell to targeted position.\nCauses Infantry in radius to be supressed\nand take damage equal to 20% of their Health over time.
 	RenderSprites:
 		Image: ateknew
@@ -2060,7 +2188,7 @@ ATEK.Germany:
 	Inherits: ATEK
 	Buildable:
 		BuildLimit: 1
-		Prerequisites: weap, dome, ~structures.allies, ~player.germany, ~techlevel.high
+		Prerequisites: afldorweap, dome, ~structures.allies, ~player.germany, ~techlevel.high
 		Description: Provides Allied advanced technologies.\nMaximum one can be built.\nCan be Infiltrated by an Spy or Thief for\nunlocking Tech unit production.\n  Special Ability: Field Repair\nRepairs vehicles for 30% of their maximum health\nin a small area over time for an short duration.
 	RenderSprites:
 		Image: ateknew
@@ -2072,7 +2200,7 @@ ATEK.Spain:
 	Inherits: ATEK
 	Buildable:
 		BuildLimit: 1
-		Prerequisites: weap, dome, ~structures.allies, ~player.spain, ~techlevel.high
+		Prerequisites: afldorweap, dome, ~structures.allies, ~player.spain, ~techlevel.high
 		Description: Provides Allied advanced technologies.\nMaximum one can be built.\nCan be Infiltrated by an Spy or Thief for\nunlocking Tech unit production.\n  Special Ability: Cluster Shell\nLaunches an Artillery cluster shell,\ncausing damage over a large area.
 	RenderSprites:
 		Image: ateknew
@@ -2084,7 +2212,7 @@ ATEK.Italy:
 	Inherits: ATEK
 	Buildable:
 		BuildLimit: 1
-		Prerequisites: weap, dome, ~structures.allies, ~player.italy, ~techlevel.high
+		Prerequisites: afldorweap, dome, ~structures.allies, ~player.italy, ~techlevel.high
 		Description: Provides Allied advanced technologies.\nMaximum one can be built.\nCan be Infiltrated by an Spy or Thief for\nunlocking Tech unit production.\n  Special Ability: Chrono Bomb\nChronoshifts a Bomb Crate to desired position.\nThe bomb detonates after 30 seconds or when picked up.
 	RenderSprites:
 		Image: ateknew
@@ -2096,7 +2224,7 @@ ATEK.Greece:
 	Inherits: ATEK
 	Buildable:
 		BuildLimit: 1
-		Prerequisites: weap, dome, ~structures.allies, ~player.greece, ~techlevel.high
+		Prerequisites: afldorweap, dome, ~structures.allies, ~player.greece, ~techlevel.high
 		Description: Provides Allied advanced technologies.\nMaximum one can be built.\nCan be Infiltrated by an Spy or Thief for\nunlocking Tech unit production.\n  Special Ability: Tech Inhibitor\nTarget your enemy's Tech Center to shut it down for 3 minutes duration.\nThe opponent will not able to create most advanced arsenal while it lasts.
 	RenderSprites:
 		Image: ateknew
@@ -2108,7 +2236,7 @@ ATEK.Turkey:
 	Inherits: ATEK
 	Buildable:
 		BuildLimit: 1
-		Prerequisites: weap, dome, ~structures.allies, ~player.turkey, ~techlevel.high
+		Prerequisites: afldorweap, dome, ~structures.allies, ~player.turkey, ~techlevel.high
 		Description: Provides Allied advanced technologies.\nMaximum one can be built.\nCan be Infiltrated by an Spy or Thief for\nunlocking Tech unit production.\n  Special Ability: Paranuke\nA fast plane drops an Paranuke on your target.\nThe warhead is an low yield nuclear detonation,\nthat is more effective against units rather than structures.
 	RenderSprites:
 		Image: ateknew
@@ -2297,6 +2425,7 @@ STEK:
 		Types: SpyInfiltrate, ThiefInfiltrate
 	SpawnActorOnDeath:
 		Actor: stek.husk
+		OwnerType: InternalName
 	WithColoredOverlay@IDISABLE:
 		RequiresCondition: disabled
 		Palette: disabled
@@ -2316,6 +2445,11 @@ STEK:
 		CloneableTypes: Soldier
 		RequiresCondition: conscription && !disabled
 	Exit@1:
+		RequiresCondition: !being-captured
+		SpawnOffset: -725,640,0
+		ExitCell: 0,1
+		ProductionTypes: Soldier, Infantry
+	Exit@2:
 		RequiresCondition: !being-captured
 		SpawnOffset: -725,640,0
 		ExitCell: 0,1
@@ -2492,6 +2626,7 @@ SPRO:
 		TargetTypes: Ground, C4, DetonateAttack, Structure, SpyInfiltrate
 	SpawnActorOnDeath:
 		Actor: atek.husk
+		OwnerType: InternalName
 	InfiltrateForExploration:
 		Types: SpyInfiltrate
 	RenderSprites:
@@ -2741,6 +2876,7 @@ AFLD:
 		PauseOnCondition: disabled || build-incomplete
 	SpawnActorOnDeath:
 		Actor: afld.husk
+		OwnerType: InternalName
 	-ActorPreviewPlaceBuildingPreview:
 	SequencePlaceBuildingPreview:
 		Sequence: place
@@ -2897,6 +3033,7 @@ HPAD:
 		Prerequisite: aircraft.afghan
 	SpawnActorOnDeath:
 		Actor: hpad.husk
+		OwnerType: InternalName
 	#	Power usage in tooltip does not update properly,
 	#	works otherwise, alas its weird so cannot use.
 	#	-Power:
@@ -3235,15 +3372,16 @@ GAP:
 		Cost: 1000
 	CreatesShroud:
 		Range: 9c0
-		RequiresCondition: !disabled && !build-incomplete && !being-captured
+		RequiresCondition: !disabled && !build-incomplete
 	Power:
 		Amount: -80
 		RequiresCondition: !build-incomplete
 	WithSpriteBody:
-		PauseOnCondition: disabled || being-captured
+		PauseOnCondition: disabled
 	ProvidesPrerequisite@buildingname:
 	SpawnActorOnDeath:
 		Actor: gap.husk
+		OwnerType: InternalName
 	-ActorPreviewPlaceBuildingPreview:
 	SequencePlaceBuildingPreview:
 		Sequence: place
@@ -3475,6 +3613,8 @@ HBOX:
 	DetectCloaked:
 		Range: 3c0
 		RequiresCondition: hasinside && !build-incomplete
+	Cloak:
+		PauseOnCondition: cloak-force-disabled || build-incomplete
 	-WithColoredOverlay@EMPDISABLE:
 	-TimedConditionBar@EMPDISABLE:
 	-WithIdleOverlay@EMPDISABLE:
@@ -3575,10 +3715,12 @@ FTUR.popup:
 		InitialDelay: 125
 		CloakDelay: 75
 		IsPlayerPalette: true
-		PauseOnCondition: cloak-force-disabled || empdisable
+		PauseOnCondition: cloak-force-disabled || empdisable || is-shooting 
 	GrantConditionOnDamageState@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
+	GrantConditionWhileAiming@UNCLOAK:
+		Condition: is-shooting
 	RenderSprites:
 		Image: ftur.hidden
 	-WithBuildingBib:
@@ -3589,6 +3731,7 @@ TSLA:
 	Buildable:
 		BuildPaletteOrder: 5
 		Prerequisites: dome, ~structures.soviet, ~!player.russia, ~!player.uzbek, ~!player.karelia, ~techlevel.medium
+		Description: Advanced base defense.\nTesla briefly short-circuits Vehicle and Ships.\nCan detect cloaked units.\n  Strong vs Vehicles, Infantry\n  Weak vs Aircraft
 	Valued:
 		Cost: 1200
 	DetectCloaked:
@@ -3644,7 +3787,7 @@ TSLA.russia:
 	Inherits: TSLA
 	Buildable:
 		Prerequisites: dome, ~structures.soviet, ~player.russia, ~techlevel.medium
-		Description: Advanced base defense.\nRequires power to operate.\nCan be charged by Shock Troopers if lowpower.\nCan detect cloaked units.\n  Strong vs Vehicles, Infantry\n  Weak vs Aircraft
+		Description: Advanced base defense.\nTesla briefly short-circuits Vehicle and Ships.\nCan be charged by Shock Troopers if lowpower.\nCan detect cloaked units.\n  Strong vs Vehicles, Infantry\n  Weak vs Aircraft
 	Power:
 		Amount: -80
 	RenderSprites:
@@ -3696,14 +3839,6 @@ GUN:
 		Turret: default-turret
 		TurnSpeed: 12
 		InitialFacing: 224
-		RequiresCondition: !lowpower
-		PauseOnCondition: lowpower
-	Turreted@lowpower:
-		Turret: lowpower-turret
-		TurnSpeed: 6
-		InitialFacing: 224
-		RequiresCondition: lowpower
-		PauseOnCondition: !lowpower
 	-Armament:
 	Armament@default:
 		Turret: default-turret
@@ -3711,16 +3846,8 @@ GUN:
 		LocalOffset: 512,0,112
 		MuzzleSequence: muzzle
 		PauseOnCondition: disabled
-		RequiresCondition: !lowpower
-	Armament@lowpower:
-		Turret: lowpower-turret
-		Weapon: TurretGun
-		LocalOffset: 512,0,112
-		MuzzleSequence: muzzle
-		PauseOnCondition: disabled
-		RequiresCondition: lowpower
 	AttackTurreted:
-		Turrets: default-turret, lowpower-turret
+		Turrets: default-turret
 		PauseOnCondition: disabled
 		RequiresCondition: !build-incomplete
 	GrantConditionOnPowerState@LOWPOWER:
@@ -3734,19 +3861,7 @@ GUN:
 	WithSpriteTurret@NORMAL:
 		Sequence: turret-normal
 		Turret: default-turret
-		RequiresCondition: !build-incomplete && !damaged && !lowpower
-	WithSpriteTurret@NORMALLOWPOWER:
-		Sequence: turret-normal
-		Turret: lowpower-turret
-		RequiresCondition: !build-incomplete && !damaged && lowpower
-	WithSpriteTurret@DAMAGED:
-		Sequence: turret-damaged
-		Turret: default-turret
-		RequiresCondition: !build-incomplete && damaged && !lowpower
-	WithSpriteTurret@DAMAGEDLOWPOWER:
-		Sequence: turret-damaged
-		Turret: lowpower-turret
-		RequiresCondition: !build-incomplete && damaged && lowpower
+		RequiresCondition: !build-incomplete
 	RenderSprites: 
 		Image: gun2
 	Power:
@@ -3758,23 +3873,14 @@ GUN.Italy:
 		BuildPaletteOrder: 4
 		Prerequisites: weap, ~structures.allies, ~player.italy, ~techlevel.medium
 	Power:
-		Amount: -30		
+		Amount: -30
 	-Armament@default:
-	-Armament@lowpower:	
 	Armament@default:
 		Turret: default-turret
 		Weapon: TurretGun.Italy
 		LocalOffset: 512,0,112
 		MuzzleSequence: muzzle
 		PauseOnCondition: disabled
-		RequiresCondition: !lowpower
-	Armament@lowpower:
-		Turret: lowpower-turret
-		Weapon: TurretGun.Italy
-		LocalOffset: 512,0,112
-		MuzzleSequence: muzzle
-		PauseOnCondition: disabled
-		RequiresCondition: lowpower
 	RenderSprites:
 		Image: gun2
 	-MapEditorData:
@@ -3903,6 +4009,7 @@ PDOX:
 	-ProvidesPrerequisite@germanstructure:
 	ChronoshiftPower@chronoshift:
 		OrderName: ChronoshiftPower
+		Prerequisites: !enable-ai-player
 		PauseOnCondition: disabled
 		Icon: chrono
 		ChargeInterval: 4500
@@ -3918,6 +4025,32 @@ PDOX:
 		Range: 2
 		SupportPowerPaletteOrder: 5
 	-ChronoshiftPower@advancedchronoshift:
+	#	because AI too dumb to make use of Chronoshift.
+	#	oops, DetonateWeaponPower does not exist,
+	#	uhh, we dont have SpawnActorWarhead either...
+	#	DetonateWeaponPower@ChronoAI:
+	#	OrderName: ChronoReinforcements
+	#	Prerequisites: enable-ai-player
+	#	Icon: chrono
+	#	Cursor: ability
+	#	ChargeInterval: 7000
+	#	Description: Chrono Reinforcements
+	#	ActivationDelay: 25
+	#	LongDesc: Teleports in a group of Vehicles\nanywhere on the map.
+	#	Weapon: ChronoAI
+	#	AirburstAltitude: 0c0
+	#	AllowMultiple: false
+	#	CameraActor: camera
+	#	CameraRemoveDelay: 375
+	#	SelectTargetSpeechNotification: SelectTarget
+	#	InsufficientPowerSpeechNotification: InsufficientPower
+	#	BeginChargeSpeechNotification: ChronosphereCharging
+	#	EndChargeSpeechNotification: ChronosphereReady
+	#	DisplayTimerStances: Ally, Neutral, Enemy
+	#	PauseOnCondition: disabled
+	#	DisplayRadarPing: True
+	#	LaunchSound: chrono2.aud
+	#	IncomingSound: chrono2.aud
 	-SpawnActorsOnSell:
 	Power:
 		RequiresCondition: !build-incomplete
@@ -4061,12 +4194,18 @@ HSAM:
 		PauseOnCondition: disabled
 	Cloak:
 		InitialDelay: 125
-		CloakDelay: 60
+		CloakDelay: 75
 		IsPlayerPalette: true
-		PauseOnCondition: cloak-force-disabled
+		PauseOnCondition: cloak-force-disabled || build-incomplete || is-shooting 
 	GrantConditionOnDamageState@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
+	GrantConditionOnAttack@UNCLOAK:
+		Condition: is-shooting
+		ArmamentNames: primary
+		RevokeDelay: 75
+	#	GrantConditionWhileAiming@UNCLOAK:
+	#	Condition: is-shooting
 	-WithBuildingBib:
 	Power:
 		RequiresCondition: !build-incomplete
@@ -4246,6 +4385,7 @@ OILB:
 		ResetOnOwnerChange: True
 	SpawnActorOnDeath:
 		Actor: OILB.Husk
+		OwnerType: InternalName
 	WithColoredOverlay@ECOSABOTAGE:
 		Palette: ecosabot
 		RequiresCondition: ecosabotage
@@ -4262,11 +4402,13 @@ MISS:
 	Inherits@RIGEXPLOSIVE: ^AffectedByBoobyTrapNeutral
 	SpawnActorOnDeath:
 		Actor: MISS.Husk
+		OwnerType: InternalName
 
 HOSP:
 	Inherits@RIGEXPLOSIVE: ^AffectedByBoobyTrapNeutral
 	SpawnActorOnDeath:
 		Actor: HOSP.Husk
+		OwnerType: InternalName
 
 BIO:
 	Inherits@POWER_OUTAGE: ^DisabledByPowerOutage
@@ -4285,6 +4427,7 @@ BIO:
 		ValidStances: Neutral, Enemy
 	SpawnActorOnDeath:
 		Actor: BIO.Husk
+		OwnerType: InternalName
 
 FCOM:
 	Inherits@RIGEXPLOSIVE: ^AffectedByBoobyTrapNeutral
@@ -4292,6 +4435,7 @@ FCOM:
 		Image: acom
 	SpawnActorOnDeath:
 		Actor: FCOM.Husk
+		OwnerType: InternalName
 
 AFLDORWEAP:
 	AlwaysVisible:
