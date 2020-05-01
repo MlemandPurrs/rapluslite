@@ -688,7 +688,7 @@ OPRF:
 	Tooltip:
 		Name: Ore Purifier
 	ProvidesPrerequisite@OREPURIFIER:
-		Prerequisites: oprf
+		Prerequisite: oprf
 		RequiresCondition: disabled || empdisable
 	Building:
 		Footprint: XxX XxX
@@ -3863,8 +3863,6 @@ GUN:
 	-SpawnActorsOnSell:
 	-WithEmbeddedTurretSpriteBody:
 	WithSpriteBody:
-	GrantConditionOnDamageState:
-		Condition:	damaged
 	WithSpriteTurret@NORMAL:
 		Sequence: turret-normal
 		Turret: default-turret
