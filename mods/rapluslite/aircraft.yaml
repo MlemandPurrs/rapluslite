@@ -1348,6 +1348,7 @@ BMIN:
 		LandableTerrainTypes: none
 		Repulsable: True
 		IdealSeparation: 0c256
+		InitialFacing: 192
 	-Explodes:
 	Explodes@UNITEXPLODES:
 		Weapon: AAMine
