@@ -175,7 +175,7 @@ Player:
 					Types: Air, Ground, Water
 					Attractiveness: -10
 					TargetMetric: Value
-					CheckRadius: 7c0			
+					CheckRadius: 7c0
 			UseNuclear:
 				OrderName: NukeMissile
 				MinimumAttractiveness: 3000

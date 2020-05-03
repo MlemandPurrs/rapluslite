@@ -1029,6 +1029,9 @@ cossack:
 ally-yak:
 	idle:
 		Facings: 16
+	muzzle: minigun
+		Length: 6
+		Facings: 8
 	icon: yakallyicon
 
 ally-mig:
@@ -1169,7 +1172,11 @@ carr.usa.deployed:
 	idle: acar
 		Start: 24
 		Length: 1
-		ZOffset: -1023	
+		ZOffset: -1023
+	active: acar
+		Start: 24
+		Length: 1
+		ZOffset: -1023
 	icon: carricon
 
 b2:

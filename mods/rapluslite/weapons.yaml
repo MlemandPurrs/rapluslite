@@ -20,7 +20,7 @@
 25mm.burst:
 	Inherits: 25mm
 	ReloadDelay: 27
-    Burst: 3
+	Burst: 3
 	BurstDelays: 9
 	Projectile:
 		Inaccuracy: 0c768
@@ -49,6 +49,15 @@
 70mm.decoy.zero:
 	Inherits: 70mm.decoy
 	ReloadDelay: 1
+
+90mm.burst:
+	Inherits: 90mm
+	Range: 6c0
+	#	ReloadDelay: 27
+	Burst: 3
+	BurstDelays: 9
+	Projectile:
+		Inaccuracy: 0c768
 
 90mm.britain:
 	Inherits: 90mm
@@ -124,7 +133,7 @@ SCUD.ukraine:
 		LaunchAngle: 62
 
 TeslaZap:
-	Range: 8c0	
+	Range: 8c0
 	InvalidTargets: EMPTank
 	Warhead@2: GrantExternalCondition
 		Range: 0c256
@@ -567,6 +576,15 @@ ATMine:
 	Projectile: Bullet
 		Speed: 724
 
+2Inch.burst:
+	Inherits: 2Inch
+	Range: 6c0
+	ReloadDelay: 60
+	Burst: 3
+	BurstDelays: 9
+	Projectile:
+		Inaccuracy: 0c768
+
 8Inch.singular:
 	Inherits: 8Inch
 	ReloadDelay: 65
@@ -731,11 +749,11 @@ MaverickAA:
 		ValidTargets: Water, Underwater
 		InvalidTargets: Ship, Structure, Bridge
 
-#	the sound will be incorrect
-203mm2shot6volley:
+203mm.behe:
 	Inherits: 203mm
-	Burst: 6
-	BurstDelays: 8, 16, 8, 16, 8
+	Projectile: Bullet
+		LaunchAngle: 124
+		Shadow: true
 
 TTankZap:
 	InvalidTargets: EMPTank
@@ -889,10 +907,12 @@ BombingRun.ag:
 	Burst: 5
 	BurstDelays: 6
 	Range: 2c512
+	TargetActorCenter: true
+	Report: bwhis.aud
 	Projectile: GravityBomb
 		Velocity: 72, 0, -90
 		Acceleration: 0, 0, -8
-		Image: BOMB
+		Image: 120mm
 		Shadow: true
 	Warhead@1Dam: SpreadDamage
 		Spread: 128
@@ -960,25 +980,49 @@ ASMine:
 		ImpactSounds: mineblo1.aud
 		ValidTargets: Underwater
 
+Stinger:
+	Inherits: ^AntiGroundMissile
+	ReloadDelay: 60
+	Range: 7c512
+	Burst: 2
+	BurstDelays: 0
+	InvalidTargets: Underwater
+	Projectile: Missile
+		Arm: 3
+		Inaccuracy: 0
+		HorizontalRateOfTurn: 20
+		RangeLimit: 9c512
+		Speed: 170
+		CloseEnough: 149
+	Warhead@1Dam: SpreadDamage
+		Damage: 2500
+		Versus:
+			None: 36
+			Wood: 88
+			Light: 88
+			Heavy: 120
+			Concrete: 60
+
 Kornet:
 	Inherits: ^AntiGroundMissile
-	Range: 6c768
+	Range: 7c512
 	Report: missile6.aud
 	ValidTargets: Ground
 	Projectile: Missile
 		Arm: 2
-		HorizontalRateOfTurn: 5
+		HorizontalRateOfTurn: 10
+		RangeLimit: 9c512
 		Speed: 256
-		RangeLimit: 9c204
+		CloseEnough: 149
 	Warhead@1Dam: SpreadDamage
 		Spread: 0c768
 		Damage: 5000
 		ValidTargets: Ground
 		Versus:
-			None: 10
-			Wood: 80
-			Light: 40
-			Heavy: 100
+			None: 20
+			Wood: 40
+			Light: 80
+			Heavy: 150
 	Warhead@3Eff: CreateEffect
 		Explosions: large_explosion
 		ImpactSounds: xplos.aud
@@ -1207,7 +1251,11 @@ Thermobaric:
 
 PortaNike:
 	Inherits: Nike
-	ReloadDelay: 60
+	ReloadDelay: 50
+	Projectile: Missile
+		RangeLimit: 12c0
+		HorizontalRateOfTurn: 10
+		Speed: 384
 
 NukeBomb:
 	ReloadDelay: 10
@@ -1726,8 +1774,8 @@ MADTankThump:
 		Versus:
 			None: 50
 		DamageTypes: Prone50Percent, TriggerProne
-	#	Warhead@Shake: ShakeScreen
-	#	Intensity: 2
+	Warhead@Shake: ShakeScreen
+		Intensity: 2
 	Warhead@3: GrantExternalCondition
 		Range: 8c0
 		Duration: 24
@@ -1775,7 +1823,7 @@ vchemical:
 	Warhead@4EffWater: CreateEffect
 		Explosions: large_splash
 		ValidTargets: Water, Underwater
-		InvalidTargets: Ship, Structure, Bridge		
+		InvalidTargets: Ship, Structure, Bridge
 	Warhead@5Smudge: LeaveSmudge
 		SmudgeType: Scorch
 		InvalidTargets: Vehicle, Structure, Wall, Husk, Trees
@@ -2083,7 +2131,6 @@ CrateExplosionBeep:
 		Explosions: piff
 		ImpactSounds: gdembeep.aud
 		ValidTargets: Ground, Air, Ship, Trees
-
 	#	ChronoAI:
 	#	ReloadDelay: 1
 	#	Projectile: InstantExplode
@@ -2098,6 +2145,7 @@ CrateExplosionBeep:
 	#	Sequence: idle
 	#	ValidTargets: Air, Ground, Water
 	#	Warhead@3Flash: ChronoFlashEffect
+
 
 BurnFX:
 	ValidTargets: Ground, Water, Trees

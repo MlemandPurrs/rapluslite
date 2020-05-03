@@ -5,7 +5,7 @@ HARV:
 		BuildPaletteOrder: 1
 	Harvester:
 		Capacity: 30
-        PipCount: 9
+		PipCount: 9
 		Resources: Ore,Gems,Scraps
 	Valued:
 		Cost: 1200
@@ -347,7 +347,7 @@ MBUN:
 		LocalOffset: 712,0,196
 		RequiresCondition: !loaded
 		PauseOnCondition: empdisable || leaflet
-		Turret: 
+		Turret:
 	RevealsShroud:
 		Range: 8c0
 		RevealGeneratedShroud: False
@@ -819,10 +819,12 @@ LTNK:
 		Description: Soviet Main Battle Tank.\n  Strong vs Vehicles\n  Weak vs Infantry, Aircraft
 	Tooltip:
 		Name: Heavy Tank 1-B
-	#	Valued:
-	#	Cost: 850
+	Valued:
+		Cost: 850
 	Mobile:
 		Speed: 71
+	Health:
+		HP: 60000
 	-Armament@PRIMARY:
 	-Armament@SECONDARY:
 	Armament@PRIMARY:
@@ -1849,7 +1851,7 @@ MGG:
 		RequiresCondition: !empdisable && !deployed
 	GrantConditionOnDeploy:
 		DeployedCondition: deployed
-		SkipMakeAnimation: yes
+		SkipMakeAnimation: true
 	WithDecoration@offline:
 		RequiresSelection: true
 		Image: pips
@@ -1959,10 +1961,6 @@ DTNK:
 		Name: Hellhound
 		GenericName: Tank
 		RequiresCondition: hell
-	DisguiseTooltip@mrls:
-		Name: MRLS
-		GenericName: Vehicle
-		RequiresCondition: mrls
 	DisguiseTooltip@mbun:
 		Name: Mobile Bunker
 		GenericName: Vehicle
@@ -2057,14 +2055,6 @@ DTNK:
 		LocalOffset: 768,0,90
 		PauseOnCondition: empdisable || leaflet
 		RequiresCondition: hell
-	Armament@mrls:
-		Name: mrlsarm
-		Weapon: 90mm.decoy.zero
-		Recoil: 0
-		Turret: mrls-turret
-		LocalOffset: 768,0,90
-		PauseOnCondition: empdisable || leaflet
-		RequiresCondition: mrls
 	Armament@mbun:
 		Name: mbunarm
 		Weapon: 90mm.decoy.zero
@@ -2148,7 +2138,6 @@ DTNK:
 			mgg: mgg
 			mggf: mgg
 			hell: hell
-			mrls: mrls
 			mbun: mbun
 			mapc: mapc
 			gcan: gcan
@@ -2185,10 +2174,6 @@ DTNK:
 	Turreted@hell:
 		Turret: hell-turret
 		TurnSpeed: 5
-	Turreted@mrls:
-		Turret: mrls-turret
-		TurnSpeed: 3
-		Offset: -256,0,128
 	Turreted@mbun:
 		Turret: mbun-turret
 		TurnSpeed: 255
@@ -2235,10 +2220,6 @@ DTNK:
 		Sequence: turret-hell
 		Turret: hell-turret
 		RequiresCondition: hell
-	WithSpriteTurret@mrls:
-		Sequence: turret-mrls
-		Turret: mrls-turret
-		RequiresCondition: mrls
 	WithSpriteTurret@mbun:
 		Sequence: turret-mbun
 		Turret: mbun-turret
@@ -2335,10 +2316,6 @@ DTNK:
 		Name: hell
 		Sequence: hell-body
 		RequiresCondition: hell
-	WithFacingSpriteBody@Mrls:
-		Name: mrls
-		Sequence: mrls-body
-		RequiresCondition: mrls
 	WithFacingSpriteBody@Mbun:
 		Name: mbun
 		Sequence: mbun-body
@@ -2390,16 +2367,17 @@ MRLS:
 		Weapon: 227mm
 		LocalOffset: 213,128,0, 213,-128,0
 		PauseOnCondition: empdisable || leaflet
-		RequiresCondition: !deployed
+		RequiresCondition: deployed
 	Armament@SECONDARY:
 		Name: secondary
 		Weapon: 227mm.2shot
 		LocalOffset: 213,-128,0, 213,128,0
 		PauseOnCondition: empdisable || leaflet
-		RequiresCondition: deployed
+		RequiresCondition: !deployed
 	GrantConditionOnDeploy:
 		DeployedCondition: deployed
 		SkipMakeAnimation: true
+		PauseOnCondition: empdisable || leaflet
 	AttackFrontal:
 		TargetFrozenActors: True
 		ForceFireIgnoresActors: True
@@ -2419,6 +2397,20 @@ MRLS:
 	Targetable:
 		TargetTypes: Ground, Vehicle
 		RequiresCondition: !parachute
+	WithDecoration@VolleyOn:
+		RequiresSelection: true
+		Image: pip-ammored
+		Sequence: threeshot
+		ReferencePoint: Bottom, Left
+		ZOffset: 256
+		RequiresCondition: deployed
+	WithDecoration@VolleyOff:
+		RequiresSelection: true
+		Image: pip-ammored
+		Sequence: oneshot
+		ReferencePoint: Bottom, Left
+		ZOffset: 256
+		RequiresCondition: !deployed
 
 TTNK:
 	Buildable:
@@ -2487,7 +2479,6 @@ QTNK:
 		Cost: 2000
 	MadTank:
 		ThumpInterval: 12
-		ThumpShakeIntensity: 2
 		DriverActor: dummy.qtnk
 		DeployedCondition: madweakness
 	DamageMultiplier@IRONCURTAIN:
@@ -2625,12 +2616,12 @@ BEHE:
 	Turreted:
 		TurnSpeed: 2
 	Armament@PRIMARY:
-		Weapon: 203mm
+		Weapon: 203mm.behe
 		LocalOffset: 0,180,340
 		MuzzleSequence: muzzle
 		PauseOnCondition: empdisable || leaflet
 	Armament@SECONDARY:
-		Weapon: 203mm
+		Weapon: 203mm.behe
 		LocalOffset: 0,-180,340
 		MuzzleSequence: muzzle
 		PauseOnCondition: empdisable || leaflet
@@ -2808,6 +2799,8 @@ MCV:
 	Targetable:
 		TargetTypes: Ground, Vehicle, VehicleDisguise
 		RequiresCondition: !parachute
+	Transforms:
+		PauseOnCondition: empdisable
 
 MCV.ai:
 	Inherits: MCV
@@ -2833,6 +2826,7 @@ MCV.uzbek:
 		Facing: 96
 		TransformSounds: placbldg.aud, build5.aud
 		NoTransformNotification: BuildingCannotPlaceAudio
+		PauseOnCondition: empdisable
 	-SpawnActorOnDeath:
 	SpawnActorOnDeath:
 		Actor: MCV.uzbek.Husk
@@ -3004,7 +2998,7 @@ PTNK:
 		Actor: PTNK.Husk
 
 MSS.soviet:
-    Inherits: ^Vehicle
+	Inherits: ^Vehicle
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Buildable:
@@ -3031,7 +3025,7 @@ MSS.soviet:
 	RevealsShroud@GAPGEN:
 		Range: 4c0
 	Turreted:
-        Offset: -260,0,320
+		Offset: -260,0,320
 		TurnSpeed: 10
 	Armament:
 		Weapon: RedEye.volley

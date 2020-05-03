@@ -77,7 +77,7 @@ FACT:
 		ChargeInterval: 12000
 		Icon: cashicon
 		Description: Cash Reserves
-		LongDesc: Instantly gives 3000$ but everything is\n50% more expensive for 1.5 minutes.\nOil Derricks yield vastly reduced income,\nOre Silos produce no income at all. 
+		LongDesc: Instantly gives 3000$ but everything is\n50% more expensive for 1.5 minutes.\nOil Derricks yield vastly reduced income,\nOre Silos produce no income at all.
 		Type: Dummy
 		#	ReadyAudio: ReinforcementsArrived
 		#	BlockedAudio: NoBuild
@@ -229,7 +229,7 @@ POWR:
 	Explodes@RUMALUS:
 		Weapon: Demolish
 		DamageThreshold: 10
-		RequiresCondition: is.russian 
+		RequiresCondition: is.russian
 	GrantConditionOnPrerequisite@RUMALUS:
 		Condition: is.russian
 		Prerequisites: player.russia
@@ -250,7 +250,7 @@ POWR.Greece:
 	-MapEditorData:
 
 APWR:
-	Inherits@POWERBOOST: ^AffectedByOvercharge 
+	Inherits@POWERBOOST: ^AffectedByOvercharge
 	Inherits@RIGEXPLOSIVE: ^AffectedByBoobyTrap
 	Buildable:
 		BuildPaletteOrder: 13
@@ -284,7 +284,7 @@ APWR:
 	Explodes@RUMALUS:
 		Weapon: Demolish
 		DamageThreshold: 10
-		RequiresCondition: is.russian 
+		RequiresCondition: is.russian
 	GrantConditionOnPrerequisite@RUMALUS:
 		Condition: is.russian
 		Prerequisites: player.russia
@@ -482,7 +482,7 @@ BARR:
 	Explodes@RUMALUS:
 		Weapon: Demolish
 		DamageThreshold: 10
-		RequiresCondition: is.russian 
+		RequiresCondition: is.russian
 	GrantConditionOnPrerequisite@RUMALUS:
 		Condition: is.russian
 		Prerequisites: player.russia
@@ -516,7 +516,7 @@ KENN:
 	Explodes@RUMALUS:
 		Weapon: Demolish
 		DamageThreshold: 10
-		RequiresCondition: is.russian 
+		RequiresCondition: is.russian
 	GrantConditionOnPrerequisite@RUMALUS:
 		Condition: is.russian
 		Prerequisites: player.russia
@@ -530,7 +530,7 @@ PROC:
 	Valued:
 		Cost: 1500
 	Refinery:
-		DiscardExcessResources: Yes
+		DiscardExcessResources: true
 	-InfiltrateForCash:
 	InfiltrateForCash:
 		Percentage: 50
@@ -625,7 +625,7 @@ PROC.Soviet:
 	Explodes@RUMALUS:
 		Weapon: Demolish
 		DamageThreshold: 10
-		RequiresCondition: is.russian 
+		RequiresCondition: is.russian
 	GrantConditionOnPrerequisite@RUMALUS:
 		Condition: is.russian
 		Prerequisites: player.russia
@@ -817,7 +817,7 @@ WEAP:
 		Prerequisites: maintenance
 	GrantCondition@IDISABLE:
 		RequiresCondition: powerdown || maintenance
-		Condition: disabled	
+		Condition: disabled
 	ToggleConditionOnOrder:
 		DisabledSound: EnablePower
 		EnabledSound: DisablePower
@@ -830,12 +830,13 @@ WEAP:
 	Explodes@RUMALUS:
 		Weapon: Demolish
 		DamageThreshold: 10
-		RequiresCondition: is.russian 
+		RequiresCondition: is.russian
 	GrantConditionOnPrerequisite@RUMALUS:
 		Condition: is.russian
 		Prerequisites: player.russia
 	Power:
 		RequiresCondition: !build-incomplete
+
 
 WEAP.France:
 	Inherits: WEAP
@@ -1339,7 +1340,7 @@ INDP:
 	Explodes@RUMALUS:
 		Weapon: Demolish
 		DamageThreshold: 10
-		RequiresCondition: is.russian 
+		RequiresCondition: is.russian
 	GrantConditionOnPrerequisite@RUMALUS:
 		Condition: is.russian
 		Prerequisites: player.russia
@@ -1382,7 +1383,7 @@ DOME:
 DOME.Allies:
 	Inherits: DOME
 	Buildable:
-		Prerequisites: proc, ~!structures.soviet, ~!player.england, ~!player.france, ~!player.germany, ~!player.italy, ~!player.spain, ~!player.greece, ~!player.turkey, ~techlevel.medium
+		Prerequisites: proc, ~structures.allies, ~!player.england, ~!player.france, ~!player.germany, ~!player.italy, ~!player.spain, ~!player.greece, ~!player.turkey, ~techlevel.medium
 		Description: Provides an overview\nof the battlefield.\nCan detect cloaked units.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.
 	RenderSprites:
 		Image: dome
@@ -1517,7 +1518,7 @@ DOME.Allies:
 		DirectionArrowAnimation: paradirection
 		SupportPowerPaletteOrder: 2
 	ParatroopersPower@ParaJeeps:
-		PauseOnCondition:  disabled || lowpower
+		PauseOnCondition: disabled || lowpower
 		OrderName: ParaJeeps
 		Prerequisites: ~aircraft.allies, player.turkey
 		Icon: jeep
@@ -1546,7 +1547,7 @@ DOME.Allies:
 DOME.England:
 	Inherits: DOME.Allies
 	Buildable:
-		Prerequisites: proc, ~!structures.soviet, ~player.england, ~techlevel.medium
+		Prerequisites: proc, ~structures.allies, ~player.england, ~techlevel.medium
 		Description: Provides an overview\nof the battlefield.\nCan detect cloaked units.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.\n  Special Ability: Intel Drop\nAn B-52 drops a Veteran Spy and two Snipers anywhere on the map.\n (requires Helipad and Tech Center)
 	RenderSprites:
 		Image: dome
@@ -1569,7 +1570,7 @@ DOME.England:
 DOME.France:
 	Inherits: DOME.Allies
 	Buildable:
-		Prerequisites: proc, ~!structures.soviet, ~player.france, ~techlevel.medium
+		Prerequisites: proc, ~structures.allies, ~player.france, ~techlevel.medium
 		Description: Provides an overview\nof the battlefield.\nCan detect cloaked units.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.\n  Special Ability: Listening Post\nDeploys an Spy Mast anywhere on the map.\nThe Spy Mast provides vision and detects cloaked units in sight-radius.\nThe Spy Mast can disguise to appear as an Tree to the enemy.\n (requires Service Depot)
 	RenderSprites:
 		Image: dome
@@ -1579,7 +1580,7 @@ DOME.France:
 DOME.Germany:
 	Inherits: DOME.Allies
 	Buildable:
-		Prerequisites: proc, ~!structures.soviet, ~player.germany, ~techlevel.medium
+		Prerequisites: proc, ~structures.allies, ~player.germany, ~techlevel.medium
 		Description: Provides an overview\nof the battlefield.\nCan detect cloaked units.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.\n  Special Ability: Paratanks\nA B-52 drops an Veteran squad of two Light\nand a Medium Tank anywhere on the map.\n (requires Helipad and Service Depot)
 	RenderSprites:
 		Image: dome
@@ -1589,7 +1590,7 @@ DOME.Germany:
 DOME.Spain:
 	Inherits: DOME.Allies
 	Buildable:
-		Prerequisites: proc, ~!structures.soviet, ~player.spain, ~techlevel.medium
+		Prerequisites: proc, ~structures.allies, ~player.spain, ~techlevel.medium
 		Description: Provides an overview\nof the battlefield.\nCan detect cloaked units.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.\n  Special Ability: Radar Scan\nReveals an area of the map\nand cloaked enemy units there.\n (requires Allied Tech Center)
 	RenderSprites:
 		Image: dome
@@ -1599,7 +1600,7 @@ DOME.Spain:
 DOME.Italy:
 	Inherits: DOME.Allies
 	Buildable:
-		Prerequisites: proc, ~!structures.soviet, ~player.italy, ~techlevel.medium
+		Prerequisites: proc, ~structures.allies, ~player.italy, ~techlevel.medium
 		Description: Provides an overview\nof the battlefield.\nCan detect cloaked units.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.\n  Special Ability: Field Aid\nA B-52 drops an Heal-up crate anywhere on the map.\nInfantry can pick it up to gain self-Healing for 30sec.\nAn Vehicle or Ship can pick it up to get Repaired instantly.\n (requires Service Depot)
 	RenderSprites:
 		Image: dome
@@ -1609,7 +1610,7 @@ DOME.Italy:
 DOME.Greece:
 	Inherits: DOME.Allies
 	Buildable:
-		Prerequisites: proc, ~!structures.soviet, ~player.greece, ~techlevel.medium
+		Prerequisites: proc, ~structures.allies, ~player.greece, ~techlevel.medium
 		Description: Provides an overview\nof the battlefield.\nCan detect cloaked units.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.\n Special Ability: Leaflet Drop\nA B-52 drops Leaflets at the target area.\nAffected enemy Vehicle and Infantry\nhave their weapons disabled for 15 seconds.
 	RenderSprites:
 		Image: dome
@@ -1619,7 +1620,7 @@ DOME.Greece:
 DOME.Turkey:
 	Inherits: DOME.Allies
 	Buildable:
-		Prerequisites: proc, ~!structures.soviet, ~player.turkey, ~techlevel.medium
+		Prerequisites: proc, ~structures.allies, ~player.turkey, ~techlevel.medium
 		Description: Provides an overview\nof the battlefield.\nCan detect cloaked units.\nCan be Infiltrated by an Spy resulting\nin loss of map exploration.\n Special Ability: Parascouts\nA B-52 drops 2 Jeep anywhere on the map.
 	RenderSprites:
 		Image: dome
@@ -2147,7 +2148,7 @@ ATEK:
 		Palette: disabled
 	GrantCondition@IDISABLE:
 		RequiresCondition: techdisable
-		Condition: disabled	
+		Condition: disabled
 	ExternalCondition@TECHDISABLE:
 		Condition: techdisable
 	Sellable:
@@ -2438,7 +2439,7 @@ STEK:
 		Palette: disabled
 	GrantCondition@IDISABLE:
 		RequiresCondition: techdisable
-		Condition: disabled	
+		Condition: disabled
 	ExternalCondition@TECHDISABLE:
 		Condition: techdisable
 	Sellable:
@@ -2450,6 +2451,7 @@ STEK:
 		RequiresCondition: conscription
 	ClonesProducedUnits:
 		CloneableTypes: Soldier
+		ProductionType: Infantry
 		RequiresCondition: conscription && !disabled
 	Exit@1:
 		RequiresCondition: !being-captured
@@ -2644,7 +2646,7 @@ SPRO:
 	Explodes@RUMALUS:
 		Weapon: Demolish
 		DamageThreshold: 10
-		RequiresCondition: is.russian 
+		RequiresCondition: is.russian
 	GrantConditionOnPrerequisite@RUMALUS:
 		Condition: is.russian
 		Prerequisites: player.russia
@@ -2894,7 +2896,7 @@ AFLD:
 	Explodes@RUMALUS:
 		Weapon: Demolish
 		DamageThreshold: 10
-		RequiresCondition: is.russian 
+		RequiresCondition: is.russian
 	GrantConditionOnPrerequisite@RUMALUS:
 		Condition: is.russian
 		Prerequisites: player.russia
@@ -3059,7 +3061,7 @@ HPAD:
 	Explodes@RUMALUS:
 		Weapon: Demolish
 		DamageThreshold: 10
-		RequiresCondition: is.russian 
+		RequiresCondition: is.russian
 	GrantConditionOnPrerequisite@RUMALUS:
 		Condition: is.russian
 		Prerequisites: player.russia
@@ -3333,7 +3335,7 @@ SPEN:
 		Condition: replenishsmine
 		Range: 5c0
 		RequiresCondition: !disabled
-	SpawnActorPower@SonarPulse:	
+	SpawnActorPower@SonarPulse:
 		Icon: sonar
 		Description: Sonar Pulse
 		LongDesc: Reveals all submarines in the vicinity for a \nshort time.
@@ -3359,7 +3361,7 @@ SPEN:
 	Explodes@RUMALUS:
 		Weapon: Demolish
 		DamageThreshold: 10
-		RequiresCondition: is.russian 
+		RequiresCondition: is.russian
 	GrantConditionOnPrerequisite@RUMALUS:
 		Condition: is.russian
 		Prerequisites: player.russia
@@ -3399,7 +3401,7 @@ GAP:
 	Explodes@RUMALUS:
 		Weapon: Demolish
 		DamageThreshold: 10
-		RequiresCondition: is.russian 
+		RequiresCondition: is.russian
 	GrantConditionOnPrerequisite@RUMALUS:
 		Condition: is.russian
 		Prerequisites: player.russia
@@ -3562,7 +3564,7 @@ PBOX:
 	Buildable:
 		BuildPaletteOrder: 2
 		Prerequisites: barracks, ~fact, ~!player.uzbek, ~techlevel.low
-		Description: Static defense with a fireport for\na garrisoned soldier.\nInitially has Rifle Infantry in it.\nImmune to EMP.\nCan detect cloaked units when manned.\n  Strong vs Infantry, Light armor\n  Weak vs Tanks, Aircraft		
+		Description: Static defense with a fireport for\na garrisoned soldier.\nInitially has Rifle Infantry in it.\nImmune to EMP.\nCan detect cloaked units when manned.\n  Strong vs Infantry, Light armor\n  Weak vs Tanks, Aircraft
 	Valued:
 		Cost: 500
 	CustomSellValue:
@@ -3710,7 +3712,7 @@ FTUR.popup:
 		RealignDelay: -1
 	Turreted@MELEE:
 		RealignDelay: -1
-	-AttackTurreted:	
+	-AttackTurreted:
 	AttackPopupTurreted:
 		RequiresCondition: !build-incomplete
 		PauseOnCondition: disabled
@@ -3722,7 +3724,7 @@ FTUR.popup:
 		InitialDelay: 125
 		CloakDelay: 75
 		IsPlayerPalette: true
-		PauseOnCondition: cloak-force-disabled || empdisable || is-shooting 
+		PauseOnCondition: cloak-force-disabled || empdisable || is-shooting
 	GrantConditionOnDamageState@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
@@ -3867,7 +3869,7 @@ GUN:
 		Sequence: turret-normal
 		Turret: default-turret
 		RequiresCondition: !build-incomplete
-	RenderSprites: 
+	RenderSprites:
 		Image: gun2
 	Power:
 		RequiresCondition: !build-incomplete
@@ -4025,7 +4027,7 @@ PDOX:
 		BeginChargeSpeechNotification: ChronosphereCharging
 		EndChargeSpeechNotification: ChronosphereReady
 		Duration: 400
-		KillCargo: yes
+		KillCargo: true
 		DisplayRadarPing: True
 		Range: 2
 		SupportPowerPaletteOrder: 5
@@ -4201,7 +4203,7 @@ HSAM:
 		InitialDelay: 125
 		CloakDelay: 75
 		IsPlayerPalette: true
-		PauseOnCondition: cloak-force-disabled || build-incomplete || is-shooting 
+		PauseOnCondition: cloak-force-disabled || build-incomplete || is-shooting
 	GrantConditionOnDamageState@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
@@ -4253,7 +4255,7 @@ FISTBUILD:
 		RequiresCondition: !build-incomplete
 		Sequence: build-top
 	RallyPoint:
-		Offset: 0,3
+		Path: 0,3
 	Exit@1:
 		SpawnOffset: 0,-256,0
 		ExitCell: 1,2
@@ -4578,7 +4580,7 @@ GTWR:
 	RevealsShroud@GAPGEN:
 		Range: 5c0
 	WithBuildingBib:
-		HasMinibib: Yes
+		HasMinibib: true
 	Armament:
 		Weapon: Sniper
 		LocalOffset: 256,0,256
@@ -4614,8 +4616,8 @@ MGNST:
 	Tooltip:
 		Name: MG Nest
 	Building:
-		BuildSounds: 
-		UndeploySounds: 
+		BuildSounds:
+		UndeploySounds:
 	Health:
 		HP: 20000
 	Armor:
@@ -4767,7 +4769,7 @@ SPMST:
 		RequiresCondition: isatree01husk && isatree02husk && isatree03husk && isatree05husk && isatree06husk && isatree07husk && isatree08husk && isatree10husk && isatree11husk && isatree12husk && isatree13husk && isatree14husk && isatree15husk && isatree16husk && isatree17husk
 	Targetable:
 		TargetTypes: Ground, Structure
-		RequiresCondition:	!disguised
+		RequiresCondition: !disguised
 	Targetable@disguised:
 		TargetTypes: Tree
 		RequiresCondition: disguised

@@ -193,7 +193,7 @@ E6:
 		CaptureTypes: building, husk
 		PlayerExperience: 0
 		CaptureDelay: 100
-		ConsumedByCapture: no
+		ConsumedByCapture: false
 	#	nope...
 	#	Captures@CAPTURESHUSK:
 	#	CaptureTypes: husk
@@ -573,7 +573,7 @@ MARK:
 		Description: Infantry armed with an Sniper rifle.\nShoots Poison-coated rounds.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
 	Health:
 		HP: 5000
-	Passenger
+	Passenger:
 		PipType: Yellow
 	RevealsShroud:
 		Range: 6c0
@@ -611,8 +611,8 @@ MARK:
 	-MustBeDestroyed:
 	ProducibleWithLevel:
 		Prerequisites: barracks.upgraded
-    RenderSprites:
-        Image: e1sniper
+	RenderSprites:
+		Image: e1sniper
 
 GREN:
 	Inherits: ^Soldier
@@ -736,7 +736,7 @@ RMBO:
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Inherits@BOMBEQUIP: ^AffectedByBombVests
 	Valued:
-		Cost: 1000
+		Cost: 1200
 	Tooltip:
 		Name: Commando
 	Buildable:
@@ -860,7 +860,7 @@ SHOK:
 	RevealsShroud:
 		Range: 5c0
 
-SHOK.r1:	
+SHOK.r1:
 	Inherits: SHOK
 	-Buildable:
 	RenderSprites:
@@ -1114,7 +1114,7 @@ C10:
 
 TECN:
 	Inherits@1: ^CivInfantry
-	Inherits@2: ^ArmedCivilian	
+	Inherits@2: ^ArmedCivilian
 	Inherits@BOMBEQUIP: ^AffectedByBombVests
 	Tooltip:
 		Name: Technician
@@ -1207,7 +1207,7 @@ STNG:
 	Inherits@AUTOTARGET: ^AutoTargetAir
 	Inherits@BOMBEQUIP: ^AffectedByBombVests
 	Valued:
-		Cost: 900
+		Cost: 700
 	Tooltip:
 		Name: Anti-Air Soldier
 	Buildable:

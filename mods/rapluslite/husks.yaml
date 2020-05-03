@@ -1457,6 +1457,8 @@ MCV.uzbek.Husk:
 		RequiresCondition: recovered
 	ExternalCondition@recovery:
 		Condition: recovered
+	RenderSprites:
+		Image: mcv.husk
 
 MGG.Husk:
 	SpawnActorOnDeath@recovery:

@@ -126,13 +126,13 @@
 		Condition: invulnerability
 	ExternalCondition@INVULNERABILITY:
 		Condition: invulnerability
-
 	#	^GlobalBountyDuplicate:
 	#	GrantConditionOnPrerequisite@SOVIETBOUNTY:
 	#	Condition: soviet-bounty
 	#	Prerequisites: soviet-bounty
 	#	GivesBounty@replace:
 	#	RequiresCondition: !global-bounty && soviet-bounty
+
 
 ^AffectedByBounty:
 	GivesBounty@SOVIETBOUNTY:
@@ -299,13 +299,13 @@
 		Multiplier: 90
 		Prerequisites: player.usa
 	Repairable:
-		RepairActors: afld
+		RepairActors: afld, afld.usa, afld.england, carr.usa.deployed
 
 ^Helicopter:
 	Aircraft:
 		Crushes: crate, mine, infantry, airmine
 	Repairable:
-		RepairActors: hpad, hpad.usa
+		RepairActors: hpad, hpad.usa, carr.deployed
 
 ^BasicBuilding:
 	#	Inherits@88: ^AffectedByBounty
@@ -524,13 +524,21 @@ CAMERA.fieldrepair:
 		Modifier: 90
 	SelfHealing@LEADERSHIP:
 		Step: 0
-		PercentageStep: 2
+		PercentageStep: 1
 		Delay: 40
-		HealIfBelow: 100
+		HealIfBelow: 101
 		DamageCooldown: 0
 		RequiresCondition: leader_boost
 	ExternalCondition@LEADERSHIP:
 		Condition: leader_boost
+	WithDecoration@LEADERSHIP:
+		Image: rank-red
+		Sequence: rank-elite
+		Palette: effect
+		ReferencePoint: Bottom, Center
+		RequiresCondition: leader_boost
+		ZOffset: 256
+		ValidStances: Ally, Enemy, Neutral
 
 ^AffectedByEMP:
 	WithColoredOverlay@EMPDISABLE:
@@ -1109,6 +1117,7 @@ Dummy.delivery:
 		Speed: 999
 		Repulsable: False
 		MaximumPitch: 999
+		InitialFacing: 192
 
 ^DisguiseableTree:
 	Targetable:
@@ -1278,6 +1287,7 @@ T17.Husk:
 		Speed: 999
 		Repulsable: False
 		MaximumPitch: 999
+		InitialFacing: 192
 	Cargo:
 		MaxWeight: 10
 	SelectionDecorations:

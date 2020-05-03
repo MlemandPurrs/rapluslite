@@ -182,7 +182,7 @@ Player:
 					Types: Ground, Water
 					Attractiveness: -10
 					TargetMetric: Value
-					CheckRadius: 3c0				
+					CheckRadius: 3c0
 	SupportPowerBotModule@germany:
 		RequiresCondition: enable-ai-player && player.germany
 		Decisions:

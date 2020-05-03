@@ -31,7 +31,7 @@ BADR.buildable:
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Inherits@AUTODAMAGE: ^KilledWithoutAirfield
 	Buildable:
-		Queue: Aircraft
+		Queue: Aircraft, MWFAir
 		BuildAtProductionType: Plane
 		BuildPaletteOrder: 3
 		BuildLimit: 1
@@ -59,6 +59,7 @@ BADR.buildable:
 		Speed: 156
 		RepulsionSpeed: 40
 		MaximumPitch: 56
+		InitialFacing: 192
 	AutoTarget:
 		InitialStance: HoldFire
 		InitialStanceAI: HoldFire
@@ -139,7 +140,7 @@ B52.buildable:
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Inherits@AUTODAMAGE: ^KilledWithoutAirfield
 	Buildable:
-		Queue: Aircraft
+		Queue: Aircraft, MWFAir
 		BuildAtProductionType: Plane
 		BuildPaletteOrder: 6
 		BuildLimit: 1
@@ -163,7 +164,7 @@ B52.buildable:
 	Armament@SECONDARY:
 		Name: secondary
 		Turret: turret-cannon
-		Weapon: 25mm.burst
+		Weapon: 2Inch.burst
 		LocalOffset: 720,0,-80
 		MuzzleSequence: muzzle
 		PauseOnCondition: !ammo
@@ -184,7 +185,7 @@ B52.buildable:
 		Turret: turret-mg
 	WithSpriteTurret@2:
 		Sequence: turret2
-		Turret: turret-cannon	
+		Turret: turret-cannon
 	WithMuzzleOverlay:
 	Aircraft:
 		CruiseAltitude: 2560
@@ -192,6 +193,7 @@ B52.buildable:
 		Speed: 156
 		RepulsionSpeed: 40
 		MaximumPitch: 56
+		InitialFacing: 192
 	AutoTarget:
 		InitialStance: HoldFire
 		InitialStanceAI: HoldFire
@@ -264,6 +266,7 @@ B52.leaflet:
 
 TRAN:
 	Buildable:
+		Queue: Aircraft, MWFHeli
 		BuildPaletteOrder: 1
 		Prerequisites: ~hpad, ~aircraft.allies, ~techlevel.medium
 		Description: Fast Infantry Transport Helicopter.\n  Special Ability: Carryall\nCan carry light vehicles, one at a time.\n  Unarmed
@@ -298,7 +301,7 @@ IROQ:
 	Inherits: ^Helicopter
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Buildable:
-		Queue: Aircraft
+		Queue: Aircraft, MWFHeli
 		BuildAtProductionType: Helicopter
 		BuildPaletteOrder: 2
 		Prerequisites: ~hpad, ~aircraft.allies, ~!player.turkey, ~!aitoodumb, ~techlevel.medium
@@ -444,7 +447,7 @@ MI2:
 	Inherits: IROQ
 	-Buildable:
 	Buildable:
-		Queue: Aircraft
+		Queue: Aircraft, MWFHeli
 		BuildAtProductionType: Helicopter
 		BuildPaletteOrder: 5
 		#	Prerequisites: ~hpad, ~aircraft.soviet, ~techlevel.medium
@@ -473,7 +476,7 @@ MI2.scout:
 	Inherits: MI2
 	-Buildable:
 	Buildable:
-		Queue: Aircraft
+		Queue: Aircraft, MWFHeli
 		BuildAtProductionType: Helicopter
 		BuildPaletteOrder: 7
 		Prerequisites: ~hpad, ~aircraft.soviet, ~player.uzbek, ~techlevel.medium
@@ -515,6 +518,7 @@ MI2.scout:
 
 HELI:
 	Buildable:
+		Queue: Aircraft, MWFHeli
 		BuildPaletteOrder: 3
 		BuildDurationModifier: 60
 		Prerequisites: ~hpad, atek, ~aircraft.allies, ~techlevel.high
@@ -547,10 +551,11 @@ HELI:
 		AmmoCondition: ammogun
 	WithMuzzleOverlay:
 	Rearmable:
-		RearmActors: hpad ,hpad.usa, carr.deployed
+		RearmActors: hpad, hpad.usa, carr.deployed
 
 HIND:
 	Buildable:
+		Queue: Aircraft, MWFHeli
 		BuildPaletteOrder: 6
 		BuildAtProductionType: Helicopter
 		Prerequisites: ~hpad, stek, ~aircraft.soviet, ~!player.afghan, ~techlevel.high
@@ -592,14 +597,12 @@ HIND:
 		PauseOnCondition: !ammorock
 	-AmmoPool:
 	AmmoPool@GUNS:
-		Name: guns
 		Armaments: primary, secondary, fourth, fifth
 		Ammo: 24
 		PipCount: 6
 		ReloadDelay: 9
 		AmmoCondition: ammo
 	AmmoPool@ROCKETS:
-		Name: rockets
 		Armaments: tertiary
 		Ammo: 8
 		PipCount: 4
@@ -612,6 +615,7 @@ HIND:
 	Aircraft:
 		Speed: 130
 		TurnSpeed: 5
+		InitialFacing: 192
 	Rearmable:
 		RearmActors: hpad, hpad.usa, carr.deployed
 	SpeedMultiplier:
@@ -624,34 +628,6 @@ HIND:
 	Health:
 		HP: 12000
 
-HIND.gunship:
-	Inherits: HIND
-	Buildable:
-		BuildPaletteOrder: 5
-		BuildAtProductionType: Plane
-		#	Prerequisites: ~afld, stek, ~aircraft.soviet, ~!player.afghan, ~techlevel.high
-		Prerequisites: ~disabled
-	-Rearmable:
-	ReloadAmmoPool@1:
-		AmmoPool: guns
-		Delay: 225
-		Count: 24
-		RequiresCondition: !ammo && !ammorock
-	ReloadAmmoPool@2:
-		AmmoPool: rockets
-		Delay: 225
-		Count: 8
-		RequiresCondition: !ammo && !ammorock
-	WithDecoration@ammoreplenish:
-		RequiresSelection: false
-		Image: pips
-		Sequence: tag-reload
-		ReferencePoint: Top
-		ZOffset: 256
-		RequiresCondition: !ammo && !ammorock
-	RenderSprites:
-		Image: hind
-
 HIND.afghan:
 	#	Inherits: HIND.gunship
 	Inherits: HIND
@@ -662,7 +638,7 @@ HIND.afghan:
 		InitialLevels: 1
 	RenderSprites:
 		Image: hind
-	-MapEditorData:	
+	-MapEditorData:
 
 HIND.afghan.R2:
 	Inherits: HIND.afghan
@@ -698,6 +674,7 @@ U2.emp:
 		TargetTypes: Air
 	RenderSprites:
 		Image: smig
+	-EjectOnDeath:
 
 U2.nuke:
 	Inherits: U2
@@ -716,6 +693,7 @@ U2.nuke:
 		TargetTypes: Air
 	RenderSprites:
 		Image: ally-u2
+	-EjectOnDeath:
 
 U2.strike:
 	Inherits: U2
@@ -727,7 +705,7 @@ U2.strike:
 		Ammo: 8
 		AmmoCondition: ammo
 	Tooltip:
-		Name: Interceptor
+		Name: Strike Plane
 	SpawnActorOnDeath:
 		Actor: U2.strike.Husk
 	Targetable@AIRBORNE:
@@ -735,6 +713,7 @@ U2.strike:
 		TargetTypes: Air
 	RenderSprites:
 		Image: ally-u2
+	-EjectOnDeath:
 
 U2.jam:
 	Inherits: U2
@@ -758,10 +737,12 @@ U2.jam:
 		TargetTypes: Air
 	RenderSprites:
 		Image: smig
+	-EjectOnDeath:
 
 YAK:
 	Inherits@AUTODAMAGE: ^KilledWithoutAirfield
 	Buildable:
+		Queue: Aircraft, MWFAir
 		BuildPaletteOrder: 1
 		Prerequisites: ~afld, ~aircraft.soviet, ~!player.belarus, ~!aitoodumb, ~techlevel.medium
 		Description: Strafing Attack Plane armed with\ndual machine guns.\nBombs Submarines with Depthcharges.\n  Strong vs Infantry, Light armor\n  Weak vs Tanks, Aircraft
@@ -769,6 +750,7 @@ YAK:
 		HP: 8000
 	Aircraft:
 		TakeOffOnCreation: False
+		InitialFacing: 192
 	AttackAircraft:
 		Armaments: primary, secondary, tertiary, fourth, fifth
 		FacingTolerance: 20
@@ -901,7 +883,7 @@ YAK.kamikaze:
 	-Rearmable:
 	AttackAircraft:
 		Armaments: primary
-	AttackBomber:	
+	AttackBomber:
 	GrantConditionOnAttack:
 		Condition: triggered
 	KillsSelf:
@@ -912,7 +894,7 @@ YAK.kamikaze:
 	-GrantConditionOnPrerequisite@AIRFIELD:
 	-Selectable:
 	-Voiced:
-	RejectsOrders:	
+	RejectsOrders:
 	Interactable:
 	-ActorLostNotification:
 	RenderSprites:
@@ -927,11 +909,11 @@ SPIT:
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Inherits@AUTODAMAGE: ^KilledWithoutAirfield
 	Buildable:
-		Queue: Aircraft
+		Queue: Aircraft, MWFAir
 		BuildAtProductionType: Plane
 		BuildPaletteOrder: 4
 		Prerequisites: ~afld, ~aircraft.allies, ~techlevel.medium
-		Description: Ground attack bomber.\nCannot attack Aircraft.\n  Strong vs Infantry, Light armor\n  Weak vs Tanks, Aircraft
+		Description: Ground attack bomber.\nCannot attack Ground units.\n  Strong vs Infantry, Light armor\n  Weak vs Tanks, Aircraft
 	Valued:
 		Cost: 900
 	Tooltip:
@@ -948,12 +930,26 @@ SPIT:
 	RevealsShroud@GAPGEN:
 		Range: 9c0
 		Type: GroundPosition
-	Armament:
+	Armament@FIRST:
 		Name: primary
 		Weapon: BombingRun.ag
 		LocalOffset: 300,0,0
-		PauseOnCondition: !ammo	
+		PauseOnCondition: !ammo
+	#	Armament@AALEFT:
+	#	Name: secondary
+	#	Weapon: ChainGun.Yak.AA.Left
+	#	LocalOffset: 256,-213,0
+	#	MuzzleSequence: muzzle
+	#	PauseOnCondition: !ammogun
+	#	Armament@AARIGHT:
+	#	Name: tertiary
+	#	Weapon: ChainGun.Yak.AA.Right
+	#	LocalOffset: 256,213,0
+	#	MuzzleSequence: muzzle
+	#	FireDelay: 1
+	#	PauseOnCondition: !ammogun		
 	AttackAircraft:
+		#	Armaments: primary, secondary, tertiary
 		FacingTolerance: 20
 		PersistentTargeting: false
 		OpportunityFire: False
@@ -967,11 +963,18 @@ SPIT:
 	AutoTarget:
 		InitialStance: HoldFire
 		InitialStanceAI: HoldFire
-	AmmoPool:
+	AmmoPool@1:
 		Ammo: 6
 		PipCount: 2
+		PipType: Yellow
 		ReloadDelay: 11
 		AmmoCondition: ammo
+	#	AmmoPool@2:
+	#	Armaments: secondary, tertiary
+	#	Ammo: 16
+	#	PipCount: 2
+	#	ReloadDelay: 11
+	#	AmmoCondition: ammogun
 	SelectionDecorations:
 	WithMuzzleOverlay:
 	Contrail:
@@ -993,6 +996,7 @@ SPIT:
 MIG:
 	Inherits@AUTODAMAGE: ^KilledWithoutAirfield
 	Buildable:
+		Queue: Aircraft, MWFAir
 		BuildPaletteOrder: 2
 		BuildDurationModifier: 60
 		Prerequisites: ~afld, stek, ~aircraft.soviet, ~!aitoodumb, ~techlevel.high
@@ -1002,6 +1006,7 @@ MIG:
 	Aircraft:
 		TakeOffOnCreation: False
 		TakeoffSounds: migtoff1.aud
+		InitialFacing: 192
 	Valued:
 		Cost: 1800
 	Armament@SECONDARY:
@@ -1035,7 +1040,7 @@ TORN:
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Inherits@AUTODAMAGE: ^KilledWithoutAirfield
 	Buildable:
-		Queue: Aircraft
+		Queue: Aircraft, MWFAir
 		BuildAtProductionType: Plane
 		BuildPaletteOrder: 5
 		Prerequisites: ~afld, atek, ~aircraft.allies, ~techlevel.high
@@ -1060,7 +1065,7 @@ TORN:
 		Weapon: HellfireAA.rapid
 		LocalOffset: 0,-640,0, 0,640,0
 		LocalYaw: -40, 24
-		PauseOnCondition: !ammo	
+		PauseOnCondition: !ammo
 	AttackAircraft:
 		FacingTolerance: 20
 		PersistentTargeting: false
@@ -1102,7 +1107,7 @@ COSSACK:
 	Inherits: ^Plane
 	Inherits@AUTODAMAGE: ^KilledWithoutAirfield
 	Buildable:
-		Queue: Aircraft
+		Queue: Aircraft, MWFAir
 		BuildAtProductionType: Plane
 		BuildPaletteOrder: 6
 		BuildLimit: 1
@@ -1183,9 +1188,9 @@ HARR:
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Inherits@GAINSEXPERIENCE: ^GainsExperience
 	Buildable:
-		Queue: Aircraft
+		Queue: Aircraft, MWFAir, MWFHeli
 		BuildAtProductionType: Helicopter
-		BuildPaletteOrder: 4
+		BuildPaletteOrder: 7
 		Prerequisites: ~hpad, ~atek, ~aircraft.allies, ~tech.stolen, ~player.england, ~techlevel.high
 		Description: Fast VTOL Attack Plane armed\nwith powerful all-purpose missiles.\n  Strong vs Tanks, Ships\n  Weak vs Anti-Air, Defenses
 	Valued:
@@ -1223,6 +1228,7 @@ HARR:
 		RepulsionSpeed: 40
 		MaximumPitch: 56
 		CanSlide: False
+		InitialFacing: 192
 	AutoTarget:
 		InitialStance: HoldFire
 		InitialStanceAI: HoldFire
@@ -1313,7 +1319,7 @@ BMIN:
 	Inherits: ^Helicopter
 	Inherits@AUTOTARGET: ^AutoTargetAir
 	Buildable:
-		Queue: Aircraft
+		Queue: Aircraft, MWFAir
 		BuildAtProductionType: Helicopter
 		BuildPaletteOrder: 6
 		Prerequisites: ~hpad, fix, ~player.italy, ~techlevel.medium

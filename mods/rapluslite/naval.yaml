@@ -84,7 +84,7 @@ PT.Soviet:
 	Turreted@SECONDARY:
 		Turret: secondary
 		TurnSpeed: 5
-		Offset: -461,0,18	
+		Offset: -461,0,18
 	Armament@PRIMARY:
 		Name: primary
 		Turret: primary
@@ -536,7 +536,7 @@ CARR:
 		BuildAtProductionType: Boat
 		BuildPaletteOrder: 5
 		Prerequisites: ~syrd, hpad, ~player.england, ~techlevel.medium
-		Description: Nautical Support vessel.\nCan be deployed, becoming immobile\nto rearm Helicopters at Sea.\n  Unarmed
+		Description: Nautical Support vessel.\nCan be deployed, becoming immobile\nto Produce, Rearm and Repair\nHelicopters at Sea.\n  Unarmed
 	Valued:
 		Cost: 1500
 	Tooltip:
@@ -560,7 +560,7 @@ CARR:
 		IntoActor: carr.deployed
 		Offset: 0,0
 	RenderSprites:
-		Scale: 1.5
+		Scale: 1.2
 
 CARR.Deployed:
 	Inherits: ^Building
@@ -620,6 +620,10 @@ CARR.Deployed:
 		TargetTypes: Ground, Water, Ship
 	WithResupplyAnimation:
 	-MapEditorData:
+	Exit@1:
+		SpawnOffset: 0,-256,0
+		ExitCell: 0,0
+		Facing: 224
 	SelfHealing:
 		Step: -100
 		Delay: 3
@@ -627,22 +631,46 @@ CARR.Deployed:
 		DamageCooldown: 0
 		RequiresCondition: disabled
 	RenderSprites:
-		Scale: 1.5
+		Scale: 1.2
+	Production:
+		Produces: MWFHeli
+		PauseOnCondition: disabled || build-incomplete
+	ProductionQueue:
+		Type: MWFHeli
+		Group: Helicopter
+		ReadyAudio: UnitReady
+		BlockedAudio: NoBuild
+		QueuedAudio: Training
+		OnHoldAudio: OnHold
+		CancelledAudio: Cancelled
+		LowPowerModifier: 300
+	ProvidesPrerequisite@allies:
+		Factions: allies, usa, britain, france, germany, spain, italy, greece, turkey
+		Prerequisite: aircraft.allies
+		ResetOnOwnerChange: True
+	ProvidesPrerequisite@soviet:
+		Factions: soviet, russia, ukraine, belarus, kazakh, karelia, uzbek, turkmen, afghan
+		Prerequisite: aircraft.soviet
+		ResetOnOwnerChange: True
+	ProductionBar:
+		ProductionType: MWFHeli
+	ProvidesPrerequisite@ISHELIPAD:
+		Prerequisite: hpad
 
 CARR.usa:
 	Inherits: CARR
 	Buildable:
 		Queue: Ship
 		BuildAtProductionType: Boat
-		BuildPaletteOrder: 5
-		Prerequisites: ~syrd, hpad, ~player.england, ~techlevel.medium
+		BuildPaletteOrder: 6
+		Prerequisites: ~syrd, afld, atek, ~player.england, ~techlevel.medium
 		Description: Nautical Support vessel.\nCan be deployed, becoming immobile\nto produce, repair and rearm\nAirplanes at Sea.\n  Unarmed
 	Valued:
 		Cost: 2000
 	Tooltip:
 		Name: Aircraft Carrier
 	Health:
-		HP: 100000
+		HP: 65000
 	Armor:
 		Type: Heavy
 	Mobile:
@@ -688,8 +716,6 @@ CARR.usa.Deployed:
 	Explodes:
 		Weapon: UnitExplodeShip
 		EmptyWeapon: UnitExplodeShip
-	Selectable:
-		Bounds: 48,48
 	Valued:
 		Cost: 2000
 	Tooltip:
@@ -700,7 +726,7 @@ CARR.usa.Deployed:
 	-RequiresBuildableArea:
 	-ShakeOnDeath:
 	Health:
-		HP: 100000
+		HP: 65000
 	Armor:
 		Type: Heavy
 	RevealsShroud:
@@ -708,9 +734,6 @@ CARR.usa.Deployed:
 		RevealGeneratedShroud: False
 	RevealsShroud@GAPGEN:
 		Range: 4c0
-	SelectionDecorations:
-	Selectable:
-		DecorationBounds: 48,48
 	Transforms:
 		IntoActor: carr.usa
 		Offset: 0,0
@@ -737,10 +760,10 @@ CARR.usa.Deployed:
 		ExitDelay: 3
 		Facing: 192
 	Production:
-		Produces: MWFAircraft
+		Produces: MWFAir
 		PauseOnCondition: disabled || build-incomplete
 	ProductionQueue:
-		Type: MWFAircraft
+		Type: MWFAir
 		Group: Plane
 		ReadyAudio: UnitReady
 		BlockedAudio: NoBuild
@@ -757,7 +780,7 @@ CARR.usa.Deployed:
 		Prerequisite: aircraft.soviet
 		ResetOnOwnerChange: True
 	ProductionBar:
-		ProductionType: MWFAircraft
+		ProductionType: MWFAir
 	ProvidesPrerequisite@ISAIRFIELD:
 		Prerequisite: afld
 	RenderSprites:
@@ -1296,7 +1319,7 @@ MGNM:
 	KillsSelf:
 		RequiresCondition: invulnerability || triggered
 	Chronoshiftable:
-		ExplodeInstead: yes
+		ExplodeInstead: true
 	Targetable:
 		TargetTypes: Ground, Water, Ship, Submarine, SeaDetonateAttack
 		RequiresCondition: !underwater
@@ -1440,9 +1463,9 @@ BSUB:
 	Selectable:
 		DecorationBounds: 68,38
 	RenderRangeCircle:
-    ReloadArmamentsBar:
-        Armaments: primary
-        Color: FFFF00
+	ReloadArmamentsBar:
+		Armaments: primary
+		Color: FFFF00
 	AutoTarget:
 		InitialStance: HoldFire
 		InitialStanceAI: HoldFire
@@ -1459,14 +1482,14 @@ BSUB:
 		Palette: submerged
 		UncloakOn: Attack, Heal, Dock, SelfHeal, Demolish
 		PauseOnCondition: cloak-force-disabled || shallowcrossing || empdisable || minehit
-        RequiresCondition: !deployed
+		RequiresCondition: !deployed
 	Targetable:
 		TargetTypes: Ground, Water, Ship, Submarine, SeaDetonateAttack
 		RequiresCondition: !underwater
 	Targetable@UNDERWATER:
 		TargetTypes: Underwater, Submarine, SeaDetonateAttack
 		RequiresCondition: underwater
-    Targetable@REPAIR:
+	Targetable@REPAIR:
 		RequiresCondition: !underwater && damaged
 		TargetTypes: Repair
 	GrantConditionOnTerrain@CROSSINGFORD:
@@ -1475,7 +1498,7 @@ BSUB:
 	GrantConditionOnDamageState@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
-    GrantConditionOnDeploy:
-        DeployedCondition: deployed
+	GrantConditionOnDeploy:
+		DeployedCondition: deployed
 	ExternalCondition@MINEHIT:
 		Condition: minehit

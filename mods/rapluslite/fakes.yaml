@@ -358,7 +358,7 @@ FIXF:
 	Armor:
 		Type: Wood
 	WithBuildingBib:
-		HasMinibib: Yes
+		HasMinibib: true
 	RenderSprites:
 		Image: FIX
 	Valued:
@@ -640,7 +640,7 @@ PDOF:
 	RenderSprites:
 		Image: PDOX
 	WithBuildingBib:
-		HasMinibib: Yes
+		HasMinibib: true
 	Valued:
 		Cost: 375
 	Health:
@@ -675,7 +675,7 @@ IROF:
 	RenderSprites:
 		Image: IRON
 	WithBuildingBib:
-		HasMinibib: Yes
+		HasMinibib: true
 	Valued:
 		Cost: 375
 	Health:
@@ -787,7 +787,7 @@ FGAP:
 	Armor:
 		Type: Wood
 	WithBuildingBib:
-		HasMinibib: Yes
+		HasMinibib: true
 	RenderSprites:
 		Image: GAP
 	Valued:

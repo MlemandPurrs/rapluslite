@@ -1,6 +1,14 @@
+#	TODO
+#	add overlay for MRLS for showing 2-shot, volley modes
+#	tweak STNG to have better weapon
+#	STNG cost to 700 from whopping 900
+#	tweak ATGM to have better weapon
+#	tweak Behemoth Artillery weapon to have proper arcing
+#	Give 1-B increased Hitpoints ?
+
 Metadata:
 	Title: Red Alert Plus (Lite)
-	Version: v.1.3.6-beta-2
+	Version: v.1.3.6-beta-2-fixed
 	Website: https://www.openra.net
 	WebIcon32: https://www.openra.net/images/icons/ra_32x32.png
 
@@ -51,7 +59,7 @@ Packages:
 MapFolders:
     ra|maps: System
 	rapluslite|maps: System
-	~^maps/ra/v.1.3.5-hotfix: User
+	~^maps/rapluslite: User
 
 Rules:
 	ra|rules/misc.yaml
@@ -126,6 +134,7 @@ ChromeLayout:
 	common|chrome/ingame-debuginfo.yaml
 	common|chrome/ingame-infochat.yaml
 	common|chrome/mainmenu.yaml
+	common|chrome/mainmenu-prompts.yaml
 	common|chrome/settings.yaml
 	common|chrome/credits.yaml
 	common|chrome/lobby.yaml
@@ -187,6 +196,8 @@ Hotkeys:
 
 LoadScreen: LogoStripeLoadScreen
 	Image: rapluslite|uibits/loadscreen.png
+	Image2x: rapluslite|uibits/loadscreen-2x.png
+	Image3x: rapluslite|uibits/loadscreen-3x.png
 	Text: Filling Crates..., Charging Capacitors..., Reticulating Splines..., Planting Trees..., Building Bridges..., Aging Empires..., Compiling EVA..., Constructing Pylons..., Activating Skynet..., Splitting Atoms...
 
 ServerTraits:
@@ -254,6 +265,9 @@ SpriteSequenceFormat: TilesetSpecificSpriteSequence
 		DESERT: .des
 
 ModelSequenceFormat: PlaceholderModelSequence
+
+AssetBrowser:
+	SupportedExtensions: .shp, .tmp, .tem, .des, .sno, .int, .vqa
 
 GameSpeeds:
 	slowest:
