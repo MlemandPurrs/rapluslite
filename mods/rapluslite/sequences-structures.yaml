@@ -362,6 +362,7 @@ atek:
 	none: blank32
 		Length: 1
 	icon: sproicon
+	fake-icon: sprofakeicon
 
 atek.husk:
 	idle: atek-dead
@@ -383,6 +384,7 @@ ateknew:
 		Start: 1
 		Tick: 800
 	icon: ateknewicon
+	fake-icon: ateknewfakeicon
 
 ateknew.husk:
 	idle: atek2

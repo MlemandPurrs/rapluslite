@@ -485,6 +485,7 @@ Heal:
 
 MaverickHind:
 	Inherits: Maverick
+	ReloadDelay: 40
 	Range: 5c0
 	InvalidTargets: Infantry
 

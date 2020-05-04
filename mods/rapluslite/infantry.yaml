@@ -70,7 +70,7 @@ E2:
 	Inherits@ROT: ^RottingInfantry
 	Buildable:
 		BuildPaletteOrder: 3
-		Prerequisites: ~barr, ~!player.uzbek, ~techlevel.infonly
+		Prerequisites: ~barracks, ~!player.uzbek, ~techlevel.infonly
 	Valued:
 		Cost: 150
 	Health:
@@ -177,7 +177,7 @@ E6:
 	Inherits@BOMBEQUIP: ^AffectedByBombVests
 	Buildable:
 		BuildPaletteOrder: 5
-		Prerequisites: ~barracks, ~!player.uzbek, ~techlevel.infonly
+		Prerequisites: ~barracks, proc, ~!player.uzbek, ~techlevel.infonly
 		Description: Infiltrates and captures\nenemy structures.\nCan repair destroyed Bridges.\n  Unarmed
 	Valued:
 		Cost: 500
@@ -205,7 +205,7 @@ E6:
 E6.Uzbek:
 	Inherits: E6
 	Buildable:
-		Prerequisites: ~barracks, ~player.uzbek, ~techlevel.infonly
+		Prerequisites: ~barracks, proc, ~player.uzbek, ~techlevel.infonly
 		BuildDuration: 500
 	Valued:
 		Cost: 375
@@ -215,12 +215,13 @@ E6.Uzbek:
 MEDI:
 	Inherits@ROT: ^RottingInfantry
 	Inherits@BOMBEQUIP: ^AffectedByBombVests
+	Buildable:
+		BuildPaletteOrder: 3
+		Prerequisites: ~disabled
 	Health:
 		HP: 6000
 	Valued:
 		Cost: 250
-	Buildable:
-		BuildPaletteOrder: 3
 	Passenger:
 		PipType: Blue
 
@@ -697,7 +698,7 @@ ATGM:
 	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
 	Inherits@BOMBEQUIP: ^AffectedByBombVests
 	Valued:
-		Cost: 600
+		Cost: 550
 	Tooltip:
 		Name: ATGM Soldier
 	Buildable:
@@ -874,9 +875,9 @@ DOG.Bomb:
 	Inherits: ^Soldier
 	Buildable:
 		Queue: Infantry
-		BuildAtProductionType: Dog
+		BuildAtProductionType: Soldier
 		BuildPaletteOrder: 7
-		Prerequisites: kenn, fix, ~player.ukraine, ~techlevel.medium
+		Prerequisites: proc, fix, ~player.ukraine, ~techlevel.medium
 		#	Prerequisites: ~disabled
 		Description: Dog carrying an Bomb vest\n  Is trained to run towards Vehicles.\n  Strong vs Infantry\n  Weak vs Vehicles, Defenses
 	Valued:
@@ -1134,7 +1135,8 @@ DOG:
 	Inherits@BOMBEQUIP: ^AffectedByBombVests
 	Buildable:
 		BuildPaletteOrder: 4
-		Prerequisites: kenn, ~techlevel.infonly
+		BuildAtProductionType: Soldier
+		Prerequisites: proc, ~techlevel.infonly
 	Passenger:
 		PipType: Green
 	Health:

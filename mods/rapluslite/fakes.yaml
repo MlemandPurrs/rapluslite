@@ -46,7 +46,7 @@ FAPW:
 	HitShape:
 		TargetableOffsets: -355,-1024,0
 	Buildable:
-		BuildPaletteOrder: 12
+		BuildPaletteOrder: 13
 		Queue: Fakestructure
 		Prerequisites: dome, ~player.france, ~techlevel.medium
 		Description: Looks like an Advanced Power Plant.
@@ -130,7 +130,8 @@ BARF:
 	Buildable:
 		BuildPaletteOrder: 17
 		Queue: Fakestructure
-		Prerequisites: ~structures.soviet, ~player.france, ~techlevel.infonly
+		#	Prerequisites: ~structures.soviet, ~player.france, ~techlevel.infonly
+		Prerequisites: ~disabled
 		Description: Looks like an Soviet Barracks.
 		Icon: fake-icon
 	Building:
@@ -163,7 +164,8 @@ KENF:
 	Buildable:
 		BuildPaletteOrder: 11
 		Queue: Fakestructure
-		Prerequisites: anypower, ~player.france, ~techlevel.infonly
+		#	Prerequisites: anypower, ~player.france, ~techlevel.infonly
+		Prerequisites: ~disabled
 		Description: Looks like an Kennel.
 		Icon: fake-icon
 	Building:
@@ -423,7 +425,8 @@ SPEF:
 	Buildable:
 		BuildPaletteOrder: 18
 		Queue: Fakestructure
-		Prerequisites: ~structures.soviet, ~player.france, ~techlevel.low
+		#	Prerequisites: ~structures.soviet, ~player.france, ~techlevel.low
+		Prerequisites: ~disabled
 		Description: Looks like a Sub Pen.
 		Icon: fake-icon
 	Tooltip:
@@ -469,9 +472,9 @@ AFLF:
 		GenericVisibility: Enemy
 		GenericStancePrefix: False
 	Buildable:
-		BuildPaletteOrder: 16
+		BuildPaletteOrder: 7
 		Queue: Fakestructure
-		Prerequisites: ~structures.soviet, ~player.france, ~techlevel.medium
+		Prerequisites: dome, ~player.france, ~techlevel.medium
 		Description: Looks like an Airfield.
 		Icon: fake-icon
 	Building:
@@ -498,7 +501,7 @@ HPAF:
 		GenericVisibility: Enemy
 		GenericStancePrefix: False
 	Buildable:
-		BuildPaletteOrder: 7
+		BuildPaletteOrder: 10
 		Queue: Fakestructure
 		Prerequisites: dome, ~player.france, ~techlevel.medium
 		Description: Looks like an Helipad.
@@ -551,23 +554,23 @@ DOMF:
 	Armor:
 		Type: Wood
 
-ATEF:
+SPRF:
 	Inherits: ^FakeBuilding
 	Inherits@IDISABLE: ^DisableOnLowPower
 	Inherits@shape: ^2x2Shape
 	Selectable:
 		Bounds: 48,48
 	Tooltip:
-		Name: Fake Tech Center
-		GenericName: Allied Tech Center
+		Name: Fake Space Program
+		GenericName: Space Program
 		GenericVisibility: Enemy
 		GenericStancePrefix: False
 	Buildable:
 		BuildPaletteOrder: 9
 		Queue: Fakestructure
-		Prerequisites: weap, dome, ~player.france, ~techlevel.unrestricted
+		Prerequisites: techcenter, ~player.france, ~techlevel.high
 		BuildLimit: 1
-		Description: Looks like allies Tech Center.\nMaximum 1 can be built.
+		Description: Looks like Space Program.\nMaximum 1 can be built.
 		Icon: fake-icon
 	Building:
 		Footprint: xx xx
@@ -577,9 +580,46 @@ ATEF:
 	RenderSprites:
 		Image: ATEK
 	Valued:
+		Cost: 375
+	Health:
+		HP: 60000
+	Armor:
+		Type: Wood
+
+ATEF:
+	Inherits: ^FakeBuilding
+	Inherits@shape: ^2x2Shape
+	Selectable:
+		Bounds: 72,48
+	HitShape:
+		UseTargetableCellsOffsets: true
+		Type: Rectangle
+			TopLeft: -1536, -1024
+			BottomRight: 1536, 1024
+		TargetableOffsets: 420,-768,0, 420,768,0, -770,-768,0, -770,768,0
+	Tooltip:
+		Name: Fake Tech Center
+		GenericName: Allied Tech Center
+		GenericVisibility: Enemy
+		GenericStancePrefix: False
+	Buildable:
+		BuildPaletteOrder: 12
+		Queue: Fakestructure
+		Prerequisites: afldorweap, dome, ~player.france, ~techlevel.unrestricted
+		BuildLimit: 1
+		Description: Looks like allies Tech Center.\nMaximum 1 can be built.
+		Icon: fake-icon
+	Building:
+		Footprint: XxX XxX
+		Dimensions: 3,2
+		LocalCenterOffset: 0,-512,0
+	WithBuildingBib:
+	RenderSprites:
+		Image: ateknew
+	Valued:
 		Cost: 500
 	Health:
-		HP: 40000
+		HP: 80000
 	Armor:
 		Type: Wood
 
@@ -599,7 +639,8 @@ STEF:
 		BuildPaletteOrder: 11
 		Queue: Fakestructure
 		BuildLimit: 1
-		Prerequisites: ~structures.soviet, ~player.france, ~techlevel.high
+		#	Prerequisites: ~structures.soviet, ~player.france, ~techlevel.high
+		Prerequisites: ~disabled
 		Description: Looks like soviet Tech Center.\nMaximum 1 can be built.
 		Icon: fake-icon
 	Building:
@@ -628,7 +669,7 @@ PDOF:
 		GenericVisibility: Enemy
 		GenericStancePrefix: False
 	Buildable:
-		BuildPaletteOrder: 13
+		BuildPaletteOrder: 14
 		Queue: Fakestructure
 		Prerequisites: atek, ~player.france, ~techlevel.unrestricted
 		BuildLimit: 1
@@ -665,7 +706,8 @@ IROF:
 	Buildable:
 		BuildPaletteOrder: 14
 		Queue: Fakestructure
-		Prerequisites: ~structures.soviet, ~player.france, ~techlevel.unrestricted
+		#	Prerequisites: ~structures.soviet, ~player.france, ~techlevel.unrestricted
+		Prerequisites: ~disabled
 		BuildLimit: 1
 		Description: Looks like the Iron Curtain.\nMaximum 1 can be built.
 		Icon: fake-icon
@@ -768,7 +810,7 @@ FGAP:
 	Inherits: ^FakeBuilding
 	Inherits@IDISABLE: ^DisableOnLowPower
 	Buildable:
-		BuildPaletteOrder: 10
+		BuildPaletteOrder: 11
 		Queue: Fakestructure
 		Prerequisites: atek, ~player.france, ~techlevel.high
 		Description: Looks like a Gap Generator
