@@ -1,3 +1,9 @@
+^Sidebar:
+	Image: sidebar.png
+
+^Dialog:
+	Image: dialog.png
+
 sidebar-allies:
 	Image: chrome.png
 	Regions:
@@ -5,7 +11,6 @@ sidebar-allies:
 		background-iconrow: 0, 457, 238, 47
 		background-bottom: 0, 504, 238, 8
 		background-supportoverlay: 0, 75, 64, 48
-
 sidebar-button-allies:
 	Image: chrome.png
 	PanelRegion: 56, 28, 3, 3, 22, 22, 3, 3
@@ -30,7 +35,6 @@ sidebar-button-allies-disabled:
 sidebar-button-allies-highlighted-disabled:
 	Image: chrome.png
 	PanelRegion: 168, 0, 3, 3, 22, 22, 3, 3
-
 command-button-allies:
 	Image: chrome.png
 	PanelRegion: 59, 31, 0, 0, 22, 22, 0, 0
@@ -71,7 +75,6 @@ sidebar-soviet:
 		background-iconrow: 274, 457, 238, 47
 		background-bottom: 274, 504, 238, 8
 		background-supportoverlay: 64, 75, 64, 48
-
 sidebar-button-soviet:
 	Image: chrome.png
 	PanelRegion: 0, 28, 3, 3, 22, 22, 3, 3
@@ -96,7 +99,6 @@ sidebar-button-soviet-disabled:
 sidebar-button-soviet-highlighted-disabled:
 	Image: chrome.png
 	PanelRegion: 168, 0, 3, 3, 22, 22, 3, 3
-
 command-button-soviet:
 	Image: chrome.png
 	PanelRegion: 3, 31, 0, 0, 22, 22, 0, 0
@@ -235,72 +237,60 @@ stance-icons:
 		hold-fire-active: 688, 48, 16, 16
 
 sidebar-observer:
-	Image: chrome.png
-	PanelRegion: 512, 167, 0, 0, 238, 287, 0, 0
-	PanelSides: Center
+	Inherits: ^Sidebar
 	Regions:
-		replay-bottom: 512, 454, 238, 40
-		observer-bottom: 512, 495, 238, 8
+		background: 0, 185, 238, 287
+		replay-bottom: 0, 472, 238, 40
+		observer-bottom: 0, 176, 238, 8
 
 sidebar-button-observershroud:
-	Image: chrome.png
 sidebar-button-observershroud-pressed:
-	Image: chrome.png
 sidebar-button-observershroud-hover:
-	Image: chrome.png
 
 sidebar-button-observer:
-	Image: chrome.png
-	PanelRegion: 112, 28, 5, 5, 18, 18, 5, 5
+	Inherits: ^Sidebar
+	PanelRegion: 260, 397, 5, 5, 18, 18, 5, 5
 sidebar-button-observer-hover:
-	Image: chrome.png
-	PanelRegion: 112, 0, 5, 5, 18, 18, 5, 5
+	Inherits: ^Sidebar
+	PanelRegion: 260, 368, 5, 5, 18, 18, 5, 5
 sidebar-button-observer-pressed:
-	Image: chrome.png
-	PanelRegion: 112, 28, 5, 5, 18, 18, 5, 5
+	Inherits: sidebar-button-observer
 sidebar-button-observer-highlighted:
-	Image: chrome.png
-	PanelRegion: 140, 28, 5, 5, 18, 18, 5, 5
+	Inherits: ^Sidebar
+	PanelRegion: 260, 455, 5, 5, 18, 18, 5, 5
 sidebar-button-observer-highlighted-hover:
-	Image: chrome.png
-	PanelRegion: 140, 0, 5, 5, 18, 18, 5, 5
+	Inherits: ^Sidebar
+	PanelRegion: 260, 426, 5, 5, 18, 18, 5, 5
 sidebar-button-observer-highlighted-pressed:
-	Image: chrome.png
-	PanelRegion: 28, 28, 5, 5, 18, 18, 5, 5
+	Inherits: sidebar-button-observer-highlighted
 sidebar-button-observer-disabled:
-	Image: chrome.png
-	PanelRegion: 168, 0, 5, 5, 18, 18, 5, 5
+	Inherits: sidebar-button-allies-disabled
 sidebar-button-observer-highlighted-disabled:
-	Image: chrome.png
-	PanelRegion: 168, 0, 5, 5, 18, 18, 5, 5
+	Inherits: sidebar-button-allies-disabled
 
 observer-scrollpanel-button:
-	Image: dialog.png
-	PanelRegion: 768, 256, 1, 1, 126, 126, 1, 1
+	Inherits: ^Dialog
+	PanelRegion: 769, 257, 2, 2, 122, 122, 2, 2
 
 observer-scrollpanel-button-hover:
-	Image: dialog.png
-	PanelRegion: 768, 256, 1, 1, 126, 126, 1, 1
+	Inherits: observer-scrollpanel-button
 
 observer-scrollpanel-button-pressed:
-	Image: dialog.png
-	PanelRegion: 896, 256, 1, 1, 126, 126, 1, 1
+	Inherits: ^Dialog
+	PanelRegion: 897, 257, 2, 2, 122, 122, 2, 2
 
 observer-scrollpanel-button-disabled:
-	Image: dialog.png
-	PanelRegion: 768, 384, 1, 1, 126, 126, 1, 1
+	Inherits: ^Dialog
+	PanelRegion: 769, 385, 2, 2, 122, 122, 2, 2
 
 observer-scrollheader-selected:
-	Image: dialog.png
-	PanelRegion: 768, 384, 1, 1, 126, 126, 1, 1
+	Inherits: observer-scrollpanel-button-disabled
 
 observer-scrollitem-selected:
-	Image: dialog.png
-	PanelRegion: 896, 256, 1, 1, 126, 126, 1, 1
+	Inherits: observer-scrollpanel-button-pressed
 
 observer-scrollitem-hover:
-	Image: dialog.png
-	PanelRegion: 768, 256, 1, 1, 126, 126, 1, 1
+	Inherits: observer-scrollpanel-button
 
 # Used for the main menu frame
 dialog:
@@ -370,7 +360,8 @@ lobby-bits:
 		admin: 187, 5, 7, 5
 		colorpicker: 127, 5, 23, 22
 		huepicker: 194, 0, 7, 15
-		protected: 201, 0, 12, 13
+		#	kick: 153, 0, 11, 11
+		protected: 201, 0, 12, 13	  
 		protected-disabled: 212, 0, 12, 13
 		authentication: 199, 16, 12, 13
 		authentication-disabled: 212, 16, 12, 13
@@ -619,6 +610,7 @@ checkbox-bits:
 		checked-disabled: 100, 173, 16, 16
 		crossed: 116, 157, 16, 16
 		crossed-disabled: 116, 173, 16, 16
+		indicator-muted: 182, 134, 26, 24
 
 checkbox-hover:
 	Image: dialog.png

@@ -321,6 +321,9 @@
 	Capturable:
 		RequiresCondition: !build-incomplete
 		Types: building-sabotage
+	Capturable@2:
+		RequiresCondition: !build-incomplete
+		Types: building-external
 	RepairableBuilding:
 		RepairStep: 1000
 	WithDamageOverlay@SmallBurn:

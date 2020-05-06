@@ -1074,16 +1074,23 @@ ifv:
 	spinner: mrj
 		Start: 32
 		Length: 32
+	flag: ctflagx
+		Start: 0
+		Length: 10
+		Tick: 100
+		Offset: 0,-8
 	medic: mouse
 		Start: 194
 		Length: 1
 	turret: apc-tur3
 		Facings: 32
 		UseClassicFacingFudge: True
+		Offset: 0,1
 	turret2: 1tnk
 		Start: 32
 		Facings: 32
 		UseClassicFacingFudge: True
+		Offset: 0,1
 	turret3: ifv-tur
 		Facings: 32
 		UseClassicFacingFudge: True
@@ -1092,6 +1099,7 @@ ifv:
 	turret5: rep-tur
 		Facings: 32
 		UseClassicFacingFudge: True
+		Offset: 0,1
 	turret6: btr-tur
 		Facings: 32
 		UseClassicFacingFudge: True
@@ -1103,11 +1111,16 @@ ifv:
 		UseClassicFacingFudge: True
 	turret9: ssam
 		Facings: 32
+		Offset: 0,-1
 	turret10: 4tnkpbox
 	turret11: 2tnk
 		Start: 32
 		Facings: 32
 		UseClassicFacingFudge: True
+	turret12: chemturret
+		Facings: 32
+		UseClassicFacingFudge: True
+		Offset: 0,2
 	muzzle3:
 		Combine:
 			chem-n:

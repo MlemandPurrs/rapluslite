@@ -1,3 +1,16 @@
+^AACannon:
+	Projectile: Bullet
+		Speed: 1c682
+		Blockable: false
+
+^HeavyMG:
+	Projectile: Bullet
+		Speed: 1c682
+
+^SnipeWeapon:
+	Projectile: Bullet
+		Speed: 1c682
+
 25mm:
 	Range: 4c768
 
@@ -269,8 +282,10 @@ Repair.truk:
 	Warhead@1Dam: SpreadDamage
 		Damage: -3500
 
-FLAK-23-AA:
-	Range: 8c0
+FLAK-23-AG:
+	Projectile: Bullet
+		Speed: 1c682
+		Blockable: True
 
 FLAK-23-AG.britain:
 	Inherits: FLAK-23-AG
@@ -290,6 +305,9 @@ FLAK-23-AG.spain:
 
 FLAK-23-AA:
 	Range: 7c0
+	Projectile: Bullet
+		Speed: 1c682
+		Blockable: false
 
 FLAK-23-AA.britain:
 	Inherits: FLAK-23-AA
@@ -522,6 +540,7 @@ GrenadeLauncher.sub:
 ZSU-23:
 	Range: 9c0
 	Projectile: Bullet
+		Speed: 3c340
 		Inaccuracy: 1c938
 
 DogJaw.Bomber:
@@ -637,6 +656,11 @@ HeliDepthCharge:
 	Projectile: Bullet
 		Inaccuracy: 64
 
+ChainGun:
+	ReloadDelay: 12
+	Projectile: Bullet
+		Blockable: false
+
 ChainGun.aa:
 	Inherits: ChainGun
 	Range: 5c0
@@ -650,6 +674,10 @@ ChainGun.aa:
 	Warhead@2Eff: CreateEffect
 		ValidTargets: Air
 		ImpactActors: false
+
+ChainGun.Yak:
+	Projectile: Bullet
+		Blockable: false
 
 ChainGun.Yak.Right:
 	Inherits: ChainGun

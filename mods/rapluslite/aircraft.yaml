@@ -543,10 +543,11 @@ HELI:
 		Armaments: primary, secondary, tertiary, quartenary
 	AmmoPool:
 		PipType: Red
+		ReloadDelay: 15
 	AmmoPool@2:
 		Armaments: tertiary, quartenary
-		Ammo: 10
-		PipCount: 5
+		Ammo: 12
+		PipCount: 6
 		ReloadDelay: 9
 		AmmoCondition: ammogun
 	WithMuzzleOverlay:
@@ -600,13 +601,13 @@ HIND:
 		Armaments: primary, secondary, fourth, fifth
 		Ammo: 24
 		PipCount: 6
-		ReloadDelay: 9
+		ReloadDelay: 6
 		AmmoCondition: ammo
 	AmmoPool@ROCKETS:
 		Armaments: tertiary
 		Ammo: 8
 		PipCount: 4
-		ReloadDelay: 9
+		ReloadDelay: 16
 		PipType: Red
 		AmmoCondition: ammorock
 	AttackAircraft:
@@ -913,7 +914,7 @@ SPIT:
 		BuildAtProductionType: Plane
 		BuildPaletteOrder: 4
 		Prerequisites: ~afld, ~aircraft.allies, ~techlevel.medium
-		Description: Ground attack bomber.\nCannot attack Ground units.\n  Strong vs Infantry, Light armor\n  Weak vs Tanks, Aircraft
+		Description: Ground attack bomber.\nCannot attack Air units.\n  Strong vs Infantry, Light armor\n  Weak vs Tanks, Aircraft
 	Valued:
 		Cost: 900
 	Tooltip:

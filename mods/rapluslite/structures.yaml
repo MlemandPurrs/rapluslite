@@ -506,6 +506,7 @@ KENN:
 		Actor: kenn.husk
 		OwnerType: InternalName
 	-Capturable:
+	-Capturable@2:
 	-CaptureManager:
 	-CapturableProgressBar:
 	-CapturableProgressBlink:
@@ -1092,7 +1093,7 @@ FIX:
 		Icon: fturicon
 		ChargeInterval: 7500
 		Description: Lone Tower
-		LongDesc: A Flame Tower gets instantly constructed on the spot\nchecking Terrain of build spot.\nThis Flame tower remains cloaked when out of combat.
+		LongDesc: A Flame Turret gets instantly constructed on the spot\nchecking against Terrain of build spot.\nThis Flame Turret remains cloaked when out of combat.
 		DropItems: ftur.summon
 		ReinforcementsArrivedSpeechNotification: ReinforcementsArrived
 		SelectTargetSpeechNotification: SelectTarget
@@ -2816,7 +2817,7 @@ AFLD:
 		Icon: paratroopers
 		ChargeInterval: 9750
 		Description: Paratroopers
-		LongDesc: Two B-52 each drops a squad of Infantry\nanywhere on the map.
+		LongDesc: Two B-52 each drops a squad of\nVeteran Infantry anywhere on the map.
 		DropItems: E1R1,E3R1,E1R1,E3R1,E1R1, E1R1,E3R1,E1R1,E3R1,E1R1
 		ReinforcementsArrivedSpeechNotification: ReinforcementsArrived
 		SelectTargetSpeechNotification: SelectTarget
@@ -2917,6 +2918,7 @@ AFLD.Usa:
 	Inherits: AFLD
 	Buildable:
 		Prerequisites: dome, ~player.usa, ~techlevel.medium
+		Description: Produces and reloads Airplanes.\nCan be Infiltrated by an Spy resulting\nin Veterancy for enemy Aircraft.\n  Special Ability: Paratroopers\nTwo B-52 each drops a squad of\nVeteran Infantry anywhere on the map.
 	RenderSprites:
 		Image: afld
 	ProvidesPrerequisite@COPY:
@@ -3371,6 +3373,7 @@ SPEN:
 
 GAP:
 	-Capturable:
+	-Capturable@2:
 	-CaptureManager:
 	-CapturableProgressBar:
 	-CapturableProgressBlink:
@@ -3725,7 +3728,7 @@ FTUR.popup:
 		InitialDelay: 125
 		CloakDelay: 75
 		IsPlayerPalette: true
-		PauseOnCondition: cloak-force-disabled || empdisable || is-shooting
+		PauseOnCondition: cloak-force-disabled || empdisable || is-shooting || build-incomplete
 	GrantConditionOnDamageState@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
@@ -4204,7 +4207,7 @@ HSAM:
 		InitialDelay: 125
 		CloakDelay: 75
 		IsPlayerPalette: true
-		PauseOnCondition: cloak-force-disabled || build-incomplete || is-shooting
+		PauseOnCondition: cloak-force-disabled || empdisable || build-incomplete || is-shooting
 	GrantConditionOnDamageState@UNCLOAK:
 		Condition: cloak-force-disabled
 		ValidDamageStates: Critical
@@ -4215,8 +4218,6 @@ HSAM:
 	#	GrantConditionWhileAiming@UNCLOAK:
 	#	Condition: is-shooting
 	-WithBuildingBib:
-	Power:
-		RequiresCondition: !build-incomplete
 
 HSAM.uzbek:
 	Inherits: HSAM
@@ -4652,6 +4653,7 @@ MGNST:
 	-EngineerRepairable:
 	-CaptureManager:
 	-Capturable:
+	-Capturable@2:
 	-CapturableProgressBar:
 	-CapturableProgressBlink:
 	-Sellable:
@@ -4692,6 +4694,7 @@ SPMST:
 	Power:
 		Amount: -10
 	-Capturable:
+	-Capturable@2:
 	-CaptureManager:
 	-CapturableProgressBar:
 	-CapturableProgressBlink:
@@ -4704,12 +4707,13 @@ SPMST:
 	-Demolishable:
 	-SoundOnDamageTransition:
 	-Sellable:
+	-GivesBuildableArea:
+	-AcceptsDeliveredCash:
 	Explodes:
 		Weapon: SmallBuildingExplode
 		EmptyWeapon: SmallBuildingExplode
 	RevealsShroud:
-		MinRange: 5c0
-		Range: 5c0
+		Range: 6c0
 		#	RequiresCondition: !lowpower
 	DetectCloaked:
 		Range: 3c0
@@ -4904,6 +4908,8 @@ SPMST:
 	#	Image: spmst
 	Selectable:
 		Bounds: 24,48,0,-12
+	MustBeDestroyed:
+		RequiredForShortGame: false
 
 SPMST.summon:
 	Inherits: ^SummonBase

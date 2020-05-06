@@ -24,10 +24,10 @@ E1:
 E1.Marine:
 	Inherits: E1
 	Buildable:
-		BuildPaletteOrder: 9
+		BuildPaletteOrder: 10
 		BuildAtProductionType: Soldier
-		Prerequisites: ~dome, ~player.usa, ~techlevel.medium
-		Description: Toughened General-purpose infantry.\n  Special ability: Amphibian\nCan swim through sea and river.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
+		Prerequisites: atek, ~player.usa, ~techlevel.medium
+		Description: Toughened General-purpose infantry.\nUses MG and throws Grenades.\n  Special ability: Amphibian\nCan swim through sea and river.\nCan only shoot MG when in water.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
 	Tooltip:
 		Name: Marine
 	Valued:
@@ -36,6 +36,24 @@ E1.Marine:
 		HP: 7000
 	Mobile:
 		Locomotor: foot-amphibious
+	AmmoPool:
+		Ammo: 2
+		PipCount: 0
+		AmmoCondition: ammo
+	Armament@PRIMARY:
+		PauseOnCondition: !ammo || leaflet
+	Armament@Secondary:
+		Name: secondary
+		Weapon: Grenade
+		LocalOffset: 0,0,555
+		FireDelay: 15
+		PauseOnCondition: !ammo || leaflet || swimming
+	ReloadAmmoPool:
+		PauseOnCondition: ammo
+		Delay: 4
+		Count: 1
+		ResetOnFire: False
+	AttackFrontal:
 	GrantConditionOnTerrain:
 		TerrainTypes: Water, River
 		Condition: swimming
@@ -46,6 +64,9 @@ E1.Marine:
 		RequiresCondition: !parachute && swimming
 	WithInfantryBody:
 		DefaultAttackSequence: shoot
+		AttackSequences:
+			primary: shoot
+			secondary: throw
 		StandSequences: stand
 		RequiresCondition: !swimming
 	WithInfantryBody@SEA:
@@ -216,8 +237,9 @@ MEDI:
 	Inherits@ROT: ^RottingInfantry
 	Inherits@BOMBEQUIP: ^AffectedByBombVests
 	Buildable:
-		BuildPaletteOrder: 3
-		Prerequisites: ~disabled
+		BuildPaletteOrder: 9
+		#	Prerequisites: ~disabled
+		Prerequisites: ~tent, dome, ~techlevel.low
 	Health:
 		HP: 6000
 	Valued:
@@ -460,7 +482,7 @@ SNIP:
 		Queue: Infantry
 		BuildAtProductionType: Soldier
 		Prerequisites: ~tent, atek, ~infantry.allies, ~player.england, ~techlevel.high
-		Description: Sharpshooter infantry.\nNeeds to reload after every 10 shots.\n Detects cloaked units at close range.\n  Special Ability: Camouflage\nCloaks when standing still. Can be ordered to crawl around unseen.\n  Strong vs Infantry\n  Weak vs Anything Else
+		Description: Sharpshooter infantry.\nNeeds to reload after every 5 shots.\n Detects cloaked units at close range.\n  Special Ability: Camouflage\nCloaks when standing still. Can be ordered to crawl around unseen.\n  Strong vs Infantry\n  Weak vs Anything Else
 	Health:
 		HP: 8000
 	Mobile:
@@ -477,12 +499,12 @@ SNIP:
 		PauseOnCondition: !ammo || leaflet
 	AmmoPool:
 		Armaments: primary
-		Ammo: 10
+		Ammo: 5
 		PipCount: 0
 		AmmoCondition: ammo
 	ReloadAmmoPool:
 		Delay: 125
-		Count: 10
+		Count: 5
 		RequiresCondition: !ammo
 	WithDecoration@ammoreplenish:
 		RequiresSelection: false
@@ -571,7 +593,7 @@ MARK:
 		BuildAtProductionType: Soldier
 		BuildPaletteOrder: 7
 		Prerequisites: ~barr, dome, ~player.afghan, ~techlevel.medium
-		Description: Infantry armed with an Sniper rifle.\nShoots Poison-coated rounds.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
+		Description: Infantry armed with an Sniper rifle.\nNeeds to reload after every 5 shots.\nShoots Poison-coated rounds.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
 	Health:
 		HP: 5000
 	Passenger:
@@ -702,7 +724,7 @@ ATGM:
 	Tooltip:
 		Name: ATGM Soldier
 	Buildable:
-		BuildPaletteOrder: 9
+		BuildPaletteOrder: 10
 		Prerequisites: ~tent, atek, ~infantry.allies, ~player.greece, ~techlevel.high
 		Queue: Infantry
 		BuildAtProductionType: Soldier
@@ -737,7 +759,7 @@ RMBO:
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Inherits@BOMBEQUIP: ^AffectedByBombVests
 	Valued:
-		Cost: 1200
+		Cost: 1000
 	Tooltip:
 		Name: Commando
 	Buildable:
@@ -1213,7 +1235,7 @@ STNG:
 	Tooltip:
 		Name: Anti-Air Soldier
 	Buildable:
-		BuildPaletteOrder: 9
+		BuildPaletteOrder: 10
 		Prerequisites: ~tent, atek, ~player.spain, ~techlevel.high
 		Queue: Infantry
 		BuildAtProductionType: Soldier
@@ -1268,7 +1290,7 @@ CINF:
 	Buildable:
 		Queue: Infantry
 		BuildAtProductionType: Soldier
-		BuildPaletteOrder: 9
+		BuildPaletteOrder: 10
 		Prerequisites: ~tent, atek, ~player.italy, ~tech.stolen, ~techlevel.high
 		Description: High tech infantry unit capable of Teleporting.\nArmament shocks Vehicles, Ships and Structures\npreventing them from Movement or Fighting back.\n  Strong vs Everything on Ground\n  Weak vs Aircraft, Anti-Infantry
 	Valued:
@@ -1358,7 +1380,7 @@ SHOT:
 	Tooltip:
 		Name: Shotgunner
 	Buildable:
-		BuildPaletteOrder: 9
+		BuildPaletteOrder: 10
 		Prerequisites: ~tent, fix, ~player.italy, ~techlevel.high
 		Queue: Infantry
 		BuildAtProductionType: Soldier

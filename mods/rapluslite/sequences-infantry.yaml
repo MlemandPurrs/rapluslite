@@ -63,8 +63,96 @@ e1:
 	dshk-icon: dshkicon
 
 e1.marine:
-	Inherits: e1
-	Defaults: e1
+	stand: e1gren
+		Facings: 8
+	stand2: e1gren
+		Start: 8
+		Facings: 8
+	run: e1gren
+		Start: 16
+		Length: 6
+		Facings: 8
+		Tick: 100
+	shoot: e1gren
+		Start: 64
+		Length: 8
+		Facings: 8
+	prone-stand: e1gren
+		Start: 144
+		Stride: 4
+		Facings: 8
+	prone-stand2: e1gren
+		Start: 144
+		Stride: 4
+		Facings: 8
+	prone-run: e1gren
+		Start: 144
+		Length: 4
+		Facings: 8
+		Tick: 100
+	liedown: e1gren
+		Start: 128
+		Length: 2
+		Facings: 8
+	standup: e1gren
+		Start: 176
+		Length: 2
+		Facings: 8
+	prone-shoot: e1gren
+		Start: 192
+		Length: 8
+		Facings: 8
+	parachute: e1gren
+		Start: 377
+	idle1: e1gren
+		Start: 256
+		Length: 16
+		Tick: 120
+	idle2: e1gren
+		Start: 272
+		Length: 16
+		Tick: 120
+	die1: e1gren
+		Start: 288
+		Length: 8
+	die2: e1gren
+		Start: 296
+		Length: 8
+	die3: e1gren
+		Start: 304
+		Length: 8
+	die4: e1gren
+		Start: 312
+		Length: 12
+	die5: e1gren
+		Start: 324
+		Length: 18
+	die6: electro
+		Frames: 0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13
+		Length: *
+		UseTilesetExtension: true
+		TilesetOverrides:
+			DESERT: TEMPERAT
+			INTERIOR: TEMPERAT
+	die-crushed: corpse1
+		Length: *
+		Tick: 1600
+		ZOffset: -511
+		UseTilesetExtension: true
+		TilesetOverrides:
+			DESERT: TEMPERAT
+			INTERIOR: TEMPERAT
+	garrison-muzzle: minigun
+		Length: 6
+		Facings: 8
+	throw: e2
+		Start: 64
+		Length: 20
+		Facings: 8
+	prone-throw: e2
+		Start: 288
+		Length: 12
+		Facings: 8
 	swim_idle: tnkgunnr
 		Start: 64
 		Facings: 8

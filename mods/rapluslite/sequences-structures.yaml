@@ -31,6 +31,7 @@ powr:
 		Tick: 80
 	dead: powrdead2
 		Tick: 800
+	fake-icon: pwrficon
 
 powr.husk:
 	idle: powrdead2
@@ -705,6 +706,34 @@ ftur.hidden:
 		Length: 8
 		Tick: 60
 		Offset: 0,-2
+	muzzle-spray:
+		Combine:
+			flame-n:
+				Length: *
+				Offset: 3,6
+			flame-nw:
+				Length: *
+				Offset: 8,7
+			flame-w:
+				Length: *
+				Offset: 8,2
+			flame-sw:
+				Length: *
+				Offset: 7,-2
+			flame-s:
+				Length: *
+				Offset: 3,-2
+			flame-se:
+				Length: *
+				Offset: -5,-2
+			flame-e:
+				Length: *
+				Offset: -7,2
+			flame-ne:
+				Length: *
+				Offset: -7,8
+		Facings: 8
+		Length: 13
 	icon: fturicon
 
 ftur.husk:

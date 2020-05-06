@@ -81,6 +81,7 @@ JEEP:
 		Queue: Vehicle, MWFVehicle
 		BuildPaletteOrder: 2
 		Prerequisites: ~vehicles.allies, ~!player.spain, ~techlevel.low
+		Description: Fast scout & anti-infantry vehicle.\nDetects cloaked units in close radius.\nCan carry one infantry.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
 	Mobile:
 		PauseOnCondition: !(!empdisable && !notmobile && !being-captured)
 	Tooltip:
@@ -96,6 +97,9 @@ JEEP:
 		RequiresCondition: !parachute
 	Passenger:
 		PipType: Green
+	DetectCloaked:
+		Range: 2c0
+	RenderDetectionCircle:
 
 JEEP.Spain:
 	Inherits: JEEP
@@ -234,9 +238,14 @@ FTRK.Repair:
 	WithSpriteTurret:
 		Sequence: turret
 	CaptureManager:
-	Captures@CAPTURES:
+	Captures@1:
 		CaptureDelay: 375
 		CaptureTypes: building
+		PlayerExperience: 50
+		ConsumedByCapture: False
+	Captures@2:
+		CaptureDelay: 375
+		CaptureTypes: building-external
 		PlayerExperience: 50
 		ConsumedByCapture: False
 	AutoTarget:
@@ -2581,6 +2590,9 @@ BRDM.Scout:
 	RenderSprites:
 		Image: brdm
 	-MapEditorData:
+	DetectCloaked:
+		Range: 2c0
+	RenderDetectionCircle:
 
 BEHE:
 	Inherits: ^TrackedVehicle
@@ -3128,12 +3140,11 @@ IFV:
 	Turreted:
 		TurnSpeed: 10
 		Offset: 20,0,60
-	Armament@DEFAULT:
-		Weapon: 25mm
-		LocalOffset: 768,0,90
-		MuzzleSequence: muzzle2
-		PauseOnCondition: empdisable || leaflet
-		RequiresCondition: !(gunturr || samturr || psamturr || commturr || flamturr || chemturr || spyturr || testurr || engturr || tecnturr || fragturr || snipturr || flakturr || medturr || volkturr)
+	#	Armament@25mm:
+	#	Weapon: 25mm
+	#	LocalOffset: 768,0,90
+	#	MuzzleSequence: muzzle2
+	#	PauseOnCondition: empdisable || leaflet
 	Armament@TECN:
 		Weapon: M1Carbine
 		MuzzleSequence: muzzle
@@ -3152,17 +3163,22 @@ IFV:
 		LocalOffset: 150,0,100
 		PauseOnCondition: empdisable || leaflet
 		RequiresCondition: fragturr
-	Armament@E3:
+	Armament@DefaultAG:
 		Weapon: Dragon.dual
-		LocalOffset: 192,70,376, 192,-70,376
+		LocalOffset: 192,90,376, 192,-90,376
 		PauseOnCondition: empdisable || leaflet
-		RequiresCondition: samturr
-	Armament@E3AA:
+		#	RequiresCondition: samturr
+		RequiresCondition: !(gunturr || samturr || psamturr || commturr || flamturr || chemturr || spyturr || testurr || engturr || tecnturr || fragturr || snipturr || flakturr || medturr || volkturr)
+	Armament@DefaultAA:
 		Name: secondary
 		Weapon: RedEye.dual
-		LocalOffset: 192,70,376, 192,-70,376
+		LocalOffset: 192,90,376, 192,-90,376
 		PauseOnCondition: empdisable || leaflet
-		RequiresCondition: samturr || psamturr
+		#	RequiresCondition: samturr || psamturr
+		RequiresCondition: !(gunturr || samturr || psamturr || commturr || flamturr || chemturr || spyturr || testurr || engturr || tecnturr || fragturr || snipturr || flakturr || medturr || volkturr) || psamturr
+	ReloadDelayMultiplier@E3:
+		RequiresCondition: boostrocket
+		Modifier: 90
 	Armament@E4:
 		Weapon: FireballLauncher.single
 		LocalOffset: 768,0,90
@@ -3232,7 +3248,7 @@ IFV:
 		RequiresCondition: !empdisable && spyturr
 	AttackTurreted:
 		PauseOnCondition: empdisable || leaflet
-		RequiresCondition: !spyturr && !medturr
+		RequiresCondition: !spyturr && !medturr && !flagturr && !thfturr
 	WithMuzzleOverlay:
 	WithSpriteTurret@smolgun:
 		RequiresCondition: tecnturr
@@ -3240,12 +3256,9 @@ IFV:
 	WithSpriteTurret@gun:
 		RequiresCondition: gunturr || commturr
 		Sequence: turret
-	WithSpriteTurret@samturr:
-		RequiresCondition: samturr
-		Sequence: turret3
 	WithSpriteTurret@default:
-		Sequence: turret2
-		RequiresCondition: !(gunturr || commturr || psamturr || samturr || spyturr || testurr || medturr || engturr || tecnturr || flamturr || chemturr || flakturr || thfturr || snipturr || volkturr)
+		RequiresCondition: !(gunturr || commturr || psamturr || samturr || spyturr || testurr || medturr || engturr || tecnturr || flamturr || chemturr || flakturr || thfturr || snipturr || volkturr || flagturr || fragturr)
+		Sequence: turret3
 	WithIdleOverlay@tes:
 		Sequence: turret4
 		RequiresCondition: testurr
@@ -3254,19 +3267,26 @@ IFV:
 		RequiresCondition: engturr
 	WithSpriteTurret@flame:
 		Sequence: turret7
-		RequiresCondition: flamturr || chemturr
+		RequiresCondition: flamturr
+	WithSpriteTurret@chem:
+		Sequence: turret12
+		RequiresCondition: chemturr
 	WithSpriteTurret@flak:
 		Sequence: turret8
 		RequiresCondition: flakturr
 	WithSpriteTurret@samonly:
 		RequiresCondition: psamturr
 		Sequence: turret9
+		Offset: 0,0,-4
 	WithSpriteTurret@snipers:
 		RequiresCondition: snipturr
 		Sequence: turret10
 	WithSpriteTurret@volkov:
 		RequiresCondition: volkturr
 		Sequence: turret11
+	WithSpriteTurret@grenadiers:
+		Sequence: turret2
+		RequiresCondition: fragturr
 	Cargo:
 		Types: Infantry
 		MaxWeight: 1
@@ -3280,20 +3300,21 @@ IFV:
 			dshk: gunturr
 			shot: tecnturr
 			e2: fragturr
+			e2r1: fragturr
 			e2.uzbek: fragturr
 			e2.uzbekr2: fragturr
 			gren: fragturr
-			e3: samturr
-			e3r1: samturr
-			atgm: samturr
+			e3: boostrocket
+			e3r1: boostrocket
+			atgm: prockturr
 			stng: psamturr
 			e4: flamturr
 			e4.ukraine: flamturr
 			e4.ukrainer2: flamturr
 			rpg: flamturr
 			e5: chemturr
-			e6: engturr
-			e6.uzbek: engturr
+			e6: flagturr
+			e6.uzbek: flagturr
 			mech: engturr
 			mech.germany: engturr
 			mrtr: flamturr
@@ -3326,15 +3347,32 @@ IFV:
 		EnableSound: heal2.aud
 		Condition: barracks
 		Range: 3c0
+	CaptureManager:
+	Captures@1:
+		CaptureDelay: 375
+		CaptureTypes: building
+		PlayerExperience: 50
+		ConsumedByCapture: False
+		RequiresCondition: flagturr
+	Captures@2:
+		CaptureDelay: 375
+		CaptureTypes: building-external
+		PlayerExperience: 50
+		ConsumedByCapture: False
+		RequiresCondition: flagturr
+	WithIdleOverlay@ENGINEER:
+		Sequence: flag
+		#	PauseOnCondition: empdisable || leaflet
+		RequiresCondition: flagturr
 	AutoTarget:
 		AttackAnythingCondition: stance-attackanything
 		ScanRadius: 6
 	AutoTargetPriority@DEFAULTAA:
 		ValidTargets: Infantry, Vehicle, Water, Underwater, Air, Defense
-		RequiresCondition: (!stance-attackanything && !assault-move) && (samturr || flakturr)
+		RequiresCondition: (!stance-attackanything && !assault-move) && (psamturr || flakturr)
 	AutoTargetPriority@ATTACKANYTHINGAA:
 		ValidTargets: Infantry, Vehicle, Water, Underwater, Air, Structure, Defense
-		RequiresCondition: (stance-attackanything || assault-move) && (samturr || flakturr)
+		RequiresCondition: (stance-attackanything || assault-move) && (psamturr || flakturr)
 	AutoTargetPriority@DEFAULTG:
 		RequiresCondition: (!stance-attackanything && !assault-move) && (fragturr || gunturr || flamturr || chemturr || testurr || commturr)
 		ValidTargets: Infantry, Vehicle, Water, Underwater, Defense
