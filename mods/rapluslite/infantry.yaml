@@ -478,7 +478,7 @@ SNIP:
 	Tooltip:
 		Name: Sniper
 	Buildable:
-		BuildPaletteOrder: 9
+		BuildPaletteOrder: 10
 		Queue: Infantry
 		BuildAtProductionType: Soldier
 		Prerequisites: ~tent, atek, ~infantry.allies, ~player.england, ~techlevel.high
@@ -649,7 +649,7 @@ GREN:
 	Buildable:
 		Queue: Infantry
 		BuildAtProductionType: Soldier
-		BuildPaletteOrder: 9
+		BuildPaletteOrder: 10
 		Prerequisites: ~tent, atek, ~infantry.allies, ~player.france, ~techlevel.high
 		Description: Infantry armed with long-range grenade launcher.\n  Strong vs Infantry, Buildings\n  Weak vs Vehicles, Aircraft
 	Armament@PRIMARY:
@@ -691,7 +691,7 @@ MGI:
 	Buildable:
 		Queue: Infantry
 		BuildAtProductionType: Soldier
-		BuildPaletteOrder: 9
+		BuildPaletteOrder: 10
 		Prerequisites: ~tent, atek, ~infantry.allies, ~player.germany, ~techlevel.high
 		Description: Infantry equipped with a rapid firing Machine Gun.\n  Strong vs Infantry\n  Weak vs Vehicles, Defenses
 	Armament@PRIMARY:
@@ -765,7 +765,7 @@ RMBO:
 	Buildable:
 		Queue: Infantry
 		BuildAtProductionType: Soldier
-		BuildPaletteOrder: 9
+		BuildPaletteOrder: 10
 		Prerequisites: ~tent, atek, ~infantry.allies, ~player.turkey, ~techlevel.high
 		Description: Elite commando infantry.\nArmed with assault rifle and C4.\n  Special Ability: Camouflage\nCloaks when standing still. Can be ordered to crawl around unseen.\n  Strong vs Infantry, Buildings\n  Weak vs Vehicles, Aircraft
 	Mobile:

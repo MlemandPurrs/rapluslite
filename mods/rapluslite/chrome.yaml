@@ -360,7 +360,7 @@ lobby-bits:
 		admin: 187, 5, 7, 5
 		colorpicker: 127, 5, 23, 22
 		huepicker: 194, 0, 7, 15
-		#	kick: 153, 0, 11, 11
+		kick: 168, 177, 11, 11
 		protected: 201, 0, 12, 13	  
 		protected-disabled: 212, 0, 12, 13
 		authentication: 199, 16, 12, 13
