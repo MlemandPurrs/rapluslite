@@ -542,12 +542,10 @@ bio:
 		Length: 40
 		Tick: 160
 		Offset: 0,-20
-		# BlendMode: DoubleMultiplicative
 	damaged-idle-smoke: bio-smoke-d
 		Length: 40
 		Tick: 160
 		Offset: 0,-20
-		# BlendMode: DoubleMultiplicative
     icon: bioicon
 
 bio.husk:

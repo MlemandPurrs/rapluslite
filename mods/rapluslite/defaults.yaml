@@ -126,13 +126,6 @@
 		Condition: invulnerability
 	ExternalCondition@INVULNERABILITY:
 		Condition: invulnerability
-	#	^GlobalBountyDuplicate:
-	#	GrantConditionOnPrerequisite@SOVIETBOUNTY:
-	#	Condition: soviet-bounty
-	#	Prerequisites: soviet-bounty
-	#	GivesBounty@replace:
-	#	RequiresCondition: !global-bounty && soviet-bounty
-
 
 ^AffectedByBounty:
 	GivesBounty@SOVIETBOUNTY:
@@ -293,8 +286,6 @@
 	Inherits@82: ^AffectedByGearChange
 	Inherits@85: ^AffectedByInflation
 	-EjectOnDeath:
-	#	Repairable:
-	#	RepairActors: fix, fix.usa, fix.spain, fix.italy, fix.greece, fix.turkey, fix.russia, fix.ukraine, fix.belarus, fix.karelia, fix.kazakh, fix.uzbek, fix.turkmen, fix.afghan
 	ProductionTimeMultiplier@USABonus:
 		Multiplier: 90
 		Prerequisites: player.usa
@@ -308,7 +299,6 @@
 		RepairActors: hpad, hpad.usa, carr.deployed
 
 ^BasicBuilding:
-	#	Inherits@88: ^AffectedByBounty
 
 ^Building:
 	Inherits@AI: ^ProductionAIBoost
@@ -861,11 +851,6 @@ HEALUPCRATE:
 		Name: Heal-up Crate
 		GenericName: Heal-up Crate
 		ShowOwnerRow: false
-	#	overpowered, instant heals everything.
-	#	HealUnitsCrateAction:
-	#	Sound: heal2.aud
-	#	SelectionShares: 1
-	#	Sequence: heal
 	GrantExternalConditionCrateAction@1:
 		SelectionShares: 1
 		Sequence: heal
@@ -888,11 +873,6 @@ HEALUPCRATE:
 
 BOMBCRATE:
 	Inherits: ^Crate
-	#	Tooltip:
-	#	Name: Chrono Mine
-	#	GenericName: Mine
-	#	ShowOwnerRow: false
-	#	GenericVisibility: Enemy
 	Tooltip:
 		Name: Bomb Crate
 		GenericName: Crate
@@ -915,10 +895,6 @@ BOMBCRATE:
 		XmasImages: xcratea, xcrateb, xcratec, xcrated
 		LandSequence: land
 		WaterSequence: water
-	#	RenderSprites:
-	#	Palette: player
-	#	Image: minc
-	#	breaks explosion on Pickup
 	KillsSelf:
 		Delay: 750
 		RemoveInstead: false
@@ -1345,8 +1321,6 @@ dummy.conscription:
 	Inherits: CAMERA
 	Buildable:
 		Queue: Dummy
-	#	Tooltip:
-	#	Name: (Conscription sp proxy)
 	EditorOnlyTooltip:
 		Name: (Conscription sp proxy)
 	-RevealsShroud:
@@ -1482,7 +1456,6 @@ dummy.radiohack:
 		Delay: 6
 		HealIfBelow: 101
 		DamageCooldown: 0
-		#	RequiresCondition: gassed && !dontdie
 		RequiresCondition: gassed
 		Step: -1
 		PercentageStep: -1
@@ -1497,30 +1470,6 @@ dummy.radiohack:
 	RevealsShroudMultiplier@SMOKE:
 		Modifier: 50
 		RequiresCondition: smoked
-
-#	camera.gps:
-#	Inherits: CAMERA
-#	ConditionManager:
-#	EditorOnlyTooltip:
-#		Name: (gps support power proxy camera)
-#	KillsSelf:
-#		RemoveInstead: True
-#		Delay: 375
-#	RevealsShroud:
-#		Range: 0c0
-#		RevealGeneratedShroud: False
-#		Type: CenterPosition
-#	DetectCloaked:
-#		Range: 0c0
-#		CloakTypes: Cloak, Thief, Underwater
-#	ExternalCondition@PRODUCED:
-#		Condition: produced
-#	VoiceAnnouncement:
-#		RequiresCondition: produced
-#		Voice: SatelliteLaunched
-#	ProximityExternalCondition:
-#		Condition: gps
-#		Range: 200c0
 
 ^AffectedByFrenzy:
 	WithColoredOverlay@FRENZY:
@@ -1578,10 +1527,6 @@ dummy.radiohack:
 		Delay: 376
 		DamageCooldown: 376
 		RequiresCondition: turbo.on
-	#	maybe keep it simple stupid
-	#	ReloadDelayMultiplier@TURBO
-	#	Modifier: 50
-	#	RequiresCondition: turbo.on
 	SpeedMultiplier@TURBO:
 		Modifier: 130
 		RequiresCondition: turbo.on

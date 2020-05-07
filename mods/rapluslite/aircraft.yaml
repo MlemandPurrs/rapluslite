@@ -171,7 +171,6 @@ B52.buildable:
 	AttackAircraft:
 		FacingTolerance: 120
 		PersistentTargeting: false
-	#	AttackTurreted:
 	Turreted@1:
 		Turret: turret-mg
 		TurnSpeed: 255
@@ -279,7 +278,6 @@ TRAN.Soviet:
 	Inherits: TRAN
 	Buildable:
 		BuildPaletteOrder: 4
-		#	BuildAtProductionType: Plane
 		Prerequisites: ~hpad, ~aircraft.soviet, ~techlevel.medium
 		Icon: svyt-icon
 	Tooltip:
@@ -450,9 +448,7 @@ MI2:
 		Queue: Aircraft, MWFHeli
 		BuildAtProductionType: Helicopter
 		BuildPaletteOrder: 5
-		#	Prerequisites: ~hpad, ~aircraft.soviet, ~techlevel.medium
 		Prerequisites: ~disabled
-		#	Prerequisites: ~afld, ~aircraft.soviet, ~player.uzbek, ~techlevel.medium
 		Description: Light helicopter armed with dual chainguns.\n  Strong vs Infantry, Light vehicles\n  Weak vs Tanks, Aircraft
 	Valued:
 		Cost: 1200
@@ -480,7 +476,6 @@ MI2.scout:
 		BuildAtProductionType: Helicopter
 		BuildPaletteOrder: 7
 		Prerequisites: ~hpad, ~aircraft.soviet, ~player.uzbek, ~techlevel.medium
-		#	Description: Fast and nimble light helicopter with\ngood sight-radius and detection.\nDetects cloaked units in a close radius.\nSpecial Ability: Flaregun\nCan use Flaregun to fire Flares that illuminate\nwhere they land providing vision while they last.\nCan rearm on Service Depot.\n  Unarmed
 		Description: Fast and nimble light helicopter with\ngood sight-radius and detection.\nDetects cloaked units in a close radius.\nCan transport one Infantry.\n  Unarmed
 	Valued:
 		Cost: 800
@@ -493,23 +488,8 @@ MI2.scout:
 	-AmmoPool:
 	DetectCloaked:
 		Range: 3c0
-	#	Armament:
-	#	Weapon: FlareGun
-	#	LocalOffset: 85,-213,-85, 85,213,-85
-	#	MuzzleSequence: muzzle
-	#	PauseOnCondition: !ammo
-	#	AmmoPool:
-	#	Ammo: 4
-	#	PipCount: 2
-	#	ReloadDelay: 9
-	#	AmmoCondition: ammo
-	#	AttackAircraft:
-	#	Armaments: primary
-	#	-ProducibleWithLevel:
 	-Rearmable:
 	-WithMuzzleOverlay:
-	#	Rearmable:
-	#	RearmActors: fix, fix.russia
 	-ProducibleWithLevel:
 	Cargo:
 		Types: Infantry
@@ -560,7 +540,6 @@ HIND:
 		BuildPaletteOrder: 6
 		BuildAtProductionType: Helicopter
 		Prerequisites: ~hpad, stek, ~aircraft.soviet, ~!player.afghan, ~techlevel.high
-		#	Prerequisites: ~disabled
 		Description: Slow helicopter gunship armed with dual chainguns\nand anti-ground rockets.\n  Strong vs Infantry, Tanks\n  Weak vs fast Units, Aircraft
 	Tooltip:
 		Name: MI-24 Hind
@@ -630,7 +609,6 @@ HIND:
 		HP: 12000
 
 HIND.afghan:
-	#	Inherits: HIND.gunship
 	Inherits: HIND
 	Buildable:
 		Prerequisites: ~hpad, stek, ~aircraft.soviet, ~player.afghan, ~!aircraft.upgraded, ~techlevel.high
@@ -865,8 +843,6 @@ YAK.kamikaze:
 	-Valued:
 	Tooltip:
 		Name: Kamikaze Yak
-	#	Aircraft:
-	#	Speed: 160
 	-Armament@PRIMARY:
 	-Armament@SECONDARY:
 	-Armament@TERTIARY:
@@ -876,9 +852,6 @@ YAK.kamikaze:
 	-AmmoPool@2:
 	Armament@PRIMARY:
 		Weapon: DummyBomb
-	#	Armament@PRIMARY:
-	#	Weapon: KamikazeTargeting
-	#	LocalOffset: 0,0,0
 	-WithMuzzleOverlay:
 	-ProducibleWithLevel:
 	-Rearmable:
@@ -935,22 +908,8 @@ SPIT:
 		Name: primary
 		Weapon: BombingRun.ag
 		LocalOffset: 300,0,0
-		PauseOnCondition: !ammo
-	#	Armament@AALEFT:
-	#	Name: secondary
-	#	Weapon: ChainGun.Yak.AA.Left
-	#	LocalOffset: 256,-213,0
-	#	MuzzleSequence: muzzle
-	#	PauseOnCondition: !ammogun
-	#	Armament@AARIGHT:
-	#	Name: tertiary
-	#	Weapon: ChainGun.Yak.AA.Right
-	#	LocalOffset: 256,213,0
-	#	MuzzleSequence: muzzle
-	#	FireDelay: 1
-	#	PauseOnCondition: !ammogun		
+		PauseOnCondition: !ammo	
 	AttackAircraft:
-		#	Armaments: primary, secondary, tertiary
 		FacingTolerance: 20
 		PersistentTargeting: false
 		OpportunityFire: False
@@ -970,12 +929,6 @@ SPIT:
 		PipType: Yellow
 		ReloadDelay: 11
 		AmmoCondition: ammo
-	#	AmmoPool@2:
-	#	Armaments: secondary, tertiary
-	#	Ammo: 16
-	#	PipCount: 2
-	#	ReloadDelay: 11
-	#	AmmoCondition: ammogun
 	SelectionDecorations:
 	WithMuzzleOverlay:
 	Contrail:
@@ -1372,8 +1325,6 @@ BMIN:
 	Voiced:
 		VoiceSet: RoboticVoice
 	-SpawnActorOnDeath:
-	#	SpawnActorOnDeath:
-	#	Actor: BMIN.Husk
 	-Repairable:
 	WithIdleOverlay@CHUTE:
 		Offset: 0,0,85

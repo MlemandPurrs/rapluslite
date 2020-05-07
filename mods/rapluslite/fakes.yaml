@@ -130,7 +130,6 @@ BARF:
 	Buildable:
 		BuildPaletteOrder: 17
 		Queue: Fakestructure
-		#	Prerequisites: ~structures.soviet, ~player.france, ~techlevel.infonly
 		Prerequisites: ~disabled
 		Description: Looks like an Soviet Barracks.
 		Icon: fake-icon
@@ -164,7 +163,6 @@ KENF:
 	Buildable:
 		BuildPaletteOrder: 11
 		Queue: Fakestructure
-		#	Prerequisites: anypower, ~player.france, ~techlevel.infonly
 		Prerequisites: ~disabled
 		Description: Looks like an Kennel.
 		Icon: fake-icon
@@ -425,7 +423,6 @@ SPEF:
 	Buildable:
 		BuildPaletteOrder: 18
 		Queue: Fakestructure
-		#	Prerequisites: ~structures.soviet, ~player.france, ~techlevel.low
 		Prerequisites: ~disabled
 		Description: Looks like a Sub Pen.
 		Icon: fake-icon
@@ -639,7 +636,6 @@ STEF:
 		BuildPaletteOrder: 11
 		Queue: Fakestructure
 		BuildLimit: 1
-		#	Prerequisites: ~structures.soviet, ~player.france, ~techlevel.high
 		Prerequisites: ~disabled
 		Description: Looks like soviet Tech Center.\nMaximum 1 can be built.
 		Icon: fake-icon
@@ -706,7 +702,6 @@ IROF:
 	Buildable:
 		BuildPaletteOrder: 14
 		Queue: Fakestructure
-		#	Prerequisites: ~structures.soviet, ~player.france, ~techlevel.unrestricted
 		Prerequisites: ~disabled
 		BuildLimit: 1
 		Description: Looks like the Iron Curtain.\nMaximum 1 can be built.

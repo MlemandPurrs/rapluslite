@@ -1,8 +1,6 @@
 ^RottingInfantry:
 	WithDeathAnimation@ROT:
 		DeathSequence: rot
-		# DeathPaletteIsPlayerPalette: False
-		# DeathSequencePalette: effect
 		DeathTypes:
 			DefaultDeath: 1
 			BulletDeath: 2
@@ -215,11 +213,6 @@ E6:
 		PlayerExperience: 0
 		CaptureDelay: 100
 		ConsumedByCapture: false
-	#	nope...
-	#	Captures@CAPTURESHUSK:
-	#	CaptureTypes: husk
-	#	PlayerExperience: 50
-	#	CaptureDelay: 100
 	Passenger:
 		PipType: Blue
 
@@ -238,7 +231,6 @@ MEDI:
 	Inherits@BOMBEQUIP: ^AffectedByBombVests
 	Buildable:
 		BuildPaletteOrder: 9
-		#	Prerequisites: ~disabled
 		Prerequisites: ~tent, dome, ~techlevel.low
 	Health:
 		HP: 6000
@@ -281,19 +273,7 @@ SPY:
 		Description: Agent of the Intelligence Service.\nCan detect cloaked units and spies.\n  Special Ability: Hijacking\nCan steal enemy Vehicles when not disguised.\n  Special Ability: Espionage\nInfiltrates enemy production structures for rank bonus.\nSteals enemy credits from Refineries.\nInfiltrates enemy Power Plants to cut off base power.\nInfiltrates Radar Domes to reset their exploration.\nInfiltrates Tech Centers to unlock your country's Tech Unit.\n  Special Ability: Disguise\nCan disguise as enemy Infantry.\nLoses disguise when attacking.\n  Strong vs Infantry\n  Weak vs Vehicles, Aircraft
 	Passenger:
 		PipType: Yellow
-	#	neat.. this works.
-	#	AutoTarget:
-	#	HoldFireCondition: infiltrate
-	#	ReturnFireCondition: sabotage
-	#	Infiltrates:
-	#	RequiresCondition: infiltrate
 	CaptureManager:
-	#	Captures@SABOTAGE:
-	#	CaptureTypes: building-sabotage
-	#	SabotageThreshold: 1
-	#	SabotageHPRemoval: 20
-	#	PlayerExperience: 50
-	#	RequiresCondition: sabotage
 	Captures@VEHICLE:
 		CaptureTypes: vehicle
 		PlayerExperience: 50
@@ -346,9 +326,6 @@ THF:
 		SabotageThreshold: 1
 		SabotageHPRemoval: 20
 		PlayerExperience: 50
-	#	Cant make it blow up only bridges
-	#	Demolition:
-	#	DetonationDelay: 45
 
 E7:
 	Inherits@ROT: ^RottingInfantry
@@ -849,11 +826,6 @@ RMBO:
 	SpeedMultiplier@CRAWL:
 		Modifier: 50
 		RequiresCondition: iscrawling
-	#	need to ensure stuff damaging with 50% on prone need to be duplicated for iscrawling
-	#	need extra Targetable for that during iscrawling, and to tweak every weapon with Prone50Percent
-	#	Targetable:
-	#	RequiresCondition: !parachute
-	#	TargetTypes: Ground, Infantry, Disguise
 
 SHOK:
 	Inherits@ROT: ^RottingInfantry
@@ -900,8 +872,7 @@ DOG.Bomb:
 		BuildAtProductionType: Soldier
 		BuildPaletteOrder: 7
 		Prerequisites: proc, fix, ~player.ukraine, ~techlevel.medium
-		#	Prerequisites: ~disabled
-		Description: Dog carrying an Bomb vest\n  Is trained to run towards Vehicles.\n  Strong vs Infantry\n  Weak vs Vehicles, Defenses
+		Description: Dog carrying an Bomb vest.\n  Is trained to run towards Vehicles.\n  Strong vs Infantry\n  Weak vs Vehicles, Defenses
 	Valued:
 		Cost: 625
 	Tooltip:

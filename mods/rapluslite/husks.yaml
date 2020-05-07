@@ -727,24 +727,6 @@ IROQ.Husk:
 	RenderSprites:
 		Image: iroq
 
-#	BMIN.Husk:
-#	Inherits: ^HelicopterHusk
-#	-FallsToEarth:
-#	Aircraft:
-#	CruiseAltitude: 1908
-#	BodyOrientation:
-#	UseClassicFacingFudge: False
-#	-RevealOnDeath:
-#	KillsSelf:
-#	Delay: 1
-#	RequiresCondition: airborne
-#	Explodes@UNITEXPLODES:
-#	Weapon: AAMine
-#	DamageSource: Killer
-#	Type: CenterPosition	
-#	RenderSprites:
-#	Image: dummy.visual
-
 MI2.Husk:
 	Inherits: ^HelicopterHusk
 	Tooltip:

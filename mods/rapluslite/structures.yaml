@@ -56,19 +56,6 @@ FACT:
 		OwnerType: InternalName
 	Armor:
 		Type: Concrete
-	#	SpawnActorPower@CashReserves:
-	#	PauseOnCondition: disabled || lowpower
-	#	Prerequisites: ~atek, player.usa
-	#	Description: Cash Reserves
-	#	no money ? haha! moneyprinter goes brrrrrr...
-	#	LongDesc: Instantly gives 3000$ but everything is\n50% more expensive for 1.5 minutes.\nOil Derricks yield vastly reduced income,\nOre Silos produce no income at all. 
-	#	Icon: cashicon
-	#	Actor: dummy.moneyprinter
-	#	LifeTime: 2250
-	#	ChargeInterval: 12000
-	#	Cursor: dollar-target
-	#	OrderName: InstantCashPower
-	#	SupportPowerPaletteOrder: 2
 	ProduceActorPower@CashReserves:
 		PauseOnCondition: disabled || lowpower
 		OrderName: CashReserveUse
@@ -79,20 +66,7 @@ FACT:
 		Description: Cash Reserves
 		LongDesc: Instantly gives 3000$ but everything is\n50% more expensive for 1.5 minutes.\nOil Derricks yield vastly reduced income,\nOre Silos produce no income at all.
 		Type: Dummy
-		#	ReadyAudio: ReinforcementsArrived
-		#	BlockedAudio: NoBuild
 		SupportPowerPaletteOrder: 2
-	#	SpawnActorPower@Maintenance:
-	#	PauseOnCondition: disabled || lowpower
-	#	Prerequisites: ~weap, ~fix, player.germany
-	#	Description: Maintenance
-	#	LongDesc: Instantly gives 3000$ but disables all War Factories for 1.5 minute.
-	#	Icon: mainticon
-	#	Actor: dummy.maintenance
-	#	LifeTime: 2250
-	#	ChargeInterval: 6000
-	#	OrderName: MaintenancePower
-	#	SupportPowerPaletteOrder: 2	
 	ProduceActorPower@Maintenance:
 		PauseOnCondition: disabled || lowpower
 		OrderName: MaintenanceUse
@@ -103,8 +77,6 @@ FACT:
 		Description: Maintenance
 		LongDesc: Instantly gives 3000$ but disables all War Factories for 1.5 minute.
 		Type: Dummy
-		#	ReadyAudio: ReinforcementsArrived
-		#	BlockedAudio: NoBuild
 		SupportPowerPaletteOrder: 2
 	ProduceActorPower@DecoyArmy:
 		PauseOnCondition: disabled || lowpower
@@ -119,17 +91,6 @@ FACT:
 		ReadyAudio: ReinforcementsArrived
 		BlockedAudio: NoBuild
 		SupportPowerPaletteOrder: 2
-	#	SpawnActorPower@Conscription:
-	#	PauseOnCondition: disabled || lowpower
-	#	OrderName: Conscription
-	#	Prerequisites: ~barr, ~stek, player.kazakh
-	#	Description: Conscription
-	#	LongDesc: Basic Infantry types get produced in pairs for 1 minute.\nAffects Rifle Infantry, Grenadier and Rocket Soldier.
-	#	Icon: consicon
-	#	Actor: dummy.conscription
-	#	LifeTime: 1500
-	#	ChargeInterval: 7500
-	#	SupportPowerPaletteOrder: 2
 	ProduceActorPower@Conscription:
 		PauseOnCondition: disabled || lowpower
 		OrderName: ConscriptionUse
@@ -140,20 +101,7 @@ FACT:
 		Description: Conscription
 		LongDesc: Basic Infantry types get produced in pairs for 1 minute.\nAffects Rifle Infantry, Grenadier and Rocket Soldier.
 		Type: Dummy
-		#	ReadyAudio: ReinforcementsArrived
-		#	BlockedAudio: NoBuild
 		SupportPowerPaletteOrder: 2
-	#	SpawnActorPower@GearChange:
-	#	PauseOnCondition: disabled || lowpower
-	#	Prerequisites: ~stek, player.uzbek
-	#	Description: Gear Change
-	#	LongDesc: Instantly takes 3000$, all Vehicle, Aircraft\nand Ships gets built 25% faster for 1.5 minute.
-	#	Icon: gearicon
-	#	Actor: dummy.productionboost
-	#	LifeTime: 2250
-	#	ChargeInterval: 9000
-	#	OrderName: ProductionBoostPower
-	#	SupportPowerPaletteOrder: 2
 	ProduceActorPower@GearChange:
 		PauseOnCondition: disabled || lowpower
 		OrderName: ProductionBoostUse
@@ -164,8 +112,6 @@ FACT:
 		Description: Gear Change
 		LongDesc: Instantly takes 3000$, all Vehicle, Aircraft\nand Ships gets built 25% faster for 1.5 minute.
 		Type: Dummy
-		#	ReadyAudio: ReinforcementsArrived
-		#	BlockedAudio: NoBuild
 		SupportPowerPaletteOrder: 2
 	SupportPowerChargeBar:
 	GrantConditionOnPowerState@LOWPOWER:
@@ -463,19 +409,6 @@ BARR:
 		Range: 2c512
 	WithRangeCircle:
 		Range: 2c512
-	#	GrantConditionOnPrerequisite@CONSCRIPTION:
-	#	Prerequisites: conscription
-	#	Condition: conscription
-	#	ClonesProducedUnits@CONSCRIPTION:
-	#	CloneableTypes: Soldier
-	#	RequiresCondition: conscription && primary
-	#	WithDecoration@CONSCRIPTION:
-	#	RequiresSelection: true
-	#	Image: pips
-	#	Sequence: tag-cloner
-	#	ReferencePoint: Center
-	#	ZOffset: 256
-	#	RequiresCondition: conscription && primary
 	ProductionCostMultiplier@Russia:
 		Multiplier: 90
 		Prerequisites: player.russia
@@ -490,7 +423,6 @@ BARR:
 KENN:
 	Buildable:
 		BuildPaletteOrder: 11
-		#	Prerequisites: anypower, ~techlevel.infonly
 		Prerequisites: ~disabled
 	WithDeathAnimation:
 		DeathSequence: dead
@@ -706,9 +638,6 @@ OPRF:
 	RevealsShroud@GAPGEN:
 		Range: 4c0
 	WithBuildingBib:
-	#	ResourcePurifier:
-	#	Modifier: 25
-	#	RequiresCondition: !disabled
 	Power:
 		Amount: -150
 	WithDeathAnimation:
@@ -1504,7 +1433,6 @@ DOME.Allies:
 		ChargeInterval: 7500
 		Description: Leaflet Drop
 		LongDesc: A B-52 drops Leaflets at the target area.\nAffected enemy Vehicle and Infantry\nhave their weapons disabled for 15 seconds.
-		#	LongDesc: A B-52 drops Leaflets at the target area, that have an chance to disable or convert units.\nThe leaflets have an 20% chance of disabling Vehicles and 10% chance of converting enemy Infantry.
 		SelectTargetSpeechNotification: SelectTarget
 		CameraActor: camera.paradrop
 		CameraRemoveDelay: 150
@@ -1744,20 +1672,6 @@ DOME.Soviet:
 		CircleSequence: circles
 		Cursor: airdrop
 		SupportPowerPaletteOrder: 2
-		#	Iron Curtain + this ? OP
-		#	GrantExternalConditionPower@FRENZY:
-		#	PauseOnCondition: disabled
-		#	Icon: frenzy
-		#	ChargeInterval: 3000
-		#	Description: Frenzy
-		#	LongDesc: Makes a group of units deal more damage,\nthat grows as they get damaged for 20 seconds.
-		#	Duration: 500
-		#	SelectTargetSpeechNotification: SelectTarget
-		#	InsufficientPowerSpeechNotification: InsufficientPower
-		#	DisplayRadarPing: True
-		#	Condition: frenzyison
-		#	OnFireSound: ironcur9.aud
-		#	SupportPowerPaletteOrder: 2
 	ParatroopersPower@SovietParaTanks:
 		PauseOnCondition: lowpower
 		OrderName: SovietParaTanks
@@ -1782,30 +1696,6 @@ DOME.Soviet:
 		UseDirectionalTarget: True
 		DirectionArrowAnimation: paradirection
 		SupportPowerPaletteOrder: 2
-	#	crazy op
-	#	AirstrikePower@FinalSquadron:
-	#	PauseOnCondition: lowpower
-	#	OrderName: KamikazePlanes
-	#	Prerequisites: ~aircraft.soviet, player.turkmen
-	#	Icon: yak
-	#	ChargeInterval: 9000
-	#	Description: Final Squadron
-	#	LongDesc: Costs 2400$ right after use.\nAn trio of kamikaze Yaks will crash on target area.
-	#	SelectTargetSpeechNotification: SelectTarget
-	#	CameraActor: camera
-	#	CameraRemoveDelay: 150
-	#	UnitType: yak.kamikaze
-	#	QuantizedFacings: 8
-	#	DisplayBeacon: true
-	#	BeaconPoster: yaksmol
-	#	ArrowSequence: arrow
-	#	ClockSequence: clock
-	#	CircleSequence: circles
-	#	SquadSize: 3
-	#	SquadOffset: 1792,1792,0
-	#	UseDirectionalTarget: True
-	#	DirectionArrowAnimation: paradirection
-	#	SupportPowerPaletteOrder: 2
 	ParatroopersPower@GrenParadrop:
 		PauseOnCondition: disabled
 		OrderName: GrenParadrop
@@ -2077,7 +1967,6 @@ ATEK:
 		Icon: mincicon
 		ChargeInterval: 7500
 		Description: Chrono Bomb
-		#	LongDesc: Chronoshifts a high-explosive Bomb to desired position.\nThe Chrono Bomb detonates after 30 seconds or when an enemy steps over.
 		LongDesc: Chronoshifts a Bomb Crate to desired position.\nThe bomb detonates after 30 seconds or when picked up.
 		DropItems: bombcrate
 		ReinforcementsArrivedSpeechNotification: ReinforcementsArrived
@@ -2401,7 +2290,7 @@ STEK:
 		SelectTargetSpeechNotification: SelectTarget
 		InsufficientPowerSpeechNotification: InsufficientPower
 		Condition: ecosabotage
-		#	Cursor: c4
+		Cursor: c4
 		Sequence: none
 		ValidStances: Neutral, Enemy
 		SupportPowerPaletteOrder: 2
@@ -2446,7 +2335,6 @@ STEK:
 		Condition: techdisable
 	Sellable:
 		RequiresCondition: !build-incomplete && !being-captured && !being-demolished && !disabled
-	#	RallyPoint:
 	Production:
 		Produces: Infantry, Soldier
 		PauseOnCondition: disabled
@@ -3046,18 +2934,6 @@ HPAD:
 	SpawnActorOnDeath:
 		Actor: hpad.husk
 		OwnerType: InternalName
-	#	Power usage in tooltip does not update properly,
-	#	works otherwise, alas its weird so cannot use.
-	#	-Power:
-	#	Power@normal:
-	#	Amount: -10
-	#	RequiresCondition: !is.american
-	#	Power@usa:
-	#	Amount: -20
-	#	RequiresCondition: is.american
-	#	GrantConditionOnPrerequisite@USMALUS:
-	#	Condition: is.american
-	#	Prerequisites: player.usa
 	ProductionCostMultiplier@Russia:
 		Multiplier: 90
 		Prerequisites: player.russia
@@ -4004,7 +3880,6 @@ PBAT:
 	ReloadAmmoPool:
 		Delay: 90
 		Count: 1
-		#	RequiresCondition: ammo > 4
 	WithMuzzleOverlay:
 	Power:
 		Amount: -80
@@ -4040,32 +3915,6 @@ PDOX:
 		Range: 2
 		SupportPowerPaletteOrder: 5
 	-ChronoshiftPower@advancedchronoshift:
-	#	because AI too dumb to make use of Chronoshift.
-	#	oops, DetonateWeaponPower does not exist,
-	#	uhh, we dont have SpawnActorWarhead either...
-	#	DetonateWeaponPower@ChronoAI:
-	#	OrderName: ChronoReinforcements
-	#	Prerequisites: enable-ai-player
-	#	Icon: chrono
-	#	Cursor: ability
-	#	ChargeInterval: 7000
-	#	Description: Chrono Reinforcements
-	#	ActivationDelay: 25
-	#	LongDesc: Teleports in a group of Vehicles\nanywhere on the map.
-	#	Weapon: ChronoAI
-	#	AirburstAltitude: 0c0
-	#	AllowMultiple: false
-	#	CameraActor: camera
-	#	CameraRemoveDelay: 375
-	#	SelectTargetSpeechNotification: SelectTarget
-	#	InsufficientPowerSpeechNotification: InsufficientPower
-	#	BeginChargeSpeechNotification: ChronosphereCharging
-	#	EndChargeSpeechNotification: ChronosphereReady
-	#	DisplayTimerStances: Ally, Neutral, Enemy
-	#	PauseOnCondition: disabled
-	#	DisplayRadarPing: True
-	#	LaunchSound: chrono2.aud
-	#	IncomingSound: chrono2.aud
 	-SpawnActorsOnSell:
 	Power:
 		RequiresCondition: !build-incomplete
@@ -4219,8 +4068,6 @@ HSAM:
 		Condition: is-shooting
 		ArmamentNames: primary
 		RevokeDelay: 75
-	#	GrantConditionWhileAiming@UNCLOAK:
-	#	Condition: is-shooting
 	-WithBuildingBib:
 
 HSAM.uzbek:
@@ -4311,13 +4158,8 @@ MINE:
 	ExternalCondition@ECOSABOTAGE:
 		Condition: ecosabotage
 	WithColoredOverlay@ECOSABOTAGE:
-		#	Color: 20C000
 		Palette: ecosabot
 		RequiresCondition: ecosabotage
-	#	Does not work, why ?
-	#	TimedConditionBar@ECOSABOTAGE:
-	#	Color: 00781e
-	#	Condition: ecosabotage
 	Interactable:
 		Bounds: 24, 24, 0, -12
 
@@ -4334,9 +4176,6 @@ GMINE:
 	WithColoredOverlay@ECOSABOTAGE:
 		Palette: ecosabot
 		RequiresCondition: ecosabotage
-	#	TimedConditionBar@ECOSABOTAGE:
-	#	Color: 00781e
-	#	Condition: ecosabotage
 	ExternalCondition@ECOSABOTAGE:
 		Condition: ecosabotage
 	Interactable:
@@ -4371,9 +4210,6 @@ DRILLMINE:
 	WithColoredOverlay@ECOSABOTAGE:
 		Palette: ecosabot
 		RequiresCondition: ecosabotage
-	#	TimedConditionBar@ECOSABOTAGE:
-	#	Color: 00781e
-	#	Condition: ecosabotage
 	ExternalCondition@ECOSABOTAGE:
 		Condition: ecosabotage
 
@@ -4718,13 +4554,8 @@ SPMST:
 		EmptyWeapon: SmallBuildingExplode
 	RevealsShroud:
 		Range: 6c0
-		#	RequiresCondition: !lowpower
 	DetectCloaked:
 		Range: 3c0
-		#	RequiresCondition: !lowpower
-	#	GrantConditionOnPowerState@LOWPOWER:
-	#	Condition: lowpower
-	#	ValidPowerStates: Low, Critical
 	RenderDetectionCircle:
 	Disguise:
 		DisguisedCondition: disguised
@@ -4906,10 +4737,6 @@ SPMST:
 		Name: tree17husk
 		Sequence: tree17husk
 		RequiresCondition: isatree17husk
-	#	on a second thought, maybe not...
-	#	RenderSprites:
-	#	Palette: terrain
-	#	Image: spmst
 	Selectable:
 		Bounds: 24,48,0,-12
 	MustBeDestroyed:

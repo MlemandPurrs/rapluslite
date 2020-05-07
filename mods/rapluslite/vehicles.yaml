@@ -546,8 +546,6 @@ BTR.crate:
 		Prerequisites: ~vehicles.allies, ~player.england, ~techlevel.low
 	ProductionCostMultiplier@NationBonus:
 		Multiplier: 110
-	#	Valued:
-	#	Cost: 650
 	Armament@PRIMARY:
 		Weapon: 25mm.britain
 		Recoil: 85
@@ -678,7 +676,6 @@ BTR.crate:
 LTNK:
 	Inherits: 1TNK
 	Buildable:
-		#	Prerequisites: ~vehicles.soviet, dome, ~player.turkmen, ~techlevel.medium
 		Prerequisites: ~disabled
 		BuildPaletteOrder: 9
 		Description: Fast tank, good for scouting.\n  Strong vs Light armor\n  Weak vs Infantry, Tanks, Aircraft
@@ -746,8 +743,6 @@ LTNK:
 		Prerequisites: fix, ~vehicles.allies, ~player.england, ~techlevel.medium
 	ProductionCostMultiplier@NationBonus:
 		Multiplier: 110
-	#	Valued:
-	#	Cost: 775
 	Armament@PRIMARY:
 		Name: primary
 		Weapon: 90mm.britain
@@ -875,8 +870,6 @@ LTNK:
 	ProductionCostMultiplier@NationBonusExtra:
 		Multiplier: 90
 		Prerequisites: indp, indplowpower
-	#	Valued:
-	#	Cost: 765
 	SpawnActorOnDeath:
 		Actor: 2TNK.Belarus.Husk
 	RenderSprites:
@@ -943,8 +936,6 @@ LTNK:
 	ProductionCostMultiplier@NationBonusExtra:
 		Multiplier: 90
 		Prerequisites: indp, indplowpower
-	#	Valued:
-	#	Cost: 1035
 	SpawnActorOnDeath:
 		Actor: 3TNK.Belarus.Husk
 	RenderSprites:
@@ -995,8 +986,6 @@ LTNK:
 	Inherits: 4TNK
 	Buildable:
 		Prerequisites: fix, stek, ~vehicles.soviet, ~player.belarus, ~techlevel.high
-	#	Valued:
-	#	Cost: 1800
 	ProductionCostMultiplier@NationBonus:
 		Multiplier: 90
 		Prerequisites: !indp
@@ -1341,8 +1330,6 @@ ATNK.England:
 	Inherits: ATNK
 	Buildable:
 		Prerequisites: dome, fix, ~vehicles.allies, ~player.england, ~techlevel.high
-	#	Valued:
-	#	Cost: 775
 	ProductionCostMultiplier@NationBonus:
 		Multiplier: 110
 	Armament@PRIMARY:
@@ -2341,10 +2328,9 @@ MRLS:
 	Inherits@EXPERIENCE: ^GainsExperience
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Valued:
-		Cost: 1350
+		Cost: 1250
 	Buildable:
 		BuildPaletteOrder: 9
-		#	Prerequisites: ~disabled
 		Prerequisites: stek, dome, ~player.afghan, ~techlevel.high
 		Queue: Vehicle
 		Description: Long range rocket artillery.\nCan be toggled to fire in pairs or volleys.\nCannot attack Air units\n  Strong vs all Ground units\n  Weak vs Aircraft
@@ -2603,7 +2589,6 @@ BEHE:
 		BuildPaletteOrder: 14
 		BuildLimit: 1
 		Prerequisites: stek, ~vehicles.soviet, ~tech.stolen, ~player.afghan, ~techlevel.high
-		#	Prerequisites: ~disabled
 		Description: Artillery tank of majestic proportions.\nMaximum one can be built.\nCan crush concrete walls.\nSelf-repairs when below 50% of maximum Health.\nNuclear powered, detonates violently on death!\n  Strong vs Defenses, Vehicles, Infantry\n  Weak vs Aircraft, fast Units
 	Valued:
 		Cost: 3500
@@ -2740,11 +2725,6 @@ BEHE.tank:
 		Weapon: MiniNuke
 		EmptyWeapon: MiniNuke
 		DamageSource: Killer
-	#	this is permanent!
-	#	ToggleConditionOnOrder@IRONCURTAIN:
-	#	Condition: invulnerability
-	#	OrderName: deploy
-	#	RequiresCondition: !invulnerability
 	
 HAPC:
 	Inherits: ^TrackedVehicle
@@ -2776,7 +2756,6 @@ HAPC:
 	Armament:
 		Weapon: Flamer
 		LocalOffset: 768,0,171
-		#	MuzzleSequence: muzzle
 		PauseOnCondition: empdisable || leaflet
 	AttackFrontal:
 		PauseOnCondition: empdisable || leaflet
@@ -2830,7 +2809,6 @@ MCV.uzbek:
 		BuildDuration: 2500
 	Valued:
 		Cost: 1875
-	#	necessary for correct cost on sell
 	-Transforms:
 	Transforms:
 		IntoActor: fact.uzbek
@@ -3140,11 +3118,6 @@ IFV:
 	Turreted:
 		TurnSpeed: 10
 		Offset: 20,0,60
-	#	Armament@25mm:
-	#	Weapon: 25mm
-	#	LocalOffset: 768,0,90
-	#	MuzzleSequence: muzzle2
-	#	PauseOnCondition: empdisable || leaflet
 	Armament@TECN:
 		Weapon: M1Carbine
 		MuzzleSequence: muzzle
@@ -3342,7 +3315,6 @@ IFV:
 			tecn: tecnturr
 			cinf: tecnturr
 			ftrp: flakturr
-			#	todo make unique turret for cinf
 	ProducibleWithLevel:
 		Prerequisites: vehicles.upgraded
 	WithIdleOverlay@MEDIC:
@@ -3370,7 +3342,6 @@ IFV:
 		RequiresCondition: flagturr
 	WithIdleOverlay@ENGINEER:
 		Sequence: flag
-		#	PauseOnCondition: empdisable || leaflet
 		RequiresCondition: flagturr
 	AutoTarget:
 		AttackAnythingCondition: stance-attackanything

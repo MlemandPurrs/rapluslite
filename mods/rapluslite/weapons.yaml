@@ -66,7 +66,6 @@
 90mm.burst:
 	Inherits: 90mm
 	Range: 6c0
-	#	ReloadDelay: 27
 	Burst: 3
 	BurstDelays: 9
 	Projectile:
@@ -1725,7 +1724,6 @@ Sniper:
 		Spread: 42
 		Damage: 6000
 		ValidTargets: Cyborg
-		#	InvalidTargets: Barrel, Infantry
 		DamageTypes: Prone50Percent, TriggerProne, DefaultDeath
 
 Sniper.chem:
@@ -1744,8 +1742,6 @@ AirMineTargeting:
 	ValidTargets: AirDetonateAttack
 	Range: 0c768
 	Projectile: InstantHit
-	#	Projectile: Bullet
-	#	Speed: 9999
 	Warhead@1Dam: TargetDamage
 		ValidTargets: AirDetonateAttack
 
@@ -1761,11 +1757,7 @@ AAMine:
 	Warhead@2Eff: CreateEffect
 		Explosions: med_explosion_air
 		ImpactSounds: mineblo1.aud
-		#	ValidTargets: Air
-	Warhead@3Eff: CreateEffect
-		Explosions: med_explosion_air
-		#	ImpactSounds: mineblo1.aud
-		ValidTargets: Air
+		ValidTargets: Ground, Water, Air
 
 Chaingun.5tnk:
 	Inherits: ChainGun
@@ -1796,25 +1788,6 @@ SCUD.Badger.ukraine:
 	Projectile: Bullet
 		Inaccuracy: 1c512
 		LaunchAngle: 0
-
-#  SpawnActorWarhead does not exist in mainline T_T
-#	FlareSpawner:
-#	Range: 5c0
-#	ValidTargets: Ground
-#	Projectile: Bullet
-#	Image: smokland
-#	Sequences: projectile
-#	Palette: player
-#	IsPlayerPalette: true
-#	Blockable: false
-#	Shadow: true
-#	Speed: 50
-#	LaunchAngle: 90
-#	Warhead@1Spa: SpawnActor
-#	Actors: flare.timed
-#	Range: 1
-#	ForceGround: false
-#	ValidTargets: Ground, Air
 
 MADTankThump:
 	InvalidTargets: MADTank
@@ -1897,7 +1870,6 @@ ArtilleryStrike:
 ArtilleryCluster:
 	ReloadDelay: 60
 	Range: 6c0
-	#	ValidTargets: Ground, Ship, Air
 	Projectile: Bullet
 		Blockable: false
 		Image: 120mm
@@ -2126,8 +2098,6 @@ RecoverHusk:
 
 parabomb.leaflet:
 	ReloadDelay: 8
-	#	Burst: 5
-	#	BurstDelay: 8
 	Range: 3c0
 	Report: chute1.aud
 	Projectile: GravityBomb
@@ -2183,21 +2153,6 @@ CrateExplosionBeep:
 		Explosions: piff
 		ImpactSounds: gdembeep.aud
 		ValidTargets: Ground, Air, Ship, Trees
-	#	ChronoAI:
-	#	ReloadDelay: 1
-	#	Projectile: InstantExplode
-	#	Warhead@2Eff: CreateEffect
-	#	Explosions: piff
-	#	ValidTargets: Ground, Air, Water
-	#	ImpactSounds: chrono2.aud
-	#	Warhead@teleport: SpawnActor
-	#	Actors: 1tnk, 2tnk, arty, 2tnk, 1tnk
-	#	Range: 5
-	#	Image: chronoappear
-	#	Sequence: idle
-	#	ValidTargets: Air, Ground, Water
-	#	Warhead@3Flash: ChronoFlashEffect
-
 
 BurnFX:
 	ValidTargets: Ground, Water, Trees

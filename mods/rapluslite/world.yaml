@@ -207,8 +207,6 @@
 		InternalName: turkey
 		Side: Allies
 		Description: Turkey\nSpecialization: Toughness\nThe forces of Turkey are an tough nut to crack.\nFaction Variations:\n    - Infantry is Tough, takes 5% less damage from all sources.\n    - Concrete Walls and Gates have 50% increased Hitpoints.\nVeterancy Bonus:\n    - Iroqouis Scout gets built as Veteran.\nUnique Support Powers:\n    - Parascouts (Radar Dome with Helipad)\nA B-52 drops 2 Jeeps anywhere on the map.\n    - Instant Bunker (Service Depot with Construction Yard)\nAn unmanned Pillbox gets instantly built on the spot.\n    - Paranuke (Tech Center)\nA fast plane drops an parachuted nuclear bomb on your target.\nThe bomb is more effective against units rather than structures.\nSpecial Units:\n    - Commando (Infantry)\nElite Infantry armed with assault rifle and C4.\n    - Assault APC (Vehicle)\nAPC with reduced carry capacity and grenadelaunchers.\n    - Guard Tower (Defense)\nDefensive structure that shoots Sniper rifle.\nTech Unit:\n    - Grand Cannon (Vehicle)\nHeavy artillery with extreme range.
-	#	Unused, removed
-	#	\n    - Production structures have Armor type Concrete instead Wood.\nThis results in those becoming much more durable.
 	Faction@9:
 		Name: Soviet
 		InternalName: soviet
@@ -230,7 +228,6 @@
 		InternalName: belarus
 		Side: Soviet
 		Description: Belarus\nSpecialization: Secret Weapons\nThe forces of Belarus have ingenious inventions at their disposal.\nFaction Variations:\n    - Tanks* are cheaper to build but have less health.\n*Those Tanks being: Heavy 1-B, Heavy and Mammoth Tanks.\n10% cheaper to build at the cost of having 10% less Hitpoints.\n    - Paratroopers power recharges twice as fast.\nVeterancy Bonus:\n    - Yak Plane gets built as Veteran.\nUnique Support Powers:\n    - Conscription (Barracks with Tech Center)\nBasic Infantry types get produced in pairs for 1 minute.\nThose are Rifle Infantry, Grenadier and Rocket Soldier.\n    - Field Promotion (Radar with Airfield)\nA Badger plane drops an rank-up crate anywhere on the map.\n    - Chemical Strike (Tech Center)\nLaunches a missile loaded with chemical gas.\nKills Infantry and mind-controls Vehicle crews.\nSpecial Units:\n    - Chemical Warrior (Infantry)\nArmed with weapons spraying chemicals, can beat everything at close range.\n    - MAD Tank (Vehicle)\nDevice capable of emitting seismic waves when deployed that damage structures.\n    - Stalin's Fist (Vehicle)\nThis vehicle is an mobile War Factory.\nTech Unit:\n    - Behemoth Tank (Vehicle)\nExtralarge, superheavy tank armed with ship cannons and chainguns.
-		# unused, removed \n    - Ore Trucks have increased carry capacity.\nOre Trucks carry +10 more Ore per trip.
 	Faction@13:
 		Name: Karelia
 		InternalName: karelia

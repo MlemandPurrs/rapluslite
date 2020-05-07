@@ -920,8 +920,6 @@ SS.AG:
 		Condition: is-shooting
 		ArmamentNames: secondary
 		RevokeDelay: 50
-	#	GrantConditionWhileAiming@UNCLOAK:
-	#	Condition: is-shooting
 	-GrantConditionOnDeploy:
 
 MSUB:
@@ -1379,7 +1377,6 @@ HVRF:
 		Queue: Ship
 		BuildPaletteOrder: 6
 		Prerequisites: dome, fix, ~vehicles.soviet, ~player.afghan, ~techlevel.medium
-		#	Prerequisites: ~disabled
 		Description: Amphibian anti-air unit with\ntoken Mg for ground support.\nCan carry one Infantry.\n  Strong vs Infantry, Aircraft\n  Weak vs Tanks, Ships
 	Valued:
 		Cost: 700
