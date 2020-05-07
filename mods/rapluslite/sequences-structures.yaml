@@ -965,6 +965,10 @@ vgate:
 		Frames: 13, 12, 11, 10, 9, 8, 7
 		Length: 7
 		ZOffset: -1c511
+	make:
+		Frames: 6, 5, 4, 3, 2, 1, 0
+		Length: 7
+		ZOffset: -1c511
 	icon: vgateicon
 
 hgate:
@@ -979,6 +983,10 @@ hgate:
 		ZOffset: -1c511
 	damaged-idle:
 		Frames: 13, 12, 11, 10, 9, 8, 7
+		Length: 7
+		ZOffset: -1c511
+	make:
+		Frames: 6, 5, 4, 3, 2, 1, 0
 		Length: 7
 		ZOffset: -1c511
 	icon: hgateicon

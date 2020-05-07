@@ -175,11 +175,11 @@ B52.buildable:
 	Turreted@1:
 		Turret: turret-mg
 		TurnSpeed: 255
-		Offset: 468,0,-96
+		Offset: 468,0,-108
 	Turreted@2:
 		Turret: turret-cannon
 		TurnSpeed: 255
-		Offset: 396,0,-96
+		Offset: 396,0,-108
 	WithSpriteTurret@1:
 		Sequence: turret1
 		Turret: turret-mg
@@ -1372,6 +1372,8 @@ BMIN:
 	Voiced:
 		VoiceSet: RoboticVoice
 	-SpawnActorOnDeath:
+	#	SpawnActorOnDeath:
+	#	Actor: BMIN.Husk
 	-Repairable:
 	WithIdleOverlay@CHUTE:
 		Offset: 0,0,85

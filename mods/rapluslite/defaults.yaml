@@ -383,6 +383,9 @@
 		PauseOnCondition: !(!empdisable)
 	Targetable:
 		TargetTypes: Ground, Water, Ship, SeaDetonateAttack
+	Targetable@REPAIR:
+		RequiresCondition: damaged
+		TargetTypes: Repair, RepairShip
 	RepairableNear:
 		RepairActors: spen, syrd, syrd.usa
 	SelfHealing@InstaRep:
@@ -436,7 +439,7 @@
 		RequiresCondition: underwater
 	Targetable@REPAIR:
 		RequiresCondition: !underwater && damaged
-		TargetTypes: Repair
+		TargetTypes: Repair, RepairShip
 	GrantConditionOnTerrain@CROSSINGFORD:
 		Condition: shallowcrossing
 		TerrainTypes: Shallow
@@ -589,14 +592,7 @@ CAMERA.fieldrepair:
 		HealIfBelow: 101
 		DamageCooldown: 0
 		RequiresCondition: overcharged
-		Step: -200
-	#	DamagedByTerrain@OVERCHARGE:
-	#	Damage: 200
-	#	DamageInterval: 6
-	#	Terrain: Clear, Road
-	#	DamageThreshold: 11
-	#	RequiresCondition: overcharged
-	#	DamageThreshold is not taking effect.
+		Step: -300
 
 ^DisableOnPowerDown:
 	WithColoredOverlay@IDISABLE:
@@ -704,6 +700,7 @@ CAMERA.fieldrepair:
 	-WithSpriteBody:
 	-EngineerRepairable:
 	-Capturable:
+	-Capturable@2:
 	-SpawnActorsOnSell:
 	-CaptureManager:
 	-CapturableProgressBar:

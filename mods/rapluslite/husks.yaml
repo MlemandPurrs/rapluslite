@@ -727,6 +727,24 @@ IROQ.Husk:
 	RenderSprites:
 		Image: iroq
 
+#	BMIN.Husk:
+#	Inherits: ^HelicopterHusk
+#	-FallsToEarth:
+#	Aircraft:
+#	CruiseAltitude: 1908
+#	BodyOrientation:
+#	UseClassicFacingFudge: False
+#	-RevealOnDeath:
+#	KillsSelf:
+#	Delay: 1
+#	RequiresCondition: airborne
+#	Explodes@UNITEXPLODES:
+#	Weapon: AAMine
+#	DamageSource: Killer
+#	Type: CenterPosition	
+#	RenderSprites:
+#	Image: dummy.visual
+
 MI2.Husk:
 	Inherits: ^HelicopterHusk
 	Tooltip:
@@ -1364,7 +1382,7 @@ YAK.Kamikaze.Husk:
 YAK.Allies.Husk:
 	Inherits: ^PlaneHusk
 	Tooltip:
-		Name: Spitfire Attack Plane
+		Name: Spitfire Attack Bomber
 	Contrail:
 		Offset: -853,0,0
 	Aircraft:
@@ -1388,7 +1406,7 @@ YAK.Allies.Husk:
 MIG.Allies.Husk:
 	Inherits: ^PlaneHusk
 	Tooltip:
-		Name: Tornado Attack Plane
+		Name: Tornado Interceptor
 	Contrail@1:
 		Offset: -598,-683,0
 	Contrail@2:

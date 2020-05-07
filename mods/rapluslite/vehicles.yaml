@@ -229,7 +229,7 @@ FTRK.Repair:
 	AttackFrontal:
 		PauseOnCondition: empdisable || leaflet
 	Armament:
-		Weapon: Repair.truk
+		Weapon: Repair
 		Cursor: repair
 		OutsideRangeCursor: repair
 		TargetStances: Ally
@@ -3167,15 +3167,23 @@ IFV:
 		Weapon: Dragon.dual
 		LocalOffset: 192,90,376, 192,-90,376
 		PauseOnCondition: empdisable || leaflet
-		#	RequiresCondition: samturr
-		RequiresCondition: !(gunturr || samturr || psamturr || commturr || flamturr || chemturr || spyturr || testurr || engturr || tecnturr || fragturr || snipturr || flakturr || medturr || volkturr)
+		RequiresCondition: !(gunturr || commturr || flamturr || chemturr || spyturr || testurr || engturr || tecnturr || fragturr || snipturr || flakturr || medturr || volkturr || prockturr || psamturr)
 	Armament@DefaultAA:
 		Name: secondary
 		Weapon: RedEye.dual
 		LocalOffset: 192,90,376, 192,-90,376
 		PauseOnCondition: empdisable || leaflet
-		#	RequiresCondition: samturr || psamturr
-		RequiresCondition: !(gunturr || samturr || psamturr || commturr || flamturr || chemturr || spyturr || testurr || engturr || tecnturr || fragturr || snipturr || flakturr || medturr || volkturr) || psamturr
+		RequiresCondition: !(gunturr || commturr || flamturr || chemturr || spyturr || testurr || engturr || tecnturr || fragturr || snipturr || flakturr || medturr || volkturr || prockturr || psamturr)
+	Armament@SuperAG:
+		Weapon: Dragon.quad
+		LocalOffset: 192,90,376, 192,-90,376
+		PauseOnCondition: empdisable || leaflet
+		RequiresCondition: prockturr
+	Armament@SuperAA:
+		Weapon: RedEye.quad
+		LocalOffset: 192,90,376, 192,-90,376
+		PauseOnCondition: empdisable || leaflet
+		RequiresCondition: psamturr
 	ReloadDelayMultiplier@E3:
 		RequiresCondition: boostrocket
 		Modifier: 90

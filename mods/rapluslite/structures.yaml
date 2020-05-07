@@ -3513,6 +3513,8 @@ HGATE:
 		Connections: -1,0, 1,0
 	Tooltip:
 		Name: Gate - (horizontal)
+	RevealsShroud:
+		Range: 1c0
 
 HGATE.Turkey:
 	Inherits: HGATE
@@ -3553,6 +3555,8 @@ VGATE:
 		Connections: 0,-1, 0,1
 	Tooltip:
 		Name: Gate I (vertical)
+	RevealsShroud:
+		Range: 1c0
 
 VGATE.Turkey:
 	Inherits: VGATE

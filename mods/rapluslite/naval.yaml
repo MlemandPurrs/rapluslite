@@ -536,7 +536,7 @@ CARR:
 		BuildAtProductionType: Boat
 		BuildPaletteOrder: 5
 		Prerequisites: ~syrd, hpad, ~player.england, ~techlevel.medium
-		Description: Nautical Support vessel.\nCan be deployed, becoming immobile\nto Produce, Rearm and Repair\nHelicopters at Sea.\n  Unarmed
+		Description: Nautical Support vessel.\nCan be deployed, becoming immobile\nto Produce, Rearm and Repair\nHelicopters at Sea.\nRepairs Ships when deployed.\n  Unarmed
 	Valued:
 		Cost: 1500
 	Tooltip:
@@ -561,7 +561,7 @@ CARR:
 		Offset: 0,0
 	RenderSprites:
 		Scale: 1.2
-
+	
 CARR.Deployed:
 	Inherits: ^Building
 	-GivesBuildableArea:
@@ -572,6 +572,7 @@ CARR.Deployed:
 	-WithMakeAnimation:
 	-CaptureManager:
 	-Capturable:
+	-Capturable@2:
 	-CapturableProgressBar:
 	-CapturableProgressBlink:
 	-SpawnActorsOnSell:
@@ -656,6 +657,19 @@ CARR.Deployed:
 		ProductionType: MWFHeli
 	ProvidesPrerequisite@ISHELIPAD:
 		Prerequisite: hpad
+	Targetable:
+		TargetTypes: Ground, Water, Ship, SeaDetonateAttack
+	Turreted:
+		Offset: 0,0,0
+		TurnSpeed: 255
+	AttackTurreted:
+		PauseOnCondition: empdisable
+	Armament:
+		Weapon: Repair.ship
+		Cursor: repair
+		OutsideRangeCursor: repair
+		TargetStances: Ally
+		ForceTargetStances: None
 
 CARR.usa:
 	Inherits: CARR
@@ -664,7 +678,7 @@ CARR.usa:
 		BuildAtProductionType: Boat
 		BuildPaletteOrder: 6
 		Prerequisites: ~syrd, afld, atek, ~player.england, ~techlevel.medium
-		Description: Nautical Support vessel.\nCan be deployed, becoming immobile\nto produce, repair and rearm\nAirplanes at Sea.\n  Unarmed
+		Description: Nautical Support vessel.\nCan be deployed, becoming immobile\nto produce, repair and rearm\nAirplanes at Sea.\nDetects Submarines when deployed.\n  Unarmed
 	Valued:
 		Cost: 2000
 	Tooltip:
@@ -686,7 +700,7 @@ CARR.usa:
 		DecorationBounds: 72,48
 	Transforms:
 		IntoActor: carr.usa.deployed
-		Offset: 0,0
+		Offset: -1,0
 		Facing: 192
 	RenderSprites:
 		Scale: 0.9
@@ -704,6 +718,7 @@ CARR.usa.Deployed:
 	-WithMakeAnimation:
 	-CaptureManager:
 	-Capturable:
+	-Capturable@2:
 	-CapturableProgressBar:
 	-CapturableProgressBlink:
 	-SpawnActorsOnSell:
@@ -721,6 +736,8 @@ CARR.usa.Deployed:
 	Tooltip:
 		Name: Aircraft Carrier
 	Building:
+		Footprint: xxx
+		Dimensions: 3,1
 		TerrainTypes: Water
 		RequiresBaseProvider: False
 	-RequiresBuildableArea:
@@ -736,7 +753,7 @@ CARR.usa.Deployed:
 		Range: 4c0
 	Transforms:
 		IntoActor: carr.usa
-		Offset: 0,0
+		Offset: 1,0
 		Facing: 192
 	Reservable:
 	WithDecoration@deployed:
@@ -785,6 +802,12 @@ CARR.usa.Deployed:
 		Prerequisite: afld
 	RenderSprites:
 		Scale: 0.9
+	Targetable:
+		TargetTypes: Ground, Water, Ship, SeaDetonateAttack
+	DetectCloaked:
+		CloakTypes: Underwater
+		Range: 5c0
+	RenderDetectionCircle:
 
 SS:
 	Buildable:

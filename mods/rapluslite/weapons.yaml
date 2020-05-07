@@ -277,10 +277,12 @@ Repair.germany:
 	Inherits: Repair
 	Range: 4c0
 
-Repair.truk:
+Repair.ship:
 	Inherits: Repair
+	ValidTargets: RepairShip
 	Warhead@1Dam: SpreadDamage
-		Damage: -3500
+		Damage: -2500
+		ValidTargets: RepairShip
 
 FLAK-23-AG:
 	Projectile: Bullet
@@ -930,6 +932,9 @@ HellfireAA.rapid:
 	Inherits: HellfireAA
 	Burst: 2
 	BurstDelays: 7
+	Range: 6c0
+	Projectile: Missile
+		RangeLimit: 7c0
 
 BombingRun.ag:
 	ReloadDelay: 60
@@ -1141,10 +1146,22 @@ Dragon.dual:
 	Burst: 2
 	BurstDelays: 8
 
+Dragon.quad:
+	Inherits: Dragon
+	ReloadDelay: 90
+	Burst: 4
+	BurstDelays: 8
+
 RedEye.dual:
 	Inherits: RedEye
 	ReloadDelay: 60
 	Burst: 2
+	BurstDelays: 8
+
+RedEye.quad:
+	Inherits: RedEye
+	ReloadDelay: 90
+	Burst: 4
 	BurstDelays: 8
 
 RedEye.volley:
@@ -1727,6 +1744,8 @@ AirMineTargeting:
 	ValidTargets: AirDetonateAttack
 	Range: 0c768
 	Projectile: InstantHit
+	#	Projectile: Bullet
+	#	Speed: 9999
 	Warhead@1Dam: TargetDamage
 		ValidTargets: AirDetonateAttack
 
@@ -1742,6 +1761,10 @@ AAMine:
 	Warhead@2Eff: CreateEffect
 		Explosions: med_explosion_air
 		ImpactSounds: mineblo1.aud
+		#	ValidTargets: Air
+	Warhead@3Eff: CreateEffect
+		Explosions: med_explosion_air
+		#	ImpactSounds: mineblo1.aud
 		ValidTargets: Air
 
 Chaingun.5tnk:
