@@ -26,4 +26,3 @@ Player:
 		CapturableActorTypes: oilb,bio,miss,fcom,hosp
 		CheckCaptureTargetsForVisibility: false
 		MaximumCaptureTargetOptions: 15
-	#	maybe disable this
