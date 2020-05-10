@@ -14,7 +14,6 @@ LST:
 	CreatesShroud:
 		Range: 6c0
 		RequiresCondition: mgg-inside
-	RenderShroudCircle:
 	Explodes@demotruck:
 		Weapon: MiniNuke
 		EmptyWeapon: MiniNuke
@@ -304,81 +303,6 @@ DD.Soviet:
 	RenderSprites:
 		Image: ddsvyt
 
-BSHP:
-	Inherits: ^Ship
-	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
-	Buildable:
-		Queue: Ship
-		BuildAtProductionType: Boat
-		BuildPaletteOrder: 6
-		Prerequisites: ~syrd, dome, ~player.greece, ~techlevel.medium
-		Description: Fast artillery ship, with depthcharges as secondary.\nCan detect submarines.\n  Strong vs Buildings, Ships\n  Weak vs Aircraft, Infantry
-	Valued:
-		Cost: 1150
-	Tooltip:
-		Name: Battleship
-	UpdatesPlayerStatistics:
-		AddToArmyValue: true
-	Health:
-		HP: 40000
-	Armor:
-		Type: Heavy
-	Mobile:
-		TurnSpeed: 5
-		Speed: 85
-	RevealsShroud:
-		Range: 6c0
-		RevealGeneratedShroud: False
-	RevealsShroud@GAPGEN:
-		Range: 5c0
-	Turreted@PRIMARY:
-		Turret: primary
-		TurnSpeed: 3
-		Offset: 469,0,128
-	Turreted@SECONDARY:
-		Turret: secondary
-		TurnSpeed: 5
-		Offset: -761,0,128
-	Armament@PRIMARY:
-		Turret: primary
-		Weapon: 8Inch.singular
-		LocalOffset: 480,0,40
-		Recoil: 85
-		RecoilRecovery: 34
-		PauseOnCondition: empdisable
-		MuzzleSequence: muzzle
-	Armament@SECONDARY:
-		Name: secondary
-		Turret: secondary
-		Weapon: DepthCharge
-		PauseOnCondition: empdisable
-	Armament@TERTIARY:
-		Name: tertiary
-		Turret: secondary
-		Weapon: Vulcan.ship
-		LocalOffset: 128,0,43
-		MuzzleSequence: mg-muzzle
-	AttackTurreted:
-		Armaments: primary, secondary
-		Turrets: primary, secondary
-		TargetFrozenActors: True
-		ForceFireIgnoresActors: True
-		PauseOnCondition: empdisable
-	SelectionDecorations:
-	WithSpriteTurret@PRIMARY:
-		Turret: primary
-		Sequence: turret
-	WithSpriteTurret@SECONDARY:
-		Turret: secondary
-		Sequence: turret-dc
-	WithMuzzleOverlay:
-	DetectCloaked:
-		CloakTypes: Underwater
-		Range: 4c0
-	RenderDetectionCircle:
-	Selectable:
-		DecorationBounds: 38,38
-
 CA:
 	Buildable:
 		BuildPaletteOrder: 4
@@ -395,52 +319,6 @@ CA:
 	RenderRangeCircle:
 	ReloadArmamentsBar:
 		Color: FFFF00
-
-CA.gap:
-	Inherits: CA
-	Buildable:
-		Queue: Ship
-		BuildAtProductionType: Boat
-		BuildPaletteOrder: 5
-		Prerequisites: ~syrd, atek, ~player.spain, ~techlevel.high
-		Description: Very slow ship with extra capabilities.\nSpecial Ability: GAP Generator\nRegenerates the shroud nearby,\nobscuring the area.\n  Strong vs Buildings, Ground units\n  Weak vs Naval units, Aircraft
-	Valued:
-		Cost: 2400
-	Tooltip:
-		Name: GAP Cruiser
-	Health:
-		HP: 80000
-	-Armament@PRIMARY:
-	-Armament@SECONDARY:
-	Armament@PRIMARY:
-		Name: primary
-		Turret: secondary
-		Weapon: 8Inch
-		LocalOffset: 480,-100,40, 480,100,40
-		Recoil: 171
-		RecoilRecovery: 34
-		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
-	Armament@SECONDARY:
-		Name: secondary
-		Turret: primary
-		Weapon: 2Inch
-		LocalOffset: 208,0,48
-		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
-	WithIdleOverlay@SPINNER:
-		Offset: 0,0,171
-		Sequence: spinner
-	CreatesShroud:
-		Range: 6c0
-	RenderShroudCircle:
-	RenderSprites:
-		Image: advca
-	WithSpriteTurret@PRIMARY:
-		Sequence: turret-rear
-	-RenderRangeCircle:
-	ReloadArmamentsBar:
-		Armaments: primary
 
 CA.Soviet:
 	Inherits: CA
@@ -658,7 +536,7 @@ CARR.Deployed:
 	ProvidesPrerequisite@ISHELIPAD:
 		Prerequisite: hpad
 	Targetable:
-		TargetTypes: Ground, Water, Ship, SeaDetonateAttack
+		TargetTypes: Ground, Water, Ship
 	Turreted:
 		Offset: 0,0,0
 		TurnSpeed: 255
@@ -789,11 +667,11 @@ CARR.usa.Deployed:
 		CancelledAudio: Cancelled
 		LowPowerModifier: 300
 	ProvidesPrerequisite@allies:
-		Factions: allies, usa, britain, france, germany, spain, italy, greece, turkey
+		Factions: allies, britain, france, germany
 		Prerequisite: aircraft.allies
 		ResetOnOwnerChange: True
 	ProvidesPrerequisite@soviet:
-		Factions: soviet, russia, ukraine, belarus, kazakh, karelia, uzbek, turkmen, afghan
+		Factions: soviet, russia, ukraine, belarus
 		Prerequisite: aircraft.soviet
 		ResetOnOwnerChange: True
 	ProductionBar:
@@ -803,7 +681,7 @@ CARR.usa.Deployed:
 	RenderSprites:
 		Scale: 0.9
 	Targetable:
-		TargetTypes: Ground, Water, Ship, SeaDetonateAttack
+		TargetTypes: Ground, Water, Ship
 	DetectCloaked:
 		CloakTypes: Underwater
 		Range: 5c0
@@ -821,7 +699,7 @@ SS.new:
 		Queue: Ship
 		BuildAtProductionType: Submarine
 		BuildPaletteOrder: 2
-		Prerequisites: ~spen, ~!player.karelia, ~techlevel.low
+		Prerequisites: ~spen, ~techlevel.low
 		Description: Submerged anti-ship unit\narmed with torpedoes.\nCan detect other submarines.\n  Strong vs Naval units\n  Weak vs Ground units, Aircraft\n  Special Ability: Submerge\nCan dive underwater to become invisible\nmove unseen and avoid damage of most weapons.\nCan be manually ordered to surface for Repairs.
 	Valued:
 		Cost: 775
@@ -855,17 +733,6 @@ SS.new:
 		DecorationBounds: 38,38
 	RenderSprites:
 		Image: ss
-
-SS.Karelia:
-	Inherits: SS.new
-	Buildable:
-		Prerequisites: ~spen, ~player.karelia, ~techlevel.low
-	RenderSprites:
-		Image: ss
-	ProducibleWithLevel:
-		Prerequisites: techlevel.infonly
-		InitialLevels: 1
-	-MapEditorData:
 
 SS.AG:
 	Inherits: SS.new
@@ -960,6 +827,8 @@ MSUB.new:
 		ForceFireIgnoresActors: True
 		PauseOnCondition: empdisable
 	SelectionDecorations:
+	Selectable:
+		DecorationBounds: 38,38
 	AutoTarget:
 		InitialStance: HoldFire
 		InitialStanceAI: ReturnFire
@@ -1047,88 +916,8 @@ TBT:
 	RepairableNear:
 		RepairActors: syrd, spen
 
-PBT:
-	Inherits: ^Ship
-	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
-	Buildable:
-		Queue: Ship
-		BuildPaletteOrder: 6
-		Prerequisites: fix, ~player.turkmen, ~techlevel.high
-		Description: Boat with MG carrying an pair of torpedoes.\n  Strong vs Infantry, Navy\n  Weak vs Tanks, Aircraft
-	Valued:
-		Cost: 600
-	Tooltip:
-		Name: Patrol Boat
-	Health:
-		HP: 20000
-	Armor:
-		Type: Heavy
-	Mobile:
-		TurnSpeed: 7
-		Speed: 92
-	RevealsShroud:
-		Range: 6c0
-		RevealGeneratedShroud: False
-	RevealsShroud@GAPGEN:
-		Range: 4c0
-	Turreted@PRIMARY:
-		Turret: primary
-		TurnSpeed: 255
-		Offset: 0,0,0
-	Turreted@SECONDARY:
-		Turret: secondary
-		TurnSpeed: 5
-		Offset: 1,0,170
-	AttackFrontal:
-		PauseOnCondition: empdisable
-	Armament@PRIMARY:
-		Name: primary
-		Weapon: TorpTube
-		LocalOffset: 0,-171,0, 0,171,0
-		FireDelay: 2
-		Turret: primary
-		PauseOnCondition: empdisable || !ammo
-	Armament@SECONDARY:
-		Name: secondary
-		Weapon: Vulcan.boat
-		LocalOffset: 85,0,128
-		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
-		Turret: secondary
-	WithSpriteTurret:
-		Turret: secondary
-		Sequence: turret
-	WithMuzzleOverlay:
-	SelectionDecorations:
-	Selectable:
-		DecorationBounds: 36,36
-	RepairableNear:
-		RepairActors: syrd, spen
-	AmmoPool@1:
-		Name: torps
-		Armaments: primary
-		Ammo: 2
-		PipCount: 1
-		RearmSound: minelay1.aud
-		AmmoCondition: ammo
-	ReloadAmmoPool:
-		AmmoPool: torps
-		Delay: 100
-		Count: 2
-		Sound: minelay1.aud
-		RequiresCondition: replenishsmine
-	WithDecoration@minereplenish:
-		RequiresSelection: true
-		Image: pips
-		Sequence: tag-reload
-		ReferencePoint: Top
-		ZOffset: 256
-		RequiresCondition: replenishsmine
-	ExternalCondition@MINEREPLENISH:
-		Condition: replenishsmine
-
 FSUB:
-	Inherits: ^Ship
+	Inherits: ^Submarine
 	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
 	Buildable:
 		Queue: Ship
@@ -1149,16 +938,6 @@ FSUB:
 	Mobile:
 		TurnSpeed: 3
 		Speed: 42
-	RevealsShroud:
-		Range: 6c0
-		RequiresCondition: !underwater
-		RevealGeneratedShroud: false
-	RevealsShroud@GAPGEN:
-		Range: 4c0
-		RequiresCondition: !underwater
-	RevealsShroud@UNDERWATER:
-		Range: 3c0
-		RequiresCondition: underwater
 	Armament:
 		Weapon: FireballLauncher.Sub
 		LocalOffset: 512,128,42, 512,-128,42
@@ -1171,327 +950,14 @@ FSUB:
 	AttackFrontal:
 		PauseOnCondition: empdisable
 	SelectionDecorations:
+	Selectable:
+		DecorationBounds: 38,38
 	AutoTarget:
 		InitialStance: ReturnFire
 		InitialStanceAI: ReturnFire
-	AutoTargetPriority@DEFAULT:
-		ValidTargets: Water, Underwater
-	AutoTargetPriority@ATTACKANYTHING:
-		ValidTargets: Water, Underwater
-	DetectCloaked:
-		CloakTypes: Underwater
-		Range: 4c0
-	Explodes:
-		Weapon: UnitExplodeSubmarine
-		EmptyWeapon: UnitExplodeSubmarine
 	Selectable:
 		DecorationBounds: 38,38
-	RepairableNear:
-		RepairActors: spen
-	Cloak:
-		CloakTypes: Underwater
-		InitialDelay: 0
-		CloakDelay: 55
-		CloakSound: subshow1.aud
-		UncloakSound: subshow1.aud
-		CloakedCondition: underwater
-		Palette: submerged
-		UncloakOn: Attack, Heal, Dock, SelfHeal, Demolish
-		PauseOnCondition: cloak-force-disabled || shallowcrossing || empdisable || minehit
-		RequiresCondition: !deployed
-	Targetable:
-		TargetTypes: Ground, Water, Ship, Submarine, SeaDetonateAttack
-		RequiresCondition: !underwater
-	Targetable@UNDERWATER:
-		TargetTypes: Underwater, Submarine, SeaDetonateAttack
-		RequiresCondition: underwater
-	Targetable@REPAIR:
-		RequiresCondition: !underwater && damaged
-		TargetTypes: Repair
-	GrantConditionOnTerrain@CROSSINGFORD:
-		Condition: shallowcrossing
-		TerrainTypes: Shallow
-	GrantConditionOnDamageState@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Critical
-	GrantConditionOnDeploy:
-		DeployedCondition: deployed
-	ExternalCondition@MINEHIT:
-		Condition: minehit
-
-SCRP:
-	Inherits: ^Ship
-	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
-	Buildable:
-		Queue: Ship
-		BuildPaletteOrder: 6
-		Prerequisites: stek, ~player.kazakh, ~techlevel.high
-		Description: Quick, light-weight boat\narmed with Flak cannon.\nLays sea mines to destroy\nunwary enemy Ships and Submarines.\nRestocks Sea Mines when near\na Naval yard or an Sub Pen.\nCan detect submarines.\n  Strong vs Aircraft, Infantry\n  Weak vs Ships, Tanks
-	Valued:
-		Cost: 750
-	Tooltip:
-		Name: Sea Scorpion
-	Health:
-		HP: 20000
-	Armor:
-		Type: Heavy
-	Mobile:
-		TurnSpeed: 7
-		Speed: 128
-	RevealsShroud:
-		Range: 6c0
-		RevealGeneratedShroud: False
-	RevealsShroud@GAPGEN:
-		Range: 4c0
-	Turreted:
-		TurnSpeed: 7
-		Offset: -448,0,100
-	Armament@AA:
-		Weapon: FLAK-23-AA
-		Recoil: 85
-		LocalOffset: 328,0,348
-		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
-	Armament@AG:
-		Weapon: FLAK-23-AG
-		Recoil: 85
-		LocalOffset: 328,0,348
-		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
-	AttackTurreted:
-		PauseOnCondition: empdisable
-	WithSpriteTurret:
-	WithMuzzleOverlay:
-	SelectionDecorations:
-	Selectable:
-		DecorationBounds: 44,44
-	DetectCloaked:
-		CloakTypes: Underwater
-		Range: 4c0
-	RenderDetectionCircle:
-	Minelayer:
-		Mine: MINS
-	Rearmable:
-		RearmActors:
-	MineImmune:
-	AmmoPool:
-		Armaments:
-		Ammo: 3
-		RearmSound: minelay1.aud
-	ReloadAmmoPool:
-		Delay: 300
-		Count: 1
-		Sound: minelay1.aud
-		RequiresCondition: replenishsmine
-	WithDecoration@minereplenish:
-		RequiresSelection: true
-		Image: pips
-		Sequence: tag-reload
-		ReferencePoint: Top
-		ZOffset: 256
-		RequiresCondition: replenishsmine
-	ExternalCondition@MINEREPLENISH:
-		Condition: replenishsmine
-	RepairableNear:
-		RepairActors: syrd, spen
-
-MGNM:
-	Inherits: ^Ship
-	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
-	Buildable:
-		Queue: Ship
-		BuildAtProductionType: Submarine
-		BuildPaletteOrder: 6
-		Prerequisites: ~spen, fix, ~player.karelia, ~techlevel.medium
-		Description: Dirigible sea-mine.\nCloaked when standing still.\n  Strong vs Naval units\n  Weak vs anything Else
-	Valued:
-		Cost: 625
-	Tooltip:
-		Name: Magnetic Mine
-	UpdatesPlayerStatistics:
-		AddToArmyValue: true
-	Health:
-		HP: 5000
-	Armor:
-		Type: Heavy
-	Mobile:
-		TurnSpeed: 3
-		Speed: 42
-	RevealsShroud:
-		Range: 3c0
-		RevealGeneratedShroud: False
-	RevealsShroud@GAPGEN:
-		Range: 1c0
-	Explodes@UNITEXPLODES:
-		Weapon: ASMineMagnetic
-		DamageSource: Killer
-	AttackFrontal:
-		FacingTolerance: 128
-	Armament@PRIMARY:
-		Weapon: SeaMineTargeting
-	SelectionDecorations:
-	Selectable:
-		DecorationBounds: 36,36
-	GrantConditionOnAttack:
-		Condition: triggered
-	GrantConditionOnDeploy:
-		DeployedCondition: triggered
-	-DamageMultiplier@IRONCURTAIN:
-	KillsSelf:
-		RequiresCondition: invulnerability || triggered
-	Chronoshiftable:
-		ExplodeInstead: true
-	Targetable:
-		TargetTypes: Ground, Water, Ship, Submarine, SeaDetonateAttack
-		RequiresCondition: !underwater
-	Targetable@UNDERWATER:
-		TargetTypes: Underwater, Submarine, SeaDetonateAttack
-		RequiresCondition: underwater
-	Cloak:
-		CloakTypes: Underwater
-		InitialDelay: 50
-		CloakDelay: 50
-		CloakSound: subshow1.aud
-		UncloakSound: subshow1.aud
-		Palette: submerged
-		UncloakOn: Attack, Demolish, Move
-		CloakedCondition: underwater
-		PauseOnCondition: cloak-force-disabled || shallowcrossing || empdisable
-	GrantConditionOnDamageState@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Critical
-	GrantConditionOnTerrain@CROSSINGFORD:
-		Condition: shallowcrossing
-		TerrainTypes: Shallow
-	-MustBeDestroyed:
-	WithMoveAnimation:
-		MoveSequence: move
-	Voiced:
-		VoiceSet: RoboticVoice
-
-HVRF:
-	Inherits: ^Vehicle
-	Inherits@GAINSEXPERIENCE: ^GainsExperience
-	Inherits@AUTOTARGET: ^AutoTargetAllAssaultMove
-	Buildable:
-		Queue: Ship
-		BuildPaletteOrder: 6
-		Prerequisites: dome, fix, ~vehicles.soviet, ~player.afghan, ~techlevel.medium
-		Description: Amphibian anti-air unit with\ntoken Mg for ground support.\nCan carry one Infantry.\n  Strong vs Infantry, Aircraft\n  Weak vs Tanks, Ships
-	Valued:
-		Cost: 700
-	Tooltip:
-		Name: Hover Flak
-	Health:
-		HP: 15000
-	Armor:
-		Type: Light
-	Mobile:
-		Speed: 128
-		Locomotor: amphibious
-		PauseOnCondition: !(!empdisable && !notmobile && !being-captured)
-	RevealsShroud:
-		Range: 6c0
-		RevealGeneratedShroud: False
-	RevealsShroud@GAPGEN:
-		Range: 4c0
-	Turreted:
-		Turret: primary
-		TurnSpeed: 5
-		Offset: 0,0,128
-	Armament@PRIMARY:
-		Weapon: FLAK-23-AA
-		Turret:
-		LocalOffset: 86,160,220, 86,-160,220
-		MuzzleSequence: muzzle
-		PauseOnCondition: empdisable
-	Armament@SECONDARY:
-		Turret: primary
-		Weapon: M60mg
-		MuzzleSequence: muzzle
-		LocalOffset: 128,0,43
-		PauseOnCondition: empdisable
-	AttackFrontal:
-		Armaments: primary, secondary
-		PauseOnCondition: empdisable
-	WithSpriteTurret:
-	WithMuzzleOverlay:
-	GrantConditionOnTerrain@SEA:
-		TerrainTypes: Water, River
-		Condition: floating
-	Targetable:
-		RequiresCondition: !floating
-	Targetable@SEA:
-		TargetTypes: Ground, Water, Ship
-		RequiresCondition: floating
-	RenderRangeCircle:
-	-Passenger:
-	Cargo:
-		Types: Infantry
-		MaxWeight: 1
-		PipCount: 1
-		LoadingCondition: notmobile
-
-BSUB:
-	Inherits: ^Ship
-	Inherits@AUTOTARGET: ^AutoTargetGroundAssaultMove
-	Buildable:
-		Queue: Ship
-		BuildAtProductionType: Submarine
-		BuildPaletteOrder: 6
-		#	Prerequisites: ~spen, stek, ~player.karelia, ~techlevel.high
-		Prerequisites: ~disabled
-		Description: Submersible siege unit armed with\nanti-ground missile battery.\n  Strong vs Ships, Buildings\n  Weak vs attacks at close range.\n  Special Ability: Submerge\nCan dive underwater to become invisible\nmove unseen and avoid damage of most weapons.\nCan be manually ordered to surface for Repairs.
-	Valued:
-		Cost: 2400
-	Tooltip:
-		Name: Ballistic Submarine
-	Health:
-		HP: 85000
-	Armor:
-		Type: Light
-	Mobile:
-		TurnSpeed: 3
-		Speed: 42
-	Turreted:
-		TurnSpeed: 255
-	RevealsShroud:
-		Range: 8c0
-		RequiresCondition: !underwater
-		RevealGeneratedShroud: false
-	RevealsShroud@GAPGEN:
-		Range: 5c0
-		RequiresCondition: !underwater
-	RevealsShroud@UNDERWATER:
-		Range: 4c0
-		RequiresCondition: underwater
-	Armament@PRIMARY:
-		Weapon: SubMissile.Barrage
-		LocalOffset: 375,-151,80, 450,151,80, 525,-151,80, 600,151,80
-		FireDelay: 2
-		PauseOnCondition: empdisable
-	AttackTurreted:
-		Armaments: primary
-		TargetFrozenActors: True
-		ForceFireIgnoresActors: True
-		PauseOnCondition: empdisable
-	SelectionDecorations:
-	DetectCloaked:
-		CloakTypes: Underwater
-		Range: 4c0
-	RenderDetectionCircle:
-	Selectable:
-		DecorationBounds: 68,38
-	RenderRangeCircle:
-	ReloadArmamentsBar:
-		Armaments: primary
-		Color: FFFF00
-	AutoTarget:
-		InitialStance: HoldFire
-		InitialStanceAI: HoldFire
-		ScanRadius: 15
-	RepairableNear:
-		RepairActors: spen
+	-Cloak:
 	Cloak:
 		CloakTypes: Underwater
 		InitialDelay: 0
@@ -1500,25 +966,10 @@ BSUB:
 		UncloakSound: subshow1.aud
 		CloakedCondition: underwater
 		Palette: submerged
-		UncloakOn: Attack, Heal, Dock, SelfHeal, Demolish
-		PauseOnCondition: cloak-force-disabled || shallowcrossing || empdisable || minehit
+		UncloakOn: Attack, Heal, Unload, Dock, SelfHeal, Demolish
+		PauseOnCondition: cloak-force-disabled || shallowcrossing || empdisable || minehit || is-shooting
 		RequiresCondition: !deployed
-	Targetable:
-		TargetTypes: Ground, Water, Ship, Submarine, SeaDetonateAttack
-		RequiresCondition: !underwater
-	Targetable@UNDERWATER:
-		TargetTypes: Underwater, Submarine, SeaDetonateAttack
-		RequiresCondition: underwater
-	Targetable@REPAIR:
-		RequiresCondition: !underwater && damaged
-		TargetTypes: Repair
-	GrantConditionOnTerrain@CROSSINGFORD:
-		Condition: shallowcrossing
-		TerrainTypes: Shallow
-	GrantConditionOnDamageState@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Critical
-	GrantConditionOnDeploy:
-		DeployedCondition: deployed
-	ExternalCondition@MINEHIT:
-		Condition: minehit
+	GrantConditionOnAttack@UNCLOAK:
+		Condition: is-shooting
+		ArmamentNames: secondary
+		RevokeDelay: 50

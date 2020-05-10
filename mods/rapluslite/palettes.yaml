@@ -6,12 +6,6 @@
 		PlayerIndex:
 			Creeps: 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 123, 123, 123, 123
 		AllowModifiers: True
-	PaletteFromRGBA@sabotaged:
-		Name: ecosabot
-		R: 32
-		G: 192
-		B: 0
-		A: 128
 	PaletteFromRGBA@mustard:
 		Name: mustard
 		R: 191
@@ -23,22 +17,4 @@
 		R: 149
 		G: 150
 		B: 151
-		A: 128
-	PaletteFromRGBA@frenzy:
-		Name: frenzy
-		R: 220
-		G: 185
-		B: 235
-		A: 128
-	PaletteFromRGBA@turbo:
-		Name: turbo
-		R: 248
-		G: 233
-		B: 71
-		A: 128
-	PaletteFromRGBA@armor:
-		Name: armor
-		R: 0
-		G: 66
-		B: 255
 		A: 128

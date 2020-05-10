@@ -1,7 +1,7 @@
 
 Metadata:
 	Title: Red Alert Plus (Lite)
-	Version: v.1.3.6-beta-3-fixes-2
+	Version: v.1.3.6-beta-3-fixes-3
 	Website: https://www.openra.net
 	WebIcon32: https://www.openra.net/images/icons/ra_32x32.png
 
@@ -43,7 +43,6 @@ Packages:
     rapluslite|bits/naval
     rapluslite|bits/resources
     rapluslite|bits/sounds
-    rapluslite|bits/sounds/rambo
     rapluslite|bits/sounds/robot
     rapluslite|bits/sounds/volkov
     rapluslite|bits/vehicle
@@ -52,7 +51,7 @@ Packages:
 MapFolders:
     ra|maps: System
 	rapluslite|maps: System
-	~^maps/rapluslite: User
+	~^maps/v.1.3.6-beta-3-fixes-3: User
 
 Rules:
 	ra|rules/misc.yaml

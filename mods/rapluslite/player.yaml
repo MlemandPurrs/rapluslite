@@ -159,9 +159,6 @@ Player:
 		AdviceInterval: 750
 	PlayerExperience:
 	ConditionManager:
-	ProvidesPrerequisite@Usa:
-		Factions: usa
-		Prerequisite: player.usa
 	ProvidesPrerequisite@England:
 		Factions: england
 		Prerequisite: player.england
@@ -171,18 +168,6 @@ Player:
 	ProvidesPrerequisite@Germany:
 		Factions: germany
 		Prerequisite: player.germany
-	ProvidesPrerequisite@Spain:
-		Factions: spain
-		Prerequisite: player.spain
-	ProvidesPrerequisite@Italy:
-		Factions: italy
-		Prerequisite: player.italy
-	ProvidesPrerequisite@Greece:
-		Factions: greece
-		Prerequisite: player.greece
-	ProvidesPrerequisite@Turkey:
-		Factions: turkey
-		Prerequisite: player.turkey
 	ProvidesPrerequisite@Russia:
 		Factions: russia
 		Prerequisite: player.russia
@@ -192,24 +177,6 @@ Player:
 	ProvidesPrerequisite@Belarus:
 		Factions: belarus
 		Prerequisite: player.belarus
-	ProvidesPrerequisite@Karelia:
-		Factions: karelia
-		Prerequisite: player.karelia
-	ProvidesPrerequisite@Kazakhstan:
-		Factions: kazakh
-		Prerequisite: player.kazakh
-	ProvidesPrerequisite@Uzbekistan:
-		Factions: uzbek
-		Prerequisite: player.uzbek
-	ProvidesPrerequisite@Turkmenistan:
-		Factions: turkmen
-		Prerequisite: player.turkmen
-	ProvidesPrerequisite@Afghan:
-		Factions: afghan
-		Prerequisite: player.afghan
-	GrantConditionOnPrerequisite@Usa:
-		Condition: player.usa
-		Prerequisites: player.usa
 	GrantConditionOnPrerequisite@England:
 		Condition: player.england
 		Prerequisites: player.england
@@ -219,18 +186,6 @@ Player:
 	GrantConditionOnPrerequisite@Germany:
 		Condition: player.germany
 		Prerequisites: player.germany
-	GrantConditionOnPrerequisite@Spain:
-		Condition: player.spain
-		Prerequisites: player.spain
-	GrantConditionOnPrerequisite@Italy:
-		Condition: player.italy
-		Prerequisites: player.italy
-	GrantConditionOnPrerequisite@Greece:
-		Condition: player.greece
-		Prerequisites: player.greece
-	GrantConditionOnPrerequisite@Turkey:
-		Condition: player.turkey
-		Prerequisites: player.turkey
 	GrantConditionOnPrerequisite@Russia:
 		Condition: player.russia
 		Prerequisites: player.russia
@@ -240,21 +195,6 @@ Player:
 	GrantConditionOnPrerequisite@Belarus:
 		Condition: player.belarus
 		Prerequisites: player.belarus
-	GrantConditionOnPrerequisite@Karelia:
-		Condition: player.karelia
-		Prerequisites: player.karelia
-	GrantConditionOnPrerequisite@Kazakhstan:
-		Condition: player.kazakh
-		Prerequisites: player.kazakh
-	GrantConditionOnPrerequisite@Uzbekistan:
-		Condition: player.uzbek
-		Prerequisites: player.uzbek
-	GrantConditionOnPrerequisite@Turkmenistan:
-		Condition: player.turkmen
-		Prerequisites: player.turkmen
-	GrantConditionOnPrerequisite@Afghanistan:
-		Condition: player.afghan
-		Prerequisites: player.afghan
 	LobbyPrerequisiteCheckbox@GLOBALSCRAPS:
 		ID: scraps
 		Label: Scrap Metal

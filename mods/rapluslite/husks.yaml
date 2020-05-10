@@ -61,48 +61,6 @@ HARV.Soviet.EmptyHusk:
 	ExternalCondition@recovery:
 		Condition: recovered
 
-1TNK.England.Husk:
-	Inherits: ^Husk
-	Tooltip:
-		Name: Husk (Light Tank)
-	ThrowsParticle@turret:
-		Anim: turret
-	TransformOnCapture:
-		IntoActor: 1tnk.England
-	InfiltrateForTransform:
-		IntoActor: 1tnk.England
-	RenderSprites:
-		Image: 1tnk.destroyed
-	SpawnActorOnDeath@recovery:
-		Actor: 1tnk.England
-		RequiresCondition: recovered
-	KillsSelf@recovery:
-		RequiresCondition: recovered
-	ExternalCondition@recovery:
-		Condition: recovered
-	-MapEditorData:
-
-1TNK.France.Husk:
-	Inherits: ^Husk
-	Tooltip:
-		Name: Husk (Light Tank)
-	ThrowsParticle@turret:
-		Anim: turret
-	TransformOnCapture:
-		IntoActor: 1tnk.France
-	InfiltrateForTransform:
-		IntoActor: 1tnk.France
-	RenderSprites:
-		Image: 1tnk.destroyed
-	SpawnActorOnDeath@recovery:
-		Actor: 1tnk.France
-		RequiresCondition: recovered
-	KillsSelf@recovery:
-		RequiresCondition: recovered
-	ExternalCondition@recovery:
-		Condition: recovered
-	-MapEditorData:
-
 1TNK.Germany.Husk:
 	Inherits: ^Husk
 	Tooltip:
@@ -124,69 +82,6 @@ HARV.Soviet.EmptyHusk:
 		Condition: recovered
 	-MapEditorData:
 
-1TNK.Spain.Husk:
-	Inherits: ^Husk
-	Tooltip:
-		Name: Husk (Light Tank)
-	ThrowsParticle@turret:
-		Anim: turret
-	TransformOnCapture:
-		IntoActor: 1tnk.Spain
-	InfiltrateForTransform:
-		IntoActor: 1tnk.Spain
-	RenderSprites:
-		Image: 1tnk.destroyed
-	SpawnActorOnDeath@recovery:
-		Actor: 1tnk.Spain
-		RequiresCondition: recovered
-	KillsSelf@recovery:
-		RequiresCondition: recovered
-	ExternalCondition@recovery:
-		Condition: recovered
-	-MapEditorData:
-
-1TNK.Italy.Husk:
-	Inherits: ^Husk
-	Tooltip:
-		Name: Husk (Light Tank)
-	ThrowsParticle@turret:
-		Anim: turret
-	TransformOnCapture:
-		IntoActor: 1tnk.Italy
-	InfiltrateForTransform:
-		IntoActor: 1tnk.Italy
-	RenderSprites:
-		Image: 1tnk.destroyed
-	SpawnActorOnDeath@recovery:
-		Actor: 1tnk.Italy
-		RequiresCondition: recovered
-	KillsSelf@recovery:
-		RequiresCondition: recovered
-	ExternalCondition@recovery:
-		Condition: recovered
-	-MapEditorData:
-
-LTNK.Husk:
-	Inherits: ^Husk
-	Tooltip:
-		Name: Husk (Scout Tank)
-	ThrowsParticle@turret:
-		Anim: turret
-	TransformOnCapture:
-		IntoActor: ltnk
-	InfiltrateForTransform:
-		IntoActor: ltnk
-	RenderSprites:
-		Image: ltnk.destroyed
-	SpawnActorOnDeath@recovery:
-		Actor: ltnk
-		RequiresCondition: recovered
-	KillsSelf@recovery:
-		RequiresCondition: recovered
-	ExternalCondition@recovery:
-		Condition: recovered
-	-MapEditorData:
-
 2TNK.Husk:
 	SpawnActorOnDeath@recovery:
 		Actor: 2tnk
@@ -195,48 +90,6 @@ LTNK.Husk:
 		RequiresCondition: recovered
 	ExternalCondition@recovery:
 		Condition: recovered
-
-2TNK.England.Husk:
-	Inherits: ^Husk
-	Tooltip:
-		Name: Husk (Medium Tank)
-	ThrowsParticle@turret:
-		Anim: turret
-	TransformOnCapture:
-		IntoActor: 2tnk.England
-	InfiltrateForTransform:
-		IntoActor: 2tnk.England
-	RenderSprites:
-		Image: 2tnk.destroyed
-	SpawnActorOnDeath@recovery:
-		Actor: 2tnk.England
-		RequiresCondition: recovered
-	KillsSelf@recovery:
-		RequiresCondition: recovered
-	ExternalCondition@recovery:
-		Condition: recovered
-	-MapEditorData:
-
-2TNK.France.Husk:
-	Inherits: ^Husk
-	Tooltip:
-		Name: Husk (Medium Tank)
-	ThrowsParticle@turret:
-		Anim: turret
-	TransformOnCapture:
-		IntoActor: 2tnk.France
-	InfiltrateForTransform:
-		IntoActor: 2tnk.France
-	RenderSprites:
-		Image: 2tnk.destroyed
-	SpawnActorOnDeath@recovery:
-		Actor: 2tnk.France
-		RequiresCondition: recovered
-	KillsSelf@recovery:
-		RequiresCondition: recovered
-	ExternalCondition@recovery:
-		Condition: recovered
-	-MapEditorData:
 
 2TNK.Germany.Husk:
 	Inherits: ^Husk
@@ -259,20 +112,40 @@ LTNK.Husk:
 		Condition: recovered
 	-MapEditorData:
 
-2TNK.Spain.Husk:
+3TNK.1B.Husk:
 	Inherits: ^Husk
 	Tooltip:
-		Name: Husk (Medium Tank)
+		Name: Husk (Heavy Tank 1-B)
 	ThrowsParticle@turret:
 		Anim: turret
 	TransformOnCapture:
-		IntoActor: 2tnk.Spain
+		IntoActor: 3tnk.1B
 	InfiltrateForTransform:
-		IntoActor: 2tnk.Spain
+		IntoActor: 3tnk.1B
 	RenderSprites:
-		Image: 2tnk.destroyed
+		Image: 3tnk.1b.destroyed
 	SpawnActorOnDeath@recovery:
-		Actor: 2tnk.Spain
+		Actor: 3tnk.1b
+		RequiresCondition: recovered
+	KillsSelf@recovery:
+		RequiresCondition: recovered
+	ExternalCondition@recovery:
+		Condition: recovered
+
+3TNK.1B.Ukraine.Husk:
+	Inherits: ^Husk
+	Tooltip:
+		Name: Husk (Heavy Tank 1-B)
+	ThrowsParticle@turret:
+		Anim: turret
+	TransformOnCapture:
+		IntoActor: 3tnk.1B.Ukraine
+	InfiltrateForTransform:
+		IntoActor: 3tnk.1B.Ukraine
+	RenderSprites:
+		Image: 3tnk.1b.destroyed
+	SpawnActorOnDeath@recovery:
+		Actor: 3tnk.1b.ukraine
 		RequiresCondition: recovered
 	KillsSelf@recovery:
 		RequiresCondition: recovered
@@ -280,61 +153,20 @@ LTNK.Husk:
 		Condition: recovered
 	-MapEditorData:
 
-2TNK.Soviet.Husk:
+3TNK.1B.Belarus.Husk:
 	Inherits: ^Husk
 	Tooltip:
 		Name: Husk (Heavy Tank 1-B)
 	ThrowsParticle@turret:
 		Anim: turret
 	TransformOnCapture:
-		IntoActor: 2tnk.Soviet
+		IntoActor: 3tnk.1B.Belarus
 	InfiltrateForTransform:
-		IntoActor: 2tnk.Soviet
+		IntoActor: 3tnk.1B.Belarus
 	RenderSprites:
-		Image: 2tnk.soviet.destroyed
+		Image: 3tnk.1b.destroyed
 	SpawnActorOnDeath@recovery:
-		Actor: 2tnk.Soviet
-		RequiresCondition: recovered
-	KillsSelf@recovery:
-		RequiresCondition: recovered
-	ExternalCondition@recovery:
-		Condition: recovered
-
-2TNK.Ukraine.Husk:
-	Inherits: ^Husk
-	Tooltip:
-		Name: Husk (Heavy Tank 1-B)
-	ThrowsParticle@turret:
-		Anim: turret
-	TransformOnCapture:
-		IntoActor: 2tnk.Ukraine
-	InfiltrateForTransform:
-		IntoActor: 2tnk.Ukraine
-	RenderSprites:
-		Image: 2tnk.soviet.destroyed
-	SpawnActorOnDeath@recovery:
-		Actor: 2tnk.ukraine
-		RequiresCondition: recovered
-	KillsSelf@recovery:
-		RequiresCondition: recovered
-	ExternalCondition@recovery:
-		Condition: recovered
-	-MapEditorData:
-
-2TNK.Belarus.Husk:
-	Inherits: ^Husk
-	Tooltip:
-		Name: Husk (Heavy Tank 1-B)
-	ThrowsParticle@turret:
-		Anim: turret
-	TransformOnCapture:
-		IntoActor: 2tnk.Belarus
-	InfiltrateForTransform:
-		IntoActor: 2tnk.Belarus
-	RenderSprites:
-		Image: 2tnk.soviet.destroyed
-	SpawnActorOnDeath@recovery:
-		Actor: 2tnk.belarus
+		Actor: 3tnk.1b.belarus
 		RequiresCondition: recovered
 	KillsSelf@recovery:
 		RequiresCondition: recovered
@@ -484,26 +316,6 @@ LTNK.Husk:
 	ExternalCondition@recovery:
 		Condition: recovered
 
-BEHE.Husk:
-	Inherits: ^Husk
-	Tooltip:
-		Name: Husk (Behemoth)
-	ThrowsParticle@turret:
-		Anim: turret
-	TransformOnCapture:
-		IntoActor: behe
-	InfiltrateForTransform:
-		IntoActor: behe
-	RenderSprites:
-		Image: behe.destroyed
-	SpawnActorOnDeath@recovery:
-		Actor: behe
-		RequiresCondition: recovered
-	KillsSelf@recovery:
-		RequiresCondition: recovered
-	ExternalCondition@recovery:
-		Condition: recovered
-
 BEHE.tank.Husk:
 	Inherits: ^Husk
 	Tooltip:
@@ -544,48 +356,6 @@ ATNK.Husk:
 	ExternalCondition@recovery:
 		Condition: recovered
 
-ATNK.England.Husk:
-	Inherits: ^Husk
-	Tooltip:
-		Name: Husk (Flak Tank)
-	ThrowsParticle@turret:
-		Anim: turret
-	TransformOnCapture:
-		IntoActor: atnk.england
-	InfiltrateForTransform:
-		IntoActor: atnk.england
-	RenderSprites:
-		Image: atnk.destroyed
-	SpawnActorOnDeath@recovery:
-		Actor: atnk.england
-		RequiresCondition: recovered
-	KillsSelf@recovery:
-		RequiresCondition: recovered
-	ExternalCondition@recovery:
-		Condition: recovered
-	-MapEditorData:
-
-ATNK.France.Husk:
-	Inherits: ^Husk
-	Tooltip:
-		Name: Husk (Flak Tank)
-	ThrowsParticle@turret:
-		Anim: turret
-	TransformOnCapture:
-		IntoActor: atnk.france
-	InfiltrateForTransform:
-		IntoActor: atnk.france
-	RenderSprites:
-		Image: atnk.destroyed
-	SpawnActorOnDeath@recovery:
-		Actor: atnk.france
-		RequiresCondition: recovered
-	KillsSelf@recovery:
-		RequiresCondition: recovered
-	ExternalCondition@recovery:
-		Condition: recovered
-	-MapEditorData:
-
 ATNK.Germany.Husk:
 	Inherits: ^Husk
 	Tooltip:
@@ -600,48 +370,6 @@ ATNK.Germany.Husk:
 		Image: atnk.destroyed
 	SpawnActorOnDeath@recovery:
 		Actor: atnk.germany
-		RequiresCondition: recovered
-	KillsSelf@recovery:
-		RequiresCondition: recovered
-	ExternalCondition@recovery:
-		Condition: recovered
-	-MapEditorData:
-
-ATNK.Spain.Husk:
-	Inherits: ^Husk
-	Tooltip:
-		Name: Husk (Flak Tank)
-	ThrowsParticle@turret:
-		Anim: turret
-	TransformOnCapture:
-		IntoActor: atnk.spain
-	InfiltrateForTransform:
-		IntoActor: atnk.spain
-	RenderSprites:
-		Image: atnk.destroyed
-	SpawnActorOnDeath@recovery:
-		Actor: atnk.spain
-		RequiresCondition: recovered
-	KillsSelf@recovery:
-		RequiresCondition: recovered
-	ExternalCondition@recovery:
-		Condition: recovered
-	-MapEditorData:
-
-ATNK.Italy.Husk:
-	Inherits: ^Husk
-	Tooltip:
-		Name: Husk (Flak Tank)
-	ThrowsParticle@turret:
-		Anim: turret
-	TransformOnCapture:
-		IntoActor: atnk.italy
-	InfiltrateForTransform:
-		IntoActor: atnk.italy
-	RenderSprites:
-		Image: atnk.destroyed
-	SpawnActorOnDeath@recovery:
-		Actor: atnk.italy
 		RequiresCondition: recovered
 	KillsSelf@recovery:
 		RequiresCondition: recovered
@@ -727,31 +455,9 @@ IROQ.Husk:
 	RenderSprites:
 		Image: iroq
 
-MI2.Husk:
-	Inherits: ^HelicopterHusk
-	Tooltip:
-		Name: MI-2 Scout
-	Aircraft:
-		TurnSpeed: 4
-		Speed: 112
-	WithIdleOverlay:
-		Sequence: rotor
-	SmokeTrailWhenDamaged:
-		Offset: -427,0,0
-		MinDamage: Undamaged
-	RevealsShroud:
-		Range: 10c0
-		Type: GroundPosition
-		RevealGeneratedShroud: False
-	RevealsShroud@GAPGEN:
-		Range: 8c0
-		Type: GroundPosition
-	RenderSprites:
-		Image: mi2
-
 HELI.Husk:
 	Tooltip:
-		Name: Apache Longbow
+		Name: Apache
 
 COSSACK.Husk:
 	Inherits: ^PlaneHusk
@@ -759,16 +465,22 @@ COSSACK.Husk:
 		Name: Cossack Transport
 	Contrail@1:
 		Offset: -400,-483,0
+		UsePlayerColor: false
 	Contrail@2:
 		Offset: -450,-683,-10
+		UsePlayerColor: false
 	Contrail@3:
 		Offset: -500,-883,-20
+		UsePlayerColor: false
 	Contrail@4:
 		Offset: -400,483,0
+		UsePlayerColor: false
 	Contrail@5:
 		Offset: -450,683,-10
+		UsePlayerColor: false
 	Contrail@6:
 		Offset: -500,883,-20
+		UsePlayerColor: false
 	Aircraft:
 		TurnSpeed: 4
 		Speed: 140
@@ -819,8 +531,10 @@ HARR.flying.Husk:
 		MinDamage: Undamaged
 	Contrail@1:
 		Offset: -400,-483,0
+		UsePlayerColor: false
 	Contrail@2:
 		Offset: -400,483,0
+		UsePlayerColor: false
 	RevealsShroud:
 		Range: 13c0
 		Type: GroundPosition
@@ -1056,28 +770,28 @@ MSLO.Husk:
 		Name: Missile Silo (Destroyed)
 
 PBOX.Husk:
-	Inherits: ^BuildingHusk
+	Inherits: ^DefenseHusk
 	Interactable:
 		Bounds: 24,24
 	Tooltip:
 		Name: Pillbox (Destroyed)
 
 HBOX.Husk:
-	Inherits: ^BuildingHusk
+	Inherits: ^DefenseHusk
 	Interactable:
 		Bounds: 24,24
 	Tooltip:
 		Name: Camo Pillbox (Destroyed)
 
 FTUR.Husk:
-	Inherits: ^BuildingHusk
+	Inherits: ^DefenseHusk
 	Interactable:
 		Bounds: 24,24
 	Tooltip:
 		Name: Flame Turret (Destroyed)
 
 GUN.Husk:
-	Inherits: ^BuildingHusk
+	Inherits: ^DefenseHusk
 	Turreted:
 		TurnSpeed: 12
 		InitialFacing: 56
@@ -1087,14 +801,14 @@ GUN.Husk:
 		Name: Gun Turret (Destroyed)
 
 TSLA.Husk:
-	Inherits: ^BuildingHusk
+	Inherits: ^DefenseHusk
 	Interactable:
 		Bounds: 24,24
 	Tooltip:
 		Name: Tesla Coil (Destroyed)
 
 AGUN.Husk:
-	Inherits: ^BuildingHusk
+	Inherits: ^DefenseHusk
 	Turreted:
 		TurnSpeed: 15
 		InitialFacing: 224
@@ -1103,10 +817,10 @@ AGUN.Husk:
 	Interactable:
 		Bounds: 24,24
 	Tooltip:
-		Name: Flak Turret (Destroyed)
+		Name: AA Gun (Destroyed)
 
 SAM.Husk:
-	Inherits: ^BuildingHusk
+	Inherits: ^DefenseHusk
 	Interactable:
 		Bounds: 24,24
 	Building:
@@ -1116,7 +830,7 @@ SAM.Husk:
 		Name: SAM Site (Destroyed)
 
 HSAM.Husk:
-	Inherits: ^BuildingHusk
+	Inherits: ^DefenseHusk
 	Interactable:
 		Bounds: 24,24
 	Building:
@@ -1126,7 +840,7 @@ HSAM.Husk:
 		Name: Camo SAM Site (Destroyed)
 
 OILB.Husk:
-	Inherits: ^CivBuildingHusk
+	Inherits: ^TechBuildingHusk
 	Inherits@shape: ^2x2Shape
 	Interactable:
 		Bounds: 24,24
@@ -1135,9 +849,12 @@ OILB.Husk:
 		Dimensions: 2,2
 	Tooltip:
 		Name: Oil Derrick (Destroyed)
+	InfiltrateForTransform:
+		IntoActor: oilb
+		ForceHealthPercentage: 25
 
 MISS.Husk:
-	Inherits: ^CivBuildingHusk
+	Inherits: ^TechBuildingHusk
 	Interactable:
 		Bounds: 72,48
 	Building:
@@ -1146,9 +863,11 @@ MISS.Husk:
 		LocalCenterOffset: 0,-512,0
 	Tooltip:
 		Name: Communications Center (Destroyed)
+	InfiltrateForTransform:
+		IntoActor: miss
 
 HOSP.Husk:
-	Inherits: ^CivBuildingHusk
+	Inherits: ^TechBuildingHusk
 	Interactable:
 		Bounds: 48,48
 	Building:
@@ -1156,9 +875,11 @@ HOSP.Husk:
 		Dimensions: 2,2
 	Tooltip:
 		Name: Hospital (Destroyed)
+	InfiltrateForTransform:
+		IntoActor: hosp
 
 BIO.Husk:
-	Inherits: ^CivBuildingHusk
+	Inherits: ^TechBuildingHusk
 	Interactable:
 		Bounds: 48,48
 	Building:
@@ -1166,9 +887,11 @@ BIO.Husk:
 		Dimensions: 2,2
 	Tooltip:
 		Name: Nuclear Reactor (Destroyed)
+	InfiltrateForTransform:
+		IntoActor: bio
 
 FCOM.Husk:
-	Inherits: ^CivBuildingHusk
+	Inherits: ^TechBuildingHusk
 	Inherits@shape: ^2x2Shape
 	Interactable:
 		Bounds: 48,48
@@ -1180,6 +903,8 @@ FCOM.Husk:
 		Name: Forward Command (Destroyed)
 	RenderSprites:
 		Image: acom.husk
+	InfiltrateForTransform:
+		IntoActor: fcom
 
 B52.Husk:
 	Inherits: ^PlaneHusk
@@ -1200,44 +925,6 @@ B52.Husk:
 		Image: ally-bdgr
 	-RevealOnDeath:
 
-SPG.Husk:
-	Inherits: ^Husk
-	Tooltip:
-		Name: Husk (SPG)
-	TransformOnCapture:
-		IntoActor: spg
-	InfiltrateForTransform:
-		IntoActor: spg
-	RenderSprites:
-		Image: spg.destroyed
-	SpawnActorOnDeath@recovery:
-		Actor: spg
-		RequiresCondition: recovered
-	KillsSelf@recovery:
-		RequiresCondition: recovered
-	ExternalCondition@recovery:
-		Condition: recovered
-
-MAPC.Husk:
-	Inherits: ^Husk
-	Tooltip:
-		Name: Husk (Assault APC)
-	ThrowsParticle@turret:
-		Anim: turret
-	TransformOnCapture:
-		IntoActor: mapc
-	InfiltrateForTransform:
-		IntoActor: mapc
-	RenderSprites:
-		Image: mapc.destroyed
-	SpawnActorOnDeath@recovery:
-		Actor: mapc
-		RequiresCondition: recovered
-	KillsSelf@recovery:
-		RequiresCondition: recovered
-	ExternalCondition@recovery:
-		Condition: recovered
-
 U2.emp.Husk:
 	Inherits: ^PlaneHusk
 	Tooltip:
@@ -1247,125 +934,48 @@ U2.emp.Husk:
 		Speed: 223
 	Contrail@1:
 		Offset: -725,683,0
+		UsePlayerColor: false
 	Contrail@2:
 		Offset: -725,-683,0
+		UsePlayerColor: false
 	SmokeTrailWhenDamaged:
 		Offset: -1c43,0,0
 		Interval: 2
 		MinDamage: Undamaged
 	RenderSprites:
 		Image: smig
-
-U2.nuke.Husk:
-	Inherits: ^PlaneHusk
-	Tooltip:
-		Name: Husk (Nuke Plane)
-	Aircraft:
-		TurnSpeed: 7
-		Speed: 373
-	Contrail@1:
-		Offset: -725,683,0
-	Contrail@2:
-		Offset: -725,-683,0
-	SmokeTrailWhenDamaged:
-		Offset: -1c43,0,0
-		Interval: 2
-		MinDamage: Undamaged
-	RenderSprites:
-		Image: ally-u2
 
 U2.strike.Husk:
 	Inherits: ^PlaneHusk
 	Tooltip:
-		Name: Husk (Interceptor)
+		Name: Husk (Strike Plane)
 	Aircraft:
 		TurnSpeed: 7
 		Speed: 373
 	Contrail@1:
 		Offset: -725,683,0
+		UsePlayerColor: false
 	Contrail@2:
 		Offset: -725,-683,0
+		UsePlayerColor: false
 	SmokeTrailWhenDamaged:
 		Offset: -1c43,0,0
 		Interval: 2
 		MinDamage: Undamaged
 	RenderSprites:
 		Image: ally-u2
-
-U2.jam.Husk:
-	Inherits: ^PlaneHusk
-	Tooltip:
-		Name: Husk (Jammer Plane)
-	Aircraft:
-		TurnSpeed: 7
-		Speed: 223
-	Contrail@1:
-		Offset: -725,683,0
-	Contrail@2:
-		Offset: -725,-683,0
-	SmokeTrailWhenDamaged:
-		Offset: -1c43,0,0
-		Interval: 2
-		MinDamage: Undamaged
-	RenderSprites:
-		Image: smig
 
 TRAN.soviet.Husk:
 	Inherits: TRAN.Husk
 	Tooltip:
 		Name: Yak 24
 
-FROG.Husk:
-	Inherits: ^PlaneHusk
-	Tooltip:
-		Name: Frogfoot Bomber
-		GenericName: Destroyed Plane
-	Aircraft:
-		TurnSpeed: 4
-		Speed: 190
-	Contrail@1:
-		Offset: -640,171,0
-		TrailLength: 15
-	Contrail@2:
-		Offset: -640,-171,0
-		TrailLength: 15
-	SmokeTrailWhenDamaged:
-		Offset: -853,0,171
-		Interval: 2
-		MinDamage: Undamaged
-	RenderSprites:
-		Image: frog
-
-PTNK.Husk:
-	Inherits: ^Husk
-	Tooltip:
-		Name: Husk (Phase Tank)
-	ThrowsParticle@turret:
-		Anim: turret
-	TransformOnCapture:
-		IntoActor: ptnk
-	InfiltrateForTransform:
-		IntoActor: ptnk
-	RenderSprites:
-		Image: ptnk.destroyed
-	SpawnActorOnDeath@recovery:
-		Actor: ptnk
-		RequiresCondition: recovered
-	ExternalCondition@recovery:
-		Condition: recovered
-
-YAK.Kamikaze.Husk:
-	Inherits: YAK.Husk
-	Tooltip:
-		Name: Kamikaze Plane
-	RenderSprites:
-		Image: yak
-
 YAK.Allies.Husk:
 	Inherits: ^PlaneHusk
 	Tooltip:
 		Name: Spitfire Attack Bomber
 	Contrail:
+		UsePlayerColor: false
 		Offset: -853,0,0
 	Aircraft:
 		TurnSpeed: 5
@@ -1391,8 +1001,10 @@ MIG.Allies.Husk:
 		Name: Tornado Interceptor
 	Contrail@1:
 		Offset: -598,-683,0
+		UsePlayerColor: false
 	Contrail@2:
 		Offset: -598,683,0
+		UsePlayerColor: false
 	Aircraft:
 		TurnSpeed: 5
 		Speed: 186
@@ -1411,26 +1023,6 @@ MIG.Allies.Husk:
 	RenderSprites:
 		Image: ally-mig
 
-PRSM.Husk:
-	Inherits: ^Husk
-	Tooltip:
-		Name: Husk (Prism Tank)
-	ThrowsParticle@turret:
-		Anim: turret
-	TransformOnCapture:
-		IntoActor: prsm
-	InfiltrateForTransform:
-		IntoActor: prsm
-	RenderSprites:
-		Image: prsm.destroyed
-	SpawnActorOnDeath@recovery:
-		Actor: prsm
-		RequiresCondition: recovered
-	KillsSelf@recovery:
-		RequiresCondition: recovered
-	ExternalCondition@recovery:
-		Condition: recovered
-
 MCV.Husk:
 	Tooltip:
 		Name: Husk (MCV)
@@ -1442,24 +1034,6 @@ MCV.Husk:
 	ExternalCondition@recovery:
 		Condition: recovered
 
-MCV.uzbek.Husk:
-	Inherits: ^Husk
-	Tooltip:
-		Name: Husk (MCV)
-	TransformOnCapture:
-		IntoActor: mcv.uzbek
-	InfiltrateForTransform:
-		IntoActor: mcv.uzbek
-	SpawnActorOnDeath@recovery:
-		Actor: mcv.uzbek
-		RequiresCondition: recovered
-	KillsSelf@recovery:
-		RequiresCondition: recovered
-	ExternalCondition@recovery:
-		Condition: recovered
-	RenderSprites:
-		Image: mcvhusk
-
 MGG.Husk:
 	SpawnActorOnDeath@recovery:
 		Actor: mgg
@@ -1468,3 +1042,13 @@ MGG.Husk:
 		RequiresCondition: recovered
 	ExternalCondition@recovery:
 		Condition: recovered
+
+YAK.Husk:
+	Contrail:
+		UsePlayerColor: false
+
+MIG.Husk:
+	Contrail@1:
+		UsePlayerColor: false
+	Contrail@2:
+		UsePlayerColor: false

@@ -380,30 +380,20 @@ strategic:
 flags:
 	Inherits: ^Flags
 	Regions:
-		Random: 30, 150, 30, 15
-		RandomAllies: 0, 135, 30, 15
-		RandomSoviet: 30, 135, 30, 15
-		spectator: 0, 150, 30, 15
+		Random: 30, 75, 30, 15
+		RandomAllies: 0, 60, 30, 15
+		RandomSoviet: 30, 60, 30, 15
+		spectator: 0, 75, 30, 15
 
-		allies: 0, 120, 30, 15
-		usa: 0, 0, 30, 15
-		england: 0, 15, 30, 15
-		france: 0, 30, 30, 15
-		germany: 0, 45, 30, 15
-		spain: 0, 60, 30, 15
-		italy: 0, 75, 30, 15
-		greece: 0, 90, 30, 15
-		turkey: 0, 105, 30, 15
+		allies: 0, 45, 30, 15
+		england: 0, 0, 30, 15
+		france: 0, 15, 30, 15
+		germany: 0, 30, 30, 15
 
-		soviet: 30, 120, 30, 15
+		soviet: 30, 45, 30, 15
 		russia: 30, 0, 30, 15
 		ukraine: 30, 15, 30, 15
 		belarus: 30, 30, 30, 15
-		karelia: 30, 45, 30, 15
-		kazakh: 30, 60, 30, 15
-		uzbek: 30, 75, 30, 15
-		turkmen: 30, 90, 30, 15
-		afghan: 30, 105, 30, 15
 
 music:
 	Inherits: ^Glyphs

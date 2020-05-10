@@ -610,8 +610,7 @@ pbox:
         Tick: 80
 
 pbox.husk:
-	idle: pbox
-		Start: 1
+	idle: pbox-dead
 
 hbox:
     Inherits: emp-overlay
@@ -662,78 +661,6 @@ ftur:
 		Facings: 8
 		Length: 13
 
-ftur.hidden:
-    Inherits: emp-overlay
-	make: fturmake
-		Length: *
-		Offset: 0,-2
-        Tick: 60
-	idle: ftur-sub-extra
-		Start: 0
-		Facings: 32
-		Offset: 0,-2
-	damaged-idle: ftur-sub-extra
-		Start: 32
-		Facings: 32
-		Offset: 0,-2
-	closed-idle: ftur-sub
-		Start: 0
-		Length: 1
-		Offset: 0,-2
-	damaged-closed-idle: ftur-sub
-		Start: 57
-		Length: 1
-		Offset: 0,-2
-	opening: ftur-sub
-		Start: 0
-		Length: 20
-		Tick: 60
-		Offset: 0,-2
-	damaged-opening: ftur-sub
-		Start: 29
-		Length: 20
-		Tick: 60
-		Offset: 0,-2
-	closing: ftur-sub
-		Start: 21
-		Length: 8
-		Tick: 60
-		Offset: 0,-2
-	damaged-closing: ftur-sub
-		Start: 50
-		Length: 8
-		Tick: 60
-		Offset: 0,-2
-	muzzle-spray:
-		Combine:
-			flame-n:
-				Length: *
-				Offset: 3,6
-			flame-nw:
-				Length: *
-				Offset: 8,7
-			flame-w:
-				Length: *
-				Offset: 8,2
-			flame-sw:
-				Length: *
-				Offset: 7,-2
-			flame-s:
-				Length: *
-				Offset: 3,-2
-			flame-se:
-				Length: *
-				Offset: -5,-2
-			flame-e:
-				Length: *
-				Offset: -7,2
-			flame-ne:
-				Length: *
-				Offset: -7,8
-		Facings: 8
-		Length: 13
-	icon: fturicon
-
 ftur.husk:
 	idle: ftur
 		Start: 1
@@ -743,28 +670,6 @@ ftur.husk:
 		Length: *
 		UseTilesetExtension: true
 
-gtwr:
-    Inherits: emp-overlay
-	idle:
-	damaged-idle:
-		Start: 1
-	dead:
-		Start: 1
-		Tick: 800
-	make: gtwr-make
-		Length: *
-        Tick: 70
-	muzzle: minigun
-		Length: 6
-		Facings: 8
-	bib: mbPBOX
-		Length: *
-		Offset: 0,-2
-		UseTilesetExtension: true
-		TilesetOverrides:
-			INTERIOR: TEMPERAT
-	icon: gtwricon
-
 gun:
     Inherits: emp-overlay
 	make: gunmake
@@ -772,9 +677,7 @@ gun:
         Tick: 70
 
 gun.husk:
-	idle: gun
-		Start: 64
-		Facings: 32
+	idle: gun-dead
 	bib: mbGUN
 		Length: *
 		Offset: -1,-1
@@ -788,40 +691,11 @@ tsla:
         Tick: 70
 
 tsla.husk:
-	idle: tsla
-		Start: 10
-		Length: 1
+	idle: tsla-dead
 		Offset: 0,-13
 	bib: mbTSLA
 		Length: *
 		UseTilesetExtension: true
-
-gtur:
-    Inherits: emp-overlay
-	idle: gtur-base
-		Start: 0
-		Length: 1
-		Offset: 0,0
-	damaged-idle: gtur-base
-		Start: 1
-		Length: 1
-		Offset: 0,0
-	turret: gtur
-		Facings: 32
-		UseClassicFacingFudge: True
-		Offset: 0,0		
-	make: gtur-make
-		Length: *
-		Offset: 0,0
-		Tick: 80
-	muzzle: cruiser-muzzle
-		Length: 20
-		Facings: 8
-	bib: mbSAM
-		Length: *
-		Offset: 0,1
-		UseTilesetExtension: true
-	icon: gturicon
 
 agun:
     Inherits: emp-overlay
@@ -1025,24 +899,6 @@ fistbuild:
 		UseTilesetExtension: true
 		Length: *
 	icon: weapsvyticon
-
-mgnst:
-	idle: blank32
-	damaged-idle: blank32
-		Start: 0
-	idle-ground: mgnst-base
-		ZOffset: -1c511
-	damaged-idle-ground: mgnst-base
-		Start: 0
-		ZOffset: -1c511
-	turret: mgnst
-		Facings: 32
-	make: mgnst-make
-		Length: *
-	muzzle: minigun
-		Length: 6
-		Facings: 8
-	icon: mgnsticon	
 
 gun2:    
 	Inherits: emp-overlay
@@ -1320,26 +1176,6 @@ gmine:
 		TilesetOverrides:
 			INTERIOR: TEMPERAT
 		Offset: 0, -12
-
-pbat:
-    Inherits: emp-overlay
-	idle:
-		Facings: 32
-		UseClassicFacingFudge: True
-		Offset: 0,-11
-	damaged-idle:
-		Start: 0
-		Facings: 32
-		UseClassicFacingFudge: True
-		Offset: 0,-11
-	make: blank32
-		Length: *
-		Offset: 0,-11
-	bib: mbSAM
-		Length: *
-		Offset: 0,1
-		UseTilesetExtension: true
-	icon: pbaticon
 
 rresf:
     Inherits: emp-overlay

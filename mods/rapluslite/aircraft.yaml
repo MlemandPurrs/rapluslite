@@ -1,15 +1,18 @@
 BADR:
 	Health:
 		HP: 20000
-	SpeedMultiplier:
-		Modifier: 110
-		RequiresCondition: kazakh.player
-	GrantConditionOnFaction:
-		Condition: kazakh.player
-		Factions: kazakh
-		ResetOnOwnerChange: True
 	Cargo:
 		MaxWeight: 15
+	Contrail@1:
+		UsePlayerColor: false
+	Contrail@2:
+		UsePlayerColor: false
+
+BADR.Bomber:
+	Contrail@1:
+		UsePlayerColor: false
+	Contrail@2:
+		UsePlayerColor: false
 
 BADR.Crate:
 	Inherits: BADR
@@ -35,7 +38,7 @@ BADR.buildable:
 		BuildAtProductionType: Plane
 		BuildPaletteOrder: 3
 		BuildLimit: 1
-		Prerequisites: ~afld, stek, ~aircraft.soviet, ~!player.ukraine, ~techlevel.high
+		Prerequisites: ~afld, stek, ~aircraft.soviet, ~techlevel.high
 		Description: Badger variant modified to carry and fire 4 V2 rockets.\nMaximum 1 can be built.\n  Strong vs Buildings, Vehicles\n  Weak vs Infantry, Aircraft
 	Tooltip:
 		Name: Badger V2
@@ -45,11 +48,23 @@ BADR.buildable:
 		Cost: 3000
 	Health:
 		HP: 20000
-	Armament:
+	Armament@PRIMARY:
+		Name: primary
 		Weapon: SCUD.badger
 		LocalOffset: 432,320,0, 432,-320,0
 		LocalYaw: -40, 24
 		PauseOnCondition: !ammo
+		RequiresCondition: !ukraineplayer
+	Armament@UKRAINEBONUS:
+		Name: primary
+		Weapon: SCUD.badger.ukraine
+		LocalOffset: 432,320,0, 432,-320,0
+		LocalYaw: -40, 24
+		PauseOnCondition: !ammo
+		RequiresCondition: ukraineplayer
+	GrantConditionOnFaction@UKRAINE:
+		Condition: ukraineplayer
+		Factions: ukraine
 	AttackAircraft:
 		FacingTolerance: 20
 		PersistentTargeting: false
@@ -76,8 +91,10 @@ BADR.buildable:
 		Type: GroundPosition
 	Contrail@1:
 		Offset: -432,560,0
+		UsePlayerColor: false
 	Contrail@2:
 		Offset: -432,-560,0
+		UsePlayerColor: false
 	SpawnActorOnDeath:
 		Actor: BADR.Husk
 	SmokeTrailWhenDamaged@0:
@@ -95,21 +112,9 @@ BADR.buildable:
 	ProducibleWithLevel:
 		Prerequisites: aircraft.upgraded
 	Rearmable:
-		RearmActors: afld, afld.usa, afld.england, carr.usa.deployed
+		RearmActors: afld, afld.england, carr.usa.deployed
 	RenderSprites:
 		Image: badr
-
-BADR.buildable.ukraine:
-	Inherits: BADR.buildable
-	Buildable:
-		Prerequisites: ~afld, stek, ~aircraft.soviet, ~player.ukraine, ~techlevel.high
-	-Armament:
-	Armament:
-		Weapon: SCUD.badger.ukraine
-		LocalOffset: 432,320,0, 432,-320,0
-		LocalYaw: -40, 24
-		PauseOnCondition: !ammo
-	-MapEditorData:
 
 B52:
 	Inherits: BADR
@@ -174,11 +179,11 @@ B52.buildable:
 	Turreted@1:
 		Turret: turret-mg
 		TurnSpeed: 255
-		Offset: 468,0,-108
+		Offset: 468,0,0
 	Turreted@2:
 		Turret: turret-cannon
 		TurnSpeed: 255
-		Offset: 396,0,-108
+		Offset: 396,0,0
 	WithSpriteTurret@1:
 		Sequence: turret1
 		Turret: turret-mg
@@ -211,8 +216,10 @@ B52.buildable:
 		Type: GroundPosition
 	Contrail@1:
 		Offset: -432,560,0
+		UsePlayerColor: false
 	Contrail@2:
 		Offset: -432,-560,0
+		UsePlayerColor: false
 	SpawnActorOnDeath:
 		Actor: B52.Husk
 	SmokeTrailWhenDamaged@0:
@@ -230,38 +237,9 @@ B52.buildable:
 	ProducibleWithLevel:
 		Prerequisites: aircraft.upgraded
 	Rearmable:
-		RearmActors: afld, afld.usa, afld.england, carr.usa.deployed
+		RearmActors: afld, afld.england, carr.usa.deployed
 	RenderSprites:
 		Image: ally-bdgr
-
-B2.Bomber:
-	Inherits: B52.Bomber
-	Tooltip:
-		Name: B-2
-	Health:
-		HP: 15000
-	-RenderSprites:
-	RenderSprites:
-		Image: b2
-	Cloak:
-		InitialDelay: 90
-		CloakDelay: 90
-		CloakSound: appear1.aud
-		UncloakSound: appear1.aud
-		IsPlayerPalette: true
-		PauseOnCondition: cloak-force-disabled || !airborne
-	GrantConditionOnDamageState@UNCLOAK:
-		Condition: cloak-force-disabled
-		ValidDamageStates: Critical
-
-B52.leaflet:
-	Inherits: B52.Bomber
-	Armament:
-		Weapon: parabomb.leaflet
-		PauseOnCondition: !ammo
-	AmmoPool:
-		Ammo: 5
-		AmmoCondition: ammo
 
 TRAN:
 	Buildable:
@@ -284,13 +262,6 @@ TRAN.Soviet:
 		Name: Yak 24
 	RenderSprites:
 		Image: tran
-	SpeedMultiplier:
-		Modifier: 110
-		RequiresCondition: kazakh.player
-	GrantConditionOnFaction:
-		Condition: kazakh.player
-		Factions: kazakh
-		ResetOnOwnerChange: True
 	SpawnActorOnDeath:
 		Actor: TRAN.soviet.Husk
 	-MapEditorData:
@@ -302,7 +273,7 @@ IROQ:
 		Queue: Aircraft, MWFHeli
 		BuildAtProductionType: Helicopter
 		BuildPaletteOrder: 2
-		Prerequisites: ~hpad, ~aircraft.allies, ~!player.turkey, ~!aitoodumb, ~techlevel.medium
+		Prerequisites: ~hpad, ~aircraft.allies, ~!aitoodumb, ~techlevel.medium
 		Description: Light helicopter armed with dual chainguns.\nCan use Depthcharges against Submarines.\n  Strong vs Infantry, Light vehicles\n  Weak vs Tanks, Aircraft
 	Valued:
 		Cost: 1350
@@ -390,29 +361,7 @@ IROQ:
 	Selectable:
 		DecorationBounds: 38,32
 	Rearmable:
-		RearmActors: hpad, hpad.usa, carr.deployed
-
-IROQ.Turkey:
-	Inherits: IROQ
-	Buildable:
-		Prerequisites: ~hpad, ~aircraft.allies, ~player.turkey, ~!aitoodumb, ~!aircraft.upgraded, ~techlevel.medium
-	ProducibleWithLevel:
-		Prerequisites: techlevel.infonly
-		InitialLevels: 1
-	RenderSprites:
-		Image: iroq
-	-MapEditorData:
-
-IROQ.Turkey.R2:
-	Inherits: IROQ.Turkey
-	Buildable:
-		Prerequisites: ~hpad, ~aircraft.allies, ~player.turkey, ~!aitoodumb, ~aircraft.upgraded, ~techlevel.medium
-		Icon: rank2-icon
-	ProducibleWithLevel:
-		Prerequisites: techlevel.infonly
-		InitialLevels: 2
-	RenderSprites:
-		Image: iroq
+		RearmActors: hpad, carr.deployed
 
 IROQ.AI:
 	Inherits: IROQ
@@ -425,76 +374,6 @@ IROQ.AI:
 	RenderSprites:
 		Image: iroq
 	-MapEditorData:
-
-IROQ.Turkey.AI:
-	Inherits: IROQ
-	Buildable:
-		Prerequisites: ~hpad, ~aircraft.allies, ~player.turkey, ~aitoodumb, ~techlevel.medium
-	ProducibleWithLevel:
-		Prerequisites: techlevel.infonly
-		InitialLevels: 1
-	-Armament@TERTIARY:
-	-AmmoPool@2:
-	AttackAircraft:
-		Armaments: primary, secondary
-	RenderSprites:
-		Image: iroq
-	-MapEditorData:
-
-MI2:
-	Inherits: IROQ
-	-Buildable:
-	Buildable:
-		Queue: Aircraft, MWFHeli
-		BuildAtProductionType: Helicopter
-		BuildPaletteOrder: 5
-		Prerequisites: ~disabled
-		Description: Light helicopter armed with dual chainguns.\n  Strong vs Infantry, Light vehicles\n  Weak vs Tanks, Aircraft
-	Valued:
-		Cost: 1200
-	Tooltip:
-		Name: MI-2 Scout
-	-Armament@TERTIARY:
-	-AmmoPool@2:
-	AttackAircraft:
-		Armaments: primary, secondary, fourth, fifth
-	SpawnActorOnDeath:
-		Actor: MI2.Husk
-	SpeedMultiplier:
-		Modifier: 110
-		RequiresCondition: kazakh.player
-	GrantConditionOnFaction:
-		Condition: kazakh.player
-		Factions: kazakh
-		ResetOnOwnerChange: True
-
-MI2.scout:
-	Inherits: MI2
-	-Buildable:
-	Buildable:
-		Queue: Aircraft, MWFHeli
-		BuildAtProductionType: Helicopter
-		BuildPaletteOrder: 7
-		Prerequisites: ~hpad, ~aircraft.soviet, ~player.uzbek, ~techlevel.medium
-		Description: Fast and nimble light helicopter with\ngood sight-radius and detection.\nDetects cloaked units in a close radius.\nCan transport one Infantry.\n  Unarmed
-	Valued:
-		Cost: 800
-	RenderSprites:
-		Image: mi2
-	-Armament@PRIMARY:
-	-Armament@SECONDARY:
-	-Armament@FOURTH:
-	-Armament@FIFTH:
-	-AmmoPool:
-	DetectCloaked:
-		Range: 3c0
-	-Rearmable:
-	-WithMuzzleOverlay:
-	-ProducibleWithLevel:
-	Cargo:
-		Types: Infantry
-		MaxWeight: 1
-		PipCount: 1
 
 HELI:
 	Buildable:
@@ -532,14 +411,14 @@ HELI:
 		AmmoCondition: ammogun
 	WithMuzzleOverlay:
 	Rearmable:
-		RearmActors: hpad, hpad.usa, carr.deployed
+		RearmActors: hpad, carr.deployed
 
 HIND:
 	Buildable:
 		Queue: Aircraft, MWFHeli
 		BuildPaletteOrder: 6
 		BuildAtProductionType: Helicopter
-		Prerequisites: ~hpad, stek, ~aircraft.soviet, ~!player.afghan, ~techlevel.high
+		Prerequisites: ~hpad, stek, ~aircraft.soviet, ~techlevel.high
 		Description: Slow helicopter gunship armed with dual chainguns\nand anti-ground rockets.\n  Strong vs Infantry, Tanks\n  Weak vs fast Units, Aircraft
 	Tooltip:
 		Name: MI-24 Hind
@@ -597,42 +476,17 @@ HIND:
 		TurnSpeed: 5
 		InitialFacing: 192
 	Rearmable:
-		RearmActors: hpad, hpad.usa, carr.deployed
-	SpeedMultiplier:
-		Modifier: 110
-		RequiresCondition: kazakh.player
-	GrantConditionOnFaction:
-		Condition: kazakh.player
-		Factions: kazakh
-		ResetOnOwnerChange: True
+		RearmActors: hpad, carr.deployed
 	Health:
 		HP: 12000
-
-HIND.afghan:
-	Inherits: HIND
-	Buildable:
-		Prerequisites: ~hpad, stek, ~aircraft.soviet, ~player.afghan, ~!aircraft.upgraded, ~techlevel.high
-	ProducibleWithLevel:
-		Prerequisites: techlevel.infonly
-		InitialLevels: 1
-	RenderSprites:
-		Image: hind
-	-MapEditorData:
-
-HIND.afghan.R2:
-	Inherits: HIND.afghan
-	Buildable:
-		Prerequisites: ~hpad, stek, ~aircraft.soviet, ~player.afghan, ~aircraft.upgraded, ~techlevel.high
-		Icon: rank2-icon
-	ProducibleWithLevel:
-		Prerequisites: techlevel.infonly
-		InitialLevels: 2
-	RenderSprites:
-		Image: hind
 
 U2:
 	Health:
 		HP: 15000
+	Contrail@1:
+		UsePlayerColor: false
+	Contrail@2:
+		UsePlayerColor: false
 
 U2.emp:
 	Inherits: U2
@@ -655,25 +509,6 @@ U2.emp:
 		Image: smig
 	-EjectOnDeath:
 
-U2.nuke:
-	Inherits: U2
-	Armament:
-		Weapon: NukeBomb
-		PauseOnCondition: !ammo
-	AmmoPool:
-		Ammo: 1
-		AmmoCondition: ammo
-	Tooltip:
-		Name: Nuke Plane
-	SpawnActorOnDeath:
-		Actor: U2.nuke.Husk
-	Targetable@AIRBORNE:
-		RequiresCondition: airborne
-		TargetTypes: Air
-	RenderSprites:
-		Image: ally-u2
-	-EjectOnDeath:
-
 U2.strike:
 	Inherits: U2
 	Armament:
@@ -692,30 +527,6 @@ U2.strike:
 		TargetTypes: Air
 	RenderSprites:
 		Image: ally-u2
-	-EjectOnDeath:
-
-U2.jam:
-	Inherits: U2
-	Tooltip:
-		Name: Jammer Plane
-	ProximityExternalCondition@JAMMER:
-		Range: 18c0
-		ValidStances: Enemy, Neutral
-		Condition: jammed
-	WithRangeCircle@JAMMER:
-		Type: jammer
-		Range: 18c0
-		Color: 0000FF80
-		Visible: always
-	SpawnActorOnDeath:
-		Actor: U2.jam.Husk
-	Aircraft:
-		Speed: 223
-	Targetable@AIRBORNE:
-		RequiresCondition: airborne
-		TargetTypes: Air
-	RenderSprites:
-		Image: smig
 	-EjectOnDeath:
 
 YAK:
@@ -779,14 +590,9 @@ YAK:
 		ReloadDelay: 11
 		AmmoCondition: ammodc
 	Rearmable:
-		RearmActors: afld, afld.usa, afld.england, carr.usa.deployed
-	SpeedMultiplier:
-		Modifier: 110
-		RequiresCondition: kazakh.player
-	GrantConditionOnFaction:
-		Condition: kazakh.player
-		Factions: kazakh
-		ResetOnOwnerChange: True
+		RearmActors: afld, afld.england, carr.usa.deployed
+	Contrail:
+		UsePlayerColor: false
 
 YAK.Belarus:
 	Inherits: YAK
@@ -836,47 +642,6 @@ YAK.Belarus.AI:
 		Image: yak
 	AttackAircraft:
 		Armaments: primary, secondary
-
-YAK.kamikaze:
-	Inherits: YAK
-	-Buildable:
-	-Valued:
-	Tooltip:
-		Name: Kamikaze Yak
-	-Armament@PRIMARY:
-	-Armament@SECONDARY:
-	-Armament@TERTIARY:
-	-Armament@FOURTH:
-	-Armament@FIFTH:
-	-AmmoPool@1:
-	-AmmoPool@2:
-	Armament@PRIMARY:
-		Weapon: DummyBomb
-	-WithMuzzleOverlay:
-	-ProducibleWithLevel:
-	-Rearmable:
-	AttackAircraft:
-		Armaments: primary
-	AttackBomber:
-	GrantConditionOnAttack:
-		Condition: triggered
-	KillsSelf:
-		RequiresCondition: triggered
-	SpawnActorOnDeath:
-		Actor: YAK.kamikaze.Husk
-	-SelfHealing@PLANE:
-	-GrantConditionOnPrerequisite@AIRFIELD:
-	-Selectable:
-	-Voiced:
-	RejectsOrders:
-	Interactable:
-	-ActorLostNotification:
-	RenderSprites:
-		Image: yak
-	CashTrickler@usagecost:
-		Amount: -800
-		InitialDelay: 0
-		Interval: 9999
 
 SPIT:
 	Inherits: ^Plane
@@ -933,6 +698,7 @@ SPIT:
 	WithMuzzleOverlay:
 	Contrail:
 		Offset: -853,0,0
+		UsePlayerColor: false
 	SpawnActorOnDeath:
 		Actor: YAK.Allies.Husk
 	SmokeTrailWhenDamaged:
@@ -943,7 +709,7 @@ SPIT:
 	Selectable:
 		DecorationBounds: 30,28,0,2
 	Rearmable:
-		RearmActors: afld, afld.usa, afld.england, carr.usa.deployed
+		RearmActors: afld, afld.england, carr.usa.deployed
 	RenderSprites:
 		Image: ally-yak
 
@@ -970,14 +736,11 @@ MIG:
 	AttackAircraft:
 		PersistentTargeting: false
 	Rearmable:
-		RearmActors: afld, afld.usa, afld.england, carr.usa.deployed
-	SpeedMultiplier:
-		Modifier: 110
-		RequiresCondition: kazakh.player
-	GrantConditionOnFaction:
-		Condition: kazakh.player
-		Factions: kazakh
-		ResetOnOwnerChange: True
+		RearmActors: afld, afld.england, carr.usa.deployed
+	Contrail@1:
+		UsePlayerColor: false
+	Contrail@2:
+		UsePlayerColor: false
 
 MIG.AI:
 	Inherits: MIG
@@ -1043,8 +806,10 @@ TORN:
 	SelectionDecorations:
 	Contrail@1:
 		Offset: -598,-683,0
+		UsePlayerColor: false
 	Contrail@2:
 		Offset: -598,683,0
+		UsePlayerColor: false
 	SpawnActorOnDeath:
 		Actor: MIG.Allies.Husk
 	SmokeTrailWhenDamaged:
@@ -1053,7 +818,7 @@ TORN:
 	ProducibleWithLevel:
 		Prerequisites: aircraft.upgraded
 	Rearmable:
-		RearmActors: afld, afld.usa, afld.england, carr.usa.deployed
+		RearmActors: afld, afld.england, carr.usa.deployed
 	RenderSprites:
 		Image: ally-mig
 
@@ -1115,27 +880,26 @@ COSSACK:
 		DecorationBounds: 50,40,0,2
 	Contrail@1:
 		Offset: -400,-483,0
+		UsePlayerColor: false
 	Contrail@2:
 		Offset: -450,-683,-10
+		UsePlayerColor: false
 	Contrail@3:
 		Offset: -500,-883,-20
+		UsePlayerColor: false
 	Contrail@4:
 		Offset: -400,483,0
+		UsePlayerColor: false
 	Contrail@5:
 		Offset: -450,683,-10
+		UsePlayerColor: false
 	Contrail@6:
 		Offset: -500,883,-20
+		UsePlayerColor: false
 	RenderSprites:
 		Image: cossack
 	Rearmable:
-		RearmActors: afld, afld.usa, afld.england, carr.usa.deployed
-	SpeedMultiplier:
-		Modifier: 110
-		RequiresCondition: kazakh.player
-	GrantConditionOnFaction:
-		Condition: kazakh.player
-		Factions: kazakh
-		ResetOnOwnerChange: True
+		RearmActors: afld, afld.england, carr.usa.deployed
 
 HARR:
 	Inherits: ^Helicopter
@@ -1192,8 +956,10 @@ HARR:
 		AmmoCondition: ammo
 	Contrail@1:
 		Offset: -400,-483,0
+		UsePlayerColor: false
 	Contrail@2:
 		Offset: -400,483,0
+		UsePlayerColor: false
 	GrantConditionOnMovement:
 		Condition: moving
 	SelectionDecorations:
@@ -1211,133 +977,8 @@ HARR:
 	ProducibleWithLevel:
 		Prerequisites: aircraft.upgraded
 	Rearmable:
-		RearmActors: afld, afld.usa, afld.england, hpad, hpad.usa, carr.deployed, carr.usa.deployed
+		RearmActors: afld, afld.england, hpad, carr.deployed, carr.usa.deployed
 
 MH60:
 	Buildable:
 		Prerequisites: ~disabled
-
-FROG.Bomber:
-	Inherits: ^NeutralPlane
-	AttackBomber:
-		Armaments: gun, bombs
-	Armament@GUNS:
-		Name: gun
-		Weapon: Vulcan.bomber
-		LocalOffset: 1024,0,-85
-	WithMuzzleOverlay:
-	Armament@BOMBS:
-		Name: bombs
-		Weapon: Napalm.bomber
-		LocalOffset: 0,-256,-43, 0,256,-43
-	Health:
-		HP: 30000
-	Aircraft:
-		CruiseAltitude: 2560
-		TurnSpeed: 5
-		Speed: 298
-		Repulsable: False
-		MaximumPitch: 56
-	-Selectable:
-	SelectionDecorations:
-		RenderSelectionBars: False
-	-Voiced:
-	Tooltip:
-		Name: Frogfoot Bomber
-	Contrail@1:
-		Offset: -640,171,0
-		TrailLength: 15
-	Contrail@2:
-		Offset: -640,-171,0
-		TrailLength: 15
-	RenderSprites:
-		Image: a10
-	SpawnActorOnDeath:
-		Actor: FROG.Husk
-	SmokeTrailWhenDamaged@0:
-		Offset: -640,171,0
-		Interval: 2
-	SmokeTrailWhenDamaged@1:
-		Offset: -640,-171,0
-		Interval: 2
-	-EjectOnDeath:
-	-MapEditorData:
-	RejectsOrders:
-	RenderSprites:
-		Image: frog
-	GivesExperience:
-		Experience: 1000
-	Interactable:
-
-BMIN:
-	Inherits: ^Helicopter
-	Inherits@AUTOTARGET: ^AutoTargetAir
-	Buildable:
-		Queue: Aircraft, MWFAir
-		BuildAtProductionType: Helicopter
-		BuildPaletteOrder: 6
-		Prerequisites: ~hpad, fix, ~player.italy, ~techlevel.medium
-		Description: Dirigible, parachuted aerial Mine.\n  Strong vs Aircraft\n  Weak vs anything Else
-	Valued:
-		Cost: 450
-	Tooltip:
-		Name: Baloon Mine
-	UpdatesPlayerStatistics:
-		AddToArmyValue: true
-	Health:
-		HP: 5000
-		NotifyAppliedDamage: false
-	RevealsShroud:
-		Range: 3c0
-		Type: GroundPosition
-		RevealGeneratedShroud: False
-	RevealsShroud@GAPGEN:
-		Range: 1c0
-		Type: GroundPosition
-	Aircraft:
-		CruiseAltitude: 1908
-		TurnSpeed: 255
-		Speed: 64
-		AltitudeVelocity: 0c58
-		LandableTerrainTypes: none
-		Repulsable: True
-		IdealSeparation: 0c256
-		InitialFacing: 192
-	-Explodes:
-	Explodes@UNITEXPLODES:
-		Weapon: AAMine
-		DamageSource: Killer
-		Type: CenterPosition
-	AttackAircraft:
-		FacingTolerance: 128
-	SelectionDecorations:
-	Selectable:
-		DecorationBounds: 24,24
-	Armament@PRIMARY:
-		Weapon: AirMineTargeting
-	GrantConditionOnAttack:
-		Condition: triggered
-	GrantConditionOnDeploy:
-		DeployedCondition: triggered
-	KillsSelf:
-		RequiresCondition: triggered
-	-MustBeDestroyed:
-	Voiced:
-		VoiceSet: RoboticVoice
-	-SpawnActorOnDeath:
-	-Repairable:
-	WithIdleOverlay@CHUTE:
-		Offset: 0,0,85
-		Sequence: chute
-	Mine:
-		CrushClasses: airmine
-		DetonateClasses: airmine
-		AvoidFriendly: false
-		BlockFriendly: false
-	MineImmune:
-	-ActorLostNotification:
-	Targetable@AIRBORNE:
-		RequiresCondition: airborne
-		TargetTypes: Air, AirMine
-	RenderSprites:
-		Image: mina

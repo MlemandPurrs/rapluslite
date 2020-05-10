@@ -16,13 +16,13 @@ Player:
 		RequiresCondition: enable-ai-player
 	McvManagerBotModule@aiplayer:
 		RequiresCondition: enable-ai-player
-		McvTypes: mcv,mcv.uzbek,mcv.ai,mcv.uzbek.ai
-		ConstructionYardTypes: fact,fact.uzbek
+		McvTypes: mcv,mcv.ai
+		ConstructionYardTypes: fact
 		McvFactoryTypes: weap,weap.france,weap.germany
 		MaxBaseRadius: 40
 	CaptureManagerBotModule@engineer:
 		RequiresCondition: enable-ai-player
-		CapturingActorTypes: e6,e6.uzbek
+		CapturingActorTypes: e6
 		CapturableActorTypes: oilb,bio,miss,fcom,hosp
 		CheckCaptureTargetsForVisibility: false
 		MaximumCaptureTargetOptions: 15
